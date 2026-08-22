@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vietnam — Editorial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --ink: #1c1b19;
+      --muted: #6a655c;
+      --accent: #6e7f6b;
+      --paper: #fffdf9;
+      --line: rgba(28, 27, 25, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      position: fixed; inset: 0 0 auto; z-index: 50; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+      color: #f6f2ea; transition: background .3s ease, box-shadow .3s ease, color .3s ease;
+    }
+    .nav.is-solid { background: rgba(246, 242, 234, .96); color: var(--ink); box-shadow: 0 1px 0 var(--line); }
+    .logo { font-family: Fraunces, serif; font-weight: 600; font-size: 1.1rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-size: .9rem; font-weight: 500; }
+    .nav-cta {
+      font: 500 .85rem Inter, sans-serif; padding: .55rem 1.1rem; border-radius: 999px;
+      border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer;
+    }
+
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1.05fr .95fr;
+      gap: clamp(1.5rem, 4vw, 3rem); align-items: end;
+      padding: calc(72px + 3rem) clamp(1.25rem, 4vw, 3rem) 4rem;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .hero-copy { padding-bottom: 2rem; }
+    .hero h1 {
+      font-family: Fraunces, serif; font-weight: 600;
+      font-size: clamp(3rem, 6vw, 5rem); line-height: 1.05; letter-spacing: -.02em; margin-bottom: 1.25rem;
+    }
+    .hero p { color: var(--muted); max-width: 34ch; font-size: 1.05rem; margin-bottom: 2rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .btn {
+      font: 500 .95rem Inter, sans-serif; padding: .9rem 1.45rem; border-radius: 999px; cursor: pointer;
+      border: 1px solid transparent; transition: background .25s ease, color .25s ease, border-color .25s ease;
+    }
+    .btn-solid { background: var(--ink); color: var(--bg); }
+    .btn-outline { background: transparent; border-color: rgba(28,27,25,.35); color: var(--ink); }
+    .hero-photo {
+      height: min(72vh, 640px); border-radius: 2px; overflow: hidden;
+      box-shadow: 0 20px 50px rgba(28,27,25,.12);
+    }
+
+    .section { padding: clamp(4.5rem, 9vw, 7rem) clamp(1.25rem, 4vw, 3rem); }
+    .inner { max-width: 1120px; margin: 0 auto; }
+    .eyebrow { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: .8rem; }
+    .section h2 { font-family: Fraunces, serif; font-weight: 600; font-size: clamp(2rem, 4vw, 2.85rem); letter-spacing: -.02em; margin-bottom: 1rem; }
+    .lead { color: var(--muted); max-width: 40ch; margin-bottom: 3.25rem; }
+
+    .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+    .fact h3 { font-family: Fraunces, serif; font-size: 1.7rem; font-weight: 600; margin-bottom: .45rem; }
+    .fact p { color: var(--muted); font-size: .92rem; max-width: 20ch; }
+
+    .regions { background: #efe9df; }
+    .grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(180px, 20vw); gap: 1rem;
+    }
+    .card {
+      position: relative; overflow: hidden; border-radius: 2px; isolation: isolate;
+      transition: transform .3s ease, box-shadow .3s ease; box-shadow: 0 6px 18px rgba(28,27,25,.08);
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(28,27,25,.14); }
+    .card::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,18,14,.7), transparent 55%);
+    }
+    .card span {
+      position: absolute; left: 1rem; bottom: 1rem; right: 1rem; z-index: 1; color: #f6f2ea;
+      font-family: Fraunces, serif; font-size: 1.2rem; font-weight: 600;
+    }
+    .card small { display: block; font-family: Inter, sans-serif; font-size: .78rem; font-weight: 400; opacity: .85; margin-top: .2rem; }
+    .span2 { grid-column: span 2; grid-row: span 2; }
+    .wide { grid-column: span 2; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: calc(72px + 1.5rem); }
+      .hero-photo { height: 48vh; order: -1; }
+      .nav-links { display: none; }
+      .facts { grid-template-columns: 1fr 1fr; }
+      .grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; }
+      .span2 { grid-row: span 1; }
+    }
+    @media (max-width: 560px) {
+      .facts, .grid { grid-template-columns: 1fr; }
+      .span2, .wide { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a class="logo" href="#">Vietnam, Curated</a>
+    <ul class="nav-links">
+      <li><a href="#why">Why Vietnam</a></li>
+      <li><a href="#regions">Regions</a></li>
+    </ul>
+    <button type="button" class="nav-cta">Start Planning</button>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Vietnam, End to End</h1>
+      <p>From misted northern bays to the Mekong’s slow rivers — a country of layered climates, kitchens, and centuries.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-solid">Just Plan My Trip</button>
+        <button type="button" class="btn btn-outline">Explore Vietnam</button>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="https://picsum.photos/seed/halongbay-v1/1200/1500" alt="Ha Long Bay" width="1200" height="1500" />
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="inner">
+      <p class="eyebrow">Why Vietnam</p>
+      <h2>A country that rewards the curious</h2>
+      <p class="lead">Dense with history, long in coastline, and endlessly varied from north to south.</p>
+      <div class="facts">
+        <article class="fact"><h3>8 UNESCO Sites</h3><p>Heritage landscapes and living cities from Ha Long to Hoi An.</p></article>
+        <article class="fact"><h3>3,260km Coast</h3><p>Beaches, fishing towns, and island waters along the eastern edge.</p></article>
+        <article class="fact"><h3>2,000+ Years</h3><p>Dynasties and trade routes layered into everyday travel.</p></article>
+        <article class="fact"><h3>3 Climate Zones</h3><p>Cool highlands, tropical coasts, and a southern delta.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section regions" id="regions">
+    <div class="inner">
+      <p class="eyebrow">Featured regions</p>
+      <h2>Follow the spine of the country</h2>
+      <p class="lead">Six places that define a north-to-south journey.</p>
+      <div class="grid">
+        <a class="card span2" href="#"><img src="https://picsum.photos/seed/hanoi-v1/900/1100" alt="Hanoi" /><span>Hanoi<small>Lakeside mornings at street level.</small></span></a>
+        <a class="card" href="#"><img src="https://picsum.photos/seed/halong-v1/600/700" alt="Ha Long Bay" /><span>Ha Long Bay<small>Karsts in jade water.</small></span></a>
+        <a class="card" href="#"><img src="https://picsum.photos/seed/hue-v1/600/700" alt="Hue" /><span>Hue<small>Imperial quiet.</small></span></a>
+        <a class="card wide" href="#"><img src="https://picsum.photos/seed/hoian-v1/1000/600" alt="Hoi An" /><span>Hoi An<small>Lantern evenings by the river.</small></span></a>
+        <a class="card" href="#"><img src="https://picsum.photos/seed/hcmc-v1/600/700" alt="Ho Chi Minh City" /><span>Ho Chi Minh City<small>Southern pulse.</small></span></a>
+        <a class="card" href="#"><img src="https://picsum.photos/seed/mekong-v1/600/700" alt="Mekong Delta" /><span>Mekong Delta<small>Slow waterways.</small></span></a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      function onScroll() { nav.classList.toggle("is-solid", window.scrollY > 40); }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>

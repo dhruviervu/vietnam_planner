@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vietnam, Curated</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-soft: #f0ebe3;
+      --paper: #ffffff;
+      --ink: #1a1c1b;
+      --muted: #5c635f;
+      --line: rgba(26, 28, 27, 0.12);
+      --accent: #1f5c57;
+      --accent-soft: rgba(31, 92, 87, 0.1);
+      --shadow: 0 12px 32px rgba(26, 28, 27, 0.1);
+      --nav-h: 72px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ——— Sticky nav ——— */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+      transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+      color: #f7f4ef;
+    }
+
+    .nav.is-solid {
+      background: rgba(247, 244, 239, 0.96);
+      box-shadow: 0 1px 0 var(--line), 0 8px 24px rgba(26, 28, 27, 0.06);
+      color: var(--ink);
+    }
+
+    .nav-logo {
+      font-family: "Fraunces", serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.25rem, 3vw, 2.25rem);
+      list-style: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      opacity: 0.88;
+    }
+
+    .nav-cta {
+      flex-shrink: 0;
+      font-family: "Inter", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(247, 244, 239, 0.55);
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .nav.is-solid .nav-cta {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* ——— Hero ——— */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: #f7f4ef;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(12, 16, 15, 0.72) 0%,
+        rgba(12, 16, 15, 0.28) 38%,
+        rgba(12, 16, 15, 0.12) 60%,
+        rgba(12, 16, 15, 0.2) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      padding: 0 clamp(1.25rem, 4vw, 3rem) 5.5rem;
+    }
+
+    .hero h1 {
+      font-family: "Fraunces", serif;
+      font-weight: 600;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      font-weight: 400;
+      max-width: 36ch;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .btn {
+      font-family: "Inter", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.95rem 1.6rem;
+      border-radius: 999px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn-solid {
+      background: #f7f4ef;
+      color: var(--ink);
+      border-color: #f7f4ef;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #f7f4ef;
+      border-color: rgba(247, 244, 239, 0.65);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      z-index: 1;
+      left: 50%;
+      bottom: 1.5rem;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      color: rgba(247, 244, 239, 0.75);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .scroll-hint svg {
+      width: 18px;
+      height: 18px;
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(6px);
+      }
+    }
+
+    /* ——— Shared section chrome ——— */
+    .section {
+      padding: clamp(4.5rem, 10vw, 7.5rem) clamp(1.25rem, 4vw, 3rem);
+    }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+
+    .section-title {
+      font-family: "Fraunces", serif;
+      font-weight: 600;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 42ch;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ——— Why Vietnam ——— */
+    .why {
+      background: var(--bg);
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .fact {
+      text-align: left;
+    }
+
+    .fact-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 1.25rem;
+      color: var(--accent);
+    }
+
+    .fact-stat {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.6rem, 2.5vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .fact p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 22ch;
+    }
+
+    /* ——— Featured regions ——— */
+    .regions {
+      background: var(--bg-soft);
+    }
+
+    .region-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: minmax(180px, 22vw);
+      gap: 1rem;
+    }
+
+    .region {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      isolation: isolate;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      box-shadow: 0 4px 16px rgba(26, 28, 27, 0.08);
+      min-height: 200px;
+    }
+
+    .region:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow);
+      z-index: 2;
+    }
+
+    .region img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .region::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(12, 16, 15, 0.72) 0%,
+        rgba(12, 16, 15, 0.15) 45%,
+        transparent 70%
+      );
+      z-index: 1;
+    }
+
+    .region-copy {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      padding: 1.25rem 1.35rem;
+      color: #f7f4ef;
+    }
+
+    .region-copy h3 {
+      font-family: "Fraunces", serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.25rem;
+    }
+
+    .region-copy p {
+      font-size: 0.85rem;
+      opacity: 0.88;
+      max-width: 28ch;
+    }
+
+    .region-large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .region-wide {
+      grid-column: span 2;
+    }
+
+    /* ——— Plan your way ——— */
+    .plan {
+      background: var(--bg);
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(2rem, 5vw, 4rem);
+    }
+
+    .plan-item {
+      padding: 0.5rem 0;
+    }
+
+    .plan-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.5rem;
+      font-family: "Fraunces", serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .plan-item h3 {
+      font-family: "Fraunces", serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .plan-item p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 30ch;
+    }
+
+    /* ——— Teaser strip ——— */
+    .teasers {
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .teaser-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .teaser {
+      background: var(--bg);
+      border-radius: 6px;
+      overflow: hidden;
+      padding: 1.5rem 1.5rem 1.75rem;
+    }
+
+    .teaser-visual {
+      height: 140px;
+      border-radius: 4px;
+      margin-bottom: 1.25rem;
+      background: var(--bg-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Simple CSS placeholder graphics */
+    .visual-budget {
+      background:
+        linear-gradient(180deg, transparent 68%, rgba(31, 92, 87, 0.12) 68%),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 28px,
+          rgba(26, 28, 27, 0.06) 28px,
+          rgba(26, 28, 27, 0.06) 29px
+        ),
+        var(--bg-soft);
+    }
+
+    .visual-budget::before {
+      content: "";
+      position: absolute;
+      left: 14%;
+      bottom: 18%;
+      width: 12%;
+      height: 38%;
+      background: var(--accent);
+      opacity: 0.55;
+      border-radius: 2px 2px 0 0;
+    }
+
+    .visual-budget::after {
+      content: "";
+      position: absolute;
+      left: 32%;
+      bottom: 18%;
+      width: 12%;
+      height: 58%;
+      background: var(--accent);
+      opacity: 0.35;
+      border-radius: 2px 2px 0 0;
+      box-shadow:
+        28px 12px 0 0 rgba(31, 92, 87, 0.45),
+        56px 28px 0 0 rgba(31, 92, 87, 0.25);
+    }
+
+    .visual-route {
+      background:
+        radial-gradient(circle at 22% 70%, var(--accent) 0 5px, transparent 6px),
+        radial-gradient(circle at 48% 35%, var(--accent) 0 5px, transparent 6px),
+        radial-gradient(circle at 78% 58%, var(--accent) 0 5px, transparent 6px),
+        linear-gradient(
+          115deg,
+          transparent 0 18%,
+          rgba(31, 92, 87, 0.35) 18% 19%,
+          transparent 19% 42%,
+          rgba(31, 92, 87, 0.35) 42% 43%,
+          transparent 43% 70%,
+          rgba(31, 92, 87, 0.35) 70% 71%,
+          transparent 71%
+        ),
+        linear-gradient(180deg, #e7efe9, var(--bg-soft));
+    }
+
+    .visual-journal {
+      background:
+        linear-gradient(90deg, rgba(26, 28, 27, 0.08) 0 1px, transparent 1px),
+        repeating-linear-gradient(
+          180deg,
+          transparent,
+          transparent 21px,
+          rgba(26, 28, 27, 0.08) 21px,
+          rgba(26, 28, 27, 0.08) 22px
+        ),
+        #fbfaf7;
+      margin: 12px 18px;
+      height: calc(100% - 24px);
+      border-radius: 2px;
+      box-shadow: 0 1px 4px rgba(26, 28, 27, 0.06);
+    }
+
+    .visual-journal::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: 32px;
+      right: 32px;
+      height: 8px;
+      background: rgba(26, 28, 27, 0.12);
+      border-radius: 2px;
+      box-shadow:
+        0 18px 0 rgba(26, 28, 27, 0.08),
+        0 36px 0 rgba(26, 28, 27, 0.08),
+        0 54px 0 rgba(26, 28, 27, 0.06);
+    }
+
+    .teaser h3 {
+      font-family: "Fraunces", serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.45rem;
+      line-height: 1.3;
+    }
+
+    .teaser p {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    /* ——— Footer ——— */
+    .footer {
+      background: var(--ink);
+      color: rgba(247, 244, 239, 0.78);
+      padding: clamp(3.5rem, 7vw, 5rem) clamp(1.25rem, 4vw, 3rem) 2.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 2.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(247, 244, 239, 0.12);
+    }
+
+    .footer-brand {
+      font-family: "Fraunces", serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f7f4ef;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-brand + p {
+      font-size: 0.9rem;
+      max-width: 28ch;
+      line-height: 1.55;
+    }
+
+    .footer h4 {
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f7f4ef;
+      margin-bottom: 1rem;
+    }
+
+    .footer ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+      padding-top: 1.75rem;
+      font-size: 0.8rem;
+      opacity: 0.65;
+    }
+
+    /* ——— Responsive ——— */
+    @media (max-width: 960px) {
+      .facts {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem 2rem;
+      }
+
+      .region-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: minmax(200px, 28vw);
+      }
+
+      .region-large {
+        grid-column: span 2;
+        grid-row: span 1;
+        min-height: 280px;
+      }
+
+      .plan-grid,
+      .teaser-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: none;
+      }
+
+      .hero-content {
+        padding-bottom: 6rem;
+      }
+
+      .facts {
+        grid-template-columns: 1fr;
+      }
+
+      .region-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 240px;
+      }
+
+      .region-large,
+      .region-wide {
+        grid-column: span 1;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a class="nav-logo" href="#">Vietnam, Curated</a>
+    <ul class="nav-links">
+      <li><a href="#explore">Explore</a></li>
+      <li><a href="#plan">Plan a Trip</a></li>
+      <li><a href="#guides">Guides</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <button type="button" class="nav-cta">Start Planning</button>
+  </header>
+
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg">
+      <img
+        src="https://picsum.photos/seed/halongbay/1600/1000"
+        alt="Ha Long Bay limestone karsts at dusk"
+        width="1600"
+        height="1000"
+      />
+    </div>
+    <div class="hero-content">
+      <h1>Vietnam, End to End</h1>
+      <p class="hero-sub">
+        From misted northern bays to the Mekong’s slow rivers — a country of layered climates, kitchens, and centuries.
+      </p>
+      <div class="hero-actions">
+        <button type="button" class="btn btn-solid">Just Plan My Trip</button>
+        <button type="button" class="btn btn-outline">Explore Vietnam</button>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 10l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="section why" id="about">
+    <div class="section-inner">
+      <p class="eyebrow">Why Vietnam</p>
+      <h2 class="section-title">A country that rewards the curious</h2>
+      <p class="section-lead">
+        Dense with history, long in coastline, and endlessly varied from north to south — Vietnam is built for travelers who want depth, not just distance.
+      </p>
+      <div class="facts">
+        <article class="fact">
+          <svg class="fact-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="M8 28V12l12-6 12 6v16l-12 6-12-6z" stroke="currentColor" stroke-width="1.5" />
+            <path d="M20 12v22M8 12l12 6 12-6" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+          <h3 class="fact-stat">8 UNESCO Sites</h3>
+          <p>World Heritage landscapes and living cities, from Ha Long to Hoi An.</p>
+        </article>
+        <article class="fact">
+          <svg class="fact-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="M6 22c4-6 8-9 14-9s10 3 14 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <path d="M6 26c4 4 8 6 14 6s10-2 14-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <circle cx="20" cy="22" r="2" fill="currentColor" />
+          </svg>
+          <h3 class="fact-stat">3,260km of Coastline</h3>
+          <p>Beaches, fishing towns, and island waters running the country’s eastern edge.</p>
+        </article>
+        <article class="fact">
+          <svg class="fact-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <circle cx="20" cy="20" r="12" stroke="currentColor" stroke-width="1.5" />
+            <path d="M20 12v8l5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <h3 class="fact-stat">2,000+ Years</h3>
+          <p>Dynasties, trade routes, and living traditions layered into everyday travel.</p>
+        </article>
+        <article class="fact">
+          <svg class="fact-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="M10 28c0-6 4-10 10-10s10 4 10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <path d="M14 18c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <circle cx="20" cy="28" r="1.5" fill="currentColor" />
+          </svg>
+          <h3 class="fact-stat">3 Climate Zones</h3>
+          <p>Cool highlands, tropical coasts, and a southern delta — all in one trip.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section regions" id="explore">
+    <div class="section-inner">
+      <p class="eyebrow">Featured regions</p>
+      <h2 class="section-title">Follow the spine of the country</h2>
+      <p class="section-lead">
+        Six places that define a north-to-south journey — each with its own pace, palate, and light.
+      </p>
+      <div class="region-grid">
+        <a class="region region-large" href="#">
+          <img src="https://picsum.photos/seed/hanoi-region/1000/1200" alt="Hanoi" width="1000" height="1200" />
+          <div class="region-copy">
+            <h3>Hanoi</h3>
+            <p>Lakeside mornings and a capital that still moves at street level.</p>
+          </div>
+        </a>
+        <a class="region" href="#">
+          <img src="https://picsum.photos/seed/halong-region/700/800" alt="Ha Long Bay" width="700" height="800" />
+          <div class="region-copy">
+            <h3>Ha Long Bay</h3>
+            <p>Karst islands rising from jade water.</p>
+          </div>
+        </a>
+        <a class="region" href="#">
+          <img src="https://picsum.photos/seed/hue-region/700/800" alt="Hue" width="700" height="800" />
+          <div class="region-copy">
+            <h3>Hue</h3>
+            <p>Imperial quiet on the Perfume River.</p>
+          </div>
+        </a>
+        <a class="region region-wide" href="#">
+          <img src="https://picsum.photos/seed/hoian-region/1200/700" alt="Hoi An" width="1200" height="700" />
+          <div class="region-copy">
+            <h3>Hoi An</h3>
+            <p>Lantern evenings and a riverside old town built for wandering.</p>
+          </div>
+        </a>
+        <a class="region" href="#">
+          <img src="https://picsum.photos/seed/hcmc-region/700/800" alt="Ho Chi Minh City" width="700" height="800" />
+          <div class="region-copy">
+            <h3>Ho Chi Minh City</h3>
+            <p>Energy, cafés, and the southern pulse.</p>
+          </div>
+        </a>
+        <a class="region" href="#">
+          <img src="https://picsum.photos/seed/mekong-region/700/800" alt="Mekong Delta" width="700" height="800" />
+          <div class="region-copy">
+            <h3>Mekong Delta</h3>
+            <p>Floating markets and slow waterways.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section plan" id="plan">
+    <div class="section-inner">
+      <p class="eyebrow">Plan your way</p>
+      <h2 class="section-title">Start where you are</h2>
+      <p class="section-lead">
+        Whether you’ve mapped every stop or just know you want Vietnam — there’s a path in.
+      </p>
+      <div class="plan-grid">
+        <article class="plan-item">
+          <div class="plan-mark" aria-hidden="true">01</div>
+          <h3>I know exactly what I want</h3>
+          <p>Build freely — pick regions, days, and pace with full control over every stop.</p>
+        </article>
+        <article class="plan-item">
+          <div class="plan-mark" aria-hidden="true">02</div>
+          <h3>Show me the highlights</h3>
+          <p>Start from curated north-to-south routes, then reshape them to fit your style.</p>
+        </article>
+        <article class="plan-item">
+          <div class="plan-mark" aria-hidden="true">03</div>
+          <h3>Plan it for me</h3>
+          <p>Tell us your dates, budget, and interests — we’ll draft a trip you can refine.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section teasers" id="guides">
+    <div class="section-inner">
+      <p class="eyebrow">Coming into focus</p>
+      <h2 class="section-title">Your trip, thoughtfully kept</h2>
+      <p class="section-lead">
+        A quieter kind of trip planner — built to hold the route, the budget, and the days between.
+      </p>
+      <div class="teaser-grid">
+        <article class="teaser">
+          <div class="teaser-visual visual-budget" aria-hidden="true"></div>
+          <h3>Track your budget as you plan</h3>
+          <p>See costs take shape beside each region — no spreadsheet required.</p>
+        </article>
+        <article class="teaser">
+          <div class="teaser-visual visual-route" aria-hidden="true"></div>
+          <h3>See your route come to life</h3>
+          <p>A living map of your north-to-south arc as you add and rearrange stops.</p>
+        </article>
+        <article class="teaser">
+          <div class="teaser-visual">
+            <div class="visual-journal" aria-hidden="true"></div>
+          </div>
+          <h3>Your trip, day by day</h3>
+          <p>A clean itinerary view that reads like a travel journal, not a checklist.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">Vietnam, Curated</div>
+          <p>Editorial trip planning for travelers who want Vietnam with intention.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#">Regions</a></li>
+            <li><a href="#">Itineraries</a></li>
+            <li><a href="#">Seasonal guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Plan</h4>
+          <ul>
+            <li><a href="#">Start a trip</a></li>
+            <li><a href="#">Budget tools</a></li>
+            <li><a href="#">Travel styles</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Journal</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Vietnam, Curated. Prototype only.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      var threshold = 40;
+
+      function onScroll() {
+        if (window.scrollY > threshold) {
+          nav.classList.add("is-solid");
+        } else {
+          nav.classList.remove("is-solid");
+        }
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vietnam Passport — Hero Test 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #ebe4d4;
+      --paper-deep: #e0d6c2;
+      --ink: #1e2a44;
+      --stamp: #8b1e2d;
+      --muted: #5c564c;
+      --page-edge: #c9bd9f;
+      --card-bg: rgba(255, 252, 245, 0.94);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Libre Baskerville", serif;
+      color: var(--ink);
+      background: #f3eee4;
+      line-height: 1.5;
+    }
+
+    .passport-section {
+      position: relative;
+      min-height: 100vh;
+      /* Tall so each stamp can cross the viewport midline */
+      height: 260vh;
+      padding: 8vh 1.25rem 12vh;
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(255, 255, 255, 0.35) 0%, transparent 45%),
+        radial-gradient(ellipse at 80% 70%, rgba(180, 160, 120, 0.18) 0%, transparent 50%),
+        linear-gradient(165deg, #f0ebe0 0%, var(--paper) 40%, var(--paper-deep) 100%);
+    }
+
+    .passport-page {
+      position: relative;
+      width: min(420px, 90vw);
+      height: 100%;
+      margin: 0 auto;
+      background:
+        repeating-linear-gradient(
+          -18deg,
+          transparent,
+          transparent 11px,
+          rgba(30, 42, 68, 0.025) 11px,
+          rgba(30, 42, 68, 0.025) 12px
+        ),
+        linear-gradient(180deg, #f7f1e4 0%, #efe6d4 55%, #e8deca 100%);
+      border: 1px solid var(--page-edge);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.45) inset,
+        0 18px 40px rgba(60, 48, 30, 0.12);
+      /* Rough A5 width feel; tall for scroll */
+      aspect-ratio: auto;
+    }
+
+    .passport-page::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(30, 42, 68, 0.08);
+      pointer-events: none;
+    }
+
+    .passport-page::after {
+      content: "SOCIALIST REPUBLIC OF VIET NAM";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-28deg);
+      font-family: "Libre Baskerville", serif;
+      font-size: clamp(0.7rem, 2.2vw, 0.95rem);
+      letter-spacing: 0.18em;
+      color: rgba(30, 42, 68, 0.06);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .stamp {
+      position: absolute;
+      z-index: 2;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      color: var(--stamp);
+      opacity: 0;
+      transform: scale(1.3) rotate(var(--press-rot, -6deg));
+      transition:
+        opacity 0.28s ease,
+        transform 0.32s cubic-bezier(0.2, 0.85, 0.3, 1.1);
+      transform-origin: center center;
+    }
+
+    .stamp.is-stamped {
+      opacity: 0.92;
+      transform: scale(1) rotate(var(--settle-rot, 0deg));
+    }
+
+    .stamp-face {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: "Special Elite", monospace;
+      font-size: 0.72rem;
+      line-height: 1.25;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--stamp);
+      border: 2px solid var(--stamp);
+      background: transparent;
+      padding: 0.55rem 0.65rem;
+      box-shadow: 0 0 0 1px rgba(139, 30, 45, 0.15);
+    }
+
+    .stamp[data-shape="circle"] .stamp-face {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      padding: 0.5rem;
+    }
+
+    .stamp[data-shape="rect"] .stamp-face {
+      min-width: 108px;
+      border-radius: 2px;
+    }
+
+    .stamp[data-shape="oval"] .stamp-face {
+      width: 118px;
+      height: 78px;
+      border-radius: 50%;
+      padding: 0.4rem 0.6rem;
+    }
+
+    /* Loose scattered positions (% of passport page) */
+    .stamp[data-i="0"] { top: 10%; left: 14%; --press-rot: -8deg; --settle-rot: -3deg; }
+    .stamp[data-i="1"] { top: 28%; right: 10%; left: auto; --press-rot: 7deg; --settle-rot: 2.5deg; }
+    .stamp[data-i="2"] { top: 48%; left: 22%; --press-rot: -5deg; --settle-rot: -1deg; }
+    .stamp[data-i="3"] { top: 66%; right: 14%; left: auto; --press-rot: 9deg; --settle-rot: 3deg; }
+    .stamp[data-i="4"] { top: 84%; left: 18%; --press-rot: -6deg; --settle-rot: -2deg; }
+
+    .stamp-card {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      width: 170px;
+      margin-left: -85px;
+      padding: 10px;
+      background: var(--card-bg);
+      border: 1px solid rgba(30, 42, 68, 0.12);
+      border-radius: 3px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(6px);
+      transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
+      pointer-events: none;
+      z-index: 4;
+      color: var(--ink);
+      text-align: left;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* Keep cards readable near edges */
+    .stamp[data-i="1"] .stamp-card,
+    .stamp[data-i="3"] .stamp-card {
+      left: auto;
+      right: 0;
+      margin-left: 0;
+    }
+
+    .stamp[data-i="0"] .stamp-card,
+    .stamp[data-i="2"] .stamp-card,
+    .stamp[data-i="4"] .stamp-card {
+      left: 0;
+      margin-left: 0;
+    }
+
+    .stamp.is-open .stamp-card {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .stamp-card img {
+      display: block;
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 2px;
+      margin-bottom: 8px;
+      filter: sepia(0.15) contrast(0.96);
+    }
+
+    .stamp-card p {
+      font-family: "Libre Baskerville", serif;
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .cta-section {
+      min-height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 4rem 1.5rem;
+      background: #f3eee4;
+    }
+
+    .cta-section button {
+      font-family: "Libre Baskerville", serif;
+      font-size: 0.92rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: #f7f1e4;
+      border: 1px solid var(--ink);
+    }
+
+    .btn-primary:hover {
+      background: #152036;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid rgba(30, 42, 68, 0.4);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--ink);
+      background: rgba(30, 42, 68, 0.04);
+    }
+
+    @media (max-width: 520px) {
+      .stamp-face {
+        font-size: 0.64rem;
+      }
+
+      .stamp[data-shape="circle"] .stamp-face {
+        width: 80px;
+        height: 80px;
+      }
+
+      .stamp[data-shape="rect"] .stamp-face {
+        min-width: 96px;
+      }
+
+      .stamp[data-shape="oval"] .stamp-face {
+        width: 104px;
+        height: 70px;
+      }
+
+      .stamp-card {
+        width: 148px;
+      }
+
+      .cta-section {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="passport-section" aria-label="Passport stamps">
+    <div class="passport-page" id="passportPage">
+      <button type="button" class="stamp" data-i="0" data-shape="circle" aria-expanded="false" aria-label="Hanoi stamp">
+        <span class="stamp-face">Hanoi</span>
+        <div class="stamp-card">
+          <img src="https://picsum.photos/seed/passport-hanoi/340/200" alt="" width="170" height="90" />
+          <p>Quiet lakes and old-quarter streets at the northern start of the journey.</p>
+        </div>
+      </button>
+
+      <button type="button" class="stamp" data-i="1" data-shape="rect" aria-expanded="false" aria-label="Ha Long Bay stamp">
+        <span class="stamp-face">Ha Long<br />Bay</span>
+        <div class="stamp-card">
+          <img src="https://picsum.photos/seed/passport-halong/340/200" alt="" width="170" height="90" />
+          <p>Limestone karsts rising from calm jade water along the northern coast.</p>
+        </div>
+      </button>
+
+      <button type="button" class="stamp" data-i="2" data-shape="oval" aria-expanded="false" aria-label="Hue stamp">
+        <span class="stamp-face">Hue</span>
+        <div class="stamp-card">
+          <img src="https://picsum.photos/seed/passport-hue/340/200" alt="" width="170" height="90" />
+          <p>Imperial citadel and river mornings in the country’s geographic middle.</p>
+        </div>
+      </button>
+
+      <button type="button" class="stamp" data-i="3" data-shape="circle" aria-expanded="false" aria-label="Hoi An stamp">
+        <span class="stamp-face">Hoi An</span>
+        <div class="stamp-card">
+          <img src="https://picsum.photos/seed/passport-hoian/340/200" alt="" width="170" height="90" />
+          <p>Lantern-lit lanes and a soft riverside pace just south of the center.</p>
+        </div>
+      </button>
+
+      <button type="button" class="stamp" data-i="4" data-shape="rect" aria-expanded="false" aria-label="Ho Chi Minh City stamp">
+        <span class="stamp-face">Ho Chi<br />Minh City</span>
+        <div class="stamp-card">
+          <img src="https://picsum.photos/seed/passport-hcmc/340/200" alt="" width="170" height="90" />
+          <p>Energy and street life at the southern end of the route.</p>
+        </div>
+      </button>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-label="Next steps">
+    <button type="button" class="btn-primary">Explore Vietnam</button>
+    <button type="button" class="btn-secondary">Just Plan My Trip</button>
+  </section>
+
+  <script>
+    (function () {
+      const stamps = Array.from(document.querySelectorAll(".stamp"));
+      const mid = function () {
+        return window.innerHeight / 2;
+      };
+
+      function updateStamps() {
+        const center = mid();
+        stamps.forEach(function (stamp) {
+          const rect = stamp.getBoundingClientRect();
+          const stampMid = rect.top + rect.height / 2;
+          // Stamp in once it reaches / passes the vertical center
+          if (stampMid <= center + 24) {
+            stamp.classList.add("is-stamped");
+          } else {
+            stamp.classList.remove("is-stamped");
+            stamp.classList.remove("is-open");
+            stamp.setAttribute("aria-expanded", "false");
+          }
+        });
+      }
+
+      stamps.forEach(function (stamp) {
+        stamp.addEventListener("click", function () {
+          if (!stamp.classList.contains("is-stamped")) return;
+          const willOpen = !stamp.classList.contains("is-open");
+          stamps.forEach(function (s) {
+            s.classList.remove("is-open");
+            s.setAttribute("aria-expanded", "false");
+          });
+          if (willOpen) {
+            stamp.classList.add("is-open");
+            stamp.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      let ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          updateStamps();
+          ticking = false;
+        });
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      updateStamps();
+    })();
+  </script>
+</body>
+</html>

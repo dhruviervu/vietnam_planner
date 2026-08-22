@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vietnam — Story Scroll</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4f1eb;
+      --ink: #1c1a17;
+      --muted: #6b6560;
+      --soft: #e8e2d8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Outfit, sans-serif; color: var(--ink); background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    .beat {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .line {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(1.6rem, 4.2vw, 2.75rem);
+      font-weight: 400; line-height: 1.35; letter-spacing: -.01em;
+      max-width: 16ch; opacity: .28; transform: translateY(12px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .line.is-in { opacity: 1; transform: translateY(0); }
+    .line em { font-style: italic; }
+
+    .progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0;
+      background: var(--ink); z-index: 20; pointer-events: none;
+    }
+
+    .visuals {
+      padding: 10vh 0 0;
+    }
+    .visuals-intro {
+      text-align: center; padding: 0 1.5rem 3rem;
+      font-size: .85rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); font-weight: 400;
+    }
+    .photo-stack {
+      display: flex; flex-direction: column; gap: 1.25rem;
+      max-width: 920px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem) 4rem;
+    }
+    .photo {
+      aspect-ratio: 16 / 10; overflow: hidden; background: var(--soft);
+      opacity: .35; transform: translateY(20px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .photo.is-in { opacity: 1; transform: translateY(0); }
+    .photo:nth-child(2) { aspect-ratio: 5 / 6; max-width: 520px; margin-left: auto; }
+    .photo:nth-child(3) { aspect-ratio: 3 / 2; max-width: 700px; }
+
+    .caption {
+      font-family: "Instrument Serif", serif; font-size: 1.15rem;
+      color: var(--muted); text-align: center; padding: 0 1.5rem 5rem;
+      opacity: .3; transition: opacity .7s ease;
+    }
+    .caption.is-in { opacity: 1; }
+
+    .ending {
+      min-height: 80vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 4rem 1.5rem 5rem; border-top: 1px solid rgba(28, 26, 23, .08);
+    }
+    .ending h2 {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 400;
+      max-width: 14ch; line-height: 1.2; margin-bottom: 1rem;
+    }
+    .ending p {
+      color: var(--muted); font-weight: 300; font-size: 1rem;
+      max-width: 34ch; margin-bottom: 2.25rem; line-height: 1.55;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+    .btn {
+      font: 500 .92rem Outfit, sans-serif; padding: .95rem 1.5rem;
+      border-radius: 999px; cursor: pointer; border: 1px solid transparent;
+      transition: background .2s ease, color .2s ease;
+    }
+    .btn-solid { background: var(--ink); color: var(--bg); }
+    .btn-outline { background: transparent; border-color: rgba(28,26,23,.35); color: var(--ink); }
+
+    .skip {
+      position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 15;
+      font: 400 .75rem Outfit, sans-serif; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--muted); background: rgba(244, 241, 235, .85);
+      border: 1px solid rgba(28,26,23,.12); padding: .45rem .75rem; border-radius: 999px;
+      cursor: pointer; text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <a class="skip" href="#end">Skip to plan</a>
+
+  <section class="beat" data-beat>
+    <p class="line">Vietnam doesn’t fit in one postcard.</p>
+  </section>
+
+  <section class="beat" data-beat>
+    <p class="line">It stretches <em>three climates</em> and a thousand years of history.</p>
+  </section>
+
+  <section class="beat" data-beat>
+    <p class="line">North to south: mist, spice, river light.</p>
+  </section>
+
+  <section class="beat" data-beat>
+    <p class="line">The country asks to be traveled <em>end to end</em>.</p>
+  </section>
+
+  <section class="visuals" data-beat>
+    <p class="visuals-intro">Then, the pictures</p>
+    <div class="photo-stack">
+      <figure class="photo" data-reveal>
+        <img src="https://picsum.photos/seed/halong-x2/1200/750" alt="Ha Long Bay" width="1200" height="750" />
+      </figure>
+      <figure class="photo" data-reveal>
+        <img src="https://picsum.photos/seed/streetfood-x2/800/960" alt="Street food" width="800" height="960" />
+      </figure>
+      <figure class="photo" data-reveal>
+        <img src="https://picsum.photos/seed/hoian-x2/1100/720" alt="Hoi An" width="1100" height="720" />
+      </figure>
+    </div>
+    <p class="caption" data-reveal>Not highlights. A continuous line through the country.</p>
+  </section>
+
+  <section class="ending" id="end" data-beat>
+    <h2>Vietnam, End to End</h2>
+    <p>From misted northern bays to the Mekong’s slow rivers — when you’re ready to begin.</p>
+    <div class="actions">
+      <button type="button" class="btn btn-solid">Just Plan My Trip</button>
+      <button type="button" class="btn btn-outline">Explore Vietnam</button>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var lines = document.querySelectorAll(".line");
+      var reveals = document.querySelectorAll("[data-reveal]");
+      var progress = document.getElementById("progress");
+
+      function inView(el, pad) {
+        var r = el.getBoundingClientRect();
+        var mid = window.innerHeight * 0.62;
+        return r.top < mid + (pad || 0) && r.bottom > window.innerHeight * 0.2;
+      }
+
+      function update() {
+        lines.forEach(function (el) {
+          el.classList.toggle("is-in", inView(el));
+        });
+        reveals.forEach(function (el) {
+          if (inView(el, 40)) el.classList.add("is-in");
+        });
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+        progress.style.width = pct + "%";
+      }
+
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          update();
+          ticking = false;
+        });
+      }, { passive: true });
+
+      update();
+    })();
+  </script>
+</body>
+</html>

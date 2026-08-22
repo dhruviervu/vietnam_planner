@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vietnam — Warm Illustrated</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #faf3e8;
+      --cream-deep: #f0e4d2;
+      --terracotta: #c45c3a;
+      --terracotta-deep: #a3482c;
+      --sage: #7a8f72;
+      --ink: #3a322c;
+      --muted: #6e635a;
+      --paper: #fffaf2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Nunito, sans-serif; color: var(--ink); background: var(--cream);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(rgba(58, 50, 44, 0.04) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      position: fixed; inset: 0 0 auto; z-index: 50; height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.1rem, 4vw, 2.5rem);
+      transition: background .3s ease, box-shadow .3s ease;
+    }
+    .nav.is-solid {
+      background: rgba(250, 243, 232, .95); box-shadow: 0 8px 24px rgba(58,50,44,.06);
+    }
+    .logo { font-family: Literata, serif; font-weight: 600; font-size: 1.15rem; color: var(--terracotta-deep); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; font-size: .92rem; font-weight: 600; }
+    .nav-cta {
+      font: 700 .85rem Nunito, sans-serif; padding: .55rem 1.15rem; border-radius: 999px;
+      background: var(--terracotta); color: #fffaf2; border: none; cursor: pointer;
+    }
+
+    .hero {
+      min-height: 100vh; padding: calc(70px + 2.5rem) clamp(1.1rem, 4vw, 2.5rem) 3rem;
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .78rem; font-weight: 700; color: var(--sage); margin-bottom: 1rem;
+    }
+    .badge svg { width: 18px; height: 18px; }
+    .hero h1 {
+      font-family: Literata, serif; font-weight: 600;
+      font-size: clamp(2.6rem, 5vw, 3.8rem); line-height: 1.12; margin-bottom: 1rem;
+    }
+    .hero p { color: var(--muted); font-size: 1.05rem; max-width: 34ch; margin-bottom: 1.75rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: .7rem; }
+    .btn {
+      font: 700 .95rem Nunito, sans-serif; padding: .9rem 1.4rem; border-radius: 999px; cursor: pointer;
+      border: 2px solid transparent; transition: transform .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-solid { background: var(--terracotta); color: #fffaf2; }
+    .btn-outline { background: transparent; border-color: var(--sage); color: var(--ink); }
+
+    .hero-art {
+      position: relative; aspect-ratio: 1; border-radius: 28px; overflow: hidden;
+      box-shadow: 0 18px 40px rgba(196, 92, 58, .15);
+      border: 3px solid #fff;
+    }
+    .deco-ring {
+      position: absolute; width: 88px; height: 88px; border: 2px dashed var(--sage);
+      border-radius: 50%; top: -18px; right: -12px; opacity: .7; pointer-events: none;
+    }
+    .deco-leaf {
+      position: absolute; bottom: 12%; left: -10px; width: 44px; height: 44px; color: var(--terracotta);
+      opacity: .85; pointer-events: none;
+    }
+
+    .section { padding: clamp(3.5rem, 8vw, 5.5rem) clamp(1.1rem, 4vw, 2.5rem); }
+    .inner { max-width: 1100px; margin: 0 auto; }
+    .section h2 {
+      font-family: Literata, serif; font-weight: 600; font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      text-align: center; margin-bottom: .75rem;
+    }
+    .lead { text-align: center; color: var(--muted); max-width: 40ch; margin: 0 auto 2.75rem; }
+
+    .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .fact {
+      background: var(--paper); border-radius: 22px; padding: 1.5rem 1.25rem;
+      text-align: center; box-shadow: 0 8px 24px rgba(58,50,44,.05);
+      transition: transform .25s ease;
+    }
+    .fact:hover { transform: translateY(-4px); }
+    .icon-wrap {
+      width: 52px; height: 52px; margin: 0 auto 1rem; border-radius: 50%;
+      background: rgba(122, 143, 114, .15); color: var(--sage);
+      display: grid; place-items: center;
+    }
+    .icon-wrap.terra { background: rgba(196, 92, 58, .12); color: var(--terracotta); }
+    .fact h3 { font-family: Literata, serif; font-size: 1.35rem; margin-bottom: .35rem; }
+    .fact p { color: var(--muted); font-size: .88rem; }
+
+    .regions { background: var(--cream-deep); }
+    .region-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+    }
+    .card {
+      background: var(--paper); border-radius: 24px; overflow: hidden;
+      box-shadow: 0 10px 28px rgba(58,50,44,.07);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(58,50,44,.12); }
+    .card-img { aspect-ratio: 5/4; overflow: hidden; }
+    .card-body { padding: 1.15rem 1.25rem 1.35rem; }
+    .card-body h3 { font-family: Literata, serif; font-size: 1.25rem; margin-bottom: .25rem; }
+    .card-body p { color: var(--muted); font-size: .9rem; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .facts { grid-template-columns: 1fr 1fr; }
+      .region-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .facts, .region-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a class="logo" href="#">Vietnam, Curated</a>
+    <ul class="nav-links">
+      <li><a href="#why">Why Vietnam</a></li>
+      <li><a href="#regions">Regions</a></li>
+    </ul>
+    <button type="button" class="nav-cta">Start Planning</button>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M12 3c2 3 3 5 3 7a3 3 0 11-6 0c0-2 1-4 3-7z" stroke-linejoin="round"/>
+          <path d="M8 20c1.5-2 2.5-3 4-3s2.5 1 4 3" stroke-linecap="round"/>
+        </svg>
+        North to south, at your pace
+      </div>
+      <h1>Vietnam, End to End</h1>
+      <p>From misted northern bays to the Mekong’s slow rivers — layered climates, kitchens, and centuries.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-solid">Just Plan My Trip</button>
+        <button type="button" class="btn btn-outline">Explore Vietnam</button>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div class="deco-ring" aria-hidden="true"></div>
+      <svg class="deco-leaf" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+        <path d="M8 36C10 20 20 10 36 8 34 24 24 34 8 36Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M14 30c6-6 12-10 18-14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="hero-art">
+        <img src="https://picsum.photos/seed/halongbay-v4/900/900" alt="Ha Long Bay" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="inner">
+      <h2>Why Vietnam</h2>
+      <p class="lead">A country that rewards the curious — history, coastline, and climate all in one arc.</p>
+      <div class="facts">
+        <article class="fact">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18V8l8-4 8 4v10l-8 4-8-4z"/><path d="M12 8v14M4 8l8 4 8-4"/></svg>
+          </div>
+          <h3>8 UNESCO Sites</h3>
+          <p>Heritage landscapes and living cities.</p>
+        </article>
+        <article class="fact">
+          <div class="icon-wrap terra" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 13c3-5 6-7 9-7s6 2 9 7"/><path d="M3 16c3 3 6 4.5 9 4.5S18 19 21 16" stroke-linecap="round"/></svg>
+          </div>
+          <h3>3,260km Coast</h3>
+          <p>Beaches, fishing towns, island waters.</p>
+        </article>
+        <article class="fact">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>2,000+ Years</h3>
+          <p>Dynasties layered into everyday travel.</p>
+        </article>
+        <article class="fact">
+          <div class="icon-wrap terra" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 17c0-4 2.5-7 6-7s6 3 6 7" stroke-linecap="round"/><path d="M8 11c1-3 2.5-4.5 4-4.5S15 8 16 11" stroke-linecap="round"/></svg>
+          </div>
+          <h3>3 Climate Zones</h3>
+          <p>Highlands, coasts, and delta.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section regions" id="regions">
+    <div class="inner">
+      <h2>Featured regions</h2>
+      <p class="lead">Six places that define a north-to-south journey.</p>
+      <div class="region-grid">
+        <a class="card" href="#"><div class="card-img"><img src="https://picsum.photos/seed/hanoi-v4/700/560" alt="Hanoi" /></div><div class="card-body"><h3>Hanoi</h3><p>Lakeside mornings at street level.</p></div></a>
+        <a class="card" href="#"><div class="card-img"><img src="https://picsum.photos/seed/halong-v4/700/560" alt="Ha Long Bay" /></div><div class="card-body"><h3>Ha Long Bay</h3><p>Karsts rising from jade water.</p></div></a>
+        <a class="card" href="#"><div class="card-img"><img src="https://picsum.photos/seed/hue-v4/700/560" alt="Hue" /></div><div class="card-body"><h3>Hue</h3><p>Imperial quiet on the Perfume River.</p></div></a>
+        <a class="card" href="#"><div class="card-img"><img src="https://picsum.photos/seed/hoian-v4/700/560" alt="Hoi An" /></div><div class="card-body"><h3>Hoi An</h3><p>Lantern evenings built for wandering.</p></div></a>
+        <a class="card" href="#"><div class="card-img"><img src="https://picsum.photos/seed/hcmc-v4/700/560" alt="Ho Chi Minh City" /></div><div class="card-body"><h3>Ho Chi Minh City</h3><p>Energy, cafés, southern pulse.</p></div></a>
+        <a class="card" href="#"><div class="card-img"><img src="https://picsum.photos/seed/mekong-v4/700/560" alt="Mekong Delta" /></div><div class="card-body"><h3>Mekong Delta</h3><p>Floating markets and slow waterways.</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      function onScroll() { nav.classList.toggle("is-solid", window.scrollY > 30); }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>

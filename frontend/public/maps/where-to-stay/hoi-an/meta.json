@@ -1,0 +1,29 @@
+{
+  "cityId": "hoi-an",
+  "cityLabel": "Hoi An",
+  "bounds": {
+    "west": 108.305,
+    "south": 15.855,
+    "east": 108.385,
+    "north": 15.925
+  },
+  "projection": "WGS84",
+  "source": "OpenStreetMap API 0.6 map export (+ curated labels)",
+  "generatedAt": "2026-08-19T07:06:31.987Z",
+  "layers": [
+    "roads",
+    "bridges",
+    "waterways",
+    "urban",
+    "places",
+    "areas"
+  ],
+  "counts": {
+    "roads": 1819,
+    "bridges": 54,
+    "waterways": 283,
+    "urban": 80,
+    "places": 100,
+    "areas": 9
+  }
+}

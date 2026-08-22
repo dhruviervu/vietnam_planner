@@ -1,0 +1,298 @@
+{
+  "source": {
+    "country": "Natural Earth 10m via world-atlas@2/countries-10m.json",
+    "admin1": "geoBoundaries gbOpen VNM ADM1"
+  },
+  "vietnam": {
+    "file": "/maps/vietnam.svg",
+    "viewBox": [
+      0,
+      0,
+      420,
+      720
+    ],
+    "type": "mercator",
+    "width": 420,
+    "height": 720,
+    "scale": 2537.2364304843804,
+    "translate": [
+      -4474.980547265776,
+      1082.706502641891
+    ],
+    "center": [
+      0,
+      0
+    ],
+    "rotate": [
+      0,
+      0,
+      0
+    ]
+  },
+  "cities": {
+    "hanoi": {
+      "file": "/maps/cities/hanoi.svg",
+      "name": "Hanoi",
+      "viewBox": [
+        0,
+        0,
+        640,
+        520
+      ],
+      "bounds": {
+        "west": 105.6742,
+        "south": 20.875500000000002,
+        "east": 106.03420000000001,
+        "north": 21.1815
+      },
+      "type": "mercator",
+      "width": 640,
+      "height": 520,
+      "scale": 77.66761222881236,
+      "translate": [
+        320,
+        259.9999999998977
+      ],
+      "center": [
+        0,
+        0
+      ],
+      "rotate": [
+        0,
+        0,
+        0
+      ]
+    },
+    "da-nang": {
+      "file": "/maps/cities/da-nang.svg",
+      "name": "Da Nang",
+      "viewBox": [
+        0,
+        0,
+        640,
+        520
+      ],
+      "bounds": {
+        "west": 108.04220000000001,
+        "south": 15.918400000000002,
+        "east": 108.3622,
+        "north": 16.1904
+      },
+      "type": "mercator",
+      "width": 640,
+      "height": 520,
+      "scale": 77.66761222881236,
+      "translate": [
+        320,
+        259.9999999998977
+      ],
+      "center": [
+        0,
+        0
+      ],
+      "rotate": [
+        0,
+        0,
+        0
+      ]
+    },
+    "hcmc": {
+      "file": "/maps/cities/ho-chi-minh-city.svg",
+      "name": "Ho Chi Minh City",
+      "viewBox": [
+        0,
+        0,
+        640,
+        520
+      ],
+      "bounds": {
+        "west": 106.4097,
+        "south": 10.6361,
+        "east": 106.8497,
+        "north": 11.0101
+      },
+      "type": "mercator",
+      "width": 640,
+      "height": 520,
+      "scale": 77.66761222881236,
+      "translate": [
+        320,
+        259.9999999998977
+      ],
+      "center": [
+        0,
+        0
+      ],
+      "rotate": [
+        0,
+        0,
+        0
+      ]
+    },
+    "hoi-an": {
+      "file": "/maps/cities/hoi-an.svg",
+      "name": "Hoi An",
+      "viewBox": [
+        0,
+        0,
+        640,
+        520
+      ],
+      "bounds": {
+        "west": 108.238,
+        "south": 15.7951,
+        "east": 108.43799999999999,
+        "north": 15.965100000000001
+      },
+      "type": "mercator",
+      "width": 640,
+      "height": 520,
+      "scale": 77.66761222881236,
+      "translate": [
+        320,
+        259.9999999998977
+      ],
+      "center": [
+        0,
+        0
+      ],
+      "rotate": [
+        0,
+        0,
+        0
+      ]
+    },
+    "hue": {
+      "file": "/maps/cities/hue.svg",
+      "name": "Hue",
+      "viewBox": [
+        0,
+        0,
+        640,
+        520
+      ],
+      "bounds": {
+        "west": 107.4709,
+        "south": 16.3617,
+        "east": 107.71090000000001,
+        "north": 16.5657
+      },
+      "type": "mercator",
+      "width": 640,
+      "height": 520,
+      "scale": 77.66761222881236,
+      "translate": [
+        320,
+        259.9999999998977
+      ],
+      "center": [
+        0,
+        0
+      ],
+      "rotate": [
+        0,
+        0,
+        0
+      ]
+    },
+    "ninh-binh": {
+      "file": "/maps/cities/ninh-binh.svg",
+      "name": "Ninh Binh",
+      "viewBox": [
+        0,
+        0,
+        640,
+        520
+      ],
+      "bounds": {
+        "west": 105.7945,
+        "south": 20.0976,
+        "east": 106.15450000000001,
+        "north": 20.403599999999997
+      },
+      "type": "mercator",
+      "width": 640,
+      "height": 520,
+      "scale": 77.66761222881236,
+      "translate": [
+        320,
+        259.9999999998977
+      ],
+      "center": [
+        0,
+        0
+      ],
+      "rotate": [
+        0,
+        0,
+        0
+      ]
+    },
+    "nha-trang": {
+      "file": "/maps/cities/nha-trang.svg",
+      "name": "Nha Trang",
+      "viewBox": [
+        0,
+        0,
+        640,
+        520
+      ],
+      "bounds": {
+        "west": 109.0767,
+        "south": 12.1368,
+        "east": 109.31670000000001,
+        "north": 12.3408
+      },
+      "type": "mercator",
+      "width": 640,
+      "height": 520,
+      "scale": 77.66761222881236,
+      "translate": [
+        320,
+        259.9999999998977
+      ],
+      "center": [
+        0,
+        0
+      ],
+      "rotate": [
+        0,
+        0,
+        0
+      ]
+    },
+    "dalat": {
+      "file": "/maps/cities/dalat.svg",
+      "name": "Da Lat",
+      "viewBox": [
+        0,
+        0,
+        640,
+        520
+      ],
+      "bounds": {
+        "west": 108.33829999999999,
+        "south": 11.8384,
+        "east": 108.5783,
+        "north": 12.0424
+      },
+      "type": "mercator",
+      "width": 640,
+      "height": 520,
+      "scale": 77.66761222881236,
+      "translate": [
+        320,
+        259.9999999998977
+      ],
+      "center": [
+        0,
+        0
+      ],
+      "rotate": [
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build
+dist/
+frontend/dist/
+build/
+*.local
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
+**/secrets/**
+
+# Logs / cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm
+.cache/
+*.tsbuildinfo
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Vite
+frontend/.vite/
+
+# Local agent / tooling noise (keep project source only)
+.cursor/
+agent-transcripts/

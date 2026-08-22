@@ -1,0 +1,50 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "area-old-town", "name": "Old Town", "kind": "area-label", "curated": true },
+      "geometry": { "type": "Point", "coordinates": [108.3305, 15.8795] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "area-cam-pho", "name": "Cam Pho", "kind": "area-label", "curated": true },
+      "geometry": { "type": "Point", "coordinates": [108.319, 15.885] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "area-an-hoi", "name": "An Hoi", "kind": "area-label", "curated": true },
+      "geometry": { "type": "Point", "coordinates": [108.3315, 15.8745] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "area-cam-nam", "name": "Cam Nam", "kind": "area-label", "curated": true },
+      "geometry": { "type": "Point", "coordinates": [108.333, 15.866] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "area-cam-chau", "name": "Cam Chau", "kind": "area-label", "curated": true },
+      "geometry": { "type": "Point", "coordinates": [108.340, 15.894] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "area-cam-thanh", "name": "Cam Thanh", "kind": "area-label", "curated": true },
+      "geometry": { "type": "Point", "coordinates": [108.360, 15.880] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "area-an-bang", "name": "An Bang", "kind": "area-label", "curated": true },
+      "geometry": { "type": "Point", "coordinates": [108.338, 15.914] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "area-cua-dai", "name": "Cua Dai", "kind": "area-label", "curated": true },
+      "geometry": { "type": "Point", "coordinates": [108.362, 15.896] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "area-cam-kim", "name": "Cam Kim", "kind": "area-label", "curated": true },
+      "geometry": { "type": "Point", "coordinates": [108.318, 15.858] }
+    }
+  ]
+}

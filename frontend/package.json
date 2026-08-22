@@ -1,0 +1,46 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "generate:maps": "node scripts/generate-getting-around-maps.mjs",
+    "generate:city-geo": "node scripts/generate-city-geography.mjs",
+    "generate:hoi-an-stay-map": "node scripts/generate-hoi-an-stay-map.mjs",
+    "fetch:hoi-an-stay-map": "node scripts/fetch-hoi-an-osm-tiles.mjs"
+  },
+  "dependencies": {
+    "d3-geo": "^3.1.1",
+    "framer-motion": "^13.1.0",
+    "jspdf": "^4.2.1",
+    "leaflet": "^1.9.4",
+    "page-flip": "^2.0.7",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-leaflet": "^5.0.0",
+    "react-pageflip": "^2.0.3",
+    "react-router-dom": "^7.18.2",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@types/d3-geo": "^3.1.1",
+    "@types/geojson": "^7946.0.16",
+    "@types/leaflet": "^1.9.22",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "autoprefixer": "^10.5.4",
+    "oxlint": "^1.75.0",
+    "playwright": "^1.49.0",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^3.4.19",
+    "topojson-client": "^3.1.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.0"
+  }
+}

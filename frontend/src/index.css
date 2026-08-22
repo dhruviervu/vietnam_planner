@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-ink bg-cream antialiased;
+    background-image: radial-gradient(rgba(58, 50, 44, 0.04) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+/* StPageFlip two-leaf transition — only mounted during route changes */
+.page-flip-stage .page-flip-book {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-flip-stage .flip-leaf {
+  background-color: #faf3e8;
+  box-shadow: none;
+}
+
+@layer components {
+  .btn-pill {
+    @apply inline-flex items-center justify-center font-sans font-bold text-[0.95rem]
+      px-[1.4rem] py-[0.9rem] rounded-full border-2 border-transparent
+      transition-transform duration-200 hover:-translate-y-0.5 cursor-pointer;
+  }
+
+  .btn-solid {
+    @apply btn-pill bg-terracotta text-paper;
+  }
+
+  .btn-outline {
+    @apply btn-pill bg-transparent border-sage text-ink;
+  }
+
+  .btn-nav {
+    @apply font-sans font-bold text-[0.85rem] px-[1.15rem] py-[0.55rem]
+      rounded-full bg-terracotta text-paper border-0 cursor-pointer
+      transition-transform duration-200 hover:-translate-y-0.5;
+  }
+}
+
+@keyframes cart-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.animate-cart-pop {
+  animation: cart-pop 350ms cubic-bezier(0.34, 1.45, 0.64, 1);
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.08) translate3d(-1.6%, -1.2%, 0);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 5s ease-out forwards;
+  will-change: transform;
+}
+
+@keyframes scroll-chevron {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 0.95;
+  }
+}
+
+.animate-scroll-chevron {
+  animation: scroll-chevron 1.8s ease-in-out infinite;
+}
+
+@keyframes unlock-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Landing left rail */
+.landing-sidebar {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 120% 80% at 0% 0%, rgba(196, 92, 58, 0.22), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 100% 100%, rgba(90, 122, 94, 0.18), transparent 50%),
+    linear-gradient(165deg, #1c1612 0%, #2a221c 48%, #171310 100%);
+  box-shadow: inset -1px 0 0 rgba(243, 230, 212, 0.08);
+}
+
+.landing-sidebar__glow {
+  pointer-events: none;
+  position: absolute;
+  inset: auto -20% -10% -20%;
+  height: 45%;
+  background: radial-gradient(ellipse at center, rgba(196, 92, 58, 0.16), transparent 70%);
+}
+
+/* Shining + gently moving Build itinerary CTA */
+@keyframes build-itinerary-pulse {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow:
+      0 0 0 0 rgba(196, 92, 58, 0.45),
+      0 12px 28px rgba(196, 92, 58, 0.35);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 0 0 8px rgba(196, 92, 58, 0),
+      0 16px 36px rgba(196, 92, 58, 0.48);
+  }
+}
+
+@keyframes build-itinerary-shine {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  45% {
+    transform: translateX(160%) skewX(-18deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(160%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+.btn-build-itinerary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(135deg, #d46a45 0%, #c45c3a 42%, #a3482e 100%);
+  animation: build-itinerary-pulse 2.4s ease-in-out infinite;
+}
+
+.btn-build-itinerary:hover {
+  filter: brightness(1.06);
+}
+
+.btn-build-itinerary__shine {
+  position: absolute;
+  inset: -20% auto -20% 0;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 35%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.08) 65%,
+    transparent 100%
+  );
+  animation: build-itinerary-shine 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-build-itinerary,
+  .btn-build-itinerary__shine {
+    animation: none;
+  }
+}
