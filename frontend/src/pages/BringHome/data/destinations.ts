@@ -1,4 +1,5 @@
 import type {
+  DestinationType,
   ShopCity,
   ShopFilter,
   ShoppingDestination,
@@ -12,6 +13,8 @@ export const SHOP_CITIES: ShopCity[] = [
   'Da Nang',
   'Hoi An',
   'Ho Chi Minh City',
+  'Nha Trang',
+  'Da Lat',
 ]
 
 const img = (id: string) =>
@@ -45,11 +48,12 @@ export const DESTINATIONS: ShoppingDestination[] = [
     whyRecommended: 'Large selection, strong price comparison and dense souvenir variety in one stop.',
     mapUrl: 'https://maps.google.com/?q=Dong+Xuan+Market+Hanoi',
     featured: true,
+    itineraryId: 'market-dong-xuan',
   },
   {
     id: 'hang-gai-silk',
     name: 'Hàng Gai Silk Street',
-    type: 'Craft District',
+    type: 'Historic Street',
     city: 'Hanoi',
     region: 'North',
     area: 'Old Quarter',
@@ -202,6 +206,7 @@ export const DESTINATIONS: ShoppingDestination[] = [
     whyRecommended: 'Central market energy with local snacks and small craft finds.',
     mapUrl: 'https://maps.google.com/?q=Dong+Ba+Market+Hue',
     featured: true,
+    itineraryId: 'market-dong-ba',
   },
   {
     id: 'hue-lacquer',
@@ -252,6 +257,7 @@ export const DESTINATIONS: ShoppingDestination[] = [
     whyRecommended: 'Convenient city market for snacks and light gifts between beach plans.',
     mapUrl: 'https://maps.google.com/?q=Han+Market+Da+Nang',
     featured: false,
+    itineraryId: 'market-han',
   },
   {
     id: 'hoian-lantern',
@@ -283,7 +289,7 @@ export const DESTINATIONS: ShoppingDestination[] = [
   {
     id: 'hoian-tailor',
     name: 'Hoi An Tailor Streets',
-    type: 'Shop',
+    type: 'Historic Street',
     city: 'Hoi An',
     region: 'Central',
     area: 'Old Town',
@@ -331,6 +337,7 @@ export const DESTINATIONS: ShoppingDestination[] = [
     whyRecommended: 'Easy one-stop overview of Saigon souvenirs, coffee and snack packs.',
     mapUrl: 'https://maps.google.com/?q=Ben+Thanh+Market',
     featured: true,
+    itineraryId: 'market-ben-thanh',
   },
   {
     id: 'saigon-square',
@@ -410,7 +417,7 @@ export const DESTINATIONS: ShoppingDestination[] = [
   {
     id: 'hanoi-lacquer-street',
     name: 'Hàng Trống Lacquer Lane',
-    type: 'Craft District',
+    type: 'Historic Street',
     city: 'Hanoi',
     region: 'North',
     area: 'Old Quarter',
@@ -432,6 +439,294 @@ export const DESTINATIONS: ShoppingDestination[] = [
     mapUrl: 'https://maps.google.com/?q=Hang+Trong+Hanoi',
     featured: true,
   },
+  {
+    id: 'hanoi-night-market',
+    name: 'Old Quarter Weekend Night Market',
+    type: 'Market',
+    city: 'Hanoi',
+    region: 'North',
+    area: 'Hang Dao · Hoan Kiem',
+    images: [img('photo-1578662996442-48f60103fc96'), img('photo-1504674900247-0877df9cc836')],
+    bestForItemIds: ['traditional-gifts', 'local-snacks', 'silk'],
+    bestForLabels: ['Gifts', 'Snacks', 'Silk'],
+    crowdLevel: 4,
+    crowdType: 'Typical',
+    crowdLabel: 'Busy',
+    crowdBusyPeriod: '19:00–22:00 Fri–Sun',
+    valueLevel: 'Medium',
+    touristFriendly: 'High',
+    bargaining: 'Yes',
+    priceRange: '$–$$',
+    rating: 4.2,
+    openNow: false,
+    openingHours: '19:00–23:00 (weekends)',
+    distanceKm: 0.4,
+    whyRecommended: 'Evening browsing for clothes, souvenirs and snacks beside Hoan Kiem Lake.',
+    mapUrl: 'https://maps.google.com/?q=Hanoi+Night+Market+Hang+Dao',
+    featured: true,
+    itineraryId: 'market-hanoi-night',
+  },
+  {
+    id: 'trang-tien-plaza',
+    name: 'Tràng Tiền Plaza',
+    type: 'Mall',
+    city: 'Hanoi',
+    region: 'North',
+    area: 'Hoan Kiem',
+    images: [img('photo-1441986300917-64674bd600d8'), img('photo-1555529900-efe6759f0b0c')],
+    bestForItemIds: ['silk', 'traditional-gifts', 'lacquerware'],
+    bestForLabels: ['Silk', 'Gifts', 'Lacquerware'],
+    crowdLevel: 3,
+    crowdType: 'Typical',
+    crowdLabel: 'Moderate',
+    valueLevel: 'Low',
+    touristFriendly: 'High',
+    bargaining: 'No · Fixed price',
+    priceRange: '$$$',
+    rating: 4.4,
+    openNow: true,
+    openingHours: '9:30–22:00',
+    distanceKm: 0.8,
+    whyRecommended: 'Air-conditioned luxury mall for fixed-price silk, gifts and last-minute packing.',
+    mapUrl: 'https://maps.google.com/?q=Trang+Tien+Plaza+Hanoi',
+    featured: true,
+  },
+  {
+    id: 'lotte-center-hanoi',
+    name: 'Lotte Center Hanoi',
+    type: 'Mall',
+    city: 'Hanoi',
+    region: 'North',
+    area: 'Ba Dinh',
+    images: [img('photo-1519566336512-e0c32916a47e'), img('photo-1441986300917-64674bd600d8')],
+    bestForItemIds: ['traditional-gifts', 'vietnamese-coffee', 'silk'],
+    bestForLabels: ['Gifts', 'Coffee', 'Silk'],
+    crowdLevel: 3,
+    crowdType: 'Typical',
+    crowdLabel: 'Moderate',
+    valueLevel: 'Medium',
+    touristFriendly: 'High',
+    bargaining: 'No · Fixed price',
+    priceRange: '$$–$$$',
+    rating: 4.3,
+    openNow: true,
+    openingHours: '10:00–22:00',
+    distanceKm: 2.4,
+    whyRecommended: 'Reliable mall counters for packaged coffee, gifts and silk without market haggling.',
+    mapUrl: 'https://maps.google.com/?q=Lotte+Center+Hanoi',
+    featured: false,
+  },
+  {
+    id: 'hoian-central-market',
+    name: 'Hội An Central Market',
+    type: 'Market',
+    city: 'Hoi An',
+    region: 'Central',
+    area: 'Ancient Town edge',
+    images: [img('photo-1528127269322-539801943592'), img('photo-1558769132-cb1aea458c5e')],
+    bestForItemIds: ['handmade-lanterns', 'silk', 'spices', 'traditional-gifts'],
+    bestForLabels: ['Lanterns', 'Silk', 'Spices'],
+    crowdLevel: 4,
+    crowdType: 'Typical',
+    crowdLabel: 'Busy',
+    crowdBusyPeriod: '8:00–11:00',
+    valueLevel: 'High',
+    touristFriendly: 'High',
+    bargaining: 'Yes',
+    priceRange: '$–$$',
+    rating: 4.3,
+    openNow: true,
+    openingHours: '6:00–18:00',
+    distanceKm: 0.3,
+    whyRecommended: 'Daytime produce, fabric and spice floors beside lantern and tailor streets.',
+    mapUrl: 'https://maps.google.com/?q=Hoi+An+Central+Market',
+    featured: true,
+    itineraryId: 'market-hoian-central',
+  },
+  {
+    id: 'hoian-night-market',
+    name: 'Hội An Night Market',
+    type: 'Market',
+    city: 'Hoi An',
+    region: 'Central',
+    area: 'Nguyễn Hoàng · riverside',
+    images: [img('photo-1578662996442-48f60103fc96'), img('photo-1528127269322-539801943592')],
+    bestForItemIds: ['handmade-lanterns', 'traditional-gifts', 'embroidered-crafts'],
+    bestForLabels: ['Lanterns', 'Gifts', 'Embroidery'],
+    crowdLevel: 5,
+    crowdType: 'Typical',
+    crowdLabel: 'Very busy',
+    crowdBusyPeriod: '18:00–21:30',
+    valueLevel: 'Medium',
+    touristFriendly: 'High',
+    bargaining: 'Yes',
+    priceRange: '$$',
+    rating: 4.5,
+    openNow: false,
+    openingHours: '17:00–22:00',
+    distanceKm: 0.2,
+    whyRecommended: 'Lantern-lit stalls for silk lanterns, clothes and riverside souvenirs after dark.',
+    mapUrl: 'https://maps.google.com/?q=Hoi+An+Night+Market',
+    featured: true,
+    itineraryId: 'market-hoian-night',
+  },
+  {
+    id: 'vincom-da-nang',
+    name: 'Vincom Plaza Đà Nẵng',
+    type: 'Mall',
+    city: 'Da Nang',
+    region: 'Central',
+    area: 'Hai Chau',
+    images: [img('photo-1555529900-efe6759f0b0c'), img('photo-1441986300917-64674bd600d8')],
+    bestForItemIds: ['traditional-gifts', 'local-snacks', 'vietnamese-coffee'],
+    bestForLabels: ['Gifts', 'Snacks', 'Coffee'],
+    crowdLevel: 3,
+    crowdType: 'Typical',
+    crowdLabel: 'Moderate',
+    valueLevel: 'Medium',
+    touristFriendly: 'High',
+    bargaining: 'No · Fixed price',
+    priceRange: '$$',
+    rating: 4.2,
+    openNow: true,
+    openingHours: '9:00–22:00',
+    distanceKm: 1.0,
+    whyRecommended: 'Cool, easy mall run for packaged snacks, coffee and gifts between beach days.',
+    mapUrl: 'https://maps.google.com/?q=Vincom+Plaza+Da+Nang',
+    featured: false,
+  },
+  {
+    id: 'binh-tay',
+    name: 'Bình Tây Market',
+    type: 'Market',
+    city: 'Ho Chi Minh City',
+    region: 'South',
+    area: 'District 6 · Chợ Lớn',
+    images: [img('photo-1556910103-1c02745aae4d'), img('photo-1565193566173-7a0ee3dbe261')],
+    bestForItemIds: ['ceramics', 'spices', 'local-snacks', 'traditional-gifts'],
+    bestForLabels: ['Ceramics', 'Spices', 'Snacks'],
+    crowdLevel: 4,
+    crowdType: 'Typical',
+    crowdLabel: 'Busy',
+    crowdBusyPeriod: '7:00–11:00',
+    valueLevel: 'High',
+    touristFriendly: 'Medium',
+    bargaining: 'Yes',
+    priceRange: '$–$$',
+    rating: 4.3,
+    openNow: true,
+    openingHours: '6:00–18:00',
+    distanceKm: 4.5,
+    distanceNote: 'Chinatown wholesale prices beyond the tourist strip',
+    whyRecommended: 'Local wholesale energy for dried foods, ceramics and everyday Vietnamese goods.',
+    mapUrl: 'https://maps.google.com/?q=Binh+Tay+Market+Ho+Chi+Minh+City',
+    featured: true,
+    itineraryId: 'market-binh-tay',
+  },
+  {
+    id: 'takashimaya-saigon',
+    name: 'Takashimaya Saigon Centre',
+    type: 'Mall',
+    city: 'Ho Chi Minh City',
+    region: 'South',
+    area: 'District 1',
+    images: [img('photo-1441986300917-64674bd600d8'), img('photo-1519566336512-e0c32916a47e')],
+    bestForItemIds: ['silk', 'traditional-gifts', 'lacquerware', 'vietnamese-coffee'],
+    bestForLabels: ['Silk', 'Gifts', 'Coffee'],
+    crowdLevel: 3,
+    crowdType: 'Typical',
+    crowdLabel: 'Moderate',
+    valueLevel: 'Low',
+    touristFriendly: 'High',
+    bargaining: 'No · Fixed price',
+    priceRange: '$$$',
+    rating: 4.5,
+    openNow: true,
+    openingHours: '10:00–22:00',
+    distanceKm: 0.6,
+    whyRecommended: 'Polished fixed-price shopping for gifts, silk and packaged coffee near District 1 stays.',
+    mapUrl: 'https://maps.google.com/?q=Takashimaya+Saigon+Centre',
+    featured: true,
+  },
+  {
+    id: 'vincom-dong-khoi',
+    name: 'Vincom Center Đồng Khởi',
+    type: 'Mall',
+    city: 'Ho Chi Minh City',
+    region: 'South',
+    area: 'District 1',
+    images: [img('photo-1555529900-efe6759f0b0c'), img('photo-1441986300917-64674bd600d8')],
+    bestForItemIds: ['traditional-gifts', 'vietnamese-coffee', 'local-snacks'],
+    bestForLabels: ['Gifts', 'Coffee', 'Snacks'],
+    crowdLevel: 4,
+    crowdType: 'Typical',
+    crowdLabel: 'Busy',
+    valueLevel: 'Medium',
+    touristFriendly: 'High',
+    bargaining: 'No · Fixed price',
+    priceRange: '$$–$$$',
+    rating: 4.3,
+    openNow: true,
+    openingHours: '9:00–22:00',
+    distanceKm: 0.4,
+    whyRecommended: 'Central mall for last-minute packaged gifts without market heat or haggling.',
+    mapUrl: 'https://maps.google.com/?q=Vincom+Center+Dong+Khoi',
+    featured: false,
+  },
+  {
+    id: 'dam-nha-trang',
+    name: 'Đầm Market',
+    type: 'Market',
+    city: 'Nha Trang',
+    region: 'Central',
+    area: 'City centre',
+    images: [img('photo-1559827260-dc66d52bef19'), img('photo-1452860606245-08befc0ff44b')],
+    bestForItemIds: ['local-snacks', 'traditional-gifts', 'spices'],
+    bestForLabels: ['Snacks', 'Souvenirs', 'Spices'],
+    crowdLevel: 4,
+    crowdType: 'Typical',
+    crowdLabel: 'Busy',
+    crowdBusyPeriod: '8:00–11:00',
+    valueLevel: 'High',
+    touristFriendly: 'Medium',
+    bargaining: 'Yes',
+    priceRange: '$–$$',
+    rating: 4.1,
+    openNow: true,
+    openingHours: '6:00–18:00',
+    distanceKm: 0.8,
+    whyRecommended: 'Coastal city market for dried seafood, snacks and practical everyday shopping.',
+    mapUrl: 'https://maps.google.com/?q=Dam+Market+Nha+Trang',
+    featured: true,
+    itineraryId: 'market-dam-nhatrang',
+  },
+  {
+    id: 'dalat-night-market',
+    name: 'Đà Lạt Night Market',
+    type: 'Market',
+    city: 'Da Lat',
+    region: 'Central',
+    area: 'City centre',
+    images: [img('photo-1578662996442-48f60103fc96'), img('photo-1514432324607-a09d9b4aefdd')],
+    bestForItemIds: ['vietnamese-tea', 'vietnamese-coffee', 'local-snacks', 'spices'],
+    bestForLabels: ['Tea', 'Coffee', 'Snacks'],
+    crowdLevel: 4,
+    crowdType: 'Typical',
+    crowdLabel: 'Busy',
+    crowdBusyPeriod: '18:00–21:00',
+    valueLevel: 'Medium',
+    touristFriendly: 'High',
+    bargaining: 'Yes',
+    priceRange: '$–$$',
+    rating: 4.4,
+    openNow: false,
+    openingHours: '16:00–22:00',
+    distanceKm: 0.3,
+    whyRecommended: 'Highland evening stalls for artichoke tea, coffee, jams and cool-weather snacks.',
+    mapUrl: 'https://maps.google.com/?q=Da+Lat+Night+Market',
+    featured: true,
+    itineraryId: 'market-dalat-night',
+  },
 ]
 
 export function crowdDots(level: number): string {
@@ -440,10 +735,19 @@ export function crowdDots(level: number): string {
 
 export function scoreDestination(
   d: ShoppingDestination,
-  itemId: string,
+  itemId: string | 'All',
   sort: ShopSort,
 ): number {
-  const itemHit = d.bestForItemIds.includes(itemId) ? 45 : 0
+  const itemHit =
+    itemId === 'All'
+      ? d.featured
+        ? 22
+        : d.type === 'Market'
+          ? 12
+          : 8
+      : d.bestForItemIds.includes(itemId)
+        ? 45
+        : 0
   const rating = d.rating * 8
   const value =
     d.valueLevel === 'High' ? 18 : d.valueLevel === 'Medium' ? 10 : 4
@@ -465,27 +769,65 @@ export function scoreDestination(
 }
 
 export function getDestinationsForItem(
-  itemId: string,
+  itemId: string | 'All',
   city: ShopCity | 'All',
   sort: ShopSort,
   filters: ShopFilter,
+  tripCities: ShopCity[] = [],
 ): ShoppingDestination[] {
-  let list = DESTINATIONS.filter((d) => d.bestForItemIds.includes(itemId))
+  let list =
+    itemId === 'All'
+      ? [...DESTINATIONS]
+      : DESTINATIONS.filter((d) => d.bestForItemIds.includes(itemId))
   if (city !== 'All') list = list.filter((d) => d.city === city)
+  else if (tripCities.length > 0) list = list.filter((d) => tripCities.includes(d.city))
   if (filters.openNow) list = list.filter((d) => d.openNow)
   if (filters.type === 'markets') list = list.filter((d) => d.type === 'Market')
   if (filters.type === 'specialty') list = list.filter((d) => d.type === 'Specialty Store' || d.type === 'Shop')
-  if (filters.type === 'craft') list = list.filter((d) => d.type === 'Craft District')
+  if (filters.type === 'craft') {
+    list = list.filter((d) => d.type === 'Craft District' || d.type === 'Historic Street')
+  }
   if (filters.type === 'malls') list = list.filter((d) => d.type === 'Mall')
 
-  return [...list].sort(
-    (a, b) => scoreDestination(b, itemId, sort) - scoreDestination(a, itemId, sort),
-  )
+  return [...list].sort((a, b) => {
+    const bucket = destinationTypeBucket(a.type) - destinationTypeBucket(b.type)
+    if (bucket !== 0) return bucket
+    return scoreDestination(b, itemId, sort) - scoreDestination(a, itemId, sort)
+  })
 }
 
-export function citiesForItem(itemId: string): ShopCity[] {
-  const set = new Set(
-    DESTINATIONS.filter((d) => d.bestForItemIds.includes(itemId)).map((d) => d.city),
-  )
+function destinationTypeBucket(type: DestinationType): number {
+  if (type === 'Market') return 0
+  if (type === 'Historic Street') return 1
+  if (type === 'Craft District') return 2
+  if (type === 'Specialty Store' || type === 'Shop') return 3
+  return 4
+}
+
+export function citiesForItem(itemId: string | 'All'): ShopCity[] {
+  const source =
+    itemId === 'All'
+      ? DESTINATIONS
+      : DESTINATIONS.filter((d) => d.bestForItemIds.includes(itemId))
+  const set = new Set(source.map((d) => d.city))
   return SHOP_CITIES.filter((c) => set.has(c))
+}
+
+export function destinationCityCounts(itemId: string | 'All'): Record<string, number> {
+  const counts: Record<string, number> = {}
+  for (const d of DESTINATIONS) {
+    if (itemId !== 'All' && !d.bestForItemIds.includes(itemId)) continue
+    counts[d.city] = (counts[d.city] ?? 0) + 1
+  }
+  return counts
+}
+
+export function destinationItemCounts(): Record<string, number> {
+  const counts: Record<string, number> = {}
+  for (const d of DESTINATIONS) {
+    for (const id of d.bestForItemIds) {
+      counts[id] = (counts[id] ?? 0) + 1
+    }
+  }
+  return counts
 }

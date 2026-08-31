@@ -54,7 +54,7 @@ export type ExperienceFilters = {
   /** Jump / filter catalog to one city */
   city: string | 'all'
   region: string | 'all'
-  duration: 'all' | 'short' | 'half' | 'full'
+  duration: 'all' | 'short' | 'medium' | 'longer' | 'flexible'
   cost: 'all' | 'free-low' | 'mid' | 'high'
   accessibility: 'all' | 'wheelchair' | 'easy-walk' | 'limited-walk'
   bestTime: 'all' | TimeOfDay
@@ -248,6 +248,20 @@ function matchesPractical(e: Experience, p: PracticalFilter): boolean {
   }
 }
 
+export function experienceDurationBand(
+  e: Experience,
+): 'short' | 'medium' | 'longer' | 'flexible' {
+  const hay = `${e.id} ${e.name} ${e.category}`.toLowerCase()
+  const flexible =
+    /walk|street|quarter|lake|promenade|market|beach|sunset|bia-hoi|egg-coffee|apartment-cafes|train-street|old-quarter|hoan-kiem|west-lake|nguyen-hue|an-bang|da-nang-beach|nha-trang|xuan-huong|sao-beach|phu-quoc-sunset|dong-xuan|ben-thanh|dong-ba|sapa-market|duong-dong|dinh-cau/.test(
+      hay,
+    )
+  if (flexible) return 'flexible'
+  if (e.durationHours <= 1) return 'short'
+  if (e.durationHours < 3) return 'medium'
+  return 'longer'
+}
+
 function matchesFilters(
   e: Experience,
   filters: ExperienceFilters,
@@ -264,9 +278,12 @@ function matchesFilters(
     if (!ok) return false
   }
   if (filters.region !== 'all' && e.region !== filters.region) return false
-  if (filters.duration === 'short' && e.durationHours > 2.5) return false
-  if (filters.duration === 'half' && (e.durationHours < 2.5 || e.durationHours > 5.5)) return false
-  if (filters.duration === 'full' && e.durationHours < 5.5) return false
+  if (filters.duration !== 'all') {
+    const allowed = ['short', 'medium', 'longer', 'flexible'] as const
+    if ((allowed as readonly string[]).includes(filters.duration)) {
+      if (experienceDurationBand(e) !== filters.duration) return false
+    }
+  }
   if (filters.cost === 'free-low' && e.price > 15) return false
   if (filters.cost === 'mid' && (e.price < 15 || e.price > 55)) return false
   if (filters.cost === 'high' && e.price < 55) return false
@@ -287,10 +304,21 @@ export function filterExperiences(
   selectedIds: string[],
   filters: ExperienceFilters,
 ) {
-  return EXPERIENCES.filter((e) => {
+  return filterExperienceItems(EXPERIENCES, basics, selectedIds, filters).sort(
+    (a, b) => scoreExperience(b, basics, selectedIds) - scoreExperience(a, basics, selectedIds),
+  )
+}
+
+export function filterExperienceItems(
+  items: Experience[],
+  basics: TripBasics,
+  selectedIds: string[],
+  filters: ExperienceFilters,
+) {
+  return items.filter((e) => {
     const fit = scoreExperience(e, basics, selectedIds)
     return matchesFilters(e, filters, fit)
-  }).sort((a, b) => scoreExperience(b, basics, selectedIds) - scoreExperience(a, basics, selectedIds))
+  })
 }
 
 export function buildDiscoverySections(

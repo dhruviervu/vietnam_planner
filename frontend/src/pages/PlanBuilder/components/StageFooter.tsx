@@ -9,6 +9,7 @@ type Props = {
   secondaryLabel?: string
   secondaryTo?: string
   onContinue?: () => void
+  hideSkip?: boolean
 }
 
 export function StageFooter({
@@ -17,6 +18,7 @@ export function StageFooter({
   secondaryLabel = 'Skip for now',
   secondaryTo,
   onContinue,
+  hideSkip = false,
 }: Props) {
   const step = BUILDER_STEPS.find((s) => s.id === current)
   const next = step?.nextId
@@ -25,14 +27,18 @@ export function StageFooter({
   const skipTo = secondaryTo ?? nextTo
 
   return (
-    <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-ink/8 pt-6">
-      <SkipToMenu current={current} />
+    <div
+      className={`mt-10 flex flex-wrap items-center gap-4 border-t border-ink/8 pt-6 ${
+        hideSkip ? 'justify-end' : 'justify-between'
+      }`}
+    >
+      {hideSkip ? null : <SkipToMenu current={current} />}
       <div className="flex flex-wrap items-center gap-3">
-        {skipTo && (
+        {!hideSkip && skipTo ? (
           <Link to={skipTo} className="text-[0.88rem] font-semibold text-muted hover:text-ink">
             {secondaryLabel}
           </Link>
-        )}
+        ) : null}
         {nextTo && (
           <Link to={nextTo} onClick={onContinue} className="btn-solid">
             {primaryLabel}

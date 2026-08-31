@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useTripStore } from '../../../store/tripStore'
 import { EXPERIENCES } from '../data/experiences'
 import { CITY_ACTIVITIES, getActivityImages } from '../data/activities'
-import { buildTripFeedback } from '../services/recommendationEngine'
 import { getExperienceImages } from '../lib/pricing'
 import { onTripBagPop, registerTripBag } from '../lib/tripBagTarget'
 import { TripBagEmptyState } from './TripBagEmptyState'
@@ -32,28 +31,11 @@ type BagEntry =
       image: string
     }
 
-function balanceMeters(ids: string[]) {
-  const selected = EXPERIENCES.filter((e) => ids.includes(e.id))
-  const score = { Culture: 0, Nature: 0, Adventure: 0 }
-  for (const e of selected) {
-    if (e.category === 'Culture' || e.category === 'History') score.Culture += 1
-    else if (e.category === 'Nature' || e.category === 'Beaches') score.Nature += 1
-    else if (e.category === 'Adventure') score.Adventure += 1
-    else if (e.signal === 'adventure') score.Adventure += 1
-    else if (e.signal === 'slow-scenic' || e.signal === 'picture-perfect') score.Nature += 1
-    else score.Culture += 1
-  }
-  const max = Math.max(1, ...Object.values(score))
-  return (Object.entries(score) as [keyof typeof score, number][]).map(([label, n]) => ({
-    label,
-    filled: Math.round((n / max) * 3) || (n > 0 ? 1 : 0),
-  }))
-}
+const expandEase: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 export function TripBag({ mobileOpen = false, onToggleMobile }: Props) {
   const selectedIds = useTripStore((s) => s.selectedExperienceIds)
   const selectedActivityIds = useTripStore((s) => s.selectedActivityIds)
-  const pace = useTripStore((s) => s.basics.travelStyle)
   const removeExperience = useTripStore((s) => s.removeExperience)
   const removeActivity = useTripStore((s) => s.removeActivity)
   const [expanded, setExpanded] = useState(false)
@@ -85,8 +67,6 @@ export function TripBag({ mobileOpen = false, onToggleMobile }: Props) {
   }, [selectedIds, selectedActivityIds])
 
   const totalCount = selectedIds.length + selectedActivityIds.length
-  const feedback = buildTripFeedback(selectedIds, pace)
-  const meters = balanceMeters(selectedIds)
   const regionSummary = [...new Set(bagItems.map((e) => e.city))].slice(0, 5).join(' · ')
 
   useEffect(() => {
@@ -121,8 +101,6 @@ export function TripBag({ mobileOpen = false, onToggleMobile }: Props) {
       activityCount={selectedActivityIds.length}
       totalCount={totalCount}
       regionSummary={regionSummary}
-      meters={meters}
-      feedback={feedback}
       expanded={expanded}
       onToggleExpand={() => setExpanded((v) => !v)}
       onRemove={removeItem}
@@ -151,18 +129,17 @@ export function TripBag({ mobileOpen = false, onToggleMobile }: Props) {
           </div>
           <span className="text-muted">{mobileOpen ? '▾' : '▴'}</span>
         </button>
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="max-h-[55vh] overflow-y-auto pt-3"
-            >
-              {body}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div
+          className="grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          style={{
+            gridTemplateRows: mobileOpen ? '1fr' : '0fr',
+            opacity: mobileOpen ? 1 : 0,
+          }}
+        >
+          <div className="max-h-[55vh] overflow-hidden">
+            <div className="overflow-y-auto pt-3">{body}</div>
+          </div>
+        </div>
       </div>
 
       {/* Desktop */}
@@ -181,8 +158,6 @@ function BagBody({
   activityCount,
   totalCount,
   regionSummary,
-  meters,
-  feedback,
   expanded,
   onToggleExpand,
   onRemove,
@@ -195,8 +170,6 @@ function BagBody({
   activityCount: number
   totalCount: number
   regionSummary: string
-  meters: { label: string; filled: number }[]
-  feedback: string[]
   expanded: boolean
   onToggleExpand: () => void
   onRemove: (item: BagEntry) => void
@@ -249,89 +222,68 @@ function BagBody({
           <button
             type="button"
             onClick={onToggleExpand}
+            aria-expanded={expanded}
             className="mt-4 w-full rounded-2xl border border-ink/8 bg-cream/70 px-3 py-3 text-left transition-colors hover:bg-cream"
           >
             <div className="flex items-center justify-between gap-2">
               <p className="font-serif text-[1.15rem] font-semibold text-ink">
                 Your Trip Bag · {totalCount}
               </p>
-              <span className="text-muted">{expanded ? '▾' : '▸'}</span>
+              <span
+                className={`text-muted transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  expanded ? 'rotate-90' : ''
+                }`}
+              >
+                ▸
+              </span>
             </div>
-
-            <div className="mt-3 grid grid-cols-4 gap-1.5">
-              {items.slice(0, 8).map((e) => (
-                <div key={`${e.kind}-${e.id}`} className="relative overflow-hidden rounded-lg">
-                  <img src={e.image} alt={e.name} className="aspect-[4/3] w-full object-cover" />
-                  {e.kind === 'activity' && (
-                    <span className="absolute bottom-0.5 left-0.5 rounded bg-ink/70 px-1 text-[0.55rem] font-bold uppercase text-paper">
-                      Act
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-
             {regionSummary && (
-              <p className="mt-3 text-[0.78rem] leading-snug text-muted">{regionSummary}</p>
+              <p className="mt-2 text-[0.78rem] leading-snug text-muted">{regionSummary}</p>
             )}
-
-            <div className="mt-3 space-y-1">
-              {meters.map((m) => (
-                <div key={m.label} className="flex items-center gap-2 text-[0.72rem]">
-                  <span className="w-16 font-semibold text-ink">{m.label}</span>
-                  <span className="tracking-widest text-terracotta">
-                    {'●'.repeat(m.filled)}
-                    {'○'.repeat(Math.max(0, 3 - m.filled))}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <p className="mt-1 text-[0.72rem] font-bold text-terracotta">
+              {expanded ? 'Hide saved items' : 'Show saved items'}
+            </p>
           </button>
 
-          <AnimatePresence initial={false}>
-            {expanded && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden"
-              >
-                <div className="mt-4 border-t border-ink/8 pt-3">
-                  <p className="text-[0.72rem] font-bold uppercase tracking-wide text-sage">
-                    Not scheduled yet
-                  </p>
-                  <p className="mt-1 text-[0.78rem] text-muted">
-                    Experiences and activities will be organized into days later. Activities slot
-                    in as flexible join-in moments.
-                  </p>
-                  <ul className="mt-3 space-y-2">
-                    <AnimatePresence initial={false}>
-                      {items.map((item) => (
-                        <TripBagItem
-                          key={`${item.kind}-${item.id}`}
-                          item={item}
-                          onRemove={() => onRemove(item)}
-                          onOpen={() => onOpen(item)}
-                        />
-                      ))}
-                    </AnimatePresence>
-                  </ul>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {feedback.length > 0 && (
-            <div className="mt-4 space-y-1 border-t border-ink/8 pt-3">
-              {feedback.map((note) => (
-                <p key={note} className="text-[0.8rem] leading-snug text-muted">
-                  {note}
+          <div
+            className="grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            style={{
+              gridTemplateRows: expanded ? '1fr' : '0fr',
+              opacity: expanded ? 1 : 0,
+            }}
+          >
+            <div className="overflow-hidden">
+              <div className="mt-4 border-t border-ink/8 pt-3">
+                <p className="text-[0.72rem] font-bold uppercase tracking-wide text-sage">
+                  Not scheduled yet
                 </p>
-              ))}
+                <p className="mt-1 text-[0.78rem] text-muted">
+                  Experiences and activities will be organized into days later. Activities slot
+                  in as flexible join-in moments.
+                </p>
+                <ul className="mt-3 space-y-2">
+                  <AnimatePresence initial={false}>
+                    {items.map((item) => (
+                      <TripBagItem
+                        key={`${item.kind}-${item.id}`}
+                        item={item}
+                        onRemove={() => onRemove(item)}
+                        onOpen={() => onOpen(item)}
+                      />
+                    ))}
+                  </AnimatePresence>
+                </ul>
+              </div>
             </div>
-          )}
+          </div>
 
-          <p className="mt-4 text-[0.82rem] text-ink">Your trip is taking shape.</p>
+          <motion.p
+            layout
+            className="mt-4 text-[0.82rem] text-ink"
+            transition={{ duration: 0.45, ease: expandEase }}
+          >
+            Your trip is taking shape.
+          </motion.p>
         </>
       )}
     </div>

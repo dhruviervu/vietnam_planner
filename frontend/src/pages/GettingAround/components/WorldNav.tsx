@@ -7,10 +7,10 @@ export function scrollToAnchor(id: string) {
 
 type WorldKey = 'long-distance' | 'urban' | 'water'
 
-const WORLDS: { key: WorldKey; index: string; label: string; target: string }[] = [
-  { key: 'long-distance', index: '01', label: 'Long-Distance', target: 'world-long' },
-  { key: 'urban', index: '02', label: 'Urban & Short-Distance', target: 'world-urban' },
-  { key: 'water', index: '03', label: 'Water', target: 'world-water' },
+const WORLDS: { key: WorldKey; index: string; label: string; emoji: string; target: string }[] = [
+  { key: 'long-distance', index: '01', label: 'Long distance (Inter City)', emoji: '🚆', target: 'world-long' },
+  { key: 'urban', index: '02', label: 'Urban and short distance (Inside a city)', emoji: '🛵', target: 'world-urban' },
+  { key: 'water', index: '03', label: 'Water', emoji: '⛴️', target: 'world-water' },
 ]
 
 type Props = {
@@ -49,7 +49,7 @@ export function WorldNav({ active, onActive }: Props) {
                 {w.index}
               </span>
               <span className="mt-1 block font-serif text-[1.05rem] font-semibold leading-tight">
-                {w.label}
+                {w.emoji} {w.label}
               </span>
             </button>
           )

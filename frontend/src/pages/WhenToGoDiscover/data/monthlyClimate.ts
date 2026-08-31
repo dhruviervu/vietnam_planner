@@ -7,6 +7,11 @@ export type RegionMonthClimate = {
   averageTemperature: number
   rainfallLevel: Level
   rainfallLabel: string
+  precipitationMm: number
+  windSpeed: string
+  windLabel: string
+  humidityRange: string
+  humidityLabel: string
   climateLabel: string
   crowdLevel: Level
   crowdLabel: string
@@ -24,6 +29,35 @@ export type MonthClimateBundle = {
 
 type Seed = [[number, number], Level, string, string, Level, Level, string[], string]
 
+function derivePrecipitationMm(rain: Level, tempAvg: number): number {
+  const bands: Record<Level, [number, number]> = {
+    1: [18, 52],
+    2: [42, 98],
+    3: [105, 175],
+    4: [185, 265],
+    5: [255, 340],
+  }
+  const [lo, hi] = bands[rain]
+  const warmth = Math.min(1, Math.max(0, (tempAvg - 16) / 16))
+  return Math.round(lo + (hi - lo) * (0.3 + warmth * 0.7))
+}
+
+function deriveWind(rain: Level, tempAvg: number): { speed: string; label: string } {
+  if (rain >= 5) return { speed: '20–32 km/h', label: 'Strong gusts' }
+  if (rain >= 4) return { speed: '16–26 km/h', label: 'Moderate wind' }
+  if (rain >= 3) return { speed: '12–20 km/h', label: 'Breezy' }
+  if (tempAvg >= 30) return { speed: '10–16 km/h', label: 'Light coastal breeze' }
+  return { speed: '6–12 km/h', label: 'Light' }
+}
+
+function deriveHumidity(rain: Level, tempAvg: number): { range: string; label: string } {
+  if (rain >= 5) return { range: '84–94%', label: 'Very humid' }
+  if (rain >= 4) return { range: '80–90%', label: 'Humid' }
+  if (rain >= 3) return { range: '72–84%', label: 'Moderately humid' }
+  if (tempAvg <= 20) return { range: '58–70%', label: 'Comfortable' }
+  return { range: '65–76%', label: 'Moderate' }
+}
+
 function build(
   temp: [number, number],
   rain: Level,
@@ -38,11 +72,19 @@ function build(
     crowd <= 2 ? 'Lighter' : crowd === 3 ? 'Moderate' : crowd === 4 ? 'Busy' : 'Peak'
   const costLabel =
     cost <= 2 ? 'Good value' : cost === 3 ? '$$' : cost === 4 ? 'Higher' : 'Peak $$'
+  const averageTemperature = Math.round((temp[0] + temp[1]) / 2)
+  const wind = deriveWind(rain, averageTemperature)
+  const humidity = deriveHumidity(rain, averageTemperature)
   return {
     temperatureRange: `${temp[0]}–${temp[1]}°C`,
-    averageTemperature: Math.round((temp[0] + temp[1]) / 2),
+    averageTemperature,
     rainfallLevel: rain,
     rainfallLabel: rainLabel,
+    precipitationMm: derivePrecipitationMm(rain, averageTemperature),
+    windSpeed: wind.speed,
+    windLabel: wind.label,
+    humidityRange: humidity.range,
+    humidityLabel: humidity.label,
     climateLabel: climate,
     crowdLevel: crowd,
     crowdLabel,

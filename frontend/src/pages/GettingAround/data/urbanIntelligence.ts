@@ -32,7 +32,7 @@ export type UrbanSelection = {
   nearestAreaId: string | null
   nearPlace: { id: string; label: string; km: number } | null
   nearWater: { id: string; name: string; km: number } | null
-  kind: 'landmark' | 'freeform'
+  kind: 'landmark' | 'freeform' | 'bag'
 }
 
 export type UrbanTravellerContext = {
@@ -87,6 +87,16 @@ export type UrbanJourneyResult = {
   googleMapsUrl: string
   originZone?: UrbanZoneKind
   destinationZone?: UrbanZoneKind
+  /** True when road geometry was unavailable and ranking used straight-line distance. */
+  routeEstimated?: boolean
+}
+
+export type UrbanRouteMetrics = {
+  roadKm?: number
+  footKm?: number
+  footMinutes?: number
+  drivingMinutes?: number
+  estimated?: boolean
 }
 
 type DistanceThresholds = {
@@ -469,6 +479,7 @@ function estimateDurations(
   km: number,
   city: CityTransportProfile,
   tod: UrbanJourneyResult['timeOfDay'],
+  extras?: { walkKm?: number; footMinutes?: number },
 ): { mins: [number, number]; cost: [number, number] | null; trafficNote: string } {
   const rush =
     tod === 'evening' ||
@@ -485,7 +496,16 @@ function estimateDurations(
         : 'Usually light traffic'
 
   if (modeId === 'walking') {
-    const base = (km / 4.4) * 60
+    const foot = extras?.footMinutes
+    if (foot && foot > 0) {
+      return {
+        mins: [clamp(foot * 0.9, 4, 240), clamp(foot * 1.2, 6, 300)],
+        cost: [0, 0],
+        trafficNote: 'Traffic-independent',
+      }
+    }
+    const walkKm = extras?.walkKm ?? km
+    const base = (walkKm / 4.4) * 60
     return {
       mins: [clamp(base * 0.9, 4, 240), clamp(base * 1.25, 6, 300)],
       cost: [0, 0],
@@ -493,7 +513,8 @@ function estimateDurations(
     }
   }
   if (modeId === 'bicycle') {
-    const base = (km / 13) * 60
+    const walkKm = extras?.walkKm ?? km
+    const base = (walkKm / 13) * 60
     return {
       mins: [clamp(base * 0.9, 6, 140), clamp(base * 1.3, 8, 170)],
       cost: [0, 5],
@@ -543,6 +564,9 @@ function scoreMode(
   ctx: {
     km: number
     scale: UrbanRouteScale
+    walkKm: number
+    walkScale: UrbanRouteScale
+    footMinutes?: number
     city: CityTransportProfile
     tod: UrbanJourneyResult['timeOfDay']
     originZone: UrbanZoneKind
@@ -552,10 +576,15 @@ function scoreMode(
   },
 ): ScoredMode | null {
   const { km, scale, city, tod, originZone, destZone, traveller, cityLabel } = ctx
+  const walkKm = ctx.walkKm
+  const walkScale = ctx.walkScale
   const mode = getMode(modeId as never)
   if (!mode) return null
 
-  const { mins, cost, trafficNote } = estimateDurations(modeId, km, city, tod)
+  const { mins, cost, trafficNote } = estimateDurations(modeId, km, city, tod, {
+    walkKm,
+    footMinutes: ctx.footMinutes,
+  })
   const midMin = (mins[0] + mins[1]) / 2
   const midCost = cost ? (cost[0] + cost[1]) / 2 : 20
   const experiential = experienceTrip(originZone, destZone, traveller.intent)
@@ -580,16 +609,16 @@ function scoreMode(
     experienceValue = 0.85 * city.walkableCore
     complexity = 1
     score += city.walkBias * 18
-    score += (city.thresholds.veryShort - km) * 12
-    if (scale === 'very-short') {
+    score += (city.thresholds.veryShort - walkKm) * 12
+    if (walkScale === 'very-short') {
       score += 28 + city.experiencePriority * 20
       if (walkablePair) score += 16
       suitability = 'recommended'
       why = experiential
         ? `Short enough to walk, and the route lets you experience this part of ${cityLabel} rather than arranging another ride.`
-        : `Easy walking distance (~${km.toFixed(1)} km) with no traffic dependency.`
-    } else if (scale === 'short' && walkablePair && city.walkableCore > 0.75) {
-      if (km > 2.4 && city.walkableCore < 0.9) {
+        : `Easy walking distance (~${walkKm.toFixed(1)} km) with no traffic dependency.`
+    } else if (walkScale === 'short' && walkablePair && city.walkableCore > 0.75) {
+      if (walkKm > 2.4 && city.walkableCore < 0.9) {
         score += 4
         suitability = 'optional'
         why = 'Possible on foot along pleasant corridors, but most travellers prefer a vehicle at this distance.'
@@ -598,16 +627,16 @@ function scoreMode(
         suitability = experiential ? 'recommended' : 'practical'
         why = `Still walkable for many travellers in ${cityLabel}'s more compact areas.`
       }
-    } else if (scale === 'short') {
+    } else if (walkScale === 'short') {
       score += 2
       suitability = 'optional'
       why = 'Possible on foot, but most travellers prefer a vehicle for this distance.'
     } else {
-      practical = km < 5 && city.walkBias > 1.1
+      practical = walkKm < 5 && city.walkBias > 1.1
       score -= 25
       suitability = 'not-ideal'
       why = 'Not practical for most travellers at this distance.'
-      if (scale === 'long' || km > 6) practical = false
+      if (walkScale === 'long' || walkKm > 6) practical = false
     }
     if (heavyBag) {
       score -= 35
@@ -632,18 +661,18 @@ function scoreMode(
       score -= 15
       suitability = 'optional'
     }
-    if (scale === 'very-short' && walkablePair && city.walkableCore > 0.85) {
+    if (walkScale === 'very-short' && walkablePair && city.walkableCore > 0.85) {
       score -= 18
       suitability = 'optional'
       why = `Walking usually beats cycling for this very short ${cityLabel} hop.`
-    } else if ((scale === 'short' || scale === 'medium') && km >= 1.5 && km <= 8) {
+    } else if ((walkScale === 'short' || walkScale === 'medium') && walkKm >= 1.5 && walkKm <= 8) {
       score += 18
       suitability = city.bicycleCulture > 0.75 ? 'recommended' : 'practical'
       why =
         city.cityId === 'hoi-an'
           ? 'Enjoyable distance for a slower ride between town and nearby areas.'
           : `Pleasant paced option for this distance in ${cityLabel}.`
-    } else if (scale === 'long' || km > 10) {
+    } else if (walkScale === 'long' || walkKm > 10) {
       practical = false
       score -= 30
       suitability = 'not-ideal'
@@ -1106,11 +1135,15 @@ export function resolveUrbanJourney(
   destination: UrbanSelection,
   availableModeIds: UrbanModeId[],
   traveller: UrbanTravellerContext = DEFAULT_TRAVELLER,
+  route?: UrbanRouteMetrics,
 ): UrbanJourneyResult {
   const city = getCityProfile(origin.cityId)
   const cityLabel = getPlace(origin.cityId)?.label ?? origin.area
-  const distanceKm = haversineKm(origin, destination)
+  const haversine = haversineKm(origin, destination)
+  const distanceKm = route?.roadKm ?? route?.footKm ?? haversine
+  const walkKm = route?.footKm ?? distanceKm
   const scale = classifyScale(distanceKm, city.thresholds)
+  const walkScale = classifyScale(walkKm, city.thresholds)
   const tod = timeOfDayBucket()
   const originZone = inferZone(origin)
   const destZone = inferZone(destination)
@@ -1121,6 +1154,9 @@ export function resolveUrbanJourney(
       scoreMode(id, {
         km: distanceKm,
         scale,
+        walkKm,
+        walkScale,
+        footMinutes: route?.footMinutes,
         city,
         tod,
         originZone,
@@ -1154,7 +1190,7 @@ export function resolveUrbanJourney(
   const ordered = [...standard, ...locals, ...walkNote]
   const recommendations = buildRecommendations(
     ordered,
-    scale,
+    walkScale === 'very-short' ? walkScale : scale,
     city,
     experiential,
     traveller,
@@ -1179,6 +1215,7 @@ export function resolveUrbanJourney(
     googleMapsUrl,
     originZone,
     destinationZone: destZone,
+    routeEstimated: route?.estimated ?? !route?.roadKm,
   }
 }
 
@@ -1271,5 +1308,49 @@ export function selectionFromLandmark(point: UrbanPoint): UrbanSelection {
     nearPlace: null,
     nearWater: null,
     kind: 'landmark',
+  }
+}
+
+export function selectionFromBagPin(
+  pin: { id: string; label: string; lat: number; lng: number },
+  cityId: PlaceId,
+  cityLabel: string,
+): UrbanSelection {
+  return {
+    id: pin.id,
+    lat: pin.lat,
+    lng: pin.lng,
+    cityId,
+    label: pin.label,
+    area: cityLabel,
+    districtId: null,
+    districtName: null,
+    nearestAreaId: null,
+    nearPlace: null,
+    nearWater: null,
+    kind: 'bag',
+  }
+}
+
+export function selectionFromTypedPlace(
+  label: string,
+  lat: number,
+  lng: number,
+  cityId: PlaceId,
+  cityLabel: string,
+): UrbanSelection {
+  return {
+    id: `typed-${lat.toFixed(5)}-${lng.toFixed(5)}`,
+    lat,
+    lng,
+    cityId,
+    label,
+    area: cityLabel,
+    districtId: null,
+    districtName: null,
+    nearestAreaId: null,
+    nearPlace: null,
+    nearWater: null,
+    kind: 'freeform',
   }
 }

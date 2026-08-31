@@ -87,6 +87,56 @@ export const CITY_IMAGES: Record<string, string[]> = {
     w('Phú_Quốc_Island.jpg'),
     w('Long_Beach_Phu_Quoc.jpg'),
   ],
+  'con-dao': [
+    w('Côn_Đảo.jpg'),
+    w('Con_Dao_Island.jpg'),
+    w('Phu_Quoc.jpg'),
+  ],
+  'cat-tien': [
+    w('Cat Tien Park, Vietnam, tropical forest.jpg'),
+    w('Cat Tien National Park, Vietnam.jpg'),
+    w('Cat Tien Park, Vietnam, forest.jpg'),
+  ],
+  'nha-trang': [
+    w('Nha_Trang_Beach.jpg'),
+    w('Nha_Trang.jpg'),
+    w('Po_Nagar.jpg'),
+    w('Nha_Trang_Bay.jpg'),
+  ],
+  dalat: [
+    w('Da_Lat.jpg'),
+    w('Xuan_Huong_Lake.jpg'),
+    w('Crazy_House_Da_Lat.jpg'),
+    w('Dalat.jpg'),
+  ],
+  'da-lat': [
+    w('Da_Lat.jpg'),
+    w('Xuan_Huong_Lake.jpg'),
+    w('Crazy_House_Da_Lat.jpg'),
+    w('Dalat.jpg'),
+  ],
+  'vinh-hy': [
+    w('Nui Chua National Park.jpg'),
+    w('Turtle Nesting Beach, Nui Chua National Park.jpg'),
+    w('Nha_Trang_Bay.jpg'),
+  ],
+  'quy-nhon': [
+    w('Quy Nhon.jpg'),
+    w('Quy_Nhon.jpg'),
+    w('Nha_Trang_Beach.jpg'),
+  ],
+  'yen-tu': [
+    w('Yên_Tử.jpg'),
+    w('Ha_Long_Bay.jpg'),
+    w('Lan_Ha_Bay.jpg'),
+    w('Hang_Mua.jpg'),
+  ],
+  'cao-bang': [
+    w('Ban Gioc waterfall.jpg'),
+    w('Ma_Pi_Leng_Pass.jpg'),
+    w('Ha_Giang_mountains.jpg'),
+    w('Ha_Giang.jpg'),
+  ],
 }
 
 export function cityImages(cityId: string): string[] {

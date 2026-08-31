@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState, type MouseEvent } from 'react'
+import { useMemo, useState, type MouseEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Nav } from '../../../components/landing/Nav'
+import { BuilderProgressChrome } from '../components/BuilderProgressChrome'
 import { useTripStore } from '../../../store/tripStore'
 import {
   CITY_ACTIVITIES,
@@ -10,8 +10,15 @@ import {
   type CityActivity,
 } from '../data/activities'
 import { flyToTripBag } from '../lib/flyToTripBag'
-
-const PREVIEW_WORDS = 100
+import {
+  getActivityDetailBlurb,
+  getActivityGuideSections,
+} from '../lib/activityDetailCopy'
+import {
+  getActivityProviders,
+  isBookableActivity,
+  type ActivityProvider,
+} from '../data/activityProviders'
 
 export function BuilderActivityDetailPage() {
   const { id = '' } = useParams()
@@ -23,7 +30,6 @@ export function BuilderActivityDetailPage() {
   const selected = selectedIds.includes(id)
 
   const [askConfirm, setAskConfirm] = useState(false)
-  const [storyOpen, setStoryOpen] = useState(false)
   const [justAdded, setJustAdded] = useState(false)
 
   const related = useMemo(() => {
@@ -32,6 +38,16 @@ export function BuilderActivityDetailPage() {
       (a) => a.cityId === activity.cityId && a.id !== activity.id,
     ).slice(0, 4)
   }, [activity])
+
+  const blurb = activity ? getActivityDetailBlurb(activity) : ''
+  const aboutParagraphs = activity
+    ? activity.about
+        .split(/\n\n+/)
+        .map((p) => p.trim())
+        .filter(Boolean)
+        .slice(0, 3)
+    : []
+  const guide = activity ? getActivityGuideSections(activity) : []
 
   function goBackToCatalog() {
     if (window.opener && !window.opener.closed) {
@@ -48,47 +64,49 @@ export function BuilderActivityDetailPage() {
 
   if (!activity) {
     return (
-      <>
-        <Nav mode="builder" />
+      <BuilderProgressChrome current="activities" withNav>
         <main className="mx-auto max-w-content px-6 py-20 text-center">
           <h1 className="font-serif text-3xl font-semibold text-ink">Activity not found</h1>
           <button type="button" onClick={goBackToCatalog} className="btn-solid mt-6">
             Back to activities
           </button>
         </main>
-      </>
+      </BuilderProgressChrome>
     )
   }
 
   const images = getActivityImages(activity)
   const isFree = activity.priceFromUsd === 0
-  const words = activity.about.trim().split(/\s+/)
-  const preview = words.slice(0, PREVIEW_WORDS).join(' ')
-  const hasMore = words.length > PREVIEW_WORDS
-  const visibleStory = storyOpen || !hasMore ? activity.about : `${preview}…`
+  const providers = getActivityProviders(activity)
+  const bookable = isBookableActivity(activity) && providers.length >= 2
 
   function handleAdd(e: MouseEvent<HTMLButtonElement>) {
     if (selected) {
-      removeActivity(activity!.id)
+      removeActivity(id)
       setAskConfirm(false)
       setJustAdded(false)
       return
     }
     flyToTripBag(e.currentTarget.getBoundingClientRect(), images[0])
-    addActivity(activity!.id)
+    addActivity(id)
     setJustAdded(true)
     setAskConfirm(true)
     window.setTimeout(() => setJustAdded(false), 2000)
   }
 
-  return (
-    <>
-      <Nav mode="builder" />
-      <main className="mx-auto max-w-[1280px] px-[clamp(1.1rem,4vw,2rem)] pb-20 pt-5">
-        <section className="grid gap-6 lg:grid-cols-[1.15fr_0.95fr] lg:items-stretch lg:gap-8">
-          <ActivityHero activity={activity} images={images} />
+  function scrollToGuide() {
+    document.getElementById('activity-guide')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
-          <div className="flex h-full flex-col">
+  return (
+    <BuilderProgressChrome current="activities" withNav>
+      <main className="mx-auto max-w-[1280px] px-[clamp(1.1rem,4vw,2rem)] pb-20 pt-5">
+        <section className="grid gap-6 lg:grid-cols-2 lg:items-start lg:gap-7">
+          <div className="h-full min-h-[min(46vw,360px)]">
+            <ActivityHero activity={activity} images={images} fill />
+          </div>
+
+          <div className="flex h-full flex-col rounded-[22px] border border-ink/[0.07] bg-paper p-5 shadow-soft sm:p-6">
             <button
               type="button"
               onClick={goBackToCatalog}
@@ -98,70 +116,81 @@ export function BuilderActivityDetailPage() {
             </button>
 
             <p className="text-[0.78rem] font-bold tracking-wide text-terracotta">
-              {activity.signalEmoji} {activity.signalLabel}
+              {activity.kindLabel}
             </p>
             <h1 className="mt-1 font-serif text-[clamp(1.75rem,3.2vw,2.45rem)] font-semibold leading-[1.1] text-ink">
               {activity.name}
             </h1>
             <p className="mt-1 text-[0.88rem] font-bold uppercase tracking-wide text-muted">
-              📍 {activity.cityName}
+              {activity.cityName}
             </p>
 
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              <span className="rounded-full bg-terracotta/95 px-2.5 py-1 text-[0.68rem] font-bold text-paper">
+            <div className="mt-3">
+              <span className="inline-flex rounded-full bg-terracotta/95 px-2.5 py-1 text-[0.68rem] font-bold text-paper">
                 {activity.popularityTag}
               </span>
-              {activity.tags.slice(0, 4).map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-ink/8 bg-cream px-2.5 py-1 text-[0.68rem] font-bold text-ink"
-                >
-                  {tag}
-                </span>
-              ))}
             </div>
 
-            <div className="mt-4 grid grid-cols-2 gap-2">
+            <div className="mt-4 grid grid-cols-3 gap-2">
               <Fact label="Rating" value={`⭐ ${activity.rating}`} />
               <Fact label="Duration" value={`⏱ ${activity.durationLabel}`} />
               <Fact
                 label={isFree ? 'Cost' : 'From'}
-                value={isFree ? `🌿 ${activity.priceLabel}` : `💰 ${activity.priceLabel}`}
+                value={isFree ? activity.priceLabel : `💰 ${activity.priceLabel}`}
               />
-              <Fact label="Best time" value={`🌅 ${activity.bestTime}`} />
             </div>
 
-            <div className="mt-4 rounded-2xl border border-ink/8 bg-cream/80 px-3.5 py-3">
-              <p className="text-[0.72rem] font-bold uppercase tracking-wide text-sage">The vibe</p>
-              <p className="mt-1 font-serif text-[1.15rem] font-semibold text-ink">{activity.vibe}</p>
-              <p className="mt-1.5 text-[0.92rem] leading-relaxed text-muted">{activity.hook}</p>
-            </div>
-
-            <div className="mt-4 rounded-2xl border border-ink/8 bg-paper px-3.5 py-3 shadow-soft">
-              <p className="text-[0.72rem] font-bold uppercase tracking-wide text-muted">Hours</p>
-              <p className="mt-0.5 text-[0.9rem] font-semibold text-ink">{activity.hours}</p>
-              <p className="mt-2 text-[0.82rem] text-muted">
-                Best for {activity.bestFor.join(' · ')}
+            <div className="mt-4 space-y-3 text-[1.05rem] leading-[1.8] text-ink">
+              <p>{blurb}</p>
+              {aboutParagraphs.slice(1).map((paragraph) => (
+                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+              ))}
+              <p>
+                <button
+                  type="button"
+                  onClick={scrollToGuide}
+                  className="inline p-0 text-[0.95rem] font-bold text-terracotta underline decoration-terracotta/40 underline-offset-2 transition hover:text-terracotta-deep hover:decoration-terracotta"
+                >
+                  Learn More
+                </button>
               </p>
             </div>
 
-            <div className="mt-5 flex flex-wrap gap-3">
-              <button
-                type="button"
-                onClick={handleAdd}
-                className={`rounded-full px-6 py-3 text-[0.92rem] font-bold transition-transform hover:scale-[1.02] ${
-                  selected
-                    ? 'bg-sage text-paper'
-                    : 'bg-gradient-to-br from-terracotta to-terracotta-deep text-paper shadow-[0_10px_24px_rgba(196,92,58,0.28)]'
-                }`}
-              >
-                {justAdded
-                  ? 'Added to your trip ✓'
-                  : selected
-                    ? '✓ Added to Your Trip'
-                    : '+ Add to Trip'}
-              </button>
-            </div>
+            {bookable ? (
+              <div className="mt-4 flex min-h-0 flex-1 flex-col gap-2.5">
+                <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
+                  View Providers
+                </p>
+                {providers.map((provider, i) => (
+                  <ProviderCard
+                    key={provider.id}
+                    provider={provider}
+                    image={images[i] ?? images[0]}
+                    selected={selected}
+                    justAdded={justAdded}
+                    onAdd={handleAdd}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="mt-5 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={handleAdd}
+                  className={`rounded-full px-6 py-3 text-[0.92rem] font-bold transition-transform hover:scale-[1.02] ${
+                    selected
+                      ? 'bg-sage text-paper'
+                      : 'bg-gradient-to-br from-terracotta to-terracotta-deep text-paper shadow-[0_10px_24px_rgba(196,92,58,0.28)]'
+                  }`}
+                >
+                  {justAdded
+                    ? 'Added to your trip ✓'
+                    : selected
+                      ? '✓ Added to Your Trip'
+                      : '+ Add to Trip'}
+                </button>
+              </div>
+            )}
 
             <AnimatePresence>
               {askConfirm && selected && (
@@ -188,38 +217,50 @@ export function BuilderActivityDetailPage() {
           </div>
         </section>
 
-        <section className="mt-12 max-w-[720px]">
-          <h2 className="font-serif text-[1.45rem] font-semibold text-ink">Why people go</h2>
-          <p className="mt-2 text-[1.05rem] font-medium leading-snug text-ink">{activity.whyGo}</p>
-          <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{activity.cardSummary}</p>
-        </section>
+        <section id="activity-guide" className="mt-12 scroll-mt-24">
+          <div className="relative overflow-hidden rounded-[28px] border border-ink/[0.06] bg-gradient-to-br from-paper via-cream to-cream-deep/80 px-5 py-7 shadow-soft sm:px-8 sm:py-8">
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -right-6 -top-8 select-none text-[7rem] leading-none text-terracotta/10"
+            >
+              ✦
+            </span>
+            <h2 className="font-serif text-[clamp(1.55rem,3.2vw,2.15rem)] font-semibold italic leading-[1.15] text-ink">
+              Keep in mind, o&apos; traveller
+            </h2>
+            <p className="mt-2 max-w-[58ch] text-[0.95rem] leading-relaxed text-muted">
+              Where to go, what this is, what to expect, what to bring, and what is good to know
+              — written for this activity, not a generic packing list.
+            </p>
 
-        <section className="mt-12 max-w-[720px]">
-          <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-terracotta">
-            Activity story
-          </p>
-          <h2 className="mt-1 font-serif text-[1.45rem] font-semibold text-ink">About</h2>
-          <p className="mt-1 text-[0.82rem] text-muted">
-            A short guide to {activity.name}
-          </p>
-
-          <div className="mt-4 rounded-[22px] border border-ink/8 bg-cream/60 px-5 py-5 sm:px-6 sm:py-6">
-            <div className="space-y-4 text-[1.02rem] leading-[1.75] text-ink">
-              {visibleStory.split(/\n\n+/).map((para, i) => (
-                <p key={i} className="text-pretty">
-                  {para.trim()}
-                </p>
-              ))}
+            <div className="mt-6 grid gap-3.5 sm:grid-cols-2">
+              {guide.map((section) => {
+                const mark = guideMark(section.title)
+                return (
+                  <article
+                    key={section.title}
+                    className={`rounded-[20px] border border-ink/[0.06] bg-paper/90 p-4 shadow-soft sm:p-5 ${
+                      section.wide ? 'sm:col-span-2' : ''
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span
+                        aria-hidden
+                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-[1.35rem] ${mark.wash}`}
+                      >
+                        {mark.emoji}
+                      </span>
+                      <h3 className="font-serif text-[1.12rem] font-semibold leading-snug text-ink">
+                        {section.title}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-[1.02rem] leading-[1.75] text-ink/90 text-pretty">
+                      {section.body}
+                    </p>
+                  </article>
+                )
+              })}
             </div>
-            {hasMore ? (
-              <button
-                type="button"
-                onClick={() => setStoryOpen((v) => !v)}
-                className="mt-5 rounded-full bg-ink px-4 py-2 text-[0.82rem] font-bold text-paper hover:bg-ink/90"
-              >
-                {storyOpen ? 'Show less' : 'Read more'}
-              </button>
-            ) : null}
           </div>
         </section>
 
@@ -242,9 +283,7 @@ export function BuilderActivityDetailPage() {
                     className="aspect-[4/3] w-full object-cover"
                   />
                   <div className="p-3">
-                    <p className="text-[0.68rem] font-bold text-terracotta">
-                      {item.signalEmoji} {item.signalLabel}
-                    </p>
+                    <p className="text-[0.68rem] font-bold text-terracotta">{item.kindLabel}</p>
                     <p className="font-serif text-[1.05rem] font-semibold text-ink">{item.name}</p>
                     <p className="text-[0.78rem] text-muted">
                       {item.popularityTag} · {item.priceLabel}
@@ -256,71 +295,220 @@ export function BuilderActivityDetailPage() {
           </section>
         )}
       </main>
-    </>
+    </BuilderProgressChrome>
   )
 }
 
-function ActivityHero({ activity, images }: { activity: CityActivity; images: string[] }) {
-  const [slide, setSlide] = useState(0)
+function guideMark(title: string) {
+  switch (title) {
+    case 'Where to do this':
+      return { emoji: '📍', wash: 'bg-sage/15' }
+    case 'What this is':
+      return { emoji: '✨', wash: 'bg-terracotta/12' }
+    case 'What to expect':
+      return { emoji: '⏳', wash: 'bg-cream-deep' }
+    case 'What to bring':
+      return { emoji: '🎒', wash: 'bg-terracotta/10' }
+    case 'Good to know':
+      return { emoji: '💡', wash: 'bg-sage/15' }
+    default:
+      return { emoji: '✦', wash: 'bg-cream-deep' }
+  }
+}
 
-  useEffect(() => {
-    if (images.length <= 1) return
-    const id = window.setInterval(() => setSlide((s) => (s + 1) % images.length), 4200)
-    return () => window.clearInterval(id)
-  }, [images.length])
-
+function ProviderCard({
+  provider,
+  image,
+  selected,
+  justAdded,
+  onAdd,
+}: {
+  provider: ActivityProvider
+  image?: string
+  selected: boolean
+  justAdded: boolean
+  onAdd: (e: MouseEvent<HTMLButtonElement>) => void
+}) {
+  const reviews = provider.reviewCount.toLocaleString()
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-cream shadow-hero lg:aspect-auto lg:h-full lg:min-h-[560px]">
-      {images.map((src, i) => (
+    <article className="flex gap-3 rounded-[16px] bg-cream/90 p-2.5 ring-1 ring-ink/[0.06] sm:p-3">
+      {image ? (
         <img
-          key={src}
-          src={src}
-          alt={`${activity.name} ${i + 1}`}
-          className="absolute inset-0 h-full w-full object-cover transition-all duration-700"
-          style={{
-            opacity: i === slide ? 1 : 0,
-            transform: i === slide ? 'scale(1.02)' : 'scale(1)',
-          }}
+          src={image}
+          alt={provider.name}
+          className="h-[5.6rem] w-[5.6rem] shrink-0 rounded-[12px] object-cover sm:h-[6.2rem] sm:w-[6.2rem]"
         />
-      ))}
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink/35 to-transparent" />
-      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-        <div className="flex gap-1.5">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              aria-label={`Image ${i + 1}`}
-              onClick={() => setSlide(i)}
-              className={`h-1.5 rounded-full transition-all ${
-                i === slide ? 'w-5 bg-paper' : 'w-1.5 bg-paper/50'
-              }`}
-            />
-          ))}
+      ) : null}
+      <div className="min-w-0 flex-1">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <h3 className="font-serif text-[1.02rem] font-semibold leading-tight text-ink">
+              {provider.name}
+            </h3>
+            <p className="mt-0.5 text-[0.78rem] leading-snug text-muted">{provider.description}</p>
+          </div>
+          <p className="shrink-0 text-[0.78rem] font-bold tabular-nums text-ink">
+            ⭐ {provider.rating.toFixed(1)} ({reviews})
+          </p>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="rounded-full bg-ink/45 px-2.5 py-1 text-[0.72rem] font-bold text-paper backdrop-blur-sm">
-            {slide + 1}/{images.length}
-          </span>
+        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-0.5 text-[0.75rem] font-semibold text-ink">
+          <span>{provider.priceLabel}</span>
+          <span className="text-muted">{provider.durationLabel}</span>
+        </div>
+        <div className="mt-2.5 flex gap-2">
           <button
             type="button"
-            aria-label="Previous"
-            onClick={() => setSlide((s) => (s - 1 + images.length) % images.length)}
-            className="grid h-8 w-8 place-items-center rounded-full bg-ink/40 text-paper backdrop-blur-sm"
+            onClick={onAdd}
+            className={`rounded-full px-3.5 py-1.5 text-[0.75rem] font-bold transition-transform hover:scale-[1.02] ${
+              selected ? 'bg-sage text-paper' : 'bg-terracotta text-paper'
+            }`}
           >
-            ‹
+            {justAdded ? 'Added ✓' : selected ? '✓ In your trip' : '+ Add to trip'}
           </button>
-          <button
-            type="button"
-            aria-label="Next"
-            onClick={() => setSlide((s) => (s + 1) % images.length)}
-            className="grid h-8 w-8 place-items-center rounded-full bg-ink/40 text-paper backdrop-blur-sm"
+          <a
+            href={provider.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-ink/12 bg-paper px-3.5 py-1.5 text-[0.75rem] font-bold text-ink hover:border-terracotta/40"
           >
-            ›
-          </button>
+            Check availability
+          </a>
         </div>
       </div>
-    </div>
+    </article>
+  )
+}
+
+function ActivityHero({
+  activity,
+  images,
+  fill = false,
+}: {
+  activity: CityActivity
+  images: string[]
+  fill?: boolean
+}) {
+  const [photo, setPhoto] = useState(0)
+  const [lightbox, setLightbox] = useState<number | null>(null)
+  const [broken, setBroken] = useState<Record<string, boolean>>({})
+  const visible = images.filter((src) => !broken[src])
+  const index = Math.min(photo, Math.max(visible.length - 1, 0))
+  const current = visible[index]
+  const frame = fill
+    ? 'h-full min-h-[min(46vw,360px)]'
+    : 'h-[min(52vw,420px)]'
+
+  if (!current) {
+    return (
+      <div className={`overflow-hidden rounded-[22px] bg-gradient-to-br from-cream via-terracotta/15 to-sage/25 shadow-hero ${frame}`} />
+    )
+  }
+
+  function shift(delta: number) {
+    if (visible.length < 2) return
+    setPhoto((i) => (i + delta + visible.length) % visible.length)
+  }
+
+  return (
+    <>
+      <div className={`group relative overflow-hidden rounded-[22px] bg-cream shadow-hero ${frame}`}>
+        <button
+          type="button"
+          onClick={() => setLightbox(index)}
+          className="absolute inset-0"
+        >
+          <img
+            src={current}
+            alt={activity.name}
+            className="absolute inset-0 h-full w-full object-cover"
+            onError={() => setBroken((prev) => ({ ...prev, [current]: true }))}
+          />
+        </button>
+        {visible.length > 1 ? (
+          <>
+            <button
+              type="button"
+              aria-label="Previous photo"
+              onClick={() => shift(-1)}
+              className="absolute left-3 top-1/2 z-[1] grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-ink/45 text-lg text-paper backdrop-blur-sm hover:bg-ink/60"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              aria-label="Next photo"
+              onClick={() => shift(1)}
+              className="absolute right-3 top-1/2 z-[1] grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-ink/45 text-lg text-paper backdrop-blur-sm hover:bg-ink/60"
+            >
+              ›
+            </button>
+            <div className="pointer-events-none absolute inset-x-0 bottom-3 z-[1] flex justify-center gap-1.5">
+              {visible.map((src, i) => (
+                <span
+                  key={src}
+                  className={`h-1.5 rounded-full ${
+                    i === index ? 'w-4 bg-paper' : 'w-1.5 bg-paper/55'
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        ) : null}
+      </div>
+
+      <AnimatePresence>
+        {lightbox != null && visible[lightbox] && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/80 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+          >
+            <button
+              type="button"
+              aria-label="Close"
+              onClick={() => setLightbox(null)}
+              className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-paper/15 text-xl text-paper backdrop-blur-sm"
+            >
+              ×
+            </button>
+            {visible.length > 1 ? (
+              <button
+                type="button"
+                aria-label="Previous photo"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setLightbox((lightbox - 1 + visible.length) % visible.length)
+                }}
+                className="absolute left-4 grid h-10 w-10 place-items-center rounded-full bg-paper/15 text-paper backdrop-blur-sm"
+              >
+                ‹
+              </button>
+            ) : null}
+            <img
+              src={visible[lightbox]}
+              alt=""
+              className="max-h-[86vh] max-w-[min(1100px,92vw)] rounded-[18px] object-contain shadow-hero"
+              onClick={(e) => e.stopPropagation()}
+            />
+            {visible.length > 1 ? (
+              <button
+                type="button"
+                aria-label="Next photo"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setLightbox((lightbox + 1) % visible.length)
+                }}
+                className="absolute right-16 grid h-10 w-10 place-items-center rounded-full bg-paper/15 text-paper backdrop-blur-sm"
+              >
+                ›
+              </button>
+            ) : null}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 
@@ -328,7 +516,7 @@ function Fact({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl bg-cream px-3 py-2.5">
       <p className="text-[0.62rem] font-bold uppercase tracking-wide text-muted">{label}</p>
-      <p className="mt-0.5 text-[0.88rem] font-semibold text-ink">{value}</p>
+      <p className="mt-0.5 text-[0.82rem] font-semibold leading-snug text-ink">{value}</p>
     </div>
   )
 }

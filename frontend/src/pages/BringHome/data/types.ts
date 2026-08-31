@@ -24,11 +24,17 @@ export type RegionNote = {
   note: string
 }
 
+export type ItemStoryParagraph = {
+  title: string
+  body: string
+}
+
 export type ShoppingItem = {
   id: string
   name: string
   images: string[]
   description: string
+  storyParagraphs: ItemStoryParagraph[]
   tags: ItemSignal[]
   specialityReason: string
   regions: string[]
@@ -61,9 +67,12 @@ export type ShopCity =
   | 'Da Nang'
   | 'Hoi An'
   | 'Ho Chi Minh City'
+  | 'Nha Trang'
+  | 'Da Lat'
 
 export type DestinationType =
   | 'Market'
+  | 'Historic Street'
   | 'Shop'
   | 'Craft District'
   | 'Mall'
@@ -116,4 +125,6 @@ export type ShoppingDestination = {
   whyRecommended: string
   mapUrl: string
   featured: boolean
+  /** Famous-marketplace id used by the trip bag / itinerary, when this listing is that market. */
+  itineraryId?: string
 }

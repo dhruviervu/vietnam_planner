@@ -698,3 +698,7 @@ export function getClustersForCity(cityId: StayCityId) {
     ),
   )
 }
+
+export function getClusterById(clusterId: string) {
+  return STAY_CLUSTER_BY_ID[clusterId] ?? null
+}

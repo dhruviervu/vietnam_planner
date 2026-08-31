@@ -17,6 +17,14 @@ export function Nav({ mode = 'default' }: Props) {
   const location = useLocation()
   const enterItineraryPipeline = useTripStore((s) => s.enterItineraryPipeline)
   const exitItineraryPipeline = useTripStore((s) => s.exitItineraryPipeline)
+  const tripCount = useTripStore(
+    (s) =>
+      s.selectedExperienceIds.length +
+      s.selectedActivityIds.length +
+      s.itineraryStayPropertyIds.length +
+      s.selectedRestaurantIds.length +
+      s.selectedShoppingIds.length,
+  )
   const inBuilder =
     mode === 'builder' || location.pathname.startsWith('/plan/builder')
 
@@ -62,9 +70,15 @@ export function Nav({ mode = 'default' }: Props) {
           </Link>
           <Link
             to="/plan/builder/itinerary"
-            className="rounded-full bg-ink px-3.5 py-2 text-[0.78rem] font-bold text-paper"
+            className="relative rounded-full bg-ink px-3.5 py-2 pr-4 text-[0.78rem] font-bold text-paper"
           >
-            Your Vietnam
+            Your trip
+            <span
+              className="absolute -bottom-1 -right-1 grid h-[1.15rem] min-w-[1.15rem] place-items-center rounded-full bg-terracotta px-1 text-[0.62rem] font-bold leading-none text-paper shadow-[0_2px_6px_rgba(196,92,58,0.45)]"
+              aria-label={`${tripCount} item${tripCount === 1 ? '' : 's'} in your trip`}
+            >
+              {tripCount > 99 ? '99+' : tripCount}
+            </span>
           </Link>
         </div>
       ) : (

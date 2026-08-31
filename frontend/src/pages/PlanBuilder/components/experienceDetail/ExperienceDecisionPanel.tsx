@@ -1,23 +1,12 @@
 import { useState, type MouseEvent } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import type { Experience, TimeOfDay } from '../../types'
-import type { ExperienceLiveSignals } from '../../services/experienceLiveService'
+import type { Experience } from '../../types'
 import { formatFromPrice } from '../../lib/pricing'
 import { flyToTripBag } from '../../lib/flyToTripBag'
 import { getExperienceImages } from '../../lib/pricing'
-import { ExperienceTimeSelector } from './ExperienceTimeSelector'
-import { LiveSnapshot } from './LiveSnapshot'
-import { SeasonalSnapshot } from './SeasonalSnapshot'
-import { AccessibilitySnapshot } from './AccessibilitySnapshot'
+import { getExperienceDetailBlurb } from '../../lib/experienceDetailBlurb'
 
 type Props = {
   experience: Experience
-  live: ExperienceLiveSignals
-  time: TimeOfDay
-  onTimeChange: (t: TimeOfDay) => void
-  fitScore: number
-  fitReasons: string[]
-  activeMonth: number | null
   selected: boolean
   onAdd: () => void
   onRemove: () => void
@@ -26,20 +15,14 @@ type Props = {
 
 export function ExperienceDecisionPanel({
   experience,
-  live,
-  time,
-  onTimeChange,
-  fitScore,
-  fitReasons,
-  activeMonth,
   selected,
   onAdd,
   onRemove,
   onBack,
 }: Props) {
-  const [showWhy, setShowWhy] = useState(false)
   const [justAdded, setJustAdded] = useState(false)
   const fromPrice = formatFromPrice(experience.price, experience.priceType)
+  const blurb = getExperienceDetailBlurb(experience)
 
   function handlePrimary(e: MouseEvent<HTMLButtonElement>) {
     if (selected) {
@@ -52,6 +35,10 @@ export function ExperienceDecisionPanel({
     onAdd()
     setJustAdded(true)
     window.setTimeout(() => setJustAdded(false), 2000)
+  }
+
+  function scrollToVisitorGuide() {
+    document.getElementById('visitor-guide')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
@@ -75,7 +62,7 @@ export function ExperienceDecisionPanel({
         {experience.city !== experience.region ? ` · ${experience.region}` : ''}
       </p>
 
-      <div className="mt-4 grid grid-cols-2 gap-2">
+      <div className="mt-4 grid grid-cols-3 gap-2">
         <Fact
           label="Rating"
           value={`⭐ ${experience.rating}`}
@@ -83,51 +70,18 @@ export function ExperienceDecisionPanel({
         />
         <Fact label="Duration" value={`⏱ ${experience.durationLabel}`} />
         <Fact label="From" value={`💰 ${fromPrice}`} />
-        <Fact label="Accessibility" value={`♿ ${experience.accessibilityDetail.wheelchair}`} />
       </div>
 
-      <div className="mt-4">
-        <ExperienceTimeSelector value={time} onChange={onTimeChange} />
-      </div>
-
-      <div className="mt-4">
-        <LiveSnapshot live={live} />
-      </div>
-
-      <div className="mt-4">
-        <SeasonalSnapshot experience={experience} activeMonth={activeMonth} />
-      </div>
-
-      <div className="mt-4">
-        <AccessibilitySnapshot detail={experience.accessibilityDetail} />
-      </div>
-
-      <div className="mt-4 rounded-2xl border border-ink/8 bg-cream/80 px-3.5 py-3">
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-[0.95rem] font-bold text-ink">{fitScore}% fit for your trip</p>
-          <button
-            type="button"
-            onClick={() => setShowWhy((v) => !v)}
-            className="text-[0.72rem] font-bold text-terracotta hover:underline"
-          >
-            Why?
-          </button>
-        </div>
-        <AnimatePresence>
-          {showWhy && (
-            <motion.ul
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="mt-2 space-y-1 overflow-hidden text-[0.8rem] text-muted"
-            >
-              {fitReasons.map((r) => (
-                <li key={r}>✓ {r}</li>
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
-      </div>
+      <p className="mt-5 text-[0.94rem] leading-[1.65] text-ink/90">
+        {blurb.replace(/[.…]+$/, '').trim()}{' '}
+        <button
+          type="button"
+          onClick={scrollToVisitorGuide}
+          className="inline p-0 text-[0.82rem] font-bold text-terracotta underline decoration-terracotta/40 underline-offset-2 transition hover:text-terracotta-deep hover:decoration-terracotta"
+        >
+          Learn More
+        </button>
+      </p>
 
       <div className="mt-5 flex flex-wrap gap-3">
         <button

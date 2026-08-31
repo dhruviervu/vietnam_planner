@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Nav } from '../../../components/landing/Nav'
-import { VerticalTripProgress } from '../components/VerticalTripProgress'
+import { BuilderProgressChrome } from '../components/BuilderProgressChrome'
 import { useTripStore } from '../../../store/tripStore'
 import { HOTELS, getHotelById, hotelImages } from '../data/hotels'
 import {
@@ -133,44 +132,32 @@ export function StayComparePage() {
 
   if (hotels.length < 2) {
     return (
-      <>
-        <Nav mode="builder" />
-        <div className="mx-auto flex min-h-[calc(100vh-72px)] max-w-[1440px]">
-          <div className="sticky top-[72px] hidden h-[calc(100vh-72px)] w-[240px] shrink-0 overflow-y-auto border-r border-ink/8 bg-paper/60 px-4 py-6 lg:block xl:w-[260px]">
-            <VerticalTripProgress current="stay" />
-          </div>
-          <main className="flex-1 px-6 py-16 text-center">
-            <h1 className="font-serif text-3xl font-semibold text-ink">Compare Your Stays</h1>
-            <p className="mt-2 text-muted">Add at least 2 stays to comparison to see tradeoffs.</p>
-            <button type="button" onClick={compareMore} className="btn-solid mt-6">
-              Compare more
+      <BuilderProgressChrome current="stay" withNav>
+        <main className="mx-auto max-w-[720px] px-6 py-16 text-center">
+          <h1 className="font-serif text-3xl font-semibold text-ink">Compare Your Stays</h1>
+          <p className="mt-2 text-muted">Add at least 2 stays to comparison to see tradeoffs.</p>
+          <button type="button" onClick={compareMore} className="btn-solid mt-6">
+            Compare more
+          </button>
+          {comparisonStayIds.length > 0 && (
+            <button
+              type="button"
+              onClick={() => clearComparison()}
+              className="mt-4 block w-full text-[0.85rem] font-bold text-terracotta"
+            >
+              Clear selection
             </button>
-            {comparisonStayIds.length > 0 && (
-              <button
-                type="button"
-                onClick={() => clearComparison()}
-                className="mt-4 block w-full text-[0.85rem] font-bold text-terracotta"
-              >
-                Clear selection
-              </button>
-            )}
-          </main>
-        </div>
-      </>
+          )}
+        </main>
+      </BuilderProgressChrome>
     )
   }
 
   const rec = recommendation?.hotel
 
   return (
-    <>
-      <Nav mode="builder" />
-      <div className="mx-auto flex min-h-[calc(100vh-72px)] max-w-[1440px]">
-        <div className="sticky top-[72px] hidden h-[calc(100vh-72px)] w-[240px] shrink-0 overflow-y-auto border-r border-ink/8 bg-paper/60 px-4 py-6 backdrop-blur-sm lg:block xl:w-[260px] xl:px-5">
-          <VerticalTripProgress current="stay" />
-        </div>
-
-        <main className="min-w-0 flex-1 px-[clamp(1rem,3.5vw,1.75rem)] py-5 pb-16 lg:py-7">
+    <BuilderProgressChrome current="stay" withNav>
+      <main className="mx-auto min-h-[calc(100vh-72px)] max-w-[1440px] px-[clamp(1rem,3.5vw,1.75rem)] py-5 pb-16 lg:py-7">
           {/* Header */}
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
@@ -644,8 +631,7 @@ export function StayComparePage() {
             </p>
           </div>
         </main>
-      </div>
-    </>
+    </BuilderProgressChrome>
   )
 }
 

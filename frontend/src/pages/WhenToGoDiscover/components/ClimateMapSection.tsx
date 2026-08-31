@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import type { FeatureCollection, MultiPolygon, Polygon, Position } from 'geojson'
 import {
   CITY_MARKERS,
@@ -14,7 +15,8 @@ import {
   TEMP_SCALE,
   type RegionMonthClimate,
 } from '../data/monthlyClimate'
-import { getMonthProfile, type MonthId, MONTH_PROFILES } from '../data/months'
+import { getMonthProfile, type Level, type MonthId, MONTH_PROFILES } from '../data/months'
+import { getMonthBestThings } from '../data/monthBestThings'
 
 type ClimateLayer = 'temperature' | 'rainfall'
 
@@ -152,6 +154,47 @@ const CITY_POINTS =
     : []
 
 const IDENTITY: ViewTransform = { x: 0, y: 0, k: 1 }
+const DEFAULT_REGION: ClimateRegionId = 'south-central-coast'
+
+type BarCategory = 'Low' | 'Moderate' | 'Heavy' | 'Strong'
+
+function rainCategoryLabel(level: Level): BarCategory {
+  if (level <= 2) return 'Low'
+  if (level === 3) return 'Moderate'
+  return 'Heavy'
+}
+
+function barFillPercent(category: BarCategory): number {
+  if (category === 'Low') return 28
+  if (category === 'Moderate') return 58
+  return 92
+}
+
+function barAccent(category: BarCategory): string {
+  if (category === 'Low') return '#6f8f6a'
+  if (category === 'Moderate') return '#c17a4a'
+  return '#9a3f32'
+}
+
+function windCategory(rain: Level, label: string): BarCategory {
+  if (rain >= 5 || /strong|gust/i.test(label)) return 'Strong'
+  if (rain >= 3 || /moderate|breezy/i.test(label)) return 'Moderate'
+  return 'Low'
+}
+
+function humidityCategory(rain: Level, label: string): BarCategory {
+  const t = label.toLowerCase()
+  if (t.includes('very humid') || rain >= 5) return 'Heavy'
+  if (t === 'humid' || rain >= 4) return 'Heavy'
+  if (t.includes('moderately') || t.includes('moderate') || rain >= 3) return 'Moderate'
+  return 'Low'
+}
+
+function windCategoryLabel(category: BarCategory): string {
+  if (category === 'Strong') return 'Strong'
+  if (category === 'Moderate') return 'Moderate'
+  return 'Light'
+}
 
 function cityPackingTip(data: RegionMonthClimate): string {
   if (data.rainfallLevel >= 4) {
@@ -184,7 +227,7 @@ export function ClimateMapSection({
   const bestMonthSet = useMemo(() => new Set(recommendedMonths), [recommendedMonths])
 
   const [layer, setLayer] = useState<ClimateLayer>('temperature')
-  const [selectedRegion, setSelectedRegion] = useState<ClimateRegionId | null>(null)
+  const [selectedRegion, setSelectedRegion] = useState<ClimateRegionId>(DEFAULT_REGION)
   const [hover, setHover] = useState<{
     id: ClimateRegionId
     x: number
@@ -214,7 +257,7 @@ export function ClimateMapSection({
 
   useEffect(() => {
     setCityTip(null)
-    setSelectedRegion(null)
+    setSelectedRegion(DEFAULT_REGION)
     setHover(null)
   }, [selectedMonth])
 
@@ -289,6 +332,7 @@ export function ClimateMapSection({
     if (e.button !== 0) return
     const target = e.target as Element
     if (target.closest('[data-map-ui]')) return
+    if (target.closest('path') || target.closest('[data-map-marker]')) return
     ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
     dragging.current = {
       pointerId: e.pointerId,
@@ -319,12 +363,11 @@ export function ClimateMapSection({
     : null
 
   const mapBroken = Boolean(GEO_ERROR) || PROVINCE_PATHS.length === 0
-  const focusRegionId = selectedRegion ?? hover?.id ?? null
-  const focusData = focusRegionId
-    ? getRegionClimate(selectedMonth, focusRegionId)
+  const regionData = selectedRegion
+    ? getRegionClimate(selectedMonth, selectedRegion)
     : null
-  const focusMeta = focusRegionId
-    ? CLIMATE_REGIONS.find((r) => r.id === focusRegionId)
+  const regionMeta = selectedRegion
+    ? CLIMATE_REGIONS.find((r) => r.id === selectedRegion)
     : null
 
   return (
@@ -332,7 +375,7 @@ export function ClimateMapSection({
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 className="font-serif text-[clamp(1.35rem,2.6vw,1.75rem)] font-semibold text-ink">
-            Vietnam, Month by Month
+            Temperature and Rainfall in Vietnam
           </h2>
           <p className="mt-1 text-[0.88rem] text-muted">
             See how conditions shift across the country.
@@ -347,9 +390,9 @@ export function ClimateMapSection({
         {climate.countrySummary}
       </p>
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
+      <div className="mt-4 flex flex-wrap items-center gap-2.5">
         <span className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
-          Show
+          Map layer
         </span>
         <LayerChip active={layer === 'temperature'} onClick={() => setLayer('temperature')}>
           <span aria-hidden>🌡</span> Temperature
@@ -437,7 +480,7 @@ export function ClimateMapSection({
                   height={MAP_H}
                   fill="#c8d6ce"
                   onClick={() => {
-                    setSelectedRegion(null)
+                    setSelectedRegion(DEFAULT_REGION)
                     setCityTip(null)
                   }}
                 />
@@ -445,17 +488,19 @@ export function ClimateMapSection({
                   {PROVINCE_PATHS.map((p) => {
                     const isSelected = selectedRegion === p.regionId
                     const isHover = hover?.id === p.regionId
-                    const dimmed = selectedRegion != null && !isSelected
                     return (
                       <path
                         key={p.id}
                         d={p.d}
                         fill={colorByRegion[p.regionId]}
-                        fillOpacity={dimmed ? 0.38 : isHover || isSelected ? 0.96 : 0.9}
+                        fillOpacity={
+                          isSelected || isHover ? 0.96 : selectedRegion ? 0.38 : 0.9
+                        }
                         stroke={isSelected ? '#c45c3a' : '#2f2a26'}
                         strokeWidth={(isSelected ? 2.4 : isHover ? 1.4 : 0.7) / view.k}
                         strokeOpacity={isSelected ? 1 : 0.55}
                         className="cursor-pointer"
+                        onPointerDown={(e) => e.stopPropagation()}
                         onMouseEnter={(e) => {
                           const rect = containerRef.current?.getBoundingClientRect()
                           if (!rect) return
@@ -491,7 +536,9 @@ export function ClimateMapSection({
                     return (
                       <g
                         key={c.id}
+                        data-map-marker
                         className="cursor-pointer"
+                        onPointerDown={(e) => e.stopPropagation()}
                         onClick={(e) => {
                           e.stopPropagation()
                           const rect = containerRef.current?.getBoundingClientRect()
@@ -567,17 +614,7 @@ export function ClimateMapSection({
               </div>
             )}
 
-            <div className="absolute bottom-3 left-3 z-10 flex gap-1.5" data-map-ui>
-              <button
-                type="button"
-                onClick={fitVietnam}
-                className="rounded-full bg-paper/95 px-3 py-1.5 text-[0.72rem] font-bold text-ink shadow-soft backdrop-blur-sm hover:bg-ink hover:text-paper"
-              >
-                Fit Vietnam
-              </button>
-            </div>
-
-            {hintVisible && !mapBroken && (
+            {!mapBroken && hintVisible && (
               <p className="pointer-events-none absolute left-1/2 top-3 z-10 -translate-x-1/2 rounded-full bg-ink/70 px-3 py-1.5 text-[0.72rem] font-semibold text-paper backdrop-blur-sm">
                 Click a region for local conditions.
               </p>
@@ -632,119 +669,241 @@ export function ClimateMapSection({
                 </p>
               </div>
             )}
+
+            <div className="absolute bottom-3 left-3 z-10 flex gap-1.5" data-map-ui>
+              <button
+                type="button"
+                onClick={fitVietnam}
+                className="rounded-full bg-paper/95 px-3 py-1.5 text-[0.72rem] font-bold text-ink shadow-soft backdrop-blur-sm hover:bg-ink hover:text-paper"
+              >
+                Fit Vietnam
+              </button>
+            </div>
           </div>
           <div className="border-t border-ink/8 bg-paper/80 px-3 py-2">
             <Legend layer={layer} />
           </div>
         </div>
 
-        {/* Regional geography card */}
-        <aside className="rounded-[20px] bg-paper p-3.5 shadow-soft lg:sticky lg:top-[88px] lg:max-h-[min(68vh,620px)] lg:overflow-y-auto">
-          <p className="text-[0.62rem] font-bold uppercase tracking-[0.12em] text-sage">
-            {monthMeta.name} · by region
-          </p>
-          <p className="mt-0.5 text-[0.78rem] text-muted">
-            Temp, rain and expected crowds across Vietnam.
-          </p>
-
-          {focusMeta && focusData && (
-            <div className="mt-3 rounded-[14px] border border-terracotta/20 bg-terracotta/[0.07] p-3">
-              <div className="flex items-start justify-between gap-2">
-                <p className="text-[0.85rem] font-bold text-ink">{focusMeta.name}</p>
-                {selectedRegion && (
-                  <button
-                    type="button"
-                    onClick={() => setSelectedRegion(null)}
-                    className="text-[0.75rem] font-bold text-muted hover:text-ink"
-                  >
-                    Clear
-                  </button>
-                )}
-              </div>
-              <div className="mt-2 grid grid-cols-3 gap-2">
-                <GeoStat icon="🌡" label="Temp" value={focusData.temperatureRange} />
-                <GeoStat icon="🌧" label="Rain" value={focusData.rainfallLabel} />
-                <GeoStat icon="👥" label="Crowds" value={focusData.crowdLabel} />
-              </div>
-              <p className="mt-2 text-[0.72rem] font-semibold text-ink">
-                {focusData.climateLabel} · {focusData.bestFor.join(' · ')}
-              </p>
-              <p className="mt-1 text-[0.75rem] leading-snug text-muted">{focusData.travelNote}</p>
-            </div>
-          )}
-
-          <div className="mt-3 space-y-1.5">
-            {CLIMATE_REGIONS.map((region) => {
-              const data = climate.regions[region.id]
-              const active = selectedRegion === region.id
-              const soft = focusRegionId === region.id && !active
-              return (
-                <button
-                  key={region.id}
-                  type="button"
-                  onClick={() => {
-                    setSelectedRegion(region.id)
-                    setHintVisible(false)
-                    setCityTip(null)
-                  }}
-                  className={`w-full rounded-[12px] px-2.5 py-2 text-left transition ${
-                    active
-                      ? 'bg-ink text-paper'
-                      : soft
-                        ? 'bg-cream ring-1 ring-terracotta/30'
-                        : 'bg-cream/70 hover:bg-cream'
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <p className={`text-[0.78rem] font-bold ${active ? 'text-paper' : 'text-ink'}`}>
-                      {region.shortName}
-                    </p>
-                    <span
-                      className="h-2.5 w-2.5 shrink-0 rounded-full"
-                      style={{ background: colorByRegion[region.id] }}
-                      aria-hidden
-                    />
-                  </div>
-                  <p
-                    className={`mt-1 text-[0.68rem] leading-snug ${
-                      active ? 'text-paper/75' : 'text-muted'
-                    }`}
-                  >
-                    <span aria-hidden>🌡 </span>
-                    {data.temperatureRange}
-                    {' · '}
-                    <span aria-hidden>🌧 </span>
-                    {data.rainfallLabel}
-                    {' · '}
-                    <span aria-hidden>👥 </span>
-                    {data.crowdLabel}
-                  </p>
-                </button>
-              )
-            })}
-          </div>
+        {/* Selected region card */}
+        <aside className="rounded-[20px] bg-paper shadow-soft ring-1 ring-ink/[0.06] lg:sticky lg:top-[88px] lg:max-h-[min(68vh,620px)] lg:overflow-y-auto">
+          {regionData && regionMeta ? (
+            <RegionClimatePanel
+              month={selectedMonth}
+              monthName={monthMeta.name}
+              regionName={regionMeta.name}
+              data={regionData}
+              onClear={() => {
+                setSelectedRegion(DEFAULT_REGION)
+                setCityTip(null)
+              }}
+            />
+          ) : null}
         </aside>
       </div>
     </section>
   )
 }
 
-function GeoStat({
+function RegionClimatePanel({
+  month,
+  monthName,
+  regionName,
+  data,
+  onClear,
+}: {
+  month: MonthId
+  monthName: string
+  regionName: string
+  data: RegionMonthClimate
+  onClear: () => void
+}) {
+  const precipCategory = rainCategoryLabel(data.rainfallLevel)
+  const windCat = windCategory(data.rainfallLevel, data.windLabel)
+  const humidityCat = humidityCategory(data.rainfallLevel, data.humidityLabel)
+  const bestThings = getMonthBestThings(month)
+
+  return (
+    <div className="relative overflow-hidden px-4 py-4 sm:px-5 sm:py-5">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sage/60 via-terracotta/50 to-sage/30"
+      />
+
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-sage">
+            {monthName}
+          </p>
+          <h3 className="mt-1 font-serif text-[1.25rem] font-semibold leading-tight text-ink">
+            {regionName}
+          </h3>
+        </div>
+        <button
+          type="button"
+          onClick={onClear}
+          className="rounded-full px-2.5 py-1 text-[0.68rem] font-bold text-muted ring-1 ring-ink/10 transition hover:text-ink"
+        >
+          Clear
+        </button>
+      </div>
+
+      <div className="mt-4 grid grid-cols-2 gap-2.5">
+        <ClimateMetricCard icon="🌡" label="Temperature" value={data.temperatureRange} note={data.climateLabel} />
+        <ClimateBarMetricCard
+          icon="💧"
+          label="Precipitation"
+          category={precipCategory}
+          fill={barFillPercent(precipCategory)}
+          accent={barAccent(precipCategory)}
+          animateKey={`precip-${precipCategory}`}
+        />
+        <ClimateBarMetricCard
+          icon="💨"
+          label="Wind"
+          category={windCategoryLabel(windCat)}
+          fill={barFillPercent(windCat)}
+          accent={barAccent(windCat)}
+          animateKey={`wind-${windCat}`}
+        />
+        <ClimateBarMetricCard
+          icon="💦"
+          label="Humidity"
+          category={humidityCat}
+          fill={barFillPercent(humidityCat)}
+          accent={barAccent(humidityCat)}
+          animateKey={`humidity-${humidityCat}`}
+        />
+      </div>
+
+      <p className="mt-3 rounded-[14px] bg-cream/80 px-3.5 py-3 text-[0.68rem] text-muted ring-1 ring-ink/[0.05]">
+        {data.travelNote}
+      </p>
+
+      <div className="mt-3 rounded-[14px] bg-gradient-to-br from-cream to-cream/40 px-3.5 py-3 ring-1 ring-ink/[0.05]">
+        <p className="text-[0.58rem] font-bold uppercase tracking-[0.1em] text-muted">
+          Best things to do
+        </p>
+        <p className="mt-2 font-serif text-[0.95rem] font-semibold leading-snug text-ink">
+          {bestThings.featuredCity}
+        </p>
+        <p className="mt-1 text-[0.7rem] leading-snug text-ink/80">{bestThings.cityWhy}</p>
+        {bestThings.bestRegions.length > 0 ? (
+          <p className="mt-1.5 text-[0.62rem] font-semibold uppercase tracking-wide text-terracotta">
+            {bestThings.bestRegions.join(' · ')}
+          </p>
+        ) : null}
+
+        <p className="mt-3 text-[0.55rem] font-bold uppercase tracking-[0.1em] text-sage">
+          Places to visit
+        </p>
+        <ul className="mt-1.5 space-y-1.5">
+          {bestThings.places.map((place) => (
+            <li key={place.name} className="text-[0.72rem] leading-snug text-ink/85">
+              <span className="font-semibold text-ink">{place.name}</span>
+              <span className="text-muted"> · {place.city}</span>
+              <span className="mt-0.5 block text-[0.68rem] text-ink/75">{place.note}</span>
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-3 text-[0.55rem] font-bold uppercase tracking-[0.1em] text-sage">
+          Experiences
+        </p>
+        <ul className="mt-1.5 space-y-1.5">
+          {bestThings.experiences.map((exp) => (
+            <li key={exp.name} className="text-[0.72rem] leading-snug text-ink/85">
+              <span className="font-semibold text-ink">{exp.name}</span>
+              <span className="mt-0.5 block text-[0.68rem] text-ink/75">{exp.note}</span>
+            </li>
+          ))}
+        </ul>
+
+        {bestThings.bestFor.length > 0 ? (
+          <div className="mt-3 flex flex-wrap gap-1">
+            {bestThings.bestFor.map((chip) => (
+              <span
+                key={chip}
+                className="rounded-full bg-ink/[0.06] px-2 py-0.5 text-[0.58rem] font-bold uppercase tracking-wide text-ink/80"
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
+function ClimateBarMetricCard({
+  icon,
+  label,
+  category,
+  fill,
+  accent,
+  animateKey,
+}: {
+  icon: string
+  label: string
+  category: string
+  fill: number
+  accent: string
+  animateKey: string
+}) {
+  return (
+    <div className="rounded-[14px] bg-gradient-to-br from-cream to-cream/40 px-3 py-2.5 ring-1 ring-ink/[0.05]">
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-[0.58rem] font-bold uppercase tracking-[0.1em] text-muted">
+          <span aria-hidden>{icon} </span>
+          {label}
+        </p>
+        <p className="text-[0.78rem] font-bold tracking-wide" style={{ color: accent }}>
+          {category}
+        </p>
+      </div>
+      <div
+        className="mt-2.5 h-2.5 overflow-hidden rounded-full bg-ink/[0.07]"
+        role="meter"
+        aria-label={`${label}: ${category}`}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={fill}
+      >
+        <motion.div
+          key={animateKey}
+          initial={{ width: 0 }}
+          animate={{ width: `${fill}%` }}
+          transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+          className="h-full rounded-full"
+          style={{
+            background: `linear-gradient(90deg, ${accent}cc, ${accent})`,
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+function ClimateMetricCard({
   icon,
   label,
   value,
+  note,
 }: {
   icon: string
   label: string
   value: string
+  note: string
 }) {
   return (
-    <div className="rounded-[8px] bg-paper/90 px-2 py-1.5">
-      <p className="text-[0.55rem] font-bold uppercase tracking-wide text-muted">
+    <div className="rounded-[14px] bg-gradient-to-br from-cream to-cream/40 px-3 py-2.5 ring-1 ring-ink/[0.05]">
+      <p className="text-[0.58rem] font-bold uppercase tracking-[0.1em] text-muted">
         <span aria-hidden>{icon} </span>
         {label}
       </p>
-      <p className="text-[0.78rem] font-semibold text-ink">{value}</p>
+      <p className="mt-1 text-[0.95rem] font-semibold tracking-tight text-ink">{value}</p>
+      <p className="mt-0.5 text-[0.68rem] font-medium text-muted">{note}</p>
     </div>
   )
 }
@@ -762,8 +921,10 @@ function LayerChip({
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[0.78rem] font-bold transition ${
-        active ? 'bg-ink text-paper' : 'bg-paper text-muted shadow-soft hover:text-ink'
+      className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-[0.82rem] font-bold transition ring-1 ${
+        active
+          ? 'bg-ink text-paper shadow-soft ring-ink'
+          : 'bg-paper text-ink ring-ink/15 shadow-soft hover:bg-cream hover:ring-ink/25'
       }`}
     >
       {children}

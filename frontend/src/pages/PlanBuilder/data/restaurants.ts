@@ -14,6 +14,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '10:30 – 20:00',
     blurb: 'Charcoal-grilled pork with herbs — a Hanoi essential.',
     nearExperienceIds: ['old-quarter', 'temple-literature', 'egg-coffee'],
+    address: '24 Lê Văn Hưu, Hai Bà Trưng',
   },
   {
     id: 'rest-pho-thin',
@@ -28,6 +29,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '06:00 – 10:00, 17:00 – 21:00',
     blurb: 'Flash-fried beef phở that locals queue for.',
     nearExperienceIds: ['old-quarter', 'egg-coffee'],
+    address: '13 Hàng Bè, Hoàn Kiếm',
   },
   {
     id: 'rest-cafe-giang',
@@ -42,6 +44,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '07:00 – 22:00',
     blurb: 'Birthplace vibes for egg coffee.',
     nearExperienceIds: ['egg-coffee', 'old-quarter', 'temple-literature'],
+    address: '39 Nguyễn Hữu Huân, Hoàn Kiếm',
   },
   {
     id: 'rest-seafood-halong',
@@ -56,6 +59,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '11:00 – 22:00',
     blurb: 'Market-fresh catch after a bay day.',
     nearExperienceIds: ['halong-cruise'],
+    address: 'Bãi Cháy, Hạ Long',
   },
   {
     id: 'rest-nb-goat',
@@ -70,6 +74,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '10:00 – 21:00',
     blurb: 'Regional flavors after your boat ride.',
     nearExperienceIds: ['ninh-binh'],
+    address: 'Trần Hưng Đạo, Ninh Bình',
   },
   {
     id: 'rest-morning-glory',
@@ -84,6 +89,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '10:00 – 22:00',
     blurb: 'Elevated street classics in the ancient town.',
     nearExperienceIds: ['hoi-an-lanterns', 'cooking-class'],
+    address: '106 Nguyễn Thái Học, Hoi An',
   },
   {
     id: 'rest-cao-lau',
@@ -98,6 +104,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '09:00 – 20:00',
     blurb: 'Chewy noodles you can only truly taste here.',
     nearExperienceIds: ['hoi-an-lanterns', 'cooking-class'],
+    address: '48 Trần Hưng Đạo, Hoi An',
   },
   {
     id: 'rest-beach-danang',
@@ -112,6 +119,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '11:00 – 23:00',
     blurb: 'Grills with sand between your toes.',
     nearExperienceIds: ['da-nang-beach'],
+    address: 'Mỹ Khê, Đà Nẵng',
   },
   {
     id: 'rest-bun-bo',
@@ -126,6 +134,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '06:00 – 14:00',
     blurb: 'Lemongrass heat the way Hue intends it.',
     nearExperienceIds: ['hue-citadel'],
+    address: 'Chợ Đông Ba, Hue',
   },
   {
     id: 'rest-saigon-comtam',
@@ -140,6 +149,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '06:30 – 13:30',
     blurb: 'Saigon’s daily fuel — grilled pork and broken rice.',
     nearExperienceIds: ['war-remnants', 'cu-chi'],
+    address: '84 Đặng Văn Ngữ, Phú Nhuận',
   },
   {
     id: 'rest-saigon-secret',
@@ -154,6 +164,7 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '10:00 – 22:00',
     blurb: 'Rooftop greenery above District 1 bustle.',
     nearExperienceIds: ['war-remnants'],
+    address: '158/8A Lê Thánh Tôn, District 1',
   },
   {
     id: 'rest-sapa-home',
@@ -168,5 +179,6 @@ export const RESTAURANTS: Restaurant[] = [
     hours: '11:00 – 20:00',
     blurb: 'Warm bowls after a terrace trek.',
     nearExperienceIds: ['sapa-trek'],
+    address: 'Sapa town centre',
   },
 ]

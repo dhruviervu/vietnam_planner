@@ -57,7 +57,7 @@ export function DishCard({ dish, selected, onSeeRecipe, onShowRestaurants }: Pro
             onClick={onSeeRecipe}
             className="flex-1 rounded-full border border-sage/50 bg-transparent px-3 py-2 text-[0.78rem] font-bold text-ink transition hover:-translate-y-0.5 hover:border-sage"
           >
-            See Recipe →
+            Show Recipe →
           </button>
           <button
             type="button"

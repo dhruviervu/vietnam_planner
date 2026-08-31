@@ -1,15 +1,22 @@
 import type { MonthId } from './months'
+import { CATALOG_EXTRA_ITEMS } from './catalogItemsExtra'
 
 export type HappenType = 'event' | 'seasonal' | 'must-visit'
 
 export type HappenCity =
   | 'All Vietnam'
   | 'Hanoi'
+  | 'Ha Long'
+  | 'Sapa'
   | 'Ninh Binh'
   | 'Hue'
   | 'Hoi An'
   | 'Da Nang'
+  | 'Da Lat'
+  | 'Nha Trang'
   | 'Ho Chi Minh City'
+  | 'Can Tho'
+  | 'Phu Quoc'
 
 export type CrowdBand = 'Very Low' | 'Low' | 'Moderate' | 'High' | 'Very High'
 export type CrowdType = 'typical' | 'current'
@@ -47,10 +54,12 @@ export type HappenItem = {
   longitude: number
   /** Optional link into existing experience detail */
   experienceId?: string
+  /** Curated topic tags for the month-by-month catalog */
+  catalogTags?: string[]
 }
 
 /** Authoring shape — enriched into HappenItem at read time */
-type HappenItemDraft = Omit<
+export type HappenItemDraft = Omit<
   HappenItem,
   'dateDisplay' | 'crowdLevel' | 'crowdType' | 'whyThisMonth'
 > & {
@@ -243,8 +252,8 @@ export const HAPPEN_ITEMS: HappenItemDraft[] = [
     id: 'mar-halong',
     type: 'must-visit',
     name: 'Ha Long Bay Overnight',
-    city: 'Hanoi',
-    region: 'Northern Vietnam',
+    city: 'Ha Long',
+    region: 'Quang Ninh',
     image: img.haLong,
     duration: '1–2 days',
     cost: '$$$',
@@ -260,6 +269,7 @@ export const HAPPEN_ITEMS: HappenItemDraft[] = [
     months: [3, 4],
     latitude: 20.91,
     longitude: 107.18,
+    catalogTags: ['Scenic', 'Adventure', 'Nature'],
   },
   {
     id: 'mar-hoian-evening',
@@ -398,8 +408,8 @@ export const HAPPEN_ITEMS: HappenItemDraft[] = [
     id: 'jan-sapa',
     type: 'seasonal',
     name: 'Northern Mountain Loop',
-    city: 'Hanoi',
-    region: 'Northern Mountains',
+    city: 'Sapa',
+    region: 'Lao Cai Highlands',
     image: img.highland,
     duration: '2–3 days',
     cost: '$$$',
@@ -506,8 +516,8 @@ export const HAPPEN_ITEMS: HappenItemDraft[] = [
     id: 'sep-photography',
     type: 'must-visit',
     name: 'Rice Terrace Photography',
-    city: 'Hanoi',
-    region: 'Northern Mountains',
+    city: 'Sapa',
+    region: 'Lao Cai Highlands',
     image: img.rice,
     duration: '2–3 days',
     cost: '$$$',
@@ -785,8 +795,8 @@ export const HAPPEN_ITEMS: HappenItemDraft[] = [
     id: 'nov-halong',
     type: 'must-visit',
     name: 'Ha Long in Clear Season',
-    city: 'Hanoi',
-    region: 'Northern Vietnam',
+    city: 'Ha Long',
+    region: 'Quang Ninh',
     image: img.haLong,
     dateDisplay: 'ANY DAY',
     duration: '1–2 days',
@@ -918,16 +928,23 @@ export const HAPPEN_ITEMS: HappenItemDraft[] = [
     latitude: 16.05,
     longitude: 108.2,
   },
+  ...CATALOG_EXTRA_ITEMS,
 ]
 
 export const HAPPEN_CITIES: HappenCity[] = [
   'All Vietnam',
   'Hanoi',
+  'Ha Long',
+  'Sapa',
   'Ninh Binh',
   'Hue',
   'Hoi An',
   'Da Nang',
+  'Da Lat',
+  'Nha Trang',
   'Ho Chi Minh City',
+  'Can Tho',
+  'Phu Quoc',
 ]
 
 export type HappenKindFilter = 'all' | 'events' | 'places'
@@ -1001,6 +1018,7 @@ function enrichItem(draft: HappenItemDraft): HappenItem {
     latitude: draft.latitude,
     longitude: draft.longitude,
     experienceId: draft.experienceId,
+    catalogTags: draft.catalogTags,
   }
 }
 

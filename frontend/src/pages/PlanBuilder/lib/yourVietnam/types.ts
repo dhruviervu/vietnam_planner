@@ -30,6 +30,7 @@ export type TripIssueSuggestion = {
   name: string
   tag: string
   reason: string
+  addKind?: 'experience' | 'activity' | 'restaurant'
 }
 
 export type TripIssue = {
@@ -85,6 +86,8 @@ export type ItineraryItem = {
   /** Transfer after this item toward the next */
   transferAfter?: LocalTransferHint
   sourceId?: string
+  /** True when the engine asks the traveller to consider dropping this pick */
+  suggestDrop?: boolean
 }
 
 export type DayPeriod = {
@@ -106,17 +109,35 @@ export type DayCosts = {
   total: number
 }
 
+export type DayAgendaItem = {
+  id: string
+  name: string
+  kind: ItemKind
+  sourceId?: string
+  recommended?: boolean
+  mapsUrl?: string
+}
+
+export type DayAgenda = {
+  sights: DayAgendaItem[]
+  do: DayAgendaItem[]
+  eat: DayAgendaItem[]
+}
+
 export type YourVietnamDay = {
   day: number
   dateLabel: string
   city: string
   region: string
+  /** Getting Around place id when the city is on the Vietnam map */
+  placeId?: string
   theme: string
   blurb: string
   nightsHere: number
   experienceCount: number
   foodCount: number
   transferCount: number
+  agenda: DayAgenda
   periods: DayPeriod[]
   costs: DayCosts
   issues: TripIssue[]
@@ -145,6 +166,20 @@ export type RouteStop = {
   nights: number
   experiences: number
   kind: 'stay' | 'transfer'
+  placeId?: string
+}
+
+export type ThinCityNote = {
+  city: string
+  nights: number
+  selectedCount: number
+  catalogCity: string
+}
+
+export type MustVisitCity = {
+  placeId: string
+  label: string
+  catalogCity: string
 }
 
 export type CostSummaryBand = {
@@ -179,6 +214,8 @@ export type YourVietnamTrip = {
   issues: TripIssue[]
   isEmpty: boolean
   hasNoStays: boolean
+  thinCities: ThinCityNote[]
+  mustVisit: MustVisitCity[]
 }
 
 export const PERIOD_META: Record<

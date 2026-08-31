@@ -15,6 +15,10 @@ import { SvgTransportMap } from './SvgTransportMap'
 import { ModeJumpNav } from './ModeJumpNav'
 import { ModeSection } from './ModeSection'
 import { ComparisonStrip } from './ComparisonStrip'
+import { HowToMoveStrip } from './HowToMoveStrip'
+import { useTripBagPlaceIds } from '../lib/tripBagPlaces'
+import { mapCityPin } from '../data/cityEmojis'
+import { getTopology } from '../data/transportNetwork'
 
 const QUICK_PAIRS: { originId: PlaceId; destinationId: PlaceId; label: string }[] = [
   { originId: 'hanoi', destinationId: 'da-nang', label: 'Hanoi → Da Nang' },
@@ -48,22 +52,31 @@ export function LongDistanceWorld({
   const [editFocus, setEditFocus] = useState<EditFocus>('auto')
   const [snapMiss, setSnapMiss] = useState(false)
   const hubs = useMemo(() => mapHubPlaces(), [])
+  const bagPlaceIds = useTripBagPlaceIds()
+  const selectHubs = useMemo(() => {
+    if (bagPlaceIds.size === 0) return hubs
+    const filtered = hubs.filter((h) => bagPlaceIds.has(h.id))
+    return filtered.length ? filtered : hubs
+  }, [hubs, bagPlaceIds])
 
   const locations = useMemo(
     () =>
       hubs.map((p) => {
         const meta = VIETNAM_LOCATION_META[p.id]
+        const inBag = bagPlaceIds.has(p.id)
         return {
           id: p.id,
           label: p.label,
           lat: p.lat,
           lng: p.lng,
           type: meta?.type,
-          hint: meta?.hint || 'Click to select',
-          priority: meta?.priority ?? 3,
+          hint: inBag ? 'In your trip bag' : meta?.hint || 'Click to select',
+          priority: inBag ? 1 : (meta?.priority ?? 3),
+          emoji: mapCityPin(),
+          highlighted: inBag,
         }
       }),
-    [hubs],
+    [hubs, bagPlaceIds],
   )
 
   const intelligence = useMemo(
@@ -212,7 +225,7 @@ export function LongDistanceWorld({
         <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6">
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-terracotta">01</p>
           <h2 className="mt-1 font-serif text-[clamp(1.5rem,3vw,2rem)] font-semibold text-paper">
-            Long-Distance / Inter-City
+          Long distance (Inter City)
           </h2>
         </div>
       </div>
@@ -222,38 +235,24 @@ export function LongDistanceWorld({
         flexibility.
       </p>
 
-      <div className="mt-4 flex flex-wrap gap-2">
-        {[
-          { label: 'Fastest', symbol: '✈️' },
-          { label: 'Most scenic', symbol: '🚆' },
-          { label: 'Lowest cost', symbol: '🚌' },
-          { label: 'Most flexible', symbol: '🚗' },
-        ].map((g) => (
-          <span
-            key={g.label}
-            className="rounded-full bg-cream px-3 py-1.5 text-[0.72rem] font-bold text-ink ring-1 ring-ink/8"
-          >
-            {g.label} → {g.symbol}
-          </span>
-        ))}
-      </div>
+      <HowToMoveStrip bagPlaceIds={bagPlaceIds} />
 
-      <div className="mt-8 lg:grid lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,1fr)] lg:items-stretch lg:gap-5">
+      <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,1fr)] lg:items-stretch lg:gap-5">
         <div className="flex min-h-[480px] flex-col lg:h-[560px] lg:min-h-[560px]">
           <p className="text-[0.58rem] font-bold uppercase tracking-[0.12em] text-muted">
             Explore the map
           </p>
           <p className="mt-1 mb-2 max-w-[54ch] text-[0.78rem] text-muted">
-            Click anywhere to choose a place. Use the selectors beside the map for precise selection.
+            Every city stays on the map. Trip-bag cities glow with a larger pin. Click anywhere
+            to choose a place, or use the selectors beside the map.
           </p>
-          <div className="min-h-0 flex-1">
+          <div className="relative min-h-0 flex-1 overflow-hidden rounded-[20px] bg-gradient-to-br from-sage/15 via-cream to-terracotta/10 shadow-[0_18px_40px_rgba(47,42,38,0.08)] ring-1 ring-ink/10">
             <SvgTransportMap
               meta={MAP_META.vietnam}
               locations={locations}
               originId={originId}
               destinationId={destinationId}
               onSelectLocation={selectPlace}
-              fitLabel="Fit Vietnam"
               connectionLabel="Selected connection"
               enableBackgroundSnap
               snapMaxKm={110}
@@ -262,8 +261,18 @@ export function LongDistanceWorld({
               statusHint={mapStatusHint}
               contextMarkers={bothSelected ? contextMarkers : []}
               size="workspace"
-              className="h-full"
+              markerVariant="pin"
+              disableZoomPan
+              className="h-full rounded-none ring-0"
             />
+            <div className="pointer-events-none absolute bottom-3 left-3 z-[2] rounded-full bg-paper/92 px-3 py-1 text-[0.65rem] font-bold text-ink shadow-soft">
+              {bagPlaceIds.size
+                ? `✨ ${bagPlaceIds.size} bag ${bagPlaceIds.size === 1 ? 'city' : 'cities'} highlighted`
+                : '📍 All cities · none highlighted'}
+            </div>
+            <div className="pointer-events-none absolute bottom-3 right-3 z-[2] rounded-full bg-paper/92 px-3 py-1 text-[0.62rem] font-bold text-ink/80 shadow-soft">
+              📍 Pin = city · glow = trip bag
+            </div>
           </div>
         </div>
 
@@ -274,7 +283,7 @@ export function LongDistanceWorld({
             destination={destination}
             originId={originId}
             destinationId={destinationId}
-            hubs={hubs}
+            hubs={selectHubs}
             intelligence={intelligence}
             activeModeId={panelModeId ?? activeModeId}
             editFocus={editFocus}
@@ -603,6 +612,11 @@ function JourneyPanel({
             <p className="mt-1 text-[0.72rem] leading-snug text-ink/85">
               {intelligence.whatThisMeans[0]}
             </p>
+            {originId && destinationId ? (
+              <p className="mt-1.5 text-[0.7rem] leading-snug text-ink/75">
+                {airportBlurb(originId, destinationId, intelligence.geographicKm)}
+              </p>
+            ) : null}
           </div>
         ) : null}
       </div>
@@ -700,6 +714,24 @@ function JourneyRow({
       </button>
     </li>
   )
+}
+
+function airportBlurb(originId: PlaceId, destinationId: PlaceId, km: number | null) {
+  const o = getTopology(originId)
+  const d = getTopology(destinationId)
+  const distance =
+    km != null ? `About ${Math.round(km).toLocaleString()} km as the crow flies. ` : ''
+  if (o.hasFlightAccess && d.hasFlightAccess && (km ?? 0) > 280) {
+    return `${distance}Both ends have commercial airports — flying is usually the time-saver; train or sleeper coach wins if you want to skip airport process.`
+  }
+  if (!o.hasFlightAccess && !d.hasFlightAccess) {
+    return `${distance}Neither place has a useful passenger airport. Train, coach, or a driver are the realistic tools.`
+  }
+  if (o.hasFlightAccess !== d.hasFlightAccess) {
+    const air = o.hasFlightAccess ? originId : destinationId
+    return `${distance}Only ${air.replace(/-/g, ' ')} has a nearby commercial airport, so this hop is mostly a ground link (coach, train, or driver).`
+  }
+  return `${distance}${o.hasRailAccess && d.hasRailAccess ? 'Rail is on the table for this pair.' : 'Compare coach vs driver on time and comfort.'}`
 }
 
 function PlaceSelect({

@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Nav } from '../../components/landing/Nav'
 import { Footer } from '../../components/landing/Footer'
+import { BuilderProgressChrome } from '../PlanBuilder/components/BuilderProgressChrome'
 import { GettingAroundHero } from './components/GettingAroundHero'
 import { WorldNav } from './components/WorldNav'
 import { LongDistanceWorld } from './components/LongDistanceWorld'
 import { UrbanWorld } from './components/UrbanWorld'
 import { WaterWorld } from './components/WaterWorld'
-import { ExploreByStyle } from './components/ExploreByStyle'
 import { BeforeYouTravel } from './components/BeforeYouTravel'
 
 export function GettingAroundPage({ embedded = false }: { embedded?: boolean }) {
@@ -15,7 +14,7 @@ export function GettingAroundPage({ embedded = false }: { embedded?: boolean }) 
     'long-distance',
   )
   const [activeLong, setActiveLong] = useState<string | null>('flight')
-  const [activeUrban, setActiveUrban] = useState<string | null>('car-taxi')
+  const [activeUrban, setActiveUrban] = useState<string | null>('scooter')
   const [activeWater, setActiveWater] = useState<string | null>('ferry')
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null)
 
@@ -47,9 +46,8 @@ export function GettingAroundPage({ embedded = false }: { embedded?: boolean }) 
     setSelectedOptionId((prev) => (prev === id ? null : id))
   }
 
-  return (
+  const page = (
     <>
-      {!embedded && <Nav />}
       <main className="mx-auto max-w-[1180px] px-[clamp(1.1rem,4vw,2rem)] py-8 pb-20">
         <GettingAroundHero />
         <WorldNav active={activeWorld} onActive={setActiveWorld} />
@@ -76,7 +74,6 @@ export function GettingAroundPage({ embedded = false }: { embedded?: boolean }) 
             onSelectOption={selectOption}
           />
 
-          <ExploreByStyle />
           <BeforeYouTravel />
 
           <p className="text-[0.8rem] font-medium text-muted">
@@ -90,5 +87,12 @@ export function GettingAroundPage({ embedded = false }: { embedded?: boolean }) 
       </main>
       {!embedded && <Footer />}
     </>
+  )
+
+  if (embedded) return page
+  return (
+    <BuilderProgressChrome current="transport" withNav>
+      {page}
+    </BuilderProgressChrome>
   )
 }

@@ -1,4 +1,6 @@
 export type TravelStyle = 'relaxed' | 'balanced' | 'packed'
+/** Trip purpose on Your Vietnam — maps onto TravelStyle for the rest of the builder. */
+export type HolidayKind = 'action' | 'leisure' | 'culture-food'
 export type BudgetMode = 'per-person' | 'total'
 export type DateMode = 'exact' | 'flexible' | 'unknown'
 export type Certainty = 'known' | 'unknown'
@@ -205,6 +207,7 @@ export type Restaurant = {
   hours: string
   blurb: string
   nearExperienceIds: string[]
+  address?: string
 }
 
 export type ShoppingItem = {

@@ -1,72 +1,125 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import type { Experience } from '../../types'
-import { getExperienceImages } from '../../lib/pricing'
+import { getExperienceDetailPhotos } from '../../lib/experienceMedia'
 
 type Props = {
   experience: Experience
+  className?: string
 }
 
-export function ExperienceDetailHero({ experience }: Props) {
-  const images = getExperienceImages(experience)
-  const [slide, setSlide] = useState(0)
+export function ExperienceDetailHero({ experience, className }: Props) {
+  const images = getExperienceDetailPhotos(experience)
+  const [photo, setPhoto] = useState(0)
+  const [lightbox, setLightbox] = useState<number | null>(null)
+  const [broken, setBroken] = useState<Record<string, boolean>>({})
+  const visible = images.filter((src) => !broken[src])
+  const index = Math.min(photo, Math.max(visible.length - 1, 0))
+  const current = visible[index]
 
-  useEffect(() => {
-    if (images.length <= 1) return
-    const id = window.setInterval(() => setSlide((s) => (s + 1) % images.length), 4200)
-    return () => window.clearInterval(id)
-  }, [images.length])
+  function shift(delta: number) {
+    if (visible.length < 2) return
+    setPhoto((i) => (i + delta + visible.length) % visible.length)
+  }
 
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-cream shadow-hero lg:aspect-auto lg:min-h-[560px] lg:h-full">
-      {images.map((src, i) => (
-        <img
-          key={src}
-          src={src}
-          alt={`${experience.name} ${i + 1}`}
-          className="absolute inset-0 h-full w-full object-cover transition-all duration-700"
-          style={{
-            opacity: i === slide ? 1 : 0,
-            transform: i === slide ? 'scale(1.02)' : 'scale(1)',
-          }}
-        />
-      ))}
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink/35 to-transparent" />
-      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-        <div className="flex gap-1.5">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              aria-label={`Image ${i + 1}`}
-              onClick={() => setSlide(i)}
-              className={`h-1.5 rounded-full transition-all ${
-                i === slide ? 'w-5 bg-paper' : 'w-1.5 bg-paper/50'
-              }`}
+    <>
+      <div
+        className={`relative h-[min(52vw,420px)] overflow-hidden rounded-[22px] bg-cream shadow-hero ${className ?? ''}`}
+      >
+        {current ? (
+          <button type="button" onClick={() => setLightbox(index)} className="absolute inset-0">
+            <img
+              src={current}
+              alt={`${experience.name} photo ${index + 1}`}
+              className="absolute inset-0 h-full w-full object-cover"
+              onError={() => setBroken((prev) => ({ ...prev, [current]: true }))}
             />
-          ))}
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="rounded-full bg-ink/45 px-2.5 py-1 text-[0.72rem] font-bold text-paper backdrop-blur-sm">
-            {slide + 1}/{images.length}
-          </span>
-          <button
-            type="button"
-            aria-label="Previous"
-            onClick={() => setSlide((s) => (s - 1 + images.length) % images.length)}
-            className="grid h-8 w-8 place-items-center rounded-full bg-ink/40 text-paper backdrop-blur-sm"
-          >
-            ‹
           </button>
-          <button
-            type="button"
-            aria-label="Next"
-            onClick={() => setSlide((s) => (s + 1) % images.length)}
-            className="grid h-8 w-8 place-items-center rounded-full bg-ink/40 text-paper backdrop-blur-sm"
-          >
-            ›
-          </button>
-        </div>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-cream via-terracotta/15 to-sage/25" />
+        )}
+        {visible.length > 1 ? (
+          <>
+            <button
+              type="button"
+              aria-label="Previous photo"
+              onClick={() => shift(-1)}
+              className="absolute left-3 top-1/2 z-[1] grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-ink/45 text-lg text-paper backdrop-blur-sm hover:bg-ink/60"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              aria-label="Next photo"
+              onClick={() => shift(1)}
+              className="absolute right-3 top-1/2 z-[1] grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-ink/45 text-lg text-paper backdrop-blur-sm hover:bg-ink/60"
+            >
+              ›
+            </button>
+            <div className="pointer-events-none absolute inset-x-0 bottom-3 z-[1] flex justify-center gap-1.5">
+              {visible.map((src, i) => (
+                <span
+                  key={src}
+                  className={`h-1.5 rounded-full ${i === index ? 'w-4 bg-paper' : 'w-1.5 bg-paper/55'}`}
+                />
+              ))}
+            </div>
+          </>
+        ) : null}
       </div>
-    </div>
+
+      <AnimatePresence>
+        {lightbox != null && visible[lightbox] && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/80 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+          >
+            <button
+              type="button"
+              aria-label="Close"
+              onClick={() => setLightbox(null)}
+              className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-paper/15 text-xl text-paper backdrop-blur-sm"
+            >
+              ×
+            </button>
+            <button
+              type="button"
+              aria-label="Previous photo"
+              onClick={(e) => {
+                e.stopPropagation()
+                setLightbox((lightbox - 1 + visible.length) % visible.length)
+              }}
+              className="absolute left-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-paper/15 text-paper backdrop-blur-sm sm:left-6"
+            >
+              ‹
+            </button>
+            <img
+              src={visible[lightbox]}
+              alt={`${experience.name} photo ${lightbox + 1}`}
+              className="max-h-[85vh] max-w-[min(1100px,92vw)] rounded-2xl object-contain shadow-hero"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button
+              type="button"
+              aria-label="Next photo"
+              onClick={(e) => {
+                e.stopPropagation()
+                setLightbox((lightbox + 1) % visible.length)
+              }}
+              className="absolute right-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-paper/15 text-paper backdrop-blur-sm sm:right-6"
+            >
+              ›
+            </button>
+            <p className="absolute bottom-4 rounded-full bg-ink/50 px-3 py-1 text-[0.78rem] font-bold text-paper backdrop-blur-sm">
+              {lightbox + 1} / {visible.length}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }

@@ -1,5 +1,4 @@
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { EXPERIENCES } from '../data/experiences'
 import { ExperienceCard } from '../components/ExperienceCard'
@@ -16,25 +15,15 @@ import { useTripStore } from '../../../store/tripStore'
 import {
   DEFAULT_FILTERS,
   buildDiscoverySections,
-  formatTripContext,
   suggestDayAround,
   type ExperienceFilters,
 } from '../services/recommendationEngine'
 import { loadCatalogViewState, saveCatalogViewState } from '../lib/catalogViewState'
-import { groupExperiencesByCity, listCitiesByPopularity } from '../services/cityCatalog'
+import { groupExperiencesByCity, listCitiesByPopularity, buildCityRankIndex, cityAnchorId, type RankedExperience } from '../services/cityCatalog'
 import type { Experience } from '../types'
 
 const CITY_SCROLL_OFFSET = 96
 const CITY_PREVIEW_COUNT = 6
-
-export function cityAnchorId(city: string) {
-  return `city-${city
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')}`
-}
 
 type MobilePanel = 'none' | 'progress' | 'filters'
 
@@ -50,7 +39,7 @@ export function ThingsToDo() {
   const [mobileTripOpen, setMobileTripOpen] = useState(false)
   const [buildDayId, setBuildDayId] = useState<string | null>(null)
   const [restored, setRestored] = useState(false)
-  const [progressHovered, setProgressHovered] = useState(false)
+  const [progressHovered, setProgressHovered] = useState(true)
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>('none')
 
   const filtersExpanded = pipelineActive ? !progressHovered : true
@@ -67,6 +56,12 @@ export function ThingsToDo() {
 
   useEffect(() => {
     if (restored) return
+    const hash = window.location.hash.replace(/^#/, '')
+    const skipForCity = hash.startsWith('city-')
+    if (skipForCity) {
+      setRestored(true)
+      return
+    }
     const y = saved?.scrollY ?? 0
     const id = window.requestAnimationFrame(() => {
       window.scrollTo({ top: y, behavior: 'auto' })
@@ -87,7 +82,6 @@ export function ThingsToDo() {
 
   const deferredFilters = useDeferredValue(filters)
 
-  const contextParts = useMemo(() => formatTripContext(basics), [basics])
   const tripDate = basics.dateMode === 'exact' && basics.startDate ? basics.startDate : null
 
   const regions = useMemo(
@@ -116,6 +110,8 @@ export function ThingsToDo() {
   const cityCatalogItems = isFiltering ? sections.catalog : EXPERIENCES
 
   const resultCount = cityCatalogItems.length
+
+  const cityRankById = useMemo(() => buildCityRankIndex(EXPERIENCES), [])
 
   const dayPlan = buildDayId ? suggestDayAround(buildDayId) : null
 
@@ -182,6 +178,19 @@ export function ThingsToDo() {
       if (rafSpyRef.current != null) window.cancelAnimationFrame(rafSpyRef.current)
       if (scrollLockTimerRef.current != null) window.clearTimeout(scrollLockTimerRef.current)
     }
+  }, [cityJumpGroups])
+
+  useEffect(() => {
+    const jump = () => {
+      const raw = window.location.hash.replace(/^#/, '')
+      if (!raw.startsWith('city-')) return
+      const match = cityJumpGroups.find((g) => cityAnchorId(g.city) === raw)
+      if (!match) return
+      selectCityFromFilter(match.city)
+    }
+    jump()
+    window.addEventListener('hashchange', jump)
+    return () => window.removeEventListener('hashchange', jump)
   }, [cityJumpGroups])
 
   function scrollToCity(city: string) {
@@ -340,26 +349,6 @@ export function ThingsToDo() {
             in — add what excites you and we&apos;ll help shape the rest.
           </p>
 
-          <div className="mt-5">
-            <Link
-              to="/plan/builder/activities"
-              className="inline-flex items-center gap-2 rounded-full border border-terracotta/25 bg-terracotta/8 px-4 py-2.5 text-[0.84rem] font-bold text-terracotta-deep transition hover:border-terracotta/45 hover:bg-terracotta/12"
-            >
-              Prefer hands-on activities? Classes, beach games, music &amp; dance →
-            </Link>
-          </div>
-
-          <div className="mt-4 flex flex-wrap gap-2">
-            {contextParts.map((part) => (
-              <span
-                key={part}
-                className="rounded-full bg-paper px-3 py-1.5 text-[0.72rem] font-bold tracking-wide text-ink shadow-soft"
-              >
-                {part}
-              </span>
-            ))}
-          </div>
-
           <div className="mt-5 flex flex-wrap items-center gap-3 text-[0.82rem]">
             <span className="font-semibold text-muted">
               {resultCount} experience{resultCount === 1 ? '' : 's'}
@@ -375,25 +364,13 @@ export function ThingsToDo() {
             )}
           </div>
 
-          {!isFiltering && (
-            <DiscoverySection
-              title="Best Fits for Your Trip"
-              subtitle="Based on what you've told us so far. Browse freely and add whatever catches your eye."
-            >
-              <CardGrid
-                items={sections.chosen}
-                tripDate={tripDate}
-                onBuildDay={setBuildDayId}
-              />
-            </DiscoverySection>
-          )}
-
           {!isFiltering && sections.becauseSelected && (
             <DiscoverySection title={sections.becauseSelected.title}>
               <CardGrid
                 items={sections.becauseSelected.items}
                 tripDate={tripDate}
                 onBuildDay={setBuildDayId}
+                cityRankById={cityRankById}
               />
             </DiscoverySection>
           )}
@@ -410,6 +387,7 @@ export function ThingsToDo() {
                     experience={item}
                     tripDate={tripDate}
                     compact
+                    cityRank={cityRankById.get(item.id)}
                     onBuildDay={setBuildDayId}
                   />
                 ))}
@@ -443,6 +421,7 @@ export function ThingsToDo() {
                 items={cityCatalogItems}
                 tripDate={tripDate}
                 onBuildDay={setBuildDayId}
+                cityRankById={cityRankById}
               />
             </DiscoverySection>
           )}
@@ -514,10 +493,12 @@ function CityCatalogSections({
   items,
   tripDate,
   onBuildDay,
+  cityRankById,
 }: {
   items: Experience[]
   tripDate: string | null
   onBuildDay: (id: string) => void
+  cityRankById: Map<string, number>
 }) {
   const groups = useMemo(() => groupExperiencesByCity(items), [items])
   const [expanded, setExpanded] = useState<Record<string, boolean>>({})
@@ -570,7 +551,12 @@ function CityCatalogSections({
             </button>
 
             <div className="border-t border-ink/6 px-4 pb-4 pt-3 sm:px-5">
-              <CardGrid items={visible} tripDate={tripDate} onBuildDay={onBuildDay} />
+              <CardGrid
+                items={visible}
+                tripDate={tripDate}
+                onBuildDay={onBuildDay}
+                cityRankById={cityRankById}
+              />
               {!isOpen && hidden > 0 ? (
                 <button
                   type="button"
@@ -619,10 +605,12 @@ function CardGrid({
   items,
   tripDate,
   onBuildDay,
+  cityRankById,
 }: {
   items: Experience[]
   tripDate: string | null
   onBuildDay: (id: string) => void
+  cityRankById?: Map<string, number>
 }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -633,6 +621,9 @@ function CardGrid({
             experience={item}
             tripDate={tripDate}
             onBuildDay={onBuildDay}
+            cityRank={
+              'cityRank' in item ? (item as RankedExperience).cityRank : cityRankById?.get(item.id)
+            }
           />
         ))}
       </AnimatePresence>

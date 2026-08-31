@@ -18,6 +18,8 @@ export type SvgMapLocation = {
   type?: string
   hint?: string
   priority?: number
+  emoji?: string
+  highlighted?: boolean
 }
 
 type Props = {
@@ -60,6 +62,10 @@ type Props = {
   geoHover?: { title: string; subtitle: string; kind: string } | null
   /** Fired on pointer move over map with inverted lat/lng (urban geography) */
   onMapPointerGeo?: (coord: { lat: number; lng: number } | null) => void
+  /** Long-distance: pin emoji markers instead of dots */
+  markerVariant?: 'dot' | 'emoji' | 'pin'
+  /** Hide zoom controls and disable pan/zoom (long-distance map). */
+  disableZoomPan?: boolean
 }
 
 type HoverState = { id: string; x: number; y: number; label: string; hint: string } | null
@@ -89,6 +95,8 @@ export function SvgTransportMap({
   landmarksMuted = false,
   geoHover = null,
   onMapPointerGeo,
+  markerVariant = 'dot',
+  disableZoomPan = false,
 }: Props) {
   const markerId = useId().replace(/:/g, '')
   const svgRef = useRef<SVGSVGElement>(null)
@@ -219,6 +227,7 @@ export function SvgTransportMap({
 
   function onPointerDown(e: ReactPointerEvent) {
     if (e.button !== 0) return
+    if (disableZoomPan) return
     movedRef.current = false
     ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
     dragRef.current = { x: e.clientX, y: e.clientY, tx, ty }
@@ -226,7 +235,7 @@ export function SvgTransportMap({
 
   function onPointerMove(e: ReactPointerEvent) {
     const drag = dragRef.current
-    if (drag) {
+    if (drag && !disableZoomPan) {
       const dx = e.clientX - drag.x
       const dy = e.clientY - drag.y
       if (Math.hypot(dx, dy) > 4) movedRef.current = true
@@ -271,7 +280,9 @@ export function SvgTransportMap({
     }
   }
 
-  const transform = `translate(${width / 2 + tx} ${height / 2 + ty}) scale(${scale}) translate(${-width / 2} ${-height / 2})`
+  const transform = disableZoomPan
+    ? `translate(${width / 2} ${height / 2}) scale(1) translate(${-width / 2} ${-height / 2})`
+    : `translate(${width / 2 + tx} ${height / 2 + ty}) scale(${scale}) translate(${-width / 2} ${-height / 2})`
   const heightClass =
     size === 'workspace'
       ? 'h-full min-h-[420px] lg:min-h-0'
@@ -280,7 +291,7 @@ export function SvgTransportMap({
         : 'h-[300px] sm:h-[380px] lg:h-[480px]'
 
   const isVietnamMap = meta.file.includes('vietnam.svg')
-  const mapChrome = isVietnamMap ? '#A9C8D6' : '#D6E4E8'
+  const mapChrome = isVietnamMap ? '#B7D4C8' : '#D6E4E8'
   const shellClass =
     size === 'workspace'
       ? `relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[18px] ring-1 ring-ink/10 ${className}`
@@ -458,14 +469,16 @@ export function SvgTransportMap({
                           : priority <= 2
                             ? 5
                             : 4.2
-                const hit = 16
+                const hit = markerVariant === 'pin' || markerVariant === 'emoji' ? 22 : 16
                 const showLabel =
                   alwaysShowLabels ||
                   visualRole === 'origin' ||
                   visualRole === 'destination' ||
                   visualRole === 'hover' ||
+                  p.highlighted ||
+                  markerVariant === 'pin' ||
                   (!landmarksMuted && priority <= 1) ||
-                  scale > 1.35
+                  (!disableZoomPan && scale > 1.35)
 
                 const core =
                   visualRole === 'origin'
@@ -527,6 +540,41 @@ export function SvgTransportMap({
                     onKeyDown={(e) => onKeySelect(p.id, e)}
                   >
                     <circle r={hit} fill="transparent" />
+                    {markerVariant === 'pin' || markerVariant === 'emoji' || p.emoji ? (
+                      <>
+                        {p.highlighted ||
+                        visualRole === 'origin' ||
+                        visualRole === 'destination' ? (
+                          <circle
+                            r={visualRole === 'origin' || visualRole === 'destination' ? 22 : 20}
+                            fill={
+                              visualRole === 'origin'
+                                ? '#C45C3E'
+                                : visualRole === 'destination'
+                                  ? '#4F8A5B'
+                                  : '#C45C3E'
+                            }
+                            opacity={0.22}
+                          />
+                        ) : null}
+                        <text
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          style={{
+                            fontSize:
+                              visualRole === 'origin' || visualRole === 'destination'
+                                ? 36
+                                : p.highlighted
+                                  ? 32
+                                  : 28,
+                            fontWeight: 600,
+                          }}
+                        >
+                          {markerVariant === 'pin' ? '📍' : p.emoji || '📍'}
+                        </text>
+                      </>
+                    ) : (
+                      <>
                     <circle r={r + 6} fill={core} opacity={landmarksMuted ? 0.1 : 0.16} />
                     <circle
                       r={r + 2.8}
@@ -542,6 +590,8 @@ export function SvgTransportMap({
                       fill="#FFFFFF"
                       opacity={0.5}
                     />
+                      </>
+                    )}
                     {showLabel ? (
                       <g className="pointer-events-none select-none">
                         {(() => {
@@ -550,7 +600,11 @@ export function SvgTransportMap({
                             <>
                               <rect
                                 x={-labelW / 2}
-                                y={-r - 20}
+                                y={
+                                  markerVariant === 'pin' || markerVariant === 'emoji'
+                                    ? -38
+                                    : -r - 20
+                                }
                                 width={labelW}
                                 height={13}
                                 rx={6.5}
@@ -559,7 +613,11 @@ export function SvgTransportMap({
                                 strokeWidth={0.7}
                               />
                               <text
-                                y={-r - 11}
+                                y={
+                                  markerVariant === 'pin' || markerVariant === 'emoji'
+                                    ? -29
+                                    : -r - 11
+                                }
                                 textAnchor="middle"
                                 style={{
                                   fontSize: priority <= 1 ? 9.5 : 8.5,
@@ -622,7 +680,7 @@ export function SvgTransportMap({
         </div>
       ) : null}
 
-      {status === 'ready' ? (
+      {status === 'ready' && !disableZoomPan ? (
         <div className="absolute left-3 top-3 z-10 flex flex-wrap gap-1.5">
           <button
             type="button"
@@ -648,6 +706,7 @@ export function SvgTransportMap({
         </div>
       ) : null}
 
+      {markerVariant !== 'pin' && markerVariant !== 'emoji' ? (
       <div className="pointer-events-none absolute bottom-3 left-3 z-10 rounded-[12px] bg-paper/92 px-3 py-2 text-[0.65rem] font-semibold text-ink shadow-sm ring-1 ring-ink/8 backdrop-blur-sm">
         <p className="flex items-center gap-2">
           <span className="inline-block h-2.5 w-2.5 rounded-full bg-ink/35" /> Major place
@@ -660,6 +719,7 @@ export function SvgTransportMap({
         </p>
         <p className="mt-1.5 text-muted">···· {connectionLabel}</p>
       </div>
+      ) : null}
 
       <style>{`
         .ga-svg-arc {

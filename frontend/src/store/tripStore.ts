@@ -7,6 +7,7 @@ import type {
   CostTotals,
   DateMode,
   ExperienceSelectionMeta,
+  HolidayKind,
   Interest,
   ItineraryDay,
   StayStyle,
@@ -14,6 +15,7 @@ import type {
   TravelStyle,
 } from '../pages/PlanBuilder/types'
 import { stepIndex } from '../pages/PlanBuilder/steps'
+import type { StayProperty } from '../pages/WhereToStay/data/types'
 
 export type TripBasics = {
   startDate: string
@@ -32,6 +34,15 @@ export type TripBasics = {
   travelStyle: TravelStyle
   paceKnown: boolean
   interests: Interest[]
+  groupSize: number
+  groupSizeKnown: boolean
+  holidayKind: HolidayKind
+  holidayKindKnown: boolean
+  /** Flights + stays, trip total */
+  budgetFixedUsd: number
+  /** Food + activities + local transit, per person per day */
+  budgetDailyUsd: number
+  budgetAllocationKnown: boolean
 }
 
 type TripState = {
@@ -44,6 +55,8 @@ type TripState = {
   chosenStayId: string | null // Final advisory choice from comparison
   /** Where-to-Stay listing cards set for the itinerary (StayProperty ids) */
   itineraryStayPropertyIds: string[]
+  /** Stays typed in by the traveller and fetched from the web */
+  customStayProperties: Record<string, StayProperty>
   startingPointBaseId: string | null
   preferredBaseId: string | null
   stayStyle: StayStyle | null
@@ -52,6 +65,8 @@ type TripState = {
   transportChoices: Record<string, TransportMode>
   logisticsAcknowledged: string[]
   farthestStepIndex: number
+  /** User-locked nights per Getting Around place id; other cities rebalance. */
+  cityNightOverrides: Record<string, number>
   /**
    * True only after the user starts via "Build itinerary".
    * Browse links to the same builder URLs must not show the left progress rail.
@@ -74,6 +89,7 @@ type TripState = {
   clearComparison: () => void
   setChosenStay: (id: string | null) => void
   toggleItineraryStayProperty: (id: string) => void
+  upsertCustomStayProperty: (stay: StayProperty) => void
   setStartingPoint: (baseId: string | null) => void
   setPreferredBase: (baseId: string | null) => void
   setStayStyle: (style: StayStyle | null) => void
@@ -82,6 +98,7 @@ type TripState = {
   setTransportChoice: (legId: string, mode: TransportMode) => void
   toggleLogistics: (id: string) => void
   markStepVisited: (id: BuilderStepId) => void
+  setCityNightOverride: (placeId: string, nights: number) => void
   getSelectedRegions: () => string[]
   getItinerary: () => { days: ItineraryDay[]; totals: CostTotals }
 }
@@ -102,6 +119,13 @@ const defaultBasics: TripBasics = {
   travelStyle: 'balanced',
   paceKnown: false,
   interests: [],
+  groupSize: 2,
+  groupSizeKnown: false,
+  holidayKind: 'leisure',
+  holidayKindKnown: false,
+  budgetFixedUsd: 600,
+  budgetDailyUsd: 50,
+  budgetAllocationKnown: false,
 }
 
 const PIPELINE_SESSION_KEY = 'vn-itinerary-pipeline'
@@ -142,6 +166,34 @@ function syncBudgetRange(basics: TripBasics): TripBasics {
   }
 }
 
+function holidayKindToStyle(kind: HolidayKind): TravelStyle {
+  if (kind === 'leisure') return 'relaxed'
+  if (kind === 'action') return 'packed'
+  return 'balanced'
+}
+
+function syncTripShaping(basics: TripBasics): TripBasics {
+  let next = {
+    ...basics,
+    groupSize: Math.min(12, Math.max(1, Math.round(basics.groupSize) || 2)),
+    budgetFixedUsd: Math.max(0, Math.round(basics.budgetFixedUsd) || 0),
+    budgetDailyUsd: Math.max(0, Math.round(basics.budgetDailyUsd) || 0),
+  }
+  if (next.holidayKindKnown) {
+    next.travelStyle = holidayKindToStyle(next.holidayKind)
+    next.paceKnown = true
+  }
+  if (next.budgetAllocationKnown) {
+    const people = next.groupSize
+    const days = Math.max(1, next.days)
+    next.budgetTarget = Math.round(next.budgetFixedUsd + next.budgetDailyUsd * days * people)
+    next.budgetKnown = true
+    next.budgetMode = 'total'
+    next = syncBudgetRange(next)
+  }
+  return next
+}
+
 export const useTripStore = create<TripState>()(
   persist(
     (set, get) => ({
@@ -153,6 +205,7 @@ export const useTripStore = create<TripState>()(
       comparisonStayIds: [],
       chosenStayId: null,
       itineraryStayPropertyIds: [],
+      customStayProperties: {},
       startingPointBaseId: null,
       preferredBaseId: null,
       stayStyle: null,
@@ -161,6 +214,7 @@ export const useTripStore = create<TripState>()(
       transportChoices: {},
       logisticsAcknowledged: [],
       farthestStepIndex: 0,
+      cityNightOverrides: {},
       itineraryPipelineActive: readPipelineSession(),
 
       enterItineraryPipeline: () => {
@@ -175,9 +229,16 @@ export const useTripStore = create<TripState>()(
       setBasics: (patch) =>
         set((state) => {
           let next = { ...state.basics, ...patch }
-          if (patch.budgetTarget != null) next = syncBudgetRange(next)
+          if (patch.budgetTarget != null && patch.budgetAllocationKnown == null) {
+            next = syncBudgetRange(next)
+          }
           next = syncFromDates(next)
-          return { basics: next }
+          next = syncTripShaping(next)
+          const daysChanged = patch.days != null && patch.days !== state.basics.days
+          return {
+            basics: next,
+            ...(daysChanged ? { cityNightOverrides: {} } : {}),
+          }
         }),
 
       toggleInterest: (interest) =>
@@ -317,6 +378,11 @@ export const useTripStore = create<TripState>()(
             : [...state.itineraryStayPropertyIds, id],
         })),
 
+      upsertCustomStayProperty: (stay) =>
+        set((state) => ({
+          customStayProperties: { ...state.customStayProperties, [stay.id]: stay },
+        })),
+
       setStartingPoint: (baseId) => set({ startingPointBaseId: baseId }),
       setPreferredBase: (baseId) => set({ preferredBaseId: baseId }),
       setStayStyle: (style) => set({ stayStyle: style }),
@@ -353,6 +419,14 @@ export const useTripStore = create<TripState>()(
           return { farthestStepIndex: Math.max(state.farthestStepIndex, idx) }
         }),
 
+      setCityNightOverride: (placeId, nights) =>
+        set((state) => ({
+          cityNightOverrides: {
+            ...state.cityNightOverrides,
+            [placeId]: Math.max(1, Math.round(nights)),
+          },
+        })),
+
       getSelectedRegions: () => selectedRegionsFromExperiences(get().selectedExperienceIds),
 
       getItinerary: () => {
@@ -371,6 +445,15 @@ export const useTripStore = create<TripState>()(
     }),
     {
       name: 'vietnam-trip-builder',
+      merge: (persisted, current) => {
+        const p = (persisted ?? {}) as Partial<TripState>
+        return {
+          ...current,
+          ...p,
+          basics: { ...current.basics, ...p.basics },
+          cityNightOverrides: p.cityNightOverrides ?? current.cityNightOverrides,
+        }
+      },
       partialize: (state) => ({
         basics: state.basics,
         selectedExperienceIds: state.selectedExperienceIds,
@@ -380,6 +463,7 @@ export const useTripStore = create<TripState>()(
         comparisonStayIds: state.comparisonStayIds,
         chosenStayId: state.chosenStayId,
         itineraryStayPropertyIds: state.itineraryStayPropertyIds,
+        customStayProperties: state.customStayProperties,
         startingPointBaseId: state.startingPointBaseId,
         preferredBaseId: state.preferredBaseId,
         stayStyle: state.stayStyle,
@@ -388,6 +472,7 @@ export const useTripStore = create<TripState>()(
         transportChoices: state.transportChoices,
         logisticsAcknowledged: state.logisticsAcknowledged,
         farthestStepIndex: state.farthestStepIndex,
+        cityNightOverrides: state.cityNightOverrides,
         // itineraryPipelineActive is session-only — not persisted (avoids rehydrate wiping it)
       }),
       onRehydrateStorage: () => (state) => {

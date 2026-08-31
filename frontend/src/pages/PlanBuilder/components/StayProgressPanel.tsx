@@ -4,7 +4,7 @@ import type { BuilderStepId } from '../types'
 
 type Props = {
   expanded: boolean
-  current: BuilderStepId
+  current?: BuilderStepId
 }
 
 export function StayProgressPanel({ expanded, current = 'stay' }: Props) {

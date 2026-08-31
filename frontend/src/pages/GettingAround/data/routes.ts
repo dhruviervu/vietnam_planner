@@ -254,12 +254,12 @@ export function urbanModesForContext(focusId: PlaceId | null): {
   let ids: UrbanModeId[] = [...DEFAULT_URBAN]
   if (place) {
     if (place.kind === 'island') {
-      ids = ['car-taxi', 'scooter', 'walking', 'bicycle', 'urban-driver']
+      ids = ['scooter', 'car-taxi', 'walking', 'bicycle', 'urban-driver']
       impractical.push('public-transit')
     } else if (place.id === 'hoi-an' || place.id === 'ninh-binh') {
-      ids = ['car-taxi', 'walking', 'bicycle', 'scooter', 'urban-driver', 'public-transit']
+      ids = ['scooter', 'car-taxi', 'walking', 'bicycle', 'urban-driver', 'public-transit']
     } else if (place.id === 'hanoi' || place.id === 'hcmc' || place.id === 'da-nang') {
-      ids = ['car-taxi', 'public-transit', 'scooter', 'walking', 'urban-driver', 'bicycle']
+      ids = ['scooter', 'car-taxi', 'public-transit', 'walking', 'urban-driver', 'bicycle']
     }
   }
 

@@ -200,4 +200,6 @@ export type StayProperty = {
   quietHours: boolean
   flexibleCancel: boolean
   instantBook: boolean
+  /** True when this card lives only in the traveller's trip store, not the shared catalog. */
+  addedByYou?: boolean
 }

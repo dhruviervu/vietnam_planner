@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { PlaceId, UrbanModeId } from '../data/types'
 import { URBAN_MODES } from '../data/modes'
 import { getPlace, urbanCities } from '../data/places'
@@ -6,23 +6,29 @@ import { urbanModesForContext } from '../data/routes'
 import { getUrbanPoint, pointsForCity, type UrbanPoint } from '../data/urbanPoints'
 import {
   resolveUrbanJourney,
+  selectionFromBagPin,
   selectionFromLandmark,
   selectionFromResolution,
+  selectionFromTypedPlace,
   type UrbanJourneyResult,
   type UrbanSelection,
 } from '../data/urbanIntelligence'
 import {
   loadCityGeography,
-  resolveHoverContext,
   resolveMapClick,
   type CityGeography,
 } from '../maps/cityGeography'
 import { MAP_META } from '../maps/mapMeta'
 import { URBAN_POINT_META } from '../maps/locationMeta'
-import { SvgTransportMap } from './SvgTransportMap'
+import { UrbanCityMap } from './UrbanCityMap'
 import { ModeJumpNav } from './ModeJumpNav'
 import { ModeSection } from './ModeSection'
 import { ComparisonStrip } from './ComparisonStrip'
+import { useTripBagPlaceIds } from '../lib/tripBagPlaces'
+import { useTripBagUrbanPins } from '../lib/tripBagUrbanPins'
+import { geocodeInCity, outsideCityMessage } from '../lib/geocodeInCity'
+import { fetchOsrmRoutes, type OsrmRouteResult } from '../lib/osrmRoute'
+import { cityProviderUrl } from '../lib/cityProviderUrl'
 
 const BACKDROP =
   'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1400&q=80'
@@ -40,7 +46,13 @@ export function UrbanWorld({
   selectedOptionId,
   onSelectOption,
 }: Props) {
-  const cities = useMemo(() => urbanCities(), [])
+  const allCities = useMemo(() => urbanCities(), [])
+  const bagPlaceIds = useTripBagPlaceIds()
+  const cities = useMemo(() => {
+    if (bagPlaceIds.size === 0) return allCities
+    const filtered = allCities.filter((c) => bagPlaceIds.has(c.id))
+    return filtered.length ? filtered : allCities
+  }, [allCities, bagPlaceIds])
   const [cityId, setCityId] = useState<PlaceId | null>(null)
   const [origin, setOrigin] = useState<UrbanSelection | null>(null)
   const [destination, setDestination] = useState<UrbanSelection | null>(null)
@@ -48,13 +60,26 @@ export function UrbanWorld({
   const [geography, setGeography] = useState<CityGeography | null>(null)
   const [geoLoading, setGeoLoading] = useState(false)
   const [outsideNotice, setOutsideNotice] = useState<string | null>(null)
-  const [mapHover, setMapHover] = useState<{
-    title: string
-    subtitle: string
-    kind: string
-  } | null>(null)
+  const [fromQuery, setFromQuery] = useState('')
+  const [toQuery, setToQuery] = useState('')
+  const [fromError, setFromError] = useState<string | null>(null)
+  const [toError, setToError] = useState<string | null>(null)
+  const [searchingSlot, setSearchingSlot] = useState<'from' | 'to' | null>(null)
+  const [osrmRoute, setOsrmRoute] = useState<OsrmRouteResult | null>(null)
+  const [osrmFailed, setOsrmFailed] = useState(false)
+  const mapSelectGen = useRef(0)
+
+  useEffect(() => {
+    if (cityId && !cities.some((c) => c.id === cityId)) {
+      setCityId(null)
+    }
+  }, [cities, cityId])
 
   const city = getPlace(cityId)
+  const { pins: bagPins, loading: bagPinsLoading, hasBagItems } = useTripBagUrbanPins(
+    cityId,
+    city?.label ?? null,
+  )
   const points = useMemo(() => (cityId ? pointsForCity(cityId) : []), [cityId])
   const { modes } = urbanModesForContext(cityId)
   const availableModeIds = useMemo(
@@ -100,8 +125,47 @@ export function UrbanWorld({
 
   const journey = useMemo(() => {
     if (!origin || !destination) return null
-    return resolveUrbanJourney(origin, destination, availableModeIds)
-  }, [origin, destination, availableModeIds])
+    return resolveUrbanJourney(origin, destination, availableModeIds, undefined, {
+      roadKm: osrmRoute?.drivingKm,
+      footKm: osrmRoute?.footKm,
+      footMinutes: osrmRoute?.footMinutes,
+      drivingMinutes: osrmRoute?.drivingMinutes,
+      estimated: !osrmRoute,
+    })
+  }, [origin, destination, availableModeIds, osrmRoute, osrmFailed])
+
+  useEffect(() => {
+    if (origin) setFromQuery(origin.label)
+    else setFromQuery('')
+  }, [origin?.id, origin?.label])
+
+  useEffect(() => {
+    if (destination) setToQuery(destination.label)
+    else setToQuery('')
+  }, [destination?.id, destination?.label])
+
+  useEffect(() => {
+    if (!origin || !destination) {
+      setOsrmRoute(null)
+      setOsrmFailed(false)
+      return
+    }
+    let cancelled = false
+    setOsrmRoute(null)
+    setOsrmFailed(false)
+    fetchOsrmRoutes(origin, destination).then((result) => {
+      if (cancelled) return
+      if (result) {
+        setOsrmRoute(result)
+        setOsrmFailed(false)
+      } else {
+        setOsrmFailed(true)
+      }
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [origin?.lat, origin?.lng, destination?.lat, destination?.lng])
 
   useEffect(() => {
     setPanelModeId(null)
@@ -113,11 +177,19 @@ export function UrbanWorld({
     setDestination(null)
     setPanelModeId(null)
     setOutsideNotice(null)
-    setMapHover(null)
+    setFromQuery('')
+    setToQuery('')
+    setFromError(null)
+    setToError(null)
+    setOsrmRoute(null)
+    setOsrmFailed(false)
   }
 
   function applySelection(next: UrbanSelection) {
+    mapSelectGen.current += 1
     setOutsideNotice(null)
+    setFromError(null)
+    setToError(null)
     if (!origin || (origin && destination)) {
       setOrigin(next)
       setDestination(null)
@@ -131,9 +203,58 @@ export function UrbanWorld({
   }
 
   function selectLandmark(id: string) {
+    const bag = bagPins.find((p) => p.id === id)
+    if (bag && cityId && city) {
+      applySelection(selectionFromBagPin(bag, cityId, city.label))
+      return
+    }
     const point = getUrbanPoint(id)
     if (!point) return
     applySelection(selectionFromLandmark(point))
+  }
+
+  async function searchTyped(slot: 'from' | 'to') {
+    if (!cityId || !city || !cityMeta?.bounds) return
+    const raw = (slot === 'from' ? fromQuery : toQuery).trim()
+    const setErr = slot === 'from' ? setFromError : setToError
+    if (!raw) return
+    if (slot === 'from' && origin && raw === origin.label) return
+    if (slot === 'to' && destination && raw === destination.label) return
+    setErr(null)
+    setSearchingSlot(slot)
+    const started = mapSelectGen.current
+    const result = await geocodeInCity(raw, city.label, cityMeta.bounds)
+    if (started !== mapSelectGen.current) {
+      setSearchingSlot(null)
+      return
+    }
+    setSearchingSlot(null)
+    if (!result.ok) {
+      setErr(outsideCityMessage(city.label))
+      return
+    }
+    const sel = selectionFromTypedPlace(raw, result.hit.lat, result.hit.lng, cityId, city.label)
+    if (slot === 'from') {
+      setOrigin(sel)
+      if (
+        destination &&
+        Math.abs(destination.lat - sel.lat) < 0.00015 &&
+        Math.abs(destination.lng - sel.lng) < 0.00015
+      ) {
+        setDestination(null)
+      }
+      setOutsideNotice(null)
+      return
+    }
+    if (
+      origin &&
+      Math.abs(origin.lat - sel.lat) < 0.00015 &&
+      Math.abs(origin.lng - sel.lng) < 0.00015
+    ) {
+      return
+    }
+    setDestination(sel)
+    setOutsideNotice(null)
   }
 
   function selectCoordinate(coord: { lat: number; lng: number }) {
@@ -177,24 +298,22 @@ export function UrbanWorld({
     applySelection(selectionFromResolution(res))
   }
 
-  function onMapPointerMove(coord: { lat: number; lng: number } | null) {
-    if (!coord || !cityId || !city) {
-      setMapHover(null)
-      return
-    }
-    setMapHover(resolveHoverContext(geography, cityId, city.label, coord.lat, coord.lng))
-  }
-
   function clearPoints() {
     setOrigin(null)
     setDestination(null)
     setPanelModeId(null)
     setOutsideNotice(null)
+    setFromQuery('')
+    setToQuery('')
+    setFromError(null)
+    setToError(null)
+    setOsrmRoute(null)
+    setOsrmFailed(false)
   }
 
   function jumpToMode(modeId: string, scrollTargetId?: string) {
-    // Local experience modes (e.g. cyclo) have no dedicated section — keep A/B + panel only
-    if (modeId.startsWith('local-') || !scrollTargetId) {
+    // Local experience / walking have no encyclopedia section — keep A/B + panel only
+    if (modeId.startsWith('local-') || modeId === 'walking' || !scrollTargetId) {
       setPanelModeId(modeId)
       return
     }
@@ -204,8 +323,10 @@ export function UrbanWorld({
     el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
+  const displayModes = (cityId ? modes : URBAN_MODES).filter((m) => m.id !== 'walking')
+
   useEffect(() => {
-    const list = (cityId ? modes : URBAN_MODES).map((m) => `mode-urban-${m.id}`)
+    const list = displayModes.map((m) => `mode-urban-${m.id}`)
     const obs = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -221,9 +342,7 @@ export function UrbanWorld({
       if (el) obs.observe(el)
     })
     return () => obs.disconnect()
-  }, [cityId, modes, onActiveMode])
-
-  const displayModes = cityId ? modes : URBAN_MODES
+  }, [cityId, displayModes, onActiveMode])
 
   const mapStatusHint = !city
     ? null
@@ -231,14 +350,45 @@ export function UrbanWorld({
       ? outsideNotice
       : geoLoading
         ? 'Loading city geography…'
-        : !origin
-          ? 'Click anywhere inside the mapped city to choose a starting point'
-          : !destination
-            ? 'Now click anywhere else for your destination'
-            : null
+        : bagPinsLoading && hasBagItems
+          ? 'Placing trip-bag spots on the map…'
+          : osrmFailed && origin && destination
+            ? 'Routing is estimated — street directions unavailable right now'
+            : !origin
+              ? hasBagItems
+                ? 'Click a trip-bag pin or anywhere inside the mapped city for Point A'
+                : 'Click anywhere inside the mapped city to choose a starting point'
+              : !destination
+                ? 'Now click anywhere else for your destination'
+                : null
 
-  const landmarkOriginId = origin?.kind === 'landmark' ? origin.id : null
-  const landmarkDestId = destination?.kind === 'landmark' ? destination.id : null
+  const urbanMapMarkers = useMemo(
+    () =>
+      markers.map((m) => ({
+        id: m.id,
+        label: m.label,
+        lat: m.lat,
+        lng: m.lng,
+        hint: m.hint,
+        role: 'landmark' as const,
+      })),
+    [markers],
+  )
+
+  const urbanBagMarkers = useMemo(
+    () =>
+      bagPins.map((p) => ({
+        id: p.id,
+        label: p.label,
+        lat: p.lat,
+        lng: p.lng,
+        role: 'bag' as const,
+      })),
+    [bagPins],
+  )
+
+  const pinOriginId = origin && origin.kind !== 'freeform' ? origin.id : null
+  const pinDestId = destination && destination.kind !== 'freeform' ? destination.id : null
   const freeOrigin =
     origin?.kind === 'freeform'
       ? { lat: origin.lat, lng: origin.lng, label: origin.label }
@@ -256,7 +406,7 @@ export function UrbanWorld({
         <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6">
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-terracotta">02</p>
           <h2 className="mt-1 font-serif text-[clamp(1.5rem,3vw,2rem)] font-semibold text-paper">
-            Urban & Short-Distance
+          Urban and short distance (Inside a city)
           </h2>
         </div>
       </div>
@@ -274,8 +424,9 @@ export function UrbanWorld({
           Which city are you exploring?
         </h3>
         <p className="mt-1 text-[0.82rem] text-muted">
-          Open a real city map, click anywhere for Point A and Point B, then get typical transport
-          intelligence.
+          {bagPlaceIds.size
+            ? 'Showing cities from your trip bag. Open a city map, then click two points.'
+            : 'Open a real city map, click anywhere for Point A and Point B, then get typical transport intelligence.'}
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {cities.map((c) => {
@@ -312,31 +463,29 @@ export function UrbanWorld({
               Explore the city
             </p>
             <p className="mt-1 mb-2 max-w-[54ch] text-[0.78rem] text-muted">
-              Click anywhere to choose a starting point, then click again for your destination. Use
-              the controls beside the map for precise selection.
+              {hasBagItems
+                ? 'Trip-bag places in this city are marked. Click two of them, tap the map, or type addresses on the right.'
+                : 'Interactive street map — click anywhere for Point A, then Point B, or type two places on the right.'}
             </p>
             <div className="min-h-0 flex-1">
               {cityMeta ? (
-                <SvgTransportMap
+                <UrbanCityMap
                   key={city.id}
-                  meta={cityMeta}
-                  locations={markers}
-                  originId={landmarkOriginId}
-                  destinationId={landmarkDestId}
-                  onSelectLocation={selectLandmark}
-                  enableFreeformSelect
-                  onSelectCoordinate={selectCoordinate}
+                  cityId={city.id}
+                  cityLabel={city.label}
+                  center={{ lat: city.lat, lng: city.lng }}
+                  zoom={city.mapZoom ?? 13}
+                  markers={urbanMapMarkers}
+                  bagPins={urbanBagMarkers}
+                  originId={pinOriginId}
+                  destinationId={pinDestId}
                   freeformOrigin={freeOrigin}
                   freeformDestination={freeDest}
-                  landmarksMuted
-                  fitLabel="Fit city"
-                  connectionLabel="Selected connection · not a driving route"
-                  showConnectionArrow
+                  routePath={osrmRoute?.geometry ?? null}
+                  routeEstimated={osrmFailed && !osrmRoute}
                   statusHint={mapStatusHint}
-                  geoHover={mapHover}
-                  onMapPointerGeo={onMapPointerMove}
-                  size="workspace"
-                  className="h-full"
+                  onSelectLocation={selectLandmark}
+                  onSelectCoordinate={selectCoordinate}
                 />
               ) : (
                 <div className="flex h-full items-center justify-center rounded-[18px] bg-cream/80 px-4 py-16 text-center ring-1 ring-ink/10">
@@ -358,6 +507,16 @@ export function UrbanWorld({
                 journey={journey}
                 activeModeId={panelModeId ?? activeModeId}
                 outsideNotice={outsideNotice}
+                fromQuery={fromQuery}
+                toQuery={toQuery}
+                fromError={fromError}
+                toError={toError}
+                searchingSlot={searchingSlot}
+                routingEstimated={Boolean(journey?.routeEstimated)}
+                onFromQuery={setFromQuery}
+                onToQuery={setToQuery}
+                onSearchFrom={() => void searchTyped('from')}
+                onSearchTo={() => void searchTyped('to')}
                 onDismissOutside={() => setOutsideNotice(null)}
                 onSelectLandmarkFrom={selectLandmark}
                 onSetOriginLandmark={(id) => {
@@ -366,6 +525,7 @@ export function UrbanWorld({
                   setOrigin(selectionFromLandmark(point))
                   if (destination?.id === id) setDestination(null)
                   setOutsideNotice(null)
+                  setFromError(null)
                 }}
                 onSetDestinationLandmark={(id) => {
                   const point = getUrbanPoint(id)
@@ -373,6 +533,7 @@ export function UrbanWorld({
                   if (id === origin.id) return
                   setDestination(selectionFromLandmark(point))
                   setOutsideNotice(null)
+                  setToError(null)
                 }}
                 onClear={clearPoints}
                 onJumpMode={jumpToMode}
@@ -393,18 +554,27 @@ export function UrbanWorld({
           idPrefix="mode-urban"
         />
 
-        {displayModes.map((m) => (
-          <ModeSection
-            key={m.id}
-            mode={m}
-            idPrefix="mode-urban"
-            highlighted={activeModeId === m.id}
-            selectedOptionId={selectedOptionId}
-            onSelectOption={onSelectOption}
-          />
-        ))}
+        <div className="mt-6 space-y-12">
+          {displayModes.map((m) => (
+            <ModeSection
+              key={m.id}
+              mode={m}
+              idPrefix="mode-urban"
+              highlighted={activeModeId === m.id}
+              selectedOptionId={selectedOptionId}
+              onSelectOption={onSelectOption}
+              bookingHref={
+                bagPlaceIds.size > 0 && city
+                  ? (option) => cityProviderUrl(option.bookingUrl, city.label)
+                  : undefined
+              }
+            />
+          ))}
+        </div>
 
-        <ComparisonStrip modes={displayModes} kind="urban" />
+        <div className="mt-2">
+          <ComparisonStrip modes={displayModes} kind="urban" />
+        </div>
       </div>
     </section>
   )
@@ -418,6 +588,16 @@ function UrbanJourneyPanel({
   journey,
   activeModeId,
   outsideNotice,
+  fromQuery,
+  toQuery,
+  fromError,
+  toError,
+  searchingSlot,
+  routingEstimated,
+  onFromQuery,
+  onToQuery,
+  onSearchFrom,
+  onSearchTo,
   onDismissOutside,
   onSelectLandmarkFrom,
   onSetOriginLandmark,
@@ -432,6 +612,16 @@ function UrbanJourneyPanel({
   journey: UrbanJourneyResult | null
   activeModeId: string | null
   outsideNotice: string | null
+  fromQuery: string
+  toQuery: string
+  fromError: string | null
+  toError: string | null
+  searchingSlot: 'from' | 'to' | null
+  routingEstimated: boolean
+  onFromQuery: (v: string) => void
+  onToQuery: (v: string) => void
+  onSearchFrom: () => void
+  onSearchTo: () => void
   onDismissOutside: () => void
   onSelectLandmarkFrom: (id: string) => void
   onSetOriginLandmark: (id: string) => void
@@ -439,323 +629,309 @@ function UrbanJourneyPanel({
   onClear: () => void
   onJumpMode: (id: string, scrollTargetId?: string) => void
 }) {
-  if (outsideNotice && !origin) {
-    return (
-      <div className="flex h-full flex-col overflow-hidden rounded-[18px] bg-paper ring-1 ring-terracotta/30">
-        <div className="px-4 py-4">
-          <p className="text-[0.55rem] font-bold uppercase tracking-[0.12em] text-terracotta">
-            Point A
-          </p>
-          <h3 className="mt-1 font-serif text-[1.15rem] font-semibold text-ink">
-            Outside {cityLabel}&apos;s supported area
-          </h3>
-          <p className="mt-2 text-[0.8rem] text-muted">{outsideNotice}</p>
-          <button
-            type="button"
-            onClick={onDismissOutside}
-            className="mt-4 rounded-full bg-terracotta px-3.5 py-2 text-[0.75rem] font-bold text-paper"
-          >
-            Select again
-          </button>
-        </div>
-      </div>
-    )
-  }
-
-  if (!origin && !destination) {
-    return (
-      <div className="flex h-full flex-col overflow-hidden rounded-[18px] bg-cream/80 ring-1 ring-ink/8">
-        <div className="px-4 py-4">
-          <p className="text-[0.55rem] font-bold uppercase tracking-[0.12em] text-muted">
-            Explore the city
-          </p>
-          <h3 className="mt-1 font-serif text-[1.2rem] font-semibold text-ink">
-            Choose your starting point
-          </h3>
-          <p className="mt-1 text-[0.8rem] text-muted">
-            Click anywhere inside the mapped {cityLabel} area.
-          </p>
-          <PointSelect
-            title="From · precise"
-            value={null}
-            points={points}
-            onChange={onSetOriginLandmark}
-            compact
-          />
-          <p className="mt-4 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-muted">
-            Popular shortcuts
-          </p>
-          <div className="mt-2 flex flex-wrap gap-1.5">
-            {points
-              .filter((p) => p.popular)
-              .map((p) => (
-                <button
-                  key={p.id}
-                  type="button"
-                  onClick={() => onSelectLandmarkFrom(p.id)}
-                  className="rounded-full bg-paper px-2.5 py-1 text-[0.68rem] font-bold text-ink ring-1 ring-ink/10 hover:text-terracotta"
-                >
-                  {p.label}
-                </button>
-              ))}
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  if (origin && !destination) {
-    return (
-      <div className="flex h-full flex-col overflow-hidden rounded-[18px] bg-paper ring-1 ring-terracotta/25">
-        <div className="border-b border-ink/8 px-4 py-3">
-          <p className="text-[0.55rem] font-bold uppercase tracking-[0.12em] text-terracotta">
-            Point A
-          </p>
-          <h3 className="mt-1 font-serif text-[1.15rem] font-semibold text-ink">
-            📍 {origin.label}
-          </h3>
-          <p className="mt-0.5 text-[0.75rem] text-muted">{origin.area}</p>
-          {origin.nearPlace ? (
-            <p className="mt-1.5 text-[0.7rem] font-medium text-ink/80">
-              Near: {origin.nearPlace.label} · ~{origin.nearPlace.km.toFixed(1)} km
-            </p>
-          ) : null}
-          {origin.nearWater ? (
-            <p className="mt-0.5 text-[0.7rem] font-medium text-ink/80">
-              Near water: {origin.nearWater.name} · ~{origin.nearWater.km.toFixed(1)} km
-            </p>
-          ) : null}
-          {outsideNotice ? (
-            <p className="mt-2 rounded-[8px] bg-cream px-2 py-1.5 text-[0.7rem] text-terracotta ring-1 ring-terracotta/20">
-              {outsideNotice}
-            </p>
-          ) : (
-            <p className="mt-2 text-[0.8rem] text-muted">
-              Click again to choose your destination.
-            </p>
-          )}
-        </div>
-        <div className="min-h-0 flex-1 overflow-y-auto px-4 py-3">
-          <PointSelect
-            title="To · precise"
-            value={null}
-            points={points.filter((p) => p.id !== origin.id)}
-            onChange={onSetDestinationLandmark}
-            compact
-          />
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {points
-              .filter((p) => p.popular && p.id !== origin.id)
-              .map((p) => (
-                <button
-                  key={p.id}
-                  type="button"
-                  onClick={() => onSetDestinationLandmark(p.id)}
-                  className="rounded-full bg-cream px-2.5 py-1 text-[0.68rem] font-bold text-ink ring-1 ring-ink/10 hover:text-terracotta"
-                >
-                  {p.label}
-                </button>
-              ))}
-          </div>
-          <button
-            type="button"
-            onClick={onClear}
-            className="mt-4 text-[0.7rem] font-bold text-terracotta hover:underline"
-          >
-            Clear
-          </button>
-        </div>
-      </div>
-    )
-  }
-
-  if (!journey || !origin || !destination) {
-    return (
-      <div className="flex h-full items-center rounded-[18px] bg-cream/80 px-4 py-5 ring-1 ring-ink/8">
-        <p className="font-serif text-[1.1rem] font-semibold text-ink">Choose two places</p>
-      </div>
-    )
-  }
+  const fieldNotice = fromError || toError || outsideNotice
 
   return (
-    <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-[18px] bg-paper ring-1 ring-terracotta/25">
+    <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-[18px] bg-paper ring-1 ring-ink/8">
       <div className="shrink-0 border-b border-ink/8 px-4 py-3">
         <div className="flex items-start justify-between gap-2">
-          <div className="min-w-0">
-            <p className="text-[0.55rem] font-bold uppercase tracking-[0.12em] text-terracotta">
+          <div>
+            <p className="text-[0.55rem] font-bold uppercase tracking-[0.12em] text-muted">
               Your journey
             </p>
             <h3 className="mt-0.5 font-serif text-[1.1rem] font-semibold leading-tight text-ink">
-              {origin.label} → {destination.label}
+              {origin && destination
+                ? `${origin.label} → ${destination.label}`
+                : origin
+                  ? 'Choose a destination'
+                  : `Places in ${cityLabel}`}
             </h3>
-            <p className="mt-0.5 text-[0.72rem] text-muted">
-              ~{journey.distanceKm.toFixed(1)} km approx. geographic distance ·{' '}
-              {journey.timeOfDayLabel}
-            </p>
           </div>
-          <button
-            type="button"
-            onClick={onClear}
-            className="shrink-0 rounded-[8px] bg-cream px-2 py-0.5 text-[0.62rem] font-bold text-ink ring-1 ring-ink/10"
-          >
-            Clear
-          </button>
+          {origin || destination ? (
+            <button
+              type="button"
+              onClick={onClear}
+              className="shrink-0 rounded-[8px] bg-cream px-2 py-0.5 text-[0.62rem] font-bold text-ink ring-1 ring-ink/10"
+            >
+              Clear
+            </button>
+          ) : null}
         </div>
 
-        <div className="mt-2 grid grid-cols-2 gap-1.5 text-[0.68rem]">
-          <div className="rounded-[8px] bg-cream/70 px-2 py-1.5 ring-1 ring-ink/6">
-            <p className="text-[0.5rem] font-bold uppercase tracking-wide text-muted">Point A</p>
-            <p className="font-bold text-ink">{origin.label}</p>
-            <p className="text-muted">{origin.area}</p>
-          </div>
-          <div className="rounded-[8px] bg-cream/70 px-2 py-1.5 ring-1 ring-ink/6">
-            <p className="text-[0.5rem] font-bold uppercase tracking-wide text-muted">Point B</p>
-            <p className="font-bold text-ink">{destination.label}</p>
-            <p className="text-muted">{destination.area}</p>
-          </div>
-        </div>
-
-        <div className="mt-2 grid grid-cols-2 gap-1.5">
-          <PointSelect
+        <div className="mt-2 space-y-1.5">
+          <PlaceSearchField
             title="From"
-            value={origin.kind === 'landmark' ? origin.id : ''}
-            points={points}
-            onChange={onSetOriginLandmark}
-            compact
-            placeholder={origin.kind === 'freeform' ? origin.label : undefined}
+            value={fromQuery}
+            placeholder={`A place in ${cityLabel}`}
+            searching={searchingSlot === 'from'}
+            error={fromError}
+            onChange={onFromQuery}
+            onSubmit={onSearchFrom}
           />
-          <PointSelect
+          <PlaceSearchField
             title="To"
-            value={destination.kind === 'landmark' ? destination.id : ''}
-            points={points.filter((p) => p.id !== origin.id)}
-            onChange={onSetDestinationLandmark}
-            compact
-            placeholder={destination.kind === 'freeform' ? destination.label : undefined}
+            value={toQuery}
+            placeholder={`A place in ${cityLabel}`}
+            searching={searchingSlot === 'to'}
+            error={toError}
+            onChange={onToQuery}
+            onSubmit={onSearchTo}
           />
         </div>
-      </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto px-4 py-3">
-        {journey.recommendations.length ? (
-          <div className="mb-3">
-            <p className="text-[0.55rem] font-bold uppercase tracking-[0.1em] text-muted">
-              Best options
-            </p>
-            <div className="mt-1.5 space-y-1">
-              {journey.recommendations.map((r) => {
-                const opt = journey.options.find((o) => o.id === r.optionId)
-                if (!opt) return null
-                return (
-                  <button
-                    key={r.id}
-                    type="button"
-                    onClick={() => onJumpMode(opt.modeId, opt.scrollTargetId)}
-                    className="flex w-full flex-col gap-0.5 rounded-[10px] bg-cream/80 px-2.5 py-1.5 text-left ring-1 ring-ink/8 hover:ring-terracotta/30"
-                    title={r.note}
-                  >
-                    <div className="flex w-full items-center gap-2">
-                      <span className="shrink-0 text-[0.75rem] font-bold text-ink">
-                        {r.symbol} {r.label}
-                      </span>
-                      <span className="truncate text-[0.7rem] text-muted">
-                        {opt.mode.symbol} {opt.mode.shortLabel}
-                      </span>
-                    </div>
-                    <p className="text-[0.62rem] leading-snug text-ink/70">{r.note}</p>
-                  </button>
-                )
-              })}
+        {fieldNotice ? (
+          <p className="mt-2 rounded-[8px] bg-cream px-2 py-1.5 text-[0.72rem] text-terracotta ring-1 ring-terracotta/20">
+            {fieldNotice}
+            {outsideNotice && !origin ? (
+              <button
+                type="button"
+                onClick={onDismissOutside}
+                className="ml-2 font-bold underline"
+              >
+                Dismiss
+              </button>
+            ) : null}
+          </p>
+        ) : origin && !destination ? (
+          <p className="mt-2 text-[0.78rem] text-muted">
+            Type a destination, or click a second point on the map.
+          </p>
+        ) : !origin ? (
+          <p className="mt-2 text-[0.78rem] text-muted">
+            Type two places, click trip-bag pins, or tap the map.
+          </p>
+        ) : journey ? (
+          <p className="mt-2 text-[0.72rem] text-muted">
+            ~{journey.distanceKm.toFixed(1)} km
+            {routingEstimated ? ' estimated' : ' by road'} · {journey.timeOfDayLabel}
+          </p>
+        ) : null}
+
+        {origin && destination ? (
+          <div className="mt-2 grid grid-cols-2 gap-1.5 text-[0.68rem]">
+            <div className="rounded-[8px] bg-cream/70 px-2 py-1.5 ring-1 ring-ink/6">
+              <p className="text-[0.5rem] font-bold uppercase tracking-wide text-muted">Point A</p>
+              <p className="font-bold text-ink">{origin.label}</p>
+              <p className="text-muted">{origin.area}</p>
+            </div>
+            <div className="rounded-[8px] bg-cream/70 px-2 py-1.5 ring-1 ring-ink/6">
+              <p className="text-[0.5rem] font-bold uppercase tracking-wide text-muted">Point B</p>
+              <p className="font-bold text-ink">{destination.label}</p>
+              <p className="text-muted">{destination.area}</p>
             </div>
           </div>
         ) : null}
-
-        <p className="text-[0.55rem] font-bold uppercase tracking-[0.1em] text-muted">
-          How you can travel
-        </p>
-        <ul className="mt-1.5 space-y-1.5">
-          {journey.options.map((opt) => {
-            const badge =
-              journey.recommendations.find((r) => r.optionId === opt.id)?.label ?? null
-            const active = activeModeId === opt.modeId
-            return (
-              <li key={opt.id}>
-                <button
-                  type="button"
-                  disabled={!opt.practical}
-                  onClick={() => {
-                    if (!opt.practical) return
-                    onJumpMode(opt.modeId, opt.scrollTargetId)
-                  }}
-                  className={`w-full rounded-[12px] px-2.5 py-2 text-left transition ring-1 ${
-                    !opt.practical
-                      ? 'cursor-default bg-cream/35 text-muted ring-ink/5 opacity-80'
-                      : active
-                        ? 'bg-terracotta/10 ring-terracotta/40'
-                        : 'bg-cream/60 ring-ink/8 hover:bg-cream hover:ring-terracotta/25'
-                  }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="text-[0.95rem] leading-none">{opt.mode.symbol}</span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                        <p className="truncate text-[0.8rem] font-bold text-ink">
-                          {opt.mode.shortLabel}
-                        </p>
-                        {badge ? (
-                          <span className="shrink-0 rounded-full bg-paper px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-wide text-ink ring-1 ring-ink/8">
-                            {badge}
-                          </span>
-                        ) : null}
-                      </div>
-                      <p className="mt-0.5 text-[0.68rem] font-medium text-ink/75">
-                        {opt.typicalDurationLabel} · {opt.typicalCostLabel}
-                      </p>
-                      <p className="mt-0.5 text-[0.62rem] text-muted">
-                        {opt.trafficNote} ·{' '}
-                        {opt.status === 'typical' ? 'TYPICAL' : opt.status.toUpperCase()}
-                      </p>
-                    </div>
-                    {opt.practical ? (
-                      <span className="shrink-0 text-[0.85rem] font-bold text-terracotta">→</span>
-                    ) : null}
-                  </div>
-                  {!opt.practical ? (
-                    <p className="mt-1 text-[0.65rem] text-muted">{opt.why}</p>
-                  ) : (
-                    <p className="mt-1 text-[0.62rem] leading-snug text-ink/65">{opt.why}</p>
-                  )}
-                </button>
-              </li>
-            )
-          })}
-        </ul>
-
-        {journey.insight ? (
-          <div className="mt-3 rounded-[10px] bg-cream/70 px-3 py-2 ring-1 ring-ink/8">
-            <p className="text-[0.55rem] font-bold uppercase tracking-[0.1em] text-muted">
-              What this means
-            </p>
-            <p className="mt-1 text-[0.72rem] leading-snug text-ink/85">{journey.insight}</p>
-          </div>
-        ) : null}
-
-        <a
-          href={journey.googleMapsUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-terracotta px-3.5 py-2 text-[0.75rem] font-bold text-paper"
-        >
-          Open route in Google Maps →
-        </a>
-        <p className="mt-1.5 text-[0.65rem] font-medium text-muted">
-          Use Google Maps for live navigation and turn-by-turn directions.
-        </p>
       </div>
 
-      <p className="shrink-0 border-t border-ink/8 px-4 py-2 text-[0.68rem] font-medium text-muted">
-        Select a mode to open its detailed section below.
-      </p>
+      <div className="min-h-0 flex-1 overflow-y-auto px-4 py-3">
+        {journey && origin && destination ? (
+          <>
+            {journey.recommendations.length ? (
+              <div className="mb-3">
+                <p className="text-[0.55rem] font-bold uppercase tracking-[0.1em] text-muted">
+                  Best options
+                </p>
+                {routingEstimated ? (
+                  <p className="mt-1 text-[0.65rem] text-muted">
+                    Routing is estimated — times use a straight-line distance.
+                  </p>
+                ) : null}
+                <div className="mt-1.5 space-y-1">
+                  {journey.recommendations.map((r) => {
+                    const opt = journey.options.find((o) => o.id === r.optionId)
+                    if (!opt) return null
+                    return (
+                      <button
+                        key={r.id}
+                        type="button"
+                        onClick={() => onJumpMode(opt.modeId, opt.scrollTargetId)}
+                        className="flex w-full flex-col gap-0.5 rounded-[10px] bg-cream/80 px-2.5 py-1.5 text-left ring-1 ring-ink/8 hover:ring-terracotta/30"
+                        title={r.note}
+                      >
+                        <div className="flex w-full items-center gap-2">
+                          <span className="shrink-0 text-[0.75rem] font-bold text-ink">
+                            {r.symbol} {r.label}
+                          </span>
+                          <span className="truncate text-[0.7rem] text-muted">
+                            {opt.mode.symbol} {opt.mode.shortLabel}
+                          </span>
+                        </div>
+                        <p className="text-[0.62rem] leading-snug text-ink/70">{r.note}</p>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            ) : null}
+
+            <p className="text-[0.55rem] font-bold uppercase tracking-[0.1em] text-muted">
+              How you can travel
+            </p>
+            <ul className="mt-1.5 space-y-1.5">
+              {journey.options.map((opt) => {
+                const badge =
+                  journey.recommendations.find((r) => r.optionId === opt.id)?.label ?? null
+                const active = activeModeId === opt.modeId
+                return (
+                  <li key={opt.id}>
+                    <button
+                      type="button"
+                      disabled={!opt.practical}
+                      onClick={() => {
+                        if (!opt.practical) return
+                        onJumpMode(opt.modeId, opt.scrollTargetId)
+                      }}
+                      className={`w-full rounded-[12px] px-2.5 py-2 text-left transition ring-1 ${
+                        !opt.practical
+                          ? 'cursor-default bg-cream/35 text-muted ring-ink/5 opacity-80'
+                          : active
+                            ? 'bg-terracotta/10 ring-terracotta/40'
+                            : 'bg-cream/60 ring-ink/8 hover:bg-cream hover:ring-terracotta/25'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-[0.95rem] leading-none">{opt.mode.symbol}</span>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                            <p className="truncate text-[0.8rem] font-bold text-ink">
+                              {opt.mode.shortLabel}
+                            </p>
+                            {badge ? (
+                              <span className="shrink-0 rounded-full bg-paper px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-wide text-ink ring-1 ring-ink/8">
+                                {badge}
+                              </span>
+                            ) : null}
+                          </div>
+                          <p className="mt-0.5 text-[0.68rem] font-medium text-ink/75">
+                            {opt.typicalDurationLabel} · {opt.typicalCostLabel}
+                          </p>
+                          <p className="mt-0.5 text-[0.62rem] text-muted">
+                            {opt.trafficNote} ·{' '}
+                            {opt.status === 'typical' ? 'TYPICAL' : opt.status.toUpperCase()}
+                          </p>
+                        </div>
+                        {opt.practical ? (
+                          <span className="shrink-0 text-[0.85rem] font-bold text-terracotta">→</span>
+                        ) : null}
+                      </div>
+                      <p className="mt-1 text-[0.62rem] leading-snug text-ink/65">{opt.why}</p>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+
+            {journey.insight ? (
+              <div className="mt-3 rounded-[10px] bg-cream/70 px-3 py-2 ring-1 ring-ink/8">
+                <p className="text-[0.55rem] font-bold uppercase tracking-[0.1em] text-muted">
+                  What this means
+                </p>
+                <p className="mt-1 text-[0.72rem] leading-snug text-ink/85">{journey.insight}</p>
+              </div>
+            ) : null}
+
+            <a
+              href={journey.googleMapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-terracotta px-3.5 py-2 text-[0.75rem] font-bold text-paper"
+            >
+              Open route in Google Maps →
+            </a>
+            <p className="mt-1.5 text-[0.65rem] font-medium text-muted">
+              Use Google Maps for live navigation and turn-by-turn directions.
+            </p>
+          </>
+        ) : (
+          <>
+            <PointSelect
+              title={origin ? 'To · landmark' : 'From · landmark'}
+              value={null}
+              points={origin ? points.filter((p) => p.id !== origin.id) : points}
+              onChange={origin ? onSetDestinationLandmark : onSetOriginLandmark}
+              compact
+            />
+            <p className="mt-4 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-muted">
+              Popular shortcuts
+            </p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {points
+                .filter((p) => p.popular && p.id !== origin?.id)
+                .map((p) => (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() =>
+                      origin ? onSetDestinationLandmark(p.id) : onSelectLandmarkFrom(p.id)
+                    }
+                    className="rounded-full bg-cream px-2.5 py-1 text-[0.68rem] font-bold text-ink ring-1 ring-ink/10 hover:text-terracotta"
+                  >
+                    {p.label}
+                  </button>
+                ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      {journey ? (
+        <p className="shrink-0 border-t border-ink/8 px-4 py-2 text-[0.68rem] font-medium text-muted">
+          Select a mode to open its detailed section below.
+        </p>
+      ) : null}
     </div>
+  )
+}
+
+function PlaceSearchField({
+  title,
+  value,
+  placeholder,
+  searching,
+  error,
+  onChange,
+  onSubmit,
+}: {
+  title: string
+  value: string
+  placeholder: string
+  searching: boolean
+  error: string | null
+  onChange: (v: string) => void
+  onSubmit: () => void
+}) {
+  return (
+    <label className="block">
+      <span className="text-[0.5rem] font-bold uppercase tracking-[0.12em] text-muted">{title}</span>
+      <div className="mt-0.5 flex gap-1">
+        <input
+          type="text"
+          value={value}
+          placeholder={placeholder}
+          onChange={(e) => onChange(e.target.value)}
+          onBlur={() => {
+            if (value.trim()) onSubmit()
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault()
+              onSubmit()
+            }
+          }}
+          className={`min-w-0 flex-1 rounded-[10px] border-0 bg-cream/80 px-2 py-1.5 text-[0.78rem] font-semibold text-ink ring-1 ${
+            error ? 'ring-terracotta/50' : 'ring-ink/10'
+          }`}
+        />
+        <button
+          type="button"
+          onClick={onSubmit}
+          disabled={searching || !value.trim()}
+          className="shrink-0 rounded-[10px] bg-ink px-2 py-1.5 text-[0.68rem] font-bold text-paper disabled:opacity-50"
+        >
+          {searching ? '…' : 'Set'}
+        </button>
+      </div>
+    </label>
   )
 }
 

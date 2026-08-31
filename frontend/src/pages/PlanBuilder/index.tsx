@@ -9,11 +9,21 @@ import type { BuilderStepId } from './types'
 import { stepIndex } from './steps'
 
 function currentStepFromPath(pathname: string): BuilderStepId {
-  const segment = pathname.split('/').filter(Boolean).pop() ?? 'when-to-go'
-  if (segment === 'experiences-city') return 'activities'
-  if (segment === 'basics') return 'when-to-go'
-  if (segment === 'know-before') return 'logistics'
-  const match = BUILDER_STEPS.find((s) => s.path === segment)
+  const parts = pathname.split('/').filter(Boolean)
+  const builderIdx = parts.indexOf('builder')
+  const first = (builderIdx >= 0 ? parts[builderIdx + 1] : parts.at(-1)) ?? 'when-to-go'
+  if (first === 'experiences' || first === 'experiences-city') return 'experiences'
+  if (first === 'activities') return 'activities'
+  if (first === 'stay') return 'stay'
+  if (first === 'transport') return 'transport'
+  if (first === 'eat') return 'eat'
+  if (first === 'shopping') return 'shopping'
+  if (first === 'airport') return 'airport'
+  if (first === 'logistics') return 'logistics'
+  if (first === 'itinerary') return 'itinerary'
+  if (first === 'when-to-go' || first === 'basics') return 'when-to-go'
+  if (first === 'know-before') return 'logistics'
+  const match = BUILDER_STEPS.find((s) => s.path === first)
   return match?.id ?? 'when-to-go'
 }
 
@@ -47,8 +57,10 @@ export function PlanBuilderLayout() {
     'logistics',
   ].includes(current)
 
-  // Experiences owns its rails; browse mode never shows the pipeline progress rail
-  const hideLayoutProgress = current === 'experiences' || !pipelineActive
+  const ownsOwnRail =
+    /\/plan\/builder\/experiences$/.test(location.pathname) ||
+    /\/plan\/builder\/activities$/.test(location.pathname)
+  const hideLayoutProgress = ownsOwnRail
 
   return (
     <>

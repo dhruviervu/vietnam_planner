@@ -1,33 +1,24 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Nav } from '../../components/landing/Nav'
 import { Footer } from '../../components/landing/Footer'
+import { BuilderProgressChrome } from '../PlanBuilder/components/BuilderProgressChrome'
 import { useTripStore } from '../../store/tripStore'
 import { getStayCity, STAY_CITIES } from './data/cities'
 import { getClustersForCity } from './data/clusters'
-import { getStaysForCluster } from './data/stays'
-import { filterStaysByListing, rankClusters, rankStays } from './data/ranking'
-import { LISTING_FILTER_CATEGORIES } from './data/labels'
-import type {
-  StayCityId,
-  StayFilterId,
-  StayListingFilterId,
-  StaySortId,
-} from './data/types'
+import { rankClusters } from './data/ranking'
+import { NEIGHBOURHOOD_INTROS } from './data/neighbourhoodIntros'
+import type { StayCityId } from './data/types'
 import {
   collectTripBagStayItems,
-  recommendClusterForBag,
   summarizeTripBagCities,
   unmappedBagPlaces,
 } from './services/tripBagStayIntelligence'
+import { useTripBagStayPins } from './lib/tripBagStayPins'
 import { StayHero } from './components/StayHero'
-import { CitySelector } from './components/CitySelector'
-import { FilterBar } from './components/FilterBar'
 import { ClusterMap } from './components/ClusterMap'
-import { ClusterPanel } from './components/ClusterPanel'
-import { ClusterComparison } from './components/ClusterComparison'
-import { StayGrid } from './components/StayGrid'
-import { ListingFilterSidebar } from './components/ListingFilterSidebar'
+import { NeighbourhoodCard } from './components/NeighbourhoodCard'
+import { HotelExplorer } from './components/HotelExplorer'
 import { TripBagStayContext } from './components/TripBagStayContext'
+import { CitySwitchBar } from './components/CitySwitchBar'
 
 const DEFAULT_CITY: StayCityId = 'hanoi'
 
@@ -46,7 +37,7 @@ export function WhereToStayPage({ embedded = false }: { embedded?: boolean }) {
   const visibleCities = useMemo(
     () =>
       bagFiltered
-        ? STAY_CITIES.filter((c) => bagCities.some((b) => b.cityId === c.id))
+        ? STAY_CITIES.filter((city) => bagCities.some((b) => b.cityId === city.id))
         : STAY_CITIES,
     [bagFiltered, bagCities],
   )
@@ -57,58 +48,23 @@ export function WhereToStayPage({ embedded = false }: { embedded?: boolean }) {
     DEFAULT_CITY
 
   const [cityId, setCityId] = useState<StayCityId>(initialCity)
-  const [filters, setFilters] = useState<StayFilterId[]>([])
-  const [listingFilters, setListingFilters] = useState<StayListingFilterId[]>([])
-  const [clusterId, setClusterId] = useState<string>(
-    () => getStayCity(initialCity).defaultClusterId,
-  )
-  const [sort, setSort] = useState<StaySortId>('recommended')
-  const [appliedBagRec, setAppliedBagRec] = useState(false)
+  const [clusterId, setClusterId] = useState(getStayCity(initialCity).defaultClusterId)
+  const [catalogScope, setCatalogScope] = useState<'city' | 'all'>('city')
 
-  // Keep selected city inside the visible set when the bag changes
   useEffect(() => {
     if (!visibleCities.some((c) => c.id === cityId)) {
-      const next = visibleCities[0]?.id ?? DEFAULT_CITY
-      setCityId(next)
+      setCityId(visibleCities[0]?.id ?? DEFAULT_CITY)
     }
   }, [visibleCities, cityId])
 
-  const city = getStayCity(cityId)
-  const clusters = useMemo(() => getClustersForCity(cityId), [cityId])
-  const ranked = useMemo(() => rankClusters(clusters, filters), [clusters, filters])
-
-  const cityBagItems = useMemo(
-    () => bagItems.filter((i) => i.stayCityId === cityId),
-    [bagItems, cityId],
-  )
-
-  const bagRecommendation = useMemo(
-    () => (bagFiltered ? recommendClusterForBag(cityId, cityBagItems) : null),
-    [bagFiltered, cityId, cityBagItems],
-  )
-
   useEffect(() => {
-    const nextCity = getStayCity(cityId)
-    setFilters((prev) => prev.filter((f) => nextCity.availableFilters.includes(f)))
-    setSort('recommended')
-    setListingFilters([])
-    setAppliedBagRec(false)
+    setClusterId(getStayCity(cityId).defaultClusterId)
   }, [cityId])
 
-  // Prefer trip-bag cluster recommendation when entering a city in bag mode
-  useEffect(() => {
-    if (!bagFiltered || !bagRecommendation || appliedBagRec) return
-    setClusterId(bagRecommendation.cluster.id)
-    setAppliedBagRec(true)
-  }, [bagFiltered, bagRecommendation, appliedBagRec, cityId])
-
-  const filterKey = filters.join('|')
-  useEffect(() => {
-    if (!filterKey) return
-    if (bagFiltered && bagRecommendation) return
-    const top = rankClusters(getClustersForCity(cityId), filters)[0]
-    if (top) setClusterId(top.cluster.id)
-  }, [filterKey, cityId, filters, bagFiltered, bagRecommendation])
+  const city = getStayCity(cityId)
+  const clusters = useMemo(() => getClustersForCity(cityId), [cityId])
+  const ranked = useMemo(() => rankClusters(clusters, []), [clusters])
+  const bagPins = useTripBagStayPins(city, bagItems)
 
   useEffect(() => {
     if (!ranked.some((r) => r.cluster.id === clusterId) && ranked[0]) {
@@ -116,171 +72,100 @@ export function WhereToStayPage({ embedded = false }: { embedded?: boolean }) {
     }
   }, [ranked, clusterId])
 
-  const selectedRanked = ranked.find((r) => r.cluster.id === clusterId) ?? ranked[0]
-  const selected = selectedRanked?.cluster ?? clusters[0]
-
-  const recommendedClusterId =
-    bagRecommendation?.cluster.id ??
-    ranked.find((r) => r.match === 'recommended')?.cluster.id ??
-    null
-  const selectedIsRecommended = Boolean(
-    selected && recommendedClusterId && selected.id === recommendedClusterId,
-  )
-  const recommendReasons =
-    bagRecommendation && selectedIsRecommended ? bagRecommendation.reasons : []
-
-  const stays = useMemo(() => {
-    if (!selected) return []
-    const list = getStaysForCluster(selected.id)
-    const filtered = filterStaysByListing(list, listingFilters, LISTING_FILTER_CATEGORIES)
-    return rankStays(filtered, sort, filters)
-  }, [selected, sort, filters, listingFilters])
-
-  function toggleFilter(id: StayFilterId) {
-    setFilters((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
-  }
-
-  function toggleListingFilter(id: StayListingFilterId) {
-    setListingFilters((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
-    )
-  }
-
   function selectCluster(id: string) {
     setClusterId(id)
+    window.requestAnimationFrame(() => {
+      document.getElementById(`neighbourhood-${id}`)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    })
   }
 
-  if (!selected) return null
+  function openNeighbourhoodHotels(id: string) {
+    const from = embedded ? '?from=pipeline' : ''
+    window.open(`/where-to-stay/neighbourhood/${id}${from}`, '_blank', 'noopener,noreferrer')
+  }
 
-  return (
+  function exploreAllStays() {
+    setCatalogScope('all')
+    window.setTimeout(() => {
+      document.getElementById('stay-catalog')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }, 80)
+  }
+
+  const page = (
     <>
-      {!embedded && <Nav />}
-      <main className="mx-auto max-w-[1180px] px-[clamp(1.1rem,4vw,2rem)] py-8 pb-20">
+      <main className="mx-auto max-w-[1180px] px-[clamp(1.1rem,4vw,2rem)] py-6 pb-20">
         <StayHero />
 
-        {bagFiltered && (
-          <div className="mt-6">
+        {bagFiltered ? (
+          <div className="mt-4">
             <TripBagStayContext
               cities={bagCities}
               totalBagItems={bagItems.length}
-              unmappedCount={unmapped.length}
+              unmappedLabels={[...new Set(unmapped.map((item) => item.cityLabel))]}
+              onExploreAllStays={exploreAllStays}
             />
           </div>
-        )}
+        ) : null}
 
-        {bagItems.length > 0 && bagCities.length === 0 && (
-          <div className="mt-6 rounded-[18px] border border-ink/10 bg-cream/80 px-5 py-4">
-            <p className="font-serif text-[1.2rem] font-semibold text-ink">
-              Your picks are outside our stay-city map for now
-            </p>
-            <p className="mt-1 text-[0.9rem] text-muted">
-              We’re showing all stay cities so you can still choose a base. Add plans in Hanoi, Hoi
-              An, Da Nang, Hue, HCMC, Nha Trang, Da Lat or Phu Quoc to focus this page.
-            </p>
-          </div>
-        )}
-
-        <div className="mt-8 space-y-6">
-          <CitySelector
-            cityId={cityId}
-            onChange={setCityId}
-            cities={visibleCities}
-            bagSummaries={bagCities}
-            bagFiltered={bagFiltered}
-          />
-
-          <FilterBar
-            available={city.availableFilters}
-            selected={filters}
-            onToggle={toggleFilter}
-          />
+        <div className="mt-6">
+          <CitySwitchBar cities={visibleCities} cityId={cityId} onChange={setCityId} />
         </div>
 
         <section className="mt-8">
-          <p className="text-[0.58rem] font-bold uppercase tracking-[0.14em] text-terracotta">
-            Step 3 · Neighbourhoods
-          </p>
-          <h2 className="mt-1 font-serif text-[1.4rem] font-semibold text-ink">
-            {city.id === 'hoi-an'
-              ? 'Where to base yourself in Hoi An'
-              : `Where to base yourself in ${city.label}`}
+          <h2 className="font-serif text-[clamp(1.35rem,2.8vw,1.7rem)] font-semibold text-ink">
+            Neighbourhoods in {city.label}
           </h2>
-          <p className="mt-1 max-w-[62ch] text-[0.82rem] text-muted">
-            {bagFiltered ? (
-              <>
-                We suggest a cluster from your trip bag — but you can open{' '}
-                <span className="font-semibold text-ink">any neighbourhood</span> and browse stays
-                across the city.
-              </>
-            ) : city.id === 'hoi-an' ? (
-              <>
-                Explore Hoi An on a real OpenStreetMap. Stay zones are{' '}
-                <span className="font-semibold text-ink">curated overlays</span> — not official
-                boundaries.
-              </>
-            ) : (
-              <>
-                Coloured areas are <span className="font-semibold text-ink">rough clusters</span>{' '}
-                with <span className="font-semibold text-ink">rough cost-of-living estimates</span>{' '}
-                — not exact property boundaries or live hotel prices.
-              </>
-            )}
-          </p>
-
-          <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-stretch">
-            <div className="min-h-[420px] lg:h-[560px]">
+          <div className="mt-4 grid gap-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
+            <p className="text-[0.92rem] leading-[1.7] text-ink/85">
+              {NEIGHBOURHOOD_INTROS[city.id]}
+            </p>
+            <div className="overflow-hidden rounded-[16px]">
               <ClusterMap
                 city={city}
                 ranked={ranked}
-                selectedId={selected.id}
+                selectedId={clusterId}
                 onSelect={selectCluster}
-              />
-            </div>
-            <div className="min-h-[420px] lg:h-[560px]">
-              <ClusterPanel
-                cluster={selected}
-                match={
-                  selectedIsRecommended
-                    ? 'recommended'
-                    : selectedRanked?.match ?? null
-                }
-                cityLabel={city.label}
-                recommended={selectedIsRecommended}
-                recommendReasons={recommendReasons}
+                bagPins={bagPins}
               />
             </div>
           </div>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {clusters.map((cluster) => (
+              <NeighbourhoodCard
+                key={cluster.id}
+                cluster={cluster}
+                selected={cluster.id === clusterId}
+                onSelect={() => selectCluster(cluster.id)}
+                onOpenHotels={() => openNeighbourhoodHotels(cluster.id)}
+              />
+            ))}
+          </div>
         </section>
 
-        <div className="mt-5">
-          <ClusterComparison
+        <div className="mt-14">
+          <HotelExplorer
+            cityId={city.id}
             cityLabel={city.label}
-            cityImage={city.image}
-            ranked={ranked}
-            selectedId={selected.id}
-            onSelect={selectCluster}
-            recommendedId={recommendedClusterId}
-          />
-        </div>
-
-        <div className="mt-8 grid gap-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:items-start">
-          <ListingFilterSidebar
-            selected={listingFilters}
-            onToggle={toggleListingFilter}
-            onClear={() => setListingFilters([])}
-            sort={sort}
-            onSort={setSort}
-            resultCount={stays.length}
-          />
-          <StayGrid
-            clusterName={selected.name}
-            stays={stays}
-            cityId={cityId}
-            cityLabel={city.label}
+            clusters={clusters}
+            catalogScope={catalogScope}
           />
         </div>
       </main>
       {!embedded && <Footer />}
     </>
+  )
+
+  if (embedded) return page
+  return (
+    <BuilderProgressChrome current="stay" withNav>
+      {page}
+    </BuilderProgressChrome>
   )
 }

@@ -14,7 +14,7 @@ export const STAY_CITIES: StayCity[] = [
       bestValue: 'Ba Dinh',
     },
     mapCityId: 'hanoi',
-    bounds: { west: 105.75, south: 20.96, east: 105.92, north: 21.09 },
+    bounds: { west: 105.814, south: 21.016, east: 105.868, north: 21.076 },
     defaultClusterId: 'hanoi-old-quarter',
     availableFilters: [
       'budget', 'central', 'quiet', 'nightlife', 'families', 'first-trip',
@@ -34,7 +34,7 @@ export const STAY_CITIES: StayCity[] = [
       bestValue: 'Phu Nhuan',
     },
     mapCityId: 'hcmc',
-    bounds: { west: 106.64, south: 10.73, east: 106.76, north: 10.84 },
+    bounds: { west: 106.66, south: 10.76, east: 106.76, north: 10.83 },
     defaultClusterId: 'hcmc-district-1',
     availableFilters: [
       'budget', 'central', 'quiet', 'nightlife', 'families', 'first-trip',
@@ -55,7 +55,7 @@ export const STAY_CITIES: StayCity[] = [
       bestBeach: 'My Khe Beach',
     },
     mapCityId: 'da-nang',
-    bounds: { west: 108.14, south: 15.98, east: 108.3, north: 16.12 },
+    bounds: { west: 108.204, south: 16.038, east: 108.296, north: 16.118 },
     defaultClusterId: 'danang-my-khe',
     availableFilters: [
       'budget', 'central', 'quiet', 'nightlife', 'families', 'first-trip',
@@ -76,7 +76,7 @@ export const STAY_CITIES: StayCity[] = [
       bestBeach: 'An Bang / Cua Dai Beach',
     },
     mapCityId: 'hoi-an',
-    bounds: { west: 108.305, south: 15.855, east: 108.380, north: 15.925 },
+    bounds: { west: 108.308, south: 15.861, east: 108.352, north: 15.920 },
     defaultClusterId: 'hoian-ancient-town',
     availableFilters: [
       'budget', 'central', 'quiet', 'nightlife', 'families', 'first-trip',
@@ -96,7 +96,7 @@ export const STAY_CITIES: StayCity[] = [
       bestValue: 'Citadel Area',
     },
     mapCityId: 'hue',
-    bounds: { west: 107.52, south: 16.4, east: 107.64, north: 16.5 },
+    bounds: { west: 107.54, south: 16.45, east: 107.63, north: 16.495 },
     defaultClusterId: 'hue-riverside',
     availableFilters: [
       'budget', 'central', 'quiet', 'nightlife', 'families', 'first-trip',
@@ -117,7 +117,7 @@ export const STAY_CITIES: StayCity[] = [
       bestBeach: 'Centre / Promenade',
     },
     mapCityId: 'nha-trang',
-    bounds: { west: 109.14, south: 12.2, east: 109.24, north: 12.3 },
+    bounds: { west: 109.17, south: 12.20, east: 109.22, north: 12.30 },
     defaultClusterId: 'nhatrang-centre',
     availableFilters: [
       'budget', 'central', 'quiet', 'nightlife', 'families', 'first-trip',
@@ -137,7 +137,7 @@ export const STAY_CITIES: StayCity[] = [
       bestValue: 'Da Lat Centre',
     },
     mapCityId: 'dalat',
-    bounds: { west: 108.4, south: 11.9, east: 108.5, north: 11.98 },
+    bounds: { west: 108.41, south: 11.91, east: 108.48, north: 11.96 },
     defaultClusterId: 'dalat-centre',
     availableFilters: [
       'budget', 'central', 'quiet', 'families', 'first-trip', 'luxury',
@@ -158,7 +158,7 @@ export const STAY_CITIES: StayCity[] = [
       bestBeach: 'Long Beach',
     },
     mapCityId: null,
-    bounds: { west: 103.95, south: 10.15, east: 104.05, north: 10.35 },
+    bounds: { west: 103.915, south: 10.148, east: 104.005, north: 10.328 },
     defaultClusterId: 'phuquoc-long-beach',
     availableFilters: [
       'budget', 'central', 'quiet', 'nightlife', 'families', 'first-trip',

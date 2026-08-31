@@ -1,35 +1,22 @@
 import { motion } from 'framer-motion'
 
-const HERO =
-  'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80'
-
 export function StayHero() {
   return (
-    <section className="relative overflow-hidden rounded-[22px] bg-ink shadow-soft">
-      <div className="absolute inset-0">
-        <img src={HERO} alt="" className="h-full w-full object-cover opacity-40" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(105deg, rgba(28,22,18,0.92) 0%, rgba(28,22,18,0.55) 55%, rgba(28,22,18,0.78) 100%)',
-          }}
-        />
-      </div>
+    <section className="relative overflow-hidden rounded-[16px] bg-ink">
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative px-5 py-6 sm:px-7 sm:py-7 lg:max-w-[72%]"
+        className="relative px-4 py-4 sm:px-5 sm:py-5"
       >
-        <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-terracotta">
-          Accommodation planning
+        <p className="text-[0.62rem] font-bold uppercase tracking-[0.16em] text-terracotta">
+          Where to stay
         </p>
-        <h1 className="mt-1.5 font-serif text-[clamp(1.75rem,3.8vw,2.55rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-paper">
-          Where should you stay?
+        <h1 className="mt-1 font-serif text-[clamp(1.45rem,3vw,1.95rem)] font-semibold leading-[1.12] text-paper">
+          Neighbourhoods and hotels
         </h1>
-        <p className="mt-2 max-w-[52ch] text-[0.9rem] leading-relaxed text-paper/85">
-          City → neighbourhood → stay. Pick a city first — everything below is built around that
-          choice.
+        <p className="mt-1 max-w-[58ch] text-[0.84rem] leading-relaxed text-paper/80">
+          Pick a city, compare neighbourhoods, then browse hotels — independently, like restaurants
+          and dishes.
         </p>
       </motion.div>
     </section>

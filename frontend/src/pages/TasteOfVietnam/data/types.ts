@@ -46,16 +46,11 @@ export type FoodCity =
   | 'Nha Trang'
   | 'Da Lat'
 
-export type RestaurantSort =
-  | 'best-for-dish'
-  | 'highest-rated'
-  | 'most-reviewed'
-  | 'best-value'
+export type RestaurantSort = 'reviews-high' | 'best-value'
 
 export type RestaurantFilter = {
-  openNow?: boolean
-  outdoorSeating?: boolean
   servesAlcohol?: boolean
+  allowsSmoking?: boolean
 }
 
 export type Restaurant = {
@@ -64,6 +59,7 @@ export type Restaurant = {
   city: FoodCity
   region: 'North' | 'Central' | 'South'
   neighborhood: string
+  address: string
   images: string[]
   specialityDishIds: string[]
   rating: number
@@ -73,9 +69,30 @@ export type Restaurant = {
   openingHours: string
   outdoorSeating: boolean
   servesAlcohol: boolean
+  allowsSmoking: boolean
   distanceKm: number | null
   mapUrl: string
-  whyRecommended: string
-  pickReason: string
+  listingUrl: string
+  /** Review highlights or what to order — shown on the card. */
+  menuOrReviews: string
   featured: boolean
+}
+
+export type RecipeIngredient = {
+  amount: string
+  item: string
+}
+
+export type DishRecipe = {
+  dishId: string
+  servings: string
+  time: string
+  tastingDescription: string
+  coreIngredients: string
+  howServed: string
+  images: string[]
+  ingredients: RecipeIngredient[]
+  steps: string[]
+  videoEmbedUrl: string
+  videoTitle: string
 }

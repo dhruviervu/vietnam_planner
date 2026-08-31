@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Hanoi",
+    "tiles": 6,
+    "loaded": 5,
+    "paths": 4,
+    "file": "C:\\Users\\dhruv\\OneDrive\\Desktop\\vietnam_planner\\frontend\\scripts\\_stay-zone-shots\\hanoi.png"
+  },
+  {
+    "name": "Ho Chi Minh City",
+    "tiles": 9,
+    "loaded": 9,
+    "paths": 4,
+    "file": "C:\\Users\\dhruv\\OneDrive\\Desktop\\vietnam_planner\\frontend\\scripts\\_stay-zone-shots\\ho chi minh city.png"
+  },
+  {
+    "name": "Da Nang",
+    "tiles": 9,
+    "loaded": 9,
+    "paths": 4,
+    "file": "C:\\Users\\dhruv\\OneDrive\\Desktop\\vietnam_planner\\frontend\\scripts\\_stay-zone-shots\\da nang.png"
+  },
+  {
+    "name": "Hoi An",
+    "tiles": 6,
+    "loaded": 6,
+    "paths": 7,
+    "file": "C:\\Users\\dhruv\\OneDrive\\Desktop\\vietnam_planner\\frontend\\scripts\\_stay-zone-shots\\hoi an.png"
+  },
+  {
+    "name": "Hue",
+    "tiles": 6,
+    "loaded": 6,
+    "paths": 4,
+    "file": "C:\\Users\\dhruv\\OneDrive\\Desktop\\vietnam_planner\\frontend\\scripts\\_stay-zone-shots\\hue.png"
+  },
+  {
+    "name": "Nha Trang",
+    "tiles": 9,
+    "loaded": 9,
+    "paths": 4,
+    "file": "C:\\Users\\dhruv\\OneDrive\\Desktop\\vietnam_planner\\frontend\\scripts\\_stay-zone-shots\\nha trang.png"
+  },
+  {
+    "name": "Da Lat",
+    "tiles": 9,
+    "loaded": 9,
+    "paths": 4,
+    "file": "C:\\Users\\dhruv\\OneDrive\\Desktop\\vietnam_planner\\frontend\\scripts\\_stay-zone-shots\\da lat.png"
+  },
+  {
+    "name": "Phu Quoc",
+    "tiles": 9,
+    "loaded": 9,
+    "paths": 4,
+    "file": "C:\\Users\\dhruv\\OneDrive\\Desktop\\vietnam_planner\\frontend\\scripts\\_stay-zone-shots\\phu quoc.png"
+  }
+]

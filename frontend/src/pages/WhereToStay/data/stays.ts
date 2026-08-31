@@ -1,12 +1,14 @@
 import type {
   CostLevel,
   PropertyType,
+  StayCityId,
   StayFilterId,
   StayProperty,
 } from './types'
 import { buildExtraStaysForClusters } from './stayExtras'
 import { STAY_CLUSTERS } from './clusters'
 import { getStayCity } from './cities'
+import { FILTER_LABELS } from './labels'
 
 type StaySeed = Omit<
   StayProperty,
@@ -254,6 +256,38 @@ function buildBookingUrl(
   return hotelSites[h % hotelSites.length]
 }
 
+function expandStayReason(property: {
+  clusterId: string
+  reason: string
+  bestFor: StayFilterId[]
+  costLevel: CostLevel
+  distanceLabel: string
+}): string {
+  const existing = property.reason.trim()
+  const sentenceCount = (existing.match(/[.!?]/g) ?? []).length
+  if (sentenceCount >= 2 && existing.length >= 140) return existing
+
+  const cluster = STAY_CLUSTERS.find((item) => item.id === property.clusterId)
+  const clusterName = cluster?.name ?? 'this neighbourhood'
+  const cityLabel = cluster ? getStayCity(cluster.cityId).label : 'the city'
+  const who = property.bestFor.length
+    ? `It suits travellers looking for ${property.bestFor
+        .slice(0, 3)
+        .map((id) => FILTER_LABELS[id].toLowerCase())
+        .join(', ')}.`
+    : 'It is a practical base for most itineraries through this city.'
+  const price =
+    property.costLevel <= 1
+      ? 'Nightly rates sit at the budget end of this neighbourhood.'
+      : property.costLevel >= 4
+        ? 'Expect luxury-tier nightly rates for this level of finish.'
+        : property.costLevel === 3
+          ? 'Typical nights land in the premium band for this area.'
+          : 'Typical nights sit in the mid-range for this neighbourhood.'
+  const where = `You'll be based in ${clusterName}, ${cityLabel} (${property.distanceLabel.replace(/\.$/, '')}).`
+  return `${existing.replace(/[.!?]$/, '')}. ${where} ${who} ${price}`
+}
+
 function enrichStay(
   property: Omit<StayProperty, 'image' | 'bookingUrl' | 'sourceLabel' | 'mapsUrl' | 'reviewCount' | 'propertyType' | 'petsAllowed' | 'caretaker' | 'smokingAllowed' | 'drinkingAllowed' | 'quietHours' | 'flexibleCancel' | 'instantBook'> & {
     imageIndex: number
@@ -275,6 +309,7 @@ function enrichStay(
 
   return {
     ...rest,
+    reason: expandStayReason(rest),
     image: IMAGES[imageIndex],
     bookingUrl: buildBookingUrl(rest.id, rest.name, propertyType, rest.clusterId),
     mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${rest.name}, Vietnam`)}`,
@@ -300,6 +335,26 @@ export const STAY_PROPERTY_BY_ID = Object.fromEntries(
   STAY_PROPERTIES.map((property) => [property.id, property]),
 ) as Record<string, StayProperty>
 
+export function isAttractionStayName(name: string) {
+  if (/hotel|resort|hostel|homestay|inn|suites|residence|motel|lodge/i.test(name)) return false
+  return /opera house/i.test(name)
+}
+
 export function getStaysForCluster(clusterId: string): StayProperty[] {
-  return STAY_PROPERTIES.filter((property) => property.clusterId === clusterId)
+  return STAY_PROPERTIES.filter(
+    (property) => property.clusterId === clusterId && !isAttractionStayName(property.name),
+  )
+}
+
+export function getStaysForCity(cityId: StayCityId): StayProperty[] {
+  const ids = new Set(
+    STAY_CLUSTERS.filter((cluster) => cluster.cityId === cityId).map((cluster) => cluster.id),
+  )
+  return STAY_PROPERTIES.filter(
+    (property) => ids.has(property.clusterId) && !isAttractionStayName(property.name),
+  )
+}
+
+export function getAllStays(): StayProperty[] {
+  return STAY_PROPERTIES.filter((property) => !isAttractionStayName(property.name))
 }

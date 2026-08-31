@@ -497,6 +497,21 @@ export function getMonthEventProfile(month: MonthId): MonthEventProfile {
   }
 }
 
+export function getMostFestiveMonth(): MonthId {
+  let best: MonthId = 11
+  let bestScore = 0
+  for (const m of MONTH_PROFILES) {
+    const profile = getMonthEventProfile(m.month)
+    const score = profile.eventActivity * 10 + profile.eventCount
+    if (profile.highlight === 'most-eventful') return m.month
+    if (score > bestScore) {
+      bestScore = score
+      best = m.month
+    }
+  }
+  return best
+}
+
 export function getAllMonthEventProfiles(): MonthEventProfile[] {
   return (MONTH_PROFILES.map((m) => m.month) as MonthId[]).map(getMonthEventProfile)
 }

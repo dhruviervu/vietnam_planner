@@ -214,7 +214,12 @@ export function isRecommendedMonth(month: MonthId, rec: TravelRecommendation) {
   return rec.recommendedMonths.includes(month)
 }
 
-export type ChoiceGroupId = 'best' | 'great' | 'good' | 'special'
+export type ChoiceGroupId =
+  | 'nationwide'
+  | 'dry-festive'
+  | 'tet'
+  | 'transition'
+  | 'wet'
 
 export type ChoiceGroup = {
   id: ChoiceGroupId
@@ -222,46 +227,60 @@ export type ChoiceGroup = {
   months: MonthId[]
 }
 
-/** Traveler-facing month buckets derived from recommendation ranking — not climate labels. */
-export function classifyMonthChoices(rec: TravelRecommendation): ChoiceGroup[] {
-  const bestSet = new Set(rec.recommendedMonths)
-  const rankedRest = [...MONTH_PROFILES]
-    .filter((m) => !bestSet.has(m.month))
-    .sort((a, b) => overallScore(b) - overallScore(a))
-    .map((m) => m.month)
-
-  const bestOverall = [...rec.recommendedMonths].sort((a, b) => a - b)
-  const greatChoices = rankedRest.slice(0, 2)
-  const goodChoices = rankedRest.slice(2, 5)
-  const special = rankedRest.slice(5)
-
+/**
+ * Browse buckets by seasonal character (from month visit copy) —
+ * not vague quality ranks like “great” vs “good”.
+ */
+export function classifyMonthChoices(_rec?: TravelRecommendation): ChoiceGroup[] {
   return [
-    { id: 'best' as const, label: 'Best overall', months: bestOverall },
-    { id: 'great' as const, label: 'Great choices', months: greatChoices },
-    { id: 'good' as const, label: 'Good choices', months: goodChoices },
-    { id: 'special' as const, label: 'Special / different', months: special },
-  ].filter((g) => g.months.length > 0)
+    {
+      id: 'nationwide',
+      label: 'Best overall',
+      months: [3, 4, 11],
+    },
+    {
+      id: 'dry-festive',
+      label: 'Dry coasts & festive cities',
+      months: [1, 10, 12],
+    },
+    {
+      id: 'tet',
+      label: 'Built around Tết',
+      months: [2],
+    },
+    {
+      id: 'transition',
+      label: 'Heat rising · skies clearing',
+      months: [5, 9],
+    },
+    {
+      id: 'wet',
+      label: 'Wet season — lush & flexible',
+      months: [6, 7, 8],
+    },
+  ]
 }
 
-const SIGNAL_TO_DESCRIPTOR: Record<string, string> = {
-  'Festive dry': 'Festive',
-  'Tết peak': 'Festive',
-  Strong: 'Great balance',
-  Value: 'Better value',
-  'Lush value': 'Greener',
-  Flexible: 'Quieter',
-  Shoulder: 'Quieter',
-  Rising: 'Better value',
-  Popular: 'Popular',
-  Holiday: 'Festive',
+/** Months that are the most reliable multi-region windows */
+export const EASIEST_NATIONWIDE_MONTHS: MonthId[] = [3, 4, 11]
+
+const MONTH_TILE_DESCRIPTOR: Record<MonthId, string> = {
+  1: 'Festive dry',
+  2: 'Tết peak',
+  3: 'Multi-region',
+  4: 'Coast & cities',
+  5: 'Heat rising',
+  6: 'Summer showers',
+  7: 'Heavy rain',
+  8: 'Peak wet',
+  9: 'Skies clearing',
+  10: 'Lantern evenings',
+  11: 'Classic dry',
+  12: 'Beach peak',
 }
 
-export function getMonthTileDescriptor(month: MonthId, rec: TravelRecommendation): string {
-  if (month === rec.primaryMonth) return 'Best overall'
-  if (rec.recommendedMonths.includes(month)) return 'Great balance'
-  const profile = MONTH_PROFILES.find((m) => m.month === month)
-  if (!profile) return 'Worth a look'
-  return SIGNAL_TO_DESCRIPTOR[profile.signalLabel] ?? profile.signalLabel
+export function getMonthTileDescriptor(month: MonthId, _rec?: TravelRecommendation): string {
+  return MONTH_TILE_DESCRIPTOR[month]
 }
 
 export function weatherComfortLabel(profile: MonthProfile): string {

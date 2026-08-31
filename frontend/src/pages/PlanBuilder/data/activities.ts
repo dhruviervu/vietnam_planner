@@ -1,4 +1,6 @@
 import { cityImages } from './cityImages'
+import { ACTIVITY_IMAGES } from './activityImages'
+import { withPhotoFallbacks } from '../lib/resolveCatalogPhotos'
 
 export type ActivityKind =
   | 'class'
@@ -151,13 +153,9 @@ function a(seed: ActivitySeed): CityActivity {
   const cityName = seed.cityName ?? titleFromId(seed.cityId)
   const kindLabel = KIND_LABEL[seed.kind]
   const signal = KIND_SIGNAL[seed.kind]
-  const gallery = [
-    seed.image,
-    img(seed.cityId, 0),
-    img(seed.cityId, 1),
-    img(seed.cityId, 2),
-    img(seed.cityId, 3),
-  ].filter((src, i, arr) => src && arr.indexOf(src) === i)
+  const photos = ACTIVITY_IMAGES[seed.id]
+  const image = photos?.[0] ?? seed.image
+  const gallery = photos?.length ? photos : [image]
 
   const popularityTag = seed.popularityTag ?? defaultPopularityTag(seed)
   const tags = seed.tags ?? [
@@ -184,8 +182,8 @@ function a(seed: ActivitySeed): CityActivity {
     priceLabel: seed.priceLabel,
     bestFor: seed.bestFor,
     vibe: seed.vibe,
-    image: seed.image,
-    images: gallery.length ? gallery : [seed.image],
+    image,
+    images: gallery,
     popularityTag,
     signalEmoji: signal.emoji,
     signalLabel: signal.label,
@@ -210,6 +208,9 @@ function titleFromId(id: string) {
     hcmc: 'Ho Chi Minh City',
     mekong: 'Mekong Delta',
     'phu-quoc': 'Phu Quoc',
+    'nha-trang': 'Nha Trang',
+    'da-lat': 'Da Lat',
+    dalat: 'Da Lat',
   }
   return map[id] ?? id
 }
@@ -1022,12 +1023,138 @@ export const CITY_ACTIVITIES: CityActivity[] = [
     vibe: 'Embers & chorus',
     image: img('phu-quoc', 3),
   }),
+
+  // ——— Nha Trang ———
+  a({
+    id: 'nt-island-snorkel',
+    cityId: 'nha-trang',
+    name: 'Guided snorkel off Hon Mun',
+    kind: 'adventure',
+    hook: 'Mask on, coral under you, boat waiting when you surface.',
+    summary:
+      'A small-group snorkel from a bay boat — fins, vest, and a guide pointing out what you would otherwise swim past.',
+    durationLabel: 'Half day',
+    priceFromUsd: 30,
+    priceLabel: 'From $30',
+    bestFor: ['Active', 'Families'],
+    vibe: 'Salt and quiet water',
+    image: img('nha-trang', 0),
+  }),
+  a({
+    id: 'nt-mud-bath',
+    cityId: 'nha-trang',
+    name: 'Mineral mud bath afternoon',
+    kind: 'workshop',
+    hook: 'Warm mud, a soak, and a lazy hour that is the opposite of a temple.',
+    summary:
+      'Nha Trang’s mineral springs are a genuine rest day: cover, soak, rinse. Families and couples both use it as the unscheduled afternoon.',
+    durationLabel: '2–3 hours',
+    priceFromUsd: 18,
+    priceLabel: 'From $18',
+    bestFor: ['Couples', 'Reset'],
+    vibe: 'Warm and slow',
+    image: img('nha-trang', 1),
+  }),
+  a({
+    id: 'nt-beach-volley',
+    cityId: 'nha-trang',
+    name: 'Promenade beach volleyball',
+    kind: 'beach',
+    hook: 'Join a pickup game as the heat drops off the sand.',
+    summary:
+      'Late afternoon nets along the central beach. Ask to join, miss a few, stay for a drink after.',
+    durationLabel: '1 hour',
+    priceFromUsd: 0,
+    priceLabel: 'Free',
+    bestFor: ['Friends', 'Active'],
+    vibe: 'Sand on the shins',
+    image: img('nha-trang', 0),
+  }),
+  a({
+    id: 'nt-seafood-grill',
+    cityId: 'nha-trang',
+    name: 'Choose-your-catch grill night',
+    kind: 'food',
+    hook: 'Point at the tank, sit down, eat it grilled.',
+    summary:
+      'A guided seafood terrace: pick fish or shellfish, agree a price, eat with lime and chilli. The usable version of “Nha Trang seafood.”',
+    durationLabel: '2 hours',
+    priceFromUsd: 20,
+    priceLabel: 'From $20',
+    bestFor: ['Food lovers', 'Couples'],
+    vibe: 'Steam and sea',
+    image: img('nha-trang', 2),
+  }),
+
+  // ——— Da Lat ———
+  a({
+    id: 'dl-coffee-farm',
+    cityId: 'da-lat',
+    name: 'Highland coffee farm tasting',
+    kind: 'class',
+    hook: 'Walk the rows, roast a small batch, drink it while the air is still cool.',
+    summary:
+      'A working farm outside town: cherry to cup, with a tasting that actually explains why Da Lat coffee tastes different.',
+    durationLabel: '3 hours',
+    priceFromUsd: 22,
+    priceLabel: 'From $22',
+    bestFor: ['Food lovers', 'Slow travel'],
+    vibe: 'Pine and roast',
+    image: img('da-lat', 0),
+  }),
+  a({
+    id: 'dl-canyoning',
+    cityId: 'da-lat',
+    name: 'Beginner canyoning day',
+    kind: 'adventure',
+    hook: 'Rappel a waterfall, jump a pool, get properly wet.',
+    summary:
+      'Guided canyon south of town for people who want altitude to feel like sport, not just scenery. Helmets, harness, and a dry bag for the camera.',
+    durationLabel: 'Full day',
+    priceFromUsd: 55,
+    priceLabel: 'From $55',
+    bestFor: ['Adventure', 'Friends'],
+    vibe: 'Cold water, loud laugh',
+    image: img('da-lat', 1),
+  }),
+  a({
+    id: 'dl-market-cook',
+    cityId: 'da-lat',
+    name: 'Night-market cooking with a local kitchen',
+    kind: 'food',
+    hook: 'Shop Hoa Binh, then cook the highland dishes you just pointed at.',
+    summary:
+      'A small class that starts in the market — herbs, artichoke, pork — and ends at a shared table. Built for cool evenings.',
+    durationLabel: '3 hours',
+    priceFromUsd: 28,
+    priceLabel: 'From $28',
+    bestFor: ['Food lovers', 'Couples'],
+    vibe: 'Steam in jumper weather',
+    image: img('da-lat', 2),
+  }),
+  a({
+    id: 'dl-lake-cycle',
+    cityId: 'da-lat',
+    name: 'Xuan Huong lakeside cycle',
+    kind: 'sport',
+    hook: 'A cheap bike, a cool loop, no traffic lights that matter.',
+    summary:
+      'Rent a bicycle near the lake and ride the flat loop. Stop for coffee whenever the light hits the water.',
+    durationLabel: '1–2 hours',
+    priceFromUsd: 5,
+    priceLabel: 'From $5',
+    bestFor: ['Slow travel', 'Couples'],
+    vibe: 'Pedals and pine',
+    image: img('da-lat', 0),
+  }),
 ]
+
+export type RankedActivity = CityActivity & { cityRank: number }
 
 export type ActivityCityGroup = {
   cityId: string
   cityName: string
-  activities: CityActivity[]
+  activities: RankedActivity[]
 }
 
 const CITY_ORDER = [
@@ -1043,10 +1170,46 @@ const CITY_ORDER = [
   'hcmc',
   'mekong',
   'phu-quoc',
+  'nha-trang',
+  'da-lat',
 ]
+
+const POPULARITY_TAG_WEIGHT: Record<ActivityPopularityTag, number> = {
+  'Must do': 1,
+  Popular: 2,
+  Unique: 3,
+  'Local favourite': 4,
+  'Free time': 5,
+}
+
+export function rankCityActivities(items: CityActivity[]): RankedActivity[] {
+  return [...items]
+    .sort((a, b) => {
+      const dw = POPULARITY_TAG_WEIGHT[a.popularityTag] - POPULARITY_TAG_WEIGHT[b.popularityTag]
+      if (dw) return dw
+      return (b.rating ?? 0) - (a.rating ?? 0)
+    })
+    .map((item, index) => ({ ...item, cityRank: index + 1 }))
+}
+
+export function activityCityIdForPlace(place: string): string | null {
+  const s = place.trim().toLowerCase()
+  if (!s) return null
+  for (const a of CITY_ACTIVITIES) {
+    if (a.cityId === s) return a.cityId
+    if (a.cityName.toLowerCase() === s) return a.cityId
+  }
+  for (const a of CITY_ACTIVITIES) {
+    const name = a.cityName.toLowerCase()
+    if (s.includes(name) || name.includes(s)) return a.cityId
+    if (s.replace(/-/g, ' ') === a.cityId.replace(/-/g, ' ')) return a.cityId
+  }
+  return null
+}
 
 export function groupActivitiesByCity(
   activities: CityActivity[] = CITY_ACTIVITIES,
+  bagCityIds: Iterable<string> = [],
 ): ActivityCityGroup[] {
   const map = new Map<string, CityActivity[]>()
   for (const act of activities) {
@@ -1055,12 +1218,17 @@ export function groupActivitiesByCity(
     map.set(act.cityId, list)
   }
 
-  return CITY_ORDER.filter((id) => map.has(id)).map((cityId) => {
+  const bag = new Set(bagCityIds)
+  const bagOrder = CITY_ORDER.filter((id) => bag.has(id) && map.has(id))
+  const restOrder = CITY_ORDER.filter((id) => !bag.has(id) && map.has(id))
+  const extra = [...map.keys()].filter((id) => !CITY_ORDER.includes(id))
+
+  return [...bagOrder, ...restOrder, ...extra].map((cityId) => {
     const list = map.get(cityId)!
     return {
       cityId,
       cityName: list[0]?.cityName ?? cityId,
-      activities: list,
+      activities: rankCityActivities(list),
     }
   })
 }
@@ -1079,10 +1247,58 @@ export function activityKindFilters(activities: CityActivity[] = CITY_ACTIVITIES
     }))
 }
 
+export type ActivityDurationFilter = 'all' | 'short' | 'medium' | 'longer' | 'flexible'
+
+function estimateActivityHours(label: string): number {
+  const l = label.toLowerCase()
+  if (l.includes('half day')) return 4
+  if (l.includes('full day')) return 8
+  if (l.includes('evening')) return 2.5
+  const minRange = l.match(/(\d+)\s*[–-]\s*(\d+)\s*min/)
+  if (minRange) return (Number(minRange[1]) + Number(minRange[2])) / 2 / 60
+  const minOne = l.match(/(\d+)\s*min/)
+  if (minOne) return Number(minOne[1]) / 60
+  const hrRange = l.match(/(\d+(?:\.\d+)?)\s*[–-]\s*(\d+(?:\.\d+)?)\s*(?:hours|hour|hrs)/)
+  if (hrRange) return (Number(hrRange[1]) + Number(hrRange[2])) / 2
+  const hrOne = l.match(/(\d+(?:\.\d+)?)\s*(?:hours|hour|hrs)/)
+  if (hrOne) return Number(hrOne[1])
+  return 2
+}
+
+export function activityDurationBand(
+  activity: CityActivity,
+): Exclude<ActivityDurationFilter, 'all'> {
+  const hay = `${activity.kind} ${activity.durationLabel}`.toLowerCase()
+  if (activity.kind === 'beach' || activity.kind === 'community' || hay.includes('evening')) {
+    return 'flexible'
+  }
+  const hours = estimateActivityHours(activity.durationLabel)
+  if (hours <= 1) return 'short'
+  if (hours < 3) return 'medium'
+  return 'longer'
+}
+
+export function listActivityCitiesByPopularity(activities: CityActivity[] = CITY_ACTIVITIES) {
+  const map = new Map<string, { cityId: string; cityName: string; count: number }>()
+  for (const a of activities) {
+    const prev = map.get(a.cityId)
+    map.set(a.cityId, {
+      cityId: a.cityId,
+      cityName: a.cityName,
+      count: (prev?.count ?? 0) + 1,
+    })
+  }
+  return [...map.values()].sort((a, b) => b.count - a.count || a.cityName.localeCompare(b.cityName))
+}
+
 export function getActivityById(id: string) {
   return CITY_ACTIVITIES.find((act) => act.id === id)
 }
 
 export function getActivityImages(activity: CityActivity) {
-  return activity.images.length ? activity.images : [activity.image]
+  const curated = ACTIVITY_IMAGES[activity.id] ?? []
+  return withPhotoFallbacks(
+    [...curated, ...activity.images, activity.image],
+    `${activity.id} ${activity.name} ${activity.kind} ${activity.cityName} ${activity.hook}`,
+  )
 }

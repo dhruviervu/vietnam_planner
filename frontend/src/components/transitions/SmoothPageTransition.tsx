@@ -13,7 +13,15 @@ export function SmoothPageTransition({ children }: Props) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' })
+    try {
+      history.scrollRestoration = 'manual'
+    } catch {
+      /* ignore */
+    }
+    const cityHash = location.hash.startsWith('#city-')
+    if (!cityHash) {
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    }
     const el = ref.current
     if (!el) return
     el.style.opacity = '0'
@@ -22,7 +30,7 @@ export function SmoothPageTransition({ children }: Props) {
     void el.offsetHeight
     el.style.transition = 'opacity 220ms ease'
     el.style.opacity = '1'
-  }, [location.pathname, location.key])
+  }, [location.pathname, location.hash])
 
   return (
     <div ref={ref} className="min-h-screen w-full bg-cream">

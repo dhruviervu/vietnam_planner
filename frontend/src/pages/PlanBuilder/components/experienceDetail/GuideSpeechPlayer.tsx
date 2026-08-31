@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import type { TitledParagraph } from '../../lib/guideParagraphs'
 
 type Props = {
-  text: string
+  sections: TitledParagraph[]
   label: string
 }
 
@@ -10,33 +11,43 @@ const RATE_NORMAL = 1
 const RATE_FASTER = 1.18
 type RateOption = typeof RATE_NORMAL | typeof RATE_FASTER
 
-/** Chrome silently fails on very long utterances — speak in sentence chunks. */
-function chunkForSpeech(text: string, maxLen = 220): string[] {
-  const cleaned = text.replace(/\s+/g, ' ').trim()
-  if (!cleaned) return []
-  const sentences = cleaned.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) ?? [cleaned]
-  const chunks: string[] = []
-  let buf = ''
-  for (const raw of sentences) {
-    const s = raw.trim()
-    if (!s) continue
-    if ((buf + ' ' + s).trim().length <= maxLen) {
-      buf = (buf + ' ' + s).trim()
-    } else {
-      if (buf) chunks.push(buf)
-      if (s.length <= maxLen) {
-        buf = s
-      } else {
-        // Hard-split oversized sentence
-        for (let i = 0; i < s.length; i += maxLen) {
-          chunks.push(s.slice(i, i + maxLen))
-        }
+/** Chrome silently fails on very long utterances — speak paragraph by paragraph. */
+type SpeechUnit = {
+  text: string
+  paraIndex: number
+}
+
+function unitsForSections(sections: TitledParagraph[], maxLen = 220): SpeechUnit[] {
+  const units: SpeechUnit[] = []
+  sections.forEach((section, paraIndex) => {
+    const para = `${section.title}. ${section.body}`.replace(/\s+/g, ' ').trim()
+    const sentences = para.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) ?? [para]
+    let buf = ''
+    const flush = () => {
+      if (buf) {
+        units.push({ text: buf, paraIndex })
         buf = ''
       }
     }
-  }
-  if (buf) chunks.push(buf)
-  return chunks
+    for (const raw of sentences) {
+      const s = raw.trim()
+      if (!s) continue
+      if ((buf + ' ' + s).trim().length <= maxLen) {
+        buf = (buf + ' ' + s).trim()
+      } else {
+        flush()
+        if (s.length <= maxLen) {
+          buf = s
+        } else {
+          for (let i = 0; i < s.length; i += maxLen) {
+            units.push({ text: s.slice(i, i + maxLen), paraIndex })
+          }
+        }
+      }
+    }
+    flush()
+  })
+  return units
 }
 
 function pickPoshVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null {
@@ -68,16 +79,17 @@ function unstickSynth(synth: SpeechSynthesis) {
   }
 }
 
-export function GuideSpeechPlayer({ text, label }: Props) {
+export function GuideSpeechPlayer({ sections, label }: Props) {
   const [supported, setSupported] = useState(true)
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([])
   const [speaking, setSpeaking] = useState(false)
   const [paused, setPaused] = useState(false)
   const [rate, setRate] = useState<RateOption>(1)
   const [status, setStatus] = useState<string | null>(null)
-  const [chunkIndex, setChunkIndex] = useState(0)
+  const [, setChunkIndex] = useState(0)
+  const [paraIndex, setParaIndex] = useState(0)
 
-  const chunksRef = useRef<string[]>([])
+  const chunksRef = useRef<SpeechUnit[]>([])
   const indexRef = useRef(0)
   const rateRef = useRef<RateOption>(1)
   const voiceRef = useRef<SpeechSynthesisVoice | null>(null)
@@ -85,7 +97,11 @@ export function GuideSpeechPlayer({ text, label }: Props) {
   const activeRef = useRef(false)
   const keepAliveRef = useRef<number | null>(null)
 
-  const chunks = useMemo(() => chunkForSpeech(text), [text])
+  const chunks = useMemo(() => unitsForSections(sections), [sections])
+  const paraCount = useMemo(
+    () => (chunks.length ? chunks[chunks.length - 1].paraIndex + 1 : 0),
+    [chunks],
+  )
   const voice = useMemo(() => pickPoshVoice(voices), [voices])
 
   useEffect(() => {
@@ -131,9 +147,10 @@ export function GuideSpeechPlayer({ text, label }: Props) {
     setSpeaking(false)
     setPaused(false)
     setChunkIndex(0)
+    setParaIndex(0)
     setStatus(null)
-    chunksRef.current = chunkForSpeech(text)
-  }, [text])
+    chunksRef.current = unitsForSections(sections)
+  }, [sections])
 
   function stopKeepAlive() {
     if (keepAliveRef.current != null) {
@@ -167,11 +184,13 @@ export function GuideSpeechPlayer({ text, label }: Props) {
       setPaused(false)
       setStatus(null)
       setChunkIndex(0)
+      setParaIndex(0)
       stopKeepAlive()
       return
     }
 
-    const utter = new SpeechSynthesisUtterance(list[i])
+    const unit = list[i]
+    const utter = new SpeechSynthesisUtterance(unit.text)
     utter.rate = rateRef.current
     utter.pitch = 1
     utter.volume = 1
@@ -188,13 +207,16 @@ export function GuideSpeechPlayer({ text, label }: Props) {
       setPaused(false)
       setStatus(null)
       setChunkIndex(i + 1)
+      setParaIndex(unit.paraIndex + 1)
     }
 
     utter.onend = () => {
       if (!activeRef.current || pausedRef.current) return
+      const finished = list[i]
       indexRef.current += 1
-      // Tiny gap helps Chrome accept the next utterance
-      window.setTimeout(() => speakNext(), 40)
+      const next = list[indexRef.current]
+      const gap = next && finished && next.paraIndex !== finished.paraIndex ? 450 : 40
+      window.setTimeout(() => speakNext(), gap)
     }
 
     utter.onerror = (ev) => {
@@ -223,7 +245,7 @@ export function GuideSpeechPlayer({ text, label }: Props) {
   }
 
   function play() {
-    if (!supported || !text.trim()) {
+    if (!supported || !sections.length) {
       setStatus('Nothing to read yet.')
       return
     }
@@ -247,7 +269,7 @@ export function GuideSpeechPlayer({ text, label }: Props) {
       return
     }
 
-    chunksRef.current = chunks.length ? chunks : chunkForSpeech(text)
+    chunksRef.current = chunks.length ? chunks : unitsForSections(sections)
     if (!chunksRef.current.length) {
       setStatus('Nothing to read yet.')
       return
@@ -268,6 +290,7 @@ export function GuideSpeechPlayer({ text, label }: Props) {
     setSpeaking(true)
     setStatus(`Reading…`)
     setChunkIndex(1)
+    setParaIndex(chunksRef.current[0]?.paraIndex + 1 || 1)
     startKeepAlive(synth)
 
     // Delay after cancel so Chrome actually starts
@@ -298,6 +321,7 @@ export function GuideSpeechPlayer({ text, label }: Props) {
     setSpeaking(false)
     setPaused(false)
     setChunkIndex(0)
+    setParaIndex(0)
     setStatus(null)
   }
 
@@ -336,8 +360,8 @@ export function GuideSpeechPlayer({ text, label }: Props) {
     )
   }
 
-  const total = chunks.length || chunksRef.current.length
-  const showProgress = speaking && total > 0 && chunkIndex > 0
+  const totalParas = paraCount || (chunksRef.current.at(-1)?.paraIndex ?? -1) + 1
+  const showProgress = speaking && totalParas > 0 && paraIndex > 0
   const isFaster = rate === RATE_FASTER
 
   return (
@@ -384,7 +408,8 @@ export function GuideSpeechPlayer({ text, label }: Props) {
       </div>
       {showProgress ? (
         <p className="mt-1.5 text-[0.68rem] text-muted">
-          Part {Math.min(chunkIndex, total)} of {total}
+          Section {Math.min(paraIndex, totalParas)} of {totalParas}
+          {sections[paraIndex - 1]?.title ? ` · ${sections[paraIndex - 1].title}` : ''}
         </p>
       ) : null}
       {status && !showProgress ? (

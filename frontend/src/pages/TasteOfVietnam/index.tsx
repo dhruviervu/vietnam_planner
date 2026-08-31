@@ -1,13 +1,13 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Nav } from '../../components/landing/Nav'
 import { Footer } from '../../components/landing/Footer'
 import { getFeaturedDishes, getDishById } from './data/dishes'
 import { TasteHero } from './components/TasteHero'
 import { DishDiscovery } from './components/DishDiscovery'
-import { RecipeSection } from './components/RecipeSection'
 import { RestaurantExplorer } from './components/RestaurantExplorer'
+import { FoodCultureSection } from './components/FoodCultureSection'
 
-const RECIPE_ID = 'how-vietnam-makes-it'
 const RESTAURANTS_ID = 'where-to-eat'
 
 function scrollToSection(id: string) {
@@ -16,18 +16,46 @@ function scrollToSection(id: string) {
 
 export function TasteOfVietnamPage({ embedded = false }: { embedded?: boolean }) {
   const dishes = useMemo(() => getFeaturedDishes(), [])
-  const [selectedDishId, setSelectedDishId] = useState(dishes[0]?.id ?? 'pho')
+  const [params, setParams] = useSearchParams()
+  const dishFromUrl = params.get('dish')
+  const [selectedDishId, setSelectedDishId] = useState(
+    dishFromUrl && dishes.some((d) => d.id === dishFromUrl) ? dishFromUrl : dishes[0]?.id ?? 'pho',
+  )
+  const [restaurantDishId, setRestaurantDishId] = useState<string | 'All'>(
+    dishFromUrl && dishes.some((d) => d.id === dishFromUrl) ? dishFromUrl : 'All',
+  )
 
   const selectedDish = getDishById(selectedDishId) ?? dishes[0]
 
+  useEffect(() => {
+    if (dishFromUrl && dishes.some((d) => d.id === dishFromUrl)) {
+      setSelectedDishId(dishFromUrl)
+      setRestaurantDishId(dishFromUrl)
+    }
+  }, [dishFromUrl, dishes])
+
+  useEffect(() => {
+    if (window.location.hash === `#${RESTAURANTS_ID}`) {
+      requestAnimationFrame(() => scrollToSection(RESTAURANTS_ID))
+    }
+  }, [])
+
   function handleSeeRecipe(dishId: string) {
     setSelectedDishId(dishId)
-    requestAnimationFrame(() => scrollToSection(RECIPE_ID))
+    const from = embedded ? '?from=pipeline' : ''
+    window.open(`/taste-of-vietnam/recipe/${dishId}${from}`, '_blank', 'noopener,noreferrer')
   }
 
   function handleShowRestaurants(dishId: string) {
     setSelectedDishId(dishId)
-    requestAnimationFrame(() => scrollToSection(RESTAURANTS_ID))
+    setRestaurantDishId(dishId)
+    setParams({ dish: dishId }, { replace: true, preventScrollReset: true })
+    window.setTimeout(() => scrollToSection(RESTAURANTS_ID), 50)
+  }
+
+  function handleRestaurantDish(dishId: string | 'All') {
+    setRestaurantDishId(dishId)
+    if (dishId !== 'All') setSelectedDishId(dishId)
   }
 
   if (!selectedDish) return null
@@ -48,11 +76,15 @@ export function TasteOfVietnamPage({ embedded = false }: { embedded?: boolean })
         </div>
 
         <div className="mt-12">
-          <RecipeSection dish={selectedDish} />
+          <FoodCultureSection />
         </div>
 
         <div className="mt-12">
-          <RestaurantExplorer dish={selectedDish} />
+          <RestaurantExplorer
+            dishes={dishes}
+            selectedDishId={restaurantDishId}
+            onSelectDish={handleRestaurantDish}
+          />
         </div>
       </main>
       {!embedded && <Footer />}

@@ -9,7 +9,7 @@ import { VietnamLogisticsPage } from '../../VietnamLogistics'
 
 export function PipelineWhenToGo() {
   return (
-    <PipelineStepShell step="when-to-go" continueLabel="Continue to Experiences →">
+    <PipelineStepShell step="when-to-go" continueLabel="Continue to Experiences →" hideSkip>
       <WhenToGoDiscoverPage embedded />
     </PipelineStepShell>
   )

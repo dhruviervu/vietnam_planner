@@ -6,7 +6,13 @@ import type {
 } from '../services/recommendationEngine'
 import { DEFAULT_FILTERS } from '../services/recommendationEngine'
 
-const LIKING_CHIPS: { id: LikingFilter; label: string }[] = [
+export const CATALOG_LIKING_CHIPS: { id: LikingFilter; label: string }[] = [
+  { id: 'must-do', label: '🔥 Must Do' },
+  { id: 'hidden-gem', label: '💎 Hidden Gems' },
+  { id: 'local-life', label: '🏮 Local Life' },
+]
+
+export const LIKING_CHIPS: { id: LikingFilter; label: string }[] = [
   { id: 'must-do', label: '🔥 Must Do' },
   { id: 'vietnam-special', label: '🇻🇳 Vietnam Specials' },
   { id: 'hidden-gem', label: '💎 Hidden Gems' },
@@ -18,7 +24,18 @@ const LIKING_CHIPS: { id: LikingFilter; label: string }[] = [
   { id: 'culture-history', label: '🎭 Culture & History' },
 ]
 
-const PRACTICAL_CHIPS: { id: PracticalFilter; label: string }[] = [
+export const DURATION_CHIPS: {
+  id: Exclude<ExperienceFilters['duration'], 'all'>
+  label: string
+  range: string
+}[] = [
+  { id: 'short', label: 'Shorter', range: '30 min–1 hr' },
+  { id: 'medium', label: 'A few hours', range: '1–3 hrs' },
+  { id: 'longer', label: 'Longer', range: '3+ hrs' },
+  { id: 'flexible', label: 'Your pace', range: 'no set time' },
+]
+
+export const PRACTICAL_CHIPS: { id: PracticalFilter; label: string }[] = [
   { id: 'Nature', label: 'Nature' },
   { id: 'Cities', label: 'City' },
   { id: 'Beaches', label: 'Beach' },
@@ -52,21 +69,19 @@ export function countActiveExperienceFilters(filters: ExperienceFilters) {
   n += filters.practical.length
   if (filters.region !== 'all') n += 1
   if (filters.duration !== 'all') n += 1
-  if (filters.cost !== 'all') n += 1
-  if (filters.accessibility !== 'all') n += 1
-  if (filters.bestTime !== 'all') n += 1
-  if (filters.minFit > 0) n += 1
   return n
 }
 
-function Chip({
+export function FilterChip({
   active,
   onClick,
   children,
+  className = '',
 }: {
   active: boolean
   onClick: () => void
   children: React.ReactNode
+  className?: string
 }) {
   const [optimistic, setOptimistic] = useState<boolean | null>(null)
   const showActive = optimistic ?? active
@@ -84,7 +99,7 @@ function Chip({
       }}
       className={`rounded-full px-2.5 py-1.5 text-[0.72rem] font-bold ${
         showActive ? 'bg-ink text-paper' : 'bg-cream text-ink hover:bg-cream-deep'
-      }`}
+      } ${className}`}
     >
       {children}
     </button>
@@ -132,12 +147,16 @@ export function ExperienceFilterPanelBody({
   onClear,
   cities,
   cityCounts,
-  regions,
+  regions: _regions,
   activeCity,
   onSelectCity,
   resultCount,
 }: BodyProps) {
   const activeCount = countActiveExperienceFilters(filters)
+  const [moreCities, setMoreCities] = useState(false)
+  const topCities = cities.slice(0, 6)
+  const extraCities = cities.slice(6)
+  const visibleCities = moreCities ? cities : topCities
 
   function toggleLiking(id: LikingFilter) {
     onChange({
@@ -148,13 +167,8 @@ export function ExperienceFilterPanelBody({
     })
   }
 
-  function togglePractical(id: PracticalFilter) {
-    onChange({
-      ...filters,
-      practical: filters.practical.includes(id)
-        ? filters.practical.filter((x) => x !== id)
-        : [...filters.practical, id],
-    })
+  function setDuration(next: ExperienceFilters['duration']) {
+    onChange({ ...filters, duration: filters.duration === next ? 'all' : next })
   }
 
   return (
@@ -183,150 +197,67 @@ export function ExperienceFilterPanelBody({
         )}
       </div>
 
-      <label className="block">
-        <span className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
-          Search
-        </span>
-        <input
-          type="search"
-          value={filters.query}
-          onChange={(e) => onChange({ ...filters, query: e.target.value })}
-          placeholder="Search experiences"
-          className="mt-1.5 w-full rounded-[10px] border border-ink/10 bg-cream/80 px-3 py-2 text-[0.84rem] text-ink outline-none focus:border-terracotta/40"
-        />
-      </label>
-
       <section>
         <h3 className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
           Explore by city
         </h3>
-        <p className="mt-1 text-[0.72rem] text-muted">
-          Jump to a city — the full page stays visible with every city section.
-        </p>
+        <p className="mt-1 text-[0.72rem] text-muted">Jump to a city on the page.</p>
         <div className="mt-2 flex flex-wrap gap-1.5">
-          {cities.map((city) => {
-            const inView = activeCity === city
-            return (
-              <JumpChip key={city} active={inView} onClick={() => onSelectCity(city)}>
-                {city}
-                <span className="ml-1 opacity-70">{cityCounts[city] ?? 0}</span>
-              </JumpChip>
-            )
-          })}
+          {visibleCities.map((city) => (
+            <JumpChip key={city} active={activeCity === city} onClick={() => onSelectCity(city)}>
+              {city}
+              <span className="ml-1 opacity-70">{cityCounts[city] ?? 0}</span>
+            </JumpChip>
+          ))}
+        </div>
+        {extraCities.length > 0 ? (
+          <button
+            type="button"
+            onClick={() => setMoreCities((v) => !v)}
+            className="mt-2 text-[0.72rem] font-bold text-terracotta hover:underline"
+          >
+            {moreCities ? 'Show fewer cities' : `Show ${extraCities.length} more cities`}
+          </button>
+        ) : null}
+      </section>
+
+      <section>
+        <h3 className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
+          Duration
+        </h3>
+        <p className="mt-1 text-[0.72rem] text-muted">How long you want to spend.</p>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {DURATION_CHIPS.map((chip) => (
+            <FilterChip
+              key={chip.id}
+              active={filters.duration === chip.id}
+              onClick={() => setDuration(chip.id)}
+              className="rounded-[14px] px-3 text-left"
+            >
+              <span className="flex flex-col items-start leading-tight">
+                <span>{chip.label}</span>
+                <span className="text-[0.62rem] font-semibold opacity-80">{chip.range}</span>
+              </span>
+            </FilterChip>
+          ))}
         </div>
       </section>
 
       <section>
         <h3 className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
-          How do you want to feel it?
+          Show me
         </h3>
         <div className="mt-2 flex flex-wrap gap-1.5">
-          {LIKING_CHIPS.map((c) => (
-            <Chip
+          {CATALOG_LIKING_CHIPS.map((c) => (
+            <FilterChip
               key={c.id}
               active={filters.likings.includes(c.id)}
               onClick={() => toggleLiking(c.id)}
             >
               {c.label}
-            </Chip>
+            </FilterChip>
           ))}
         </div>
-      </section>
-
-      <section>
-        <h3 className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
-          Type & theme
-        </h3>
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          {PRACTICAL_CHIPS.map((c) => (
-            <Chip
-              key={c.id}
-              active={filters.practical.includes(c.id)}
-              onClick={() => togglePractical(c.id)}
-            >
-              {c.label}
-            </Chip>
-          ))}
-        </div>
-      </section>
-
-      <section className="space-y-2.5">
-        <h3 className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
-          Practical
-        </h3>
-        <FilterSelect
-          label="Region"
-          value={filters.region}
-          onChange={(v) => onChange({ ...filters, region: v })}
-          options={[
-            { value: 'all', label: 'All regions' },
-            ...regions.map((r) => ({ value: r, label: r })),
-          ]}
-        />
-        <FilterSelect
-          label="Duration"
-          value={filters.duration}
-          onChange={(v) =>
-            onChange({ ...filters, duration: v as ExperienceFilters['duration'] })
-          }
-          options={[
-            { value: 'all', label: 'Any length' },
-            { value: 'short', label: 'Under 2.5 hrs' },
-            { value: 'half', label: 'Half day' },
-            { value: 'full', label: 'Full day' },
-          ]}
-        />
-        <FilterSelect
-          label="Cost"
-          value={filters.cost}
-          onChange={(v) => onChange({ ...filters, cost: v as ExperienceFilters['cost'] })}
-          options={[
-            { value: 'all', label: 'Any cost' },
-            { value: 'free-low', label: 'Free – $15' },
-            { value: 'mid', label: '$15 – $55' },
-            { value: 'high', label: '$55+' },
-          ]}
-        />
-        <FilterSelect
-          label="Accessibility"
-          value={filters.accessibility}
-          onChange={(v) =>
-            onChange({
-              ...filters,
-              accessibility: v as ExperienceFilters['accessibility'],
-            })
-          }
-          options={[
-            { value: 'all', label: 'Any' },
-            { value: 'wheelchair', label: 'Wheelchair-friendly' },
-            { value: 'easy-walk', label: 'Easy walking' },
-            { value: 'limited-walk', label: 'Limited walking' },
-          ]}
-        />
-        <FilterSelect
-          label="Best time"
-          value={filters.bestTime}
-          onChange={(v) =>
-            onChange({ ...filters, bestTime: v as ExperienceFilters['bestTime'] })
-          }
-          options={[
-            { value: 'all', label: 'Any time' },
-            { value: 'morning', label: 'Morning' },
-            { value: 'afternoon', label: 'Afternoon' },
-            { value: 'evening', label: 'Evening' },
-          ]}
-        />
-        <FilterSelect
-          label="Min trip fit"
-          value={String(filters.minFit)}
-          onChange={(v) => onChange({ ...filters, minFit: Number(v) })}
-          options={[
-            { value: '0', label: 'Any fit' },
-            { value: '70', label: '70%+' },
-            { value: '80', label: '80%+' },
-            { value: '90', label: '90%+' },
-          ]}
-        />
       </section>
 
       <button
@@ -337,35 +268,6 @@ export function ExperienceFilterPanelBody({
         Reset filters
       </button>
     </div>
-  )
-}
-
-function FilterSelect({
-  label,
-  value,
-  onChange,
-  options,
-}: {
-  label: string
-  value: string
-  onChange: (v: string) => void
-  options: { value: string; label: string }[]
-}) {
-  return (
-    <label className="block text-[0.78rem]">
-      <span className="font-bold text-muted">{label}</span>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="mt-1 w-full rounded-[10px] border border-ink/10 bg-paper px-2.5 py-2 text-ink outline-none focus:border-terracotta/40"
-      >
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>
-            {o.label}
-          </option>
-        ))}
-      </select>
-    </label>
   )
 }
 

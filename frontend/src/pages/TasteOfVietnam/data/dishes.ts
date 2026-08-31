@@ -180,7 +180,7 @@ export const DISHES: Dish[] = [
         note: 'Often milder, with more garnish flexibility.',
       },
     ],
-    recipeVideoUrl: 'https://www.youtube.com/embed/5S2_5ZrmUyQ',
+    recipeVideoUrl: 'https://www.youtube.com/embed/eOmQbJljnqE',
   },
   {
     id: 'cao-lau',
@@ -215,7 +215,7 @@ export const DISHES: Dish[] = [
       'You come for the dish because it does not travel well; the place is part of the flavour.',
     ],
     regionalVariations: [],
-    recipeVideoUrl: 'https://www.youtube.com/embed/iZJzTScgB-c',
+    recipeVideoUrl: 'https://www.youtube.com/embed/9SNt3TlEY0s',
   },
   {
     id: 'ca-phe-trung',
@@ -249,7 +249,7 @@ export const DISHES: Dish[] = [
       'Best sipped slowly in an old café courtyard while the city moves outside.',
     ],
     regionalVariations: [],
-    recipeVideoUrl: 'https://www.youtube.com/embed/k4HA1ejw_hA',
+    recipeVideoUrl: 'https://www.youtube.com/embed/AGaJy_TKwCQ',
   },
   {
     id: 'goi-cuon',
@@ -295,7 +295,7 @@ export const DISHES: Dish[] = [
         note: 'Often leaner fillings with fish-sauce based dips.',
       },
     ],
-    recipeVideoUrl: 'https://www.youtube.com/embed/b4COqj_4aIg',
+    recipeVideoUrl: 'https://www.youtube.com/embed/8CaadFo3sw0',
   },
   {
     id: 'com-tam',
@@ -330,7 +330,7 @@ export const DISHES: Dish[] = [
       'It is the dish that teaches southern pacing — generous, practical and deeply local.',
     ],
     regionalVariations: [],
-    recipeVideoUrl: 'https://www.youtube.com/embed/xxM4t8vP-0A',
+    recipeVideoUrl: 'https://www.youtube.com/embed/Hlr8nD8cNW4',
   },
 ]
 

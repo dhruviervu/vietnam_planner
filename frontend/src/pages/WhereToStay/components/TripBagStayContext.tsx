@@ -5,19 +5,22 @@ import type { TripBagCitySummary } from '../services/tripBagStayIntelligence'
 type Props = {
   cities: TripBagCitySummary[]
   totalBagItems: number
-  unmappedCount: number
-  experiencesHref?: string
+  unmappedLabels: string[]
   activitiesHref?: string
+  experiencesHref?: string
+  onExploreAllStays?: () => void
 }
 
 export function TripBagStayContext({
   cities,
   totalBagItems,
-  unmappedCount,
+  unmappedLabels,
   experiencesHref = '/plan/builder/experiences',
   activitiesHref = '/plan/builder/activities',
+  onExploreAllStays,
 }: Props) {
   const cityNames = cities.map((c) => c.label)
+  const singleActivityCities = cities.filter((c) => c.activityCount === 1)
 
   return (
     <motion.section
@@ -50,32 +53,62 @@ export function TripBagStayContext({
               </span>
             </>
           ) : null}
-          . We’re focusing stay options on those cities so your base sits near what you want to do.
+          . We&apos;re focusing stay options on those cities so your base sits near what you want to
+          do.
         </p>
 
-        <ul className="mt-4 flex flex-wrap gap-2">
+        <ul className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {cities.map((c) => (
             <li
               key={c.cityId}
-              className="rounded-full border border-ink/10 bg-paper px-3 py-1.5 text-[0.78rem] font-bold text-ink shadow-soft"
+              className="rounded-[16px] border-2 border-terracotta/35 bg-paper px-4 py-3 shadow-soft"
             >
-              {c.label}
-              <span className="ml-1.5 font-semibold text-muted">
+              <p className="font-serif text-[1.25rem] font-semibold leading-tight text-ink">
+                {c.label}
+              </p>
+              <p className="mt-1 text-[0.78rem] font-semibold text-muted">
                 {c.experienceCount + c.activityCount} plan
-                {c.experienceCount + c.activityCount === 1 ? '' : 's'}
-              </span>
+                {c.experienceCount + c.activityCount === 1 ? '' : 's'} in your bag
+              </p>
             </li>
           ))}
         </ul>
 
-        {unmappedCount > 0 && (
-          <p className="mt-3 text-[0.8rem] text-muted">
-            {unmappedCount} selected place{unmappedCount === 1 ? '' : 's'} sit outside our stay-city
-            map for now — they still stay in your trip bag.
+        {unmappedLabels.length > 0 ? (
+          <p className="mt-4 text-[0.88rem] leading-relaxed text-ink/85">
+            We don&apos;t list stay neighbourhoods for{' '}
+            <span className="font-bold text-ink">
+              {unmappedLabels.length === 1
+                ? unmappedLabels[0]
+                : `${unmappedLabels.slice(0, -1).join(', ')} and ${unmappedLabels[unmappedLabels.length - 1]}`}
+            </span>{' '}
+            yet — those picks stay in your trip bag.
           </p>
-        )}
+        ) : null}
+
+        {singleActivityCities.length > 0 ? (
+          <div className="mt-3 space-y-1.5">
+            {singleActivityCities.map((c) => (
+              <p key={c.cityId} className="text-[0.88rem] text-ink/85">
+                <span className="font-bold text-ink">{c.label}</span> has only one activity.{' '}
+                <Link to={activitiesHref} className="font-bold text-terracotta hover:underline">
+                  Want to add more?
+                </Link>
+              </p>
+            ))}
+          </div>
+        ) : null}
 
         <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-ink/8 pt-4">
+          {onExploreAllStays ? (
+            <button
+              type="button"
+              onClick={onExploreAllStays}
+              className="rounded-full bg-terracotta px-4 py-2 text-[0.8rem] font-bold text-paper transition hover:brightness-105"
+            >
+              Explore All Stays
+            </button>
+          ) : null}
           <p className="text-[0.84rem] text-ink/85">
             Want another city? Add experiences or activities there first.
           </p>
