@@ -82,3 +82,36 @@ export function vndToDisplay(
 ): number | null {
   return convertAmount(vnd, 'VND', display, usdRates)
 }
+
+const PREFERRED_CURRENCIES = [
+  'USD',
+  'EUR',
+  'GBP',
+  'INR',
+  'AUD',
+  'CAD',
+  'SGD',
+  'JPY',
+  'CNY',
+  'KRW',
+  'THB',
+  'MYR',
+  'NZD',
+  'CHF',
+  'HKD',
+  'AED',
+  'ZAR',
+  'BRL',
+  'MXN',
+  'PHP',
+  'IDR',
+  'VND',
+]
+
+/** Every ISO code present in the live (or fallback) USD rate table. */
+export function listedCurrencies(usdRates: Record<string, number>): string[] {
+  const fromRates = Object.keys(usdRates).filter((k) => /^[A-Z]{3}$/.test(k))
+  const set = new Set(fromRates)
+  const rest = [...set].filter((c) => !PREFERRED_CURRENCIES.includes(c)).sort()
+  return [...PREFERRED_CURRENCIES.filter((c) => set.has(c)), ...rest]
+}

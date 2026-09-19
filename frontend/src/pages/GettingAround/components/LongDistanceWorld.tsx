@@ -5,8 +5,10 @@ import { getPlace, mapHubPlaces } from '../data/places'
 import {
   connectionBadge,
   getHubMarkers,
+  plainConnectionExplain,
   resolveIntercityRoute,
   type FeasibleJourney,
+  type JourneyRecommendation,
   type RouteIntelligenceResult,
 } from '../data/routeIntelligence'
 import { MAP_META } from '../maps/mapMeta'
@@ -14,8 +16,6 @@ import { VIETNAM_LOCATION_META } from '../maps/locationMeta'
 import { SvgTransportMap } from './SvgTransportMap'
 import { ModeJumpNav } from './ModeJumpNav'
 import { ModeSection } from './ModeSection'
-import { ComparisonStrip } from './ComparisonStrip'
-import { HowToMoveStrip } from './HowToMoveStrip'
 import { useTripBagPlaceIds } from '../lib/tripBagPlaces'
 import { mapCityPin } from '../data/cityEmojis'
 import { getTopology } from '../data/transportNetwork'
@@ -212,9 +212,9 @@ export function LongDistanceWorld({
       : editFocus === 'destination'
         ? 'Click the map to change destination'
         : !originId
-          ? 'Click anywhere to choose a starting point'
+          ? 'Click on the Red Dot as your starting point'
           : !destinationId
-            ? 'Now choose your destination'
+            ? 'Click on another dot as your destination'
             : null
 
   return (
@@ -230,21 +230,10 @@ export function LongDistanceWorld({
         </div>
       </div>
 
-      <p className="max-w-[56ch] text-[0.9rem] text-muted">
-        How Vietnam connects from north to south — and how to choose between speed, comfort, cost and
-        flexibility.
-      </p>
-
-      <HowToMoveStrip bagPlaceIds={bagPlaceIds} />
-
       <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,1fr)] lg:items-stretch lg:gap-5">
         <div className="flex min-h-[480px] flex-col lg:h-[560px] lg:min-h-[560px]">
-          <p className="text-[0.58rem] font-bold uppercase tracking-[0.12em] text-muted">
-            Explore the map
-          </p>
-          <p className="mt-1 mb-2 max-w-[54ch] text-[0.78rem] text-muted">
-            Every city stays on the map. Trip-bag cities glow with a larger pin. Click anywhere
-            to choose a place, or use the selectors beside the map.
+          <p className="mb-2 font-bold text-ink">
+            See the best modes of transport between two cities.
           </p>
           <div className="relative min-h-0 flex-1 overflow-hidden rounded-[20px] bg-gradient-to-br from-sage/15 via-cream to-terracotta/10 shadow-[0_18px_40px_rgba(47,42,38,0.08)] ring-1 ring-ink/10">
             <SvgTransportMap
@@ -335,8 +324,6 @@ export function LongDistanceWorld({
             onSelectOption={onSelectOption}
           />
         ))}
-
-        <ComparisonStrip modes={LONG_MODES} kind="long" />
       </div>
     </section>
   )
@@ -551,57 +538,35 @@ function JourneyPanel({
       </div>
 
       <div className="min-h-0 flex-1 overflow-y-auto px-4 py-3">
-        {intelligence.recommendations.length ? (
-          <div className="mb-3">
-            <p className="text-[0.55rem] font-bold uppercase tracking-[0.1em] text-muted">
-              Best options
-            </p>
-            <div className="mt-1.5 space-y-1">
-              {intelligence.recommendations.map((r) => (
-                <button
-                  key={r.id}
-                  type="button"
-                  onClick={() => {
-                    const j = intelligence.journeys.find((x) => x.id === r.journeyId)
-                    if (j) onJumpMode(j.modeId, j.scrollTargetId)
-                  }}
-                  className="flex w-full items-center gap-2 rounded-[10px] bg-cream/80 px-2.5 py-1.5 text-left ring-1 ring-ink/8 hover:ring-terracotta/30"
-                  title={r.note}
-                >
-                  <span className="shrink-0 text-[0.75rem] font-bold text-ink">
-                    {r.symbol} {r.label}
-                  </span>
-                  <span className="truncate text-[0.7rem] text-muted">{r.journeyTitle}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : null}
-
         <p className="text-[0.55rem] font-bold uppercase tracking-[0.1em] text-muted">
           How you can travel
         </p>
         <ul className="mt-1.5 space-y-1.5">
-          {intelligence.journeys.map((journey) => (
-            <JourneyRow
-              key={journey.id}
-              journey={journey}
-              active={activeModeId === journey.modeId}
-              badge={
-                intelligence.recommendations.find((r) => r.journeyId === journey.id)?.label ?? null
-              }
-              onClick={() => {
-                if (
-                  journey.status === 'not-available' ||
-                  journey.status === 'not-applicable' ||
-                  journey.status === 'unknown'
-                ) {
-                  return
-                }
-                onJumpMode(journey.modeId, journey.scrollTargetId)
-              }}
-            />
-          ))}
+          {orderJourneysForCard(intelligence.journeys, intelligence.recommendations).map(
+            (journey) => {
+              const rec = intelligence.recommendations.find((r) => r.journeyId === journey.id)
+              const isBestOverall = rec?.id === 'best-overall'
+              return (
+                <JourneyRow
+                  key={journey.id}
+                  journey={journey}
+                  active={activeModeId === journey.modeId}
+                  badge={rec?.label ?? null}
+                  isBestOverall={isBestOverall}
+                  onClick={() => {
+                    if (
+                      journey.status === 'not-available' ||
+                      journey.status === 'not-applicable' ||
+                      journey.status === 'unknown'
+                    ) {
+                      return
+                    }
+                    onJumpMode(journey.modeId, journey.scrollTargetId)
+                  }}
+                />
+              )
+            },
+          )}
         </ul>
 
         {intelligence.whatThisMeans[0] ? (
@@ -628,15 +593,32 @@ function JourneyPanel({
   )
 }
 
+function orderJourneysForCard(
+  journeys: FeasibleJourney[],
+  recommendations: JourneyRecommendation[],
+) {
+  const overallId = recommendations.find((r) => r.id === 'best-overall')?.journeyId
+  const leastComplexId = recommendations.find((r) => r.id === 'least-complex')?.journeyId
+  const pinOrder = [overallId, leastComplexId].filter((id): id is string => Boolean(id))
+  const pinIndex = new Map(pinOrder.map((id, i) => [id, i]))
+  return [...journeys].sort((a, b) => {
+    const ia = pinIndex.get(a.id) ?? Number.POSITIVE_INFINITY
+    const ib = pinIndex.get(b.id) ?? Number.POSITIVE_INFINITY
+    return ia - ib
+  })
+}
+
 function JourneyRow({
   journey,
   active,
   badge,
+  isBestOverall,
   onClick,
 }: {
   journey: FeasibleJourney
   active: boolean
   badge: string | null
+  isBestOverall: boolean
   onClick: () => void
 }) {
   const unavailable =
@@ -644,6 +626,7 @@ function JourneyRow({
     journey.status === 'not-applicable' ||
     journey.status === 'unknown'
   const multi = journey.status === 'one-connection' || journey.status === 'multi-leg'
+  const highlightBest = isBestOverall && !unavailable
 
   return (
     <li>
@@ -651,12 +634,14 @@ function JourneyRow({
         type="button"
         disabled={unavailable}
         onClick={onClick}
-        className={`w-full rounded-[12px] px-2.5 py-2 text-left transition ring-1 ${
+        className={`w-full rounded-[12px] px-2.5 py-2 text-left transition ${
           unavailable
-            ? 'cursor-default bg-cream/35 text-muted ring-ink/5 opacity-80'
-            : active
-              ? 'bg-terracotta/10 ring-terracotta/40'
-              : 'bg-cream/60 ring-ink/8 hover:bg-cream hover:ring-terracotta/25'
+            ? 'cursor-default bg-cream/35 text-muted ring-1 ring-ink/5 opacity-80'
+            : highlightBest
+              ? 'bg-terracotta/14 ring-2 ring-terracotta shadow-[0_8px_18px_rgba(196,92,62,0.16)]'
+              : active
+                ? 'bg-terracotta/10 ring-1 ring-terracotta/40'
+                : 'bg-cream/60 ring-1 ring-ink/8 hover:bg-cream hover:ring-terracotta/25'
         }`}
       >
         <div className="flex items-center gap-2">
@@ -668,8 +653,14 @@ function JourneyRow({
                 {connectionBadge(journey.status)}
               </span>
               {badge && !unavailable ? (
-                <span className="shrink-0 rounded-full bg-paper px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-wide text-ink ring-1 ring-ink/8">
-                  {badge}
+                <span
+                  className={`shrink-0 rounded-full px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-wide ring-1 ${
+                    highlightBest
+                      ? 'bg-terracotta text-paper ring-terracotta'
+                      : 'bg-paper text-ink ring-ink/8'
+                  }`}
+                >
+                  {highlightBest ? `⭐ ${badge}` : badge}
                 </span>
               ) : null}
             </div>
@@ -686,29 +677,11 @@ function JourneyRow({
           ) : null}
         </div>
 
-        {multi && journey.legs.length > 0 ? (
+        {multi ? (
           <div className="mt-1.5 rounded-[8px] bg-paper/80 px-2 py-1.5 ring-1 ring-ink/5">
-            <div className="flex flex-col gap-0.5 text-[0.65rem] font-semibold text-ink/75">
-              {journey.legs.map((leg, i) => (
-                <span key={`${leg.fromLabel}-${leg.toLabel}-${i}`} className="flex items-start gap-1">
-                  <span className="w-3 shrink-0 text-center text-muted">{i === 0 ? '📍' : '↓'}</span>
-                  <span>
-                    {i === 0 ? `${leg.fromLabel} → ` : ''}
-                    {leg.mode === 'flight'
-                      ? '✈️ '
-                      : leg.mode === 'ferry'
-                        ? '⛴️ '
-                        : leg.mode === 'train'
-                          ? '🚆 '
-                          : '🚌 '}
-                    {leg.toLabel}
-                  </span>
-                </span>
-              ))}
-            </div>
-            {journey.why ? (
-              <p className="mt-1 text-[0.62rem] font-medium text-muted">{journey.why}</p>
-            ) : null}
+            <p className="text-[0.72rem] font-semibold leading-snug text-ink">
+              {plainConnectionExplain(journey) ?? journey.why}
+            </p>
           </div>
         ) : null}
       </button>

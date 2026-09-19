@@ -1,0 +1,3122 @@
+{
+  "an-dinh-palace": {
+    "source": "google",
+    "displayName": "An Dinh Palace",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "aquatopia-pq": {
+    "source": "google",
+    "displayName": "Aquatopia Water Park",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 5:00 PM",
+      "Monday: 9:00 AM – 5:00 PM",
+      "Tuesday: 9:00 AM – 5:00 PM",
+      "Wednesday: 9:00 AM – 5:00 PM",
+      "Thursday: 9:00 AM – 5:00 PM",
+      "Friday: 9:00 AM – 5:00 PM",
+      "Saturday: 9:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "ba-lang-gardens": {
+    "source": "google",
+    "displayName": "Vườn Sinh Thái Ba Láng",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 5:00 PM",
+      "Monday: 6:00 AM – 5:00 PM",
+      "Tuesday: 6:00 AM – 5:00 PM",
+      "Wednesday: 6:00 AM – 5:00 PM",
+      "Thursday: 6:00 AM – 5:00 PM",
+      "Friday: 6:00 AM – 5:00 PM",
+      "Saturday: 6:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "bach-ma-national-park": {
+    "source": "google",
+    "displayName": "Vườn Quốc Gia Bạch Mã",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 5:00 PM",
+      "Monday: 7:30 AM – 5:00 PM",
+      "Tuesday: 7:30 AM – 5:00 PM",
+      "Wednesday: 7:30 AM – 5:00 PM",
+      "Thursday: 7:30 AM – 5:00 PM",
+      "Friday: 7:30 AM – 5:00 PM",
+      "Saturday: 7:30 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "bai-chay-beach": {
+    "source": "google",
+    "displayName": "Bai Chay beach",
+    "weekdayDescriptions": [
+      "Sunday: 6:30 AM – 6:00 PM",
+      "Monday: 6:30 AM – 6:00 PM",
+      "Tuesday: 6:30 AM – 6:00 PM",
+      "Wednesday: 6:30 AM – 6:00 PM",
+      "Thursday: 6:30 AM – 6:00 PM",
+      "Friday: 6:30 AM – 6:00 PM",
+      "Saturday: 6:30 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "bai-chay-bridge": {
+    "source": "google",
+    "displayName": "Bãi Cháy Bridge",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "bang-lang-stork": {
+    "source": "google",
+    "displayName": "Bang Lang Stork Sanctuary",
+    "weekdayDescriptions": [
+      "Sunday: 5:00 AM – 7:30 PM",
+      "Monday: 5:00 AM – 7:30 PM",
+      "Tuesday: 5:00 AM – 7:30 PM",
+      "Wednesday: 5:00 AM – 7:30 PM",
+      "Thursday: 5:00 AM – 7:30 PM",
+      "Friday: 5:00 AM – 7:30 PM",
+      "Saturday: 5:00 AM – 7:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "bao-dai-palace-iii": {
+    "source": "google",
+    "displayName": "Bao Dai Palace 3",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:30 PM",
+      "Monday: 7:00 AM – 5:30 PM",
+      "Tuesday: 7:00 AM – 5:30 PM",
+      "Wednesday: 7:00 AM – 5:30 PM",
+      "Thursday: 7:00 AM – 5:30 PM",
+      "Friday: 7:00 AM – 5:30 PM",
+      "Saturday: 7:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "bear-sanctuary-ninh-binh": {
+    "source": "google",
+    "displayName": "Ninh Binh Bear Sanctuary",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 5:00 PM",
+      "Monday: 9:00 AM – 5:00 PM",
+      "Tuesday: Closed",
+      "Wednesday: 9:00 AM – 5:00 PM",
+      "Thursday: 9:00 AM – 5:00 PM",
+      "Friday: 9:00 AM – 5:00 PM",
+      "Saturday: 9:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "bich-van-thien-tu": {
+    "source": "google",
+    "displayName": "Bich Van Pagoda | Bich Van Thien Temple",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 10:00 PM",
+      "Monday: 7:00 AM – 10:00 PM",
+      "Tuesday: 7:00 AM – 10:00 PM",
+      "Wednesday: 7:00 AM – 10:00 PM",
+      "Thursday: 7:00 AM – 10:00 PM",
+      "Friday: 7:00 AM – 10:00 PM",
+      "Saturday: 7:00 AM – 10:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "binh-tay-market": {
+    "source": "google",
+    "displayName": "Binh Tay Market",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 6:00 PM",
+      "Monday: 7:00 AM – 6:00 PM",
+      "Tuesday: 7:00 AM – 6:00 PM",
+      "Wednesday: 7:00 AM – 6:00 PM",
+      "Thursday: 7:00 AM – 6:00 PM",
+      "Friday: 7:00 AM – 6:00 PM",
+      "Saturday: 7:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "bitexco-skydeck": {
+    "source": "google",
+    "displayName": "Saigon Skydeck",
+    "weekdayDescriptions": [
+      "Sunday: 9:30 AM – 9:30 PM",
+      "Monday: 9:30 AM – 9:30 PM",
+      "Tuesday: 9:30 AM – 9:30 PM",
+      "Wednesday: 9:30 AM – 9:30 PM",
+      "Thursday: 9:30 AM – 9:30 PM",
+      "Friday: 9:30 AM – 9:30 PM",
+      "Saturday: 9:30 AM – 9:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "cai-beo-village": {
+    "source": "google",
+    "displayName": "Eco Floating Stay Cai Beo",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 8:00 PM",
+      "Monday: 7:00 AM – 8:00 PM",
+      "Tuesday: 7:00 AM – 8:00 PM",
+      "Wednesday: 7:00 AM – 8:00 PM",
+      "Thursday: 7:00 AM – 8:00 PM",
+      "Friday: 7:00 AM – 8:00 PM",
+      "Saturday: 7:00 AM – 8:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "cam-ly-waterfall": {
+    "source": "google",
+    "displayName": "Cam Ly Waterfall",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "can-tho-cathedral": {
+    "source": "google",
+    "displayName": "Cathedral of the Diocese of Can Tho",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "can-tho-grand-prison": {
+    "source": "google",
+    "displayName": "Historic Prison Can Tho",
+    "weekdayDescriptions": [
+      "Sunday: Closed",
+      "Monday: 8-11 am 2-5 pm",
+      "Tuesday: 8-11 am 2-5 pm",
+      "Wednesday: 8-11 am 2-5 pm",
+      "Thursday: 8-11 am 2-5 pm",
+      "Friday: 8-11 am 2-5 pm",
+      "Saturday: Closed"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "can-tho-museum": {
+    "source": "google",
+    "displayName": "Can Tho Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8-11 am 6:30-9 pm",
+      "Monday: Closed",
+      "Tuesday: 8-11 am 2-5 pm",
+      "Wednesday: 8-11 am 2-5 pm",
+      "Thursday: 8-11 am 2-5 pm",
+      "Friday: Closed",
+      "Saturday: 8-11 am 6:30-9 pm"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "cat-ba-cable-car": {
+    "source": "google",
+    "displayName": "Sun World Cat Ba - Ga Cát Hải",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 3:45 PM",
+      "Monday: 9:00 AM – 3:45 PM",
+      "Tuesday: Closed",
+      "Wednesday: 9:00 AM – 3:45 PM",
+      "Thursday: 9:00 AM – 3:45 PM",
+      "Friday: 9:00 AM – 3:45 PM",
+      "Saturday: 9:00 AM – 3:45 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "cat-ba-national-park": {
+    "source": "google",
+    "displayName": "Cat Ba National Park",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "cat-ba-night-market": {
+    "source": "google",
+    "displayName": "Chợ đêm Cát Bà",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 PM – 12:00 AM",
+      "Monday: 6:00 PM – 12:00 AM",
+      "Tuesday: 6:00 PM – 12:00 AM",
+      "Wednesday: 6:00 PM – 12:00 AM",
+      "Thursday: 6:00 PM – 12:00 AM",
+      "Friday: 6:00 PM – 12:00 AM",
+      "Saturday: 6:00 PM – 12:00 AM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "cham-sculpture-museum": {
+    "source": "google",
+    "displayName": "Da Nang Museum of Cham Sculpture",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "chicken-village-kho": {
+    "source": "google",
+    "displayName": "Chicken Village (Làng Con Gà)",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 5:30 PM",
+      "Monday: 6:00 AM – 5:30 PM",
+      "Tuesday: 6:00 AM – 5:30 PM",
+      "Wednesday: 6:00 AM – 5:30 PM",
+      "Thursday: 6:00 AM – 5:30 PM",
+      "Friday: 6:00 AM – 5:30 PM",
+      "Saturday: 6:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "chin-khoanh-dong-van": {
+    "source": "google",
+    "displayName": "Chín Khoanh ramp",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "chin-khoanh-pass": {
+    "source": "google",
+    "displayName": "Chín Khoanh ramp",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "chinese-assembly-hall": {
+    "source": "google",
+    "displayName": "Chinese Assembly Hall of Hoi An",
+    "weekdayDescriptions": [
+      "Sunday: 7-11 am 2-4 pm",
+      "Monday: 7-11 am 2-4 pm",
+      "Tuesday: 7-11 am 2-4 pm",
+      "Wednesday: 7-11 am 2-4 pm",
+      "Thursday: 7-11 am 2-4 pm",
+      "Friday: 7-11 am 2-4 pm",
+      "Saturday: 7-11 am 2-4 pm"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "chua-ong-can-tho": {
+    "source": "google",
+    "displayName": "Chùa Ông Cần Thơ (Quảng Triệu Hội Quán)",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 8:00 PM",
+      "Monday: 7:00 AM – 8:00 PM",
+      "Tuesday: 7:00 AM – 8:00 PM",
+      "Wednesday: 7:00 AM – 8:00 PM",
+      "Thursday: 7:00 AM – 8:00 PM",
+      "Friday: 7:00 AM – 8:00 PM",
+      "Saturday: 7:00 AM – 8:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "chua-tu-ton": {
+    "source": "google",
+    "displayName": "Chùa Từ Tôn",
+    "weekdayDescriptions": [
+      "Sunday: 5:00 AM – 9:00 PM",
+      "Monday: 5:00 AM – 9:00 PM",
+      "Tuesday: 5:00 AM – 9:00 PM",
+      "Wednesday: 5:00 AM – 9:00 PM",
+      "Thursday: 5:00 AM – 9:00 PM",
+      "Friday: 5:00 AM – 9:00 PM",
+      "Saturday: 5:00 AM – 9:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "coi-nguon-museum": {
+    "source": "google",
+    "displayName": "Coi Nguon Museum",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 4:00 PM",
+      "Monday: 7:00 AM – 4:00 PM",
+      "Tuesday: 7:00 AM – 4:00 PM",
+      "Wednesday: 7:00 AM – 4:00 PM",
+      "Thursday: 7:00 AM – 4:00 PM",
+      "Friday: 7:00 AM – 4:00 PM",
+      "Saturday: 7:00 AM – 4:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "con-market": {
+    "source": "google",
+    "displayName": "Con Market",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 7:00 PM",
+      "Monday: 7:00 AM – 7:00 PM",
+      "Tuesday: 7:00 AM – 7:00 PM",
+      "Wednesday: 7:00 AM – 7:00 PM",
+      "Thursday: 7:00 AM – 7:00 PM",
+      "Friday: 7:00 AM – 7:00 PM",
+      "Saturday: 7:00 AM – 7:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "cu-chi": {
+    "source": "google",
+    "displayName": "Cu Chi Tunnel",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "da-lat-night-market": {
+    "source": "google",
+    "displayName": "Da Lat Night Market",
+    "weekdayDescriptions": [
+      "Sunday: 5:30 PM – 12:00 AM",
+      "Monday: 5:30 PM – 12:00 AM",
+      "Tuesday: 5:30 PM – 12:00 AM",
+      "Wednesday: 5:30 PM – 12:00 AM",
+      "Thursday: 5:30 PM – 12:00 AM",
+      "Friday: 5:30 PM – 12:00 AM",
+      "Saturday: 5:30 PM – 12:00 AM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "da-nang-cathedral": {
+    "source": "google",
+    "displayName": "Da Nang Cathedral",
+    "weekdayDescriptions": [
+      "Sunday: Closed",
+      "Monday: 8-11:30 am 1:30-4:30 pm",
+      "Tuesday: 8-11:30 am 1:30-4:30 pm",
+      "Wednesday: 8-11:30 am 1:30-4:30 pm",
+      "Thursday: 8-11:30 am 1:30-4:30 pm",
+      "Friday: 8-11:30 am 1:30-4:30 pm",
+      "Saturday: 8-11:30 am 1:30-4:30 pm"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dam-market": {
+    "source": "google",
+    "displayName": "Dam Market",
+    "weekdayDescriptions": [
+      "Sunday: 5:00 AM – 6:30 PM",
+      "Monday: 5:00 AM – 6:30 PM",
+      "Tuesday: 5:00 AM – 6:30 PM",
+      "Wednesday: 5:00 AM – 6:30 PM",
+      "Thursday: 5:00 AM – 6:30 PM",
+      "Friday: 5:00 AM – 6:30 PM",
+      "Saturday: 5:00 AM – 6:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "datanla-waterfall": {
+    "source": "google",
+    "displayName": "Khu du lịch Thác Datanla",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 4:30 PM",
+      "Monday: 7:30 AM – 4:30 PM",
+      "Tuesday: 7:30 AM – 4:30 PM",
+      "Wednesday: 7:30 AM – 4:30 PM",
+      "Thursday: 7:30 AM – 4:30 PM",
+      "Friday: 7:30 AM – 4:30 PM",
+      "Saturday: 7:30 AM – 4:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dau-go-cave": {
+    "source": "google",
+    "displayName": "Dau Go Cave",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "dieu-de-pagoda": {
+    "source": "google",
+    "displayName": "Dieu De Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: 5:30 AM – 9:00 PM",
+      "Monday: 5:30 AM – 9:00 PM",
+      "Tuesday: 5:30 AM – 9:00 PM",
+      "Wednesday: 5:30 AM – 9:00 PM",
+      "Thursday: 5:30 AM – 9:00 PM",
+      "Friday: 5:30 AM – 9:00 PM",
+      "Saturday: 5:30 AM – 9:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dinh-cau": {
+    "source": "google",
+    "displayName": "Dinh Cậu",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 8:30 PM",
+      "Monday: 7:00 AM – 8:30 PM",
+      "Tuesday: 7:00 AM – 8:30 PM",
+      "Wednesday: 7:00 AM – 8:30 PM",
+      "Thursday: 7:00 AM – 8:30 PM",
+      "Friday: 7:00 AM – 8:30 PM",
+      "Saturday: 7:00 AM – 8:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dl-alpine-coaster": {
+    "source": "google",
+    "displayName": "Datanla New Alpine Coaster",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 4:30 PM",
+      "Monday: 7:30 AM – 4:30 PM",
+      "Tuesday: 7:30 AM – 4:30 PM",
+      "Wednesday: 7:30 AM – 4:30 PM",
+      "Thursday: 7:30 AM – 4:30 PM",
+      "Friday: 7:30 AM – 4:30 PM",
+      "Saturday: 7:30 AM – 4:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dl-night-market-food": {
+    "source": "google",
+    "displayName": "Da Lat Night Market",
+    "weekdayDescriptions": [
+      "Sunday: 5:30 PM – 12:00 AM",
+      "Monday: 5:30 PM – 12:00 AM",
+      "Tuesday: 5:30 PM – 12:00 AM",
+      "Wednesday: 5:30 PM – 12:00 AM",
+      "Thursday: 5:30 PM – 12:00 AM",
+      "Friday: 5:30 PM – 12:00 AM",
+      "Saturday: 5:30 PM – 12:00 AM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dl-suoi-may-onsen": {
+    "source": "google",
+    "displayName": "SUỐI MÂY ONSEN & SPA",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 9:00 PM",
+      "Monday: 9:00 AM – 9:00 PM",
+      "Tuesday: 9:00 AM – 9:00 PM",
+      "Wednesday: 9:00 AM – 9:00 PM",
+      "Thursday: 9:00 AM – 9:00 PM",
+      "Friday: 9:00 AM – 9:00 PM",
+      "Saturday: 9:00 AM – 9:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dn-cham-seatrek": {
+    "source": "google",
+    "displayName": "Sea Trek VietNam",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:30 PM",
+      "Monday: 8:00 AM – 5:30 PM",
+      "Tuesday: 8:00 AM – 5:30 PM",
+      "Wednesday: 8:00 AM – 5:30 PM",
+      "Thursday: 8:00 AM – 5:30 PM",
+      "Friday: 8:00 AM – 5:30 PM",
+      "Saturday: 8:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dn-than-tai": {
+    "source": "google",
+    "displayName": "Hot Springs Park",
+    "weekdayDescriptions": [
+      "Sunday: 8:30 AM – 5:30 PM",
+      "Monday: 8:30 AM – 5:30 PM",
+      "Tuesday: 8:30 AM – 5:30 PM",
+      "Wednesday: 8:30 AM – 5:30 PM",
+      "Thursday: 8:30 AM – 5:30 PM",
+      "Friday: 8:30 AM – 5:30 PM",
+      "Saturday: 8:30 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "domaine-de-marie": {
+    "source": "google",
+    "displayName": "Domaine de Marie",
+    "weekdayDescriptions": [
+      "Sunday: 7:30-11:30 am 1:30-5:30 pm",
+      "Monday: 7:30-11:30 am 1:30-5:30 pm",
+      "Tuesday: 7:30-11:30 am 1:30-5:30 pm",
+      "Wednesday: 7:30-11:30 am 1:30-5:30 pm",
+      "Thursday: 7:30-11:30 am 1:30-5:30 pm",
+      "Friday: 7:30-11:30 am 1:30-5:30 pm",
+      "Saturday: 7:30-11:30 am 1:30-5:30 pm"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dong-ba-market": {
+    "source": "google",
+    "displayName": "Dong Ba Market",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "dong-khanh-tomb": {
+    "source": "google",
+    "displayName": "Mausoleum of Emperor Dong Khanh",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 5:30 AM",
+      "Monday: 7:30 AM – 5:30 AM",
+      "Tuesday: 7:30 AM – 5:30 AM",
+      "Wednesday: 7:30 AM – 5:30 AM",
+      "Thursday: 7:30 AM – 5:30 AM",
+      "Friday: 7:30 AM – 5:30 AM",
+      "Saturday: 7:30 AM – 5:30 AM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dong-van-ancient-town": {
+    "source": "google",
+    "displayName": "Dong Van Ancient Street",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 11:30 PM",
+      "Monday: 7:00 AM – 11:30 PM",
+      "Tuesday: 7:00 AM – 11:30 PM",
+      "Wednesday: 7:00 AM – 11:30 PM",
+      "Thursday: 7:00 AM – 11:30 PM",
+      "Friday: 7:00 AM – 11:30 PM",
+      "Saturday: 7:00 AM – 11:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "dong-van-old-quarter": {
+    "source": "google",
+    "displayName": "Dong Van Ancient Street",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 11:30 PM",
+      "Monday: 7:00 AM – 11:30 PM",
+      "Tuesday: 7:00 AM – 11:30 PM",
+      "Wednesday: 7:00 AM – 11:30 PM",
+      "Thursday: 7:00 AM – 11:30 PM",
+      "Friday: 7:00 AM – 11:30 PM",
+      "Saturday: 7:00 AM – 11:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "duck-stop": {
+    "source": "google",
+    "displayName": "The Duck Stop",
+    "weekdayDescriptions": [
+      "Sunday: 8:30 AM – 6:00 PM",
+      "Monday: 8:30 AM – 6:00 PM",
+      "Tuesday: 8:30 AM – 6:00 PM",
+      "Wednesday: 8:30 AM – 6:00 PM",
+      "Thursday: 8:30 AM – 6:00 PM",
+      "Friday: 8:30 AM – 6:00 PM",
+      "Saturday: 8:30 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "duyet-thi-duong": {
+    "source": "google",
+    "displayName": "Duyet Thi Duong Royal Theater",
+    "weekdayDescriptions": [
+      "Sunday: 6:30 AM – 5:30 PM",
+      "Monday: 6:30 AM – 5:30 PM",
+      "Tuesday: 6:30 AM – 5:30 PM",
+      "Wednesday: 6:30 AM – 5:30 PM",
+      "Thursday: 6:30 AM – 5:30 PM",
+      "Friday: 6:30 AM – 5:30 PM",
+      "Saturday: 6:30 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "eight-ladies-cave": {
+    "source": "google",
+    "displayName": "Eight Ladies Cave",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "ethnology-museum": {
+    "source": "google",
+    "displayName": "Vietnam Museum of Ethnology",
+    "weekdayDescriptions": [
+      "Sunday: 8:30 AM – 5:30 PM",
+      "Monday: Closed",
+      "Tuesday: 8:30 AM – 5:30 PM",
+      "Wednesday: 8:30 AM – 5:30 PM",
+      "Thursday: 8:30 AM – 5:30 PM",
+      "Friday: 8:30 AM – 5:30 PM",
+      "Saturday: 8:30 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "fifth-military-zone-museum": {
+    "source": "google",
+    "displayName": "Ho Chi Minh Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 12:00 PM",
+      "Monday: Closed",
+      "Tuesday: 8:00 AM – 12:00 PM",
+      "Wednesday: 8:00 AM – 12:00 PM",
+      "Thursday: 8:00 AM – 12:00 PM",
+      "Friday: Closed",
+      "Saturday: 8:00 AM – 12:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "fitom-museum": {
+    "source": "google",
+    "displayName": "Bảo tàng Y học Cổ truyền - Traditional Medicine Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8:30 AM – 5:00 PM",
+      "Monday: 8:30 AM – 5:00 PM",
+      "Tuesday: 8:30 AM – 5:00 PM",
+      "Wednesday: 8:30 AM – 5:00 PM",
+      "Thursday: 8:30 AM – 5:00 PM",
+      "Friday: 8:30 AM – 5:00 PM",
+      "Saturday: 8:30 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "folk-culture-museum": {
+    "source": "google",
+    "displayName": "Museum of Folk Culture",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 9:30 PM",
+      "Monday: 8:00 AM – 9:30 PM",
+      "Tuesday: 8:00 AM – 9:30 PM",
+      "Wednesday: 8:00 AM – 9:30 PM",
+      "Thursday: 8:00 AM – 9:30 PM",
+      "Friday: 8:00 AM – 9:30 PM",
+      "Saturday: 8:00 AM – 9:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "fresh-garden-dalat": {
+    "source": "google",
+    "displayName": "Khu du lịch Fresh Garden Dalat",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 5:30 PM",
+      "Monday: 7:30 AM – 5:30 PM",
+      "Tuesday: 7:30 AM – 5:30 PM",
+      "Wednesday: 7:30 AM – 5:30 PM",
+      "Thursday: 7:30 AM – 5:30 PM",
+      "Friday: 7:30 AM – 5:30 PM",
+      "Saturday: 7:30 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "fujian-assembly-hall": {
+    "source": "google",
+    "displayName": "Fujian Assembly Hall",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 6:00 PM",
+      "Monday: 7:00 AM – 6:00 PM",
+      "Tuesday: 7:00 AM – 6:00 PM",
+      "Wednesday: 7:00 AM – 6:00 PM",
+      "Thursday: 7:00 AM – 6:00 PM",
+      "Friday: 7:00 AM – 6:00 PM",
+      "Saturday: 7:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "gia-long-tomb": {
+    "source": "google",
+    "displayName": "Mausoleum of Emperor Gia Long",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:30 PM",
+      "Monday: 7:00 AM – 5:30 PM",
+      "Tuesday: 7:00 AM – 5:30 PM",
+      "Wednesday: 7:00 AM – 5:30 PM",
+      "Thursday: 7:00 AM – 5:30 PM",
+      "Friday: 7:00 AM – 5:30 PM",
+      "Saturday: 7:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "giot-dang-orchard": {
+    "source": "google",
+    "displayName": "9 Hong Fruit Garden",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 6:00 PM",
+      "Monday: 7:30 AM – 6:00 PM",
+      "Tuesday: 7:30 AM – 6:00 PM",
+      "Wednesday: 7:30 AM – 6:00 PM",
+      "Thursday: 7:30 AM – 6:00 PM",
+      "Friday: 7:30 AM – 6:00 PM",
+      "Saturday: 7:30 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "grand-world-pq": {
+    "source": "google",
+    "displayName": "Grandworld hotel Phu Quoc",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "ha-long-market": {
+    "source": "google",
+    "displayName": "Ha Long Market",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 6:30 PM",
+      "Monday: 6:00 AM – 6:30 PM",
+      "Tuesday: 6:00 AM – 6:30 PM",
+      "Wednesday: 6:00 AM – 6:30 PM",
+      "Thursday: 6:00 AM – 6:30 PM",
+      "Friday: 6:00 AM – 6:30 PM",
+      "Saturday: 6:00 AM – 6:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "ha-silk-village": {
+    "source": "google",
+    "displayName": "Silk Village Hoi An - The Tourist",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 4:00 PM",
+      "Monday: 8:00 AM – 4:00 PM",
+      "Tuesday: 8:00 AM – 4:00 PM",
+      "Wednesday: 8:00 AM – 4:00 PM",
+      "Thursday: 8:00 AM – 4:00 PM",
+      "Friday: 8:00 AM – 4:00 PM",
+      "Saturday: 8:00 AM – 4:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "ha-thanh-ha-pottery": {
+    "source": "google",
+    "displayName": "Thanh Ha Pottery Village, Hoi An",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 6:30 PM",
+      "Monday: 8:00 AM – 6:30 PM",
+      "Tuesday: 8:00 AM – 6:30 PM",
+      "Wednesday: 8:00 AM – 6:30 PM",
+      "Thursday: 8:00 AM – 6:30 PM",
+      "Friday: 8:00 AM – 6:30 PM",
+      "Saturday: 8:00 AM – 6:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hainan-assembly-hall": {
+    "source": "google",
+    "displayName": "Hainan Assembly Hall",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 9:00 PM",
+      "Monday: 9:00 AM – 9:00 PM",
+      "Tuesday: 9:00 AM – 9:00 PM",
+      "Wednesday: 9:00 AM – 9:00 PM",
+      "Thursday: 9:00 AM – 9:00 PM",
+      "Friday: 9:00 AM – 9:00 PM",
+      "Saturday: 9:00 AM – 9:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "han-market": {
+    "source": "google",
+    "displayName": "Han Market",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 7:00 PM",
+      "Monday: 6:00 AM – 7:00 PM",
+      "Tuesday: 6:00 AM – 7:00 PM",
+      "Wednesday: 6:00 AM – 7:00 PM",
+      "Thursday: 6:00 AM – 7:00 PM",
+      "Friday: 6:00 AM – 7:00 PM",
+      "Saturday: 6:00 AM – 7:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hanoi-food-tour": {
+    "source": "google",
+    "displayName": "Hanoi Street Food Tour",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 9:00 PM",
+      "Monday: 8:00 AM – 9:00 PM",
+      "Tuesday: 8:00 AM – 9:00 PM",
+      "Wednesday: 8:00 AM – 9:00 PM",
+      "Thursday: 8:00 AM – 9:00 PM",
+      "Friday: 8:00 AM – 9:00 PM",
+      "Saturday: 8:00 AM – 9:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hava-valley": {
+    "source": "google",
+    "displayName": "HaVa Valley - Thung Lũng Ngọc Bich",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 4:30 PM",
+      "Monday: 7:30 AM – 4:30 PM",
+      "Tuesday: 7:30 AM – 4:30 PM",
+      "Wednesday: 7:30 AM – 4:30 PM",
+      "Thursday: 7:30 AM – 4:30 PM",
+      "Friday: 7:30 AM – 4:30 PM",
+      "Saturday: 7:30 AM – 4:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hcm-museum-can-tho": {
+    "source": "google",
+    "displayName": "Bảo Tàng Hồ Chí Minh",
+    "weekdayDescriptions": [
+      "Sunday: Closed",
+      "Monday: 7:30-11 am 1:30-4:30 pm",
+      "Tuesday: 7:30-11 am 1:30-4:30 pm",
+      "Wednesday: 7:30-11 am 1:30-4:30 pm",
+      "Thursday: 7:30-11 am 1:30-4:30 pm",
+      "Friday: 7:30-11 am 1:30-4:30 pm",
+      "Saturday: Closed"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hcmc-ben-thanh-crawl": {
+    "source": "google",
+    "displayName": "Ben Nghe Street Food",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 1:00 AM",
+      "Monday: 9:00 AM – 1:00 AM",
+      "Tuesday: 9:00 AM – 1:00 AM",
+      "Wednesday: 9:00 AM – 1:00 AM",
+      "Thursday: 9:00 AM – 1:00 AM",
+      "Friday: 9:00 AM – 1:00 AM",
+      "Saturday: 9:00 AM – 1:00 AM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hcmc-city-museum": {
+    "source": "google",
+    "displayName": "Museum of Ho Chi Minh City",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:00 PM",
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: 8:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hcmc-fine-arts": {
+    "source": "google",
+    "displayName": "Ho Chi Minh City Fine Arts Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:00 PM",
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: 8:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hcmc-palace-bunker": {
+    "source": "google",
+    "displayName": "Independence Palace",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 6:00 PM",
+      "Monday: 7:00 AM – 6:00 PM",
+      "Tuesday: 7:00 AM – 6:00 PM",
+      "Wednesday: 7:00 AM – 6:00 PM",
+      "Thursday: 7:00 AM – 6:00 PM",
+      "Friday: 7:00 AM – 6:00 PM",
+      "Saturday: 7:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hg-khau-lai": {
+    "source": "google",
+    "displayName": "Khau Làn waterfall",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "hl-catba-trek": {
+    "source": "google",
+    "displayName": "Cat Ba National Park",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hl-sung-sot-guide": {
+    "source": "google",
+    "displayName": "Sung Sot Cave",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hn-street-food-moto": {
+    "source": "google",
+    "displayName": "Hanoi Backstreet Tours - Hanoi Jeep Tours - Hanoi Vespa Tours - Hanoi Motorbike Tours",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "ho-chi-minh-mausoleum": {
+    "source": "google",
+    "displayName": "Ho Chi Minh's Mausoleum",
+    "weekdayDescriptions": [
+      "Sunday: 7:30-10:30 am",
+      "Monday: Closed",
+      "Tuesday: 7:30-10:30 am",
+      "Wednesday: 7:30-10:30 am",
+      "Thursday: 7:30-10:30 am",
+      "Friday: Closed",
+      "Saturday: 7:30-10:30 am"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "ho-chi-minh-museum-hanoi": {
+    "source": "google",
+    "displayName": "Ho Chi Minh Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 12:00 PM",
+      "Monday: Closed",
+      "Tuesday: 8:00 AM – 12:00 PM",
+      "Wednesday: 8:00 AM – 12:00 PM",
+      "Thursday: 8:00 AM – 12:00 PM",
+      "Friday: Closed",
+      "Saturday: 8:00 AM – 12:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "ho-chi-minh-museum-hue": {
+    "source": "google",
+    "displayName": "Hồ Chí Minh Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8-11 am 2-5 pm",
+      "Monday: Closed",
+      "Tuesday: 7:30-11:30 am 1:30-5:30 pm",
+      "Wednesday: 7:30-11:30 am 1:30-5:30 pm",
+      "Thursday: 7:30-11:30 am 1:30-5:30 pm",
+      "Friday: 7:30-11:30 am 1:30-5:30 pm",
+      "Saturday: 8-11 am 2-5 pm"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "ho-quoc-pagoda": {
+    "source": "google",
+    "displayName": "Hộ Quốc Temple",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 6:00 PM",
+      "Monday: 6:00 AM – 6:00 PM",
+      "Tuesday: 6:00 AM – 6:00 PM",
+      "Wednesday: 6:00 AM – 6:00 PM",
+      "Thursday: 6:00 AM – 6:00 PM",
+      "Friday: 6:00 AM – 6:00 PM",
+      "Saturday: 6:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "ho-quyen": {
+    "source": "google",
+    "displayName": "Ho Quyen",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "hoa-lo-prison": {
+    "source": "google",
+    "displayName": "Hoa Lo Prison Relic",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:00 PM",
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: 8:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hoang-su-phi-market": {
+    "source": "google",
+    "displayName": "Hoang Su Phi Market",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "hon-chen-temple": {
+    "source": "google",
+    "displayName": "Hon Chen Shrine",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "hon-chong": {
+    "source": "google",
+    "displayName": "Hon Chong",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 6:00 PM",
+      "Monday: 6:00 AM – 6:00 PM",
+      "Tuesday: 6:00 AM – 6:00 PM",
+      "Wednesday: 6:00 AM – 6:00 PM",
+      "Thursday: 6:00 AM – 6:00 PM",
+      "Friday: 6:00 AM – 6:00 PM",
+      "Saturday: 6:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hon-lao-island": {
+    "source": "google",
+    "displayName": "Monkey Island tourist resort",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 4:30 PM",
+      "Monday: 7:30 AM – 4:30 PM",
+      "Tuesday: 7:30 AM – 4:30 PM",
+      "Wednesday: 7:30 AM – 4:30 PM",
+      "Thursday: 7:30 AM – 4:30 PM",
+      "Friday: 7:30 AM – 4:30 PM",
+      "Saturday: 7:30 AM – 4:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hue-an-dinh-walk": {
+    "source": "google",
+    "displayName": "An Dinh Palace",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hue-citadel": {
+    "source": "google",
+    "displayName": "Hue Imperial City",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:30 PM",
+      "Monday: 7:00 AM – 5:30 PM",
+      "Tuesday: 7:00 AM – 5:30 PM",
+      "Wednesday: 7:00 AM – 5:30 PM",
+      "Thursday: 7:00 AM – 5:30 PM",
+      "Friday: 7:00 AM – 5:30 PM",
+      "Saturday: 7:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hue-royal-antiquities": {
+    "source": "google",
+    "displayName": "Hue Museum of Royal Antiquities",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:30 PM",
+      "Monday: 7:00 AM – 5:30 PM",
+      "Tuesday: 7:00 AM – 5:30 PM",
+      "Wednesday: 7:00 AM – 5:30 PM",
+      "Thursday: 7:00 AM – 5:30 PM",
+      "Friday: 7:00 AM – 5:30 PM",
+      "Saturday: 7:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "hue-truc-lam-bach-ma": {
+    "source": "google",
+    "displayName": "Bach Ma Zen Monastery",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "huyen-tran-temple": {
+    "source": "google",
+    "displayName": "Huyen Tran Cultural Center",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "independence-palace": {
+    "source": "google",
+    "displayName": "Independence Palace",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 6:00 PM",
+      "Monday: 7:00 AM – 6:00 PM",
+      "Tuesday: 7:00 AM – 6:00 PM",
+      "Wednesday: 7:00 AM – 6:00 PM",
+      "Thursday: 7:00 AM – 6:00 PM",
+      "Friday: 7:00 AM – 6:00 PM",
+      "Saturday: 7:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "jade-emperor-pagoda": {
+    "source": "google",
+    "displayName": "Jade Emperor Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 6:00 PM",
+      "Monday: 7:00 AM – 6:00 PM",
+      "Tuesday: 7:00 AM – 6:00 PM",
+      "Wednesday: 7:00 AM – 6:00 PM",
+      "Thursday: 7:00 AM – 6:00 PM",
+      "Friday: 7:00 AM – 6:00 PM",
+      "Saturday: 7:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "japanese-covered-bridge": {
+    "source": "google",
+    "displayName": "Chùa Cầu",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 10:00 PM",
+      "Monday: 9:00 AM – 10:00 PM",
+      "Tuesday: 9:00 AM – 10:00 PM",
+      "Wednesday: 9:00 AM – 10:00 PM",
+      "Thursday: 9:00 AM – 10:00 PM",
+      "Friday: 9:00 AM – 10:00 PM",
+      "Saturday: 9:00 AM – 10:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "khai-dinh-tomb": {
+    "source": "google",
+    "displayName": "Mausoleum of Emperor Khai Dinh",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:30 PM",
+      "Monday: 7:00 AM – 5:30 PM",
+      "Tuesday: 7:00 AM – 5:30 PM",
+      "Wednesday: 7:00 AM – 5:30 PM",
+      "Thursday: 7:00 AM – 5:30 PM",
+      "Friday: 7:00 AM – 5:30 PM",
+      "Saturday: 7:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "khanh-hoa-museum": {
+    "source": "google",
+    "displayName": "Khanh Hoa Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8-11 am 2-5 pm",
+      "Monday: 8-11 am 2-5 pm",
+      "Tuesday: 8-11 am 2-5 pm",
+      "Wednesday: 8-11 am 2-5 pm",
+      "Thursday: 8-11 am 2-5 pm",
+      "Friday: 8-11 am 2-5 pm",
+      "Saturday: 8-11 am 2-5 pm"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "kim-son-bao-thang": {
+    "source": "google",
+    "displayName": "Kim Son Bao Thang Temple",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 10:00 PM",
+      "Monday: 7:00 AM – 10:00 PM",
+      "Tuesday: 7:00 AM – 10:00 PM",
+      "Wednesday: 7:00 AM – 10:00 PM",
+      "Thursday: 7:00 AM – 10:00 PM",
+      "Friday: 7:00 AM – 10:00 PM",
+      "Saturday: 7:00 AM – 10:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "kiss-bridge": {
+    "source": "google",
+    "displayName": "Kiss Bridge",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 11:00 PM",
+      "Monday: 7:00 AM – 11:00 PM",
+      "Tuesday: 7:00 AM – 11:00 PM",
+      "Wednesday: 7:00 AM – 11:00 PM",
+      "Thursday: 7:00 AM – 11:00 PM",
+      "Friday: 7:00 AM – 11:00 PM",
+      "Saturday: 7:00 AM – 11:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "landmark81-viewpoint": {
+    "source": "google",
+    "displayName": "Landmark 81",
+    "weekdayDescriptions": [
+      "Sunday: 9:30 AM – 9:30 PM",
+      "Monday: 10:00 AM – 9:30 PM",
+      "Tuesday: 10:00 AM – 9:30 PM",
+      "Wednesday: 10:00 AM – 9:30 PM",
+      "Thursday: 10:00 AM – 9:30 PM",
+      "Friday: 10:00 AM – 9:30 PM",
+      "Saturday: 9:30 AM – 9:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "lap-an-lagoon": {
+    "source": "google",
+    "displayName": "Lap An Lagoon",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "linh-an-pagoda": {
+    "source": "google",
+    "displayName": "Linh An Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: 5:00 AM – 5:00 PM",
+      "Monday: 5:00 AM – 5:00 PM",
+      "Tuesday: 5:00 AM – 5:00 PM",
+      "Wednesday: 5:00 AM – 5:00 PM",
+      "Thursday: 5:00 AM – 5:00 PM",
+      "Friday: 5:00 AM – 5:00 PM",
+      "Saturday: 5:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "long-son-pagoda": {
+    "source": "google",
+    "displayName": "Long Son Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "long-tien-pagoda": {
+    "source": "google",
+    "displayName": "Long Tien Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 9:00 PM",
+      "Monday: 6:00 AM – 9:00 PM",
+      "Tuesday: 6:00 AM – 9:00 PM",
+      "Wednesday: 6:00 AM – 9:00 PM",
+      "Thursday: 6:00 AM – 9:00 PM",
+      "Friday: 6:00 AM – 9:00 PM",
+      "Saturday: 6:00 AM – 9:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "love-waterfall": {
+    "source": "google",
+    "displayName": "Love Waterfall",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 5:00 PM",
+      "Monday: 9:00 AM – 5:00 PM",
+      "Tuesday: 9:00 AM – 5:00 PM",
+      "Wednesday: 9:00 AM – 5:00 PM",
+      "Thursday: 9:00 AM – 5:00 PM",
+      "Friday: 9:00 AM – 5:00 PM",
+      "Saturday: 9:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "lung-cu-dong-van": {
+    "source": "google",
+    "displayName": "Lung Cu Flag Point",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "lung-cu-flag-tower": {
+    "source": "google",
+    "displayName": "Lung Cu Flag Point",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "luu-huu-phuoc-park": {
+    "source": "google",
+    "displayName": "Luu Huu Phuoc Park",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "marble-mountains": {
+    "source": "google",
+    "displayName": "The Marble Mountains",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:30 PM",
+      "Monday: 7:00 AM – 5:30 PM",
+      "Tuesday: 7:00 AM – 5:30 PM",
+      "Wednesday: 7:00 AM – 5:30 PM",
+      "Thursday: 7:00 AM – 5:30 PM",
+      "Friday: 7:00 AM – 5:30 PM",
+      "Saturday: 7:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "mariamman-temple": {
+    "source": "google",
+    "displayName": "Mariamman Hindu temple",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 9:00 PM",
+      "Monday: 7:30 AM – 9:00 PM",
+      "Tuesday: 7:30 AM – 9:00 PM",
+      "Wednesday: 7:30 AM – 9:00 PM",
+      "Thursday: 7:30 AM – 9:00 PM",
+      "Friday: 7:30 AM – 9:00 PM",
+      "Saturday: 7:30 AM – 9:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "mat-rong-island": {
+    "source": "google",
+    "displayName": "Dragon Pearl Cave - Hang Ngọc Rồng",
+    "weekdayDescriptions": [
+      "Sunday: 11:30 AM – 2:30 PM",
+      "Monday: 11:30 AM – 2:30 PM",
+      "Tuesday: 11:30 AM – 2:30 PM",
+      "Wednesday: 11:30 AM – 2:30 PM",
+      "Thursday: 11:30 AM – 2:30 PM",
+      "Friday: 11:30 AM – 2:30 PM",
+      "Saturday: 11:30 AM – 2:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "military-zone-9-museum": {
+    "source": "google",
+    "displayName": "Military Zone 9 Museum",
+    "weekdayDescriptions": [
+      "Sunday: Closed",
+      "Monday: 7-11 am 1:30-4:30 pm",
+      "Tuesday: 7-11 am 1:30-4:30 pm",
+      "Wednesday: 7-11 am 1:30-4:30 pm",
+      "Thursday: 7-11 am 1:30-4:30 pm",
+      "Friday: 7-11 am 1:30-4:30 pm",
+      "Saturday: Closed"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "minh-mang-tomb": {
+    "source": "google",
+    "displayName": "Mausoleum of Emperor Minh Mang",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "mk-homestay-fish": {
+    "source": "google",
+    "displayName": "Family Tiny Garden",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "mk-tra-su": {
+    "source": "google",
+    "displayName": "Tra Su Cajuput Forest",
+    "weekdayDescriptions": [
+      "Sunday: 6:30 AM – 6:30 PM",
+      "Monday: 6:30 AM – 6:00 PM",
+      "Tuesday: 6:30 AM – 6:00 PM",
+      "Wednesday: 6:30 AM – 6:00 PM",
+      "Thursday: 6:30 AM – 6:00 PM",
+      "Friday: 6:30 AM – 6:00 PM",
+      "Saturday: 6:30 AM – 6:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "mongo-land-dalat": {
+    "source": "google",
+    "displayName": "Mongo Land - Đà Lạt",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:30 PM",
+      "Monday: 7:00 AM – 5:30 PM",
+      "Tuesday: 7:00 AM – 5:30 PM",
+      "Wednesday: 7:00 AM – 5:30 PM",
+      "Thursday: 7:00 AM – 5:30 PM",
+      "Friday: 7:00 AM – 5:30 PM",
+      "Saturday: 7:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "mooc-spring": {
+    "source": "google",
+    "displayName": "Mooc Spring",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 4:00 PM",
+      "Monday: 8:00 AM – 4:00 PM",
+      "Tuesday: 8:00 AM – 4:00 PM",
+      "Wednesday: 8:00 AM – 4:00 PM",
+      "Thursday: 8:00 AM – 4:00 PM",
+      "Friday: 8:00 AM – 4:00 PM",
+      "Saturday: 8:00 AM – 4:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "munir-ansay": {
+    "source": "google",
+    "displayName": "Muniransay Khmer Buddhist Temple",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 8:00 PM",
+      "Monday: 7:30 AM – 8:00 PM",
+      "Tuesday: 7:30 AM – 8:00 PM",
+      "Wednesday: 7:30 AM – 8:00 PM",
+      "Thursday: 7:30 AM – 8:00 PM",
+      "Friday: 7:30 AM – 8:00 PM",
+      "Saturday: 7:30 AM – 8:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "muong-hum-market": {
+    "source": "google",
+    "displayName": "Muong Hum Market",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "ngo-mon-gate": {
+    "source": "google",
+    "displayName": "Meridian Gate",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "ngoc-son-temple": {
+    "source": "google",
+    "displayName": "Ngoc Son Temple",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "ngu-lam-peak": {
+    "source": "google",
+    "displayName": "Đỉnh Ngự Lâm",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "nine-dynastic-urns": {
+    "source": "google",
+    "displayName": "Nine Dynastic Urns",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:30 PM",
+      "Monday: 8:00 AM – 5:30 PM",
+      "Tuesday: 8:00 AM – 5:30 PM",
+      "Wednesday: 8:00 AM – 5:30 PM",
+      "Thursday: 8:00 AM – 5:30 PM",
+      "Friday: 8:00 AM – 5:30 PM",
+      "Saturday: 8:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "ninh-kieu-love-bridge": {
+    "source": "google",
+    "displayName": "Can Tho Love Bridge",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "ninh-van-stone": {
+    "source": "google",
+    "displayName": "Ninh Van Stone Carving Village",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "nt-monkey-island": {
+    "source": "google",
+    "displayName": "Monkey Island tourist resort",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 4:30 PM",
+      "Monday: 7:30 AM – 4:30 PM",
+      "Tuesday: 7:30 AM – 4:30 PM",
+      "Wednesday: 7:30 AM – 4:30 PM",
+      "Thursday: 7:30 AM – 4:30 PM",
+      "Friday: 7:30 AM – 4:30 PM",
+      "Saturday: 7:30 AM – 4:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "oceanographic-museum-nt": {
+    "source": "google",
+    "displayName": "Museum of Oceanography",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 6:00 PM",
+      "Monday: 6:00 AM – 6:00 PM",
+      "Tuesday: 6:00 AM – 6:00 PM",
+      "Wednesday: 6:00 AM – 6:00 PM",
+      "Thursday: 6:00 AM – 6:00 PM",
+      "Friday: 6:00 AM – 6:00 PM",
+      "Saturday: 6:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "one-pillar-pagoda": {
+    "source": "google",
+    "displayName": "One Pillar Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 6:00 PM",
+      "Monday: 7:00 AM – 6:00 PM",
+      "Tuesday: 7:00 AM – 6:00 PM",
+      "Wednesday: 7:00 AM – 6:00 PM",
+      "Thursday: 7:00 AM – 6:00 PM",
+      "Friday: 7:00 AM – 6:00 PM",
+      "Saturday: 7:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "phap-bao-pagoda": {
+    "source": "google",
+    "displayName": "Chùa Pháp Bảo",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "phong-dien-floating-market": {
+    "source": "google",
+    "displayName": "Phong Dien Floating Market",
+    "weekdayDescriptions": [
+      "Sunday: 4:30-7 am",
+      "Monday: 4:30-7 am",
+      "Tuesday: 4:30-7 am",
+      "Wednesday: 4:30-7 am",
+      "Thursday: 4:30-7 am",
+      "Friday: 4:30-7 am",
+      "Saturday: 4:30-7 am"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "phong-nha-botanical": {
+    "source": "google",
+    "displayName": "Phong Nha Botanic Garden",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 4:00 PM",
+      "Monday: 7:30 AM – 4:00 PM",
+      "Tuesday: 7:30 AM – 4:00 PM",
+      "Wednesday: 7:30 AM – 4:00 PM",
+      "Thursday: 7:30 AM – 4:00 PM",
+      "Friday: 7:30 AM – 4:00 PM",
+      "Saturday: 7:30 AM – 4:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "phu-quoc-prison": {
+    "source": "google",
+    "displayName": "Phu Quoc Prison History Museum",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "phung-hung-old-house": {
+    "source": "google",
+    "displayName": "The Old House of Phung Hung",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 6:00 PM",
+      "Monday: 8:00 AM – 6:00 PM",
+      "Tuesday: 8:00 AM – 6:00 PM",
+      "Wednesday: 8:00 AM – 6:00 PM",
+      "Thursday: 8:00 AM – 6:00 PM",
+      "Friday: 8:00 AM – 6:00 PM",
+      "Saturday: 8:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "phung-tien-palace": {
+    "source": "google",
+    "displayName": "Phung Tien Palace",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 5:00 PM",
+      "Monday: 7:30 AM – 5:00 PM",
+      "Tuesday: 7:30 AM – 5:00 PM",
+      "Wednesday: 7:30 AM – 5:00 PM",
+      "Thursday: 7:30 AM – 5:00 PM",
+      "Friday: 7:30 AM – 5:00 PM",
+      "Saturday: 7:30 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "phuoc-hau-pagoda": {
+    "source": "google",
+    "displayName": "Phuoc Hau Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: 5:30-11 am 1:30-8 pm",
+      "Monday: 5:30-11 am 1:30-8 pm",
+      "Tuesday: 5:30-11 am 1:30-8 pm",
+      "Wednesday: 5:30-11 am 1:30-8 pm",
+      "Thursday: 5:30-11 am 1:30-8 pm",
+      "Friday: 5:30-11 am 1:30-8 pm",
+      "Saturday: 5:30-11 am 1:30-8 pm"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "phuoc-tich-village": {
+    "source": "google",
+    "displayName": "Phuoc Tich Ancient Village",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "pn-bike": {
+    "source": "google",
+    "displayName": "Phong Nha Adventure Cycling",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:30 PM",
+      "Monday: 8:00 AM – 5:30 PM",
+      "Tuesday: 8:00 AM – 5:30 PM",
+      "Wednesday: 8:00 AM – 5:30 PM",
+      "Thursday: 8:00 AM – 5:30 PM",
+      "Friday: 8:00 AM – 5:30 PM",
+      "Saturday: 8:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "po-nagar": {
+    "source": "google",
+    "displayName": "Po Nagar Temple",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 6:00 PM",
+      "Monday: 6:00 AM – 6:00 PM",
+      "Tuesday: 6:00 AM – 6:00 PM",
+      "Wednesday: 6:00 AM – 6:00 PM",
+      "Thursday: 6:00 AM – 6:00 PM",
+      "Friday: 6:00 AM – 6:00 PM",
+      "Saturday: 6:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "pq-aquatopia": {
+    "source": "google",
+    "displayName": "Aquatopia Water Park",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 5:00 PM",
+      "Monday: 9:00 AM – 5:00 PM",
+      "Tuesday: 9:00 AM – 5:00 PM",
+      "Wednesday: 9:00 AM – 5:00 PM",
+      "Thursday: 9:00 AM – 5:00 PM",
+      "Friday: 9:00 AM – 5:00 PM",
+      "Saturday: 9:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "pq-grand-world-taxi": {
+    "source": "google",
+    "displayName": "Đi thuyền Venice (Water Taxi) - Grand World Phú Quốc",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 8:30 PM",
+      "Monday: 9:00 AM – 8:30 PM",
+      "Tuesday: 9:00 AM – 8:30 PM",
+      "Wednesday: 9:00 AM – 8:30 PM",
+      "Thursday: 9:00 AM – 8:30 PM",
+      "Friday: 9:00 AM – 8:30 PM",
+      "Saturday: 9:00 AM – 8:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "pq-prison-tour": {
+    "source": "google",
+    "displayName": "Phu Quoc Prison History Museum",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "pq-ridgeback": {
+    "source": "google",
+    "displayName": "Trung tâm bảo tồn chó xoáy Phú Quốc trang trại Thanh Nga",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:30 PM",
+      "Monday: 8:00 AM – 5:30 PM",
+      "Tuesday: 8:00 AM – 5:30 PM",
+      "Wednesday: 8:00 AM – 5:30 PM",
+      "Thursday: 8:00 AM – 5:30 PM",
+      "Friday: 8:00 AM – 5:30 PM",
+      "Saturday: 8:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "precious-heritage-museum": {
+    "source": "google",
+    "displayName": "Precious Heritage Art Gallery Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 8:00 PM",
+      "Monday: 8:00 AM – 8:00 PM",
+      "Tuesday: 8:00 AM – 8:00 PM",
+      "Wednesday: 8:00 AM – 8:00 PM",
+      "Thursday: 8:00 AM – 8:00 PM",
+      "Friday: 8:00 AM – 8:00 PM",
+      "Saturday: 8:00 AM – 8:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "quan-ba-heaven-gate": {
+    "source": "google",
+    "displayName": "Quan Ba ​​Heaven Gate",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "quan-ba-market": {
+    "source": "google",
+    "displayName": "Chợ Trung Tâm Xã Quản Bạ",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "quan-ba-twin-mountains": {
+    "source": "google",
+    "displayName": "Fairy Bosom Mountain Viewpoint",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "quan-cong-temple": {
+    "source": "google",
+    "displayName": "Quan Cong Temple",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 3:30 PM",
+      "Monday: 7:30 AM – 3:30 PM",
+      "Tuesday: 7:30 AM – 3:30 PM",
+      "Wednesday: 7:30 AM – 3:30 PM",
+      "Thursday: 7:30 AM – 5:30 PM",
+      "Friday: 7:30 AM – 3:30 PM",
+      "Saturday: 7:30 AM – 3:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "quan-thang-old-house": {
+    "source": "google",
+    "displayName": "Quan Thang Ancient House",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 7:00 PM",
+      "Monday: 9:00 AM – 7:00 PM",
+      "Tuesday: 9:00 AM – 7:00 PM",
+      "Wednesday: 9:00 AM – 7:00 PM",
+      "Thursday: 9:00 AM – 7:00 PM",
+      "Friday: 9:00 AM – 7:00 PM",
+      "Saturday: 9:00 AM – 7:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "quan-thanh-temple": {
+    "source": "google",
+    "displayName": "Quan Thanh Temple",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:00 PM",
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: 8:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "quan-the-am-pagoda": {
+    "source": "google",
+    "displayName": "Quan The Am Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "rong-may-skywalk": {
+    "source": "google",
+    "displayName": "Rong May Glass Bridge",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 6:00 PM",
+      "Monday: 7:00 AM – 6:00 PM",
+      "Tuesday: 7:00 AM – 6:00 PM",
+      "Wednesday: 7:00 AM – 6:00 PM",
+      "Thursday: 7:00 AM – 6:00 PM",
+      "Friday: 7:00 AM – 6:00 PM",
+      "Saturday: 7:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "ruc-mon-cave": {
+    "source": "google",
+    "displayName": "RUC MON CAVE TOURS",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "sa-huynh-museum": {
+    "source": "google",
+    "displayName": "Sa Huynh Cultural Museum",
+    "weekdayDescriptions": [
+      "Sunday: Closed",
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: Closed"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "saigon-book-street": {
+    "source": "google",
+    "displayName": "Saigon Book Street",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 9:00 PM",
+      "Monday: 8:00 AM – 9:00 PM",
+      "Tuesday: 8:00 AM – 9:00 PM",
+      "Wednesday: 8:00 AM – 9:00 PM",
+      "Thursday: 8:00 AM – 9:00 PM",
+      "Friday: 8:00 AM – 9:00 PM",
+      "Saturday: 8:00 AM – 9:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "saigon-central-post-office": {
+    "source": "google",
+    "displayName": "Saigon Central Post Office",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:00 PM",
+      "Monday: 7:30 AM – 6:00 PM",
+      "Tuesday: 7:30 AM – 6:00 PM",
+      "Wednesday: 7:30 AM – 6:00 PM",
+      "Thursday: 7:30 AM – 6:00 PM",
+      "Friday: 7:30 AM – 6:00 PM",
+      "Saturday: 7:30 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "sapa-museum": {
+    "source": "google",
+    "displayName": "Sapa Culture Museum",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 7:00 PM",
+      "Monday: 7:00 AM – 7:00 PM",
+      "Tuesday: 7:00 AM – 7:00 PM",
+      "Wednesday: 7:00 AM – 7:00 PM",
+      "Thursday: 7:00 AM – 7:00 PM",
+      "Friday: 7:00 AM – 7:00 PM",
+      "Saturday: 7:00 AM – 7:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "sapa-stone-church": {
+    "source": "google",
+    "displayName": "Sa Pa Stone Church",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 9:00 PM",
+      "Monday: 6:00 AM – 9:00 PM",
+      "Tuesday: 6:00 AM – 9:00 PM",
+      "Wednesday: 6:00 AM – 9:00 PM",
+      "Thursday: 6:00 AM – 9:00 PM",
+      "Friday: 6:00 AM – 9:00 PM",
+      "Saturday: 6:00 AM – 9:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "silver-waterfall": {
+    "source": "google",
+    "displayName": "Silver Waterfall Sa Pa",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 5:00 PM",
+      "Monday: 9:00 AM – 5:00 PM",
+      "Tuesday: 9:00 AM – 5:00 PM",
+      "Wednesday: 9:00 AM – 5:00 PM",
+      "Thursday: 9:00 AM – 5:00 PM",
+      "Friday: 9:00 AM – 5:00 PM",
+      "Saturday: 9:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "sim-wine-farm": {
+    "source": "google",
+    "displayName": "Sim Sơn Phú Quốc",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 6:00 PM",
+      "Monday: 7:00 AM – 6:00 PM",
+      "Tuesday: 7:00 AM – 6:00 PM",
+      "Wednesday: 7:00 AM – 6:00 PM",
+      "Thursday: 7:00 AM – 6:00 PM",
+      "Friday: 7:00 AM – 6:00 PM",
+      "Saturday: 7:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "son-nu-cave": {
+    "source": "google",
+    "displayName": "Tien Son Cave",
+    "weekdayDescriptions": [
+      "Sunday: 9:30 AM – 4:30 PM",
+      "Monday: 9:30 AM – 4:30 PM",
+      "Tuesday: 9:30 AM – 4:30 PM",
+      "Wednesday: 9:30 AM – 4:30 PM",
+      "Thursday: 9:30 AM – 4:30 PM",
+      "Friday: 9:30 AM – 4:30 PM",
+      "Saturday: 9:30 AM – 4:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "song-hau-park": {
+    "source": "google",
+    "displayName": "Song Hau Park",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "sp-ban-mong-coaster": {
+    "source": "google",
+    "displayName": "Alpine Coaster Sapa",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 6:00 PM",
+      "Monday: 9:00 AM – 6:00 PM",
+      "Tuesday: 9:00 AM – 6:00 PM",
+      "Wednesday: 9:00 AM – 6:00 PM",
+      "Thursday: 9:00 AM – 6:00 PM",
+      "Friday: 9:00 AM – 6:00 PM",
+      "Saturday: 9:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "su-muon-pagoda": {
+    "source": "google",
+    "displayName": "Su Muon Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "sung-sot-cave": {
+    "source": "google",
+    "displayName": "Sung Sot Cave",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "sunset-town-pq": {
+    "source": "google",
+    "displayName": "Sunset Town",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "suoi-tien-theme-park": {
+    "source": "google",
+    "displayName": "Suoi Tien Theme Park",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:00 PM",
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: 8:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "tan-ky-old-house": {
+    "source": "google",
+    "displayName": "Old House of Tan Ky",
+    "weekdayDescriptions": [
+      "Sunday: 8:30 AM – 5:45 PM",
+      "Monday: 8:30 AM – 5:45 PM",
+      "Tuesday: 8:30 AM – 5:45 PM",
+      "Wednesday: 8:30 AM – 5:45 PM",
+      "Thursday: 8:30 AM – 5:45 PM",
+      "Friday: 8:30 AM – 5:45 PM",
+      "Saturday: 8:30 AM – 5:45 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "tao-dan-park": {
+    "source": "google",
+    "displayName": "Tao Dan Park",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 10:00 PM",
+      "Monday: 7:00 AM – 10:00 PM",
+      "Tuesday: 7:00 AM – 10:00 PM",
+      "Wednesday: 7:00 AM – 10:00 PM",
+      "Thursday: 7:00 AM – 10:00 PM",
+      "Friday: 7:00 AM – 10:00 PM",
+      "Saturday: 7:00 AM – 10:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "temple-literature": {
+    "source": "google",
+    "displayName": "Temple Of Literature",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:00 PM",
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: 8:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "thai-hoa-palace": {
+    "source": "google",
+    "displayName": "Thái Hòa Palace",
+    "weekdayDescriptions": [
+      "Sunday: 6:30 AM – 5:00 PM",
+      "Monday: 6:30 AM – 5:00 PM",
+      "Tuesday: 6:30 AM – 5:00 PM",
+      "Wednesday: 6:30 AM – 5:00 PM",
+      "Thursday: 6:30 AM – 5:00 PM",
+      "Friday: 6:30 AM – 5:00 PM",
+      "Saturday: 6:30 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "thai-phien-flowers": {
+    "source": "google",
+    "displayName": "Thai Phien Flower Village",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 6:00 PM",
+      "Monday: 8:00 AM – 6:00 PM",
+      "Tuesday: 8:00 AM – 6:00 PM",
+      "Wednesday: 8:00 AM – 6:00 PM",
+      "Thursday: 8:00 AM – 6:00 PM",
+      "Friday: 8:00 AM – 6:00 PM",
+      "Saturday: 8:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "thang-long-citadel": {
+    "source": "google",
+    "displayName": "Imperial Citadel of Thang Long",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:00 PM",
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: 8:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "thanh-ha-pottery": {
+    "source": "google",
+    "displayName": "Thanh Ha Pottery Village, Hoi An",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 6:30 PM",
+      "Monday: 8:00 AM – 6:30 PM",
+      "Tuesday: 8:00 AM – 6:30 PM",
+      "Wednesday: 8:00 AM – 6:30 PM",
+      "Thursday: 8:00 AM – 6:30 PM",
+      "Friday: 8:00 AM – 6:30 PM",
+      "Saturday: 8:00 AM – 6:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "thanh-toan-bridge": {
+    "source": "google",
+    "displayName": "Thanh Toan Bridge",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "thao-cam-vien": {
+    "source": "google",
+    "displayName": "Saigon Zoo & Botanical Gardens",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 6:30 PM",
+      "Monday: 7:00 AM – 6:30 PM",
+      "Tuesday: 7:00 AM – 6:30 PM",
+      "Wednesday: 7:00 AM – 6:30 PM",
+      "Thursday: 7:00 AM – 6:30 PM",
+      "Friday: 7:00 AM – 6:30 PM",
+      "Saturday: 7:00 AM – 6:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "thien-long-cave-cat-ba": {
+    "source": "google",
+    "displayName": "Thien Long Cave",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "thien-mu-pagoda": {
+    "source": "google",
+    "displayName": "Thien Mu Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:30 PM",
+      "Monday: 7:00 AM – 5:30 PM",
+      "Tuesday: 7:00 AM – 5:30 PM",
+      "Wednesday: 7:00 AM – 5:30 PM",
+      "Thursday: 7:00 AM – 5:30 PM",
+      "Friday: 7:00 AM – 5:30 PM",
+      "Saturday: 7:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "thien-vuong-pagoda": {
+    "source": "google",
+    "displayName": "Chùa Tàu",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "thieu-tri-tomb": {
+    "source": "google",
+    "displayName": "Mausoleum of Emperor Thieu Tri",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "thuan-phuoc-bridge": {
+    "source": "google",
+    "displayName": "Thuan Phuoc Bridge",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "tong-lam-lo-son": {
+    "source": "google",
+    "displayName": "Tong Lam Son Temple Lot",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 5:00 PM",
+      "Monday: 7:30 AM – 5:00 PM",
+      "Tuesday: 7:30 AM – 5:00 PM",
+      "Wednesday: 7:30 AM – 5:00 PM",
+      "Thursday: 7:30 AM – 5:00 PM",
+      "Friday: 7:30 AM – 5:00 PM",
+      "Saturday: 7:30 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "tra-que-village": {
+    "source": "google",
+    "displayName": "Tra Que Vegetable Village Restaurant",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:00 PM",
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: 8:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "tram-huong-tower": {
+    "source": "google",
+    "displayName": "Tram Huong Tower",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "tran-quoc-nghien-temple": {
+    "source": "google",
+    "displayName": "Tran Quoc Nghien Temple",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:30 PM",
+      "Monday: 7:00 AM – 5:30 PM",
+      "Tuesday: 7:00 AM – 5:30 PM",
+      "Wednesday: 7:00 AM – 5:30 PM",
+      "Thursday: 7:00 AM – 5:30 PM",
+      "Friday: 7:00 AM – 5:30 PM",
+      "Saturday: 7:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "tran-quoc-pagoda": {
+    "source": "google",
+    "displayName": "Tran Quoc Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: 7:30-11 am 1:30-5 pm",
+      "Monday: 7:30-11 am 1:30-5 pm",
+      "Tuesday: 7:30-11 am 1:30-5 pm",
+      "Wednesday: 7:30-11 am 1:30-5 pm",
+      "Thursday: 7:30-11 am 1:30-5 pm",
+      "Friday: 7:30-11 am 1:30-5 pm",
+      "Saturday: 7:30-11 am 1:30-5 pm"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "trang-an-boats": {
+    "source": "google",
+    "displayName": "Trang An Departure Boat Ticket",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "tri-nguyen-aquarium": {
+    "source": "google",
+    "displayName": "Hồ cá Trí Nguyên",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 4:00 PM",
+      "Monday: 7:30 AM – 4:00 PM",
+      "Tuesday: 7:30 AM – 4:00 PM",
+      "Wednesday: 7:30 AM – 4:00 PM",
+      "Thursday: 7:30 AM – 4:00 PM",
+      "Friday: 7:30 AM – 4:00 PM",
+      "Saturday: 7:30 AM – 4:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "truc-lam-bach-ma": {
+    "source": "google",
+    "displayName": "Bach Ma Zen Monastery",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "truc-lam-phuong-nam": {
+    "source": "google",
+    "displayName": "Trúc Lâm Phương Nam Zen Monastery",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "trung-trang-cave": {
+    "source": "google",
+    "displayName": "Động Trung Trang",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "truong-xuan-gallery": {
+    "source": "google",
+    "displayName": "Studio & Gallery Long Thanh Art",
+    "weekdayDescriptions": [
+      "Sunday: Closed",
+      "Monday: 10:30 AM – 4:00 PM",
+      "Tuesday: 10:30 AM – 4:00 PM",
+      "Wednesday: 10:30 AM – 4:00 PM",
+      "Thursday: 10:30 AM – 4:00 PM",
+      "Friday: 10:30 AM – 4:00 PM",
+      "Saturday: 10:30 AM – 4:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "tu-dam-pagoda": {
+    "source": "google",
+    "displayName": "Tu Dam Pagoda",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 9:00 PM",
+      "Monday: 6:00 AM – 9:00 PM",
+      "Tuesday: 6:00 AM – 9:00 PM",
+      "Wednesday: 6:00 AM – 9:00 PM",
+      "Thursday: 6:00 AM – 9:00 PM",
+      "Friday: 6:00 AM – 9:00 PM",
+      "Saturday: 6:00 AM – 9:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "tu-hieu-pagoda": {
+    "source": "google",
+    "displayName": "Chùa Từ Hiếu",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "tuyet-tinh-coc": {
+    "source": "google",
+    "displayName": "Tuyệt Tịnh Cốc (Động Am Tiên)",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 6:00 PM",
+      "Monday: 7:00 AM – 6:00 PM",
+      "Tuesday: 7:00 AM – 6:00 PM",
+      "Wednesday: 7:00 AM – 6:00 PM",
+      "Thursday: 7:00 AM – 6:00 PM",
+      "Friday: 7:00 AM – 6:00 PM",
+      "Saturday: 7:00 AM – 6:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "typhoon-water-park": {
+    "source": "google",
+    "displayName": "Halong Typhoon Water Park",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 5:30 PM",
+      "Monday: 1:30-5:30 pm",
+      "Tuesday: 1:30-5:30 pm",
+      "Wednesday: 1:30-5:30 pm",
+      "Thursday: 1:30-5:30 pm",
+      "Friday: 1:30-5:30 pm",
+      "Saturday: 9:00 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "valley-of-love": {
+    "source": "google",
+    "displayName": "Valley Of Love",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 5:00 PM",
+      "Monday: 7:30 AM – 5:00 PM",
+      "Tuesday: 7:30 AM – 5:00 PM",
+      "Wednesday: 7:30 AM – 5:00 PM",
+      "Thursday: 7:30 AM – 5:00 PM",
+      "Friday: 7:30 AM – 5:00 PM",
+      "Saturday: 7:30 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "van-long": {
+    "source": "google",
+    "displayName": "Van Long Wetland Nature Reserve",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 4:30 PM",
+      "Monday: 7:30 AM – 4:30 PM",
+      "Tuesday: 7:30 AM – 4:30 PM",
+      "Wednesday: 7:30 AM – 4:30 PM",
+      "Thursday: 7:30 AM – 4:30 PM",
+      "Friday: 7:30 AM – 4:30 PM",
+      "Saturday: 7:30 AM – 4:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "van-thanh-flowers": {
+    "source": "google",
+    "displayName": "Van Thanh Flower Village",
+    "weekdayDescriptions": [
+      "Sunday: 7:00 AM – 5:00 PM",
+      "Monday: 7:00 AM – 5:00 PM",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 7:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "vietnam-fine-arts-hanoi": {
+    "source": "google",
+    "displayName": "Vietnam National Fine Arts Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8:30 AM – 5:00 PM",
+      "Monday: Closed",
+      "Tuesday: 8:30 AM – 5:00 PM",
+      "Wednesday: 8:30 AM – 5:00 PM",
+      "Thursday: 8:30 AM – 5:00 PM",
+      "Friday: 8:30 AM – 5:00 PM",
+      "Saturday: 8:30 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "vietnam-military-history-museum": {
+    "source": "google",
+    "displayName": "Vietnam Military History Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 4:30 PM",
+      "Monday: Closed",
+      "Tuesday: 8:00 AM – 4:30 PM",
+      "Wednesday: 8:00 AM – 4:30 PM",
+      "Thursday: 8:00 AM – 4:30 PM",
+      "Friday: Closed",
+      "Saturday: 8:00 AM – 4:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "vietnamese-womens-museum": {
+    "source": "google",
+    "displayName": "Vietnamese Women's Museum",
+    "weekdayDescriptions": [
+      "Sunday: 8:00 AM – 5:00 PM",
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: 8:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "vinh-nghiem-pagoda": {
+    "source": "google",
+    "displayName": "Vinh Nghiem Buddhist Temple",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "vinpearl-harbor": {
+    "source": "google",
+    "displayName": "Vinpearl Harbour Nha Trang",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "vinpearl-safari-pq": {
+    "source": "google",
+    "displayName": "Vinpearl Safari Phú Quốc",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 4:00 PM",
+      "Monday: 9:00 AM – 4:00 PM",
+      "Tuesday: 9:00 AM – 4:00 PM",
+      "Wednesday: 9:00 AM – 4:00 PM",
+      "Thursday: 9:00 AM – 4:00 PM",
+      "Friday: 9:00 AM – 4:00 PM",
+      "Saturday: 9:00 AM – 4:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "vinwonders-pq": {
+    "source": "google",
+    "displayName": "VinWonders Phú Quốc",
+    "weekdayDescriptions": [
+      "Sunday: 9:00 AM – 7:30 PM",
+      "Monday: 9:00 AM – 7:30 PM",
+      "Tuesday: 9:00 AM – 7:30 PM",
+      "Wednesday: 9:00 AM – 7:30 PM",
+      "Thursday: 9:00 AM – 7:30 PM",
+      "Friday: 9:00 AM – 7:30 PM",
+      "Saturday: 9:00 AM – 7:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "voi-re-temple": {
+    "source": "google",
+    "displayName": "Long Chau Temple",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "vong-canh-hill": {
+    "source": "google",
+    "displayName": "Vong Canh Hill",
+    "weekdayDescriptions": [
+      "Sunday: Open 24 hours",
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours",
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: Open 24 hours",
+      "Saturday: Open 24 hours"
+    ],
+    "alwaysOpen": true,
+    "fetchedAt": "2026-09-07"
+  },
+  "war-remnants": {
+    "source": "google",
+    "displayName": "War Remnants Museum",
+    "weekdayDescriptions": [
+      "Sunday: 7:30 AM – 5:30 PM",
+      "Monday: 7:30 AM – 5:30 PM",
+      "Tuesday: 7:30 AM – 5:30 PM",
+      "Wednesday: 7:30 AM – 5:30 PM",
+      "Thursday: 7:30 AM – 5:30 PM",
+      "Friday: 7:30 AM – 5:30 PM",
+      "Saturday: 7:30 AM – 5:30 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "xom-moi-market": {
+    "source": "google",
+    "displayName": "Xom Moi Market",
+    "weekdayDescriptions": [
+      "Sunday: 6:00 AM – 5:00 PM",
+      "Monday: 6:00 AM – 5:00 PM",
+      "Tuesday: 6:00 AM – 5:00 PM",
+      "Wednesday: 6:00 AM – 5:00 PM",
+      "Thursday: 6:00 AM – 5:00 PM",
+      "Friday: 6:00 AM – 5:00 PM",
+      "Saturday: 6:00 AM – 5:00 PM"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  },
+  "yersin-museum": {
+    "source": "google",
+    "displayName": "Yersin museum",
+    "weekdayDescriptions": [
+      "Sunday: Closed",
+      "Monday: 7:30-11:30 am 2-5 pm",
+      "Tuesday: 7:30-11:30 am 2-5 pm",
+      "Wednesday: 7:30-11:30 am 2-5 pm",
+      "Thursday: 7:30-11:30 am 2-5 pm",
+      "Friday: 7:30-11:30 am 2-5 pm",
+      "Saturday: 7:30-11:30 am"
+    ],
+    "alwaysOpen": false,
+    "fetchedAt": "2026-09-07"
+  }
+}

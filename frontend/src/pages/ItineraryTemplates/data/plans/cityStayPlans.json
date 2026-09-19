@@ -1,0 +1,940 @@
+[
+  {
+    "templateId": "city-3-hanoi",
+    "stayByCity": {
+      "Hanoi": "hanoi-silk"
+    },
+    "days": [
+      {
+        "city": "Hanoi",
+        "theme": "Ba Dinh and Literature",
+        "blurb": "Mausoleum at opening (not Monday or Friday), One Pillar, the stilt house, Temple of Literature, then Hoa Lo. Keep this morning on the west bank; do not bolt on West Lake.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "ho-chi-minh-mausoleum",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "hcm-stilt-house",
+            "time": "11:40"
+          },
+          {
+            "kind": "experience",
+            "id": "one-pillar-pagoda",
+            "time": "13:20"
+          },
+          {
+            "kind": "experience",
+            "id": "hoa-lo-prison",
+            "time": "14:00"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "egg-coffee",
+            "time": "13:30"
+          }
+        ],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "st-joseph-cathedral",
+            "time": "17:45"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Hanoi",
+        "theme": "Old Quarter and the lake",
+        "blurb": "Walk the 36 streets, Hoan Kiem and Ngọc Sơn, St Joseph, egg coffee. Night is for Train Street or another Old Quarter loop — not a second museum district.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "temple-literature",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "ngoc-son-temple",
+            "time": "11:10"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "train-street",
+            "time": "13:30"
+          }
+        ],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "tran-quoc-pagoda",
+            "time": "17:45"
+          },
+          {
+            "kind": "experience",
+            "id": "west-lake",
+            "time": "18:40"
+          },
+          {
+            "kind": "experience",
+            "id": "hoan-kiem-lake",
+            "time": "21:50"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Hanoi",
+        "theme": "West Lake and ethnology",
+        "blurb": "Trần Quốc and West Lake, Museum of Ethnology if you want context beyond the Old Quarter. Evening food stays in the centre.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "ethnology-museum",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "vietnamese-womens-museum",
+            "time": "11:40"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "shopping",
+            "id": "shop-hanoi-coffee",
+            "time": "13:30"
+          }
+        ],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "old-quarter",
+            "time": "17:45"
+          },
+          {
+            "kind": "experience",
+            "id": "hanoi-opera-house",
+            "time": "20:55"
+          }
+        ],
+        "night": "stay"
+      }
+    ]
+  },
+  {
+    "templateId": "city-3-ho-chi-minh-city",
+    "stayByCity": {
+      "Ho Chi Minh City": "hcmc-reverie"
+    },
+    "days": [
+      {
+        "city": "Ho Chi Minh City",
+        "theme": "District 1 spine",
+        "blurb": "Independence Palace, War Remnants, Notre-Dame and the post office, Nguyễn Huệ, Bến Thành. This is the walkable first-timer core.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "hcmc-fine-arts",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "war-remnants",
+            "time": "10:40"
+          },
+          {
+            "kind": "experience",
+            "id": "independence-palace",
+            "time": "12:50"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "saigon-central-post-office",
+            "time": "13:30"
+          },
+          {
+            "kind": "experience",
+            "id": "saigon-book-street",
+            "time": "14:25"
+          },
+          {
+            "kind": "experience",
+            "id": "notre-dame-saigon",
+            "time": "15:20"
+          }
+        ],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "saigon-opera-house",
+            "time": "17:45"
+          },
+          {
+            "kind": "experience",
+            "id": "hcmc-peoples-committee",
+            "time": "18:25"
+          },
+          {
+            "kind": "experience",
+            "id": "nguyen-hue-walking",
+            "time": "19:05"
+          },
+          {
+            "kind": "experience",
+            "id": "bitexco-skydeck",
+            "time": "20:45"
+          },
+          {
+            "kind": "experience",
+            "id": "ben-thanh",
+            "time": "22:10"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "theme": "Củ Chi tunnels",
+        "blurb": "A half-day to full-day out-and-back. Do not pin the Mekong on the same clock — that is a different outing.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "cu-chi",
+            "time": "09:00"
+          }
+        ],
+        "afternoon": [],
+        "evening": [],
+        "night": "stay"
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "theme": "Chợ Lớn and the skyline",
+        "blurb": "Jade Emperor, Chợ Lớn lanes, Bitexco or a rooftop. Softer than day one, still a real Saigon day.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "jade-emperor-pagoda",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "cho-lon",
+            "time": "10:10"
+          },
+          {
+            "kind": "experience",
+            "id": "vinh-nghiem-pagoda",
+            "time": "13:20"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "tao-dan-park",
+            "time": "13:30"
+          },
+          {
+            "kind": "experience",
+            "id": "hcmc-city-museum",
+            "time": "14:25"
+          }
+        ],
+        "evening": [],
+        "night": "stay"
+      }
+    ]
+  },
+  {
+    "templateId": "city-3-da-nang",
+    "stayByCity": {
+      "Da Nang": "danang-fusion"
+    },
+    "days": [
+      {
+        "city": "Da Nang",
+        "theme": "Beach and Dragon Bridge",
+        "blurb": "Mỹ Khê, Cham sculpture museum, Dragon Bridge at dusk. Stay on the city–beach axis.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "cham-sculpture-museum",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "marble-mountains",
+            "time": "10:40"
+          },
+          {
+            "kind": "experience",
+            "id": "da-nang-cathedral",
+            "time": "13:20"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "da-nang-beach",
+            "time": "13:30"
+          }
+        ],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "dragon-bridge",
+            "time": "17:45"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Da Nang",
+        "theme": "Ba Na Hills",
+        "blurb": "Cable, Golden Bridge, and the hill town. This outing owns the day.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "ba-na-hills",
+            "time": "09:00"
+          }
+        ],
+        "afternoon": [],
+        "evening": [],
+        "night": "stay"
+      },
+      {
+        "city": "Da Nang",
+        "theme": "Marble Mountains and Sơn Trà",
+        "blurb": "Caves and pagodas at Marble Mountains, then Lady Buddha on the peninsula. Not a Ba Na add-on.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "son-tra",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "linh-ung-pagoda",
+            "time": "13:10"
+          }
+        ],
+        "afternoon": [],
+        "evening": [],
+        "night": "stay"
+      }
+    ]
+  },
+  {
+    "templateId": "city-3-hoi-an",
+    "stayByCity": {
+      "Hoi An": "hoian-allegro"
+    },
+    "days": [
+      {
+        "city": "Hoi An",
+        "theme": "Villages and basket boats",
+        "blurb": "Trà Quế herb gardens in the morning, Cẩm Thanh basket boats after. Keep Mỹ Sơn for its own daylight trip.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "hoi-an-history-museum",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "fujian-assembly-hall",
+            "time": "09:52"
+          },
+          {
+            "kind": "experience",
+            "id": "tan-ky-old-house",
+            "time": "10:38"
+          },
+          {
+            "kind": "experience",
+            "id": "hoi-an-market",
+            "time": "11:18"
+          },
+          {
+            "kind": "experience",
+            "id": "japanese-covered-bridge",
+            "time": "12:28"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "cam-thanh-basket-boats",
+            "time": "13:30"
+          },
+          {
+            "kind": "experience",
+            "id": "hoi-an-ancient-town",
+            "time": "15:10"
+          }
+        ],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "hoi-an-lanterns",
+            "time": "17:45"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Hoi An",
+        "theme": "Ancient Town",
+        "blurb": "Japanese Covered Bridge, merchant houses, the market, lanterns after dark. This is the UNESCO core.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "tra-que-village",
+            "time": "09:00"
+          },
+          {
+            "kind": "shopping",
+            "id": "thanh-ha-pottery",
+            "time": "12:10"
+          },
+          {
+            "kind": "experience",
+            "id": "kim-bong-village",
+            "time": "14:20"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "shopping",
+            "id": "shop-hoian-tailor",
+            "time": "13:30"
+          }
+        ],
+        "evening": [],
+        "night": "stay"
+      },
+      {
+        "city": "Hoi An",
+        "theme": "Mỹ Sơn sanctuary",
+        "blurb": "Cham towers as a dedicated daylight trip. Back for a quiet Ancient Town evening if the legs hold.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "my-son",
+            "time": "09:00"
+          }
+        ],
+        "afternoon": [],
+        "evening": [],
+        "night": "stay"
+      }
+    ]
+  },
+  {
+    "templateId": "city-3-hue",
+    "stayByCity": {
+      "Hue": "hue-pilgrimage"
+    },
+    "days": [
+      {
+        "city": "Hue",
+        "theme": "Royal tombs",
+        "blurb": "Khải Định and Minh Mạng (Tự Đức if the clock still fits). These are countryside outings, not a citadel add-on.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "minh-mang-tomb",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "tu-hieu-pagoda",
+            "time": "11:10"
+          },
+          {
+            "kind": "experience",
+            "id": "tu-duc-tomb",
+            "time": "12:05"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "thuy-xuan-village",
+            "time": "13:30"
+          },
+          {
+            "kind": "experience",
+            "id": "thanh-toan-bridge",
+            "time": "14:25"
+          }
+        ],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "truong-tien-bridge",
+            "time": "17:45"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Hue",
+        "theme": "Imperial City",
+        "blurb": "Ngọ Môn, palaces, flag tower. Stay inside the citadel until it is honestly done.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "khai-dinh-tomb",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "hue-citadel",
+            "time": "10:25"
+          },
+          {
+            "kind": "experience",
+            "id": "dong-ba-market",
+            "time": "13:35"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "an-dinh-palace",
+            "time": "13:30"
+          },
+          {
+            "kind": "experience",
+            "id": "ho-thuy-tien",
+            "time": "14:40"
+          }
+        ],
+        "evening": [],
+        "night": "stay"
+      },
+      {
+        "city": "Hue",
+        "theme": "Thiên Mụ and the river",
+        "blurb": "Pagoda, Perfume River, Đông Ba. A gentler Hue day between the citadel and the tombs.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "thien-mu-pagoda",
+            "time": "09:00"
+          }
+        ],
+        "afternoon": [],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "perfume-river",
+            "time": "17:45"
+          }
+        ],
+        "night": "stay"
+      }
+    ]
+  },
+  {
+    "templateId": "city-3-da-lat",
+    "stayByCity": {
+      "Da Lat": "colline-dalat"
+    },
+    "days": [
+      {
+        "city": "Da Lat",
+        "theme": "Tuyền Lâm and Trúc Lâm",
+        "blurb": "Southern lake, monastery, Datanla on the same road. Not another city-lake loop.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "datanla-waterfall",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "elephant-falls",
+            "time": "11:40"
+          },
+          {
+            "kind": "experience",
+            "id": "prenn-waterfall",
+            "time": "13:20"
+          },
+          {
+            "kind": "experience",
+            "id": "tiger-cave-waterfall",
+            "time": "14:42"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "cam-ly-waterfall",
+            "time": "13:30"
+          }
+        ],
+        "evening": [],
+        "night": "stay"
+      },
+      {
+        "city": "Da Lat",
+        "theme": "Centre and Crazy House",
+        "blurb": "Crazy House, Xuân Hương, the market. Night market after dark.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "linh-phuoc-pagoda",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "truc-lam-monastery",
+            "time": "10:10"
+          },
+          {
+            "kind": "experience",
+            "id": "tuyen-lam-lake",
+            "time": "11:50"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "da-lat-market",
+            "time": "13:30"
+          },
+          {
+            "kind": "experience",
+            "id": "xuan-huong-lake",
+            "time": "14:40"
+          }
+        ],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "da-lat-night-market",
+            "time": "17:45"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Da Lat",
+        "theme": "Falls and Linh Phước",
+        "blurb": "Elephant Falls or Valley of Love, Linh Phước’s dragon. A countryside Da Lat day.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "valley-of-love",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "domaine-de-marie",
+            "time": "11:40"
+          },
+          {
+            "kind": "experience",
+            "id": "da-lat-railway-station",
+            "time": "12:35"
+          },
+          {
+            "kind": "experience",
+            "id": "thien-vuong-pagoda",
+            "time": "14:15"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "crazy-house",
+            "time": "13:30"
+          }
+        ],
+        "evening": [],
+        "night": "stay"
+      }
+    ]
+  },
+  {
+    "templateId": "city-3-nha-trang",
+    "stayByCity": {
+      "Nha Trang": "nhatrang-mojzo"
+    },
+    "days": [
+      {
+        "city": "Nha Trang",
+        "theme": "Hòn Mun or mud baths",
+        "blurb": "Reef boats or I-Resort. A second water day, separate from VinWonders.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "hon-mun-island",
+            "time": "09:00"
+          }
+        ],
+        "afternoon": [],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "skylight-nha-trang",
+            "time": "17:45"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Nha Trang",
+        "theme": "Hòn Tre and VinWonders",
+        "blurb": "The park owns the day. Do not stack Hòn Mun snorkelling on the same ticket.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "hon-tre-island",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "vinwonders-nha-trang",
+            "time": "13:10"
+          }
+        ],
+        "afternoon": [],
+        "evening": [],
+        "night": "stay"
+      },
+      {
+        "city": "Nha Trang",
+        "theme": "Town and Po Nagar",
+        "blurb": "Po Nagar, Long Sơn, cathedral, promenade. Skylight is the evening, not a third island.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "po-nagar",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "nha-trang-cathedral",
+            "time": "10:40"
+          },
+          {
+            "kind": "experience",
+            "id": "long-son-pagoda",
+            "time": "11:26"
+          },
+          {
+            "kind": "experience",
+            "id": "hon-chong",
+            "time": "13:06"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "i-resort-mud-bath",
+            "time": "13:30"
+          }
+        ],
+        "evening": [],
+        "night": "stay"
+      }
+    ]
+  },
+  {
+    "templateId": "city-3-phu-quoc",
+    "stayByCity": {
+      "Phu Quoc": "phuquoc-sol"
+    },
+    "days": [
+      {
+        "city": "Phu Quoc",
+        "theme": "South beaches and Hon Thom",
+        "blurb": "Bãi Sao, cable to Hon Thom, Kiss Bridge. This is the south-island day.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "hon-thom-island",
+            "time": "09:00"
+          }
+        ],
+        "afternoon": [],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "kiss-bridge",
+            "time": "17:45"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Phu Quoc",
+        "theme": "Dương Đông and sunset",
+        "blurb": "Dinh Cau, night market, west-coast sunset or Long Beach. Island evening, not another park.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "sao-beach",
+            "time": "09:00"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "ong-lang-beach",
+            "time": "13:30"
+          }
+        ],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "phu-quoc-sunset",
+            "time": "17:45"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Phu Quoc",
+        "theme": "Grand World and the west coast",
+        "blurb": "Grand World in daylight, Dinh Cau and a west-coast sunset. Keep Hon Thom off this clock.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "ham-ninh-village",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "khai-hoan-fish-sauce",
+            "time": "11:10"
+          }
+        ],
+        "afternoon": [],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "dinh-cau",
+            "time": "17:45"
+          },
+          {
+            "kind": "experience",
+            "id": "duong-dong-night-market",
+            "time": "18:55"
+          },
+          {
+            "kind": "experience",
+            "id": "grand-world-pq",
+            "time": "21:05"
+          }
+        ],
+        "night": "stay"
+      }
+    ]
+  },
+  {
+    "templateId": "city-3-sapa",
+    "stayByCity": {
+      "Sapa": "sapa-valley"
+    },
+    "days": [
+      {
+        "city": "Sapa",
+        "theme": "Muong Hoa trek",
+        "blurb": "Lao Chải, Tả Van, valley paths. This outing owns the day — no cable car.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "muong-hoa-valley",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "ta-van-village",
+            "time": "11:10"
+          },
+          {
+            "kind": "experience",
+            "id": "lao-chai-village",
+            "time": "14:20"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "sapa-trek",
+            "time": "13:30"
+          }
+        ],
+        "evening": [],
+        "night": "stay"
+      },
+      {
+        "city": "Sapa",
+        "theme": "Town and Cat Cat",
+        "blurb": "Stone church, Hàm Rồng, Cat Cat village and waterfall. Not a Fansipan add-on.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "cat-cat-village",
+            "time": "09:00"
+          },
+          {
+            "kind": "experience",
+            "id": "cat-cat-waterfall",
+            "time": "11:40"
+          }
+        ],
+        "afternoon": [
+          {
+            "kind": "experience",
+            "id": "ham-rong-mountain",
+            "time": "13:30"
+          },
+          {
+            "kind": "experience",
+            "id": "ta-phin-village",
+            "time": "15:10"
+          }
+        ],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "sapa-stone-church",
+            "time": "17:45"
+          }
+        ],
+        "night": "stay"
+      },
+      {
+        "city": "Sapa",
+        "theme": "Fansipan",
+        "blurb": "Cable to the Roof of Indochina at opening. Weather, not a guarantee. No trek afterwards.",
+        "morning": [
+          {
+            "kind": "experience",
+            "id": "fansipan",
+            "time": "09:00"
+          }
+        ],
+        "afternoon": [],
+        "evening": [],
+        "night": "stay"
+      }
+    ]
+  }
+]

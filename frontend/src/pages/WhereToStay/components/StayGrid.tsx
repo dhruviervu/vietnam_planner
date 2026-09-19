@@ -244,7 +244,7 @@ export function StayGrid({
                         className="inline-flex max-w-full items-center rounded-[3px] border border-ink/15 px-2.5 py-1.5 text-[0.72rem] font-bold text-ink transition hover:border-terracotta/40 hover:text-terracotta"
                         title={`Open Google Maps directions from ${stay.name} to ${anchor.name}`}
                       >
-                        <span className="truncate">See how far from {anchor.name}</span>
+                        <span className="truncate">Check Distance from {anchor.name}</span>
                       </a>
                     ) : null}
                     <StayItineraryButton

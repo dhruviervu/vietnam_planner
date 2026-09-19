@@ -15,10 +15,12 @@ import {
   getActivityGuideSections,
 } from '../lib/activityDetailCopy'
 import {
-  getActivityProviders,
+  getActivityBookingOffers,
   isBookableActivity,
-  type ActivityProvider,
 } from '../data/activityProviders'
+import { SeeProvidersControl } from '../components/SeeProvidersControl'
+import { hoursLabelForSource } from '../lib/yourVietnam/openingHours'
+import { pinNewSightToItinerary, readItineraryAddTarget } from '../lib/yourVietnam/itineraryAddTarget'
 
 export function BuilderActivityDetailPage() {
   const { id = '' } = useParams()
@@ -77,11 +79,16 @@ export function BuilderActivityDetailPage() {
 
   const images = getActivityImages(activity)
   const isFree = activity.priceFromUsd === 0
-  const providers = getActivityProviders(activity)
-  const bookable = isBookableActivity(activity) && providers.length >= 2
+  const bookable = isBookableActivity(activity)
+  const providerOffers = bookable ? getActivityBookingOffers(activity) : []
 
   function handleAdd(e: MouseEvent<HTMLButtonElement>) {
+    const itineraryTarget = readItineraryAddTarget()
     if (selected) {
+      if (itineraryTarget) {
+        pinNewSightToItinerary(id)
+        return
+      }
       removeActivity(id)
       setAskConfirm(false)
       setJustAdded(false)
@@ -89,6 +96,7 @@ export function BuilderActivityDetailPage() {
     }
     flyToTripBag(e.currentTarget.getBoundingClientRect(), images[0])
     addActivity(id)
+    if (itineraryTarget) pinNewSightToItinerary(id)
     setJustAdded(true)
     setAskConfirm(true)
     window.setTimeout(() => setJustAdded(false), 2000)
@@ -139,6 +147,12 @@ export function BuilderActivityDetailPage() {
                 value={isFree ? activity.priceLabel : `💰 ${activity.priceLabel}`}
               />
             </div>
+            <div className="mt-2 rounded-xl bg-cream px-3 py-2.5">
+              <p className="text-[0.62rem] font-bold uppercase tracking-wide text-muted">Hours</p>
+              <p className="mt-0.5 text-[0.82rem] font-semibold leading-snug text-ink">
+                {hoursLabelForSource('activity', activity.id, activity.hours)}
+              </p>
+            </div>
 
             <div className="mt-4 space-y-3 text-[1.05rem] leading-[1.8] text-ink">
               <p>{blurb}</p>
@@ -156,41 +170,23 @@ export function BuilderActivityDetailPage() {
               </p>
             </div>
 
-            {bookable ? (
-              <div className="mt-4 flex min-h-0 flex-1 flex-col gap-2.5">
-                <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
-                  View Providers
-                </p>
-                {providers.map((provider, i) => (
-                  <ProviderCard
-                    key={provider.id}
-                    provider={provider}
-                    image={images[i] ?? images[0]}
-                    selected={selected}
-                    justAdded={justAdded}
-                    onAdd={handleAdd}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="mt-5 flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={handleAdd}
-                  className={`rounded-full px-6 py-3 text-[0.92rem] font-bold transition-transform hover:scale-[1.02] ${
-                    selected
-                      ? 'bg-sage text-paper'
-                      : 'bg-gradient-to-br from-terracotta to-terracotta-deep text-paper shadow-[0_10px_24px_rgba(196,92,58,0.28)]'
-                  }`}
-                >
-                  {justAdded
-                    ? 'Added to your trip ✓'
-                    : selected
-                      ? '✓ Added to Your Trip'
-                      : '+ Add to Trip'}
-                </button>
-              </div>
-            )}
+            <SeeProvidersControl offers={providerOffers} sightName={activity.name}>
+              <button
+                type="button"
+                onClick={handleAdd}
+                className={`rounded-full px-6 py-3 text-[0.92rem] font-bold transition-transform hover:scale-[1.02] ${
+                  selected
+                    ? 'bg-sage text-paper'
+                    : 'bg-gradient-to-br from-terracotta to-terracotta-deep text-paper shadow-[0_10px_24px_rgba(196,92,58,0.28)]'
+                }`}
+              >
+                {justAdded
+                  ? 'Added to your trip ✓'
+                  : selected
+                    ? '✓ Added to Your Trip'
+                    : '+ Add to Trip'}
+              </button>
+            </SeeProvidersControl>
 
             <AnimatePresence>
               {askConfirm && selected && (
@@ -314,69 +310,6 @@ function guideMark(title: string) {
     default:
       return { emoji: '✦', wash: 'bg-cream-deep' }
   }
-}
-
-function ProviderCard({
-  provider,
-  image,
-  selected,
-  justAdded,
-  onAdd,
-}: {
-  provider: ActivityProvider
-  image?: string
-  selected: boolean
-  justAdded: boolean
-  onAdd: (e: MouseEvent<HTMLButtonElement>) => void
-}) {
-  const reviews = provider.reviewCount.toLocaleString()
-  return (
-    <article className="flex gap-3 rounded-[16px] bg-cream/90 p-2.5 ring-1 ring-ink/[0.06] sm:p-3">
-      {image ? (
-        <img
-          src={image}
-          alt={provider.name}
-          className="h-[5.6rem] w-[5.6rem] shrink-0 rounded-[12px] object-cover sm:h-[6.2rem] sm:w-[6.2rem]"
-        />
-      ) : null}
-      <div className="min-w-0 flex-1">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <h3 className="font-serif text-[1.02rem] font-semibold leading-tight text-ink">
-              {provider.name}
-            </h3>
-            <p className="mt-0.5 text-[0.78rem] leading-snug text-muted">{provider.description}</p>
-          </div>
-          <p className="shrink-0 text-[0.78rem] font-bold tabular-nums text-ink">
-            ⭐ {provider.rating.toFixed(1)} ({reviews})
-          </p>
-        </div>
-        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-0.5 text-[0.75rem] font-semibold text-ink">
-          <span>{provider.priceLabel}</span>
-          <span className="text-muted">{provider.durationLabel}</span>
-        </div>
-        <div className="mt-2.5 flex gap-2">
-          <button
-            type="button"
-            onClick={onAdd}
-            className={`rounded-full px-3.5 py-1.5 text-[0.75rem] font-bold transition-transform hover:scale-[1.02] ${
-              selected ? 'bg-sage text-paper' : 'bg-terracotta text-paper'
-            }`}
-          >
-            {justAdded ? 'Added ✓' : selected ? '✓ In your trip' : '+ Add to trip'}
-          </button>
-          <a
-            href={provider.bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-ink/12 bg-paper px-3.5 py-1.5 text-[0.75rem] font-bold text-ink hover:border-terracotta/40"
-          >
-            Check availability
-          </a>
-        </div>
-      </div>
-    </article>
-  )
 }
 
 function ActivityHero({

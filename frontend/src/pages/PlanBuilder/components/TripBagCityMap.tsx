@@ -2,9 +2,11 @@ import { useEffect, useMemo, useState } from 'react'
 import { MapContainer, Marker, Popup, TileLayer, Tooltip, useMap, ZoomControl } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { GOOGLE_HYBRID_TILES } from '../../WhereToStay/lib/googleMapTiles'
+import { GOOGLE_ROADMAP_TILES } from '../../WhereToStay/lib/googleMapTiles'
 import { placeCoords } from '../lib/yourVietnam/cityPins'
+import { geocodePhoton } from '../../GettingAround/lib/geocodeInCity'
 import {
+  resolveBagSightPins,
   resolveDayMapPins,
   type DayMapStop,
   type ResolvedDayPin,
@@ -17,6 +19,16 @@ type Props = {
   placeId?: PlaceId
   activeStopId?: string | null
   onSelectStop: (id: string) => void
+  /** Overrides default height classes. */
+  className?: string
+  /** Animate pan/zoom when pins change; wait for full geocode before swapping pins. */
+  smoothPan?: boolean
+  /** Increment to re-fit the current city without remounting the map. */
+  resetNonce?: number
+  /** Numbered agenda pins. Off for the itinerary bag map. */
+  numbered?: boolean
+  /** Locate only user-added sights; never fall back to city centre. */
+  bagPinsOnly?: boolean
 }
 
 function googlePin(n: number, active: boolean) {
@@ -35,6 +47,20 @@ function googlePin(n: number, active: boolean) {
   })
 }
 
+function markPin(active: boolean) {
+  const fill = active ? '#c45c3a' : '#ea4335'
+  return L.divIcon({
+    className: 'yv-day-pin',
+    html: `<div style="width:28px;height:40px;pointer-events:none">
+      <svg width="28" height="40" viewBox="0 0 28 40" aria-hidden="true" style="display:block">
+        <path d="M14 0C6.268 0 0 6.268 0 14c0 10.5 14 26 14 26s14-15.5 14-26C28 6.268 21.732 0 14 0z" fill="${fill}" stroke="#fff" stroke-width="1.25"/>
+        <circle cx="14" cy="14" r="6.5" fill="#fff"/>
+      </svg>
+    </div>`,
+    iconSize: [28, 40],
+    iconAnchor: [14, 40],
+  })
+}
 function stayPin(active: boolean) {
   const fill = active ? '#c45c3a' : '#5c6f58'
   return L.divIcon({
@@ -171,51 +197,99 @@ function minPixelSep(map: L.Map, pins: ResolvedDayPin[]) {
   return Number.isFinite(min) ? +min.toFixed(1) : 0
 }
 
-function DayPinLayer({
+function InvalidateOnResize() {
+  const map = useMap()
+  useEffect(() => {
+    const el = map.getContainer()
+    const ro = new ResizeObserver(() => {
+      const size = map.getSize()
+      if (size.x < 40 || size.y < 40) return
+      map.invalidateSize({ animate: false })
+    })
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [map])
+  return null
+}
+
+export function DayPinLayer({
   pins,
   placeId,
   activeStopId,
   onSelectStop,
+  smoothPan = false,
+  resetNonce = 0,
+  fitToPins = true,
+  numbered = true,
 }: {
   pins: ResolvedDayPin[]
   placeId?: PlaceId
   activeStopId?: string | null
   onSelectStop: (id: string) => void
+  smoothPan?: boolean
+  resetNonce?: number
+  fitToPins?: boolean
+  numbered?: boolean
 }) {
   const map = useMap()
   const [drawn, setDrawn] = useState<ResolvedDayPin[]>(pins)
   const key = pins.map((p) => `${p.id}:${p.lat.toFixed(5)}`).join('|')
   useEffect(() => {
     let cancelled = false
+    let fitted = false
+    const applyDrawn = (base: ResolvedDayPin[]) => {
+      if (cancelled) return
+      if (smoothPan || base.length < 2) {
+        setDrawn(base)
+        return
+      }
+      setDrawn(spreadUntilSeparated(map, base, 44))
+    }
     const fit = () => {
       if (cancelled) return
+      if (smoothPan && fitted) return
       map.invalidateSize()
       const size = map.getSize()
       if (size.x < 40 || size.y < 40) return
       const base = collapseDuplicateStays(pins)
+      if (!fitToPins) {
+        applyDrawn(base)
+        return
+      }
+      if (smoothPan) fitted = true
+      const flyOpts = { duration: 0.75 }
       if (base.length === 0) {
         const c = placeId ? placeCoords(placeId) : null
-        map.setView(c ? [c.lat, c.lng] : [16.0, 107.5], c ? 13 : 5)
+        const view: [number, number] = c ? [c.lat, c.lng] : [16.0, 107.5]
+        if (smoothPan) map.flyTo(view, c ? 13 : 5, flyOpts)
+        else map.setView(view, c ? 13 : 5)
         setDrawn([])
         return
       }
       if (base.length === 1) {
-        map.setView([base[0].lat, base[0].lng], 14)
+        if (smoothPan) map.flyTo([base[0].lat, base[0].lng], 14, flyOpts)
+        else map.setView([base[0].lat, base[0].lng], 14)
         setDrawn(base)
-      } else {
-        const bounds = L.latLngBounds(base.map((p) => [p.lat, p.lng] as [number, number]))
-        map.fitBounds(bounds, {
-          paddingTopLeft: [44, 56],
-          paddingBottomRight: [44, 32],
-          maxZoom: 14,
-          animate: false,
-        })
-        let guard = 0
-        while (pinPixelOff(map, base, map.getSize()).length > 0 && map.getZoom() > 8 && guard++ < 8) {
-          map.setZoom(map.getZoom() - 1, { animate: false })
-        }
-        setDrawn(spreadUntilSeparated(map, base, 44))
+        return
       }
+      const bounds = L.latLngBounds(base.map((p) => [p.lat, p.lng] as [number, number]))
+      const pad = {
+        paddingTopLeft: [44, 56] as [number, number],
+        paddingBottomRight: [44, 32] as [number, number],
+        maxZoom: 14,
+      }
+      if (smoothPan) {
+        setDrawn(base)
+        map.flyToBounds(bounds, { ...pad, ...flyOpts })
+        map.once('moveend', () => applyDrawn(base))
+        return
+      }
+      map.fitBounds(bounds, { ...pad, animate: false })
+      let guard = 0
+      while (pinPixelOff(map, base, map.getSize()).length > 0 && map.getZoom() > 8 && guard++ < 8) {
+        map.setZoom(map.getZoom() - 1, { animate: false })
+      }
+      setDrawn(spreadUntilSeparated(map, base, 44))
     }
     fit()
     map.whenReady(fit)
@@ -224,7 +298,7 @@ function DayPinLayer({
       cancelled = true
       cancelAnimationFrame(raf)
     }
-  }, [map, key, pins, placeId])
+  }, [map, key, pins, placeId, smoothPan, resetNonce, fitToPins])
 
   return (
     <>
@@ -232,14 +306,20 @@ function DayPinLayer({
         <Marker
           key={pin.id}
           position={[pin.lat, pin.lng]}
-          icon={pin.n > 0 ? googlePin(pin.n, pin.id === activeStopId) : stayPin(pin.id === activeStopId)}
-          zIndexOffset={pin.n > 0 ? pin.n * 40 : 10}
+          icon={
+            numbered
+              ? pin.n > 0
+                ? googlePin(pin.n, pin.id === activeStopId)
+                : stayPin(pin.id === activeStopId)
+              : markPin(pin.id === activeStopId)
+          }
+          zIndexOffset={numbered && pin.n > 0 ? pin.n * 40 : 20}
           eventHandlers={{
             click: () => onSelectStop(pin.id),
           }}
         >
           <Tooltip direction="top" offset={[0, -36]} opacity={0.95}>
-            {pin.n > 0 ? `${pin.n}. ${pin.name}` : `Stay · ${pin.name}`}
+            {numbered && pin.n > 0 ? `${pin.n}. ${pin.name}` : pin.name}
           </Tooltip>
           <Popup>
             <span className="text-[0.82rem] font-semibold">{pin.name}</span>
@@ -250,7 +330,61 @@ function DayPinLayer({
   )
 }
 
-export function TripBagCityMap({ stops, cityLabel, placeId, activeStopId, onSelectStop }: Props) {
+function kmBetween(
+  a: { lat: number; lng: number },
+  b: { lat: number; lng: number },
+) {
+  const R = 6371
+  const dLat = ((b.lat - a.lat) * Math.PI) / 180
+  const dLng = ((b.lng - a.lng) * Math.PI) / 180
+  const x =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((a.lat * Math.PI) / 180) * Math.cos((b.lat * Math.PI) / 180) * Math.sin(dLng / 2) ** 2
+  return 2 * R * Math.asin(Math.min(1, Math.sqrt(x)))
+}
+
+/** When several sights share a catalog centroid, geocode each name so pins sit on the real place. */
+async function refineSharedPins(
+  pins: ResolvedDayPin[],
+  cityLabel: string,
+  placeId?: PlaceId,
+): Promise<ResolvedDayPin[]> {
+  const groups = new Map<string, number[]>()
+  pins.forEach((p, i) => {
+    const k = `${p.lat.toFixed(4)},${p.lng.toFixed(4)}`
+    const g = groups.get(k) ?? []
+    g.push(i)
+    groups.set(k, g)
+  })
+  const out = pins.map((p) => ({ ...p }))
+  const city = placeId ? placeCoords(placeId) : null
+  await Promise.all(
+    [...groups.values()].flatMap((idxs) => {
+      if (idxs.length < 2) return []
+      return idxs.map(async (i) => {
+        const p = out[i]
+        const geo = await geocodePhoton(`${p.name}, ${cityLabel}, Vietnam`)
+        if (!geo.ok) return
+        if (city && kmBetween(city, geo.hit) > 90) return
+        out[i] = { ...p, lat: geo.hit.lat, lng: geo.hit.lng, source: 'geocode' }
+      })
+    }),
+  )
+  return out
+}
+
+export function TripBagCityMap({
+  stops,
+  cityLabel,
+  placeId,
+  activeStopId,
+  onSelectStop,
+  className,
+  smoothPan = false,
+  resetNonce = 0,
+  numbered = true,
+  bagPinsOnly = false,
+}: Props) {
   const [pins, setPins] = useState<ResolvedDayPin[]>([])
 
   const center = useMemo<[number, number]>(() => {
@@ -263,24 +397,37 @@ export function TripBagCityMap({ stops, cityLabel, placeId, activeStopId, onSele
 
   useEffect(() => {
     let cancelled = false
-    resolveDayMapPins(stops, cityLabel, placeId, (partial) => {
+    const onPartial = smoothPan
+      ? undefined
+      : (partial: ResolvedDayPin[]) => {
+          if (cancelled) return
+          setPins(partial)
+        }
+    const locate = bagPinsOnly ? resolveBagSightPins : resolveDayMapPins
+    locate(stops, cityLabel, placeId, onPartial).then(async (resolved) => {
       if (cancelled) return
-      setPins(partial)
-    }).then((resolved) => {
+      const next = smoothPan ? await refineSharedPins(resolved, cityLabel, placeId) : resolved
       if (cancelled) return
-      setPins(resolved)
+      setPins(next)
     })
     return () => {
       cancelled = true
     }
     // stopKey stands in for stops identity so geocoding does not loop
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stopKey, cityLabel, placeId])
+  }, [stopKey, cityLabel, placeId, smoothPan, bagPinsOnly])
 
-  const displayPins = useMemo(() => spreadOverlappingPins(pins), [pins])
+  const displayPins = useMemo(
+    () => (smoothPan ? pins : spreadOverlappingPins(pins)),
+    [pins, smoothPan],
+  )
 
   return (
-    <div className="yv-city-map h-[min(300px,42vh)] overflow-hidden rounded-[22px] border border-ink/10 lg:h-[min(380px,48vh)]">
+    <div
+      className={`yv-city-map overflow-hidden rounded-[22px] border border-ink/10 ${
+        className ?? 'h-[min(300px,42vh)] lg:h-[min(380px,48vh)]'
+      }`}
+    >
       <MapContainer
         center={center}
         zoom={13}
@@ -295,17 +442,21 @@ export function TripBagCityMap({ stops, cityLabel, placeId, activeStopId, onSele
         attributionControl
       >
         <TileLayer
-          url={GOOGLE_HYBRID_TILES.url}
-          attribution={GOOGLE_HYBRID_TILES.attribution}
-          subdomains={GOOGLE_HYBRID_TILES.subdomains}
-          maxZoom={GOOGLE_HYBRID_TILES.maxZoom}
+          url={GOOGLE_ROADMAP_TILES.url}
+          attribution={GOOGLE_ROADMAP_TILES.attribution}
+          subdomains={GOOGLE_ROADMAP_TILES.subdomains}
+          maxZoom={GOOGLE_ROADMAP_TILES.maxZoom}
         />
         <ZoomControl position="bottomright" />
+        {smoothPan ? <InvalidateOnResize /> : null}
         <DayPinLayer
           pins={displayPins}
           placeId={placeId}
           activeStopId={activeStopId}
           onSelectStop={onSelectStop}
+          smoothPan={smoothPan}
+          resetNonce={resetNonce}
+          numbered={numbered}
         />
       </MapContainer>
     </div>

@@ -235,11 +235,7 @@ export function mapHubPlaces() {
 }
 
 export function urbanCities() {
-  return PLACES.filter((p) =>
-    ['hanoi', 'da-nang', 'hcmc', 'hoi-an', 'hue', 'ninh-binh', 'nha-trang', 'dalat'].includes(
-      p.id,
-    ),
-  )
+  return PLACES.filter((p) => p.urbanRelevant)
 }
 
 export const VIETNAM_BOUNDS: [[number, number], [number, number]] = [

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ContentImage } from '../../../components/shared/ContentImage'
 import type { TransportMode, TransportOption } from '../data/types'
 import { optionsForMode } from '../data/options'
 import {
@@ -15,6 +16,28 @@ type Props = {
   selectedOptionId?: string | null
   onSelectOption?: (id: string) => void
   bookingHref?: (option: TransportOption) => string
+}
+
+function topProvidersHeading(mode: TransportMode): string {
+  const byId: Partial<Record<TransportMode['id'], string>> = {
+    flight: 'Top Flights',
+    train: 'Top Trains',
+    coach: 'Top Coaches',
+    'private-driver': 'Top Drivers',
+    'shared-transfer': 'Top Transfers',
+    scooter: 'Top Scooters',
+    'car-taxi': 'Top Taxis',
+    'public-transit': 'Top Transit',
+    walking: 'Top Walking',
+    bicycle: 'Top Bikes',
+    'urban-driver': 'Top Drivers',
+    ferry: 'Top Ferries',
+    'fast-boat': 'Top Fast Boats',
+    'sightseeing-boat': 'Top Boats',
+    cruise: 'Top Cruises',
+    'river-boat': 'Top River Boats',
+  }
+  return byId[mode.id] ?? `Top ${mode.shortLabel}s`
 }
 
 function guideForMode(mode: TransportMode): ModeGuide | null {
@@ -134,7 +157,9 @@ export function ModeSection({
         </div>
       )}
 
-      <h4 className="mt-8 font-serif text-[1.15rem] font-semibold text-ink">Top providers</h4>
+      <h4 className="mt-8 font-serif text-[1.15rem] font-semibold text-ink">
+        {topProvidersHeading(mode)}
+      </h4>
       <p className="mt-0.5 text-[0.68rem] font-semibold text-muted">
         Check live availability on each operator&apos;s best website
       </p>
@@ -176,7 +201,7 @@ function UrbanSnapshot({ mode }: { mode: TransportMode }) {
   return (
     <div className="overflow-hidden rounded-[18px] ring-1 ring-ink/8">
       <div className="relative aspect-[16/10]">
-        <img src={mode.image} alt="" className="h-full w-full object-cover" loading="lazy" />
+        <ContentImage src={mode.image} alt="" className="h-full w-full object-cover" loading="lazy" />
         <span className="absolute left-3 top-3 text-[1.5rem]">{mode.symbol}</span>
       </div>
       <div className="bg-cream/70 px-4 py-4">
@@ -249,6 +274,7 @@ function ProviderCard({
             href={href}
             target="_blank"
             rel="noreferrer"
+            data-outbound-label={option.name}
             className="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-br from-terracotta to-terracotta-deep px-3 py-2 text-center text-[0.78rem] font-bold text-paper"
           >
             See Travel options →

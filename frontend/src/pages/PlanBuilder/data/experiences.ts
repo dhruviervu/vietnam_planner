@@ -1,4 +1,4 @@
-import type { Experience, ExperienceCategory, ExperiencePopularityTag, ExperienceSignal, PriceType, SignalLevel, TravelStyle } from '../types'
+import type { Experience, ExperienceCategory, ExperiencePopularityTag, ExperienceSignal, PriceType, SignalLevel, TimePreference, TravelStyle } from '../types'
 import { imagesFor } from './experienceImages'
 import { EXTRA_EXPERIENCE_DRAFTS } from './experiencesExtra'
 import { formatFromPrice, priceTypeFromLegacy } from '../lib/pricing'
@@ -6,8 +6,12 @@ import { formatFromPrice, priceTypeFromLegacy } from '../lib/pricing'
 type Draft = {
   id: string
   name: string
+  /** Shared identity across variants of one place — see Experience.groupId. */
+  groupId?: string
+  timePreference?: TimePreference
   region: string
   city: string
+  sightSection?: string
   category: ExperienceCategory
   seeds: string[]
   hook: string
@@ -122,6 +126,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Ha Long Bay Cruise',
     region: 'Quang Ninh',
     city: 'Ha Long',
+    sightSection: 'Bays & UNESCO Seascape',
     category: 'Nature',
     seeds: ['pb-halong-1', 'pb-halong-2', 'pb-halong-3', 'pb-halong-4'],
     hook: 'Wake up surrounded by limestone islands and emerald water.',
@@ -154,6 +159,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Temple of Literature',
     region: 'Hanoi',
     city: 'Hanoi',
+    sightSection: 'Temples, Pagodas & Sacred Sites',
     category: 'History',
     seeds: ['pb-temple-1', 'pb-temple-2', 'pb-temple-3'],
     hook: 'Courtyards of quiet scholarship in the heart of Hanoi.',
@@ -185,6 +191,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Hanoi Old Quarter Walk',
     region: 'Hanoi',
     city: 'Hanoi',
+    sightSection: 'Lakes, Quarters & Urban Sights',
     category: 'Cities',
     seeds: ['pb-oldq-1', 'pb-oldq-2', 'pb-oldq-3'],
     hook: 'Street food, shops, and centuries of city life.',
@@ -216,6 +223,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Trang An Boat Ride',
     region: 'Ninh Binh',
     city: 'Ninh Binh',
+    sightSection: 'Karst Boats, Caves & Viewpoints',
     category: 'Nature',
     seeds: ['pb-nb-1', 'pb-nb-2', 'pb-nb-3'],
     hook: 'Row through rice paddies and limestone karsts.',
@@ -248,6 +256,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Mua Cave Viewpoint',
     region: 'Ninh Binh',
     city: 'Ninh Binh',
+    sightSection: 'Karst Boats, Caves & Viewpoints',
     category: 'Adventure',
     seeds: ['pb-mua-1', 'pb-mua-2'],
     hook: '500 steps to a dragon’s-eye view over the valley.',
@@ -278,6 +287,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Hoa Lu Ancient Capital',
     region: 'Ninh Binh',
     city: 'Ninh Binh',
+    sightSection: 'Hoa Lu Heritage & Old Streets',
     category: 'History',
     seeds: ['pb-hoalu-1', 'pb-hoalu-2'],
     hook: 'Temples of Vietnam’s first capital, framed by karsts.',
@@ -306,8 +316,11 @@ export const EXPERIENCES: Experience[] = [
   build({
     id: 'hoi-an-lanterns',
     name: 'Hoi An Ancient Town Evening',
+    groupId: 'hoi-an-ancient-town',
+    timePreference: 'EVENING',
     region: 'Hoi An',
     city: 'Hoi An',
+    sightSection: 'Historic Houses, Bridge & Market',
     category: 'Culture',
     seeds: ['pb-hoian-1', 'pb-hoian-2', 'pb-hoian-3'],
     hook: 'Lantern light, riverside walks, and soft night air.',
@@ -338,6 +351,8 @@ export const EXPERIENCES: Experience[] = [
   build({
     id: 'cooking-class',
     name: 'Hoi An Cooking Class',
+    groupId: 'hoi-an-cooking-class',
+    timePreference: 'MORNING',
     region: 'Hoi An',
     city: 'Hoi An',
     category: 'Food',
@@ -370,12 +385,14 @@ export const EXPERIENCES: Experience[] = [
     name: 'Ha Giang Loop (Day Section)',
     region: 'Ha Giang',
     city: 'Ha Giang',
+    sightSection: 'Passes, Gorges & Geopark Roads',
     category: 'Adventure',
     seeds: ['pb-hagiang-1', 'pb-hagiang-2', 'pb-hagiang-3'],
     hook: 'Mountain passes, minority villages, endless horizon.',
     about: 'A curated day on the legendary northern loop with a local driver-guide.',
     whyGo: 'Vietnam’s most cinematic road journey — raw, scenic, unforgettable.',
-    cardSummary: 'A curated day on Vietnam’s legendary northern mountain loop: passes, minority villages, and vast highland horizons with a local driver-guide. Cinematic and demanding — one of the country’s great road journeys.',
+    cardSummary:
+      'A curated day on the northern loop with a local driver-guide — not a second Ma Pi Leng or Heaven Gate ticket. Use the individual pass and village cards to pin stops. Licensed easy-rider or car; night riding is unsafe. Distinct from the Đồng Văn city-page plateau card.',
     popularityRank: 6,
     rating: 4.9,
     reviewCount: 1540,
@@ -393,7 +410,7 @@ export const EXPERIENCES: Experience[] = [
     paceAffinity: ['packed', 'balanced'],
     budgetBand: 'premium',
     monthsIdeal: [9, 10, 11, 3, 4],
-    relatedIds: ['sapa-trek', 'dong-van'],
+    relatedIds: ['ma-pi-leng-pass', 'quan-ba-heaven-gate', 'dong-van-ancient-town', 'dong-van'],
     featured: true,
     vietnamBest: true,
   }),
@@ -402,6 +419,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Sapa Rice Terrace Trek',
     region: 'Sapa',
     city: 'Sapa',
+    sightSection: 'Ethnic Villages & Homestay Valleys',
     category: 'Adventure',
     seeds: ['pb-sapa-1', 'pb-sapa-2', 'pb-sapa-3'],
     hook: 'Terraced hills, village paths, mountain air.',
@@ -425,19 +443,22 @@ export const EXPERIENCES: Experience[] = [
     paceAffinity: ['balanced', 'packed'],
     budgetBand: 'comfortable',
     monthsIdeal: [9, 10, 11, 3, 4],
-    relatedIds: ['ha-giang-loop', 'fansipan'],
+    relatedIds: ['muong-hoa-valley', 'lao-chai-village', 'ta-van-village', 'fansipan'],
   }),
   build({
     id: 'hue-citadel',
-    name: 'Hue Imperial Citadel',
+    name: 'Imperial City (Đại Nội)',
     region: 'Hue',
     city: 'Hue',
+    sightSection: 'Imperial Citadel & Royal Complex',
     category: 'History',
     seeds: ['pb-hue-1', 'pb-hue-2'],
-    hook: 'Imperial walls, moats, and royal courtyards.',
-    about: 'Walk the former capital’s citadel — Nguyen dynasty grandeur.',
-    whyGo: 'Central Vietnam’s historical heart — spacious and absorbing.',
-    cardSummary: 'Explore Hue’s Imperial Citadel — moats, gates, and palace grounds of the Nguyen dynasty. A cornerstone of Vietnamese royal history, best visited with time to walk courtyards and hear how the capital shaped the nation.',
+    hook: 'UNESCO royal enclosure — gates, throne hall, and ruined inner courts.',
+    about:
+      'Walk Đại Nội, the Imperial City inside Hue’s Historic Citadel (Kinh Thành). Gia Long sited the enclosure in 1804; Minh Mạng enlarged it. UNESCO listed the Complex of Huế Monuments in 1993.',
+    whyGo: 'The one Hue ticket that covers the imperial axis — buy this, then add tombs.',
+    cardSummary:
+      'Hue’s Imperial City (Đại Nội) inside the walled Kinh Thành — Ngọ Môn, Thái Hòa, ancestral temples, and the Purple Forbidden City ruins on one ticket (~200,000đ, typically 07:00–17:30). This card is the full enclosure visit; inner halls are listed separately so you can pin specific stops. Wikipedia: ceremonial capital of the Nguyễn dynasty, heavily damaged in the 20th century and under restoration.',
     popularityRank: 15,
     rating: 4.6,
     reviewCount: 3100,
@@ -455,13 +476,14 @@ export const EXPERIENCES: Experience[] = [
     paceAffinity: ['balanced', 'relaxed'],
     budgetBand: 'smart',
     monthsIdeal: [1, 2, 3, 4],
-    relatedIds: ['perfume-river', 'hoi-an-lanterns'],
+    relatedIds: ['ngo-mon-gate', 'thai-hoa-palace', 'perfume-river', 'thien-mu-pagoda'],
   }),
   build({
     id: 'da-nang-beach',
     name: 'My Khe Beach Afternoon',
     region: 'Da Nang',
     city: 'Da Nang',
+    sightSection: 'Mountain, Nature & Coastal Landmarks',
     category: 'Beaches',
     seeds: ['pb-danang-1', 'pb-danang-2'],
     hook: 'Soft sand, swim-friendly water, golden hour.',
@@ -489,15 +511,16 @@ export const EXPERIENCES: Experience[] = [
   }),
   build({
     id: 'phong-nha',
-    name: 'Paradise Cave',
+    name: 'Phong Nha–Kẻ Bàng National Park',
     region: 'Phong Nha',
     city: 'Phong Nha',
-    category: 'Adventure',
+    sightSection: 'Springs, Rivers & Forest Play',
+    category: 'Nature',
     seeds: ['pb-pn-1', 'pb-pn-2'],
-    hook: 'Cathedral caves carved by ancient rivers.',
-    about: 'Walk into dramatic formations and cool underground air.',
-    whyGo: 'One of Vietnam’s great natural interiors — awe without extreme difficulty.',
-    cardSummary: 'Cave country in Quang Binh: boat approaches, illuminated chambers, and jungle karst around Phong Nha–Ke Bang. A nature-forward day for travellers chasing Vietnam’s subterranean spectacle.',
+    hook: 'UNESCO karst forest — the landscape that holds the caves.',
+    about: 'Use the national park as the jungle-and-limestone setting: rivers, forest roads, and the caves sold as separate cards.',
+    whyGo: 'The park is the reason the town exists; individual caves are the tickets.',
+    cardSummary: 'UNESCO Phong Nha–Kẻ Bàng landscape around town: jungle karst, rivers, and the cave cluster. This card is the park. Paradise Cave, the riverboat cave, and Sơn Đoòng are separate tickets — do not book this as a second Paradise.',
     popularityRank: 14,
     rating: 4.8,
     reviewCount: 870,
@@ -523,6 +546,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'War Remnants Museum',
     region: 'Ho Chi Minh City',
     city: 'Ho Chi Minh City',
+    sightSection: 'Museums',
     category: 'History',
     seeds: ['pb-wrm-1', 'pb-wrm-2'],
     hook: 'A powerful, essential chapter of modern Vietnam.',
@@ -554,6 +578,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Cu Chi Tunnels',
     region: 'Ho Chi Minh City',
     city: 'Ho Chi Minh City',
+    sightSection: 'Outlying & Excursion Sights',
     category: 'History',
     seeds: ['pb-cuchi-1', 'pb-cuchi-2'],
     hook: 'Underground wartime networks outside Saigon.',
@@ -584,12 +609,14 @@ export const EXPERIENCES: Experience[] = [
     name: 'Mekong Delta Day Trip',
     region: 'Mekong',
     city: 'Can Tho',
+    sightSection: 'Floating Markets, Wharves & Canals',
     category: 'Nature',
     seeds: ['pb-mekong-1', 'pb-mekong-2'],
     hook: 'Floating markets, orchards, and river life.',
     about: 'Boat through canals and taste tropical fruit on working waterways.',
     whyGo: 'Southern Vietnam’s living river culture — best as a full day.',
-    cardSummary: 'Day-trip into Mekong canals, fruit orchards, and floating market culture southwest of HCMC. Slow boats, coconut candy workshops, and rural rhythms — Vietnam’s river delta at an easy pace.',
+    cardSummary:
+      'The packaged HCMC-style delta day: canals, a fruit stop, and a late floating-market call. Stay overnight and use the Cái Răng card if you want the real dawn wholesale. Do not book this and a 05:00 Cái Răng boat for the same morning.',
     popularityRank: 17,
     rating: 4.4,
     reviewCount: 2100,
@@ -607,11 +634,13 @@ export const EXPERIENCES: Experience[] = [
     paceAffinity: ['balanced', 'relaxed'],
     budgetBand: 'comfortable',
     monthsIdeal: [11, 12, 1, 2, 3],
-    relatedIds: ['war-remnants', 'ben-thanh'],
+    relatedIds: ['cai-rang-floating-market', 'phong-dien-floating-market', 'ninh-kieu-wharf', 'war-remnants'],
   }),
   build({
     id: 'phu-quoc-snorkel',
     name: 'Phu Quoc Island Snorkel',
+    groupId: 'phu-quoc-snorkel',
+    timePreference: 'MORNING',
     region: 'Phu Quoc',
     city: 'Phu Quoc',
     category: 'Beaches',
@@ -644,6 +673,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Phu Quoc Sunset Beach',
     region: 'Phu Quoc',
     city: 'Phu Quoc',
+    sightSection: 'Beaches & Capes',
     category: 'Beaches',
     seeds: ['pb-pq-sun-1', 'pb-pq-sun-2'],
     hook: 'West-coast glow with nowhere to rush.',
@@ -667,11 +697,12 @@ export const EXPERIENCES: Experience[] = [
     paceAffinity: ['relaxed'],
     budgetBand: 'comfortable',
     monthsIdeal: [11, 12, 1, 2],
-    relatedIds: ['phu-quoc-snorkel'],
+    relatedIds: ['long-beach-pq', 'dinh-cau', 'ong-lang-beach', 'phu-quoc-snorkel'],
   }),
   build({
     id: 'egg-coffee',
     name: 'Egg Coffee Café Crawl',
+    groupId: 'hanoi-egg-coffee-cafes',
     region: 'Hanoi',
     city: 'Hanoi',
     category: 'Food',
@@ -692,7 +723,7 @@ export const EXPERIENCES: Experience[] = [
     crowdBase: 3,
     slotQuality: { morning: 4, afternoon: 5, evening: 4 },
     accessibilityDetail: { wheelchair: 'Partial', walking: 'Easy', steps: 'Some upstairs cafés' },
-    hours: '09:00 – 22:00',
+    hours: '07:00 – 22:00',
     bestTime: 'Afternoon',
     paceAffinity: ['relaxed', 'balanced'],
     budgetBand: 'smart',
@@ -702,7 +733,9 @@ export const EXPERIENCES: Experience[] = [
   }),
   build({
     id: 'hanoi-food-tour',
-    name: 'Hidden Hanoi Food Tour',
+    name: 'Hanoi night street-food tour',
+    groupId: 'hanoi-street-food-evening',
+    timePreference: 'EVENING',
     region: 'Hanoi',
     city: 'Hanoi',
     category: 'Food',
@@ -737,6 +770,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Hanoi Train Street',
     region: 'Hanoi',
     city: 'Hanoi',
+    sightSection: 'Lakes, Quarters & Urban Sights',
     category: 'Cities',
     seeds: ['pb-train-1', 'pb-train-2'],
     hook: 'Cafés inches from a passing train.',
@@ -767,6 +801,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'An Bang Beach Morning',
     region: 'Hoi An',
     city: 'Hoi An',
+    sightSection: 'Islands, Beaches & Coastal Sights',
     category: 'Beaches',
     seeds: ['pb-anbang-1', 'pb-anbang-2'],
     hook: 'Quieter sand just outside ancient town.',
@@ -827,6 +862,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Marble Mountains',
     region: 'Da Nang',
     city: 'Da Nang',
+    sightSection: 'Mountain, Nature & Coastal Landmarks',
     category: 'Culture',
     seeds: ['pb-marble-1', 'pb-marble-2'],
     hook: 'Cave temples with coastline views.',
@@ -857,12 +893,14 @@ export const EXPERIENCES: Experience[] = [
     name: 'Cat Ba Island Escape',
     region: 'Quang Ninh',
     city: 'Cat Ba',
+    sightSection: 'National Park, Forests & Peaks',
     category: 'Nature',
     seeds: ['pb-catba-1', 'pb-catba-2'],
     hook: 'Quieter karsts beyond the main bay crowds.',
     about: 'Kayak and island time with a softer pace than classic Ha Long day trips.',
     whyGo: 'Same limestone world, fewer boats — ideal if you want space.',
-    cardSummary: 'Cat Ba Island gateway to quieter karsts and Lan Ha waters — hiking, kayaking, and village edges beyond the busiest Ha Long day boats. A hidden-gem alternative for nature lovers.',
+    cardSummary:
+      'The island-day product — hiking, harbour, and a Lan Hạ boat — not a second national-park ticket. Use cat-ba-national-park, ngu-lam-peak, and lan-ha-bay to pin stops. Distinct from the lan-ha kayak card and from Ha Long day boats.',
     popularityRank: 24,
     rating: 4.6,
     reviewCount: 760,
@@ -880,7 +918,7 @@ export const EXPERIENCES: Experience[] = [
     paceAffinity: ['relaxed', 'balanced'],
     budgetBand: 'premium',
     monthsIdeal: [10, 11, 3, 4],
-    relatedIds: ['halong-cruise', 'lan-ha'],
+    relatedIds: ['halong-cruise', 'lan-ha', 'cat-ba-national-park', 'lan-ha-bay'],
     hiddenGem: true,
   }),
   build({
@@ -888,12 +926,14 @@ export const EXPERIENCES: Experience[] = [
     name: 'Lan Ha Bay Kayak',
     region: 'Quang Ninh',
     city: 'Lan Ha',
+    sightSection: 'Bays & UNESCO Seascape',
     category: 'Adventure',
     seeds: ['pb-lanha-1', 'pb-lanha-2'],
     hook: 'Paddle into quieter lagoons south of Ha Long.',
     about: 'Small-group kayaking among limestone islets.',
     whyGo: 'Active, intimate, and less cruise-oriented.',
-    cardSummary: 'Kayak or cruise Lan Ha Bay’s calmer limestone channels near Cat Ba. Adventure-forward scenery with fewer mega-ships than classic Ha Long itineraries.',
+    cardSummary:
+      'The kayak product on Lan Hạ — not a second bay-day ticket. The Cat Ba lan-ha-bay card is the same water from Bến Bèo; do not book both for one morning. hl-kayak-karsts / hl-sup-lan-ha in activities are the paddle outings.',
     popularityRank: 25,
     rating: 4.7,
     reviewCount: 540,
@@ -911,13 +951,14 @@ export const EXPERIENCES: Experience[] = [
     paceAffinity: ['packed', 'balanced'],
     budgetBand: 'premium',
     monthsIdeal: [10, 11, 3, 4],
-    relatedIds: ['halong-cruise', 'cat-ba'],
+    relatedIds: ['halong-cruise', 'cat-ba', 'lan-ha-bay', 'cai-beo-village'],
   }),
   build({
     id: 'ben-thanh',
     name: 'Ben Thanh Market Evening',
     region: 'Ho Chi Minh City',
     city: 'Ho Chi Minh City',
+    sightSection: 'Markets & Modern Landmarks',
     category: 'Cities',
     seeds: ['pb-benthanh-1', 'pb-benthanh-2'],
     hook: 'Saigon energy under one roof — snacks, crafts, buzz.',
@@ -945,15 +986,17 @@ export const EXPERIENCES: Experience[] = [
   }),
   build({
     id: 'perfume-river',
-    name: 'Perfume River Boat',
+    name: 'Perfume River (Sông Hương)',
     region: 'Hue',
     city: 'Hue',
+    sightSection: 'Natural & Scenic Sights',
     category: 'Culture',
     seeds: ['pb-perfume-1', 'pb-perfume-2'],
     hook: 'Drift past temples and gardens at golden hour.',
     about: 'A gentle boat ride that softens a citadel-heavy day.',
     whyGo: 'Hue’s slower rhythm — scenic and restorative.',
-    cardSummary: 'A gentle cruise or embankment walk along Hue’s Perfume River between citadel and south-bank life. Slow, scenic, and ideal at sunset after a Citadel morning.',
+    cardSummary:
+      'Sông Hương — Hue’s Perfume River — as a boat, embankment walk, or dusk crossing at Tràng Tiền. OSM and maps pin the classic viewpoint on the tomb-road bend; this card is the river itself (the existing boat outing), not a second river listing.',
     popularityRank: 26,
     rating: 4.3,
     reviewCount: 890,
@@ -975,9 +1018,10 @@ export const EXPERIENCES: Experience[] = [
   }),
   build({
     id: 'dark-cave',
-    name: 'Dark Cave Adventure',
+    name: 'Dark Cave (Hang Tối)',
     region: 'Phong Nha',
     city: 'Phong Nha',
+    sightSection: 'Springs, Rivers & Forest Play',
     category: 'Adventure',
     seeds: ['pb-dark-1', 'pb-dark-2'],
     hook: 'Zip, kayak, and mud baths in one wild combo.',
@@ -1008,12 +1052,14 @@ export const EXPERIENCES: Experience[] = [
     name: 'Dong Van Karst Plateau',
     region: 'Ha Giang',
     city: 'Dong Van',
+    sightSection: 'Passes, Gorges & Geopark Roads',
     category: 'Nature',
     seeds: ['pb-dongvan-1', 'pb-dongvan-2'],
     hook: 'Stone plateau towns and endless mountain light.',
     about: 'Explore the far-north market town and surrounding karst vistas.',
     whyGo: 'The soul of the Ha Giang journey — remote and photogenic.',
-    cardSummary: 'Dong Van karst plateau town on the Ha Giang loop: stone houses, Saturday market energy, and highland light. A quieter cultural stop for travellers deep in the far north.',
+    cardSummary:
+      'Đồng Văn town as a plateau overnight — the same UNESCO karst as the Hà Giang geopark card. Use dong-van-old-quarter and sunday-market-dong-van for the streets; this card is the stay. Do not book it plus a second geopark day, and do not also add the Hà Giang dong-van-ancient-town card for the same night.',
     popularityRank: 31,
     rating: 4.8,
     reviewCount: 430,
@@ -1031,20 +1077,23 @@ export const EXPERIENCES: Experience[] = [
     paceAffinity: ['balanced', 'relaxed'],
     budgetBand: 'comfortable',
     monthsIdeal: [9, 10, 11],
-    relatedIds: ['ha-giang-loop'],
+    relatedIds: ['ha-giang-loop', 'dong-van-geopark', 'dong-van-old-quarter', 'ma-pi-leng-dong-van', 'sunday-market-dong-van'],
     hiddenGem: true,
   }),
   build({
     id: 'fansipan',
-    name: 'Fansipan Cable Peak',
+    name: 'Fansipan Mountain',
     region: 'Sapa',
     city: 'Sapa',
+    sightSection: 'Mountains, Passes & National Park',
     category: 'Nature',
     seeds: ['pb-fan-1', 'pb-fan-2'],
-    hook: 'Roof of Indochina without a multi-day climb.',
-    about: 'Cable car to alpine views and temple complex above the clouds.',
-    whyGo: 'Big mountain payoff that still fits a Sapa day.',
-    cardSummary: 'Ride the cable car toward Fansipan, Indochina’s roof, above Sapa’s cloud layers. Picture-perfect peaks and thin air — dramatic even if you skip the final summit scramble.',
+    hook: 'Roof of Indochina — 3,143 m, now a cable-and-stair day.',
+    about:
+      'Ride Sun World Fansipan Legend to Fansipan, the highest peak in Vietnam and Indochina. Wikipedia: 3,143 m in the Hoang Lien Son. The cable, funicular, temples, and Buddha are one park ticket — not a second outing.',
+    whyGo: 'The mountain day that still fits a Sapa stay, if you accept queues and cloud.',
+    cardSummary:
+      'Fansipan (3,143 m) via the Sun World Fansipan Legend cable (typical 07:30–16:30, ticket often $30–45). This card is the mountain and the park ticket; Kim Sơn Bảo Thắng, Bích Vân Thiền Tự, and the Grand Buddha are stops on the same visit. Last descent is earlier than the posted close. Morning cars have the only real chance of a view.',
     popularityRank: 29,
     rating: 4.4,
     reviewCount: 2800,
@@ -1062,7 +1111,7 @@ export const EXPERIENCES: Experience[] = [
     paceAffinity: ['balanced', 'relaxed'],
     budgetBand: 'comfortable',
     monthsIdeal: [9, 10, 11, 3, 4],
-    relatedIds: ['sapa-trek'],
+    relatedIds: ['fansipan-buddha', 'kim-son-bao-thang', 'sun-plaza-sapa', 'sapa-trek'],
   }),
   build({
     id: 'bia-hoi',
@@ -1109,6 +1158,27 @@ export const EXPERIENCE_CATEGORIES = [
   'Food',
 ] as const
 
+export const EXPERIENCE_BY_ID = new Map(EXPERIENCES.map((e) => [e.id, e]))
+
 export function getExperienceById(id: string) {
-  return EXPERIENCES.find((e) => e.id === id)
+  return EXPERIENCE_BY_ID.get(id)
 }
+
+/**
+ * Sights that are the same “do this” card as an activity. Kept in EXPERIENCES
+ * so existing trip bags still resolve, but hidden from the Sights catalog.
+ */
+export const ACTIVITY_OWNED_SIGHT_IDS = new Set([
+  'cooking-class',
+  'hanoi-food-tour',
+  'lan-ha',
+  'phu-quoc-snorkel',
+  'hon-mun-islands',
+  'cam-thanh-basket-boats',
+])
+
+export function isSightCatalogItem(e: { id: string }) {
+  return !ACTIVITY_OWNED_SIGHT_IDS.has(e.id)
+}
+
+export const SIGHT_CATALOG = EXPERIENCES.filter(isSightCatalogItem)

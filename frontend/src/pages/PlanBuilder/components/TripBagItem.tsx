@@ -24,13 +24,13 @@ export function TripBagItem({ item, onRemove, onOpen }: Props) {
       exit={{ opacity: 0, x: 16, height: 0, marginBottom: 0 }}
       className="overflow-hidden"
     >
-      <div className="flex gap-3 rounded-2xl bg-cream/90 p-2.5">
+      <div className="flex gap-3 rounded-2xl bg-cream/90 p-2">
         <button
           type="button"
           onClick={onOpen}
           className="relative shrink-0 overflow-hidden rounded-xl"
         >
-          <img src={item.image} alt="" className="h-14 w-16 object-cover" />
+          <img src={item.image} alt="" className="h-11 w-12 object-cover" />
           {item.kind === 'activity' && (
             <span className="absolute bottom-0.5 left-0.5 rounded bg-terracotta/95 px-1 text-[0.55rem] font-bold uppercase text-paper">
               Act

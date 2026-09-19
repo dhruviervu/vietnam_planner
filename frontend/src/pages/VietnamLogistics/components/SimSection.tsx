@@ -8,7 +8,7 @@ import {
   type SimIntentFilter,
   type SimRecommendationLabel,
 } from '../data/simRecommendation'
-import { Label, SectionIntro } from './ui'
+import { BlockTitle, Label, SectionIntro } from './ui'
 
 type Props = {
   tripLength?: TripLength | null
@@ -93,7 +93,7 @@ const PHYSICAL_BUY = [
     title: 'Airport desk',
     tag: 'Fastest after landing',
     image: IMG.airport,
-    summary: 'Grab a tourist SIM right after immigration when desks are open.',
+    summary: 'Usually best to buy Physical SIM at the airport.',
     points: [
       'Official or authorised kiosks at major airports',
       'Passport usually required for registration',
@@ -269,7 +269,9 @@ export function SimSection({ tripLength = null, arrivalDate = null }: Props) {
                   {title}
                 </span>
                 <span className={`mt-0.5 block text-[0.74rem] ${on ? 'text-paper/80' : 'text-muted'}`}>
-                  {sub}
+                  {id === 'physical'
+                    ? 'Usually best to buy Physical SIM at the airport.'
+                    : sub}
                 </span>
               </span>
             </button>
@@ -379,7 +381,7 @@ export function SimSection({ tripLength = null, arrivalDate = null }: Props) {
 
           {mode === 'physical' ? (
             <div id="sim-buy" className="scroll-mt-28">
-              <Label>Where should you buy it?</Label>
+              <BlockTitle>Where should you buy it?</BlockTitle>
               <p className="mt-1 max-w-[52ch] text-[0.78rem] text-muted">
                 Airport is convenient. Official stores often win on value and plan choice.
               </p>
@@ -555,12 +557,21 @@ export function SimSection({ tripLength = null, arrivalDate = null }: Props) {
                     </div>
                   </dl>
 
-                  <a
-                    href={mode === 'physical' ? '#sim-buy' : '#sim-process'}
-                    className="mt-4 inline-flex w-full items-center justify-center rounded-[3px] bg-terracotta px-4 py-2.5 text-[0.84rem] font-bold text-paper transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta"
-                  >
-                    {mode === 'physical' ? 'View where to buy →' : 'See eSIM process →'}
-                  </a>
+                  <div className="mt-4 rounded-[3px] border border-ink/10 bg-paper px-3.5 py-3">
+                    <p className="text-[0.58rem] font-bold uppercase tracking-[0.12em] text-muted">
+                      Airport availability
+                    </p>
+                    <p className="mt-1.5 text-[0.92rem] font-bold text-ink">
+                      {mode === 'physical' && selected.provider.airport
+                        ? 'Yes — sold at major airport desks'
+                        : 'No — not an airport desk product'}
+                    </p>
+                    <p className="mt-1.5 text-[0.8rem] leading-relaxed text-ink/80">
+                      {mode === 'physical' && selected.provider.airport
+                        ? `${selected.provider.name} tourist SIM kiosks sit after immigration at Hà Nội Nội Bài (HAN), HCMC Tân Sơn Nhất (SGN) and Đà Nẵng (DAD), and usually at Cam Ranh and Phú Quốc when those desks are staffed. Passport required. Hours follow flight banks, not 24/7.`
+                        : 'Buy this eSIM online before you fly. Arrivals halls sell physical tourist SIMs (Viettel, Vinaphone, Mobifone), not this digital plan.'}
+                    </p>
+                  </div>
                 </div>
               </>
             ) : (

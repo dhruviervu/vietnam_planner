@@ -10,12 +10,10 @@ import {
 import type { CostCategoryId, CostCityId, DisplayCurrency, TravellerType } from '../data/types'
 import { formatMoney, vndToDisplay } from '../lib/currency'
 import type { FxRates } from '../lib/currency'
-import { ChipButton, Label, SectionIntro, Segmented } from './ui'
-import { CurrencyConverter } from './CurrencyConverter'
+import { ChipButton, BlockTitle, SectionIntro, Segmented } from './ui'
 
 type Props = {
   fx: FxRates
-  fxStatus: 'loading' | 'live' | 'fallback'
   travellerType: TravellerType | null
 }
 
@@ -23,14 +21,6 @@ const DISPLAY: DisplayCurrency[] = ['VND', 'USD', 'INR', 'EUR', 'GBP', 'AUD']
 
 const HERO =
   'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1400&q=80'
-
-function relativeWord(value: number): { label: string; tone: string } {
-  if (value <= 0.88) return { label: 'Cheaper', tone: 'text-sage' }
-  if (value <= 0.97) return { label: 'A touch less', tone: 'text-ink/70' }
-  if (value <= 1.05) return { label: 'Typical', tone: 'text-ink/70' }
-  if (value <= 1.15) return { label: 'A touch more', tone: 'text-terracotta' }
-  return { label: 'Pricier', tone: 'text-terracotta' }
-}
 
 function cityInsight(
   label: string,
@@ -95,21 +85,6 @@ function Donut({
   )
 }
 
-function IndexBar({ value }: { value: number }) {
-  const pct = Math.min(100, Math.round((value / 1.3) * 100))
-  const rel = relativeWord(value)
-  return (
-    <div className="min-w-0">
-      <div className="mb-1 flex items-center justify-between gap-2">
-        <span className={`text-[0.68rem] font-bold ${rel.tone}`}>{rel.label}</span>
-      </div>
-      <div className="h-[4px] w-full bg-ink/10">
-        <div className="h-full bg-terracotta/80" style={{ width: `${pct}%` }} />
-      </div>
-    </div>
-  )
-}
-
 /** Round converted amounts to readable chip labels */
 function chipLabel(amount: number | null, currency: DisplayCurrency): string {
   if (amount == null || !Number.isFinite(amount)) return '—'
@@ -127,7 +102,7 @@ function chipLabel(amount: number | null, currency: DisplayCurrency): string {
   return formatMoney(rounded, currency)
 }
 
-export function CostsSection({ fx, fxStatus, travellerType }: Props) {
+export function CostsSection({ fx, travellerType }: Props) {
   const [display, setDisplay] = useState<DisplayCurrency>('USD')
   const [cityId, setCityId] = useState<CostCityId>('hanoi')
   const [party, setParty] = useState<TravellerType>(travellerType ?? 'solo')
@@ -182,11 +157,6 @@ export function CostsSection({ fx, fxStatus, travellerType }: Props) {
     [display, fx.rates],
   )
 
-  const cityCompare = useMemo(
-    () => COST_CITIES.map((c) => ({ ...c, ...CITY_COST_INDEX[c.id] })),
-    [],
-  )
-
   function barWidth(value: number) {
     return `${Math.min(100, Math.max(10, ((value - range.low) / (range.high - range.low || 1)) * 100))}%`
   }
@@ -202,16 +172,7 @@ export function CostsSection({ fx, fxStatus, travellerType }: Props) {
         id="logistics-costs"
         n="04 · Costs"
         title="What does Vietnam actually cost?"
-        support="Pick a currency and city — then see what everyday money feels like, what categories cost, and how cities compare."
-      />
-
-      <CurrencyConverter
-        fx={fx}
-        fxStatus={fxStatus}
-        displayCurrencies={DISPLAY}
-        onApplyDisplay={(c) => {
-          if (DISPLAY.includes(c as DisplayCurrency)) setDisplay(c as DisplayCurrency)
-        }}
+        support="Pick a currency and city — then see what everyday money feels like."
       />
 
       <div className="overflow-hidden rounded-[3px] border border-ink/10">
@@ -231,7 +192,7 @@ export function CostsSection({ fx, fxStatus, travellerType }: Props) {
         <div className="bg-[linear-gradient(180deg,#faf6f0_0%,#f3ebe0_100%)] px-4 py-4 sm:px-5">
           <div className="flex flex-wrap items-end gap-x-6 gap-y-3">
             <div>
-              <Label>Show prices in</Label>
+              <BlockTitle>Show prices in</BlockTitle>
               <div className="mt-1.5">
                 <Segmented
                   options={DISPLAY.map((c) => ({ id: c, label: c }))}
@@ -242,7 +203,7 @@ export function CostsSection({ fx, fxStatus, travellerType }: Props) {
               </div>
             </div>
             <div className="min-w-0 flex-1">
-              <Label>City</Label>
+              <BlockTitle>City</BlockTitle>
               <div className="mt-1.5 flex flex-wrap gap-1">
                 {COST_CITIES.map((c) => (
                   <ChipButton
@@ -264,7 +225,7 @@ export function CostsSection({ fx, fxStatus, travellerType }: Props) {
 
       {/* Purchasing power — one currency */}
       <div className="rounded-[3px] border border-ink/10 bg-paper p-4 sm:p-5">
-        <Label>What does my money get me?</Label>
+        <BlockTitle>What does my money get me</BlockTitle>
         <p className="mt-1 max-w-[52ch] text-[0.78rem] text-muted">
           Every amount below is in {display}. Tap a spend level to see what it typically covers.
         </p>
@@ -315,7 +276,7 @@ export function CostsSection({ fx, fxStatus, travellerType }: Props) {
 
       {/* Category explorer */}
       <div>
-        <Label>Category prices</Label>
+        <BlockTitle>Category prices</BlockTitle>
         <p className="mt-1 text-[0.78rem] text-muted">
           One category at a time — budget to high, scaled for {cityLabel}.
         </p>
@@ -384,7 +345,7 @@ export function CostsSection({ fx, fxStatus, travellerType }: Props) {
 
         <div className="rounded-[3px] border border-ink/10 bg-[linear-gradient(165deg,#faf6f0_0%,#f3ebe0_100%)] p-4 sm:p-5">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <Label>Rough monthly picture</Label>
+            <BlockTitle>Rough monthly picture</BlockTitle>
             <Segmented
               options={[
                 { id: 'solo' as const, label: 'Solo' },
@@ -411,61 +372,6 @@ export function CostsSection({ fx, fxStatus, travellerType }: Props) {
           <div className="mt-4">
             <Donut parts={donutParts} />
           </div>
-        </div>
-      </div>
-
-      {/* City comparison — plain language */}
-      <div>
-        <Label>How cities compare</Label>
-        <p className="mt-1 max-w-[54ch] text-[0.78rem] text-muted">
-          Relative to a typical tourist baseline — not exact prices. Tap a city to focus the
-          explorer above.
-        </p>
-        <div className="mt-3 grid gap-2 sm:grid-cols-2">
-          {cityCompare.map((c) => {
-            const on = cityId === c.id
-            const avg = (c.food + c.stay + c.transport + c.leisure) / 4
-            const overall = relativeWord(avg)
-            return (
-              <button
-                key={c.id}
-                type="button"
-                onClick={() => setCityId(c.id)}
-                className={`rounded-[3px] border px-3.5 py-3 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta ${
-                  on
-                    ? 'border-terracotta/45 bg-terracotta/[0.06]'
-                    : 'border-ink/10 bg-paper hover:border-ink/20'
-                }`}
-              >
-                <div className="flex items-baseline justify-between gap-2">
-                  <span className="font-serif text-[1.08rem] text-ink">{c.label}</span>
-                  <span className={`text-[0.68rem] font-bold ${overall.tone}`}>
-                    {overall.label}
-                  </span>
-                </div>
-                <div className="mt-3 grid grid-cols-3 gap-3">
-                  <div>
-                    <p className="text-[0.58rem] font-bold uppercase tracking-[0.1em] text-muted">
-                      Food
-                    </p>
-                    <IndexBar value={c.food} />
-                  </div>
-                  <div>
-                    <p className="text-[0.58rem] font-bold uppercase tracking-[0.1em] text-muted">
-                      Stay
-                    </p>
-                    <IndexBar value={c.stay} />
-                  </div>
-                  <div>
-                    <p className="text-[0.58rem] font-bold uppercase tracking-[0.1em] text-muted">
-                      Transport
-                    </p>
-                    <IndexBar value={c.transport} />
-                  </div>
-                </div>
-              </button>
-            )
-          })}
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import { STAY_CITIES } from '../data/cities'
 import { getClusterById, getClustersForCity } from '../data/clusters'
 import { LISTING_FILTER_CATEGORIES } from '../data/labels'
 import { filterStaysByListing, rankStays } from '../data/ranking'
-import { getAllStays, getStaysForCity, isAttractionStayName } from '../data/stays'
+import { getAllStays, getStaysForCity, getStaysForCluster, isAttractionStayName } from '../data/stays'
 import type { StayCityId, StayCluster, StayListingFilterId, StayProperty, StaySortId } from '../data/types'
 import { HotelDiscoveryPanel } from './HotelDiscoveryPanel'
 import { StayGrid } from './StayGrid'
@@ -30,7 +30,7 @@ export function HotelExplorer({
   catalogScope = 'city',
 }: Props) {
   const [clusterFilter, setClusterFilter] = useState<string | 'All'>(lockClusterId ?? 'All')
-  const [cityFilter, setCityFilter] = useState<StayCityId | 'All'>('All')
+  const [cityFilter, setCityFilter] = useState<StayCityId | 'All'>(cityId)
   const [listingFilters, setListingFilters] = useState<StayListingFilterId[]>([])
   const [sort, setSort] = useState<StaySortId>('recommended')
   const [page, setPage] = useState(1)
@@ -45,14 +45,8 @@ export function HotelExplorer({
     setSort('recommended')
     setPage(1)
     setHighlightId(null)
-  }, [cityId, lockClusterId])
-
-  useEffect(() => {
-    if (catalogScope !== 'all') return
-    setCityFilter('All')
-    setClusterFilter('All')
-    setPage(1)
-  }, [catalogScope])
+    if (catalogScope === 'all' && !lockClusterId) setCityFilter(cityId)
+  }, [cityId, lockClusterId, catalogScope])
 
   const neighbourhoodClusters = useMemo(() => {
     if (lockClusterId) return clusters
@@ -62,8 +56,11 @@ export function HotelExplorer({
   }, [catalogScope, cityFilter, clusters, lockClusterId])
 
   const ranked = useMemo(() => {
-    const catalog =
-      catalogScope === 'all' ? getAllStays() : getStaysForCity(cityId)
+    const catalog = lockClusterId
+      ? getStaysForCluster(lockClusterId)
+      : catalogScope === 'all'
+        ? getAllStays()
+        : getStaysForCity(cityId)
     const cityClusterIds = new Set(
       catalogScope === 'all'
         ? catalog.map((stay) => stay.clusterId)
@@ -165,16 +162,23 @@ export function HotelExplorer({
     if (!alreadyInCatalog) upsertCustomStayProperty(stay)
     setHighlightId(stay.id)
     if (!lockClusterId) {
+      const stayCity = getClusterById(stay.clusterId)?.cityId
+      if (catalogScope === 'all' && stayCity) setCityFilter(stayCity)
       setClusterFilter('All')
       setListingFilters([])
     }
   }
 
+  const discoveryCityId =
+    catalogScope === 'all' && cityFilter !== 'All' ? cityFilter : cityId
+  const discoveryCityLabel =
+    STAY_CITIES.find((c) => c.id === discoveryCityId)?.label ?? cityLabel
+
   return (
     <>
       <HotelDiscoveryPanel
-        cityId={cityId}
-        cityLabel={cityLabel}
+        cityId={discoveryCityId}
+        cityLabel={discoveryCityLabel}
         neighbourhoodName={neighbourhoodName}
         preferredClusterId={
           lockClusterId ??
@@ -191,9 +195,9 @@ export function HotelExplorer({
         <h2 className="font-serif text-[clamp(1.35rem,2.8vw,1.7rem)] font-semibold text-ink">
           Stay catalog · {catalogTitle}
         </h2>
-        <p className="mt-1 max-w-[54ch] text-[0.88rem] text-muted">
-          A curated shortlist{catalogScope === 'all' ? ' across Vietnam’s stay cities' : ' for this city'}.
-          Fetched stays appear at the top. Use the filters on the left to narrow the list.
+        <p className="mt-1 max-w-[62ch] text-[0.88rem] text-muted">
+          Up to 15 stays per city, plus any hotels you add. Browse without a trip bag — pick a city
+          in the filter bar to see that catalog.
         </p>
 
         <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(220px,260px)_minmax(0,1fr)] lg:items-start">

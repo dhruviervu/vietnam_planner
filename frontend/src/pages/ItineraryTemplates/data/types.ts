@@ -14,8 +14,10 @@ export type TemplateTag =
   | 'Budget'
   | 'First-timer'
   | 'Reset'
+  | 'Nightlife'
 
 export type TemplateSectionId =
+  | 'city-stays'
   | 'solo'
   | 'couples'
   | 'family-young'
@@ -28,6 +30,9 @@ export type TemplateSectionId =
   | 'food'
   | 'adventure'
   | 'luxury'
+  | 'fun'
+  | 'nightlife'
+  | 'slow'
   | 'first-time'
   | 'reset'
   | 'max-experience'

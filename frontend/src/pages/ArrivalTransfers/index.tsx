@@ -36,11 +36,6 @@ import { ArrivalHero } from './components/ArrivalHero'
 import { AirportCityPicker } from './components/AirportCityPicker'
 import { RouteSelector } from './components/RouteSelector'
 import { RouteContextBar } from './components/RouteContextBar'
-import {
-  RoutePreferenceChips,
-  applyRoutePreference,
-  type RoutePreference,
-} from './components/RoutePreferenceChips'
 import { DirectionSwitch } from './components/DirectionSwitch'
 import { PlanningContext } from './components/PlanningContext'
 import { JourneySummary } from './components/JourneySummary'
@@ -52,7 +47,6 @@ import { OurPick, type PickPanelKind } from './components/OurPick'
 import { BeforeYouBook } from './components/BeforeYouBook'
 import {
   buildSmartTransferAdvice,
-  buildStayPathAdvice,
   buildStartingCityNudge,
   collectTripAirportCities,
   getSmartFlyIntoPick,
@@ -91,10 +85,9 @@ export function ArrivalTransfersPage({ embedded = false }: { embedded?: boolean 
   const [arrivalTime, setArrivalTime] = useState<ArrivalContext['arrivalTime']>('not-set')
   const [passengers, setPassengers] = useState(2)
   const [luggageLevel, setLuggageLevel] = useState<ArrivalContext['luggageLevel']>('medium')
-  const [accessibility, setAccessibility] = useState(false)
-  const [budgetPriority, setBudgetPriority] = useState(false)
+  const accessibility = false
+  const budgetPriority = false
   const [filters, setFilters] = useState<DiscoveryFilters>(EMPTY_FILTERS)
-  const [routePreference, setRoutePreference] = useState<RoutePreference>(null)
   const [selectedModeId, setSelectedModeId] = useState<TransportModeId | null>(null)
   const [expandedId, setExpandedId] = useState<TransportModeId | null>(null)
   const [userPickedMode, setUserPickedMode] = useState(false)
@@ -246,11 +239,6 @@ export function ArrivalTransfersPage({ embedded = false }: { embedded?: boolean 
     setDirection((d) => (d === 'inbound' ? 'outbound' : 'inbound'))
     setUserPickedMode(false)
     setSelectedOptionId(null)
-  }
-
-  function handleRoutePreference(pref: RoutePreference) {
-    setRoutePreference(pref)
-    setFilters((f) => applyRoutePreference(f, pref))
   }
 
   useEffect(() => {
@@ -438,13 +426,6 @@ export function ArrivalTransfersPage({ embedded = false }: { embedded?: boolean 
     setSelectedOptionId(null)
   }
 
-  function selectOption(id: string, modeId: TransportModeId) {
-    setSelectedModeId(modeId)
-    setExpandedId(modeId)
-    setUserPickedMode(true)
-    setSelectedOptionId((prev) => (prev === id ? null : id))
-  }
-
   const journeyTime = route?.typicalTimeMin ?? selectedMode?.timeMin ?? ([25, 60] as [number, number])
   const planningDestinations = airportId ? getDestinationsForAirport(airportId) : []
 
@@ -466,11 +447,6 @@ export function ArrivalTransfersPage({ embedded = false }: { embedded?: boolean 
       }),
     [recommendedMode, ctx, selectedStay, selectedTripCity, tripAirportCities],
   )
-
-  const stayPathAdvice = useMemo(() => {
-    if (!selectedStay || !airport) return null
-    return buildStayPathAdvice(selectedStay, ctx, airport.name, selectedTripCity)
-  }, [selectedStay, airport, ctx, selectedTripCity])
 
   const ourPickTripHint = selectedTripCity?.isStartingCity
     ? `Fits starting in ${selectedTripCity.label}, where most of your trip items sit`
@@ -514,13 +490,6 @@ export function ArrivalTransfersPage({ embedded = false }: { embedded?: boolean 
           />
 
           <PlanningContext
-            airports={AIRPORTS}
-            airportId={airportId}
-            onSelectAirport={handleAirport}
-            destinations={planningDestinations}
-            destinationId={destinationId}
-            onSelectDestination={handleDestination}
-            direction={direction}
             arrivalTime={arrivalTime}
             onArrivalTime={setArrivalTime}
           />
@@ -546,19 +515,13 @@ export function ArrivalTransfersPage({ embedded = false }: { embedded?: boolean 
           <TravelProfile
             passengers={passengers}
             luggageLevel={luggageLevel}
-            accessibility={accessibility}
-            budgetPriority={budgetPriority}
             onPassengers={setPassengers}
             onLuggage={setLuggageLevel}
-            onAccessibility={setAccessibility}
-            onBudget={setBudgetPriority}
           />
 
           {airportId ? (
             <SmartTransferGuide
               advice={smartAdvice}
-              stay={selectedStay}
-              stayPath={stayPathAdvice}
               recommendedMode={recommendedMode}
               direction={direction}
             />
@@ -576,31 +539,18 @@ export function ArrivalTransfersPage({ embedded = false }: { embedded?: boolean 
               <FilterRail
                 filters={filters}
                 onToggle={(key) => {
-                  setFilters((f) => {
-                    const next = { ...f, [key]: !f[key] }
-                    if (key === 'fastest' || key === 'cheapest' || key === 'direct') {
-                      setRoutePreference(
-                        next.fastest
-                          ? 'fastest'
-                          : next.cheapest
-                            ? 'best-value'
-                            : next.direct
-                              ? 'fewest-connections'
-                              : null,
-                      )
-                    }
-                    return next
-                  })
+                  setFilters((f) => ({ ...f, [key]: !f[key] }))
                 }}
               />
               <div>
                 <RouteContextBar
                   airport={airport}
                   destination={destination}
+                  destinations={planningDestinations}
                   direction={direction}
                   arrivalTime={arrivalTime}
+                  onSelectDestination={handleDestination}
                 />
-                <RoutePreferenceChips value={routePreference} onChange={handleRoutePreference} />
                 <ModeDiscovery
                   title={
                     direction === 'inbound'
@@ -622,7 +572,6 @@ export function ArrivalTransfersPage({ embedded = false }: { embedded?: boolean 
                   }
                   evaluations={evaluations}
                   optionsByMode={optionsByMode}
-                  selectedOptionId={selectedOptionId}
                   recommendedModeId={recommendedMode.id}
                   expandedId={expandedId}
                   onExpand={(id) => {
@@ -632,7 +581,6 @@ export function ArrivalTransfersPage({ embedded = false }: { embedded?: boolean 
                     setSelectedOptionId(null)
                   }}
                   onSelectMode={selectMode}
-                  onSelectOption={selectOption}
                   profile={{
                     passengers,
                     luggage: luggageLevel,

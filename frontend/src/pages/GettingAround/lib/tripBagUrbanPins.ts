@@ -5,7 +5,8 @@ import { CITY_ACTIVITIES } from '../../PlanBuilder/data/activities'
 import { STAY_PROPERTY_BY_ID } from '../../WhereToStay/data/stays'
 import { getClusterById } from '../../WhereToStay/data/clusters'
 import type { PlaceId } from '../data/types'
-import { MAP_META } from '../maps/mapMeta'
+import { boundsForCity } from '../maps/cityBounds'
+import { getPlace } from '../data/places'
 import { pointsForCity } from '../data/urbanPoints'
 import { geocodeInCity, pointInCityBounds, type CityBounds } from './geocodeInCity'
 import { mapLabelToPlaceId } from './tripBagPlaces'
@@ -193,7 +194,11 @@ export function useTripBagUrbanPins(cityId: PlaceId | null, cityLabel: string | 
       setLoading(false)
       return
     }
-    const bounds = MAP_META.cities[cityId]?.bounds
+    const place = getPlace(cityId)
+    const bounds = boundsForCity(
+      cityId,
+      place ? { lat: place.lat, lng: place.lng, mapZoom: place.mapZoom } : null,
+    )
     if (!bounds) {
       setPins([])
       return

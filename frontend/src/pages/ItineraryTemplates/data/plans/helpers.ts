@@ -8,6 +8,10 @@ export function a(id: string, time?: string): SlotRef {
   return time ? { kind: 'activity', id, time } : { kind: 'activity', id }
 }
 
+export function s(id: string, time?: string): SlotRef {
+  return time ? { kind: 'shopping', id, time } : { kind: 'shopping', id }
+}
+
 export function m(name: string, time?: string): SlotRef {
   return time ? { kind: 'meal', name, time } : { kind: 'meal', name }
 }

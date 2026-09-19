@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { Nav } from '../../components/landing/Nav'
 import { useTripStore } from '../../store/tripStore'
@@ -35,7 +35,6 @@ export function PlanBuilderLayout() {
   const location = useLocation()
   const current = currentStepFromPath(location.pathname)
   const idx = Math.max(0, stepIndex(current))
-  const [progressHovered, setProgressHovered] = useState(true)
   const pipelineActive = useTripStore((s) => s.itineraryPipelineActive)
   const enterItineraryPipeline = useTripStore((s) => s.enterItineraryPipeline)
 
@@ -66,18 +65,14 @@ export function PlanBuilderLayout() {
     <>
       <Nav mode="builder" />
       {!hideLayoutProgress && (
-        <aside
-          className="fixed left-0 top-[72px] z-[60] hidden h-[calc(100vh-72px)] md:block"
-          onMouseEnter={() => setProgressHovered(true)}
-          onMouseLeave={() => setProgressHovered(false)}
-        >
-          <StayProgressPanel expanded={progressHovered} current={current} />
+        <aside className="fixed left-0 top-[72px] z-[60] hidden h-[calc(100vh-72px)] md:block">
+          <StayProgressPanel current={current} />
         </aside>
       )}
 
       <div
-        className={`mx-auto min-h-[calc(100vh-72px)] max-w-[1600px] transition-[padding] duration-300 ${
-          hideLayoutProgress ? '' : progressHovered ? 'md:pl-[250px]' : 'md:pl-14'
+        className={`mx-auto min-h-[calc(100vh-72px)] max-w-[1600px] ${
+          hideLayoutProgress ? '' : 'md:pl-14'
         }`}
       >
         {pipelineActive ? (

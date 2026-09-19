@@ -16,13 +16,17 @@ export function TemplateCard({ template, shape }: Props) {
   }
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-[20px] bg-paper shadow-soft ring-1 ring-ink/6 transition hover:-translate-y-0.5 hover:ring-terracotta/25">
+    <article
+      className="flex h-full flex-col overflow-hidden rounded-[20px] bg-paper shadow-soft ring-1 ring-ink/6 transition hover:-translate-y-0.5 hover:ring-terracotta/25"
+      style={{ contentVisibility: 'auto', containIntrinsicSize: '0 26rem' }}
+    >
       <div className="relative aspect-[16/10] overflow-hidden">
         <img
           src={template.image}
           alt=""
           className="h-full w-full object-cover"
           loading="lazy"
+          decoding="async"
         />
         <span
           className="absolute left-2.5 top-2.5 inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-terracotta px-2 font-serif text-[0.92rem] font-bold tabular-nums text-paper shadow-soft"

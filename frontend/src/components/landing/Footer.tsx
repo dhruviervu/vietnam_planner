@@ -14,12 +14,12 @@ export function Footer() {
         </div>
         <div>
           <h3 className="mb-3 text-[0.72rem] font-bold uppercase tracking-[0.12em] text-paper">
-            Explore
+            Plan
           </h3>
           <ul className="space-y-2 text-[0.9rem]">
-            <li><Link to="/explore/culture" className="hover:text-paper">Culture</Link></li>
-            <li><Link to="/explore/history" className="hover:text-paper">History</Link></li>
-            <li><Link to="/explore/nature" className="hover:text-paper">Nature</Link></li>
+            <li><Link to="/when-to-go/discover" className="hover:text-paper">When to go</Link></li>
+            <li><Link to="/plan/builder/experiences" className="hover:text-paper">Sights</Link></li>
+            <li><Link to="/ask" className="hover:text-paper">Ask</Link></li>
           </ul>
         </div>
         <div>

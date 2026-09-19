@@ -1,25 +1,26 @@
-import { useState, type MouseEvent, type ReactNode } from 'react'
+import { memo, useState, type MouseEvent, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { CityActivity } from '../data/activities'
 import { getActivityImages } from '../data/activities'
+import { catalogCardPhotoUrl } from '../lib/resolveCatalogPhotos'
 import { useTripStore } from '../../../store/tripStore'
 import { flyToTripBag } from '../lib/flyToTripBag'
+import { pinNewSightToItinerary, readItineraryAddTarget } from '../lib/yourVietnam/itineraryAddTarget'
 
 type Props = {
   activity: CityActivity
   cityRank?: number
 }
 
-export function ActivityCard({ activity, cityRank }: Props) {
+export const ActivityCard = memo(function ActivityCard({ activity, cityRank }: Props) {
   const [justAdded, setJustAdded] = useState(false)
   const [showFitNote, setShowFitNote] = useState(false)
   const [broken, setBroken] = useState<Record<string, boolean>>({})
-  const selectedIds = useTripStore((s) => s.selectedActivityIds)
+  const selected = useTripStore((s) => s.selectedActivityIds.includes(activity.id))
   const addActivity = useTripStore((s) => s.addActivity)
   const removeActivity = useTripStore((s) => s.removeActivity)
-  const selected = selectedIds.includes(activity.id)
   const [photoIndex, setPhotoIndex] = useState(0)
-  const images = getActivityImages(activity)
+  const images = getActivityImages(activity).slice(0, 3).map(catalogCardPhotoUrl)
   const visiblePhotos = images.filter((src) => !broken[src])
   const currentPhoto = visiblePhotos[Math.min(photoIndex, Math.max(visiblePhotos.length - 1, 0))]
   const isFree = activity.priceFromUsd === 0
@@ -36,7 +37,12 @@ export function ActivityCard({ activity, cityRank }: Props) {
 
   function handleAdd(e: MouseEvent) {
     e.stopPropagation()
+    const itineraryTarget = readItineraryAddTarget()
     if (selected) {
+      if (itineraryTarget) {
+        pinNewSightToItinerary(activity.id)
+        return
+      }
       removeActivity(activity.id)
       setJustAdded(false)
       setShowFitNote(false)
@@ -48,6 +54,7 @@ export function ActivityCard({ activity, cityRank }: Props) {
     const rect = (img ?? target).getBoundingClientRect()
     flyToTripBag(rect, images[0])
     addActivity(activity.id)
+    if (itineraryTarget) pinNewSightToItinerary(activity.id)
     setJustAdded(true)
     setShowFitNote(true)
     window.setTimeout(() => setJustAdded(false), 2200)
@@ -79,8 +86,10 @@ export function ActivityCard({ activity, cityRank }: Props) {
             src={currentPhoto}
             alt={activity.name}
             className="absolute inset-0 h-full w-full object-cover"
-            loading="eager"
+            loading="lazy"
+            fetchPriority="low"
             decoding="async"
+            sizes="(max-width: 768px) 100vw, 360px"
             onError={() => setBroken((prev) => ({ ...prev, [currentPhoto]: true }))}
           />
         ) : (
@@ -161,10 +170,9 @@ export function ActivityCard({ activity, cityRank }: Props) {
 
         <div className="mt-2 grid grid-cols-2 gap-2">
           <Metric label="Rating" value={`⭐ ${activity.rating}`} />
-          <Metric label="Duration" value={`⏱ ${activity.durationLabel}`} />
           <Metric
-            label={isFree ? 'Cost' : 'From'}
-            value={isFree ? activity.priceLabel : `💰 ${activity.priceLabel}`}
+            label="Cost"
+            value={isFree ? 'Free' : `💰 ${activity.priceLabel}`}
           />
         </div>
 
@@ -223,7 +231,7 @@ export function ActivityCard({ activity, cityRank }: Props) {
       </div>
     </motion.article>
   )
-}
+})
 
 function Metric({ label, value }: { label: string; value: ReactNode }) {
   return (

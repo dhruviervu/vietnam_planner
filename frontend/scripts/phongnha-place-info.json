@@ -1,0 +1,266 @@
+{
+  "phong-nha-cave-boat": {
+    "wiki": {
+      "title": "Phong Nha Cave",
+      "extract": "Phong Nha Cave (Vietnamese: Động Phong Nha, Vietnamese pronunciation: [ɗôŋ͡mˀ fɔ̄ŋ ɲā]) is a cave in Phong Nha-Kẻ Bàng National Park, a UNESCO World Heritage Site in Quảng Trị Province, Vietnam. It is 7,729 meters long and contains 14 grottoes, as well as a 13,969 meter underground river. While scientists have surveyed 44.5 kilometers of passages, tourists are only allowed to explore the first 1500 meters.\n\n"
+    },
+    "osm": []
+  },
+  "paradise-cave": {
+    "wiki": {
+      "title": "Paradise Cave",
+      "extract": "Paradise Cave (Polish: Jaskinia Raj, Polish pronunciation: [jas'kʲiɲa raj]) is a horizontal karstic limestone cave located inside the Malik hill, to the south of Kielce, Świętokrzyskie Voivodship, Poland.\nIt is part of the \"Red tourist trail Chęciny - Kielce\" in the Świętokrzyskie Mountains (Holy Cross Mountains).",
+      "lat": 50.82277778,
+      "lon": 20.50333333
+    },
+    "osm": []
+  },
+  "dark-cave": {
+    "wiki": {
+      "title": "Hang Tối",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "son-doong-cave": {
+    "wiki": {
+      "title": "Hang Sơn Đoòng",
+      "extract": "Sơn Đoòng Cave (Vietnamese: hang Sơn Đoòng, IPA: [haŋ˧ ɕɤn˧ ɗɔŋ˨˩]), in Phong Nha–Kẻ Bàng National Park, Quảng Trị province, Vietnam, is the world's largest natural cave.\nLocated near the Laos–Vietnam border, Hang Sơn Đoòng has an internal, fast-flowing subterranean river and the largest cross-section of any cave, worldwide, believed to be twice that of the next-largest passage. It is the largest known cave passage in the world by volume.\nIts name, Hang Sơn Đoòng, is translated from Vietnamese as \"cave of the mountain behind Đoòng\". Đoòng is the name of a Vân Kiều village.\nAs a solutional cave, it was formed in soluble limestone and is believed to be between two and five million years old.",
+      "lat": 17.45694444,
+      "lon": 106.2875
+    },
+    "osm": []
+  },
+  "hang-en": {
+    "wiki": {
+      "title": "Hang Én",
+      "extract": "Hang Én ('swift cave' in Vietnamese, named for the birds that nest in it), occasionally referred to as Én cave in English, is a cave in Phong Nha-Ke Bang National Park, a UNESCO World Heritage Site.  Én is the third largest cave in the world, after Hang Sơn Đoòng in the same national park, and Deer Cave in Malaysia. The cave has its own jungle, waters, beach, and climate. There are three known entrances to Hang Én.\nThe cave, which goes through a mountain for 1,645 metres (5,397 ft), has a maximum height around 100 metres (330 ft), and a maximum width of approximately 170 metres (560 ft) is a feeder to Hang Sơn Đoòng, 2 kilometres (1.2 mi) away. The only ways to reach the cave are by helicopter, or an approximately four-hour jungle trek from the nearest road.\nBoth Én and Sơn Đoòng were feat",
+      "lat": 17.45694444,
+      "lon": 106.2875
+    },
+    "osm": []
+  },
+  "hang-va": {
+    "wiki": {
+      "title": "Hang Va cave",
+      "extract": ""
+    },
+    "osm": [
+      {
+        "name": "BIDV, Đường Cách Mạng Tháng 8, Khu phố Hòa Bình, Phường Trấn Biên, Đồng Nai, Thành phố Đồng Nai, 76106, Việt Nam",
+        "lat": 10.94743,
+        "lon": 106.8166135,
+        "type": "bank"
+      },
+      {
+        "name": "Agribank, Đại lộ Hòa Bình, Khu 3, Trần Phú, Phường Móng Cái 1, Móng Cái, Thành phố Quảng Ninh, 01508, Việt Nam",
+        "lat": 21.5308166,
+        "lon": 107.9741656,
+        "type": "bank"
+      }
+    ]
+  },
+  "nuoc-nut-cave": {
+    "wiki": {
+      "title": "Nuoc Nut Cave",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "tu-lan-caves": {
+    "wiki": {
+      "title": "Tú Làn",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "hang-tien": {
+    "wiki": {
+      "title": "Hang Tien cave",
+      "extract": ""
+    },
+    "osm": [
+      {
+        "name": "Tạp hóa cô Hằng, Đường bộ ven biển Nam Định, Xã Hải Tiến, Tỉnh Ninh Bình, Việt Nam",
+        "lat": 20.1248056,
+        "lon": 106.3001806,
+        "type": "variety_store"
+      }
+    ]
+  },
+  "tra-ang-cave": {
+    "wiki": {
+      "title": "Tra Ang Cave",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "hang-vom": {
+    "wiki": {
+      "title": "Hang Vom",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "hang-dai-a": {
+    "wiki": null,
+    "osm": []
+  },
+  "hang-over": {
+    "wiki": {
+      "title": "Hang Over Phong Nha",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "hang-pygmy": {
+    "wiki": {
+      "title": "Hang Pygmy",
+      "extract": "Hang Pygmy (also called Pygmy Cave or Hang En Rục Ca Rông in Vietnamese) is a karst cave in the Phong Nha-Ke Bang National Park, Bố Trạch District, Quảng Bình Province, Vietnam. It is situated deep inside the park, in a remote jungle area. Hang Pygmy has been recognized by the British Cave Research Association as the world’s fourth largest cave, after Hang Sơn Đoòng in the same national park, Deer Cave in Malaysia, and Hang Én. The cave’s entrance is a limestone arch approximately 845 meters across. The height and width of this arch reach around 100 meters.\nAccess to Hang Pygmy involves a multi-day jungle trek of around 20 kilometers to reach the mouth of the cave. The entrance area contains flat rock shelters that are used as campsites. Exploration tours of Hang Pygmy have been permitted "
+    },
+    "osm": []
+  },
+  "son-nu-cave": {
+    "wiki": {
+      "title": "Hang Sơn Nữ",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "ruc-mon-cave": {
+    "wiki": {
+      "title": "Hang Rục Mòn",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "e-cave": {
+    "wiki": {
+      "title": "E Cave Phong Nha",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "mooc-spring": {
+    "wiki": {
+      "title": "Mooc Spring",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "chay-river": {
+    "wiki": null,
+    "osm": []
+  },
+  "hava-valley": {
+    "wiki": {
+      "title": "Thung lũng Ngọc Bích",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "ozo-treetop": {
+    "wiki": {
+      "title": "Ozo Treetop Park",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "phong-nha-botanical": {
+    "wiki": {
+      "title": "Phong Nha Botanical Garden",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "bong-lai-valley": {
+    "wiki": {
+      "title": "Bồng Lai Valley",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "duck-stop": {
+    "wiki": {
+      "title": "The Duck Stop Phong Nha",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "pub-cold-beer": {
+    "wiki": {
+      "title": "Pub with Cold Beer Phong Nha",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "east-hill-phong-nha": {
+    "wiki": {
+      "title": "East Hill Phong Nha",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "thac-gio": {
+    "wiki": {
+      "title": "Wind Waterfall Phong Nha",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "vang-macaque": {
+    "wiki": {
+      "title": "Vàng Macaque Phong Nha",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "eight-ladies-cave": {
+    "wiki": {
+      "title": "Eight Ladies Cave",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "highway-20-memorial": {
+    "wiki": {
+      "title": "Highway 20 Martyrs Memorial Phong Nha",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "ben-tien-ferry": {
+    "wiki": {
+      "title": "Ben Tien Ferry",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "tram-tran": {
+    "wiki": {
+      "title": "Trạm Trăn Phong Nha",
+      "extract": ""
+    },
+    "osm": []
+  },
+  "phong-nha-park-hq": {
+    "wiki": {
+      "title": "Phong Nha–Kẻ Bàng National Park",
+      "extract": "Phong Nha–Kẻ Bàng (Vietnamese: Vườn quốc gia Phong Nha–Kẻ Bàng, Vietnamese pronunciation: [vɯ̀ən kʷǒk.ʑā fɔ̄ŋ.ɲā kɛ̂.ɓàŋ]) is a national park and UNESCO World Heritage Site in the Bố Trạch and Minh Hóa Commune of central Quảng Trị Province in the North Central Coast region of Vietnam, about 500 km south of Hanoi. The park borders the Hin Namno National Park in Khammouane Province, Laos to the west and 42 km east of the East Sea from its borderline point. Phong Nha–Kẻ Bàng National Park is in a limestone zone of 2,000 km2 in Vietnamese territory and borders another limestone zone of 2,000 km2 of Hin Namno in Laotian territory. The core zone of this national park covers 857.54 km2 and a buffer zone of 1,954 km2.\nThe park was created to protect one of the world's two largest karst regions wit",
+      "lat": 17.53722222,
+      "lon": 106.15138889
+    },
+    "osm": []
+  },
+  "khe-gat-airfield": {
+    "wiki": null,
+    "osm": []
+  },
+  "phong-nha-market": {
+    "wiki": {
+      "title": "Phong Nha market",
+      "extract": ""
+    },
+    "osm": []
+  }
+}

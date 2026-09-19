@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { EXPERIENCES } from '../data/experiences'
+import { SIGHT_CATALOG } from '../data/experiences'
 import { ExperienceCard } from './ExperienceCard'
 import type { ThinCityNote } from '../lib/yourVietnam/types'
 import { experiencesCitySectionTo } from '../lib/yourVietnam/links'
@@ -22,7 +22,7 @@ export function AddMoreSightsSection({
       {thinCities.map((city) => {
         const to = experiencesCitySectionTo(city.catalogCity)
         const top = rankCityExperiences(
-          EXPERIENCES.filter(
+          SIGHT_CATALOG.filter(
             (e) =>
               (e.city === city.catalogCity || e.city === city.city) && !selected.has(e.id),
           ),

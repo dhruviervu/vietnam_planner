@@ -4,25 +4,17 @@ import type { ArrivalContext } from '../data/types'
 type Props = {
   passengers: number
   luggageLevel: ArrivalContext['luggageLevel']
-  accessibility: boolean
-  budgetPriority: boolean
   onPassengers: (n: number) => void
   onLuggage: (v: ArrivalContext['luggageLevel']) => void
-  onAccessibility: (v: boolean) => void
-  onBudget: (v: boolean) => void
 }
 
 export function TravelProfile({
   passengers,
   luggageLevel,
-  accessibility,
-  budgetPriority,
   onPassengers,
   onLuggage,
-  onAccessibility,
-  onBudget,
 }: Props) {
-  const [open, setOpen] = useState<'pax' | 'bags' | 'access' | null>(null)
+  const [open, setOpen] = useState<'pax' | 'bags' | null>(null)
   const rootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -42,22 +34,12 @@ export function TravelProfile({
         <Chip
           active={open === 'pax'}
           onClick={() => setOpen(open === 'pax' ? null : 'pax')}
-          label={`👥 ${passengers}`}
+          label={`Number of people : ${passengers === 6 ? '6+' : passengers}`}
         />
         <Chip
           active={open === 'bags'}
           onClick={() => setOpen(open === 'bags' ? null : 'bags')}
-          label={`🧳 ${cap(luggageLevel)}`}
-        />
-        <Chip
-          active={open === 'access'}
-          onClick={() => setOpen(open === 'access' ? null : 'access')}
-          label={`♿ ${accessibility ? 'Required' : 'Standard'}`}
-        />
-        <Chip
-          active={budgetPriority}
-          onClick={() => onBudget(!budgetPriority)}
-          label={`💰 ${budgetPriority ? 'Budget priority' : 'Budget flexible'}`}
+          label={`Luggage : ${cap(luggageLevel)}`}
         />
       </div>
       {open === 'pax' ? (
@@ -96,34 +78,6 @@ export function TravelProfile({
               {v}
             </button>
           ))}
-        </div>
-      ) : null}
-      {open === 'access' ? (
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          <button
-            type="button"
-            onClick={() => {
-              onAccessibility(false)
-              setOpen(null)
-            }}
-            className={`rounded-full px-3 py-1.5 text-[0.72rem] font-bold ${
-              !accessibility ? 'bg-terracotta text-paper' : 'bg-cream text-ink'
-            }`}
-          >
-            Standard
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              onAccessibility(true)
-              setOpen(null)
-            }}
-            className={`rounded-full px-3 py-1.5 text-[0.72rem] font-bold ${
-              accessibility ? 'bg-terracotta text-paper' : 'bg-cream text-ink'
-            }`}
-          >
-            Required
-          </button>
         </div>
       ) : null}
     </section>

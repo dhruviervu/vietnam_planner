@@ -49,6 +49,7 @@ export function BookingDrawer({ option, providers, onClose }: Props) {
                 href={p.bookingUrl}
                 target="_blank"
                 rel="noreferrer"
+                data-outbound-label={p.name}
                 className="mt-3 inline-flex rounded-full bg-terracotta px-3 py-1.5 text-[0.72rem] font-bold text-paper"
               >
                 Continue to provider →

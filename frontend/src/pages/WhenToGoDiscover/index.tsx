@@ -1,7 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Nav } from '../../components/landing/Nav'
-import { Footer } from '../../components/landing/Footer'
 import {
   getMonthProfile,
   type MonthId,
@@ -15,7 +14,13 @@ import {
 } from './services/recommendation'
 import { ClimateMapSection } from './components/ClimateMapSection'
 import { WhatsHappeningSection } from './components/WhatsHappeningSection'
-import { monthToSeason, seasonSectionId, type EventSeason } from './data/eventSeasons'
+import {
+  EVENT_SEASONS,
+  monthToSeason,
+  seasonSectionId,
+  type EventSeason,
+} from './data/eventSeasons'
+import { WhenToGoPageShell } from './WhenToGoPageShell'
 
 const CLIMATE_MAP_ID = 'climate-map'
 const EVENT_CALENDAR_ID = 'event-calendar'
@@ -25,6 +30,7 @@ function scrollToSection(id: string) {
 }
 
 export function WhenToGoDiscoverPage({ embedded = false }: { embedded?: boolean }) {
+  const location = useLocation()
   const choiceGroups = useMemo(() => classifyMonthChoices(), [])
   const [selectedMonth, setSelectedMonth] = useState<MonthId>(3)
   const [eventFocusSeason, setEventFocusSeason] = useState<EventSeason | null>(null)
@@ -35,22 +41,43 @@ export function WhenToGoDiscoverPage({ embedded = false }: { embedded?: boolean 
 
   const profile = getMonthProfile(selectedMonth)
 
-  return (
-    <>
-      {!embedded && <Nav />}
+  useEffect(() => {
+    const hash = location.hash.replace(/^#/, '')
+    if (!hash) return
+    const season = EVENT_SEASONS.find((s) => seasonSectionId(s) === hash)
+    if (season) setEventFocusSeason(season)
+    const timer = window.setTimeout(() => {
+      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 80)
+    return () => window.clearTimeout(timer)
+  }, [location.hash])
+
+  function seeCulturalEvents() {
+    const season = monthToSeason(selectedMonth)
+    setEventFocusSeason(season)
+    scrollToSection(seasonSectionId(season))
+  }
+
+  const page = (
       <main className="mx-auto max-w-[1180px] px-[clamp(1.1rem,4vw,2rem)] py-9 pb-20">
         <motion.header initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="font-serif text-[clamp(1.85rem,4vw,2.6rem)] font-semibold leading-[1.1] text-ink">
             When Should You Visit Vietnam?
           </h1>
-          <p className="mt-2 max-w-[48ch] text-[0.95rem] text-muted">
-            Every month brings a different side of Vietnam. Explore the seasons, festivals and
-            experiences to discover when Vietnam feels right for you.
+          <p className="mt-2 w-full text-[0.95rem] text-muted">
+            On this page you will understand Vietnam&apos;s climate for every month and also see
+            the most popular festivals and events that happen in this country so that it is easier
+            for you to make a decision on when to visit.
           </p>
         </motion.header>
 
         <section className="mt-7">
-          <h2 className="font-serif text-[1.25rem] font-semibold text-ink">Browse the Months</h2>
+          <h2 className="font-serif text-[1.25rem] font-semibold text-ink">
+            Vietnam in Different Months
+          </h2>
+          <p className="mt-1 text-[0.88rem] text-muted">
+            Select a month below and see the weather on the right.
+          </p>
 
           <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-stretch">
             <div className="rounded-[20px] bg-paper shadow-soft ring-1 ring-ink/[0.06]">
@@ -72,11 +99,8 @@ export function WhenToGoDiscoverPage({ embedded = false }: { embedded?: boolean 
               >
                 <SelectedMonthInsight
                   profile={profile}
-                  onSeeEventCalendar={() => {
-                    const season = monthToSeason(selectedMonth)
-                    setEventFocusSeason(season)
-                    scrollToSection(seasonSectionId(season))
-                  }}
+                  onSeeClimate={() => scrollToSection(CLIMATE_MAP_ID)}
+                  onSeeEventCalendar={seeCulturalEvents}
                 />
               </motion.div>
             </AnimatePresence>
@@ -90,6 +114,7 @@ export function WhenToGoDiscoverPage({ embedded = false }: { embedded?: boolean 
             recommendedMonths={EASIEST_NATIONWIDE_MONTHS}
             requestedLayer={mapLayerRequest?.layer ?? null}
             layerRequestKey={mapLayerRequest?.key ?? 0}
+            onSeeCulturalEvents={seeCulturalEvents}
           />
         </div>
 
@@ -100,9 +125,10 @@ export function WhenToGoDiscoverPage({ embedded = false }: { embedded?: boolean 
           />
         </div>
       </main>
-      {!embedded && <Footer />}
-    </>
   )
+
+  if (embedded) return page
+  return <WhenToGoPageShell>{page}</WhenToGoPageShell>
 }
 
 function MonthChoiceCalendar({
@@ -139,7 +165,8 @@ function MonthChoiceCalendar({
                   type="button"
                   onClick={() => onSelect(monthId)}
                   aria-pressed={active}
-                  className={`min-w-[4.4rem] rounded-[12px] px-2.5 py-2 text-center transition ${
+                  title={inNationwide ? 'Best Travel Month' : undefined}
+                  className={`group relative min-w-[4.4rem] rounded-[12px] px-2.5 py-2 text-center transition ${
                     active
                       ? 'bg-ink text-paper shadow-soft'
                       : inNationwide
@@ -155,6 +182,11 @@ function MonthChoiceCalendar({
                   >
                     {descriptor}
                   </span>
+                  {inNationwide ? (
+                    <span className="pointer-events-none absolute left-1/2 top-full z-20 mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-full bg-ink px-2.5 py-1 text-[0.58rem] font-bold text-paper opacity-0 shadow-soft transition group-hover:opacity-100">
+                      Best Travel Month
+                    </span>
+                  ) : null}
                 </button>
               )
             })}
@@ -179,9 +211,11 @@ function rainAccent(category: RainCategory): string {
 
 function SelectedMonthInsight({
   profile,
+  onSeeClimate,
   onSeeEventCalendar,
 }: {
   profile: MonthProfile
+  onSeeClimate: () => void
   onSeeEventCalendar: () => void
 }) {
   const insight = getMonthVisitInsight(profile.month)
@@ -196,7 +230,7 @@ function SelectedMonthInsight({
       />
 
       <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-sage">This month</p>
-      <h3 className="mt-1.5 font-serif text-[clamp(1.7rem,3vw,2.15rem)] font-semibold leading-[1.05] text-ink">
+      <h3 className="mt-1.5 font-serif text-[clamp(1.9rem,3vw,2.4rem)] font-bold leading-[1.05] text-ink">
         {profile.name}
       </h3>
 
@@ -204,7 +238,20 @@ function SelectedMonthInsight({
         {insight.visitDescription}
       </p>
 
-      <div className="mt-auto grid gap-3 pt-7 sm:grid-cols-2">
+      <div className="mt-auto flex items-end justify-between gap-3 pt-7">
+        <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
+          Weather and Rainfall
+        </p>
+        <button
+          type="button"
+          onClick={onSeeClimate}
+          className="shrink-0 text-[0.78rem] font-bold text-terracotta transition hover:text-ink"
+        >
+          See More…
+        </button>
+      </div>
+
+      <div className="mt-3 grid gap-3 sm:grid-cols-2">
         <div className="rounded-[16px] bg-gradient-to-br from-cream to-cream/40 px-4 py-3.5 ring-1 ring-ink/[0.06]">
           <div className="flex items-center gap-2">
             <span
@@ -272,7 +319,7 @@ function SelectedMonthInsight({
         onClick={onSeeEventCalendar}
         className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-[0.82rem] font-bold text-paper shadow-soft transition hover:bg-terracotta"
       >
-        See Event Calendar
+        See Cultural Events in {profile.name}
         <span
           aria-hidden
           className="transition-transform group-hover:translate-x-0.5"

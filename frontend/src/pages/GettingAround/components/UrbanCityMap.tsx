@@ -11,7 +11,7 @@ import {
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { PlaceId } from '../data/types'
-import { MAP_META } from '../maps/mapMeta'
+import { leafletBoundsFromCity } from '../maps/cityBounds'
 
 export type UrbanMapMarker = {
   id: string
@@ -38,6 +38,9 @@ type Props = {
   statusHint: string | null
   onSelectLocation: (id: string) => void
   onSelectCoordinate: (coord: { lat: number; lng: number }) => void
+  focusNonce?: number
+  focusOrigin?: { lat: number; lng: number } | null
+  focusDestination?: { lat: number; lng: number } | null
 }
 
 const FIT_MAX_ZOOM: Partial<Record<PlaceId, number>> = {
@@ -54,17 +57,6 @@ const FIT_MAX_ZOOM: Partial<Record<PlaceId, number>> = {
   'ha-long': 13,
   'can-tho': 14,
   'ha-giang': 14,
-}
-
-function boundsFromMeta(cityId: PlaceId): [[number, number], [number, number]] | null {
-  const b = MAP_META.cities[cityId]?.bounds
-  if (!b) return null
-  const latPad = (b.north - b.south) * 0.06
-  const lngPad = (b.east - b.west) * 0.06
-  return [
-    [b.south - latPad, b.west - lngPad],
-    [b.north + latPad, b.east + lngPad],
-  ]
 }
 
 function pinIcon(color: string, glyph: string) {
@@ -117,6 +109,35 @@ function MapClickLayer({
   return null
 }
 
+function FocusSearchPins({
+  nonce,
+  origin,
+  destination,
+}: {
+  nonce: number
+  origin: { lat: number; lng: number } | null
+  destination: { lat: number; lng: number } | null
+}) {
+  const map = useMap()
+  useEffect(() => {
+    if (!nonce) return
+    const pts: [number, number][] = []
+    if (origin) pts.push([origin.lat, origin.lng])
+    if (destination) pts.push([destination.lat, destination.lng])
+    if (!pts.length) return
+    const timer = window.setTimeout(() => {
+      if (pts.length === 1) {
+        const nextZoom = Math.max(15, Math.min(17, map.getZoom() < 14 ? 16 : map.getZoom()))
+        map.flyTo(pts[0], nextZoom, { duration: 0.65 })
+        return
+      }
+      map.flyToBounds(L.latLngBounds(pts), { padding: [56, 56], maxZoom: 16, duration: 0.75 })
+    }, 40)
+    return () => window.clearTimeout(timer)
+  }, [nonce, origin?.lat, origin?.lng, destination?.lat, destination?.lng, map])
+  return null
+}
+
 export function UrbanCityMap({
   cityId,
   cityLabel,
@@ -133,9 +154,15 @@ export function UrbanCityMap({
   statusHint,
   onSelectLocation,
   onSelectCoordinate,
+  focusNonce = 0,
+  focusOrigin = null,
+  focusDestination = null,
 }: Props) {
   const mapRef = useRef<L.Map | null>(null)
-  const bounds = useMemo(() => boundsFromMeta(cityId), [cityId])
+  const bounds = useMemo(
+    () => leafletBoundsFromCity(cityId, { lat: center.lat, lng: center.lng, mapZoom: zoom }),
+    [cityId, center.lat, center.lng, zoom],
+  )
   const maxZoom = FIT_MAX_ZOOM[cityId] ?? 14
 
   const pinById = useMemo(() => {
@@ -207,6 +234,7 @@ export function UrbanCityMap({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <BindCityView mapRef={mapRef} bounds={bounds} maxZoom={maxZoom} />
+        <FocusSearchPins nonce={focusNonce} origin={focusOrigin} destination={focusDestination} />
         <MapClickLayer onSelectCoordinate={onSelectCoordinate} />
 
         {markers.map((m) => renderPin(m, false))}
@@ -260,7 +288,7 @@ export function UrbanCityMap({
         type="button"
         onClick={() => {
           const map = mapRef.current
-          if (!map || !bounds) return
+          if (!map) return
           map.invalidateSize()
           map.fitBounds(bounds, { padding: [24, 24], maxZoom })
         }}

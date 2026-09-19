@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTripStore } from '../../../store/tripStore'
-import { getExperienceById, EXPERIENCES } from '../data/experiences'
+import { getExperienceById, SIGHT_CATALOG } from '../data/experiences'
 import { getExperienceDetails } from '../services/experienceLiveService'
 import { computeTripFit } from '../services/recommendationEngine'
 import type { TimeOfDay } from '../types'
@@ -15,6 +15,7 @@ import { getExperienceDetailVideos } from '../lib/experienceMedia'
 import { BuilderProgressChrome } from '../components/BuilderProgressChrome'
 import { ExperienceCard } from '../components/ExperienceCard'
 import { rankCityExperiences } from '../services/cityCatalog'
+import { pinNewSightToItinerary, readItineraryAddTarget } from '../lib/yourVietnam/itineraryAddTarget'
 
 export function BuilderExperienceDetailPage() {
   const { id = '' } = useParams()
@@ -64,7 +65,7 @@ export function BuilderExperienceDetailPage() {
   }
 
   const cityRanked = rankCityExperiences(
-    EXPERIENCES.filter((item) => item.city === experience.city),
+    SIGHT_CATALOG.filter((item) => item.city === experience.city),
   )
   const alsoLike = cityRanked.filter((item) => item.id !== experience.id).slice(0, 4)
   const videoCap =
@@ -83,6 +84,7 @@ export function BuilderExperienceDetailPage() {
             selected={selected}
             onAdd={() => {
               addExperience(experience.id, 'later')
+              if (readItineraryAddTarget()) pinNewSightToItinerary(experience.id)
               setAskSlot(true)
             }}
             onRemove={() => {

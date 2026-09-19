@@ -11,78 +11,26 @@ type Props = {
 export function AirportCityPicker({ cities, selectedId, onSelect, fromTrip }: Props) {
   if (cities.length === 0) return null
 
-  const smartPick = fromTrip ? getSmartFlyIntoPick(cities) : null
-  const runnerUp = cities.find((c) => !c.isStartingCity && c.itemCount > 0)
+  const sightCities = fromTrip ? cities.filter((c) => c.itemCount > 0) : cities
+  const listed = sightCities.length > 0 ? sightCities : cities
+  const smartPick = fromTrip ? getSmartFlyIntoPick(cities) ?? cities[0] : null
 
   return (
     <section className="scroll-mt-28">
-      <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-sage">
-        {fromTrip ? 'Cities on your trip' : 'Choose a city with an airport'}
-      </p>
-      <h2 className="mt-1 font-serif text-[clamp(1.35rem,2.6vw,1.75rem)] font-semibold text-ink">
-        Where are you flying into?
-      </h2>
-      <p className="mt-1.5 max-w-[56ch] text-[0.88rem] text-muted">
-        {fromTrip
-          ? 'We recommend starting in the city where you selected the most trip items — not the shortest airport transfer. Distances are shown for planning only.'
-          : 'Select a city to see how to get between the airport and town. Distances are airport → city hub by road.'}
-      </p>
-
-      {smartPick ? (
-        <div className="mt-5 overflow-hidden rounded-[20px] border border-terracotta/25 bg-gradient-to-br from-terracotta/[0.1] via-paper to-cream/80 px-4 py-4 shadow-soft sm:px-5">
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div className="min-w-0 flex-1">
-              <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-terracotta">
-                Start your trip here
-              </p>
-              <p className="mt-1 font-serif text-[clamp(1.15rem,2.2vw,1.4rem)] font-semibold text-ink">
-                Fly into {smartPick.label}
-                <span className="ml-2 align-middle text-[0.75rem] font-bold tracking-wide text-muted">
-                  {smartPick.airportCode}
-                </span>
-              </p>
-              <p className="mt-1.5 max-w-[54ch] text-[0.88rem] leading-relaxed text-muted">
-                {runnerUp && runnerUp.itemCount > 0 && smartPick.itemCount > runnerUp.itemCount ? (
-                  <>
-                    You have more of your trip in{' '}
-                    <span className="font-semibold text-ink">{smartPick.label}</span> (
-                    {smartPick.itemCount} items
-                    {smartPick.itemSummary ? ` · ${smartPick.itemSummary}` : ''}) than in{' '}
-                    {runnerUp.label} ({runnerUp.itemCount}). Start there first.
-                  </>
-                ) : (
-                  <>
-                    Most of what you selected sits in{' '}
-                    <span className="font-semibold text-ink">{smartPick.label}</span> (
-                    {smartPick.itemCount} item{smartPick.itemCount === 1 ? '' : 's'}
-                    {smartPick.itemSummary ? ` · ${smartPick.itemSummary}` : ''}). Begin here.
-                  </>
-                )}
-              </p>
-              <p className="mt-2 text-[0.8rem] font-semibold text-ink/75">
-                Airport transfer: ≈ {smartPick.distanceKm} km · {smartPick.timeMin[0]}–
-                {smartPick.timeMin[1]} min to {smartPick.cityHubLabel}
-              </p>
-            </div>
-            {selectedId !== smartPick.id ? (
-              <button
-                type="button"
-                onClick={() => onSelect(smartPick)}
-                className="shrink-0 rounded-full bg-ink px-4 py-2.5 text-[0.78rem] font-bold text-paper transition hover:bg-ink/90"
-              >
-                Start with {smartPick.label}
-              </button>
-            ) : (
-              <span className="shrink-0 rounded-full bg-sage/15 px-3 py-2 text-[0.72rem] font-bold uppercase tracking-[0.1em] text-sage">
-                Starting city
-              </span>
-            )}
-          </div>
-        </div>
+      {!fromTrip ? (
+        <>
+          <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-sage">
+            Choose a city with an airport
+          </p>
+          <p className="mt-1.5 max-w-[56ch] text-[0.88rem] text-muted">
+            Select a city to see how to get between the airport and town. Distances are airport →
+            city hub by road.
+          </p>
+        </>
       ) : null}
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {cities.map((city) => {
+        {listed.map((city) => {
           const on = selectedId === city.id
           return (
             <button
@@ -145,6 +93,45 @@ export function AirportCityPicker({ cities, selectedId, onSelect, fromTrip }: Pr
           )
         })}
       </div>
+
+      {smartPick ? (
+        <div className="mt-5 overflow-hidden rounded-[20px] border border-terracotta/25 bg-gradient-to-br from-terracotta/[0.1] via-paper to-cream/80 px-4 py-4 shadow-soft sm:px-5">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-terracotta">
+                Start your trip here
+              </p>
+              <p className="mt-1 font-serif text-[clamp(1.15rem,2.2vw,1.4rem)] font-semibold text-ink">
+                Fly into {smartPick.label}
+                <span className="ml-2 align-middle text-[0.75rem] font-bold tracking-wide text-muted">
+                  {smartPick.airportCode}
+                </span>
+              </p>
+              <p className="mt-1.5 max-w-[58ch] text-[0.88rem] leading-relaxed text-muted">
+                Ideally You should Start your trip from the North and move South - Or it could be
+                the other way round - South to North.
+              </p>
+              <p className="mt-2 text-[0.8rem] font-semibold text-ink/75">
+                Airport transfer: ≈ {smartPick.distanceKm} km · {smartPick.timeMin[0]}–
+                {smartPick.timeMin[1]} min to {smartPick.cityHubLabel}
+              </p>
+            </div>
+            {selectedId !== smartPick.id ? (
+              <button
+                type="button"
+                onClick={() => onSelect(smartPick)}
+                className="shrink-0 rounded-full bg-ink px-4 py-2.5 text-[0.78rem] font-bold text-paper transition hover:bg-ink/90"
+              >
+                Start with {smartPick.label}
+              </button>
+            ) : (
+              <span className="shrink-0 rounded-full bg-sage/15 px-3 py-2 text-[0.72rem] font-bold uppercase tracking-[0.1em] text-sage">
+                Starting city
+              </span>
+            )}
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }

@@ -144,15 +144,57 @@ function statusFromJourney(direct: boolean, legs: JourneyLeg[]): JourneyConnecti
 }
 
 function connectionBadge(status: JourneyConnectionStatus): string {
-  if (status === 'direct') return '🟢 Direct'
-  if (status === 'one-connection') return '🟡 1 connection'
-  if (status === 'multi-leg') return '🟠 Multi-leg'
-  if (status === 'not-available') return '⚪ Not available'
-  if (status === 'not-applicable') return '⚪ Not applicable'
-  return '⚪ Unknown'
+  if (status === 'direct') return 'Goes straight there'
+  if (status === 'one-connection') return 'Two steps'
+  if (status === 'multi-leg') return 'Several steps'
+  if (status === 'not-available') return 'Not available'
+  if (status === 'not-applicable') return 'Not for this trip'
+  return 'Unknown'
 }
 
 export { connectionBadge }
+
+function vehicleInPlainEnglish(mode: NetworkMode): string {
+  switch (mode) {
+    case 'flight':
+      return 'a plane'
+    case 'train':
+      return 'a train'
+    case 'coach':
+      return 'a bus'
+    case 'private-driver':
+      return 'a car with a driver'
+    case 'shared-transfer':
+      return 'a shared van'
+    case 'ferry':
+      return 'a ferry boat'
+    case 'fast-boat':
+      return 'a fast boat'
+    case 'ground':
+      return 'a taxi or driver'
+    default:
+      return 'transport'
+  }
+}
+
+/** Short chip title, e.g. "a plane, then a taxi or driver". */
+function plainConnectionShort(journey: FeasibleJourney): string | null {
+  if (journey.direct || journey.legs.length < 2) return null
+  const parts = journey.legs.map((leg) => vehicleInPlainEnglish(leg.mode))
+  if (parts.length === 2) return `${parts[0]}, then ${parts[1]}`
+  return parts.join(', then ')
+}
+
+/** Step-by-step wording a grandparent could follow. */
+export function plainConnectionExplain(journey: FeasibleJourney): string | null {
+  if (journey.direct || journey.legs.length < 2) return null
+  const steps = journey.legs.map((leg, i) => {
+    const start = i === 0 ? 'First, take' : 'Then take'
+    return `${start} ${vehicleInPlainEnglish(leg.mode)} from ${leg.fromLabel} to ${leg.toLabel}.`
+  })
+  const count = journey.legs.length
+  return `This is not one single ride. You do it in ${count} easy steps. ${steps.join(' ')}`
+}
 
 function makeUnavailable(
   modeId: TransportModeId,
@@ -630,6 +672,7 @@ function resolveWater(originId: PlaceId, destId: PlaceId): FeasibleJourney | nul
     fromPort: string
     toPort: string
     groundFrom: GroundLink | null
+    groundTo: GroundLink | null
     originIsPortCity: boolean
   }
   const candidates: Candidate[] = []
@@ -643,6 +686,7 @@ function resolveWater(originId: PlaceId, destId: PlaceId): FeasibleJourney | nul
         fromPort: originPortId,
         toPort: destPortId,
         groundFrom: null,
+        groundTo: null,
         originIsPortCity: fromPort.placeId === originId,
       })
     }
@@ -657,6 +701,7 @@ function resolveWater(originId: PlaceId, destId: PlaceId): FeasibleJourney | nul
           fromPort: 'hub-ha-tien-port',
           toPort: destPortId,
           groundFrom: g,
+          groundTo: null,
           originIsPortCity: false,
         })
       }
@@ -668,22 +713,38 @@ function resolveWater(originId: PlaceId, destId: PlaceId): FeasibleJourney | nul
           fromPort: 'hub-vung-tau-port',
           toPort: destPortId,
           groundFrom: g,
+          groundTo: null,
           originIsPortCity: false,
         })
       }
     }
   }
 
-  // Island → mainland port
-  if (originPortId && !destPortId && originId === 'phu-quoc') {
-    const g = findGroundLink(destId, 'hub-ha-tien-port')
-    if (g || destId === 'ha-tien') {
-      candidates.push({
-        fromPort: originPortId,
-        toPort: 'hub-ha-tien-port',
-        groundFrom: null,
-        originIsPortCity: true,
-      })
+  // Island → distant mainland: ferry, then the real ground clock (never invent 15–40m to Saigon)
+  if (originPortId && !destPortId) {
+    if (originId === 'phu-quoc') {
+      const g = findGroundLink(destId, 'hub-ha-tien-port')
+      if (g || destId === 'ha-tien') {
+        candidates.push({
+          fromPort: originPortId,
+          toPort: 'hub-ha-tien-port',
+          groundFrom: null,
+          groundTo: destId === 'ha-tien' ? null : g,
+          originIsPortCity: true,
+        })
+      }
+    }
+    if (originId === 'con-dao') {
+      const g = findGroundLink(destId, 'hub-vung-tau-port')
+      if (g) {
+        candidates.push({
+          fromPort: originPortId,
+          toPort: 'hub-vung-tau-port',
+          groundFrom: null,
+          groundTo: g,
+          originIsPortCity: true,
+        })
+      }
     }
   }
 
@@ -713,6 +774,14 @@ function resolveWater(originId: PlaceId, destId: PlaceId): FeasibleJourney | nul
       })
       mins = addMinutes(mins, c.groundFrom.typicalMinutes)
       cost = addCost(cost, c.groundFrom.typicalCostUsd)
+    } else if (oTopo.isIsland && fromPort.placeId === originId) {
+      legs.push({
+        fromLabel: origin.label,
+        toLabel: fromPort.name,
+        mode: 'ground',
+        typicalMinutes: [15, 40],
+      })
+      mins = addMinutes(mins, [15, 40])
     }
 
     legs.push({
@@ -723,6 +792,18 @@ function resolveWater(originId: PlaceId, destId: PlaceId): FeasibleJourney | nul
     })
 
     if (toPort.placeId !== destId) {
+      const last = c.groundTo ?? findGroundLink(destId, c.toPort)
+      if (last) {
+        legs.push({
+          fromLabel: toPort.name,
+          toLabel: dest.label,
+          mode: last.mode,
+          typicalMinutes: last.typicalMinutes,
+        })
+        mins = addMinutes(mins, last.typicalMinutes)
+        cost = addCost(cost, last.typicalCostUsd)
+      }
+    } else if (dTopo.isIsland) {
       legs.push({
         fromLabel: toPort.name,
         toLabel: dest.label,
@@ -732,17 +813,17 @@ function resolveWater(originId: PlaceId, destId: PlaceId): FeasibleJourney | nul
       mins = addMinutes(mins, [15, 40])
     }
 
-    const multi = Boolean(c.groundFrom) || legs.length > 1
+    const multi = Boolean(c.groundFrom) || Boolean(c.groundTo) || legs.length > 1
     return buildJourney({
       modeId: 'ferry',
-      displayTitle: multi ? 'Ground + Ferry' : 'Ferry',
+      displayTitle: multi ? 'Taxi / scooter + ferry' : 'Ferry',
       legs,
       direct: !multi && c.originIsPortCity,
       summary: multi
-        ? 'Water travel requires a mainland transfer before the ferry'
+        ? 'Taxi or scooter only to the pier, then the ferry — never a scooter across the sea'
         : `${origin.label} → ${dest.label} by ferry`,
       why: multi
-        ? `There is no direct ferry from ${origin.label}. Reach ${fromPort.name}, then cross by ferry.`
+        ? `This is a water crossing. Ride or taxi only as far as ${fromPort.name}, then the boat. You cannot scooter from ${origin.label} to ${dest.label}.`
         : 'The destination is separated from the mainland by water.',
       typicalMinutes: mins,
       typicalCostUsd: cost,
@@ -792,6 +873,8 @@ function rankRecommendations(journeys: FeasibleJourney[]): JourneyRecommendation
 
   const titleOf = (j: FeasibleJourney) => {
     if (j.direct) return j.displayTitle
+    const short = plainConnectionShort(j)
+    if (short) return short
     if (j.modeId === 'flight' && j.legs[0]?.toLabel) {
       const hubLeg = j.legs.find((l) => l.mode === 'flight')
       const via = hubLeg?.fromLabel?.replace(/\s+Airport.*/i, ' Airport') ?? 'hub'
@@ -823,7 +906,17 @@ function rankRecommendations(journeys: FeasibleJourney[]): JourneyRecommendation
         : `${titleOf(overall)} wins on total journey practicality despite the connection.`,
     })
   }
-  if (fastest) {
+  if (simplest && simplest.id !== overall?.id) {
+    recs.push({
+      id: 'least-complex',
+      label: 'Least complex',
+      symbol: '😌',
+      journeyId: simplest.id,
+      journeyTitle: titleOf(simplest),
+      note: 'Fewest transfer decisions among feasible journeys.',
+    })
+  }
+  if (fastest && fastest.id !== overall?.id && fastest.id !== simplest?.id) {
     recs.push({
       id: 'fastest',
       label: 'Fastest',
@@ -833,16 +926,6 @@ function rankRecommendations(journeys: FeasibleJourney[]): JourneyRecommendation
       note: fastest.direct
         ? 'Shortest typical door-to-door time.'
         : 'Fastest overall once hub transfer time is included.',
-    })
-  }
-  if (simplest && simplest.id !== fastest?.id) {
-    recs.push({
-      id: 'least-complex',
-      label: 'Least complex',
-      symbol: '😌',
-      journeyId: simplest.id,
-      journeyTitle: titleOf(simplest),
-      note: 'Fewest transfer decisions among feasible journeys.',
     })
   }
   if (value && value.id !== fastest?.id && value.id !== simplest?.id && value.id !== overall?.id) {

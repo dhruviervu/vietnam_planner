@@ -4,17 +4,18 @@ import {
   ATM_FIND_ONLINE,
   ATM_GUIDANCE,
   ATM_LOCATIONS,
+  ATM_NETWORKS,
   ATM_SCREEN_MOVES,
-  BASE_CURRENCIES,
-  CONVERTER_PRESETS,
-  EXCHANGE_CHANNELS,
   EXCHANGE_CHECKLIST,
   EXCHANGE_PRICE_PLAYS,
   PAYMENT_METHODS,
 } from '../data/money'
-import { convertAmount, formatMoney } from '../lib/currency'
+import { mapsUrlForSpot, spotsForCities } from '../data/exchangeSpots'
+import { convertAmount, formatMoney, listedCurrencies } from '../lib/currency'
 import type { FxRates } from '../lib/currency'
-import { ChipButton, Label, SectionIntro } from './ui'
+import { getTripSightCities } from '../lib/tripSightCities'
+import { useTripStore } from '../../../store/tripStore'
+import { BlockTitle, Label, SectionIntro } from './ui'
 
 type Props = {
   fx: FxRates
@@ -26,14 +27,6 @@ type FindMode = 'online' | 'offline'
 
 const HERO =
   'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80'
-const EXCHANGE_HERO =
-  'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=80'
-
-const TONE = {
-  good: { label: 'Best practice', className: 'text-sage' },
-  compare: { label: 'Compare first', className: 'text-muted' },
-  caution: { label: 'Avoid', className: 'text-terracotta' },
-} as const
 
 const SNAPSHOT = [
   { id: 'avail', label: 'Availability', value: ATM_GUIDANCE.availability },
@@ -49,27 +42,26 @@ export function MoneySection({ fx, fxStatus }: Props) {
   const [tab, setTab] = useState<MoneyTab>('cash')
   const [atmId, setAtmId] = useState<(typeof ATM_LOCATIONS)[number]['id']>('bank')
   const [findMode, setFindMode] = useState<FindMode>('online')
-  const [channelId, setChannelId] = useState(EXCHANGE_CHANNELS[0].id)
   const [payId, setPayId] = useState<(typeof PAYMENT_METHODS)[number]['id']>('cash')
   const [checkDone, setCheckDone] = useState<Record<string, boolean>>({})
+  const [spotsExpanded, setSpotsExpanded] = useState(false)
+
+  const currencies = useMemo(() => listedCurrencies(fx.rates), [fx.rates])
+  const selectedExperienceIds = useTripStore((s) => s.selectedExperienceIds)
+  const sightCities = useMemo(
+    () => getTripSightCities(),
+    [selectedExperienceIds],
+  )
+  const tripSpots = useMemo(() => spotsForCities(sightCities), [sightCities])
+  const visibleSpots = spotsExpanded ? tripSpots : tripSpots.slice(0, 3)
+  const extraSpotCount = Math.max(0, tripSpots.length - 3)
 
   const vnd = useMemo(
     () => convertAmount(amount, from, 'VND', fx.rates),
     [amount, from, fx.rates],
   )
 
-  const quickLook = useMemo(
-    () =>
-      CONVERTER_PRESETS.map((p) => ({
-        ...p,
-        vnd: convertAmount(p.amount, p.currency, 'VND', fx.rates),
-      })),
-    [fx.rates],
-  )
-
   const activeAtm = ATM_LOCATIONS.find((a) => a.id === atmId) ?? ATM_LOCATIONS[0]
-  const activeChannel =
-    EXCHANGE_CHANNELS.find((c) => c.id === channelId) ?? EXCHANGE_CHANNELS[0]
   const activePay = PAYMENT_METHODS.find((m) => m.id === payId) ?? PAYMENT_METHODS[0]
   const findItems = findMode === 'online' ? ATM_FIND_ONLINE : ATM_FIND_OFFLINE
 
@@ -107,7 +99,7 @@ export function MoneySection({ fx, fxStatus }: Props) {
                 onChange={(e) => setFrom(e.target.value)}
                 className="h-12 border-b border-ink/25 bg-transparent pr-6 text-[1rem] font-bold text-ink focus:border-terracotta focus:outline-none"
               >
-                {BASE_CURRENCIES.map((c) => (
+                {currencies.map((c) => (
                   <option key={c} value={c}>
                     {c}
                   </option>
@@ -134,43 +126,6 @@ export function MoneySection({ fx, fxStatus }: Props) {
                     : 'Approx'}
                 {fx.timestamp ? ` · ${new Date(fx.timestamp).toLocaleDateString()}` : ''}
               </p>
-            </div>
-          </div>
-
-          <div className="mt-4 flex flex-wrap gap-1">
-            {CONVERTER_PRESETS.map((p) => (
-              <ChipButton
-                key={p.label}
-                active={from === p.currency && amount === p.amount}
-                onClick={() => {
-                  setFrom(p.currency)
-                  setAmount(p.amount)
-                }}
-                className="!px-3 !py-2 !text-[0.8rem]"
-              >
-                {p.label}
-              </ChipButton>
-            ))}
-          </div>
-
-          <div className="mt-4 -mx-0.5 overflow-x-auto px-0.5">
-            <div className="flex min-w-max gap-x-4 border-t border-ink/10 pt-3">
-              {quickLook.map((q) => (
-                <button
-                  key={q.label}
-                  type="button"
-                  onClick={() => {
-                    setFrom(q.currency)
-                    setAmount(q.amount)
-                  }}
-                  className="text-left transition hover:text-terracotta"
-                >
-                  <span className="block text-[0.72rem] font-bold text-ink">{q.label}</span>
-                  <span className="block text-[0.68rem] text-muted">
-                    {q.vnd != null ? formatMoney(q.vnd, 'VND') : '—'}
-                  </span>
-                </button>
-              ))}
             </div>
           </div>
 
@@ -233,7 +188,7 @@ export function MoneySection({ fx, fxStatus }: Props) {
           </div>
 
           <div>
-            <Label>Best places to find an ATM</Label>
+            <BlockTitle>Best places to Find an atm</BlockTitle>
             <p className="mt-1 max-w-[54ch] text-[0.78rem] text-muted">
               Tap a location — bank machines in busy, lit spots are usually your safest bet.
             </p>
@@ -267,7 +222,20 @@ export function MoneySection({ fx, fxStatus }: Props) {
                       </div>
                     </div>
                     <div className="px-3 py-2.5">
-                      <p className="text-[0.76rem] leading-snug text-ink/80">{loc.summary}</p>
+                      {loc.id === 'bank' ? (
+                        <ul className="space-y-1.5">
+                          {ATM_NETWORKS.map((n) => (
+                            <li key={n.name} className="text-[0.78rem] leading-snug text-ink/80">
+                              <span className="font-serif text-[1.02rem] font-bold text-ink">
+                                {n.name}
+                              </span>
+                              <span className="mt-0.5 block">{n.availability}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-[0.76rem] leading-snug text-ink/80">{loc.summary}</p>
+                      )}
                     </div>
                   </button>
                 )
@@ -368,27 +336,8 @@ export function MoneySection({ fx, fxStatus }: Props) {
       {/* EXCHANGE */}
       {tab === 'exchange' ? (
         <div className="space-y-6">
-          <div className="relative overflow-hidden rounded-[3px]">
-            <div className="relative h-[120px] sm:h-[140px]">
-              <img
-                src={EXCHANGE_HERO}
-                alt=""
-                className="h-full w-full object-cover object-[center_45%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/45 to-ink/20" />
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-5">
-                <p className="text-[0.62rem] font-bold uppercase tracking-[0.16em] text-paper/75">
-                  Seek the best price
-                </p>
-                <p className="mt-1 max-w-[40ch] font-serif text-[1.2rem] leading-snug text-paper sm:text-[1.3rem]">
-                  The board rate is theatre. The final đồng in your hand is the truth.
-                </p>
-              </div>
-            </div>
-          </div>
-
           <div>
-            <Label>How to get a better deal</Label>
+            <BlockTitle>How to get a better deal</BlockTitle>
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
               {EXCHANGE_PRICE_PLAYS.map((play) => (
                 <div
@@ -407,87 +356,109 @@ export function MoneySection({ fx, fxStatus }: Props) {
             </div>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <Label>Where to exchange</Label>
-              <p className="mt-1 text-[0.78rem] text-muted">
-                Tap a channel — then check the all-in amount before you commit.
-              </p>
-              <ul className="mt-3 divide-y divide-ink/8 overflow-hidden rounded-[3px] border border-ink/10">
-                {EXCHANGE_CHANNELS.map((c) => {
-                  const on = channelId === c.id
-                  const tone = TONE[c.tone]
-                  return (
-                    <li key={c.id}>
-                      <button
-                        type="button"
-                        onClick={() => setChannelId(c.id)}
-                        className={`flex w-full items-start justify-between gap-3 px-3.5 py-3 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta ${
-                          on ? 'bg-terracotta/[0.06]' : 'bg-paper hover:bg-ink/[0.02]'
-                        }`}
-                      >
-                        <div>
-                          <p className="text-[0.88rem] font-bold text-ink">{c.label}</p>
-                          <p className="mt-0.5 text-[0.72rem] text-muted">{c.summary}</p>
-                        </div>
-                        <span
-                          className={`shrink-0 text-[0.62rem] font-bold uppercase tracking-wide ${tone.className}`}
-                        >
-                          {tone.label}
+          <div>
+            <BlockTitle>Best exchange spots on your trip</BlockTitle>
+            <p className="mt-1 max-w-[58ch] text-[0.78rem] text-muted">
+              Bank desks in cities where you have sights — not airport boards or gold shops.
+            </p>
+            {tripSpots.length ? (
+              <>
+                <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {visibleSpots.map((spot) => (
+                    <article
+                      key={spot.id}
+                      className="overflow-hidden rounded-[18px] bg-paper shadow-card"
+                    >
+                      <div className="relative aspect-[5/3.2] overflow-hidden bg-cream">
+                        <img
+                          src={spot.image}
+                          alt=""
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ink/40 to-transparent" />
+                        <span className="absolute left-3 top-3 rounded-full bg-terracotta/95 px-2.5 py-1 text-[0.68rem] font-bold tracking-wide text-paper">
+                          {spot.city}
                         </span>
-                      </button>
-                    </li>
-                  )
-                })}
-              </ul>
-              {activeChannel?.tip ? (
-                <p className="mt-3 text-[0.8rem] leading-relaxed text-ink/85">
-                  <span className="font-bold text-terracotta">Tip — </span>
-                  {activeChannel.tip}
-                </p>
-              ) : null}
-            </div>
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-serif text-[1.15rem] font-semibold leading-tight text-ink">
+                          {spot.name}
+                        </h4>
+                        <p className="mt-1 text-[0.72rem] font-bold uppercase tracking-wide text-terracotta">
+                          {spot.bank} · {spot.area}
+                        </p>
+                        <p className="mt-2 text-[0.8rem] leading-relaxed text-ink/80">{spot.note}</p>
+                        <a
+                          href={mapsUrlForSpot(spot)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-3 inline-flex items-center rounded-[3px] bg-terracotta px-3.5 py-2 text-[0.78rem] font-bold text-paper transition hover:bg-terracotta-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta"
+                        >
+                          Open in Google Maps ↗
+                        </a>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+                {extraSpotCount > 0 ? (
+                  <button
+                    type="button"
+                    onClick={() => setSpotsExpanded((open) => !open)}
+                    className="mt-3 text-[0.84rem] font-bold text-terracotta hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta"
+                  >
+                    {spotsExpanded
+                      ? 'Show fewer desks'
+                      : `Show ${extraSpotCount} more desk${extraSpotCount === 1 ? '' : 's'}`}
+                  </button>
+                ) : null}
+              </>
+            ) : (
+              <p className="mt-3 max-w-[54ch] text-[0.84rem] text-ink/80">
+                Add sights to your trip bag to see the best bank exchange desks in those cities.
+              </p>
+            )}
+          </div>
 
-            <div className="rounded-[3px] border border-ink/10 bg-[linear-gradient(165deg,#faf6f0_0%,#f3ebe0_100%)] p-4">
-              <Label>Before you exchange</Label>
-              <p className="mt-1 text-[0.76rem] text-muted">
-                Tap each check as you confirm it at the desk.
-              </p>
-              <ul className="mt-3 space-y-2">
-                {EXCHANGE_CHECKLIST.map((c, i) => {
-                  const done = !!checkDone[c.id]
-                  return (
-                    <li key={c.id}>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setCheckDone((prev) => ({ ...prev, [c.id]: !prev[c.id] }))
-                        }
-                        className={`flex w-full items-start gap-3 rounded-[3px] border px-3 py-2.5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta ${
-                          done
-                            ? 'border-sage/35 bg-sage/10'
-                            : 'border-ink/10 bg-paper hover:border-ink/20'
+          <div className="rounded-[3px] border border-ink/10 bg-[linear-gradient(165deg,#faf6f0_0%,#f3ebe0_100%)] p-4 sm:p-5">
+            <BlockTitle>Before you exchange</BlockTitle>
+            <p className="mt-1 text-[0.76rem] text-muted">
+              Tap each check as you confirm it at the desk.
+            </p>
+            <ul className="mt-3 space-y-2">
+              {EXCHANGE_CHECKLIST.map((c, i) => {
+                const done = !!checkDone[c.id]
+                return (
+                  <li key={c.id}>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setCheckDone((prev) => ({ ...prev, [c.id]: !prev[c.id] }))
+                      }
+                      className={`flex w-full items-start gap-3 rounded-[3px] border px-3 py-2.5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta ${
+                        done
+                          ? 'border-sage/35 bg-sage/10'
+                          : 'border-ink/10 bg-paper hover:border-ink/20'
+                      }`}
+                    >
+                      <span
+                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[0.68rem] font-bold ${
+                          done ? 'bg-sage text-paper' : 'bg-ink/10 text-ink/70'
                         }`}
                       >
-                        <span
-                          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[0.68rem] font-bold ${
-                            done ? 'bg-sage text-paper' : 'bg-ink/10 text-ink/70'
-                          }`}
-                        >
-                          {done ? '✓' : i + 1}
+                        {done ? '✓' : i + 1}
+                      </span>
+                      <span>
+                        <span className="block text-[0.82rem] font-bold text-ink">
+                          {c.label}
                         </span>
-                        <span>
-                          <span className="block text-[0.82rem] font-bold text-ink">
-                            {c.label}
-                          </span>
-                          <span className="mt-0.5 block text-[0.72rem] text-muted">{c.tip}</span>
-                        </span>
-                      </button>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
+                        <span className="mt-0.5 block text-[0.72rem] text-muted">{c.tip}</span>
+                      </span>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
         </div>
       ) : null}

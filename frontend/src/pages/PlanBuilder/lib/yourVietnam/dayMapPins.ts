@@ -9,8 +9,10 @@ import { pointsForCity } from '../../../GettingAround/data/urbanPoints'
 import { MAP_META } from '../../../GettingAround/maps/mapMeta'
 import { HOTELS } from '../../data/hotels'
 import { SHOPPING_ITEMS } from '../../data/shopping'
+import { EXPERIENCES } from '../../data/experiences'
+import { CITY_ACTIVITIES } from '../../data/activities'
 import { RESTAURANTS as TASTE_RESTAURANTS } from '../../../TasteOfVietnam/data/restaurants'
-import { placeCoords } from './cityPins'
+import { placeCoords, resolvePlaceId } from './cityPins'
 import {
   CITY_MARKET_PIN,
   NEIGHBORHOOD_PIN,
@@ -109,16 +111,80 @@ function inCityRange(lat: number, lng: number, placeId: PlaceId | undefined, kin
   return kmBetween(c, { lat, lng }) <= maxKmForKind(kind)
 }
 
-function catalogCoord(stop: DayMapStop): PinCoord | null {
+function catalogPlaceId(city?: string, region?: string): PlaceId | null {
+  return resolvePlaceId(city, region) ?? resolvePlaceId(region, city)
+}
+
+/** Exact catalog pin only — never a name substring, which can mark the wrong place. */
+function exactCatalogCoord(stop: DayMapStop): PinCoord | null {
   if (stop.sourceId && PIN_BY_SOURCE_ID[stop.sourceId]) return PIN_BY_SOURCE_ID[stop.sourceId]
   const n = normalize(stop.name)
-  if (PIN_BY_NAME[n]) return PIN_BY_NAME[n]
+  return PIN_BY_NAME[n] ?? null
+}
+
+function catalogCoord(stop: DayMapStop): PinCoord | null {
+  const exact = exactCatalogCoord(stop)
+  if (exact) return exact
+  const n = normalize(stop.name)
   if (n.length >= 10) {
     for (const [label, coord] of Object.entries(PIN_BY_NAME)) {
       if (label.length >= 10 && n.includes(label)) return coord
     }
   }
   return null
+}
+
+/** Bag experiences/activities that belong to this city — nothing else. */
+export function bagMapStopsForCity(
+  experienceIds: string[],
+  activityIds: string[],
+  placeId: PlaceId | undefined,
+  cityLabel: string,
+): DayMapStop[] {
+  const expSet = new Set(experienceIds)
+  const actSet = new Set(activityIds)
+  const stops: DayMapStop[] = []
+  for (const e of EXPERIENCES) {
+    if (!expSet.has(e.id)) continue
+    const pid = catalogPlaceId(e.city, e.region)
+    if (placeId) {
+      if (!pid || pid !== placeId) continue
+    } else if (
+      normalize(e.city) !== normalize(cityLabel) &&
+      normalize(e.region) !== normalize(cityLabel)
+    ) {
+      continue
+    }
+    stops.push({
+      id: `exp:${e.id}`,
+      name: e.name,
+      kind: 'experience',
+      query: `${e.name}, ${e.city}, Vietnam`,
+      placeId: pid ?? placeId,
+      sourceId: e.id,
+    })
+  }
+  for (const a of CITY_ACTIVITIES) {
+    if (!actSet.has(a.id)) continue
+    const pid = catalogPlaceId(a.cityName, a.cityId)
+    if (placeId) {
+      if (!pid || pid !== placeId) continue
+    } else if (
+      normalize(a.cityName) !== normalize(cityLabel) &&
+      normalize(a.cityId) !== normalize(cityLabel)
+    ) {
+      continue
+    }
+    stops.push({
+      id: `act:${a.id}`,
+      name: a.name,
+      kind: 'activity',
+      query: `${a.name}, ${a.cityName}, Vietnam`,
+      placeId: pid ?? placeId,
+      sourceId: a.id,
+    })
+  }
+  return stops
 }
 
 function matchLandmark(name: string, cityId: PlaceId) {
@@ -335,4 +401,62 @@ export async function resolveDayMapPins(
 
   const out = [...resolved].sort(byAgendaNumber)
   return out
+}
+
+/**
+ * Pins for user-added sights only. Drops a stop rather than guessing city-centre
+ * or a similarly named landmark.
+ */
+export async function resolveBagSightPins(
+  stops: DayMapStop[],
+  cityLabel: string,
+  placeId?: PlaceId,
+  onPartial?: (pins: ResolvedDayPin[]) => void,
+): Promise<ResolvedDayPin[]> {
+  const list = stops ?? []
+  const bounds = cityBounds(placeId)
+  const resolved: ResolvedDayPin[] = []
+  const pending: DayMapStop[] = []
+
+  for (const stop of list) {
+    const catalog = exactCatalogCoord(stop)
+    if (catalog && inCityRange(catalog.lat, catalog.lng, stop.placeId ?? placeId, stop.kind)) {
+      resolved.push({ ...stop, lat: catalog.lat, lng: catalog.lng, n: 0, source: 'catalog' })
+      continue
+    }
+    pending.push(stop)
+  }
+
+  onPartial?.([...resolved])
+
+  const geoPins = await Promise.all(
+    pending.map(async (stop) => {
+      const queries = uniqueQueries([
+        stop.query,
+        `${stop.name}, ${cityLabel}, Vietnam`,
+      ])
+      const geo = await geocodeQueries(
+        queries,
+        cityLabel,
+        stop.placeId ?? placeId,
+        stop.kind,
+        bounds,
+      )
+      if (!geo.ok) return null
+      return {
+        ...stop,
+        lat: geo.hit.lat,
+        lng: geo.hit.lng,
+        n: 0,
+        source: 'geocode' as const,
+      }
+    }),
+  )
+
+  for (const pin of geoPins) {
+    if (!pin) continue
+    resolved.push(pin)
+    onPartial?.([...resolved])
+  }
+  return resolved
 }

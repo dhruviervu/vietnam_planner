@@ -9,8 +9,6 @@ type Props = {
   /** Shown above the continue controls (e.g. optional airport note) */
   note?: ReactNode
   continueLabel?: string
-  secondaryLabel?: string
-  hideSkip?: boolean
 }
 
 /** Wraps an embedded product page with pipeline progress marking + continue footer. */
@@ -19,8 +17,6 @@ export function PipelineStepShell({
   children,
   note,
   continueLabel,
-  secondaryLabel,
-  hideSkip = false,
 }: Props) {
   const mark = useTripStore((s) => s.markStepVisited)
   const pipelineActive = useTripStore((s) => s.itineraryPipelineActive)
@@ -42,8 +38,6 @@ export function PipelineStepShell({
           <StageFooter
             current={step}
             continueLabel={continueLabel}
-            secondaryLabel={secondaryLabel}
-            hideSkip={hideSkip}
           />
         </div>
       ) : null}

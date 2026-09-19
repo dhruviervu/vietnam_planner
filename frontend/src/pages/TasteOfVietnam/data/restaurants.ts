@@ -1,3 +1,4 @@
+import { restaurantImages } from './foodMedia'
 import type { FoodCity, Restaurant, RestaurantFilter, RestaurantSort } from './types'
 
 export const FOOD_CITIES: FoodCity[] = [
@@ -21,20 +22,6 @@ const REGION: Record<FoodCity, Restaurant['region']> = {
   'Nha Trang': 'Central',
   'Da Lat': 'Central',
 }
-
-const DISH_PHOTOS: Record<string, [string, string]> = {
-  pho: ['photo-1582878826629-29b7ad1cdc43', 'photo-1555126634-323283e090fa'],
-  'banh-mi': ['photo-1600891964092-4316c288032e', 'photo-1529042410759-befb1204bdec'],
-  'bun-cha': ['photo-1559314809-0d155014ce50', 'photo-1504674900247-0877df9cc836'],
-  'bun-bo-hue': ['photo-1617093727343-374698b1b08d', 'photo-1563379926898-05f4575a45d8'],
-  'cao-lau': ['photo-1512058564366-18510be2db19', 'photo-1455619452474-d2be8b1e70cd'],
-  'ca-phe-trung': ['photo-1514432324607-a09d9b4aefdd', 'photo-1495474472287-4d71bcdd2085'],
-  'goi-cuon': ['photo-1541014741259-de529411b96a', 'photo-1559847844-5315695dadae'],
-  'com-tam': ['photo-1569562211093-4ed0d0758f12', 'photo-1604908176997-125f25cc6f3d'],
-}
-
-const img = (id: string) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=80`
 
 function listingUrl(name: string, address: string, city: FoodCity) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -70,7 +57,7 @@ type Seed = {
 
 function toRestaurant(seed: Seed): Restaurant {
   const url = listingUrl(seed.name, seed.address, seed.city)
-  const photos = DISH_PHOTOS[seed.dish] ?? DISH_PHOTOS.pho
+  const photos = restaurantImages(seed.dish)
   return {
     id: slug(seed.name, seed.city, seed.dish),
     name: seed.name,
@@ -78,7 +65,7 @@ function toRestaurant(seed: Seed): Restaurant {
     region: REGION[seed.city],
     neighborhood: seed.neighborhood,
     address: seed.address,
-    images: photos.map(img),
+    images: photos,
     specialityDishIds: [seed.dish],
     rating: seed.rating,
     reviewCount: seed.reviews,

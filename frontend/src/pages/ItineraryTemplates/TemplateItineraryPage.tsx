@@ -3,20 +3,24 @@ import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { Footer } from '../../components/landing/Footer'
 import { Nav } from '../../components/landing/Nav'
 import { cityImages } from '../PlanBuilder/data/cityImages'
+import { parseThemedCityTemplateId, cityNameFromThemedSlug } from './data/cityStayTemplates'
 import { TEMPLATE_SECTIONS } from './data/sections'
+import type { AuthoredPlan } from './data/plans/types'
 import { cityArc, getTemplateById } from './data/templates'
+import { rankInSection } from './data/rankTemplates'
+import type { ItineraryTemplate } from './data/types'
 import { DayJumpRail } from './components/DayJumpRail'
 import { TemplateItemRow } from './components/TemplateItemRow'
 import { cityKey } from './lib/cityKey'
 import {
   PERIOD_META,
-  buildTemplateItinerary,
   daysLabel,
   paceLabel,
   peopleLabel,
   periodList,
-  type TemplateSlot,
-} from './lib/buildTemplateItinerary'
+  typicalDaysFor,
+} from './lib/templateCopy'
+import type { TemplateSlot, TemplateTrip } from './lib/buildTemplateItinerary'
 
 const DAY_SCROLL_OFFSET = 100
 
@@ -25,6 +29,22 @@ function periodCover(city: string, slots: TemplateSlot[], fallback?: string) {
   if (fromItem) return fromItem
   const photos = cityImages(cityKey(city))
   return photos[0] ?? fallback
+}
+
+async function loadAuthoredPlan(template: ItineraryTemplate): Promise<AuthoredPlan | undefined> {
+  if (template.section === 'city-stays') {
+    const { getCityStayPlan } = await import('./data/plans/cityStays')
+    return getCityStayPlan(template.id)
+  }
+  const themed = parseThemedCityTemplateId(template.id)
+  if (themed) {
+    const city = cityNameFromThemedSlug(themed.citySlug)
+    if (!city) return undefined
+    const { authoredThemedCityPlan } = await import('./data/plans/cityStayPlanBuild')
+    return authoredThemedCityPlan(city, themed.days, themed.theme)
+  }
+  const { getAuthoredPlan } = await import('./data/plans')
+  return getAuthoredPlan(template.id)
 }
 
 export function TemplateItineraryPage() {
@@ -39,18 +59,42 @@ export function TemplateItineraryPage() {
     }),
     [requestedPeople],
   )
-  const trip = useMemo(
-    () => (template ? buildTemplateItinerary(template, ctx) : null),
-    [template, ctx],
-  )
+  const [trip, setTrip] = useState<TemplateTrip | null>(null)
+  const [loadState, setLoadState] = useState<'idle' | 'loading' | 'ready' | 'missing'>('idle')
   const [activeDay, setActiveDay] = useState(1)
   const section = template
     ? TEMPLATE_SECTIONS.find((s) => s.id === template.section)
     : undefined
+  const rank = template ? rankInSection(template) : 0
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [templateId])
+
+  useEffect(() => {
+    if (!template) {
+      setTrip(null)
+      setLoadState('missing')
+      return
+    }
+    let alive = true
+    setTrip(null)
+    setLoadState('loading')
+    void Promise.all([import('./lib/buildTemplateItinerary'), loadAuthoredPlan(template)]).then(
+      ([{ buildTemplateItinerary }, authored]) => {
+        if (!alive) return
+        if (!authored) {
+          setLoadState('missing')
+          return
+        }
+        setTrip(buildTemplateItinerary(template, ctx, authored))
+        setLoadState('ready')
+      },
+    )
+    return () => {
+      alive = false
+    }
+  }, [template, ctx])
 
   useEffect(() => {
     if (!trip?.days.length) return
@@ -82,7 +126,7 @@ export function TemplateItineraryPage() {
     window.scrollTo({ top, behavior: 'smooth' })
   }
 
-  if (!template || !trip) {
+  if (!template || (loadState === 'missing' && !trip)) {
     return (
       <>
         <Nav />
@@ -101,6 +145,10 @@ export function TemplateItineraryPage() {
     )
   }
 
+  const dayCount = trip?.typicalDays ?? typicalDaysFor(template)
+  const people = trip?.people
+  const cities = trip?.keptCities ?? template.cities
+
   return (
     <>
       <Nav />
@@ -116,12 +164,18 @@ export function TemplateItineraryPage() {
 
         <header className="overflow-hidden rounded-[28px] border border-ink/8 bg-paper shadow-hero md:grid md:grid-cols-[minmax(15rem,0.42fr)_minmax(0,1fr)] md:items-stretch">
           <div className="relative min-h-[220px] overflow-hidden sm:min-h-[260px] md:min-h-[320px]">
-            <img src={template.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+            <img
+              src={template.image}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+              decoding="async"
+              fetchPriority="high"
+            />
             <span
               className="absolute left-4 top-4 inline-flex h-10 min-w-10 items-center justify-center rounded-full bg-terracotta px-2.5 font-serif text-[1.05rem] font-bold tabular-nums text-paper shadow-soft"
-              aria-label={`Rank ${trip.rankInSection} in ${section?.label ?? 'this section'}`}
+              aria-label={`Rank ${rank} in ${section?.label ?? 'this section'}`}
             >
-              #{trip.rankInSection}
+              #{rank}
             </span>
           </div>
           <div className="px-5 py-6 sm:px-8 sm:py-7">
@@ -130,7 +184,7 @@ export function TemplateItineraryPage() {
               <span className="mx-1.5 text-ink/20">·</span>
               {section?.label ?? 'Example trip'}
               <span className="mx-1.5 text-ink/20">·</span>
-              #{trip.rankInSection} in this section
+              #{rank} in this section
             </p>
             <h1 className="mt-1 font-serif text-[clamp(1.85rem,3.6vw,2.7rem)] font-semibold leading-[1.05] text-ink">
               {template.title}
@@ -146,17 +200,17 @@ export function TemplateItineraryPage() {
               ))}
             </div>
             <p className="mt-4 text-[0.92rem] font-semibold text-ink/75">
-              {daysLabel(trip.typicalDays)}
+              {daysLabel(dayCount)}
               <span className="mx-1.5 text-ink/25">·</span>
-              {peopleLabel(template, trip.people)}
+              {peopleLabel(template, people)}
               <span className="mx-1.5 text-ink/25">·</span>
               {paceLabel(template.pace)}
             </p>
-            <p className="mt-1 text-[0.86rem] text-muted">{cityArc(trip.keptCities)}</p>
+            <p className="mt-1 text-[0.86rem] text-muted">{cityArc(cities)}</p>
             <p className="mt-4 max-w-[62ch] text-[1.02rem] leading-relaxed text-ink/85">
               {template.description}
             </p>
-            {trip.tradeoffs.length ? (
+            {trip?.tradeoffs.length ? (
               <ul className="mt-4 max-w-[62ch] space-y-1.5">
                 {trip.tradeoffs.map((line) => (
                   <li
@@ -171,117 +225,128 @@ export function TemplateItineraryPage() {
           </div>
         </header>
 
-        <div className="mt-10 lg:grid lg:grid-cols-[148px_minmax(0,1fr)] lg:items-start lg:gap-8">
-          <DayJumpRail days={trip.days} activeDay={activeDay} onSelect={scrollToDay} />
+        {trip ? (
+          <div className="mt-10 lg:grid lg:grid-cols-[148px_minmax(0,1fr)] lg:items-start lg:gap-8">
+            <DayJumpRail days={trip.days} activeDay={activeDay} onSelect={scrollToDay} />
 
-          <div className="min-w-0 space-y-12">
-            {trip.days.map((day) => (
-              <section key={day.day} id={`tpl-day-${day.day}`} className="scroll-mt-24">
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <h2 className="font-serif text-[clamp(2.2rem,4.2vw,2.9rem)] font-bold leading-none tracking-tight text-ink">
-                    Day {String(day.day).padStart(2, '0')}
-                  </h2>
-                  <p className="font-serif text-[1.35rem] font-semibold leading-none text-ink/70">
-                    {day.city}
+            <div className="min-w-0 space-y-12">
+              {trip.days.map((day) => (
+                <section key={day.day} id={`tpl-day-${day.day}`} className="scroll-mt-24">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <h2 className="font-serif text-[clamp(2.2rem,4.2vw,2.9rem)] font-bold leading-none tracking-tight text-ink">
+                      Day {String(day.day).padStart(2, '0')}
+                    </h2>
+                    <p className="font-serif text-[1.35rem] font-semibold leading-none text-ink/70">
+                      {day.city}
+                    </p>
+                  </div>
+                  <p className="mt-2.5 font-serif text-[1.12rem] font-semibold leading-snug text-ink/80">
+                    {day.theme}
                   </p>
-                </div>
-                <p className="mt-2.5 font-serif text-[1.12rem] font-semibold leading-snug text-ink/80">
-                  {day.theme}
-                </p>
-                <p className="mt-1 max-w-[56ch] text-[0.9rem] text-muted">{day.blurb}</p>
-                <div className="mt-3">
-                  <TemplateItemRow slot={day.localMove} compact />
-                </div>
+                  <p className="mt-1 max-w-[56ch] text-[0.9rem] text-muted">{day.blurb}</p>
+                  <div className="mt-3">
+                    <TemplateItemRow slot={day.localMove} compact />
+                  </div>
 
-                <div className="mt-4 space-y-3">
-                  {periodList().map((period) => {
-                    const slots = day.periods[period]
-                    const note = day.openNotes[period]
-                    if (!slots.length && !note) return null
-                    const meta = PERIOD_META[period]
-                    const cover = periodCover(day.city, slots, template.image)
-                    return (
-                      <div
-                        key={period}
-                        className="flex gap-3 rounded-[16px] bg-paper/90 p-2.5 ring-1 ring-ink/6 sm:p-3"
-                      >
-                        {cover ? (
-                          <img
-                            src={cover}
-                            alt=""
-                            className="h-[5.5rem] w-[5.5rem] shrink-0 rounded-[12px] object-cover sm:h-24 sm:w-24"
-                          />
-                        ) : (
-                          <div className="grid h-[5.5rem] w-[5.5rem] shrink-0 place-items-center rounded-[12px] bg-cream sm:h-24 sm:w-24">
-                            <span className="text-[0.68rem] font-bold uppercase tracking-wide text-muted">
+                  <div className="mt-4 space-y-3">
+                    {periodList().map((period) => {
+                      const slots = day.periods[period]
+                      const note = day.openNotes[period]
+                      if (!slots.length && !note) return null
+                      const meta = PERIOD_META[period]
+                      const cover = periodCover(day.city, slots, template.image)
+                      return (
+                        <div
+                          key={period}
+                          className="flex gap-3 rounded-[16px] bg-paper/90 p-2.5 ring-1 ring-ink/6 sm:p-3"
+                        >
+                          {cover ? (
+                            <img
+                              src={cover}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                              className="h-[5.5rem] w-[5.5rem] shrink-0 rounded-[12px] object-cover sm:h-24 sm:w-24"
+                            />
+                          ) : (
+                            <div className="grid h-[5.5rem] w-[5.5rem] shrink-0 place-items-center rounded-[12px] bg-cream sm:h-24 sm:w-24">
+                              <span className="text-[0.68rem] font-bold uppercase tracking-wide text-muted">
+                                {meta.label}
+                              </span>
+                            </div>
+                          )}
+                          <div className="min-w-0 flex-1">
+                            <p className="font-serif text-[1.05rem] font-semibold leading-tight text-ink">
                               {meta.label}
-                            </span>
-                          </div>
-                        )}
-                        <div className="min-w-0 flex-1">
-                          <p className="font-serif text-[1.05rem] font-semibold leading-tight text-ink">
-                            {meta.label}
-                          </p>
-                          <p className="mt-1 flex flex-wrap items-center gap-2">
-                            <span className="rounded-full bg-cream px-2.5 py-0.5 text-[0.95rem] font-bold tabular-nums tracking-tight text-ink">
-                              {meta.windowLabel.replace(/\s*approx\.?\s*$/i, '')}
-                            </span>
-                            <span className="rounded-full bg-terracotta/12 px-2 py-0.5 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-terracotta">
-                              approx.
-                            </span>
-                          </p>
-                          <div className="mt-2 space-y-2">
-                            {slots.map((slot) => (
-                              <TemplateItemRow key={slot.id} slot={slot} compact />
-                            ))}
-                            {note ? (
-                              <p className="rounded-[12px] bg-cream px-3 py-2 text-[0.78rem] leading-relaxed text-ink/75">
-                                {note}
-                              </p>
-                            ) : null}
+                            </p>
+                            <p className="mt-1 flex flex-wrap items-center gap-2">
+                              <span className="rounded-full bg-cream px-2.5 py-0.5 text-[0.95rem] font-bold tabular-nums tracking-tight text-ink">
+                                {meta.windowLabel.replace(/\s*approx\.?\s*$/i, '')}
+                              </span>
+                              <span className="rounded-full bg-terracotta/12 px-2 py-0.5 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-terracotta">
+                                approx.
+                              </span>
+                            </p>
+                            <div className="mt-2 space-y-2">
+                              {slots.map((slot) => (
+                                <TemplateItemRow key={slot.id} slot={slot} compact />
+                              ))}
+                              {note ? (
+                                <p className="rounded-[12px] bg-cream px-3 py-2 text-[0.78rem] leading-relaxed text-ink/75">
+                                  {note}
+                                </p>
+                              ) : null}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </section>
-            ))}
+                      )
+                    })}
+                  </div>
+                </section>
+              ))}
 
-            {trip.transfers.length ? (
-              <section id="tpl-between-cities" className="scroll-mt-24 border-t border-ink/8 pt-10">
-                <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-sage">
-                  Between cities
-                </p>
-                <div className="mt-1 flex flex-wrap items-end justify-between gap-3">
-                  <h2 className="font-serif text-[1.55rem] font-semibold text-ink">How you move the country</h2>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      window.open('/getting-around', '_blank', 'noopener,noreferrer')
-                    }
-                    className="rounded-full bg-ink px-4 py-2 text-[0.78rem] font-bold text-paper transition hover:-translate-y-0.5"
-                  >
-                    See all travel in Vietnam
-                  </button>
-                </div>
-                <p className="mt-1 max-w-[56ch] text-[0.88rem] text-muted">
-                  City hops sit here — not stuffed into a morning — so the day you land can still be a day.
-                </p>
-                <div className="mt-5 space-y-2.5">
-                  {trip.transfers.map((hop) => (
-                    <div key={hop.slot.id}>
-                      <p className="mb-1.5 text-[0.68rem] font-semibold text-muted">
-                        After day {String(hop.afterDay).padStart(2, '0')}
-                      </p>
-                      <TemplateItemRow slot={hop.slot} />
-                    </div>
-                  ))}
-                </div>
-              </section>
-            ) : null}
+              {trip.transfers.length ? (
+                <section id="tpl-between-cities" className="scroll-mt-24 border-t border-ink/8 pt-10">
+                  <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-sage">
+                    Between cities
+                  </p>
+                  <div className="mt-1 flex flex-wrap items-end justify-between gap-3">
+                    <h2 className="font-serif text-[1.55rem] font-semibold text-ink">How you move the country</h2>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        window.open('/getting-around', '_blank', 'noopener,noreferrer')
+                      }
+                      className="rounded-full bg-ink px-4 py-2 text-[0.78rem] font-bold text-paper transition hover:-translate-y-0.5"
+                    >
+                      See all travel in Vietnam
+                    </button>
+                  </div>
+                  <p className="mt-1 max-w-[56ch] text-[0.88rem] text-muted">
+                    City hops sit here — not stuffed into a morning — so the day you land can still be a day.
+                  </p>
+                  <div className="mt-5 space-y-2.5">
+                    {trip.transfers.map((hop) => (
+                      <div key={hop.slot.id}>
+                        <p className="mb-1.5 text-[0.68rem] font-semibold text-muted">
+                          After day {String(hop.afterDay).padStart(2, '0')}
+                        </p>
+                        <TemplateItemRow slot={hop.slot} />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="mt-10 space-y-4" aria-busy="true" aria-live="polite">
+            <p className="text-[0.88rem] text-muted">Loading this itinerary…</p>
+            <div className="h-28 animate-pulse rounded-[16px] bg-paper ring-1 ring-ink/6" />
+            <div className="h-28 animate-pulse rounded-[16px] bg-paper ring-1 ring-ink/6" />
+            <div className="h-28 animate-pulse rounded-[16px] bg-paper ring-1 ring-ink/6" />
+          </div>
+        )}
       </main>
       <Footer />
     </>

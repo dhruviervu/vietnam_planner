@@ -5,9 +5,8 @@ import type {
   StayFilterId,
   StayProperty,
 } from './types'
-import { buildExtraStaysForClusters } from './stayExtras'
 import { STAY_CLUSTERS } from './clusters'
-import { getStayCity } from './cities'
+import { getStayCity, STAY_CITIES } from './cities'
 import { FILTER_LABELS } from './labels'
 
 type StaySeed = Omit<
@@ -326,10 +325,29 @@ function enrichStay(
   }
 }
 
-export const STAY_PROPERTIES: StayProperty[] = [
-  ...SEEDS,
-  ...buildExtraStaysForClusters(),
-].map(enrichStay)
+export const STAY_PROPERTIES: StayProperty[] = SEEDS.map(enrichStay)
+
+const MAX_STAYS_PER_CITY = 15
+
+function capStaysForCity(stays: StayProperty[]): StayProperty[] {
+  if (stays.length <= MAX_STAYS_PER_CITY) return stays
+  const byCluster = new Map<string, StayProperty[]>()
+  for (const stay of stays) {
+    const list = byCluster.get(stay.clusterId) ?? []
+    list.push(stay)
+    byCluster.set(stay.clusterId, list)
+  }
+  const queues = [...byCluster.values()]
+  const picked: StayProperty[] = []
+  let i = 0
+  while (picked.length < MAX_STAYS_PER_CITY && queues.some((q) => q.length > 0)) {
+    const queue = queues[i % queues.length]
+    const next = queue.shift()
+    if (next) picked.push(next)
+    i += 1
+  }
+  return picked
+}
 
 export const STAY_PROPERTY_BY_ID = Object.fromEntries(
   STAY_PROPERTIES.map((property) => [property.id, property]),
@@ -350,11 +368,13 @@ export function getStaysForCity(cityId: StayCityId): StayProperty[] {
   const ids = new Set(
     STAY_CLUSTERS.filter((cluster) => cluster.cityId === cityId).map((cluster) => cluster.id),
   )
-  return STAY_PROPERTIES.filter(
-    (property) => ids.has(property.clusterId) && !isAttractionStayName(property.name),
+  return capStaysForCity(
+    STAY_PROPERTIES.filter(
+      (property) => ids.has(property.clusterId) && !isAttractionStayName(property.name),
+    ),
   )
 }
 
 export function getAllStays(): StayProperty[] {
-  return STAY_PROPERTIES.filter((property) => !isAttractionStayName(property.name))
+  return STAY_CITIES.flatMap((city) => getStaysForCity(city.id))
 }

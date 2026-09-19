@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 
-const HERO_IMG =
-  'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=1600&q=80'
+import { wikiFile } from '../data/foodMedia'
+
+const HERO_IMG = wikiFile('Pho_bo.jpg', 1600)
 
 const CUISINE_VIDEO = 'https://www.youtube.com/embed/obRDCiSwjCs'
 
@@ -35,10 +36,6 @@ export function TasteHero() {
           <p className="mt-3 max-w-[40ch] text-[0.95rem] leading-relaxed text-paper/85">
             Discover the dishes, flavours and food traditions that make Vietnam worth travelling
             for.
-          </p>
-          <p className="mt-4 max-w-[42ch] text-[0.82rem] leading-snug text-paper/65">
-            We help you understand what is worth eating first. Then we help you decide where to eat
-            it.
           </p>
         </motion.div>
 

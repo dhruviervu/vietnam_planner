@@ -31,26 +31,55 @@ function titleFromFirstSentence(para: string): string {
   return title.replace(/[,;:–-]+$/, '').trim()
 }
 
-export function titleGuideParagraphs(guide: string, subject?: string): TitledParagraph[] {
-  const paras = guide
+type ParsedBlock = { title?: string; body: string; explicit: boolean }
+
+/** Split on blank lines, joining a lone `## Title` with the next block. */
+export function parseGuideBlocks(guide: string): ParsedBlock[] {
+  const raw = guide
     .split(/\n\n+/)
     .map((p) => p.trim())
     .filter(Boolean)
 
-  const used = new Set<string>()
-  return paras.map((body, index) => {
-    let title = ''
-    if (index === 0) title = subject?.trim() || 'The setting'
-    else {
-      const match = TITLE_RULES.find((rule) => rule.test.test(body))
-      title = match?.title ?? titleFromFirstSentence(body)
+  const out: ParsedBlock[] = []
+  for (let i = 0; i < raw.length; i++) {
+    const block = raw[i]!
+    const headed = block.match(/^##\s+(.+?)(?:\n+([\s\S]+))?$/)
+    if (headed) {
+      const title = headed[1]!.trim()
+      let body = (headed[2] ?? '').trim()
+      if (!body && raw[i + 1] && !raw[i + 1]!.startsWith('##')) {
+        body = raw[++i]!
+      }
+      if (body) out.push({ title, body, explicit: true })
+      continue
     }
-    if (index === paras.length - 1 && !TITLE_RULES.some((rule) => rule.test.test(body))) {
+    out.push({ body: block, explicit: false })
+  }
+  return out
+}
+
+export function titleGuideParagraphs(guide: string, subject?: string): TitledParagraph[] {
+  const blocks = parseGuideBlocks(guide)
+  const used = new Set<string>()
+
+  return blocks.map((block, index) => {
+    let title = ''
+    if (block.explicit && block.title) {
+      title = block.title
+    } else if (index === 0) {
+      title = subject?.trim() || 'The setting'
+    } else {
+      const match = TITLE_RULES.find((rule) => rule.test.test(block.body))
+      title = match?.title ?? titleFromFirstSentence(block.body)
+    }
+
+    const last = index === blocks.length - 1
+    if (last && !block.explicit && !TITLE_RULES.some((rule) => rule.test.test(block.body))) {
       title = 'A last thought'
     }
-    if (used.has(title)) title = titleFromFirstSentence(body)
+    if (used.has(title)) title = titleFromFirstSentence(block.body)
     if (used.has(title)) title = `${title} (${index + 1})`
     used.add(title)
-    return { title, body }
+    return { title, body: block.body }
   })
 }

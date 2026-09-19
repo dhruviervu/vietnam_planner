@@ -1,4 +1,4 @@
-import { experiencesCityPath } from '../../PlanBuilder/services/cityCatalog'
+import { experiencesCityPath } from '../../PlanBuilder/services/citySlug'
 import type { TemplateSlot, TemplateSlotKind } from './buildTemplateItinerary'
 
 export function slotKindHref(kind: TemplateSlotKind, city?: string) {

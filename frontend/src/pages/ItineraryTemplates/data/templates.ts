@@ -1,9 +1,13 @@
 import type { ItineraryTemplate } from './types'
+import { CITY_STAY_TEMPLATES, THEMED_CITY_TEMPLATES, SLOW_CITY_TEMPLATES } from './cityStayTemplates'
 
 const img = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1200&q=80`
 
 export const ITINERARY_TEMPLATES: ItineraryTemplate[] = [
+  ...CITY_STAY_TEMPLATES,
+  ...THEMED_CITY_TEMPLATES,
+  ...SLOW_CITY_TEMPLATES,
   // —— Solo ——
   {
     id: 'vietnam-your-way',
@@ -654,7 +658,7 @@ export const ITINERARY_TEMPLATES: ItineraryTemplate[] = [
     title: 'Take It Slow in Vietnam',
     section: 'relaxed',
     description:
-      'Seven unhurried days on the classic spine: a West Lake landing, a Ha Long day-boat without the overnight crush, Hue’s citadel at walking speed, Hai Van into Hoi An lanterns, a Cam Thanh morning, then Saigon museums and Cu Chi before SGN. Trains, not stacked sleepers. Mornings are allowed to start at ten.',
+      'Seven unhurried days on the classic spine: Hanoi, Hue, Hoi An, Da Nang, then Saigon. Three sights from 10:00 each day, room between them, a massage when the city lists one. Trains, not stacked sleepers.',
     tags: ['Relaxing', 'First-timer'],
     pace: 'relaxed',
     minDays: 7,
@@ -669,7 +673,7 @@ export const ITINERARY_TEMPLATES: ItineraryTemplate[] = [
     title: 'Vietnam, at Your Own Pace',
     section: 'relaxed',
     description:
-      'Six countryside days with holes on purpose: a Sapa valley walk, Fansipan only if the cloud lifts, Tam Coc bikes, a Trang An boat, Hang Mua if you want the steps, then Train Street and West Lake before Noi Bai. No obligation to “see the rest.”',
+      'Six countryside days: Sapa, Ninh Binh, then Hanoi. Three well-spaced stops from 10:00, herbal bath in Sapa if it’s listed, no obligation to see the rest of the country.',
     tags: ['Relaxing', 'Solo'],
     pace: 'relaxed',
     minDays: 6,
@@ -684,7 +688,7 @@ export const ITINERARY_TEMPLATES: ItineraryTemplate[] = [
     title: 'Slow Days & Sunny Places',
     section: 'relaxed',
     description:
-      'Five sunny central days: My Khe and Lady Buddha, Marble Mountains into Hoi An, An Bang with no schedule, a Hai Van train to Hue only if you want the citadel, then Han Market before DAD. Beach first. Heritage as a side dish.',
+      'Five sunny central days on My Khe and in Hoi An: three sights from 10:00, sand and lanterns, a massage when it’s listed. Beach first. Heritage as a side dish.',
     tags: ['Relaxing', 'Beach'],
     pace: 'relaxed',
     minDays: 5,
@@ -693,6 +697,98 @@ export const ITINERARY_TEMPLATES: ItineraryTemplate[] = [
     peopleMax: 4,
     cities: ['Da Nang', 'Hoi An'],
     image: img('photo-1540541338287-41700207dee6'),
+  },
+
+  // —— Slow ——
+  {
+    id: 'slow-north-water',
+    title: 'North Water, Unhurried',
+    section: 'slow',
+    description:
+      'Seven days on the water: Hanoi lakes, Ha Long’s shore, then Ninh Binh boats. Three sights from 10:00, two to four hours between them — not a 7am start just because a gate opens at dawn.',
+    tags: ['Relaxing', 'First-timer'],
+    pace: 'relaxed',
+    minDays: 7,
+    maxDays: 7,
+    peopleMin: 1,
+    peopleMax: 4,
+    cities: ['Hanoi', 'Ha Long', 'Ninh Binh'],
+    image: img('photo-1559592413-7cec4d0cae2b'),
+  },
+  {
+    id: 'slow-imperial-lanterns',
+    title: 'Citadel, then Lanterns',
+    section: 'slow',
+    description:
+      'Seven slow central days: Hue’s citadel at walking speed, Thiên Mụ and the river, one tomb, then Hoi An’s old town, basket boats, An Bang, and lanterns. Plenty of empty afternoon. No Da Nang hop panic.',
+    tags: ['Relaxing', 'Couple'],
+    pace: 'relaxed',
+    minDays: 7,
+    maxDays: 7,
+    peopleMin: 1,
+    peopleMax: 4,
+    cities: ['Hue', 'Hoi An'],
+    image: img('photo-1528127269322-539801943592'),
+  },
+  {
+    id: 'slow-sand-and-lanterns',
+    title: 'Sand and Lanterns',
+    section: 'slow',
+    description:
+      'Seven days of Hoi An and My Khe: ancient town, Cam Thanh, An Bang, lanterns, then Da Nang sand, Sơn Trà, and a Marble Mountains look. Beach and boats first. Heritage as a side dish.',
+    tags: ['Relaxing', 'Beach'],
+    pace: 'relaxed',
+    minDays: 7,
+    maxDays: 7,
+    peopleMin: 1,
+    peopleMax: 4,
+    cities: ['Hoi An', 'Da Nang'],
+    image: img('photo-1540541338287-41700207dee6'),
+  },
+  {
+    id: 'slow-two-coasts',
+    title: 'Two Coasts, No Rush',
+    section: 'slow',
+    description:
+      'Eight beach days: Nha Trang promenade, Po Nagar, one island outing, then Phu Quoc sand, Sao Beach, Hòn Thơm, and a night market. Unpack twice. Swim more than you tour.',
+    tags: ['Relaxing', 'Beach'],
+    pace: 'relaxed',
+    minDays: 8,
+    maxDays: 8,
+    peopleMin: 1,
+    peopleMax: 4,
+    cities: ['Nha Trang', 'Phu Quoc'],
+    image: img('photo-1507525428034-b723cf961d3e'),
+  },
+  {
+    id: 'slow-valley-and-boats',
+    title: 'Valley, then Boats',
+    section: 'slow',
+    description:
+      'Seven highland-to-karst days: Cat Cat and Muong Hoa with empty hours, Fansipan only if the cloud lifts, then Trang An, Tam Coc bikes, and Bái Đính. No Ha Giang add-on. The valley is the point.',
+    tags: ['Relaxing', 'Solo'],
+    pace: 'relaxed',
+    minDays: 7,
+    maxDays: 7,
+    peopleMin: 1,
+    peopleMax: 4,
+    cities: ['Sapa', 'Ninh Binh'],
+    image: img('photo-1506905925346-21bda4d32df4'),
+  },
+  {
+    id: 'slow-mekong-island',
+    title: 'River Dawn, Island Week',
+    section: 'slow',
+    description:
+      'Seven south days: Can Tho’s riverfront from 10:00, then Phu Quoc sand, Sao, Hòn Thơm, and a spa hour when it’s listed. No dawn market just because it opens at six.',
+    tags: ['Relaxing', 'Beach'],
+    pace: 'relaxed',
+    minDays: 7,
+    maxDays: 7,
+    peopleMin: 1,
+    peopleMax: 4,
+    cities: ['Can Tho', 'Phu Quoc'],
+    image: img('photo-1559128010-7c1ad6e1b6a5'),
   },
 
   // —— Beaches ——
@@ -1166,6 +1262,8 @@ export function cityArc(cities: string[]) {
   return cities.join(' → ')
 }
 
+const TEMPLATE_BY_ID = new Map(ITINERARY_TEMPLATES.map((t) => [t.id, t]))
+
 export function getTemplateById(id: string) {
-  return ITINERARY_TEMPLATES.find((t) => t.id === id)
+  return TEMPLATE_BY_ID.get(id)
 }

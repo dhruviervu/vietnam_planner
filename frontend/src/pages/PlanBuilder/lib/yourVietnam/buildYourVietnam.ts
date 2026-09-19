@@ -1,7 +1,7 @@
 import { EXPERIENCES } from '../../data/experiences'
 import { CITY_ACTIVITIES, type CityActivity } from '../../data/activities'
 import { HOTELS } from '../../data/hotels'
-import { SHOPPING_ITEMS } from '../../data/shopping'
+import { SHOPPING_ITEMS, shoppingDurationLabel, shoppingHours } from '../../data/shopping'
 import { findLeg, formatDuration } from '../../data/transport'
 import { getExperienceImages } from '../pricing'
 import { getActivityImages } from '../../data/activities'
@@ -22,10 +22,7 @@ import {
 } from './links'
 import {
   activityHours,
-  allocateCityDayCounts,
-  applyUserNightOverrides,
   buildTripLevelIssues,
-  cityWeight,
   decideOptionalItems,
   findThinCities,
   occupancyConflicts,
@@ -34,11 +31,9 @@ import {
   isCafeRestaurant,
   isSnackRestaurant,
   restaurantsForPlace,
-  suggestAddsForCity,
   suggestDropsForDay,
   suggestMissingCoreCities,
   CORE_CITY_META,
-  type CityDayWeight,
   type OccupancyFamily,
   type TripShapeInput,
 } from './tripIntelligence'
@@ -46,21 +41,21 @@ import {
   dailySpendBand,
   effectiveDailyUsd,
   effectiveHolidayKind,
-  addCapForKind,
   hourBudgetForTrip,
   perDayCapacityForKind,
   styleFromHolidayKind,
 } from './holidayKind'
 import {
-  northToSouth,
-  placeCoords,
   placeLabel,
   placeLegRegion,
   resolvePlaceId,
   experienceCityForPlace,
 } from './cityPins'
-import { clusterDaySightsByProximity } from './sightOrder'
-import { PIN_BY_SOURCE_ID } from './itineraryPinCatalog'
+import { cityContext, hubSpokeTransferCopy, orderTripCities } from './cityPlanning'
+import { isIncludedCompanion, planningNoteFor } from './sightPlanning'
+import { includesOnboardMeal } from './dayCapacity'
+import { packTripStay, type PackedTripCity } from './dayAllocation'
+import { mealWindowLabel } from './planningProfile'
 import type { PlaceId } from '../../../GettingAround/data/types'
 import {
   PERIOD_META,
@@ -68,6 +63,7 @@ import {
   type DayAgenda,
   type DayCosts,
   type DayPeriod,
+  type ItineraryDaySlot,
   type ItineraryItem,
   type LocalTransferHint,
   type PeriodId,
@@ -95,6 +91,7 @@ export type BuildYourVietnamInput = {
   hotelIds: string[]
   chosenStayId: string | null
   restaurantIds: string[]
+  restaurantMealSlots?: Record<string, 'breakfast' | 'lunch' | 'dinner'>
   shoppingIds: string[]
   transportChoices: Record<string, TransportMode>
   experienceMeta: Record<string, ExperienceSelectionMeta>
@@ -102,6 +99,10 @@ export type BuildYourVietnamInput = {
   removedItemIds?: string[]
   skippedSuggestionIds?: string[]
   cityNightOverrides?: Record<string, number>
+  itineraryDaySlots?: ItineraryDaySlot[] | null
+  itineraryDaySlotOverrides?: Record<string, string>
+  itinerarySightOrder?: Record<string, string[]>
+  breakfastAtHotel?: boolean
 }
 
 type CityBucket = {
@@ -112,6 +113,58 @@ type CityBucket = {
   activities: CityActivity[]
   hotels: Hotel[]
   shopping: (typeof SHOPPING_ITEMS)[number][]
+}
+
+function preferredDaysByPlace(slots?: ItineraryDaySlot[] | null): Record<string, number> {
+  const out: Record<string, number> = {}
+  for (const slot of slots ?? []) {
+    if (!slot.placeId || slot.blank) continue
+    out[slot.placeId] = (out[slot.placeId] ?? 0) + 1
+  }
+  return out
+}
+
+/** Keep hand-pinned stops on the calendar day the traveller added them to. */
+function applyUserPinsToPacked(
+  packed: PackedTripCity[],
+  slots: ItineraryDaySlot[] | null | undefined,
+  pins?: Record<string, string>,
+  tours?: Record<string, string[]>,
+): PackedTripCity[] {
+  const reusable = (slots ?? []).filter((s) => Boolean(s.placeId) && !s.blank)
+  if (reusable.length === 0) return packed
+  return packed.map((city) => {
+    const citySlots = reusable.filter((s) => s.placeId === city.placeId)
+    if (citySlots.length === 0 || city.days.length === 0) return city
+    const days = city.days.map((row) => [...row])
+    const authoredTours = citySlots.some((s) => (tours?.[`${s.id}:tour`]?.length ?? 0) > 0)
+    if (authoredTours) {
+      while (days.length < citySlots.length) days.push([])
+    }
+    const last = Math.max(0, days.length - 1)
+    const slotIndex = new Map(
+      citySlots.map((s, i) => [s.id, authoredTours ? i : Math.min(i, last)]),
+    )
+    const moveTo = (id: string, slotId: string) => {
+      if (!id) return
+      const dest = slotIndex.get(slotId)
+      if (dest == null) return
+      for (const row of days) {
+        const j = row.indexOf(id)
+        if (j >= 0) row.splice(j, 1)
+      }
+      if (!days[dest].includes(id)) days[dest].push(id)
+    }
+    for (const [id, slotId] of Object.entries(pins ?? {})) {
+      if (slotIndex.has(slotId)) moveTo(id, slotId)
+    }
+    for (const slot of citySlots) {
+      for (const id of tours?.[`${slot.id}:tour`] ?? []) {
+        if (slotIndex.has(slot.id)) moveTo(id, slot.id)
+      }
+    }
+    return { ...city, days }
+  })
 }
 
 function addDaysLabel(iso: string, offset: number) {
@@ -137,108 +190,11 @@ function dateRangeLabel(start: string, days: number) {
   return `${fmt(a)} – ${fmt(b)}`
 }
 
-function slotPeriod(
-  meta: ExperienceSelectionMeta | undefined,
-  fallback: PeriodId,
-  exp?: Experience,
-): PeriodId {
-  const slot = meta?.preferredSlot
-  if (slot === 'morning' || slot === 'afternoon' || slot === 'evening') return slot
-  if (exp) {
-    const q = exp.slotQuality
-    const ranked: Array<[PeriodId, number]> = [
-      ['morning', q.morning],
-      ['afternoon', q.afternoon],
-      ['evening', q.evening],
-    ]
-    ranked.sort((a, b) => b[1] - a[1])
-    return ranked[0][0]
-  }
-  return fallback
-}
-
-const PERIOD_CAP: Record<PeriodId, number> = {
-  morning: 3.75,
-  afternoon: 3.5,
-  evening: 2.75,
-  night: 10,
-}
-
-function hoursOfItem(it: ItineraryItem): number {
-  const label = it.durationLabel?.toLowerCase() ?? ''
-  if (/half\s*day/.test(label)) return 4
-  if (/full\s*day/.test(label)) return 7
-  const nums = it.durationLabel?.match(/(\d+(?:\.\d+)?)/g)?.map(Number) ?? []
-  if (nums.length >= 2) return (nums[0] + nums[1]) / 2
-  if (nums.length === 1) return Math.max(nums[0], 1.25)
-  return 1.5
-}
-
-function usedPeriodHours(periodItems: Record<PeriodId, ItineraryItem[]>, p: PeriodId): number {
-  return periodItems[p].reduce((s, it) => s + hoursOfItem(it), 0)
-}
-
-function familyOfPackedItem(it: ItineraryItem): OccupancyFamily | null {
-  if (it.kind === 'meal') {
-    return it.period === 'evening' || /^Dinner/.test(it.name) ? 'sit-down-dinner' : 'sit-down-lunch'
-  }
-  if (it.kind === 'experience' && it.sourceId) {
-    const e = EXPERIENCES.find((x) => x.id === it.sourceId)
-    return e ? occupancyFamilyExperience(e) : null
-  }
-  if (it.kind === 'activity' && it.sourceId) {
-    const a = CITY_ACTIVITIES.find((x) => x.id === it.sourceId)
-    return a ? occupancyFamilyActivity(a) : null
-  }
-  return null
-}
-
 function noteFamily(family: OccupancyFamily | null, period: PeriodId, dayFamilies: Set<string>) {
   if (!family) return
   dayFamilies.add(family)
   if (family === 'food-tour' && period === 'evening') dayFamilies.add('food-tour-evening')
   if (family === 'cafe' && period === 'afternoon') dayFamilies.add('cafe-afternoon')
-}
-
-function preferredActPeriod(act: CityActivity): PeriodId {
-  const name = act.name.toLowerCase()
-  if (/morning|dawn|sunrise/.test(name)) return 'morning'
-  if (/evening|sunset|night|lantern/.test(name)) return 'evening'
-  if (act.kind === 'music' || act.kind === 'dance' || act.kind === 'beach') return 'evening'
-  if (act.kind === 'class' || act.kind === 'workshop' || occupancyFamilyActivity(act) === 'cooking') {
-    return 'morning'
-  }
-  if (act.kind === 'food') return 'afternoon'
-  return 'afternoon'
-}
-
-function pickOpenPeriod(
-  preferred: PeriodId,
-  itemHours: number,
-  family: OccupancyFamily | null,
-  periodItems: Record<PeriodId, ItineraryItem[]>,
-  dayFamilies: Set<string>,
-  reserved: (p: PeriodId) => number = () => 0,
-): PeriodId | null {
-  const fits = (p: PeriodId) =>
-    usedPeriodHours(periodItems, p) + itemHours + reserved(p) <= PERIOD_CAP[p] + 0.6
-  const order: PeriodId[] = [preferred, 'morning', 'afternoon', 'evening']
-  const seen = new Set<PeriodId>()
-  for (const p of order) {
-    if (seen.has(p) || p === 'night') continue
-    seen.add(p)
-    if (family === 'nightlife' && p === 'morning') continue
-    if (occupancyConflicts(family, dayFamilies, p)) continue
-    if (fits(p)) return p
-  }
-  let least: PeriodId | null = null
-  for (const p of ['morning', 'afternoon', 'evening'] as PeriodId[]) {
-    if (family === 'nightlife' && p === 'morning') continue
-    if (occupancyConflicts(family, dayFamilies, p)) continue
-    if (!fits(p)) continue
-    if (!least || usedPeriodHours(periodItems, p) < usedPeriodHours(periodItems, least)) least = p
-  }
-  return least
 }
 
 function sortAfternoon(items: ItineraryItem[]): ItineraryItem[] {
@@ -354,7 +310,14 @@ function mealItem(
     name: `${mealLabel} · ${r.name}`,
     selectionState: state,
     period,
-    timeLabel: mealLabel === 'Lunch' ? 'Around midday' : 'Evening meal',
+    timeLabel:
+      mealLabel === 'Lunch'
+        ? mealWindowLabel('lunch')
+        : mealLabel === 'Breakfast'
+          ? mealWindowLabel('breakfast')
+          : mealLabel === 'Evening meal'
+            ? mealWindowLabel('evening')
+            : mealWindowLabel('dinner'),
     durationLabel: state === 'recommended' && r.priceUsd <= 8 ? '~60–90 min' : '~45–75 min',
     locationLabel: r.city,
     city: r.city,
@@ -363,6 +326,7 @@ function mealItem(
     costUsd: r.priceUsd,
     costBand: r.priceLabel,
     icon: '🍜',
+    thumb: r.image,
     mapsUrl: restaurantMapsUrl(r.name, r.city, r.address),
     externalLabel: 'Open in Google Maps ↗',
     tags: ['Food', state === 'selected' ? 'Selected' : 'Recommended', r.cuisine],
@@ -374,27 +338,57 @@ function mealItem(
   }
 }
 
-function simpleMeal(city: string, region: string, period: PeriodId, dayNumber: number): ItineraryItem {
-  const lunch = period === 'afternoon'
+function simpleMeal(
+  city: string,
+  region: string,
+  period: PeriodId,
+  dayNumber: number,
+  meal: 'lunch' | 'dinner' | 'evening' | 'breakfast' = period === 'afternoon' ? 'lunch' : 'dinner',
+): ItineraryItem {
+  const names = {
+    breakfast: 'Breakfast',
+    lunch: 'Market lunch · keep it simple',
+    evening: 'Evening meal',
+    dinner: 'Simple local dinner',
+  }
   return {
-    id: `simple-meal:${city}:${period}:${dayNumber}`,
+    id: `simple-meal:${city}:${period}:${meal}:${dayNumber}`,
     kind: 'meal',
-    name: lunch ? 'Market lunch · keep it simple' : 'Simple local dinner',
+    name: names[meal],
     selectionState: 'recommended',
     period,
-    timeLabel: lunch ? 'Around midday' : 'Evening meal',
-    durationLabel: '~60–90 min',
+    timeLabel: mealWindowLabel(meal === 'evening' ? 'evening' : meal),
+    durationLabel: meal === 'breakfast' ? '08:00–09:30' : '~60 min',
     locationLabel: city,
     city,
     region,
-    description:
-      'A stall or market meal — cheaper, a little slower than a sit-down, and how many travellers eat on a tight daily budget.',
-    costUsd: 4,
+    description: 'A fixed meal window — sights are scheduled around this, not through it.',
+    costUsd: meal === 'breakfast' ? 3 : 4,
     costBand: 'Low',
     icon: '🥢',
-    mapsUrl: placeMapsUrl('street food', city),
-    tags: ['Food', 'Recommended', 'Budget'],
-    reason: 'Tight daily budget — cooking or markets save money and take a bit more of the day.',
+    mapsUrl: placeMapsUrl(meal === 'breakfast' ? 'breakfast' : 'street food', city),
+    tags: ['Food', 'Recommended'],
+    reason: `Fixed ${names[meal].toLowerCase()} window so the day does not skip eating.`,
+  }
+}
+
+function hotelBreakfast(city: string, region: string, dayNumber: number, hotelName?: string): ItineraryItem {
+  return {
+    id: `breakfast:hotel:${city}:${dayNumber}`,
+    kind: 'meal',
+    name: hotelName ? `Breakfast · ${hotelName}` : 'Breakfast · hotel',
+    selectionState: 'system',
+    period: 'morning',
+    timeLabel: mealWindowLabel('breakfast'),
+    durationLabel: '08:00–09:30',
+    locationLabel: city,
+    city,
+    region,
+    description: 'Hotel breakfast before the first sight. The day starts after this window.',
+    costUsd: 0,
+    icon: '🥐',
+    tags: ['Food', 'Breakfast'],
+    reason: 'Fixed breakfast 08:00–09:30 — sights begin after.',
   }
 }
 
@@ -422,53 +416,47 @@ function pickRestaurant(
   return { restaurant: cycle[dayIndex % cycle.length], fromUser: user.length > 0 }
 }
 
-function packCityDays(
+/**
+ * Map a trip-level day assignment back onto catalog rows for one city.
+ */
+function materializePackedDays(
   experiences: Experience[],
   activities: CityActivity[],
-  dayCount: number,
-): { exps: Experience[][]; acts: CityActivity[][] } {
-  const n = Math.max(1, dayCount)
-  const slots = Array.from({ length: n }, () => ({
-    exps: [] as Experience[],
-    acts: [] as CityActivity[],
-    hours: 0,
-    families: new Set<string>(),
-  }))
-  type Row =
-    | { kind: 'exp'; item: Experience; hours: number; family: OccupancyFamily | null }
-    | { kind: 'act'; item: CityActivity; hours: number; family: OccupancyFamily | null }
-  const rows: Row[] = [
-    ...experiences.map((item) => ({
-      kind: 'exp' as const,
-      item,
-      hours: item.durationHours || 2.5,
-      family: occupancyFamilyExperience(item),
-    })),
-    ...activities.map((item) => ({
-      kind: 'act' as const,
-      item,
-      hours: activityHours(item),
-      family: occupancyFamilyActivity(item),
-    })),
-  ]
-  rows.sort((a, b) => b.hours - a.hours)
-  for (const row of rows) {
-    let best = 0
-    for (let i = 1; i < n; i++) {
-      const clashI = row.family ? occupancyConflicts(row.family, slots[i].families) : false
-      const clashB = row.family ? occupancyConflicts(row.family, slots[best].families) : false
-      if (clashI !== clashB) {
-        if (!clashI) best = i
-        continue
-      }
-      if (slots[i].hours < slots[best].hours) best = i
-    }
-    if (row.kind === 'exp') slots[best].exps.push(row.item)
-    else slots[best].acts.push(row.item)
-    slots[best].hours += row.hours
-    if (row.family) slots[best].families.add(row.family)
+  shopping: (typeof SHOPPING_ITEMS)[number][],
+  planned: string[][],
+): {
+  exps: Experience[][]
+  acts: CityActivity[][]
+  shops: (typeof SHOPPING_ITEMS)[number][][]
+  ordered: string[][]
+  unscheduled: { experiences: Experience[]; activities: CityActivity[] }
+} {
+  const expById = new Map(experiences.map((e) => [e.id, e]))
+  const actById = new Map(activities.map((a) => [a.id, a]))
+  const shopById = new Map(shopping.map((s) => [s.id, s]))
+  const n = planned.length
+
+  const exps: Experience[][] = []
+  const acts: CityActivity[][] = []
+  const shops: (typeof SHOPPING_ITEMS)[number][][] = []
+  for (let i = 0; i < n; i++) {
+    const ordered = planned[i] ?? []
+    exps.push(ordered.map((id) => expById.get(id)).filter((e): e is Experience => Boolean(e)))
+    acts.push(ordered.map((id) => actById.get(id)).filter((a): a is CityActivity => Boolean(a)))
+    shops.push(
+      ordered
+        .map((id) => shopById.get(id))
+        .filter((s): s is (typeof SHOPPING_ITEMS)[number] => Boolean(s)),
+    )
   }
-  return { exps: slots.map((s) => s.exps), acts: slots.map((s) => s.acts) }
+
+  return {
+    exps,
+    acts,
+    shops,
+    ordered: planned,
+    unscheduled: { experiences: [], activities: [] },
+  }
 }
 
 /**
@@ -513,23 +501,26 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
   const chosen = input.chosenStayId
     ? HOTELS.find((h) => h.id === input.chosenStayId)
     : undefined
-  const userRestaurants = collectUserRestaurants(input.restaurantIds, removed)
+    const userRestaurants = collectUserRestaurants(input.restaurantIds, removed)
+  const mealSlotOf = (id: string): 'breakfast' | 'lunch' | 'dinner' =>
+    input.restaurantMealSlots?.[id] ?? 'lunch'
   const shopping = SHOPPING_ITEMS.filter(
     (s) => input.shoppingIds.includes(s.id) && !removed.has(`shop:${s.id}`),
   )
 
-  const isEmpty =
+  const catalogEmpty =
     experiences.length === 0 &&
     activities.length === 0 &&
     userRestaurants.length === 0 &&
     hotels.length === 0 &&
     shopping.length === 0
+  const ownedSlots = (input.itineraryDaySlots ?? []).filter((s) => Boolean(s.placeId))
 
-  if (isEmpty) {
+  if (catalogEmpty && ownedSlots.length === 0) {
     return {
       title: 'Your Vietnam',
       generatedAt: new Date().toISOString(),
-      daysCount: Math.max(1, input.days || 7),
+      daysCount: 0,
       cityCount: 0,
       experienceCount: 0,
       activityCount: 0,
@@ -537,7 +528,7 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
       stayCount: 0,
       transferCount: 0,
       travellersLabel: travellersLabel(groupSize),
-      dateRangeLabel: dateRangeLabel(input.startDate, Math.max(1, input.days || 7)),
+      dateRangeLabel: dateRangeLabel(input.startDate, 0),
       route: [],
       days: [],
       cost: {
@@ -558,84 +549,109 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
       hasNoStays: false,
       thinCities: [],
       mustVisit: [],
+      unscheduled: [],
     }
   }
 
+  const isEmpty = catalogEmpty
+
   const buckets = groupIntoCities(experiences, activities, hotels, shopping, userRestaurants)
-  const orderedIds = northToSouth(buckets.map((b) => b.placeId))
+  const orderedIds = orderTripCities(buckets.map((b) => b.placeId))
   const orderedBuckets = orderedIds
     .map((id) => buckets.find((b) => b.placeId === id)!)
     .filter(Boolean)
-
-  const requestedDays = Math.max(1, input.days || Math.max(experiences.length, 3))
-  const cityCount = Math.max(1, orderedBuckets.length)
-  const dayCount = Math.max(requestedDays, cityCount || 1)
-
-  const weights: CityDayWeight[] = orderedBuckets.map((b) => ({
-    placeId: b.placeId,
-    city: b.city,
-    region: b.region,
-    weight: cityWeight(b.experiences, b.activities, holidayKind),
-    selectedCount: b.experiences.length + b.activities.length,
-    hours:
-      b.experiences.reduce((s, e) => s + (e.durationHours || 2.5), 0) +
-      b.activities.reduce((s, a) => s + activityHours(a), 0),
-  }))
-
-  const allocated =
-    orderedBuckets.length === 0
-      ? new Map<PlaceId, number>()
-      : allocateCityDayCounts(weights, dayCount, holidayKind, hoursPerDay, capacity)
-  const dayCounts = applyUserNightOverrides(
-    allocated,
-    orderedBuckets.map((b) => b.placeId),
-    dayCount,
-    input.cityNightOverrides,
-    weights,
-  )
-
-  const dayPlaceIds: PlaceId[] = []
-  for (const b of orderedBuckets) {
-    const n = dayCounts.get(b.placeId) ?? 1
-    for (let i = 0; i < n; i++) dayPlaceIds.push(b.placeId)
-  }
-  while (dayPlaceIds.length < dayCount && orderedBuckets[0]) {
-    dayPlaceIds.push(orderedBuckets[0].placeId)
-  }
-  if (dayPlaceIds.length === 0) {
-    // Empty trip still produces a single open day
-  }
+    .filter((b) => b.experiences.length + b.activities.length + b.shopping.length > 0)
 
   const byPlace = new Map(orderedBuckets.map((b) => [b.placeId, b]))
-  const packedByPlace = new Map<
-    PlaceId,
-    { exps: Experience[][]; acts: CityActivity[][] }
-  >()
-  for (const b of orderedBuckets) {
-    const n = dayPlaceIds.filter((id) => id === b.placeId).length
-    packedByPlace.set(b.placeId, packCityDays(b.experiences, b.activities, n))
+  const slotPlaceOrder = (input.itineraryDaySlots ?? [])
+    .filter((s) => Boolean(s.placeId) && !s.blank)
+    .reduce<PlaceId[]>((acc, s) => {
+      const id = s.placeId as PlaceId
+      if (acc[acc.length - 1] !== id) acc.push(id)
+      return acc
+    }, [])
+  const orderedFromSlots = slotPlaceOrder.filter((id) => byPlace.has(id))
+  const flowIds = orderedFromSlots.length >= 2 ? orderedFromSlots : orderedIds
+  const flowBuckets = flowIds
+    .map((id) => byPlace.get(id)!)
+    .filter(Boolean)
+
+  const packedByPlace = new Map<PlaceId, ReturnType<typeof materializePackedDays>>()
+  const dayPlaceIds: PlaceId[] = []
+  const slotMeta: { id: string; blank: boolean }[] = []
+  const reusableSlots = (input.itineraryDaySlots ?? []).filter(
+    (s) => Boolean(s.placeId) && !s.blank,
+  )
+  const claimedSlotIds = new Set<string>()
+
+  const tripCities = (flowBuckets.length ? flowBuckets : orderedBuckets).map((b) => ({
+    placeId: b.placeId,
+    ids: [
+      ...b.experiences.map((e) => e.id),
+      ...b.activities.map((a) => a.id),
+      ...b.shopping.map((s) => s.id),
+    ],
+  }))
+  const tripPacked = applyUserPinsToPacked(
+    packTripStay(tripCities, input.startDate, 1, preferredDaysByPlace(input.itineraryDaySlots)),
+    input.itineraryDaySlots,
+    input.itineraryDaySlotOverrides,
+    input.itinerarySightOrder,
+  )
+
+  for (const row of tripPacked) {
+    const b = byPlace.get(row.placeId as PlaceId)
+    if (!b) continue
+    const packed = materializePackedDays(b.experiences, b.activities, b.shopping, row.days)
+    packedByPlace.set(b.placeId, packed)
+    for (let i = 0; i < packed.exps.length; i++) {
+      const has =
+        (packed.exps[i]?.length ?? 0) +
+        (packed.acts[i]?.length ?? 0) +
+        (packed.shops[i]?.length ?? 0)
+      if (has <= 0) continue
+      dayPlaceIds.push(b.placeId)
+      const reuse = reusableSlots.find(
+        (s) => s.placeId === b.placeId && !claimedSlotIds.has(s.id),
+      )
+      if (reuse) {
+        claimedSlotIds.add(reuse.id)
+        slotMeta.push({ id: reuse.id, blank: false })
+      } else {
+        slotMeta.push({ id: `auto:${b.placeId}:${i}`, blank: false })
+      }
+    }
   }
+
+  if (dayPlaceIds.length === 0 && ownedSlots.length > 0) {
+    for (const slot of ownedSlots) {
+      dayPlaceIds.push(slot.placeId as PlaceId)
+      slotMeta.push({ id: slot.id, blank: true })
+    }
+  }
+
+  const dayCount = dayPlaceIds.length
   const cursor = new Map<PlaceId, number>()
 
   const usedRestaurantIds = new Set<string>()
-  const usedShopIds = new Set<string>()
-  const selectedExpIdSet = new Set(experiences.map((e) => e.id))
-  const selectedActIdSet = new Set(activities.map((a) => a.id))
 
   const fallbackCity = orderedBuckets[0]?.city ?? 'Hanoi'
   const fallbackRegion = orderedBuckets[0]?.region ?? 'Hanoi'
   const fallbackPlace = orderedBuckets[0]?.placeId
 
-  const days: YourVietnamDay[] = Array.from({ length: dayCount }, (_, i) => {
+  const builtDays: YourVietnamDay[] = Array.from({ length: dayCount }, (_, i) => {
     const placeId = dayPlaceIds[i] ?? fallbackPlace
+    const isBlank = slotMeta[i]?.blank ?? false
+    const slotId = slotMeta[i]?.id ?? `auto:${placeId ?? 'day'}:${i}`
     const bucket = placeId ? byPlace.get(placeId) : undefined
     const city = bucket?.city ?? fallbackCity
     const region = bucket?.region ?? fallbackRegion
     const slot = placeId ? cursor.get(placeId) ?? 0 : 0
-    if (placeId) cursor.set(placeId, slot + 1)
+    if (placeId && !isBlank) cursor.set(placeId, slot + 1)
     const packed = placeId ? packedByPlace.get(placeId) : undefined
-    const exps = packed?.exps[slot] ?? []
-    const acts = packed?.acts[slot] ?? []
+    const exps = isBlank ? [] : packed?.exps[slot] ?? []
+    const acts = isBlank ? [] : packed?.acts[slot] ?? []
+    const shops = isBlank ? [] : packed?.shops[slot] ?? []
     const nightsHere = placeId ? dayPlaceIds.filter((id) => id === placeId).length : 1
 
     const hotel: Hotel | undefined =
@@ -693,237 +709,148 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
     const wantDinner =
       holidayKind === 'action' || cityUserMeals.length >= 2 || band !== 'tight'
     const wantLunch = true
-    const reserved = (p: PeriodId) => {
-      if (p === 'afternoon') {
-        if (dayFamilies.has('cooking')) return 1
-        if (wantLunch && !occupancyConflicts('sit-down-lunch', dayFamilies, 'afternoon')) return 1.5
+
+    const daySightIds = [...exps.map((e) => e.id), ...acts.map((a) => a.id), ...shops.map((s) => s.id)]
+    const orderedIds = isBlank
+      ? []
+      : packed?.ordered[slot] ?? daySightIds
+    const expFor = new Map(exps.map((e) => [e.id, e]))
+    const actFor = new Map(acts.map((a) => [a.id, a]))
+    const shopFor = new Map(shops.map((s) => [s.id, s]))
+    const period: PeriodId = 'morning'
+
+    for (const id of orderedIds) {
+      const exp = expFor.get(id)
+      if (exp) {
+        const family = occupancyFamilyExperience(exp)
+        const images = getExperienceImages(exp)
+        const optional = optionalMap.get(exp.id)
+        const suggestDrop = dropMap.has(exp.id)
+        periodItems[period].push({
+          id: `exp:${exp.id}`,
+          kind: 'experience',
+          name: exp.name,
+          selectionState: optional ? 'optional' : 'selected',
+          period,
+          timeLabel: exp.durationLabel,
+          durationLabel: exp.durationLabel,
+          locationLabel: exp.city,
+          city: exp.city,
+          region: exp.region,
+          description: exp.hook,
+          costUsd: exp.costUsd,
+          costBand: costBand(exp.costUsd),
+          icon: exp.signalEmoji || '✨',
+          thumb: images[0],
+          mapsUrl: placeMapsUrl(exp.name, exp.city),
+          tags: optional
+            ? [suggestDrop ? 'Consider dropping' : 'Optional', exp.popularityTag, exp.category]
+            : [exp.popularityTag, exp.category],
+          reason: optional?.reason,
+          sourceId: exp.id,
+          suggestDrop,
+          planningNote: planningNoteFor(exp.id, daySightIds),
+          includedStop: isIncludedCompanion(exp.id, daySightIds),
+        })
+        noteFamily(family, period, dayFamilies)
+        continue
       }
-      if (p === 'evening' && wantDinner && !occupancyConflicts('sit-down-dinner', dayFamilies, 'evening')) {
-        return 1.5
+      const act = actFor.get(id)
+      if (act) {
+        const family = occupancyFamilyActivity(act)
+        const optional = optionalMap.get(act.id)
+        const suggestDrop = dropMap.has(act.id)
+        periodItems[period].push({
+          id: `act:${act.id}`,
+          kind: 'activity',
+          name: act.name,
+          selectionState: optional ? 'optional' : 'selected',
+          period,
+          timeLabel: act.durationLabel,
+          durationLabel: act.durationLabel,
+          locationLabel: act.cityName,
+          city: act.cityName,
+          region: act.cityName,
+          description: act.hook,
+          costUsd: act.priceFromUsd ?? 0,
+          costBand: act.priceLabel,
+          icon: act.signalEmoji,
+          thumb: getActivityImages(act)[0],
+          mapsUrl: placeMapsUrl(act.name, act.cityName),
+          tags: optional
+            ? [suggestDrop ? 'Consider dropping' : 'Optional', act.popularityTag, act.kindLabel]
+            : [act.popularityTag, act.kindLabel],
+          reason:
+            optional?.reason ??
+            'Selected as a hands-on activity — we fit this beside your experiences.',
+          sourceId: act.id,
+          suggestDrop,
+          planningNote: planningNoteFor(act.id, daySightIds),
+        })
+        noteFamily(family, period, dayFamilies)
+        continue
       }
-      return 0
-    }
-
-    const fallbacks: PeriodId[] = ['morning', 'afternoon', 'evening']
-    exps.forEach((exp, ei) => {
-      const family = occupancyFamilyExperience(exp)
-      let preferred = slotPeriod(input.experienceMeta[exp.id], fallbacks[ei % fallbacks.length], exp)
-      if (family === 'cafe' && preferred === 'afternoon') preferred = 'morning'
-      const period =
-        pickOpenPeriod(preferred, exp.durationHours || 2.5, family, periodItems, dayFamilies, () => 0) ??
-        preferred
-      const images = getExperienceImages(exp)
-      const optional = optionalMap.get(exp.id)
-      const suggestDrop = dropMap.has(exp.id)
-      periodItems[period].push({
-        id: `exp:${exp.id}`,
-        kind: 'experience',
-        name: exp.name,
-        selectionState: optional ? 'optional' : 'selected',
-        period,
-        timeLabel: PERIOD_META[period].label,
-        durationLabel: exp.durationLabel,
-        locationLabel: exp.city,
-        city: exp.city,
-        region: exp.region,
-        description: exp.hook,
-        costUsd: exp.costUsd,
-        costBand: costBand(exp.costUsd),
-        icon: exp.signalEmoji || '✨',
-        thumb: images[0],
-        mapsUrl: placeMapsUrl(exp.name, exp.city),
-        tags: optional
-          ? [suggestDrop ? 'Consider dropping' : 'Optional', exp.popularityTag, exp.category]
-          : [exp.popularityTag, exp.category],
-        reason: optional?.reason,
-        sourceId: exp.id,
-        suggestDrop,
-      })
-      noteFamily(family, period, dayFamilies)
-    })
-
-    for (const act of acts) {
-      const family = occupancyFamilyActivity(act)
-      const preferred = preferredActPeriod(act)
-      const period =
-        pickOpenPeriod(preferred, activityHours(act), family, periodItems, dayFamilies, () => 0) ??
-        preferred
-      const optional = optionalMap.get(act.id)
-      const suggestDrop = dropMap.has(act.id)
-      periodItems[period].push({
-        id: `act:${act.id}`,
-        kind: 'activity',
-        name: act.name,
-        selectionState: optional ? 'optional' : 'selected',
-        period,
-        timeLabel: PERIOD_META[period].label,
-        durationLabel: act.durationLabel,
-        locationLabel: act.cityName,
-        city: act.cityName,
-        region: act.cityName,
-        description: act.hook,
-        costUsd: act.priceFromUsd ?? 0,
-        costBand: act.priceLabel,
-        icon: act.signalEmoji,
-        thumb: getActivityImages(act)[0],
-        mapsUrl: placeMapsUrl(act.name, act.cityName),
-        tags: optional
-          ? [suggestDrop ? 'Consider dropping' : 'Optional', act.popularityTag, act.kindLabel]
-          : [act.popularityTag, act.kindLabel],
-        reason:
-          optional?.reason ??
-          'Selected as a hands-on activity — we fit this beside your experiences.',
-        sourceId: act.id,
-        suggestDrop,
-      })
-      noteFamily(family, period, dayFamilies)
-    }
-
-    const usedHours =
-      exps.filter((e) => !optionalMap.has(e.id)).reduce((s, e) => s + (e.durationHours || 2.5), 0) +
-      acts.filter((a) => !optionalMap.has(a.id)).reduce((s, a) => s + activityHours(a), 0)
-    const remainingHours = Math.max(0, hoursPerDay - usedHours)
-    const spentToday =
-      exps.reduce((s, e) => s + e.costUsd, 0) +
-      acts.reduce((s, a) => s + (a.priceFromUsd ?? 0), 0)
-    const remainingDaily = Math.max(0, dailyUsd - spentToday)
-    const mainCount = exps.length + acts.length
-    let addRoom = Math.max(
-      0,
-      Math.min(capacity - mainCount, Math.floor(remainingHours / (holidayKind === 'action' ? 1.6 : 2.2))),
-    )
-    if (holidayKind === 'action') {
-      const actionCap = addCapForKind('action')
-      if (remainingHours >= 1) addRoom = Math.max(addRoom, Math.min(actionCap, Math.floor(remainingHours / 1.5) || 1))
-      if (remainingHours >= 1.25) addRoom = Math.max(addRoom, Math.min(actionCap, 2))
-    }
-    if (holidayKind === 'leisure') {
-      addRoom = Math.min(addRoom, Math.max(0, 3 - mainCount))
-    }
-    if (dayFamilies.has('cooking')) addRoom = Math.min(addRoom, holidayKind === 'action' ? 2 : 1)
-
-    const occupiedForAdds = new Set(dayFamilies)
-    if (wantLunch && !occupancyConflicts('sit-down-lunch', occupiedForAdds, 'afternoon')) {
-      occupiedForAdds.add('sit-down-lunch')
-    }
-    if (wantDinner && !occupancyConflicts('sit-down-dinner', occupiedForAdds, 'evening')) {
-      occupiedForAdds.add('sit-down-dinner')
-    }
-
-    const addGateHours = holidayKind === 'action' ? 1 : holidayKind === 'leisure' ? 1.75 : 1.75
-    if (placeId && addRoom > 0 && remainingHours >= addGateHours) {
-      const addLimit =
-        holidayKind === 'leisure' ? Math.min(addRoom, Math.max(0, 3 - mainCount)) : addRoom
-      const adds = suggestAddsForCity(
-        placeId,
-        selectedExpIdSet,
-        selectedActIdSet,
-        remainingHours,
-        remainingDaily,
-        shape,
-        skipped,
-        addLimit,
-        occupiedForAdds,
-      )
-      for (const add of adds) {
-        if (skipped.has(add.id) || skipped.has(`${add.kind}:${add.id}`)) continue
-        if (add.kind === 'experience') {
-          const exp = EXPERIENCES.find((e) => e.id === add.id)
-          if (!exp) continue
-          const family = occupancyFamilyExperience(exp)
-          let preferred = add.period ?? slotPeriod(undefined, 'afternoon', exp)
-          if (family === 'cafe' && preferred === 'afternoon') preferred = 'morning'
-          const period = pickOpenPeriod(
-            preferred,
-            exp.durationHours || 2.5,
-            family,
-            periodItems,
-            dayFamilies,
-            reserved,
-          )
-          if (!period) continue
-          selectedExpIdSet.add(exp.id)
-          const images = getExperienceImages(exp)
-          periodItems[period].push({
-            id: `rec-exp:${exp.id}`,
-            kind: 'experience',
-            name: exp.name,
-            selectionState: 'recommended',
-            period,
-            timeLabel: PERIOD_META[period].label,
-            durationLabel: exp.durationLabel,
-            locationLabel: exp.city,
-            city: exp.city,
-            region: exp.region,
-            description: exp.hook,
-            costUsd: exp.costUsd,
-            costBand: costBand(exp.costUsd),
-            icon: exp.signalEmoji || '✨',
-            thumb: images[0],
-            mapsUrl: placeMapsUrl(exp.name, exp.city),
-            tags: ['Recommended', exp.popularityTag, exp.category],
-            reason: add.reason,
-            sourceId: exp.id,
-          })
-          noteFamily(family, period, dayFamilies)
-        } else if (add.kind === 'activity') {
-          const act = CITY_ACTIVITIES.find((a) => a.id === add.id)
-          if (!act) continue
-          const family = occupancyFamilyActivity(act)
-          const preferred = add.period ?? preferredActPeriod(act)
-          const period = pickOpenPeriod(
-            preferred,
-            activityHours(act),
-            family,
-            periodItems,
-            dayFamilies,
-            reserved,
-          )
-          if (!period) continue
-          selectedActIdSet.add(act.id)
-          periodItems[period].push({
-            id: `rec-act:${act.id}`,
-            kind: 'activity',
-            name: act.name,
-            selectionState: 'recommended',
-            period,
-            timeLabel: PERIOD_META[period].label,
-            durationLabel: act.durationLabel,
-            locationLabel: act.cityName,
-            city: act.cityName,
-            region: act.cityName,
-            description: act.hook,
-            costUsd: act.priceFromUsd ?? 0,
-            costBand: act.priceLabel,
-            icon: act.signalEmoji,
-            thumb: getActivityImages(act)[0],
-            mapsUrl: placeMapsUrl(act.name, act.cityName),
-            tags: ['Recommended', act.popularityTag, act.kindLabel],
-            reason: add.reason,
-            sourceId: act.id,
-          })
-          noteFamily(family, period, dayFamilies)
-        }
+      const shop = shopFor.get(id)
+      if (shop) {
+        const hours = shoppingHours(shop)
+        periodItems[period].push({
+          id: `shop:${shop.id}`,
+          kind: 'shopping',
+          name: shop.name,
+          selectionState: 'selected',
+          period,
+          timeLabel: shoppingDurationLabel(hours),
+          durationLabel: shoppingDurationLabel(hours),
+          locationLabel: shop.city,
+          city: shop.city,
+          region: shop.region,
+          description: shop.blurb,
+          costUsd: shop.costUsd,
+          costBand: shop.costLabel,
+          icon: '🛍',
+          mapsUrl: placeMapsUrl(shop.shop || shop.name, shop.city),
+          tags: ['Shopping', shop.type],
+          reason: `Scheduled in ${shop.city}.`,
+          sourceId: shop.id,
+        })
       }
     }
-
-    const geoStart =
-      (hotel && PIN_BY_SOURCE_ID[hotel.id]
-        ? PIN_BY_SOURCE_ID[hotel.id]
-        : null) ?? (placeId ? placeCoords(placeId) : null)
-    clusterDaySightsByProximity(periodItems, geoStart)
 
     let lunch: Restaurant | undefined
     let dinner: Restaurant | undefined
     let lunchState: ItineraryItem['selectionState'] = 'selected'
     let dinnerState: ItineraryItem['selectionState'] = 'selected'
-    const skipLunch = occupancyConflicts('sit-down-lunch', dayFamilies, 'afternoon')
+    const onboardLunch = [...periodItems.morning, ...periodItems.afternoon, ...periodItems.evening]
+      .filter((it) => it.kind === 'experience' || it.kind === 'activity')
+      .some((it) => includesOnboardMeal(it))
+    const skipLunch = onboardLunch || occupancyConflicts('sit-down-lunch', dayFamilies, 'afternoon')
     const skipDinner = occupancyConflicts('sit-down-dinner', dayFamilies, 'evening')
     const dayNumber = i + 1
+    const wantBreakfast = true
+    const wantEveningMeal = true
+    const breakfastUser = cityUserMeals.find(
+      (r) => mealSlotOf(r.id) === 'breakfast' && !usedRestaurantIds.has(r.id),
+    )
+    const lunchUserPool = cityUserMeals.filter((r) => mealSlotOf(r.id) === 'lunch')
+    const dinnerUserPool = cityUserMeals.filter((r) => mealSlotOf(r.id) === 'dinner')
+
+    if (wantBreakfast) {
+      if (breakfastUser) {
+        usedRestaurantIds.add(breakfastUser.id)
+        periodItems.morning.unshift(
+          mealItem(breakfastUser, 'morning', 'Breakfast', 'selected', dayNumber),
+        )
+      } else {
+        const breakfast = input.breakfastAtHotel
+          ? hotelBreakfast(city, region, dayNumber, hotel?.name)
+          : simpleMeal(city, region, 'morning', dayNumber, 'breakfast')
+        periodItems.morning.unshift(breakfast)
+      }
+    }
 
     if (wantLunch && !skipLunch) {
       const picked = pickRestaurant(
-        cityUserMeals,
+        lunchUserPool,
         catalogMeals,
         usedRestaurantIds,
         undefined,
@@ -936,7 +863,7 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
     }
     if (wantDinner && !skipDinner) {
       const picked = pickRestaurant(
-        cityUserMeals,
+        dinnerUserPool.length ? dinnerUserPool : cityUserMeals.filter((r) => mealSlotOf(r.id) !== 'breakfast' && mealSlotOf(r.id) !== 'lunch'),
         catalogMeals,
         usedRestaurantIds,
         lunch?.id,
@@ -954,49 +881,42 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
         periodItems.afternoon.push(mealItem(lunch, 'afternoon', 'Lunch', lunchState, dayNumber))
         noteFamily('sit-down-lunch', 'afternoon', dayFamilies)
       }
+    } else if (onboardLunch) {
+      periodItems.afternoon.push({
+        id: `onboard-lunch:${city}:${dayNumber}`,
+        kind: 'meal',
+        name: 'Lunch · onboard',
+        selectionState: 'system',
+        period: 'afternoon',
+        timeLabel: mealWindowLabel('lunch'),
+        durationLabel: '13:00–14:00',
+        locationLabel: city,
+        city,
+        region,
+        description: 'Lunch is served on the cruise / full-day outing — no separate restaurant.',
+        costUsd: 0,
+        icon: '🛳️',
+        tags: ['Food', 'Onboard'],
+        reason: 'This outing includes lunch on board.',
+      })
     } else if (wantLunch && !skipLunch && !skipped.has(`simple-meal:${city}:${dayNumber}`)) {
-      periodItems.afternoon.push(simpleMeal(city, region, 'afternoon', dayNumber))
+      periodItems.afternoon.push(simpleMeal(city, region, 'afternoon', dayNumber, 'lunch'))
       noteFamily('sit-down-lunch', 'afternoon', dayFamilies)
+    }
+
+    if (wantEveningMeal) {
+      periodItems.evening.push(simpleMeal(city, region, 'evening', dayNumber, 'evening'))
     }
 
     if (dinner && dinner.id !== lunch?.id) {
       usedRestaurantIds.add(dinner.id)
       if (!skipped.has(dinner.id) || dinnerState === 'selected') {
-        periodItems.evening.push(mealItem(dinner, 'evening', 'Dinner', dinnerState, dayNumber))
+        periodItems.night.push(mealItem(dinner, 'night', 'Dinner', dinnerState, dayNumber))
         noteFamily('sit-down-dinner', 'evening', dayFamilies)
       }
     } else if (wantDinner && !skipDinner && !dinner && !skipped.has(`simple-dinner:${city}:${dayNumber}`)) {
-      periodItems.evening.push(simpleMeal(city, region, 'evening', dayNumber))
+      periodItems.night.push(simpleMeal(city, region, 'night', dayNumber, 'dinner'))
       noteFamily('sit-down-dinner', 'evening', dayFamilies)
-    }
-
-    const shop =
-      bucket?.shopping.find((s) => !usedShopIds.has(s.id)) ??
-      shopping.find((s) => resolvePlaceId(s.city, s.region) === placeId && !usedShopIds.has(s.id))
-    if (shop) {
-      usedShopIds.add(shop.id)
-      const preferred = shop.preferredPeriod ?? 'afternoon'
-      const period = pickOpenPeriod(preferred, 1.5, null, periodItems, dayFamilies, reserved) ?? preferred
-      periodItems[period].push({
-        id: `shop:${shop.id}`,
-        kind: 'shopping',
-        name: shop.name,
-        selectionState: 'selected',
-        period,
-        timeLabel: PERIOD_META[period].label,
-        durationLabel: '~1–2 hr',
-        locationLabel: shop.city,
-        city: shop.city,
-        region: shop.region,
-        description: shop.blurb,
-        costUsd: shop.costUsd,
-        costBand: shop.costLabel,
-        icon: '🛍',
-        mapsUrl: placeMapsUrl(shop.shop || shop.name, shop.city),
-        tags: ['Shopping', shop.type],
-        reason: `Scheduled in ${shop.city} for the ${period} — when this stop usually works best.`,
-        sourceId: shop.id,
-      })
     }
 
     if (hotel) {
@@ -1049,20 +969,25 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
           unset: false,
         }
       } else {
+        const spine = placeId ? hubSpokeTransferCopy(placeId, nextPlace) : null
+        const suggested = spine?.preferMode
+          ? leg?.options.find((o) => o.mode === spine.preferMode)
+          : undefined
+        const pick = suggested ?? budgetOption
         cityTransferOut = {
           toCity,
           toRegion,
-          modeLabel: budgetOption ? budgetOption.label : 'To be chosen',
-          icon: budgetOption ? budgetOption.icon : '🚐',
-          durationLabel: budgetOption
-            ? formatDuration(budgetOption.durationMinutes)
-            : 'Choose a mode',
-          costUsd: budgetOption?.costUsd ?? 0,
-          reason: tight
-            ? `You’re moving from ${city} to ${toCity}. On a tight daily budget a bus or train is the usual fit — confirm it in Getting Around.`
-            : `You’re moving from ${city} to ${toCity} — pick how you’ll travel in Getting Around.`,
+          modeLabel: pick ? pick.label : spine?.modeLabel ?? 'To be chosen',
+          icon: pick ? pick.icon : spine?.icon ?? '🚐',
+          durationLabel: pick ? formatDuration(pick.durationMinutes) : 'Choose a mode',
+          costUsd: pick?.costUsd ?? 0,
+          reason: spine
+            ? spine.reason
+            : tight
+              ? `You’re moving from ${city} to ${toCity}. On a tight daily budget a bus or train is the usual fit — confirm it in Getting Around.`
+              : `You’re moving from ${city} to ${toCity} — pick how you’ll travel in Getting Around.`,
           externalUrl: gettingAroundUrl(),
-          unset: true,
+          unset: !suggested,
         }
       }
 
@@ -1099,7 +1024,9 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
         locationLabel: city,
         city,
         region,
-        description: 'Airport → city transfer once you land.',
+        description: placeId
+          ? cityContext(placeId).howToArrive
+          : 'Airport → city transfer once you land.',
         costUsd: tight ? 8 : 18,
         costBand: 'Typical range',
         icon: '✈️',
@@ -1236,11 +1163,13 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
       dateLabel: addDaysLabel(input.startDate, i),
       city,
       region,
+      slotId,
+      blank: isBlank,
       placeId,
       theme,
       blurb,
       nightsHere,
-      experienceCount: exps.length + acts.length,
+      experienceCount: exps.length + acts.length + shops.length,
       foodCount: lunchCount,
       transferCount: cityTransferOut ? 1 : 0,
       agenda,
@@ -1252,8 +1181,25 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
       stayGap,
       cityTransferOut,
       bannerImage: banner,
+      cityNote: placeId ? cityContext(placeId).note : undefined,
     }
   })
+
+  const hasSights = (d: YourVietnamDay) =>
+    d.periods.some((p) =>
+      p.items.some(
+        (it) => it.kind === 'experience' || it.kind === 'activity' || it.kind === 'shopping',
+      ),
+    )
+  let days = builtDays.filter((d) => hasSights(d) || d.blank)
+  days = days.map((d, i) => ({
+    ...d,
+    day: i + 1,
+    dateLabel: addDaysLabel(input.startDate, i),
+    nightsHere: days.filter(
+      (x) => (d.placeId && x.placeId === d.placeId) || x.city === d.city,
+    ).length,
+  }))
 
   const route: RouteStop[] = []
   for (const d of days) {
@@ -1273,7 +1219,7 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
     }
   }
 
-  const hasNoStays = hotels.length === 0 && !isEmpty
+  const hasNoStays = hotels.length === 0 && days.some(hasSights)
   const thinCities = findThinCities(
     route,
     experiences.map((e) => e.id),
@@ -1287,8 +1233,9 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
     ),
   ]
 
+  const tripEmpty = days.length === 0
   const issues = buildTripLevelIssues({
-    isEmpty,
+    isEmpty: tripEmpty,
     thinCities,
     visitedPlaceIds,
     daysCount: days.length,
@@ -1325,12 +1272,12 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
     stayCount: hotels.length,
     transferCount: days.filter((d) => d.cityTransferOut).length,
     travellersLabel: travellersLabel(groupSize),
-    dateRangeLabel: dateRangeLabel(input.startDate, dayCount),
+    dateRangeLabel: dateRangeLabel(input.startDate, days.length),
     route,
     days,
     cost,
     issues,
-    isEmpty,
+    isEmpty: tripEmpty,
     hasNoStays,
     thinCities: thinCities.map((s) => {
       const pid = s.placeId ?? (route.find((r) => r.city === s.city)?.placeId as PlaceId | undefined)
@@ -1348,6 +1295,22 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
         label: CORE_CITY_META[id]?.label ?? placeLabel(id),
         catalogCity: experienceCityForPlace(id),
       })),
+    // Bagged sights that no day in their city can hold under the daily caps.
+    // Reported so the board can show them instead of dropping them quietly.
+    unscheduled: [...packedByPlace.values()].flatMap((packed) => [
+      ...packed.unscheduled.experiences.map((e) => ({
+        sourceId: e.id,
+        kind: 'experience' as const,
+        name: e.name,
+        city: e.city,
+      })),
+      ...packed.unscheduled.activities.map((a) => ({
+        sourceId: a.id,
+        kind: 'activity' as const,
+        name: a.name,
+        city: a.cityName,
+      })),
+    ]),
   }
 }
 
@@ -1356,7 +1319,7 @@ function groupIntoCities(
   activities: CityActivity[],
   hotels: Hotel[],
   shopping: (typeof SHOPPING_ITEMS)[number][],
-  restaurants: Restaurant[],
+  _restaurants: Restaurant[],
 ): CityBucket[] {
   const map = new Map<PlaceId, CityBucket>()
 
@@ -1391,17 +1354,13 @@ function groupIntoCities(
   for (const h of hotels) {
     const id = place(h.city, h.region)
     if (!id) continue
-    bucket(id, h.city, h.region).hotels.push(h)
+    const existing = map.get(id)
+    if (existing) existing.hotels.push(h)
   }
   for (const s of shopping) {
     const id = place(s.city, s.region)
     if (!id) continue
     bucket(id, s.city, s.region).shopping.push(s)
-  }
-  for (const r of restaurants) {
-    const id = place(r.city, r.region)
-    if (!id) continue
-    bucket(id, r.city, r.region)
   }
   return [...map.values()]
 }

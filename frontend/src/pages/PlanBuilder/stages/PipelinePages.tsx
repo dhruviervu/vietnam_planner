@@ -9,7 +9,7 @@ import { VietnamLogisticsPage } from '../../VietnamLogistics'
 
 export function PipelineWhenToGo() {
   return (
-    <PipelineStepShell step="when-to-go" continueLabel="Continue to Experiences →" hideSkip>
+    <PipelineStepShell step="when-to-go" continueLabel="Continue to Sights →">
       <WhenToGoDiscoverPage embedded />
     </PipelineStepShell>
   )
@@ -52,7 +52,6 @@ export function PipelineAirport() {
     <PipelineStepShell
       step="airport"
       continueLabel="Continue to Logistics →"
-      secondaryLabel="Skip for now — I’ll handle airports later"
       note={
         <div className="rounded-[20px] border border-sage/30 bg-sage/8 px-5 py-4">
           <p className="text-[0.72rem] font-bold uppercase tracking-[0.12em] text-sage">

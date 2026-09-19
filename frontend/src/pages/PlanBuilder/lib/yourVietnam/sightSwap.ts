@@ -1,4 +1,4 @@
-import { EXPERIENCES } from '../../data/experiences'
+import { EXPERIENCES, isSightCatalogItem } from '../../data/experiences'
 import { occupancyFamilyExperience } from './tripIntelligence'
 import type { Experience } from '../../types'
 import type { ItineraryItem } from './types'
@@ -67,6 +67,7 @@ export function similarSightsFor(
 ): Experience[] {
   const current = item.sourceId ? EXPERIENCES.find((e) => e.id === item.sourceId) : undefined
   const cityPool = EXPERIENCES.filter((e) => {
+    if (!isSightCatalogItem(e)) return false
     if (item.sourceId && e.id === item.sourceId) return false
     if (sameDaySourceIds.has(e.id)) return false
     return samePlace(e, item)

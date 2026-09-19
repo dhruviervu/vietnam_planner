@@ -17,7 +17,7 @@ export function VerticalTripProgress({ current }: Props) {
   return (
     <aside className="flex h-full flex-col">
       <p className="mb-5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-sage">
-        Build your Vietnam trip
+        Build your Vietnam Trip Step by Step
       </p>
 
       <div className="mb-4 h-1 overflow-hidden rounded-full bg-cream-deep">

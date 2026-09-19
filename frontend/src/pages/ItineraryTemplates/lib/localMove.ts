@@ -39,6 +39,15 @@ export function localMoveFor(
     }
   }
 
+  if (section === 'nightlife' && (key === 'hanoi' || key === 'hcmc' || key === 'hoi-an')) {
+    return {
+      name: 'Walk + Grab',
+      icon: '🚶',
+      reason: 'Walk the lanterns or beer streets, Grab home when the night runs late.',
+      durationLabel: 'As needed',
+    }
+  }
+
   if (party >= 6) {
     return {
       name: party >= 8 ? 'Private van or two taxis' : 'Private chauffeur or two taxis',

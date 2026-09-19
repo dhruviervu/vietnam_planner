@@ -30,13 +30,9 @@ export function ShoppingHero() {
           <h1 className="mt-2 font-serif text-[clamp(2rem,4.5vw,3.1rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-paper">
             Take Vietnam Home
           </h1>
-          <p className="mt-3 max-w-[40ch] text-[0.95rem] leading-relaxed text-paper/85">
-            Two questions, in order: what is actually worth buying, and where you should shop for
-            it.
-          </p>
-          <p className="mt-4 max-w-[42ch] text-[0.82rem] leading-snug text-paper/65">
-            Start with the pieces that feel distinctly Vietnamese. Then use the market and mall
-            catalog to find the right street, stall or shop.
+          <p className="mt-3 max-w-[48ch] text-[0.95rem] leading-relaxed text-paper/85">
+            On this page we show you the Kind of Items Special in Vietnam. These are things you can
+            take back home!
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             <a

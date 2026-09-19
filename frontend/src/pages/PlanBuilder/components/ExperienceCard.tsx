@@ -1,11 +1,12 @@
-import { useState, type MouseEvent, type ReactNode } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { memo, useState, type MouseEvent, type ReactNode } from 'react'
 import type { Experience } from '../types'
 import { useTripStore } from '../../../store/tripStore'
-import { formatFromPrice, getExperienceImages } from '../lib/pricing'
+import { formatFromPrice, getExperienceCardPhotos } from '../lib/pricing'
 import { flyToTripBag } from '../lib/flyToTripBag'
 import { captureCatalogScroll } from '../lib/catalogViewState'
-import { experiencesCityPath } from '../services/cityCatalog'
+import { experiencesCityPath } from '../services/citySlug'
+import { pinNewSightToItinerary, readItineraryAddTarget, itineraryTargetQuery } from '../lib/yourVietnam/itineraryAddTarget'
+import { sightCardCopy } from '../lib/sightCardCopy'
 
 type Props = {
   experience: Experience
@@ -16,25 +17,21 @@ type Props = {
   onBuildDay?: (id: string) => void
   /** Popularity rank within this experience's city (1 = top) */
   cityRank?: number
+  /** First-screen cards only — everyone else lazy-loads. */
+  priority?: boolean
 }
 
-export function ExperienceCard({
+export const ExperienceCard = memo(function ExperienceCard({
   experience,
   tripDate: _tripDate,
   compact = false,
   dense = false,
-  onBuildDay,
   cityRank,
+  priority = false,
 }: Props) {
-  const [justAdded, setJustAdded] = useState(false)
-  const [askSlot, setAskSlot] = useState(false)
-  const selectedIds = useTripStore((s) => s.selectedExperienceIds)
-  const selected = selectedIds.includes(experience.id)
+  const selected = useTripStore((s) => s.selectedExperienceIds.includes(experience.id))
   const addExperience = useTripStore((s) => s.addExperience)
-  const removeExperience = useTripStore((s) => s.removeExperience)
-  const setExperienceSlot = useTripStore((s) => s.setExperienceSlot)
-
-  const images = getExperienceImages(experience)
+  const images = getExperienceCardPhotos(experience)
   const fromPrice = formatFromPrice(experience.price, experience.priceType)
   const [broken, setBroken] = useState<Record<string, boolean>>({})
   const [photoIndex, setPhotoIndex] = useState(0)
@@ -43,16 +40,16 @@ export function ExperienceCard({
 
   function openDetail() {
     captureCatalogScroll()
-    // Keep opener so "Back to experiences" can focus the catalog tab
-    window.open(`/plan/builder/experience/${experience.id}`, '_blank')
+    const target = readItineraryAddTarget()
+    const qs = target ? `?${itineraryTargetQuery(target)}` : ''
+    window.open(`/plan/builder/experience/${experience.id}${qs}`, '_blank')
   }
 
   function handleAdd(e: MouseEvent) {
     e.stopPropagation()
+    const itineraryTarget = readItineraryAddTarget()
     if (selected) {
-      removeExperience(experience.id)
-      setJustAdded(false)
-      setAskSlot(false)
+      if (itineraryTarget) pinNewSightToItinerary(experience.id)
       return
     }
     const target = e.currentTarget as HTMLElement
@@ -61,9 +58,7 @@ export function ExperienceCard({
     const rect = (img ?? target).getBoundingClientRect()
     flyToTripBag(rect, images[0])
     addExperience(experience.id, 'later')
-    setJustAdded(true)
-    setAskSlot(true)
-    window.setTimeout(() => setJustAdded(false), 2200)
+    if (itineraryTarget) pinNewSightToItinerary(experience.id)
   }
 
   function stop(e: MouseEvent) {
@@ -77,10 +72,7 @@ export function ExperienceCard({
   }
 
   return (
-    <motion.article
-      layout
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
+    <article
       role="link"
       tabIndex={0}
       onClick={openDetail}
@@ -90,7 +82,7 @@ export function ExperienceCard({
           openDetail()
         }
       }}
-      className={`group cursor-pointer overflow-hidden bg-paper shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover ${
+      className={`group cursor-pointer overflow-hidden bg-paper shadow-card transition-shadow hover:shadow-card-hover ${
         dense ? 'rounded-[18px]' : 'rounded-[22px]'
       } ${compact ? 'min-w-[280px] max-w-[300px] shrink-0' : ''}`}
     >
@@ -101,9 +93,12 @@ export function ExperienceCard({
           <img
             src={currentPhoto}
             alt={experience.name}
-            className="absolute inset-0 h-full w-full object-cover"
-            loading="eager"
+            className="absolute inset-0 z-0 h-full w-full object-cover"
+            loading={priority ? 'eager' : 'lazy'}
+            fetchPriority={priority ? 'high' : 'low'}
             decoding="async"
+            sizes={compact ? '300px' : dense ? '(max-width: 768px) 100vw, 33vw' : '(max-width: 640px) 100vw, 420px'}
+            referrerPolicy="no-referrer"
             onError={() => setBroken((prev) => ({ ...prev, [currentPhoto]: true }))}
           />
         ) : (
@@ -143,9 +138,6 @@ export function ExperienceCard({
         ) : null}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ink/40 to-transparent" />
         <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
-          <span className="rounded-full bg-paper/92 px-2.5 py-1 text-[0.68rem] font-bold tracking-wide text-ink backdrop-blur-sm">
-            {experience.signalEmoji} {experience.signalLabel}
-          </span>
           <span className="rounded-full bg-terracotta/95 px-2.5 py-1 text-[0.68rem] font-bold tracking-wide text-paper backdrop-blur-sm">
             {experience.popularityTag}
           </span>
@@ -195,10 +187,10 @@ export function ExperienceCard({
         </p>
         <p
           className={`leading-snug text-muted ${
-            dense ? 'mt-1.5 line-clamp-3 text-[0.82rem]' : 'mt-2 line-clamp-5 text-[0.9rem]'
+            dense ? 'mt-1.5 line-clamp-3 text-[0.82rem]' : 'mt-2 line-clamp-3 text-[0.88rem]'
           }`}
         >
-          {experience.cardSummary || experience.hook}{' '}
+          {sightCardCopy(experience)}{' '}
           <button
             type="button"
             onClick={(e) => {
@@ -213,19 +205,19 @@ export function ExperienceCard({
 
         <div className={`grid grid-cols-2 gap-2 ${dense ? 'mt-2' : 'mt-3'}`}>
           <Metric
-            label="Rating"
+            label="Reviews"
             value={`⭐ ${experience.rating} (${experience.reviewCount.toLocaleString()})`}
             dense={dense}
           />
-          <Metric label="Duration" value={`⏱ ${experience.durationLabel}`} dense={dense} />
-          <Metric label="From" value={`💰 ${fromPrice}`} dense={dense} />
+          <Metric label="Cost" value={fromPrice === 'Free' ? 'Free' : `💰 ${fromPrice}`} dense={dense} />
         </div>
 
         <div className={`flex gap-2 ${dense ? 'mt-3' : 'mt-4'}`} onClick={stop}>
           <button
             type="button"
             onClick={handleAdd}
-            className={`flex-1 rounded-full font-bold transition-transform hover:scale-[1.01] ${
+            aria-pressed={selected}
+            className={`flex-1 rounded-full font-bold ${
               dense ? 'px-3 py-2 text-[0.78rem]' : 'px-4 py-2.5 text-[0.86rem]'
             } ${
               selected
@@ -233,7 +225,11 @@ export function ExperienceCard({
                 : 'bg-gradient-to-br from-terracotta to-terracotta-deep text-paper'
             }`}
           >
-            {justAdded ? 'Added to your trip ✓' : selected ? '✓ In your trip' : '+ Add to trip'}
+            {selected
+              ? readItineraryAddTarget()
+                ? 'Added To Itinerary'
+                : 'Added To Bag'
+              : '+ Add to trip'}
           </button>
           <button
             type="button"
@@ -248,63 +244,10 @@ export function ExperienceCard({
             See More →
           </button>
         </div>
-
-        <AnimatePresence>
-          {askSlot && selected && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="overflow-hidden"
-              onClick={stop}
-            >
-              <p className="mt-3 text-[0.78rem] font-semibold text-ink">
-                When would you like to do this?
-              </p>
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {(
-                  [
-                    ['best', 'Best fit'],
-                    ['morning', 'Morning'],
-                    ['afternoon', 'Afternoon'],
-                    ['evening', 'Evening'],
-                    ['later', "I'll decide later"],
-                  ] as const
-                ).map(([value, label]) => (
-                  <button
-                    key={value}
-                    type="button"
-                    onClick={(e) => {
-                      stop(e)
-                      setExperienceSlot(experience.id, value)
-                      setAskSlot(false)
-                    }}
-                    className="rounded-full bg-cream px-2.5 py-1.5 text-[0.72rem] font-bold text-ink hover:bg-ink hover:text-paper"
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {selected && onBuildDay && experience.durationHours >= 4 && (
-          <button
-            type="button"
-            onClick={(e) => {
-              stop(e)
-              onBuildDay(experience.id)
-            }}
-            className="mt-3 w-full text-left text-[0.78rem] font-bold text-terracotta hover:underline"
-          >
-            Build a day around this →
-          </button>
-        )}
       </div>
-    </motion.article>
+    </article>
   )
-}
+})
 
 function Metric({
   label,

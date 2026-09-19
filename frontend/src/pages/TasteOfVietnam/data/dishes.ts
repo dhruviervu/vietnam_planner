@@ -1,7 +1,5 @@
+import { dishImages } from './foodMedia'
 import type { Dish } from './types'
-
-const img = (id: string, w = 900) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`
 
 export const DISHES: Dish[] = [
   {
@@ -13,14 +11,7 @@ export const DISHES: Dish[] = [
     specialityReason: 'Vietnam Special',
     description:
       'Fragrant broth, rice noodles, fresh herbs and a depth of flavour that changes from north to south.',
-    images: [
-      img('photo-1582878826629-29b7ad1cdc43'),
-      img('photo-1555126634-323283e090fa'),
-      img('photo-1591814468924-c7d4bd0e0a6c'),
-      img('photo-1504674900247-0877df9cc836'),
-      img('photo-1569718212165-3a8278d5f624'),
-      img('photo-1547592166-23ac45744acd'),
-    ],
+    images: dishImages('pho'),
     proteins: ['Beef', 'Chicken'],
     ingredients: [
       'Rice noodles',
@@ -64,14 +55,7 @@ export const DISHES: Dish[] = [
     specialityReason: 'Must Try',
     description:
       'Crackling baguette, pâté, pickled crunch and bright herbs — a portable French–Vietnamese classic.',
-    images: [
-      img('photo-1600891964092-4316c288032e'),
-      img('photo-1529042410759-befb1204bdec'),
-      img('photo-1509722747041-616f39b57569'),
-      img('photo-1482049016688-2d3e1b311543'),
-      img('photo-1476224203421-9ac39bcb3327'),
-      img('photo-1565299624946-b28f40a0ae38'),
-    ],
+    images: dishImages('banh-mi'),
     proteins: ['Pork', 'Chicken'],
     ingredients: [
       'Airy baguette',
@@ -110,14 +94,7 @@ export const DISHES: Dish[] = [
     specialityReason: 'Northern Speciality',
     description:
       'Smoky grilled pork, cool vermicelli and a sweet-salty dipping broth that defines Hanoi lunches.',
-    images: [
-      img('photo-1559339352-11d035aa65de'),
-      img('photo-1569718212165-3a8278d5f624'),
-      img('photo-1512058564366-18510be2db19'),
-      img('photo-1455619452474-d2be8b1e70cd'),
-      img('photo-1498654896293-37aacf113fd9'),
-      img('photo-1414235077428-338989a2e8c0'),
-    ],
+    images: dishImages('bun-cha'),
     proteins: ['Pork'],
     ingredients: [
       'Grilled pork patties',
@@ -145,14 +122,7 @@ export const DISHES: Dish[] = [
     specialityReason: 'Central Vietnam Speciality',
     description:
       'Lemongrass heat, rich beef broth and a bold central Vietnamese punch you will not confuse with phở.',
-    images: [
-      img('photo-1626804475297-41608ea09aeb'),
-      img('photo-1617093727343-374698b1b08d'),
-      img('photo-1585032226651-759b368d7246'),
-      img('photo-1563379926898-05f4575a45d8'),
-      img('photo-1476224203421-9ac39bcb3327'),
-      img('photo-1498654896293-37aacf113fd9'),
-    ],
+    images: dishImages('bun-bo-hue'),
     proteins: ['Beef'],
     ingredients: [
       'Thick rice noodles',
@@ -191,14 +161,7 @@ export const DISHES: Dish[] = [
     specialityReason: 'Only Found In This Form Here',
     description:
       'Chewy turmeric noodles, roasted pork and greens — a Hoi An dish tied to local water and tradition.',
-    images: [
-      img('photo-1512058564366-18510be2db19'),
-      img('photo-1455619452474-d2be8b1e70cd'),
-      img('photo-1498654896293-37aacf113fd9'),
-      img('photo-1414235077428-338989a2e8c0'),
-      img('photo-1559339352-11d035aa65de'),
-      img('photo-1504674900247-0877df9cc836'),
-    ],
+    images: dishImages('cao-lau'),
     proteins: ['Pork'],
     ingredients: [
       'Cao lầu noodles',
@@ -226,14 +189,7 @@ export const DISHES: Dish[] = [
     specialityReason: 'Northern Speciality',
     description:
       'Rich robusta under a whipped egg-cream cloud — dessert-like, deeply Hanoi, quietly addictive.',
-    images: [
-      img('photo-1514432324607-a09d9b4aefdd'),
-      img('photo-1495474472287-4d71bcdd2085'),
-      img('photo-1442512595331-e89e7388250c'),
-      img('photo-1509042239860-f550ce710b93'),
-      img('photo-1461023058943-07fcbe16d735'),
-      img('photo-1498804103079-a6351b050096'),
-    ],
+    images: dishImages('ca-phe-trung'),
     proteins: ['Egg'],
     ingredients: [
       'Vietnamese robusta',
@@ -260,14 +216,7 @@ export const DISHES: Dish[] = [
     specialityReason: 'Must Try',
     description:
       'Cool rice-paper rolls packed with herbs, prawn and pork — bright, fresh and endlessly wrapable.',
-    images: [
-      img('photo-1541014741259-de529411b96a'),
-      img('photo-1559847844-5315695dadae'),
-      img('photo-1534939561126-855b8675edd7'),
-      img('photo-1603133872878-684f208fb84b'),
-      img('photo-1512621776951-a57141f2eefd'),
-      img('photo-1546069901-ba9599a7e63c'),
-    ],
+    images: dishImages('goi-cuon'),
     proteins: ['Prawn', 'Pork'],
     ingredients: [
       'Rice paper',
@@ -306,14 +255,7 @@ export const DISHES: Dish[] = [
     specialityReason: 'Southern Speciality',
     description:
       'Broken rice under grilled pork, egg and pickled sides — Saigon’s everyday plate done right.',
-    images: [
-      img('photo-1569562211093-4ed0d0758f12'),
-      img('photo-1604908176997-125f25cc6f3d'),
-      img('photo-1546069901-ba9599a7e63c'),
-      img('photo-1512058564366-18510be2db19'),
-      img('photo-1504674900247-0877df9cc836'),
-      img('photo-1414235077428-338989a2e8c0'),
-    ],
+    images: dishImages('com-tam'),
     proteins: ['Pork', 'Egg'],
     ingredients: [
       'Broken rice',

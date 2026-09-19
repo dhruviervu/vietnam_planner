@@ -18,17 +18,18 @@ import {
   resolveMapClick,
   type CityGeography,
 } from '../maps/cityGeography'
-import { MAP_META } from '../maps/mapMeta'
 import { URBAN_POINT_META } from '../maps/locationMeta'
+import { boundsForCity } from '../maps/cityBounds'
 import { UrbanCityMap } from './UrbanCityMap'
+import { PlaceAutocomplete } from './PlaceAutocomplete'
 import { ModeJumpNav } from './ModeJumpNav'
 import { ModeSection } from './ModeSection'
-import { ComparisonStrip } from './ComparisonStrip'
 import { useTripBagPlaceIds } from '../lib/tripBagPlaces'
 import { useTripBagUrbanPins } from '../lib/tripBagUrbanPins'
-import { geocodeInCity, outsideCityMessage } from '../lib/geocodeInCity'
 import { fetchOsrmRoutes, type OsrmRouteResult } from '../lib/osrmRoute'
 import { cityProviderUrl } from '../lib/cityProviderUrl'
+import { detectUrbanSeaHop } from '../lib/islandMainland'
+import type { AutocompleteLocalPlace, PlaceSuggestion } from '../lib/placeSuggestions'
 
 const BACKDROP =
   'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1400&q=80'
@@ -46,14 +47,11 @@ export function UrbanWorld({
   selectedOptionId,
   onSelectOption,
 }: Props) {
-  const allCities = useMemo(() => urbanCities(), [])
+  const cities = useMemo(() => urbanCities(), [])
   const bagPlaceIds = useTripBagPlaceIds()
-  const cities = useMemo(() => {
-    if (bagPlaceIds.size === 0) return allCities
-    const filtered = allCities.filter((c) => bagPlaceIds.has(c.id))
-    return filtered.length ? filtered : allCities
-  }, [allCities, bagPlaceIds])
-  const [cityId, setCityId] = useState<PlaceId | null>(null)
+  const [cityId, setCityId] = useState<PlaceId | null>(
+    () => urbanCities()[0]?.id ?? 'hanoi',
+  )
   const [origin, setOrigin] = useState<UrbanSelection | null>(null)
   const [destination, setDestination] = useState<UrbanSelection | null>(null)
   const [panelModeId, setPanelModeId] = useState<string | null>(null)
@@ -64,14 +62,15 @@ export function UrbanWorld({
   const [toQuery, setToQuery] = useState('')
   const [fromError, setFromError] = useState<string | null>(null)
   const [toError, setToError] = useState<string | null>(null)
-  const [searchingSlot, setSearchingSlot] = useState<'from' | 'to' | null>(null)
   const [osrmRoute, setOsrmRoute] = useState<OsrmRouteResult | null>(null)
   const [osrmFailed, setOsrmFailed] = useState(false)
+  const [focusNonce, setFocusNonce] = useState(0)
   const mapSelectGen = useRef(0)
 
   useEffect(() => {
-    if (cityId && !cities.some((c) => c.id === cityId)) {
-      setCityId(null)
+    if (cities.length === 0) return
+    if (!cityId || !cities.some((c) => c.id === cityId)) {
+      setCityId(cities[0].id)
     }
   }, [cities, cityId])
 
@@ -104,7 +103,31 @@ export function UrbanWorld({
     [points],
   )
 
-  const cityMeta = cityId ? MAP_META.cities[cityId] : null
+  const cityBounds = city
+    ? boundsForCity(city.id, { lat: city.lat, lng: city.lng, mapZoom: city.mapZoom })
+    : null
+
+  const searchLocals = useMemo<AutocompleteLocalPlace[]>(() => {
+    const fromBag = bagPins.map((p) => ({
+      id: p.id,
+      label: p.label,
+      subtitle: 'In your trip bag',
+      lat: p.lat,
+      lng: p.lng,
+      source: 'bag' as const,
+      popular: true,
+    }))
+    const fromPoints = points.map((p) => ({
+      id: p.id,
+      label: p.label,
+      subtitle: p.area || p.district || city?.label,
+      lat: p.lat,
+      lng: p.lng,
+      source: 'landmark' as const,
+      popular: Boolean(p.popular),
+    }))
+    return [...fromBag, ...fromPoints]
+  }, [bagPins, points, city?.label])
 
   useEffect(() => {
     if (!cityId) {
@@ -125,13 +148,22 @@ export function UrbanWorld({
 
   const journey = useMemo(() => {
     if (!origin || !destination) return null
-    return resolveUrbanJourney(origin, destination, availableModeIds, undefined, {
-      roadKm: osrmRoute?.drivingKm,
-      footKm: osrmRoute?.footKm,
-      footMinutes: osrmRoute?.footMinutes,
-      drivingMinutes: osrmRoute?.drivingMinutes,
-      estimated: !osrmRoute,
-    })
+    const seaHop = detectUrbanSeaHop(origin, destination)
+    return resolveUrbanJourney(
+      origin,
+      destination,
+      availableModeIds,
+      undefined,
+      seaHop
+        ? undefined
+        : {
+            roadKm: osrmRoute?.drivingKm,
+            footKm: osrmRoute?.footKm,
+            footMinutes: osrmRoute?.footMinutes,
+            drivingMinutes: osrmRoute?.drivingMinutes,
+            estimated: !osrmRoute,
+          },
+    )
   }, [origin, destination, availableModeIds, osrmRoute, osrmFailed])
 
   useEffect(() => {
@@ -146,6 +178,11 @@ export function UrbanWorld({
 
   useEffect(() => {
     if (!origin || !destination) {
+      setOsrmRoute(null)
+      setOsrmFailed(false)
+      return
+    }
+    if (detectUrbanSeaHop(origin, destination)) {
       setOsrmRoute(null)
       setOsrmFailed(false)
       return
@@ -183,6 +220,14 @@ export function UrbanWorld({
     setToError(null)
     setOsrmRoute(null)
     setOsrmFailed(false)
+    setFocusNonce(0)
+  }
+
+  function sameSpot(a: UrbanSelection, b: UrbanSelection) {
+    return (
+      a.id === b.id ||
+      (Math.abs(a.lat - b.lat) < 0.00015 && Math.abs(a.lng - b.lng) < 0.00015)
+    )
   }
 
   function applySelection(next: UrbanSelection) {
@@ -195,11 +240,50 @@ export function UrbanWorld({
       setDestination(null)
       return
     }
-    if (next.id === origin.id) return
-    const sameSpot =
-      Math.abs(next.lat - origin.lat) < 0.00015 && Math.abs(next.lng - origin.lng) < 0.00015
-    if (sameSpot) return
+    if (sameSpot(next, origin)) return
     setDestination(next)
+  }
+
+  function selectionFromSuggestion(hit: PlaceSuggestion): UrbanSelection | null {
+    if (!cityId || !city) return null
+    if (hit.source === 'landmark' && hit.localId) {
+      const point = getUrbanPoint(hit.localId)
+      if (point) return selectionFromLandmark(point)
+    }
+    if (hit.source === 'bag' && hit.localId) {
+      const bag = bagPins.find((p) => p.id === hit.localId)
+      if (bag) return selectionFromBagPin(bag, cityId, city.label)
+    }
+    return selectionFromTypedPlace(
+      hit.title,
+      hit.lat,
+      hit.lng,
+      cityId,
+      city.label,
+      hit.subtitle || city.label,
+    )
+  }
+
+  function applyPlacePick(slot: 'from' | 'to', hit: PlaceSuggestion) {
+    const sel = selectionFromSuggestion(hit)
+    if (!sel) return
+    mapSelectGen.current += 1
+    setOutsideNotice(null)
+    setFromError(null)
+    setToError(null)
+    if (slot === 'from') {
+      setOrigin(sel)
+      setFromQuery(sel.label)
+      if (destination && sameSpot(sel, destination)) setDestination(null)
+    } else {
+      if (origin && sameSpot(sel, origin)) {
+        setToError('Pick a different place from your start')
+        return
+      }
+      setDestination(sel)
+      setToQuery(sel.label)
+    }
+    setFocusNonce((n) => n + 1)
   }
 
   function selectLandmark(id: string) {
@@ -213,57 +297,13 @@ export function UrbanWorld({
     applySelection(selectionFromLandmark(point))
   }
 
-  async function searchTyped(slot: 'from' | 'to') {
-    if (!cityId || !city || !cityMeta?.bounds) return
-    const raw = (slot === 'from' ? fromQuery : toQuery).trim()
-    const setErr = slot === 'from' ? setFromError : setToError
-    if (!raw) return
-    if (slot === 'from' && origin && raw === origin.label) return
-    if (slot === 'to' && destination && raw === destination.label) return
-    setErr(null)
-    setSearchingSlot(slot)
-    const started = mapSelectGen.current
-    const result = await geocodeInCity(raw, city.label, cityMeta.bounds)
-    if (started !== mapSelectGen.current) {
-      setSearchingSlot(null)
-      return
-    }
-    setSearchingSlot(null)
-    if (!result.ok) {
-      setErr(outsideCityMessage(city.label))
-      return
-    }
-    const sel = selectionFromTypedPlace(raw, result.hit.lat, result.hit.lng, cityId, city.label)
-    if (slot === 'from') {
-      setOrigin(sel)
-      if (
-        destination &&
-        Math.abs(destination.lat - sel.lat) < 0.00015 &&
-        Math.abs(destination.lng - sel.lng) < 0.00015
-      ) {
-        setDestination(null)
-      }
-      setOutsideNotice(null)
-      return
-    }
-    if (
-      origin &&
-      Math.abs(origin.lat - sel.lat) < 0.00015 &&
-      Math.abs(origin.lng - sel.lng) < 0.00015
-    ) {
-      return
-    }
-    setDestination(sel)
-    setOutsideNotice(null)
-  }
-
   function selectCoordinate(coord: { lat: number; lng: number }) {
     if (!cityId || !city) return
 
     let geo = geography
     // While assets load, use an inset of the map bounds so we never label chrome as the city
-    if (!geo && cityMeta?.bounds) {
-      const b = cityMeta.bounds
+    if (!geo && cityBounds) {
+      const b = cityBounds
       geo = {
         cityId,
         cityLabel: city.label,
@@ -421,16 +461,15 @@ export function UrbanWorld({
           Choose a city
         </p>
         <h3 className="mt-1 font-serif text-[1.25rem] font-semibold text-ink">
-          Which city are you exploring?
+          Choose a City
         </h3>
         <p className="mt-1 text-[0.82rem] text-muted">
-          {bagPlaceIds.size
-            ? 'Showing cities from your trip bag. Open a city map, then click two points.'
-            : 'Open a real city map, click anywhere for Point A and Point B, then get typical transport intelligence.'}
+          Every city we cover — pick one, then search any two places or tap the map.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {cities.map((c) => {
             const on = cityId === c.id
+            const inBag = bagPlaceIds.has(c.id)
             return (
               <button
                 key={c.id}
@@ -443,6 +482,14 @@ export function UrbanWorld({
                 }`}
               >
                 {c.label}
+                {inBag ? (
+                  <span
+                    className={`ml-1.5 inline-block h-1.5 w-1.5 rounded-full align-middle ${
+                      on ? 'bg-paper/90' : 'bg-terracotta'
+                    }`}
+                    title="In your trip"
+                  />
+                ) : null}
               </button>
             )
           })}
@@ -464,36 +511,31 @@ export function UrbanWorld({
             </p>
             <p className="mt-1 mb-2 max-w-[54ch] text-[0.78rem] text-muted">
               {hasBagItems
-                ? 'Trip-bag places in this city are marked. Click two of them, tap the map, or type addresses on the right.'
-                : 'Interactive street map — click anywhere for Point A, then Point B, or type two places on the right.'}
+                ? 'Trip-bag places in this city are marked. Search any address on the right, tap two pins, or click the map.'
+                : 'Search any place on the right — hotels, streets, sights — or click the map for Point A, then Point B.'}
             </p>
             <div className="min-h-0 flex-1">
-              {cityMeta ? (
-                <UrbanCityMap
-                  key={city.id}
-                  cityId={city.id}
-                  cityLabel={city.label}
-                  center={{ lat: city.lat, lng: city.lng }}
-                  zoom={city.mapZoom ?? 13}
-                  markers={urbanMapMarkers}
-                  bagPins={urbanBagMarkers}
-                  originId={pinOriginId}
-                  destinationId={pinDestId}
-                  freeformOrigin={freeOrigin}
-                  freeformDestination={freeDest}
-                  routePath={osrmRoute?.geometry ?? null}
-                  routeEstimated={osrmFailed && !osrmRoute}
-                  statusHint={mapStatusHint}
-                  onSelectLocation={selectLandmark}
-                  onSelectCoordinate={selectCoordinate}
-                />
-              ) : (
-                <div className="flex h-full items-center justify-center rounded-[18px] bg-cream/80 px-4 py-16 text-center ring-1 ring-ink/10">
-                  <p className="text-[0.85rem] font-medium text-muted">
-                    Map unavailable for this city. Use the lists to choose points.
-                  </p>
-                </div>
-              )}
+              <UrbanCityMap
+                key={city.id}
+                cityId={city.id}
+                cityLabel={city.label}
+                center={{ lat: city.lat, lng: city.lng }}
+                zoom={city.mapZoom ?? 13}
+                markers={urbanMapMarkers}
+                bagPins={urbanBagMarkers}
+                originId={pinOriginId}
+                destinationId={pinDestId}
+                freeformOrigin={freeOrigin}
+                freeformDestination={freeDest}
+                routePath={osrmRoute?.geometry ?? null}
+                routeEstimated={osrmFailed && !osrmRoute}
+                statusHint={mapStatusHint}
+                onSelectLocation={selectLandmark}
+                onSelectCoordinate={selectCoordinate}
+                focusNonce={focusNonce}
+                focusOrigin={origin ? { lat: origin.lat, lng: origin.lng } : null}
+                focusDestination={destination ? { lat: destination.lat, lng: destination.lng } : null}
+              />
             </div>
           </div>
 
@@ -511,12 +553,21 @@ export function UrbanWorld({
                 toQuery={toQuery}
                 fromError={fromError}
                 toError={toError}
-                searchingSlot={searchingSlot}
+                searchLocals={searchLocals}
+                searchBias={{ lat: city.lat, lng: city.lng, cityLabel: city.label }}
                 routingEstimated={Boolean(journey?.routeEstimated)}
                 onFromQuery={setFromQuery}
                 onToQuery={setToQuery}
-                onSearchFrom={() => void searchTyped('from')}
-                onSearchTo={() => void searchTyped('to')}
+                onPickFrom={(hit) => applyPlacePick('from', hit)}
+                onPickTo={(hit) => applyPlacePick('to', hit)}
+                onClearFrom={() => {
+                  setOrigin(null)
+                  setFromError(null)
+                }}
+                onClearTo={() => {
+                  setDestination(null)
+                  setToError(null)
+                }}
                 onDismissOutside={() => setOutsideNotice(null)}
                 onSelectLandmarkFrom={selectLandmark}
                 onSetOriginLandmark={(id) => {
@@ -571,10 +622,6 @@ export function UrbanWorld({
             />
           ))}
         </div>
-
-        <div className="mt-2">
-          <ComparisonStrip modes={displayModes} kind="urban" />
-        </div>
       </div>
     </section>
   )
@@ -592,12 +639,15 @@ function UrbanJourneyPanel({
   toQuery,
   fromError,
   toError,
-  searchingSlot,
+  searchLocals,
+  searchBias,
   routingEstimated,
   onFromQuery,
   onToQuery,
-  onSearchFrom,
-  onSearchTo,
+  onPickFrom,
+  onPickTo,
+  onClearFrom,
+  onClearTo,
   onDismissOutside,
   onSelectLandmarkFrom,
   onSetOriginLandmark,
@@ -616,12 +666,15 @@ function UrbanJourneyPanel({
   toQuery: string
   fromError: string | null
   toError: string | null
-  searchingSlot: 'from' | 'to' | null
+  searchLocals: AutocompleteLocalPlace[]
+  searchBias: { lat: number; lng: number; cityLabel: string }
   routingEstimated: boolean
   onFromQuery: (v: string) => void
   onToQuery: (v: string) => void
-  onSearchFrom: () => void
-  onSearchTo: () => void
+  onPickFrom: (hit: PlaceSuggestion) => void
+  onPickTo: (hit: PlaceSuggestion) => void
+  onClearFrom: () => void
+  onClearTo: () => void
   onDismissOutside: () => void
   onSelectLandmarkFrom: (id: string) => void
   onSetOriginLandmark: (id: string) => void
@@ -659,23 +712,27 @@ function UrbanJourneyPanel({
         </div>
 
         <div className="mt-2 space-y-1.5">
-          <PlaceSearchField
+          <PlaceAutocomplete
             title="From"
             value={fromQuery}
-            placeholder={`A place in ${cityLabel}`}
-            searching={searchingSlot === 'from'}
+            placeholder="Search any place"
+            bias={searchBias}
+            localPlaces={searchLocals}
             error={fromError}
             onChange={onFromQuery}
-            onSubmit={onSearchFrom}
+            onSelect={onPickFrom}
+            onClear={onClearFrom}
           />
-          <PlaceSearchField
+          <PlaceAutocomplete
             title="To"
             value={toQuery}
-            placeholder={`A place in ${cityLabel}`}
-            searching={searchingSlot === 'to'}
+            placeholder="Search any place"
+            bias={searchBias}
+            localPlaces={searchLocals}
             error={toError}
             onChange={onToQuery}
-            onSubmit={onSearchTo}
+            onSelect={onPickTo}
+            onClear={onClearTo}
           />
         </div>
 
@@ -698,12 +755,17 @@ function UrbanJourneyPanel({
           </p>
         ) : !origin ? (
           <p className="mt-2 text-[0.78rem] text-muted">
-            Type two places, click trip-bag pins, or tap the map.
+            Search any two places, click trip-bag pins, or tap the map.
           </p>
         ) : journey ? (
           <p className="mt-2 text-[0.72rem] text-muted">
-            ~{journey.distanceKm.toFixed(1)} km
-            {routingEstimated ? ' estimated' : ' by road'} · {journey.timeOfDayLabel}
+            ~{journey.distanceKm.toFixed(journey.seaCrossing ? 0 : 1)} km
+            {journey.seaCrossing
+              ? ' across water'
+              : routingEstimated
+                ? ' estimated'
+                : ' by road'}{' '}
+            · {journey.timeOfDayLabel}
           </p>
         ) : null}
 
@@ -731,7 +793,12 @@ function UrbanJourneyPanel({
                 <p className="text-[0.55rem] font-bold uppercase tracking-[0.1em] text-muted">
                   Best options
                 </p>
-                {routingEstimated ? (
+                {journey.seaCrossing ? (
+                  <p className="mt-1 rounded-[8px] bg-terracotta/10 px-2 py-1.5 text-[0.65rem] font-medium leading-snug text-ink ring-1 ring-terracotta/20">
+                    This is a water crossing. Scooter, bike, and walking cannot complete it — use a
+                    flight, or taxi/scooter only as far as the pier then the ferry.
+                  </p>
+                ) : routingEstimated ? (
                   <p className="mt-1 text-[0.65rem] text-muted">
                     Routing is estimated — times use a straight-line distance.
                   </p>
@@ -880,58 +947,6 @@ function UrbanJourneyPanel({
         </p>
       ) : null}
     </div>
-  )
-}
-
-function PlaceSearchField({
-  title,
-  value,
-  placeholder,
-  searching,
-  error,
-  onChange,
-  onSubmit,
-}: {
-  title: string
-  value: string
-  placeholder: string
-  searching: boolean
-  error: string | null
-  onChange: (v: string) => void
-  onSubmit: () => void
-}) {
-  return (
-    <label className="block">
-      <span className="text-[0.5rem] font-bold uppercase tracking-[0.12em] text-muted">{title}</span>
-      <div className="mt-0.5 flex gap-1">
-        <input
-          type="text"
-          value={value}
-          placeholder={placeholder}
-          onChange={(e) => onChange(e.target.value)}
-          onBlur={() => {
-            if (value.trim()) onSubmit()
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              e.preventDefault()
-              onSubmit()
-            }
-          }}
-          className={`min-w-0 flex-1 rounded-[10px] border-0 bg-cream/80 px-2 py-1.5 text-[0.78rem] font-semibold text-ink ring-1 ${
-            error ? 'ring-terracotta/50' : 'ring-ink/10'
-          }`}
-        />
-        <button
-          type="button"
-          onClick={onSubmit}
-          disabled={searching || !value.trim()}
-          className="shrink-0 rounded-[10px] bg-ink px-2 py-1.5 text-[0.68rem] font-bold text-paper disabled:opacity-50"
-        >
-          {searching ? '…' : 'Set'}
-        </button>
-      </div>
-    </label>
   )
 }
 

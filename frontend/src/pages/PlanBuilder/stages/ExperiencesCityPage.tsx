@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { EXPERIENCES } from '../data/experiences'
+import { SIGHT_CATALOG } from '../data/experiences'
 import { getCityDescription } from '../data/cityDescriptions'
 import { ExperienceCard } from '../components/ExperienceCard'
 import {
@@ -22,14 +22,16 @@ import {
   type RankedExperience,
 } from '../services/cityCatalog'
 import { experiencesCitySectionTo } from '../lib/yourVietnam/links'
+import { sightSectionsPresent } from '../data/sightSections'
 
 export function ExperiencesCityPage() {
   const { citySlug = '' } = useParams()
-  const basics = useTripStore((s) => s.basics)
-  const selectedIds = useTripStore((s) => s.selectedExperienceIds)
+  const tripDate = useTripStore((s) =>
+    s.basics.dateMode === 'exact' && s.basics.startDate ? s.basics.startDate : null,
+  )
 
   const allCities = useMemo(
-    () => [...new Set(EXPERIENCES.map((e) => e.city))].sort(),
+    () => [...new Set(SIGHT_CATALOG.map((e) => e.city))].sort(),
     [],
   )
   const cityName = useMemo(
@@ -39,27 +41,36 @@ export function ExperiencesCityPage() {
 
   const [likings, setLikings] = useState<LikingFilter[]>([])
   const [practical, setPractical] = useState<PracticalFilter[]>([])
+  const [section, setSection] = useState<string>('all')
+  const [shown, setShown] = useState(18)
 
-  const tripDate = basics.dateMode === 'exact' && basics.startDate ? basics.startDate : null
+  useEffect(() => {
+    setSection('all')
+    setShown(18)
+  }, [cityName])
 
   const rankedAll = useMemo(() => {
     if (!cityName) return [] as RankedExperience[]
-    return rankCityExperiences(EXPERIENCES.filter((e) => e.city === cityName))
+    return rankCityExperiences(SIGHT_CATALOG.filter((e) => e.city === cityName))
   }, [cityName])
+
+  const sectionTabs = useMemo(() => sightSectionsPresent(rankedAll), [rankedAll])
 
   const filtered = useMemo(() => {
     if (!cityName) return [] as RankedExperience[]
     const filters: ExperienceFilters = {
       ...DEFAULT_FILTERS,
-      city: cityName,
+      cities: [cityName],
       likings,
       practical,
     }
-    const ids = new Set(
-      filterExperienceItems(rankedAll, basics, selectedIds, filters).map((e) => e.id),
-    )
-    return rankedAll.filter((e) => ids.has(e.id))
-  }, [cityName, rankedAll, basics, selectedIds, likings, practical])
+    const ids = new Set(filterExperienceItems(rankedAll, null, [], filters).map((e) => e.id))
+    return rankedAll.filter((e) => {
+      if (!ids.has(e.id)) return false
+      if (section !== 'all' && e.sightSection !== section) return false
+      return true
+    })
+  }, [cityName, rankedAll, likings, practical, section])
 
   function toggleLiking(id: LikingFilter) {
     setLikings((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]))
@@ -120,6 +131,7 @@ export function ExperiencesCityPage() {
               onClick={() => {
                 setLikings([])
                 setPractical([])
+                setSection('all')
               }}
               className="mt-3 text-[0.72rem] font-bold text-terracotta hover:underline"
             >
@@ -141,8 +153,21 @@ export function ExperiencesCityPage() {
             {getCityDescription(cityName)}
           </p>
           <p className="mt-3 text-[0.78rem] font-bold text-muted">
-            {rankedAll.length} experience{rankedAll.length === 1 ? '' : 's'} · sorted by rank
+            {rankedAll.length} experience{rankedAll.length === 1 ? '' : 's'} · ranked by rating and
+            reviews
           </p>
+          {sectionTabs.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              <FilterChip active={section === 'all'} onClick={() => setSection('all')}>
+                All
+              </FilterChip>
+              {sectionTabs.map((tab) => (
+                <FilterChip key={tab} active={section === tab} onClick={() => setSection(tab)}>
+                  {tab}
+                </FilterChip>
+              ))}
+            </div>
+          )}
           <Link
             to={experiencesCitySectionTo(cityName)}
             className="mt-4 inline-flex text-[0.82rem] font-bold text-terracotta hover:underline"
@@ -161,6 +186,7 @@ export function ExperiencesCityPage() {
               onClick={() => {
                 setLikings([])
                 setPractical([])
+                setSection('all')
               }}
               className="mt-4 rounded-full bg-ink px-5 py-2.5 text-[0.86rem] font-bold text-paper"
             >
@@ -168,17 +194,29 @@ export function ExperiencesCityPage() {
             </button>
           </div>
         ) : (
-          <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((item) => (
-              <ExperienceCard
-                key={item.id}
-                experience={item}
-                tripDate={tripDate}
-                dense
-                cityRank={item.cityRank}
-              />
-            ))}
-          </div>
+          <>
+            <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {filtered.slice(0, shown).map((item, index) => (
+                <ExperienceCard
+                  key={item.id}
+                  experience={item}
+                  tripDate={tripDate}
+                  dense
+                  cityRank={item.cityRank}
+                  priority={index < 3}
+                />
+              ))}
+            </div>
+            {filtered.length > shown ? (
+              <button
+                type="button"
+                onClick={() => setShown((n) => n + 18)}
+                className="mt-5 w-full rounded-full border border-terracotta/25 bg-terracotta/8 py-3 text-[0.88rem] font-bold text-terracotta-deep hover:bg-terracotta/12"
+              >
+                Show more sights ({filtered.length - shown} left)
+              </button>
+            ) : null}
+          </>
         )}
 
         <div className="mt-10 border-t border-ink/8 pt-6">

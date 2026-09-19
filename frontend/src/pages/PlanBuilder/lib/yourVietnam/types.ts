@@ -88,6 +88,10 @@ export type ItineraryItem = {
   sourceId?: string
   /** True when the engine asks the traveller to consider dropping this pick */
   suggestDrop?: boolean
+  /** One-line planner context (what it is / when / same-tour). */
+  planningNote?: string
+  /** Landing already inside a selected parent tour (cruise cave, etc.). */
+  includedStop?: boolean
 }
 
 export type DayPeriod = {
@@ -124,11 +128,30 @@ export type DayAgenda = {
   eat: DayAgendaItem[]
 }
 
+export type ItineraryDaySlot = {
+  id: string
+  placeId: string
+  blank: boolean
+}
+
+/** User-inserted pause on a day's compact timeline (lunch, coffee, rest). */
+export type ItineraryBreak = {
+  id: string
+  /** Sight this break follows. `null` places it before the first sight. */
+  afterSourceId: string | null
+  label: string
+  durationMinutes: number
+}
+
 export type YourVietnamDay = {
   day: number
   dateLabel: string
   city: string
   region: string
+  /** Stable id for this calendar slot (survives day reorder). */
+  slotId: string
+  /** True when the traveller inserted an empty day. */
+  blank?: boolean
   /** Getting Around place id when the city is on the Vietnam map */
   placeId?: string
   theme: string
@@ -158,6 +181,8 @@ export type YourVietnamDay = {
     unset?: boolean
   }
   bannerImage?: string
+  /** Airport + in-city transport briefing for this stop. */
+  cityNote?: string
 }
 
 export type RouteStop = {
@@ -196,6 +221,14 @@ export type CostSummaryBand = {
   }
 }
 
+/** A bagged sight the city's days cannot hold under the daily caps. */
+export type UnscheduledSight = {
+  sourceId: string
+  kind: 'experience' | 'activity'
+  name: string
+  city: string
+}
+
 export type YourVietnamTrip = {
   title: string
   generatedAt: string
@@ -216,14 +249,15 @@ export type YourVietnamTrip = {
   hasNoStays: boolean
   thinCities: ThinCityNote[]
   mustVisit: MustVisitCity[]
+  unscheduled: UnscheduledSight[]
 }
 
 export const PERIOD_META: Record<
   PeriodId,
   { label: string; windowLabel: string }
 > = {
-  morning: { label: 'Morning', windowLabel: '08:00–12:00 approx.' },
-  afternoon: { label: 'Afternoon', windowLabel: '12:00–17:00 approx.' },
-  evening: { label: 'Evening', windowLabel: '17:00–21:00 approx.' },
-  night: { label: 'Night', windowLabel: '21:00+ approx.' },
+  morning: { label: 'Morning', windowLabel: '09:00–13:00' },
+  afternoon: { label: 'Afternoon', windowLabel: '13:00–17:30' },
+  evening: { label: 'Evening', windowLabel: '17:30–19:30' },
+  night: { label: 'Night', windowLabel: '19:30+' },
 }

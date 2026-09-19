@@ -1,20 +1,23 @@
-import { EXPERIENCES, getExperienceById } from '../../PlanBuilder/data/experiences'
+import { getExperienceById } from '../../PlanBuilder/data/experiences'
 import { CITY_ACTIVITIES, getActivityImages, getActivityById, type CityActivity } from '../../PlanBuilder/data/activities'
 import { HOTELS, hotelImages } from '../../PlanBuilder/data/hotels'
 import { RESTAURANTS as PB_RESTAURANTS } from '../../PlanBuilder/data/restaurants'
+import { SHOPPING_ITEMS, shoppingDurationLabel, shoppingHours } from '../../PlanBuilder/data/shopping'
 import { findLeg, formatDuration } from '../../PlanBuilder/data/transport'
 import { getExperienceImages } from '../../PlanBuilder/lib/pricing'
 import { restaurantMapsUrl } from '../../PlanBuilder/lib/yourVietnam/links'
 import type { TransportMode } from '../../PlanBuilder/types'
 import type { Experience } from '../../PlanBuilder/types'
 import { PERIOD_META, type PeriodId } from '../../PlanBuilder/lib/yourVietnam/types'
+import { formatClock } from '../../PlanBuilder/lib/yourVietnam/clockTimes'
+import { dwellHoursFor, periodStartHour, stayThemeForSection, SLOW_GAP_HOURS } from '../../PackedItineraries/lib/themeStayPack'
 import { RESTAURANTS as TASTE_RESTAURANTS } from '../../TasteOfVietnam/data/restaurants'
 import { STAY_PROPERTY_BY_ID } from '../../WhereToStay/data/stays'
 import type { StayProperty } from '../../WhereToStay/data/types'
 import { rankInSection } from '../data/rankTemplates'
-import { getAuthoredPlan } from '../data/plans'
-import type { AuthoredDay, SlotRef } from '../data/plans/types'
-import { FOUR_PLUS_WEEKS_DAYS, type ItineraryTemplate, type TemplateSectionId } from '../data/types'
+import type { AuthoredDay, AuthoredPlan, SlotRef } from '../data/plans/types'
+import type { ItineraryTemplate, TemplateSectionId } from '../data/types'
+import { typicalDaysFor } from './templateCopy'
 import { cityKey } from './cityKey'
 import { localMoveFor } from './localMove'
 
@@ -121,7 +124,7 @@ function hopMode(section: TemplateSectionId, longHop: boolean, people: number): 
   if (section === 'luxury') return 'driver'
   if (section === 'budget') return 'bus'
   if (people >= 6) return 'driver'
-  if (section === 'family-young') return 'taxi'
+  if (section === 'family-young' || section === 'nightlife') return 'taxi'
   if (longHop) return 'train'
   return 'driver'
 }
@@ -281,6 +284,47 @@ function defaultTimes(period: PeriodId, index: number) {
   return '21:30'
 }
 
+function parseClock(label: string): number | null {
+  const match = /^([01]?\d|2[0-3]):([0-5]\d)$/.exec(label)
+  if (!match) return null
+  return Number(match[1]) + Number(match[2]) / 60
+}
+
+function slotDwellHours(slot: TemplateSlot) {
+  if (slot.sourceId) return dwellHoursFor(slot.sourceId)
+  if (!slot.durationLabel) return 1
+  const match = slot.durationLabel.match(/(\d+(?:\.\d+)?)/)
+  if (!match) return 1
+  const n = Number(match[1])
+  return /min/i.test(slot.durationLabel) ? Math.max(0.5, n / 60) : Math.max(0.5, n)
+}
+
+function isVisitSlot(slot: TemplateSlot) {
+  return slot.kind === 'experience' || slot.kind === 'activity' || slot.kind === 'meal' || slot.kind === 'shopping'
+}
+
+function cascadeDayClocks(periods: Record<PeriodId, TemplateSlot[]>, section: TemplateSectionId) {
+  const theme = stayThemeForSection(section)
+  let cursor: number | undefined
+  for (const period of PERIODS) {
+    const floor = periodStartHour(period, theme)
+    if (cursor == null || cursor < floor) cursor = floor
+    const visits = periods[period].filter(isVisitSlot)
+    const rest = periods[period].filter((slot) => !isVisitSlot(slot))
+    visits.sort((a, b) => (parseClock(a.timeLabel) ?? 99) - (parseClock(b.timeLabel) ?? 99))
+    const cap = period === 'night' ? 23.4 : period === 'evening' ? 22.5 : 18.5
+    for (const slot of visits) {
+      const authored = parseClock(slot.timeLabel)
+      const raw = authored != null && authored >= (cursor ?? 0) - 0.08 ? authored : (cursor ?? floor)
+      const start = Math.min(cap, Math.max(floor, raw))
+      slot.timeLabel = formatClock(start)
+      const gap = theme === 'slow' || theme === 'relaxed' ? SLOW_GAP_HOURS : 10 / 60
+      cursor = Math.min(23.4, start + slotDwellHours(slot) + gap)
+    }
+    periods[period] = [...visits, ...rest].sort((a, b) => a.timeLabel.localeCompare(b.timeLabel))
+  }
+}
+
 function findMeal(name: string, city: string) {
   const folded = foldName(name)
   const taste =
@@ -364,7 +408,7 @@ function hydrateRef(
   const time = 'time' in ref && ref.time ? ref.time : defaultTimes(period, index)
   if (ref.kind === 'free') return { note: ref.note }
   if (ref.kind === 'experience') {
-    const exp: Experience | undefined = getExperienceById(ref.id) ?? EXPERIENCES.find((e) => e.id === ref.id)
+    const exp: Experience | undefined = getExperienceById(ref.id)
     if (!exp) {
       warnMissing('experience', ref.id, city)
       return {}
@@ -407,6 +451,29 @@ function hydrateRef(
         costUsd: act.priceFromUsd ?? undefined,
         durationLabel: act.durationLabel,
         sourceId: act.id,
+      },
+    }
+  }
+  if (ref.kind === 'shopping') {
+    const shop = SHOPPING_ITEMS.find((item) => item.id === ref.id)
+    if (!shop) {
+      warnMissing('shopping', ref.id, city)
+      return {}
+    }
+    const hours = shoppingHours(shop)
+    return {
+      slot: {
+        id: slotId('shopping', day, shop.id),
+        kind: 'shopping',
+        period,
+        timeLabel: time,
+        name: shop.name,
+        city: shop.city || city,
+        reason: shop.blurb,
+        icon: '🛍️',
+        costUsd: shop.costUsd,
+        durationLabel: shoppingDurationLabel(hours),
+        sourceId: shop.id,
       },
     }
   }
@@ -463,13 +530,14 @@ function applyPeriod(
   })
 }
 
-export function typicalDaysFor(template: ItineraryTemplate) {
-  return Math.max(1, Math.round((template.minDays + template.maxDays) / 2))
-}
+export { typicalDaysFor }
 
-export function resolveTripDays(template: ItineraryTemplate, _ctx?: TemplateTripContext) {
-  const plan = getAuthoredPlan(template.id)
-  if (plan?.days.length) return plan.days.length
+export function resolveTripDays(
+  template: ItineraryTemplate,
+  _ctx?: TemplateTripContext,
+  authoredPlan?: AuthoredPlan,
+) {
+  if (authoredPlan?.days.length) return authoredPlan.days.length
   return typicalDaysFor(template)
 }
 
@@ -490,8 +558,9 @@ function citiesFromDays(days: AuthoredDay[]) {
 export function buildTemplateItinerary(
   template: ItineraryTemplate,
   ctx: TemplateTripContext = {},
+  authoredPlan?: AuthoredPlan,
 ): TemplateTrip {
-  const authored = getAuthoredPlan(template.id)
+  const authored = authoredPlan
   if (!authored) {
     throw new Error(`No authored itinerary for template “${template.id}”.`)
   }
@@ -552,9 +621,7 @@ export function buildTemplateItinerary(
       })
     }
 
-    for (const period of PERIODS) {
-      periods[period].sort((a, b) => a.timeLabel.localeCompare(b.timeLabel))
-    }
+    cascadeDayClocks(periods, template.section)
 
     days.push({
       day: dayNum,
@@ -588,26 +655,4 @@ export function buildTemplateItinerary(
   }
 }
 
-export function peopleLabel(template: ItineraryTemplate, people?: number) {
-  if (people != null) return people === 1 ? '1 person' : `${people} people`
-  if (template.peopleMin === template.peopleMax) {
-    return template.peopleMin === 1 ? '1 person' : `${template.peopleMin} people`
-  }
-  return `${template.peopleMin}–${template.peopleMax} people`
-}
-
-export function periodList(): PeriodId[] {
-  return PERIODS
-}
-
-export function paceLabel(pace: ItineraryTemplate['pace']) {
-  if (pace === 'relaxed') return 'Relaxed'
-  if (pace === 'packed') return 'Maximum'
-  return 'Mix'
-}
-
-export function daysLabel(days: number, requested?: number | null) {
-  if (requested != null && requested >= FOUR_PLUS_WEEKS_DAYS) return '4+ weeks'
-  if (days === 1) return '1 day'
-  return `${days} days`
-}
+export { daysLabel, peopleLabel, paceLabel, periodList } from './templateCopy'

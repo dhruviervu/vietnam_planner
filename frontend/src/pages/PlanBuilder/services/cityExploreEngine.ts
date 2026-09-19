@@ -1,6 +1,6 @@
 import type { Experience, ExperienceSignal } from '../types'
 import type { TripBasics } from '../../../store/tripStore'
-import { EXPERIENCES } from '../data/experiences'
+import { SIGHT_CATALOG } from '../data/experiences'
 import {
   EXPLORE_CITIES,
   filterChipLabel,
@@ -33,7 +33,7 @@ export type ExperienceGroup = {
 }
 
 function experiencesForCity(city: ExploreCity): Experience[] {
-  return EXPERIENCES.filter((e) => e.region === city.region)
+  return SIGHT_CATALOG.filter((e) => e.region === city.region)
 }
 
 function interestHitsCity(city: ExploreCity, interests: string[]): string[] {
@@ -42,7 +42,7 @@ function interestHitsCity(city: ExploreCity, interests: string[]): string[] {
 }
 
 export function rankCities(basics: TripBasics, selectedIds: string[]): RankedCity[] {
-  const selected = EXPERIENCES.filter((e) => selectedIds.includes(e.id))
+  const selected = SIGHT_CATALOG.filter((e) => selectedIds.includes(e.id))
   const selectedByRegion = new Map<string, number>()
   for (const e of selected) {
     selectedByRegion.set(e.region, (selectedByRegion.get(e.region) ?? 0) + 1)
@@ -350,7 +350,7 @@ export function filterGlobalExperiences(
     (f) => !SIGNAL_FILTER_IDS.has(f) && !f.startsWith('cat-'),
   )
 
-  let list = [...EXPERIENCES]
+  let list = [...SIGHT_CATALOG]
   if (signals.length || categories.length || practical.length) {
     list = list.filter((e) => {
       const signalOk = !signals.length || signals.some((f) => matchesCityFilter(e, f))

@@ -1,57 +1,85 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Component, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { SkipToMenu } from '../components/SkipToMenu'
-import { stepPath } from '../steps'
-import { useTripStore } from '../../../store/tripStore'
+import { useTripStore, sanitizeTripItineraryPlans } from '../../../store/tripStore'
 import { buildYourVietnam } from '../lib/yourVietnam/buildYourVietnam'
 import { exportYourVietnamPdf } from '../lib/yourVietnam/exportPdf'
-import {
-  activitiesUrl,
-  experiencesUrl,
-  foodUrl,
-  whereToStayUrl,
-} from '../lib/yourVietnam/links'
-import { buildCityPins } from '../lib/yourVietnam/cityPins'
-import { agendaPinNumbers } from '../lib/yourVietnam/dayMapPins'
-import type { ItineraryItem, PeriodId } from '../lib/yourVietnam/types'
-import type { PlaceId } from '../../GettingAround/data/types'
-import { TripVariablesBar } from '../components/TripVariablesBar'
-import { DayToggleBar } from '../components/DayToggleBar'
-import { DayAgendaList } from '../components/DayAgenda'
-import { DayPlan } from '../components/DayPlan'
-import { TripBagCityMap } from '../components/TripBagCityMap'
-import { TripPlannerNotes } from '../components/TripPlannerNotes'
-import { MustVisitCitiesSection } from '../components/MustVisitCitiesSection'
+import { activitiesUrl, experiencesUrl } from '../lib/yourVietnam/links'
 import { AddMoreSightsSection } from '../components/AddMoreSightsSection'
-import { AddToDayDrawer } from '../components/AddToDayDrawer'
+import { ItineraryCraftShell } from '../components/ItineraryCraftShell'
+import { CraftedItineraryBoard } from '../components/CraftedItineraryBoard'
+import { splitSourceIds } from '../../PackedItineraries/lib/packHighRoi'
+import {
+  daysForItineraryPlan,
+  openItineraryTemplatesTab,
+} from '../../../store/itineraryPlans'
+
+class ItineraryErrorBoundary extends Component<
+  { children: ReactNode },
+  { message: string | null }
+> {
+  state = { message: null as string | null }
+  static getDerivedStateFromError(err: Error) {
+    return { message: err.message || 'The itinerary could not be shown.' }
+  }
+  componentDidCatch(err: Error) {
+    console.error('[itinerary]', err)
+  }
+  render() {
+    if (this.state.message) {
+      return (
+        <section className="rounded-[28px] border border-terracotta/25 bg-paper px-6 py-8 shadow-soft">
+          <h1 className="font-serif text-[1.8rem] font-semibold text-ink">The itinerary hit a snag</h1>
+          <p className="mt-2 max-w-[52ch] text-[0.95rem] leading-relaxed text-muted">
+            {this.state.message}
+          </p>
+          <button
+            type="button"
+            onClick={() => this.setState({ message: null })}
+            className="mt-5 rounded-full bg-ink px-4 py-2 text-[0.82rem] font-bold text-paper"
+          >
+            Try again
+          </button>
+        </section>
+      )
+    }
+    return this.props.children
+  }
+}
 
 export function FinalItinerary() {
+  return (
+    <ItineraryErrorBoundary>
+      <FinalItineraryBody />
+    </ItineraryErrorBoundary>
+  )
+}
+
+function FinalItineraryBody() {
   const basics = useTripStore((s) => s.basics)
   const experienceIds = useTripStore((s) => s.selectedExperienceIds)
   const activityIds = useTripStore((s) => s.selectedActivityIds)
   const hotelIds = useTripStore((s) => s.selectedHotelIds)
   const chosenStayId = useTripStore((s) => s.chosenStayId)
   const restaurantIds = useTripStore((s) => s.selectedRestaurantIds)
+  const restaurantMealSlots = useTripStore((s) => s.restaurantMealSlots)
   const shoppingIds = useTripStore((s) => s.selectedShoppingIds)
   const transportChoices = useTripStore((s) => s.transportChoices)
   const experienceMeta = useTripStore((s) => s.experienceMeta)
-  const removeExperience = useTripStore((s) => s.removeExperience)
-  const removeActivity = useTripStore((s) => s.removeActivity)
-  const toggleRestaurant = useTripStore((s) => s.toggleRestaurant)
-  const addExperience = useTripStore((s) => s.addExperience)
-  const addActivity = useTripStore((s) => s.addActivity)
-  const setExperienceSlot = useTripStore((s) => s.setExperienceSlot)
-  const mark = useTripStore((s) => s.markStepVisited)
-  const setCityNightOverride = useTripStore((s) => s.setCityNightOverride)
+  const breakfastAtHotel = useTripStore((s) => s.breakfastAtHotel)
+  const itineraryDaySlots = useTripStore((s) => s.itineraryDaySlots)
   const cityNightOverrides = useTripStore((s) => s.cityNightOverrides)
+  const mark = useTripStore((s) => s.markStepVisited)
+  const setExperienceSlot = useTripStore((s) => s.setExperienceSlot)
+  const itineraryPlans = useTripStore((s) => s.itineraryPlans)
+  const activeItineraryPlanId = useTripStore((s) => s.activeItineraryPlanId)
+  const itinerarySightOrder = useTripStore((s) => s.itinerarySightOrder)
+  const itineraryUserPinnedIds = useTripStore((s) => s.itineraryUserPinnedIds)
+  const itineraryDaySlotOverrides = useTripStore((s) => s.itineraryDaySlotOverrides)
 
-  const [dismissedIssueIds, setDismissedIssueIds] = useState<string[]>([])
-  const [removedItemIds, setRemovedItemIds] = useState<string[]>([])
-  const [skippedSuggestionIds, setSkippedSuggestionIds] = useState<string[]>([])
   const [activeDay, setActiveDay] = useState(1)
   const [highlightId, setHighlightId] = useState<string | null>(null)
-  const [addPeriod, setAddPeriod] = useState<PeriodId | null>(null)
+  const [mapOpen, setMapOpen] = useState(false)
 
   useEffect(() => {
     mark('itinerary')
@@ -61,68 +89,94 @@ export function FinalItinerary() {
       /* ignore */
     }
     window.scrollTo(0, 0)
+    const s = useTripStore.getState()
+    const patch = sanitizeTripItineraryPlans(s)
+    const active = s.itineraryPlans.find((p) => p.id === s.activeItineraryPlanId)
+    const needs =
+      s.itineraryPlans.some((p) => p.id.startsWith('packed:')) ||
+      !active ||
+      s.activeItineraryPlanId.startsWith('packed:') ||
+      Boolean(s.itineraryDaySlots?.some((slot) => String(slot.id).startsWith('packed:')))
+    if (needs) useTripStore.setState(patch)
   }, [mark])
 
-  const trip = useMemo(
-    () =>
-      buildYourVietnam({
-        days: basics.days,
+  const activePlan =
+    itineraryPlans.find((p) => p.id === activeItineraryPlanId) ?? itineraryPlans[0]
+  const isBlankPlan = activePlan?.source === 'blank'
+  const extraKey = `${isBlankPlan ? 'blank' : 'bag'}|${itineraryUserPinnedIds.join(',')}|${Object.values(itinerarySightOrder).flat().join(',')}`
+
+  const trip = useMemo(() => {
+    const extra = splitSourceIds(
+      isBlankPlan
+        ? [...new Set([...itineraryUserPinnedIds, ...Object.values(itinerarySightOrder).flat()])]
+        : [],
+    )
+    const useBagSights = !isBlankPlan
+    return buildYourVietnam({
+        days: useBagSights
+          ? basics.days
+          : Math.max(1, itineraryDaySlots?.length || 1),
         startDate: basics.startDate,
         endDate: basics.endDate,
-        travelStyle: basics.travelStyle,
-        holidayKind: basics.holidayKind,
-        holidayKindKnown: basics.holidayKindKnown,
-        paceKnown: basics.paceKnown,
+        travelStyle: useBagSights ? basics.travelStyle : 'packed',
+        holidayKind: useBagSights ? basics.holidayKind : 'action',
+        holidayKindKnown: useBagSights ? basics.holidayKindKnown : true,
+        paceKnown: useBagSights ? basics.paceKnown : true,
         groupSize: basics.groupSize,
         budgetDailyUsd: basics.budgetDailyUsd,
         budgetAllocationKnown: basics.budgetAllocationKnown,
         budgetKnown: basics.budgetKnown,
         budgetTarget: basics.budgetTarget,
         budgetMode: basics.budgetMode,
-        experienceIds,
-        activityIds,
-        hotelIds,
-        chosenStayId,
-        restaurantIds,
-        shoppingIds,
+        experienceIds: useBagSights ? experienceIds : extra.experienceIds,
+        activityIds: useBagSights ? activityIds : [],
+        hotelIds: useBagSights ? hotelIds : [],
+        chosenStayId: useBagSights ? chosenStayId : null,
+        restaurantIds: useBagSights ? restaurantIds : [],
+        restaurantMealSlots,
+        shoppingIds: useBagSights ? shoppingIds : extra.shoppingIds,
         transportChoices,
         experienceMeta,
-        dismissedIssueIds,
-        removedItemIds,
-        skippedSuggestionIds,
-        cityNightOverrides,
-      }),
-    [
+        breakfastAtHotel,
+        itineraryDaySlots,
+        itineraryDaySlotOverrides,
+        itinerarySightOrder,
+        cityNightOverrides: useBagSights ? cityNightOverrides : {},
+      })
+  }, [
       basics,
       experienceIds,
       activityIds,
       hotelIds,
       chosenStayId,
       restaurantIds,
+      restaurantMealSlots,
       shoppingIds,
       transportChoices,
       experienceMeta,
-      dismissedIssueIds,
-      removedItemIds,
-      skippedSuggestionIds,
+      breakfastAtHotel,
+      itineraryDaySlots,
+      itineraryDaySlotOverrides,
       cityNightOverrides,
-    ],
-  )
+      isBlankPlan,
+      extraKey,
+    itineraryUserPinnedIds,
+    itinerarySightOrder,
+    ])
 
-  const pins = useMemo(
-    () => buildCityPins(experienceIds, activityIds),
-    [experienceIds, activityIds],
-  )
+  const hasSightsInBag = experienceIds.length > 0 || activityIds.length > 0
+  const displayDays = daysForItineraryPlan(trip.days, activePlan, {
+    itinerarySightOrder,
+    itineraryUserPinnedIds,
+  })
+  const day = displayDays.find((d) => d.day === activeDay) ?? displayDays[0]
 
   useEffect(() => {
-    if (trip.days.length === 0) return
-    if (!trip.days.some((d) => d.day === activeDay)) {
-      setActiveDay(trip.days[0].day)
+    if (displayDays.length === 0) return
+    if (!displayDays.some((d) => d.day === activeDay)) {
+      setActiveDay(displayDays[0].day)
     }
-    void pins.length
-  }, [trip.days, activeDay])
-
-  const day = trip.days.find((d) => d.day === activeDay) ?? trip.days[0]
+  }, [activeItineraryPlanId, displayDays, activeDay])
 
   const itineraryExperienceIds: string[] = []
   const itineraryActivityIds: string[] = []
@@ -136,89 +190,6 @@ export function FinalItinerary() {
     }
   }
 
-  const dayStops = (day?.periods ?? []).flatMap((p) =>
-    p.items
-      .filter(
-        (it) =>
-          it.kind === 'experience' ||
-          it.kind === 'activity' ||
-          it.kind === 'meal' ||
-          it.kind === 'shopping' ||
-          it.kind === 'stay' ||
-          it.kind === 'check-in',
-      )
-      .map((it) => {
-        const name = it.name.replace(/^(Lunch|Dinner|Check-in) · /, '')
-        let query = `${name}, ${it.city}, Vietnam`
-        if (it.mapsUrl) {
-          try {
-            const q = new URL(it.mapsUrl).searchParams.get('query')
-            if (q?.trim()) query = q.trim()
-          } catch {
-            /* ignore */
-          }
-        }
-        return {
-          id: it.id,
-          name,
-          kind: it.kind,
-          query,
-          placeId: (day?.placeId as PlaceId | undefined) ?? undefined,
-          sourceId: it.sourceId,
-          locationHint: it.locationLabel,
-        }
-      }),
-  )
-
-  function skipSuggestion(sourceId: string) {
-    setSkippedSuggestionIds((prev) => (prev.includes(sourceId) ? prev : [...prev, sourceId]))
-  }
-
-  function addSuggestion(id: string, kind?: 'experience' | 'activity' | 'restaurant') {
-    if (kind === 'activity') addActivity(id)
-    else if (kind === 'restaurant') {
-      if (!restaurantIds.includes(id)) toggleRestaurant(id)
-    } else addExperience(id)
-  }
-
-  function removeItem(item: ItineraryItem) {
-    if (item.selectionState === 'recommended') {
-      if (item.sourceId) skipSuggestion(item.sourceId)
-      return
-    }
-    setRemovedItemIds((prev) => (prev.includes(item.id) ? prev : [...prev, item.id]))
-    if (item.kind === 'experience' && item.sourceId) removeExperience(item.sourceId)
-    if (item.kind === 'activity' && item.sourceId) removeActivity(item.sourceId)
-    if (item.kind === 'meal' && item.sourceId && restaurantIds.includes(item.sourceId)) {
-      toggleRestaurant(item.sourceId)
-    }
-  }
-
-  function restoreItem(item: ItineraryItem) {
-    setRemovedItemIds((prev) => prev.filter((id) => id !== item.id))
-    if (item.sourceId) {
-      setSkippedSuggestionIds((prev) =>
-        prev.filter((id) => id !== item.sourceId && id !== `exp:${item.sourceId}` && id !== `act:${item.sourceId}`),
-      )
-    }
-    if (item.selectionState === 'recommended') return
-    if (item.kind === 'experience' && item.sourceId) addExperience(item.sourceId)
-    if (item.kind === 'activity' && item.sourceId) addActivity(item.sourceId)
-    if (item.kind === 'meal' && item.sourceId && !restaurantIds.includes(item.sourceId)) {
-      toggleRestaurant(item.sourceId)
-    }
-  }
-
-  function swapItem(from: ItineraryItem, toId: string) {
-    removeItem(from)
-    addExperience(toId)
-  }
-
-  function onAgendaSelect(id: string) {
-    setHighlightId(id)
-    document.getElementById(`yv-item-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }
-
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="pb-16">
       <header className="relative overflow-hidden rounded-[28px] border border-ink/8 bg-paper shadow-hero">
@@ -230,44 +201,41 @@ export function FinalItinerary() {
           }}
         />
         <div className="relative px-5 py-4 sm:px-8 sm:py-5">
-          <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">
-            Your trip · live plan
-          </p>
           <div className="mt-1 flex flex-wrap items-end justify-between gap-4">
             <div>
               <h1 className="font-serif text-[clamp(2.1rem,4.5vw,3.1rem)] font-semibold leading-[1.05] text-ink">
-                Your Vietnam
+                The Itinerary
               </h1>
-              <p className="mt-2 max-w-[46ch] text-[1.02rem] leading-relaxed text-muted">
-                Set the shape, see the map, then curate each day.
-              </p>
-              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.88rem] font-semibold text-ink">
-                <span>
-                  {trip.daysCount} day{trip.daysCount === 1 ? '' : 's'}
-                </span>
-                <span className="text-ink/25">·</span>
-                <span>
-                  {trip.cityCount} {trip.cityCount === 1 ? 'city' : 'cities'}
-                </span>
-                <span className="text-ink/25">·</span>
-                <span>{trip.travellersLabel}</span>
-                {trip.dateRangeLabel && !trip.isEmpty && (
-                  <>
-                    <span className="text-ink/25">·</span>
-                    <span className="font-medium text-muted">{trip.dateRangeLabel}</span>
-                  </>
-                )}
-              </div>
+              {hasSightsInBag ? (
+                <p className="mt-2 max-w-[54ch] text-[1.02rem] leading-relaxed text-muted">
+                  Your itinerary, based on all the sights you have added. See itineraries for Vietnam
+                  — packed city and country templates —{' '}
+                  <button
+                    type="button"
+                    onClick={openItineraryTemplatesTab}
+                    className="font-bold text-terracotta underline decoration-terracotta/40 underline-offset-2 hover:text-terracotta-deep"
+                  >
+                    click here
+                  </button>{' '}
+                  to view them
+                </p>
+              ) : (
+                <p className="mt-2 max-w-[46ch] text-[1.02rem] leading-relaxed text-muted">
+                  Add sights to your trip bag to shape a day-by-day plan — or{' '}
+                  <button
+                    type="button"
+                    onClick={openItineraryTemplatesTab}
+                    className="font-bold text-terracotta underline decoration-terracotta/40 underline-offset-2 hover:text-terracotta-deep"
+                  >
+                    see itineraries for Vietnam
+                  </button>
+                  .
+                </p>
+              )}
+              {trip.dateRangeLabel && !trip.isEmpty ? (
+                <p className="mt-2 text-[0.88rem] font-medium text-muted">{trip.dateRangeLabel}</p>
+              ) : null}
             </div>
-            {!trip.isEmpty && (
-              <button
-                type="button"
-                onClick={() => exportYourVietnamPdf(trip)}
-                className="rounded-full bg-gradient-to-br from-terracotta to-terracotta-deep px-5 py-3 text-[0.92rem] font-bold text-paper shadow-[0_10px_24px_rgba(196,92,58,0.28)] transition hover:scale-[1.01]"
-              >
-                Download itinerary PDF ↓
-              </button>
-            )}
           </div>
         </div>
       </header>
@@ -276,105 +244,50 @@ export function FinalItinerary() {
         <EmptySketch />
       ) : (
         <>
-          <div className="mt-6">
-            <TripVariablesBar />
-          </div>
-
-          <TripPlannerNotes
-            stops={trip.route}
-            daysCount={trip.daysCount}
-            onNightChange={setCityNightOverride}
-          />
-
-          <MustVisitCitiesSection cities={trip.mustVisit} />
-
-          <div className="mt-6">
-            <DayToggleBar days={trip.days} activeDay={activeDay} onSelect={setActiveDay} />
-          </div>
-
-          {day ? (
-            <>
-              <div className="mt-6 grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,42%)]">
-                <div className="min-w-0">
-                  <DayAgendaList
-                    day={day}
-                    activeId={highlightId}
-                    onSelect={onAgendaSelect}
-                    pinNumberById={agendaPinNumbers(dayStops)}
-                    groupSize={basics.groupSize}
-                  />
-                </div>
-                <aside className="order-first lg:order-none">
-                  <TripBagCityMap
-                    key={`${day.day}-${day.placeId ?? 'city'}`}
-                    stops={dayStops}
-                    cityLabel={day.city}
-                    placeId={day.placeId as PlaceId | undefined}
-                    activeStopId={highlightId}
-                    onSelectStop={onAgendaSelect}
-                  />
-                  <p className="mt-2 text-[0.75rem] text-muted">
-                    Day {day.day} in {day.city} — numbered pins match the agenda; the stay marker is your hotel.
-                  </p>
-                </aside>
-              </div>
-              <div className="mt-8">
-                <DayPlan
-                  day={day}
+          <ItineraryCraftShell
+            route={trip.route}
+            mapOpen={mapOpen}
+            onToggleMap={() => setMapOpen((v) => !v)}
+            daysCount={displayDays.length || trip.daysCount}
+            crafted={
+              <>
+                <CraftedItineraryBoard
+                  key={activeItineraryPlanId}
+                  tripDays={displayDays}
+                  activeDay={activeDay}
+                  setActiveDay={setActiveDay}
                   highlightId={highlightId}
-                  itinerarySourceIds={[...itineraryExperienceIds, ...itineraryActivityIds]}
-                  onRemoveItem={removeItem}
-                  onRestoreItem={restoreItem}
-                  onAddSuggestion={addSuggestion}
-                  onSkipSuggestion={skipSuggestion}
+                  setHighlightId={setHighlightId}
+                  itineraryExperienceIds={itineraryExperienceIds}
+                  itineraryActivityIds={itineraryActivityIds}
                   onMoveExperience={setExperienceSlot}
-                  onSwapItem={(from, to) => swapItem(from, to.id)}
+                  unscheduledSights={trip.unscheduled}
+                  mapOpen={mapOpen}
+                  seeVietnamItineraries={activePlan?.source === 'blank'}
                 />
-              </div>
-            </>
-          ) : (
-            <p className="mt-6 text-muted">No days to show yet.</p>
-          )}
 
-          <AddMoreSightsSection
-            thinCities={trip.thinCities.filter((c) => c.city === day?.city)}
-            selectedIds={[...experienceIds, ...itineraryExperienceIds]}
-            tripDate={basics.dateMode === 'exact' && basics.startDate ? basics.startDate : null}
+                <AddMoreSightsSection
+                  thinCities={trip.thinCities.filter((c) => c.city === day?.city)}
+                  selectedIds={[...experienceIds, ...itineraryExperienceIds]}
+                  tripDate={
+                    basics.dateMode === 'exact' && basics.startDate ? basics.startDate : null
+                  }
+                />
+
+                <div className="mt-6 flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => exportYourVietnamPdf(trip)}
+                    className="rounded-full bg-gradient-to-br from-terracotta to-terracotta-deep px-5 py-3 text-[0.92rem] font-bold text-paper shadow-[0_10px_24px_rgba(196,92,58,0.28)] transition hover:scale-[1.01]"
+                  >
+                    Download itinerary PDF ↓
+                  </button>
+                </div>
+              </>
+            }
           />
         </>
       )}
-
-      {addPeriod && day?.placeId && (
-        <AddToDayDrawer
-          placeId={day.placeId as PlaceId}
-          period={addPeriod}
-          packedExperienceIds={itineraryExperienceIds}
-          packedActivityIds={itineraryActivityIds}
-          onClose={() => setAddPeriod(null)}
-          onAdded={() => setAddPeriod(null)}
-        />
-      )}
-
-      <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-ink/8 pt-6">
-        <SkipToMenu current="itinerary" />
-        <div className="flex flex-wrap gap-3">
-          <Link
-            to={stepPath('experiences')}
-            className="text-[0.88rem] font-semibold text-muted hover:text-ink"
-          >
-            Add more experiences
-          </Link>
-          {!trip.isEmpty && (
-            <button
-              type="button"
-              onClick={() => exportYourVietnamPdf(trip)}
-              className="btn-solid"
-            >
-              Download itinerary PDF ↓
-            </button>
-          )}
-        </div>
-      </div>
     </motion.div>
   )
 }
@@ -386,24 +299,15 @@ function EmptySketch() {
         Your trip is still a sketch
       </h2>
       <p className="mx-auto mt-2 max-w-[42ch] text-muted">
-        Add experiences, activities or stays to the trip bag — then we&apos;ll shape a day-by-day
-        plan around duration, group, holiday kind and budget.
+        Add experiences or activities to the trip bag — then we&apos;ll pack a day-by-day
+        plan from those sights and their opening hours.
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <Link to={experiencesUrl()} className="btn-solid">
+        <button type="button" onClick={openItineraryTemplatesTab} className="btn-solid">
+          View Itinerary Templates
+        </button>
+        <Link to={experiencesUrl()} className="rounded-full border border-ink/12 bg-paper px-5 py-2.5 text-[0.88rem] font-bold text-ink">
           Explore experiences
-        </Link>
-        <Link
-          to={whereToStayUrl()}
-          className="rounded-full border border-ink/12 bg-paper px-5 py-2.5 text-[0.88rem] font-bold text-ink"
-        >
-          Choose where to stay
-        </Link>
-        <Link
-          to={foodUrl()}
-          className="rounded-full border border-ink/12 bg-paper px-5 py-2.5 text-[0.88rem] font-bold text-ink"
-        >
-          Explore food
         </Link>
         <Link
           to={activitiesUrl()}

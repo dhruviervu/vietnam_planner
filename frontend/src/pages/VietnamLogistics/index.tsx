@@ -5,7 +5,6 @@ import type { TravelProfile } from './data/types'
 import { useExchangeRates } from './lib/useExchangeRates'
 import { LogisticsHero } from './components/LogisticsHero'
 import { SectionNav } from './components/SectionNav'
-import { TrustStrip } from './components/TrustStrip'
 import { VisaSection } from './components/VisaSection'
 import { SimSection } from './components/SimSection'
 import { MoneySection } from './components/MoneySection'
@@ -39,15 +38,6 @@ export function VietnamLogisticsPage({ embedded = false }: { embedded?: boolean 
         <LogisticsHero />
         <SectionNav />
 
-        <div className="mt-4">
-          <TrustStrip
-            currencyStatus={status}
-            currencyUpdated={
-              rates.timestamp ? new Date(rates.timestamp).toLocaleString() : ''
-            }
-          />
-        </div>
-
         <div className="mt-8 space-y-10">
           <VisaSection
             originCountryCode={profile.originCountryCode}
@@ -66,7 +56,6 @@ export function VietnamLogisticsPage({ embedded = false }: { embedded?: boolean 
           <div className="h-px bg-ink/10" aria-hidden />
           <CostsSection
             fx={rates}
-            fxStatus={status}
             travellerType={profile.travellerType}
           />
           <div className="h-px bg-ink/10" aria-hidden />

@@ -10,7 +10,7 @@ export function MustVisitCitiesSection({ cities }: { cities: MustVisitCity[] }) 
 
   return (
     <section className="mt-6">
-      <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">Must visit</p>
+      <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">Cities you missed</p>
       <p className="mt-1 text-[0.88rem] text-muted">
         Cities most first trips still add — open a card to browse that city’s sights.
       </p>

@@ -11,18 +11,12 @@ type NavGroup = {
 
 const GROUPS: NavGroup[] = [
   {
-    title: 'Discover',
-    items: [
-      { to: '/why-vietnam', label: 'Why Vietnam' },
-      { to: '/when-to-go/discover', label: 'When to go' },
-      { to: '/explore', label: 'Explore' },
-    ],
-  },
-  {
     title: 'Plan',
     items: [
+      { to: '/when-to-go/discover', label: 'When to go' },
       { to: '/plan/builder/experiences', label: 'Experiences' },
       { to: '/plan/builder/activities', label: 'Things to do' },
+      { to: '/ask', label: 'Ask' },
       { to: '/where-to-stay', label: 'Where to stay' },
       { to: '/getting-around', label: 'Getting around' },
       { to: '/taste-of-vietnam', label: 'Taste of Vietnam' },
@@ -108,7 +102,7 @@ export function LandingSidebar() {
             onClick={() => exitItineraryPipeline()}
             className="mt-2.5 flex w-full items-center justify-center rounded-full border border-white/15 bg-[rgba(255,255,255,0.04)] px-4 py-2.5 text-[0.8rem] font-bold text-[#e8dcc8] transition hover:border-white/25 hover:bg-[rgba(255,255,255,0.08)]"
           >
-            Your Vietnam
+            Your itinerary
           </Link>
         </div>
       </div>

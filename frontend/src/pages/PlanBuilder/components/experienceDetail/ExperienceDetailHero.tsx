@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { Experience } from '../../types'
+import { ContentImage, GLOBAL_IMAGE_FALLBACK } from '../../../../components/shared/ContentImage'
 import { getExperienceDetailPhotos } from '../../lib/experienceMedia'
 
 type Props = {
@@ -29,15 +30,20 @@ export function ExperienceDetailHero({ experience, className }: Props) {
       >
         {current ? (
           <button type="button" onClick={() => setLightbox(index)} className="absolute inset-0">
-            <img
+            <ContentImage
               src={current}
+              fallbacks={[GLOBAL_IMAGE_FALLBACK]}
               alt={`${experience.name} photo ${index + 1}`}
               className="absolute inset-0 h-full w-full object-cover"
               onError={() => setBroken((prev) => ({ ...prev, [current]: true }))}
             />
           </button>
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-cream via-terracotta/15 to-sage/25" />
+          <ContentImage
+            src={GLOBAL_IMAGE_FALLBACK}
+            alt={experience.name}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
         )}
         {visible.length > 1 ? (
           <>

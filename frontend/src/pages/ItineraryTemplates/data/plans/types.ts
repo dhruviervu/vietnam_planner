@@ -1,6 +1,7 @@
 export type SlotRef =
   | { kind: 'experience'; id: string; time?: string }
   | { kind: 'activity'; id: string; time?: string }
+  | { kind: 'shopping'; id: string; time?: string }
   | { kind: 'meal'; name: string; time?: string }
   | { kind: 'free'; note: string }
 

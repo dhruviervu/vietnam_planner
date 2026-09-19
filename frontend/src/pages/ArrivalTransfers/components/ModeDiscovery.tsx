@@ -7,8 +7,7 @@ import type {
   TransportModeId,
 } from '../data/types'
 import { formatCostWithBasis, formatTimeRange } from '../data/catalog'
-import { getBookingProviders, rankOptionsForProfile } from '../data/providers'
-import { BookingDrawer } from './BookingDrawer'
+import { bookingUrlForOption, rankOptionsForProfile } from '../data/providers'
 
 type Profile = {
   passengers: number
@@ -21,12 +20,10 @@ type Props = {
   support: string
   evaluations: ModeEvaluation[]
   optionsByMode: Record<string, ProviderOption[]>
-  selectedOptionId: string | null
   recommendedModeId: TransportModeId | null
   expandedId: TransportModeId | null
   onExpand: (id: TransportModeId) => void
   onSelectMode: (id: TransportModeId) => void
-  onSelectOption: (id: string, modeId: TransportModeId) => void
   profile: Profile
   airportSelected: boolean
   destinationSelected: boolean
@@ -38,18 +35,15 @@ export function ModeDiscovery({
   support,
   evaluations,
   optionsByMode,
-  selectedOptionId,
   recommendedModeId,
   expandedId: _expandedId,
   onExpand,
   onSelectMode,
-  onSelectOption,
   profile,
   airportSelected,
   destinationSelected,
   direction,
 }: Props) {
-  const [bookingOption, setBookingOption] = useState<ProviderOption | null>(null)
   const [showAll, setShowAll] = useState<Record<string, boolean>>({})
 
   return (
@@ -74,10 +68,7 @@ export function ModeDiscovery({
               options={visible}
               totalOptions={ranked.length}
               showingAll={!!showAll[ev.mode.id]}
-              selectedOptionId={selectedOptionId}
               onSelectMode={() => onSelectMode(ev.mode.id)}
-              onSelectOption={(id) => onSelectOption(id, ev.mode.id)}
-              onOpenBooking={setBookingOption}
               onToggleAll={() =>
                 setShowAll((s) => ({ ...s, [ev.mode.id]: !s[ev.mode.id] }))
               }
@@ -93,14 +84,6 @@ export function ModeDiscovery({
           )
         })}
       </div>
-
-      {bookingOption ? (
-        <BookingDrawer
-          option={bookingOption}
-          providers={getBookingProviders(bookingOption)}
-          onClose={() => setBookingOption(null)}
-        />
-      ) : null}
     </div>
   )
 }
@@ -111,10 +94,7 @@ function ModeBlock({
   options,
   totalOptions,
   showingAll,
-  selectedOptionId,
   onSelectMode,
-  onSelectOption,
-  onOpenBooking,
   onToggleAll,
   allEvals,
   onJump,
@@ -127,10 +107,7 @@ function ModeBlock({
   options: ProviderOption[]
   totalOptions: number
   showingAll: boolean
-  selectedOptionId: string | null
   onSelectMode: () => void
-  onSelectOption: (id: string) => void
-  onOpenBooking: (o: ProviderOption) => void
   onToggleAll: () => void
   allEvals: ModeEvaluation[]
   onJump: (id: TransportModeId) => void
@@ -239,13 +216,10 @@ function ModeBlock({
             </h4>
             <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {options.map((o) => {
-                const chosen = selectedOptionId === o.id
                 return (
                   <article
                     key={o.id}
-                    className={`overflow-hidden rounded-[14px] bg-cream/50 ring-1 ${
-                      chosen ? 'ring-terracotta/45' : 'ring-ink/6'
-                    }`}
+                    className="overflow-hidden rounded-[14px] bg-cream/50 ring-1 ring-ink/6"
                   >
                     <button type="button" className="w-full text-left" onClick={onSelectMode}>
                       <div className="relative aspect-[16/10] overflow-hidden">
@@ -275,55 +249,14 @@ function ModeBlock({
                       <p className="mt-1.5 text-[0.65rem] font-semibold text-ink/70">
                         {availability.status === 'available' ? '🟢' : '🟡'} {availability.label}
                       </p>
-                      <div className="mt-2 flex flex-wrap gap-1">
-                        <button
-                          type="button"
-                          onClick={() => onOpenBooking(o)}
-                          className="rounded-full bg-terracotta px-2.5 py-1 text-[0.66rem] font-bold text-paper"
-                        >
-                          See Booking Options →
-                        </button>
-                        {!chosen ? (
-                          <button
-                            type="button"
-                            onClick={() => onSelectOption(o.id)}
-                            className="rounded-full bg-paper px-2.5 py-1 text-[0.66rem] font-bold text-ink ring-1 ring-ink/8"
-                          >
-                            Select
-                          </button>
-                        ) : null}
-                      </div>
-                      {chosen ? (
-                        <button
-                          type="button"
-                          onClick={() => onSelectOption(o.id)}
-                          className="group relative mt-2.5 w-full overflow-hidden rounded-[12px] bg-gradient-to-br from-sage/20 via-cream/90 to-paper px-3 py-2.5 text-left ring-1 ring-sage/35 transition hover:from-ink/[0.04] hover:via-cream hover:to-paper hover:ring-ink/15"
-                          aria-label="Unselect this option"
-                        >
-                          <div className="flex items-start gap-2 transition duration-200 group-hover:opacity-0">
-                            <span
-                              className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sage text-[0.7rem] font-bold text-paper"
-                              aria-hidden
-                            >
-                              ✓
-                            </span>
-                            <div className="min-w-0">
-                              <p className="text-[0.58rem] font-bold uppercase tracking-[0.12em] text-sage">
-                                Saved for your trip
-                              </p>
-                              <p className="mt-0.5 text-[0.72rem] font-semibold leading-snug text-ink">
-                                Chosen — we&apos;ll fit this into your itinerary and handle it when we
-                                plan your trip.
-                              </p>
-                            </div>
-                          </div>
-                          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-gradient-to-br from-cream via-paper to-cream/90 opacity-0 transition duration-200 group-hover:opacity-100">
-                            <span className="text-[0.78rem] font-bold tracking-wide text-ink/80">
-                              Unselect
-                            </span>
-                          </div>
-                        </button>
-                      ) : null}
+                      <a
+                        href={bookingUrlForOption(o)}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-2 inline-flex rounded-full bg-terracotta px-2.5 py-1 text-[0.66rem] font-bold text-paper"
+                      >
+                        See Booking Options →
+                      </a>
                     </div>
                   </article>
                 )

@@ -34,6 +34,7 @@ export function ExperienceMediaGallery({ photos, name }: Props) {
                 src={src}
                 alt={`${name} photo ${i + 1}`}
                 loading="lazy"
+                referrerPolicy="no-referrer"
                 className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
               />
             </button>

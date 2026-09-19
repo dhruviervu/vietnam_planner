@@ -20,6 +20,14 @@ export function gettingAroundUrl() {
   return '/plan/builder/transport'
 }
 
+export function gettingAroundLongUrl() {
+  return '/plan/builder/transport#world-long'
+}
+
+export function gettingAroundUrbanUrl() {
+  return '/plan/builder/transport#world-urban'
+}
+
 export function airportTransfersUrl() {
   return '/plan/builder/airport'
 }
@@ -28,7 +36,7 @@ export function whereToStayUrl() {
   return '/plan/builder/stay'
 }
 
-import { cityAnchorId, experiencesCityPath } from '../../services/cityCatalog'
+import { cityAnchorId, experiencesCityPath } from '../../services/citySlug'
 
 export function experiencesUrl() {
   return '/plan/builder/experiences'

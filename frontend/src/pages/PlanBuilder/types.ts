@@ -1,3 +1,10 @@
+/**
+ * When a sight actually makes sense to visit. EVENING items (lanterns, night
+ * markets, sunset spots) are held back past 17:30; MORNING/AFTERNOON items
+ * (eco-tours, basket boats) are kept in daylight.
+ */
+export type TimePreference = 'MORNING' | 'AFTERNOON' | 'EVENING' | 'ANY'
+
 export type TravelStyle = 'relaxed' | 'balanced' | 'packed'
 /** Trip purpose on Your Vietnam — maps onto TravelStyle for the rest of the builder. */
 export type HolidayKind = 'action' | 'leisure' | 'culture-food'
@@ -61,8 +68,18 @@ export type ExperiencePopularityTag =
 export type Experience = {
   id: string
   name: string
+  /**
+   * Shared identity for variants of the same place (e.g. a daytime and an
+   * evening version of the same town). Two sights with the same `groupId`
+   * are never scheduled on the same day.
+   */
+  groupId?: string
+  /** When this sight belongs in the day. Defaults to ANY when unset. */
+  timePreference?: TimePreference
   region: string
   city: string
+  /** City catalog grouping (HCMC landmarks, museums, etc.). */
+  sightSection?: string
   category: ExperienceCategory
   /** Experience-accurate image URLs (3–5) */
   images: string[]
@@ -205,10 +222,11 @@ export type Restaurant = {
   priceUsd: number
   priceLabel: string
   hours: string
-  blurb: string
-  nearExperienceIds: string[]
-  address?: string
-}
+    blurb: string
+    nearExperienceIds: string[]
+    address?: string
+    image?: string
+  }
 
 export type ShoppingItem = {
   id: string
@@ -224,6 +242,9 @@ export type ShoppingItem = {
   blurb: string
   /** When set, itinerary builders place this stop in the matching daypart */
   preferredPeriod?: 'morning' | 'afternoon' | 'evening'
+  /** Dwell on the itinerary. Clamped to 30 min–2 hr when packing. */
+  durationHours?: number
+  hours?: string
 }
 
 export type TransportMode = 'train' | 'bus' | 'taxi' | 'driver' | 'rental'

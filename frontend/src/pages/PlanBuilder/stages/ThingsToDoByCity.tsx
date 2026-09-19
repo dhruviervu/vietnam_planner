@@ -12,7 +12,7 @@ import {
   countActiveActivityFilters,
 } from '../components/ActivityFilterPanel'
 import { useTripStore } from '../../../store/tripStore'
-import { EXPERIENCES } from '../data/experiences'
+import { EXPERIENCES, SIGHT_CATALOG } from '../data/experiences'
 import {
   CITY_ACTIVITIES,
   activityCityIdForPlace,
@@ -22,6 +22,7 @@ import {
   listActivityCitiesByPopularity,
   type RankedActivity,
 } from '../data/activities'
+import { groupIdForSourceId } from '../lib/yourVietnam/sightTiming'
 
 const CITY_SCROLL_OFFSET = 96
 
@@ -33,11 +34,8 @@ export function ThingsToDoByCity() {
   const [mobileTripOpen, setMobileTripOpen] = useState(false)
   const [filters, setFilters] = useState(DEFAULT_ACTIVITY_FILTERS)
   const [activeCity, setActiveCity] = useState<string | null>(null)
-  const [progressHovered, setProgressHovered] = useState(true)
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>('none')
-
-  const filtersExpanded = pipelineActive ? !progressHovered : true
-  const progressExpanded = pipelineActive && progressHovered
+  const [filtersOpen, setFiltersOpen] = useState(true)
 
   const scrollLockRef = useRef<string | null>(null)
   const scrollLockTimerRef = useRef<number | null>(null)
@@ -49,13 +47,25 @@ export function ThingsToDoByCity() {
 
   const selectedExperienceIds = useTripStore((s) => s.selectedExperienceIds)
 
+  const sightGroups = useMemo(() => {
+    const groups = new Set<string>()
+    for (const e of SIGHT_CATALOG) {
+      groups.add(e.id)
+      if (e.groupId) groups.add(e.groupId)
+      groups.add(groupIdForSourceId(e.id))
+    }
+    return groups
+  }, [])
+
   const filtered = useMemo(() => {
     return CITY_ACTIVITIES.filter((a) => {
       if (filters.kind !== 'all' && a.kind !== filters.kind) return false
       if (filters.duration !== 'all' && activityDurationBand(a) !== filters.duration) return false
+      const group = a.groupId ?? groupIdForSourceId(a.id)
+      if (sightGroups.has(group) || sightGroups.has(a.id)) return false
       return true
     })
-  }, [filters])
+  }, [filters, sightGroups])
 
   const bagCityIds = useMemo(() => {
     const ids = new Set<string>()
@@ -77,15 +87,17 @@ export function ThingsToDoByCity() {
   const activeFilterCount = countActiveActivityFilters(filters)
   const isFiltering = filters.kind !== 'all' || filters.duration !== 'all'
 
+  const cityIdsKey = groups.map((g) => g.cityId).join('|')
+
   useEffect(() => {
-    const cityIds = groups.map((g) => g.cityId)
+    const cityIds = cityIdsKey ? cityIdsKey.split('|') : []
     if (cityIds.length === 0) return
 
     setActiveCity((prev) => (prev && cityIds.includes(prev) ? prev : cityIds[0]))
 
     const spy = () => {
       if (scrollLockRef.current) {
-        setActiveCity(scrollLockRef.current)
+        setActiveCity((prev) => (prev === scrollLockRef.current ? prev : scrollLockRef.current))
         return
       }
       const marker = CITY_SCROLL_OFFSET + 12
@@ -95,7 +107,7 @@ export function ThingsToDoByCity() {
         if (!el) continue
         if (el.getBoundingClientRect().top <= marker) current = id
       }
-      setActiveCity(current)
+      setActiveCity((prev) => (prev === current ? prev : current))
     }
 
     const onScroll = () => {
@@ -115,7 +127,7 @@ export function ThingsToDoByCity() {
       if (rafSpyRef.current != null) window.cancelAnimationFrame(rafSpyRef.current)
       if (scrollLockTimerRef.current != null) window.clearTimeout(scrollLockTimerRef.current)
     }
-  }, [groups])
+  }, [cityIdsKey])
 
   function scrollToCity(id: string) {
     const el = document.getElementById(`activity-city-${id}`)
@@ -150,15 +162,12 @@ export function ThingsToDoByCity() {
   return (
     <div className="relative flex pb-28 xl:pb-0">
       <div className="sticky top-[72px] z-20 hidden shrink-0 self-start lg:flex">
-        {pipelineActive ? (
-          <div
-            onMouseEnter={() => setProgressHovered(true)}
-            onMouseLeave={() => setProgressHovered(false)}
-          >
-            <StayProgressPanel expanded={progressExpanded} current="activities" />
-          </div>
-        ) : null}
-        <ActivityFilterPanel expanded={filtersExpanded} {...filterPanelProps} />
+        {pipelineActive ? <StayProgressPanel current="activities" /> : null}
+        <ActivityFilterPanel
+          expanded={filtersOpen}
+          onToggle={() => setFiltersOpen((v) => !v)}
+          {...filterPanelProps}
+        />
       </div>
 
       <div className="fixed inset-x-0 bottom-[4.6rem] z-30 flex justify-center gap-2 px-3 lg:hidden">
@@ -239,14 +248,14 @@ export function ThingsToDoByCity() {
       <div className="min-w-0 flex-1 px-[clamp(1.1rem,4vw,2rem)] pt-2 lg:pt-4">
         <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
           <p className="mb-2 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">
-            Stage 2 · Things to do
+            Stage 3 · Activities
           </p>
           <h1 className="font-serif text-[clamp(1.9rem,4vw,2.85rem)] font-semibold leading-[1.1] text-ink">
-            Join in — don&apos;t just look
+            Join in!
           </h1>
           <p className="mt-3 max-w-[54ch] text-[1.02rem] leading-relaxed text-muted">
-            Classes, beach games with locals, singing, dancing, workshops — real activities you do
-            with your hands and your voice. Sorted city by city so you can plan where to play.
+            These are the activities and fun stuff you can partake in. Completely optional but also
+            completely change the holiday - in a good way.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -331,7 +340,7 @@ function CityActivitySection({
         </p>
       </div>
       <div className="border-t border-ink/6 px-4 pb-4 pt-3 sm:px-5">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           <AnimatePresence mode="popLayout">
             {activities.map((activity) => (
               <ActivityCard key={activity.id} activity={activity} cityRank={activity.cityRank} />

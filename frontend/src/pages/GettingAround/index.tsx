@@ -19,6 +19,20 @@ export function GettingAroundPage({ embedded = false }: { embedded?: boolean }) 
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null)
 
   useEffect(() => {
+    const hash = window.location.hash.replace('#', '')
+    if (hash === 'world-urban') {
+      setActiveWorld('urban')
+      window.setTimeout(() => document.getElementById('world-urban')?.scrollIntoView({ behavior: 'smooth' }), 80)
+    } else if (hash === 'world-long') {
+      setActiveWorld('long-distance')
+      window.setTimeout(() => document.getElementById('world-long')?.scrollIntoView({ behavior: 'smooth' }), 80)
+    } else if (hash === 'world-water') {
+      setActiveWorld('water')
+      window.setTimeout(() => document.getElementById('world-water')?.scrollIntoView({ behavior: 'smooth' }), 80)
+    }
+  }, [])
+
+  useEffect(() => {
     const sections = [
       { id: 'world-long', key: 'long-distance' as const },
       { id: 'world-urban', key: 'urban' as const },

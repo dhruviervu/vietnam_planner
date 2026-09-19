@@ -1,5 +1,11 @@
 import type { Experience, SignalLevel, TimeOfDay } from '../types'
 import { getExperienceById } from '../data/experiences'
+import {
+  catalogHoursForSource,
+  displayTodayHours,
+  hoursLabelForSource,
+  weekdayFromIso,
+} from '../lib/yourVietnam/openingHours'
 
 /**
  * Live / time-sensitive experience signals.
@@ -115,9 +121,16 @@ export function getLiveSignals(
         ? 'Quieter start'
         : 'Daytime energy'
 
-  const openingRoll = seed % 10
-  const openingStatus: ExperienceLiveSignals['openingStatus'] =
-    openingRoll > 8 ? 'closing-soon' : openingRoll > 7 ? 'seasonal' : 'open'
+  const hours = catalogHoursForSource(
+    'experience',
+    experience.id,
+    date ? weekdayFromIso(date) : new Date().getDay(),
+  )
+  const openingStatus: ExperienceLiveSignals['openingStatus'] = hours.closedToday
+    ? 'closed'
+    : hours.unknown
+      ? 'seasonal'
+      : 'open'
 
   const availRoll = seed % 7
   const availability: ExperienceLiveSignals['availability'] =
@@ -136,14 +149,11 @@ export function getLiveSignals(
     crowdLevel,
     crowdLabel: CROWD_WORDS[crowdLevel],
     openingStatus,
-    openingLabel:
-      openingStatus === 'open'
-        ? 'Open now'
-        : openingStatus === 'closing-soon'
-          ? 'Closing soon'
-          : openingStatus === 'seasonal'
-            ? 'Seasonal hours'
-            : 'Closed',
+    openingLabel: hours.closedToday
+      ? 'Closed today'
+      : hours.unknown
+        ? hours.label || 'Hours vary'
+        : displayTodayHours(hours),
     availability,
     availabilityLabel:
       availability === 'good' ? 'Good availability' : availability === 'limited' ? 'Limited slots' : 'Sold out',
@@ -178,7 +188,7 @@ export function getExperienceDetails(
       costLabel: experience.costLabel,
       costUsd: experience.costUsd,
       accessibility: experience.accessibilityDetail,
-      hours: experience.hours,
+      hours: hoursLabelForSource('experience', experience.id, experience.hours),
       about: experience.about,
       whyGo: experience.whyGo,
     },

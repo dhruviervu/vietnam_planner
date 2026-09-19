@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import {
   MapContainer,
   TileLayer,
@@ -12,20 +12,18 @@ import 'leaflet/dist/leaflet.css'
 import { loadHoiAnStayMap, type HoiAnMapBundle } from '../data/hoiAnMap'
 import type { RankedCluster } from '../data/ranking'
 import { GOOGLE_ROADMAP_TILES } from '../lib/googleMapTiles'
-import type { StayBagPin } from '../lib/tripBagStayPins'
-import { StayBagFlagLayer } from './StayBagFlagLayer'
 
 type Props = {
   ranked: RankedCluster[]
   selectedId: string
   onSelect: (clusterId: string) => void
-  bagPins?: StayBagPin[]
+  overlay?: ReactNode
+  mapHeightClass?: string
 }
 
 type LayerToggles = {
   clusters: boolean
   areas: boolean
-  places: boolean
 }
 
 /** Hoi An extent — Old Town through An Bang / Cua Dai coast */
@@ -83,25 +81,13 @@ function areaIcon(name: string) {
   })
 }
 
-function placeIcon(kind: string) {
-  const color =
-    kind === 'beach' ? '#4A7AA8' : kind === 'historic' ? '#C45C3E' : '#5C7A6E'
-  return L.divIcon({
-    className: 'hoian-place-dot',
-    html: `<span style="display:block;width:9px;height:9px;border-radius:50%;background:${color};border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.15)"></span>`,
-    iconSize: [9, 9],
-    iconAnchor: [4.5, 4.5],
-  })
-}
-
-export function HoiAnStayMap({ ranked, selectedId, onSelect, bagPins = [] }: Props) {
+export function HoiAnStayMap({ ranked, selectedId, onSelect, overlay, mapHeightClass }: Props) {
   const [bundle, setBundle] = useState<HoiAnMapBundle | null>(null)
   const [layersOpen, setLayersOpen] = useState(false)
   const [fitKey, setFitKey] = useState(0)
   const [layers, setLayers] = useState<LayerToggles>({
     clusters: true,
     areas: false,
-    places: false,
   })
 
   useEffect(() => {
@@ -135,28 +121,6 @@ export function HoiAnStayMap({ ranked, selectedId, onSelect, bagPins = [] }: Pro
       .filter(Boolean) as { id: string; name: string; position: [number, number] }[]
   }, [bundle, layers.areas])
 
-  const placeMarks = useMemo(() => {
-    if (!bundle || !layers.places) return []
-    return bundle.places.features
-      .filter((f) => f.properties?.curated)
-      .map((f, i) => {
-        if (f.geometry.type !== 'Point') return null
-        const [lng, lat] = f.geometry.coordinates
-        return {
-          id: `p-${i}`,
-          name: String(f.properties?.name || ''),
-          kind: String(f.properties?.kind || 'poi'),
-          position: [lat, lng] as [number, number],
-        }
-      })
-      .filter(Boolean) as {
-      id: string
-      name: string
-      kind: string
-      position: [number, number]
-    }[]
-  }, [bundle, layers.places])
-
   function toggle(key: keyof LayerToggles) {
     setLayers((prev) => ({ ...prev, [key]: !prev[key] }))
   }
@@ -167,7 +131,7 @@ export function HoiAnStayMap({ ranked, selectedId, onSelect, bagPins = [] }: Pro
 
   return (
     <div className="flex flex-col overflow-hidden rounded-[16px] border border-ink/10 bg-[#e8eef1]">
-      <div className="relative h-[min(58vw,400px)] min-h-[300px] lg:h-[400px]">
+      <div className={`relative ${mapHeightClass ?? 'h-[min(58vw,400px)] min-h-[300px] lg:h-[400px]'}`}>
         <button
           type="button"
           onClick={() => setFitKey((k) => k + 1)}
@@ -262,20 +226,7 @@ export function HoiAnStayMap({ ranked, selectedId, onSelect, bagPins = [] }: Pro
               zIndexOffset={200}
             />
           ))}
-
-          {placeMarks.map((p) => (
-            <Marker
-              key={p.id}
-              position={p.position}
-              icon={placeIcon(p.kind)}
-              zIndexOffset={300}
-            >
-              <Tooltip direction="top" offset={[0, -6]} opacity={1}>
-                <span className="text-[0.72rem] font-bold text-ink">{p.name}</span>
-              </Tooltip>
-            </Marker>
-          ))}
-          <StayBagFlagLayer pins={bagPins} />
+          {overlay}
         </MapContainer>
       </div>
 
@@ -283,11 +234,6 @@ export function HoiAnStayMap({ ranked, selectedId, onSelect, bagPins = [] }: Pro
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.62rem] text-muted">
           <span className="font-bold uppercase tracking-wide text-ink/50">Map</span>
           <span>Google Map</span>
-          {bagPins.length > 0 ? (
-            <span className="inline-flex items-center gap-1 font-bold text-ink/70">
-              🚩 Trip bag
-            </span>
-          ) : null}
           <span className="font-bold uppercase tracking-wide text-ink/50">Stay</span>
           <span className="inline-flex items-center gap-1">
             <span className="h-2.5 w-3.5 rounded-[1px] bg-terracotta/30 ring-1 ring-terracotta/50" />{' '}
@@ -326,7 +272,6 @@ export function HoiAnStayMap({ ranked, selectedId, onSelect, bagPins = [] }: Pro
                     [
                       ['clusters', 'Stay zones'],
                       ['areas', 'Area labels'],
-                      ['places', 'Landmarks'],
                     ] as const
                   ).map(([key, label]) => (
                     <label
@@ -402,10 +347,6 @@ export function HoiAnStayMap({ ranked, selectedId, onSelect, bagPins = [] }: Pro
             -1px 1px 0 #fff;
           white-space: nowrap;
           pointer-events: none;
-        }
-        .hoian-place-dot {
-          background: transparent !important;
-          border: none !important;
         }
         .leaflet-tooltip-top:before,
         .leaflet-tooltip-bottom:before,

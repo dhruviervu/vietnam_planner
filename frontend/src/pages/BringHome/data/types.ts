@@ -69,6 +69,14 @@ export type ShopCity =
   | 'Ho Chi Minh City'
   | 'Nha Trang'
   | 'Da Lat'
+  | 'Phu Quoc'
+  | 'Sapa'
+  | 'Ha Giang'
+  | 'Can Tho'
+  | 'Cat Ba'
+  | 'Dong Van'
+  | 'Ha Long'
+  | 'Phong Nha'
 
 export type DestinationType =
   | 'Market'
@@ -120,6 +128,12 @@ export type ShoppingDestination = {
   rating: number
   openNow: boolean
   openingHours: string
+  /** OSM / Google weekday string used by itinerary opening-hour checks. */
+  hoursRaw?: string
+  hoursUnknown?: boolean
+  weekdayDescriptions?: string[]
+  lat?: number | null
+  lng?: number | null
   distanceKm: number | null
   distanceNote?: string
   whyRecommended: string

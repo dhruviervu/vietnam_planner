@@ -1,4 +1,4 @@
-import { EXPERIENCES } from '../../data/experiences'
+import { ACTIVITY_OWNED_SIGHT_IDS, EXPERIENCES } from '../../data/experiences'
 import { CITY_ACTIVITIES, type CityActivity } from '../../data/activities'
 import { EXPLORE_CITIES } from '../../data/exploreCities'
 import { RESTAURANTS } from '../../data/restaurants'
@@ -51,9 +51,11 @@ export type CityDayWeight = {
   weight: number
   selectedCount: number
   hours: number
+  /** Nights needed to visit every saved sight without a leftover pile. */
+  neededDays?: number
 }
 
-/** Higher = stronger keep-as-core signal for a packed day. */
+/** Higher = stronger keep-as-core signal for a packed day. Uses catalog popularityRank, not display totalScore. */
 export function experiencePriority(e: Experience): number {
   let score = 120 - (e.popularityRank ?? 50)
   if (e.signal === 'must-do') score += 42
@@ -88,6 +90,10 @@ export function activityHours(a: CityActivity): number {
   if (/half\s*day/.test(label)) return 4
   if (/full\s*day/.test(label)) return 7
   const nums = a.durationLabel.match(/(\d+(?:\.\d+)?)/g)?.map(Number) ?? []
+  if (/min/i.test(label)) {
+    if (nums.length >= 2) return (nums[0] + nums[1]) / 2 / 60
+    if (nums.length === 1) return nums[0] / 60
+  }
   if (nums.length >= 2) return (nums[0] + nums[1]) / 2
   if (nums.length === 1) return nums[0]
   return 2.5
@@ -216,12 +222,11 @@ export function occupancyConflicts(
   if (!family) return false
   if (occupied.has(family)) return true
   if (family === 'cooking') {
-    return occupied.has('food-tour') || occupied.has('sit-down-lunch')
+    return occupied.has('sit-down-lunch')
   }
   if (family === 'food-tour') {
-    if (occupied.has('cooking')) return true
-    if (period === 'evening') return occupied.has('sit-down-dinner')
-    return occupied.has('sit-down-lunch')
+    if (period === 'evening' || period === 'night') return occupied.has('sit-down-dinner')
+    return occupied.has('cooking') || occupied.has('sit-down-lunch')
   }
   if (family === 'cafe') {
     return period === 'afternoon' && occupied.has('sit-down-lunch')
@@ -266,11 +271,14 @@ export function cityWeight(
 const TYPICAL_NIGHTS: Partial<Record<PlaceId, { min: number; sweet: number; max: number }>> = {
   hanoi: { min: 2, sweet: 3, max: 4 },
   'ninh-binh': { min: 1, sweet: 1, max: 2 },
-  'ha-long': { min: 1, sweet: 2, max: 2 },
-  sapa: { min: 2, sweet: 2, max: 3 },
+  'ha-long': { min: 1, sweet: 1, max: 2 },
+  sapa: { min: 2, sweet: 3, max: 3 },
   hue: { min: 1, sweet: 2, max: 2 },
   'da-nang': { min: 1, sweet: 2, max: 2 },
   'hoi-an': { min: 2, sweet: 3, max: 3 },
+  'nha-trang': { min: 2, sweet: 3, max: 3 },
+  dalat: { min: 1, sweet: 2, max: 2 },
+  'phu-quoc': { min: 3, sweet: 4, max: 5 },
   hcmc: { min: 2, sweet: 3, max: 4 },
 }
 
@@ -283,72 +291,62 @@ function typicalBand(placeId: PlaceId) {
  * selected hours/items, typical stop length, and a fair cap — leftover days
  * never dump onto the thinnest city.
  */
+/**
+ * Compute how many days each city needs based on the total sight hours and the
+ * pace's daily sightseeing budget. A relaxed pace (3–5h/day) naturally needs
+ * more days than an action pace (6–8h/day) for the same sight pool.
+ *
+ * The function first calculates the *minimum* days each city needs (ceil of
+ * total sight hours ÷ max sightseeing hours per day), then distributes any
+ * remaining days from `totalDays` proportionally.
+ */
 export function allocateCityDayCounts(
   cities: CityDayWeight[],
   totalDays: number,
   _kind: HolidayKind,
   hoursPerDay = 6.5,
-  itemCapacity = 2,
+  _itemCapacity = 2,
 ): Map<PlaceId, number> {
   const counts = new Map<PlaceId, number>()
   if (cities.length === 0) return counts
-  const days = Math.max(totalDays, cities.length)
-  const hp = Math.max(2.5, hoursPerDay)
-  const capItems = Math.max(1, itemCapacity)
-  const fairTop = Math.ceil(days / cities.length) + 1
-  const roomForOthers = days - (cities.length - 1)
 
+  const hp = Math.max(2.5, hoursPerDay)
+
+  // Step 1: Prefer a packing-based night count (duration, travel, meals, hours).
   const profile = cities.map((c) => {
-    const band = typicalBand(c.placeId)
     const fromHours = Math.max(1, Math.ceil(c.hours / hp))
-    const fromItems = Math.max(1, Math.ceil(c.selectedCount / capItems))
-    const load = Math.max(fromHours, fromItems)
-    const thin = c.selectedCount <= 1 && c.hours < hp
-    const packed = load >= 2
-    const hardCap = Math.min(
-      fairTop,
-      thin ? Math.min(3, Math.max(2, band.sweet)) : band.max + (packed && band.max >= 3 ? 1 : 0),
-      roomForOthers,
-    )
-    const floor = Math.min(hardCap, Math.max(1, thin ? 1 : Math.min(load, band.min)))
-    const sweet = Math.min(hardCap, thin ? Math.min(2, band.sweet) : Math.max(floor, band.sweet))
-    return { c, load, thin, packed, hardCap, floor, sweet, hours: c.hours, selectedCount: c.selectedCount }
+    const needed = Math.max(1, c.neededDays ?? fromHours)
+    return { c, needed, hours: c.hours }
   })
 
-  for (const p of profile) counts.set(p.c.placeId, p.floor)
-  let remaining = days - profile.reduce((s, p) => s + p.floor, 0)
+  // Step 2: Sum up the minimum days all cities need
+  const minTotal = profile.reduce((s, p) => s + p.needed, 0)
 
-  const byLoad = (a: (typeof profile)[number], b: (typeof profile)[number]) =>
-    b.hours - a.hours || b.selectedCount - a.selectedCount || b.load - a.load
+  // If the sum of needed days exceeds the user's requested days, use the larger
+  const effectiveDays = Math.max(totalDays, minTotal)
 
-  function raise(limitOf: (p: (typeof profile)[number]) => number) {
-    while (remaining > 0) {
-      const cands = profile
-        .filter((p) => (counts.get(p.c.placeId) ?? 0) < limitOf(p))
-        .sort(byLoad)
-      if (cands.length === 0) break
-      const pick = cands[0]
-      counts.set(pick.c.placeId, (counts.get(pick.c.placeId) ?? 0) + 1)
-      remaining -= 1
-    }
-  }
+  // Step 3: Assign each city its minimum needed days
+  for (const p of profile) counts.set(p.c.placeId, p.needed)
 
-  raise((p) => p.sweet)
-  raise((p) => p.hardCap)
-  raise((p) => (p.packed ? p.hardCap : 0))
+  // Step 4: Distribute remaining days to cities with the most hours
+  let remaining = effectiveDays - minTotal
   while (remaining > 0) {
-    const cands = profile
-      .filter((p) => (counts.get(p.c.placeId) ?? 0) < Math.min(fairTop, p.thin ? 4 : fairTop))
-      .sort(byLoad)
-    if (cands.length === 0) break
+    // Give extra days to cities where each day would still be over-packed
+    const cands = [...profile].sort((a, b) => {
+      const aPerDay = a.hours / (counts.get(a.c.placeId) ?? 1)
+      const bPerDay = b.hours / (counts.get(b.c.placeId) ?? 1)
+      return bPerDay - aPerDay
+    })
     const pick = cands[0]
+    if (!pick) break
     counts.set(pick.c.placeId, (counts.get(pick.c.placeId) ?? 0) + 1)
     remaining -= 1
   }
+
   return counts
 }
 
-function styleFromKind(kind: HolidayKind): TravelStyle {
+export function styleFromKind(kind: HolidayKind): TravelStyle {
   if (kind === 'leisure') return 'relaxed'
   if (kind === 'action') return 'packed'
   return 'balanced'
@@ -1009,6 +1007,7 @@ export function rankCatalogForCity(
 
   for (const e of EXPERIENCES) {
     if (selectedExpIds.has(e.id)) continue
+    if (ACTIVITY_OWNED_SIGHT_IDS.has(e.id)) continue
     if (!placeMatches(e.city, e.region, placeId)) continue
     if (shape.holidayKind === 'leisure' && walkingIntensityOf(e) >= 5) continue
     let score = scoreExperienceForTrip(e, shape)
@@ -1079,6 +1078,7 @@ export function restaurantsForPlace(placeId: PlaceId) {
     blurb: r.menuOrReviews,
     nearExperienceIds: [] as string[],
     address: r.address,
+    image: r.images[0],
     source: 'taste' as const,
   }))
   const seen = new Set(pb.map((r) => r.name.toLowerCase()))

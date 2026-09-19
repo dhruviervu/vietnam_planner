@@ -27,9 +27,10 @@ export function GettingAroundHero() {
         <h1 className="mt-1.5 font-serif text-[clamp(1.85rem,4vw,2.7rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-paper">
           Getting Around Vietnam
         </h1>
-        <p className="mt-2 max-w-[54ch] text-[0.92rem] leading-relaxed text-paper/85">
-          From overnight trains and domestic flights to city taxis, scooters, ferries and river boats
-          — understand how Vietnam actually works before choosing how to move.
+        <p className="mt-2 max-w-[62ch] text-[0.92rem] leading-relaxed text-paper/85">
+          Everything you need to know about transport in Vietnam. See how to travel best between
+          cities and inside the city. There are many travel options so you can decide whats best for
+          you - don&apos;t worry travel in Vietnam is Easy!
         </p>
       </motion.div>
     </section>

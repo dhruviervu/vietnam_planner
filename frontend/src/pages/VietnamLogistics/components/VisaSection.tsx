@@ -6,7 +6,7 @@ import {
 } from '../data/countries'
 import { getVisaProfile, VISA_PROCESS_STEPS } from '../data/visa'
 import type { TripLength, VisaProfile, VisaTypeOption } from '../data/types'
-import { ChipButton, Label, SectionIntro, SoftBand } from './ui'
+import { BlockTitle, ChipButton, Label, SectionIntro, SoftBand } from './ui'
 
 type Props = {
   originCountryCode: string | null
@@ -94,12 +94,11 @@ export function VisaSection({
   const [query, setQuery] = useState('')
   const [purpose, setPurpose] = useState<Purpose>('tourist')
   const [openReq, setOpenReq] = useState<string | null>(null)
-  const [activeStep, setActiveStep] = useState(1)
   const rootRef = useRef<HTMLDivElement>(null)
 
   const country = getOriginCountry(originCountryCode)
   const profile = getVisaProfile(originCountryCode)
-  const results = useMemo(() => searchOriginCountries(query).slice(0, 10), [query])
+  const results = useMemo(() => searchOriginCountries(query), [query])
   const popular = useMemo(
     () =>
       POPULAR.map((code) => ORIGIN_COUNTRIES.find((c) => c.code === code)).filter(Boolean),
@@ -132,7 +131,6 @@ export function VisaSection({
     setOpen(false)
     setPurpose('tourist')
     setOpenReq(null)
-    setActiveStep(1)
   }
 
   const tripMeaning = (() => {
@@ -232,7 +230,7 @@ export function VisaSection({
                 }}
               />
             </div>
-            <ul className="max-h-56 overflow-y-auto">
+            <ul className="max-h-72 overflow-y-auto">
               {results.map((c) => (
                 <li key={c.code}>
                   <button
@@ -372,20 +370,15 @@ export function VisaSection({
                     </li>
                   ))}
                 </ul>
-                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-ink/10 pt-3">
+                <div className="mt-4 border-t border-ink/10 pt-4">
                   <a
                     href={profile.officialSourceUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[0.82rem] font-bold text-terracotta hover:underline"
+                    className="inline-flex min-h-[3.25rem] items-center justify-center bg-terracotta px-6 py-3.5 text-[1.05rem] font-bold text-paper transition hover:bg-terracotta-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta sm:px-8 sm:text-[1.12rem]"
                   >
                     Official source →
                   </a>
-                  {profile.lastVerified ? (
-                    <span className="text-[0.68rem] text-muted">
-                      Last verified · {profile.lastVerified}
-                    </span>
-                  ) : null}
                 </div>
               </div>
             </div>
@@ -457,17 +450,13 @@ export function VisaSection({
           {/* Application flow — hide for exempt tourist */}
           {!(profile.status === 'exempt' && purpose === 'tourist') ? (
             <div>
-              <Label>Application flow</Label>
-              <div className="mt-2 flex flex-wrap items-stretch gap-1">
+              <BlockTitle>Application flow</BlockTitle>
+              <div className="mt-3 flex flex-wrap items-stretch gap-1">
                 {VISA_PROCESS_STEPS.map((s, i) => (
                   <div key={s.n} className="flex items-center gap-1">
-                    <button
-                      type="button"
-                      onClick={() => setActiveStep(s.n)}
-                      className={`min-w-[6.5rem] px-2.5 py-2 text-left transition ${
-                        activeStep === s.n
-                          ? 'bg-ink text-paper'
-                          : 'bg-ink/[0.04] text-ink hover:bg-ink/[0.07]'
+                    <div
+                      className={`min-w-[6.5rem] px-2.5 py-2 text-left ${
+                        s.n === 5 ? 'bg-ink text-paper' : 'bg-ink/[0.04] text-ink'
                       }`}
                     >
                       <span className="block text-[0.58rem] font-bold tracking-[0.12em] opacity-70">
@@ -476,7 +465,7 @@ export function VisaSection({
                       <span className="mt-0.5 block text-[0.7rem] font-bold uppercase leading-tight tracking-wide">
                         {s.label}
                       </span>
-                    </button>
+                    </div>
                     {i < VISA_PROCESS_STEPS.length - 1 ? (
                       <span className="px-0.5 text-ink/25" aria-hidden>
                         →
@@ -485,16 +474,25 @@ export function VisaSection({
                   </div>
                 ))}
               </div>
-              <p className="mt-2 max-w-[58ch] text-[0.78rem] leading-snug text-ink/80">
-                {STEP_DETAIL[activeStep]}
-              </p>
+              <div className="mt-3 max-w-[62ch] border border-ink/10 bg-ink/[0.03] px-3.5 py-3">
+                <p className="text-[0.62rem] font-bold uppercase tracking-[0.12em] text-terracotta">
+                  Receive decision
+                </p>
+                <p className="mt-1.5 text-[0.88rem] font-semibold leading-snug text-ink">
+                  Takes about 3 working days on the official e-visa portal (evisa.gov.vn). Busy
+                  periods can take up to about 5 working days.
+                </p>
+                <p className="mt-1.5 text-[0.78rem] leading-snug text-ink/80">
+                  {STEP_DETAIL[5]}
+                </p>
+              </div>
             </div>
           ) : null}
 
           {/* Ready check */}
           <div>
-            <Label>What you need · ready check</Label>
-            <div className="mt-2 grid gap-px overflow-hidden border border-ink/10 bg-ink/10 sm:grid-cols-2">
+            <BlockTitle>What you need</BlockTitle>
+            <div className="mt-3 grid gap-px overflow-hidden border border-ink/10 bg-ink/10 sm:grid-cols-2">
               {(beforeApplication ?? profile.requirements).map((r) => {
                 const openItem = openReq === r.id
                 return (
@@ -533,7 +531,7 @@ export function VisaSection({
           {/* At entry vs application */}
           <div className="grid gap-5 lg:grid-cols-2">
             <div>
-              <Label>At entry</Label>
+              <BlockTitle>At entry</BlockTitle>
               <ul className="mt-2 divide-y divide-ink/8">
                 {atEntry.map((r) => (
                   <li key={r.id} className="flex items-start justify-between gap-2 py-2 text-[0.78rem]">
@@ -554,7 +552,7 @@ export function VisaSection({
               </ul>
             </div>
             <div>
-              <Label>Where can you enter?</Label>
+              <BlockTitle>Where can you enter</BlockTitle>
               <div className="mt-2 grid grid-cols-3 gap-2 text-center">
                 {(
                   [
@@ -585,7 +583,7 @@ export function VisaSection({
           {/* Personalized meaning */}
           {tripMeaning ? (
             <div>
-              <Label>What this means for your trip</Label>
+              <BlockTitle>What this means for your trip</BlockTitle>
               <p className="mt-1.5 max-w-[64ch] text-[0.88rem] leading-snug text-ink">
                 {tripMeaning}
               </p>

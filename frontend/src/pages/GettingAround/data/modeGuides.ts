@@ -208,19 +208,8 @@ export const URBAN_MODE_GUIDES: Partial<Record<UrbanModeId, ModeGuide>> = {
 
 export const WATER_OVERVIEW: ModeGuideBlock[] = [
   {
-    title: '🌊 Key network and routes',
-    body: 'Vietnam’s water transport splits into three practical layers: scheduled mainland ↔ island ferries and fast boats (Phu Quoc, Con Dao, Cat Ba links); overnight and day bay cruises (Ha Long, Lan Ha); and Mekong delta river boats between floating markets, homestays, and canal towns. No single national ferry brand covers all three — route choice follows geography first.',
-    image: img('photo-1544551763-46a013bb70d5'),
-  },
-  {
-    title: '📦 Economic and logistical impact',
-    body: 'Coastal shipping and river barges move the bulk of freight; passenger ferries ride the same port infrastructure tourists use, so weather, tides, and cargo priority can shift sailings. Islands without airports (or with expensive flights) stay ferry-dependent — a cancelled sailing is a full-day disruption, not a 30-minute delay. Budget an extra night on island hops during monsoon months.',
-    image: img('photo-1567899378494-47b22a2ae96a'),
-  },
-  {
-    title: '🏙️ Passenger and urban water transit',
-    body: 'In cities, water is usually experiential: Perfume River sampans in Hue, Thu Bon river crossings near Hoi An, Saigon river dinner boats, and Mekong sampan hops between markets. These are short, informal, or tour-packaged — not substitutes for a city bus. Treat them as sight lines and access to places cars cannot reach.',
-    image: img('photo-1528127269322-539801943592'),
+    title: 'Where water is actually transport',
+    body: 'This section covers boats that take you on and off islands, plus the few Vietnamese waters where a boat is how people really move — not freight, and not a city sightseeing circuit. Choose an island below for the accurate mix (taxi or scooter only to the pier, then ferry or flight).',
   },
 ]
 

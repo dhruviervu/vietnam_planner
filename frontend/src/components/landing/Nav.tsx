@@ -7,23 +7,12 @@ type Props = {
   mode?: 'default' | 'builder'
 }
 
-const TOP_LINKS = [
-  { to: '/why-vietnam', label: 'Why Vietnam' },
-  { to: '/when-to-go/discover', label: 'When to go' },
-  { to: '/explore', label: 'Explore' },
-] as const
-
 export function Nav({ mode = 'default' }: Props) {
   const location = useLocation()
   const enterItineraryPipeline = useTripStore((s) => s.enterItineraryPipeline)
   const exitItineraryPipeline = useTripStore((s) => s.exitItineraryPipeline)
   const tripCount = useTripStore(
-    (s) =>
-      s.selectedExperienceIds.length +
-      s.selectedActivityIds.length +
-      s.itineraryStayPropertyIds.length +
-      s.selectedRestaurantIds.length +
-      s.selectedShoppingIds.length,
+    (s) => s.selectedExperienceIds.length + s.selectedActivityIds.length,
   )
   const inBuilder =
     mode === 'builder' || location.pathname.startsWith('/plan/builder')
@@ -38,35 +27,15 @@ export function Nav({ mode = 'default' }: Props) {
         >
           Vietnam, Curated
         </Link>
-
-        {!inBuilder && (
-          <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
-            {TOP_LINKS.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                onClick={() => exitItineraryPipeline()}
-                className={`rounded-full px-3 py-2 text-[0.82rem] font-bold transition-colors ${
-                  location.pathname.startsWith(link.to)
-                    ? 'bg-paper text-ink shadow-soft'
-                    : 'text-muted hover:bg-paper hover:text-ink'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        )}
       </div>
 
       {inBuilder ? (
         <div className="flex items-center gap-2">
           <Link
-            to="/"
-            onClick={() => exitItineraryPipeline()}
-            className="rounded-full px-3 py-2 text-[0.78rem] font-bold text-muted transition-colors hover:bg-paper hover:text-ink"
+            to="/ask"
+            className="rounded-full bg-cream px-3.5 py-2 text-[0.78rem] font-bold text-ink ring-1 ring-ink/10 hover:bg-cream-deep"
           >
-            Home
+            Ask
           </Link>
           <Link
             to="/plan/builder/itinerary"
@@ -83,6 +52,12 @@ export function Nav({ mode = 'default' }: Props) {
         </div>
       ) : (
         <div className="relative flex shrink-0 items-center gap-2">
+          <Link
+            to="/ask"
+            className="rounded-full bg-cream px-3.5 py-2 text-[0.78rem] font-bold text-ink ring-1 ring-ink/10 hover:bg-cream-deep"
+          >
+            Ask
+          </Link>
           <Link
             to={PIPELINE_START}
             state={{ itineraryPipeline: true }}

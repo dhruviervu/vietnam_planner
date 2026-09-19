@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { TitledParagraph } from '../../lib/guideParagraphs'
+import { unitsForSections, type SpeechUnit } from '../../lib/guideSpeech'
 
 type Props = {
   sections: TitledParagraph[]
@@ -10,45 +11,6 @@ type Props = {
 const RATE_NORMAL = 1
 const RATE_FASTER = 1.18
 type RateOption = typeof RATE_NORMAL | typeof RATE_FASTER
-
-/** Chrome silently fails on very long utterances — speak paragraph by paragraph. */
-type SpeechUnit = {
-  text: string
-  paraIndex: number
-}
-
-function unitsForSections(sections: TitledParagraph[], maxLen = 220): SpeechUnit[] {
-  const units: SpeechUnit[] = []
-  sections.forEach((section, paraIndex) => {
-    const para = `${section.title}. ${section.body}`.replace(/\s+/g, ' ').trim()
-    const sentences = para.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) ?? [para]
-    let buf = ''
-    const flush = () => {
-      if (buf) {
-        units.push({ text: buf, paraIndex })
-        buf = ''
-      }
-    }
-    for (const raw of sentences) {
-      const s = raw.trim()
-      if (!s) continue
-      if ((buf + ' ' + s).trim().length <= maxLen) {
-        buf = (buf + ' ' + s).trim()
-      } else {
-        flush()
-        if (s.length <= maxLen) {
-          buf = s
-        } else {
-          for (let i = 0; i < s.length; i += maxLen) {
-            units.push({ text: s.slice(i, i + maxLen), paraIndex })
-          }
-        }
-      }
-    }
-    flush()
-  })
-  return units
-}
 
 function pickPoshVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null {
   if (!voices.length) return null

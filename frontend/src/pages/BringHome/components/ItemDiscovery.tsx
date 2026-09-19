@@ -11,7 +11,7 @@ export function ItemDiscovery({ items, selectedItemId, onShowShops }: Props) {
   return (
     <section id="what-to-buy" className="scroll-mt-24">
       <h2 className="font-serif text-[clamp(1.35rem,2.8vw,1.7rem)] font-semibold text-ink">
-        Shopping items to 👁️ on
+        Special Vietnamese Items
       </h2>
       <p className="mt-1 max-w-[52ch] text-[0.88rem] text-muted">
         The story behind each piece, then the shops and markets that sell it.

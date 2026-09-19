@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, type ReactNode } from 'react'
 import {
   MapContainer,
   TileLayer,
@@ -11,16 +11,15 @@ import 'leaflet/dist/leaflet.css'
 import type { RankedCluster } from '../data/ranking'
 import type { StayCity } from '../data/types'
 import { GOOGLE_ROADMAP_TILES } from '../lib/googleMapTiles'
-import type { StayBagPin } from '../lib/tripBagStayPins'
 import { HoiAnStayMap } from './HoiAnStayMap'
-import { StayBagFlagLayer } from './StayBagFlagLayer'
 
 type Props = {
   city: StayCity
   ranked: RankedCluster[]
   selectedId: string
   onSelect: (clusterId: string) => void
-  bagPins?: StayBagPin[]
+  overlay?: ReactNode
+  mapHeightClass?: string
 }
 
 const FIT_MAX_ZOOM: Record<string, number> = {
@@ -60,14 +59,15 @@ function ringToLatLngs(ring: [number, number][]): [number, number][] {
 }
 
 /** Hoi An keeps its extra geography layers; every city now uses Google Maps tiles. */
-export function ClusterMap({ city, ranked, selectedId, onSelect, bagPins = [] }: Props) {
+export function ClusterMap({ city, ranked, selectedId, onSelect, overlay, mapHeightClass }: Props) {
   if (city.id === 'hoi-an') {
     return (
       <HoiAnStayMap
         ranked={ranked}
         selectedId={selectedId}
         onSelect={onSelect}
-        bagPins={bagPins}
+        overlay={overlay}
+        mapHeightClass={mapHeightClass}
       />
     )
   }
@@ -77,12 +77,13 @@ export function ClusterMap({ city, ranked, selectedId, onSelect, bagPins = [] }:
       ranked={ranked}
       selectedId={selectedId}
       onSelect={onSelect}
-      bagPins={bagPins}
+      overlay={overlay}
+      mapHeightClass={mapHeightClass}
     />
   )
 }
 
-function LegacyClusterMap({ city, ranked, selectedId, onSelect, bagPins = [] }: Props) {
+function LegacyClusterMap({ city, ranked, selectedId, onSelect, overlay, mapHeightClass }: Props) {
   const fitBounds = useMemo(() => {
     const { west, south, east, north } = city.bounds
     const latPad = Math.max((north - south) * 0.05, 0.003)
@@ -122,7 +123,7 @@ function LegacyClusterMap({ city, ranked, selectedId, onSelect, bagPins = [] }: 
 
   return (
     <div className="flex flex-col overflow-hidden rounded-[16px] border border-ink/10 bg-[#e8eef1]">
-      <div className="relative h-[min(58vw,400px)] min-h-[300px] lg:h-[400px]">
+      <div className={`relative ${mapHeightClass ?? 'h-[min(58vw,400px)] min-h-[300px] lg:h-[400px]'}`}>
         <MapContainer
           key={city.id}
           center={center}
@@ -131,8 +132,8 @@ function LegacyClusterMap({ city, ranked, selectedId, onSelect, bagPins = [] }: 
           scrollWheelZoom
           zoomControl={false}
           attributionControl
-          maxBounds={panBounds}
-          maxBoundsViscosity={0.35}
+          maxBounds={overlay ? undefined : panBounds}
+          maxBoundsViscosity={overlay ? 0 : 0.35}
         >
           <TileLayer
             attribution={GOOGLE_ROADMAP_TILES.attribution}
@@ -200,7 +201,7 @@ function LegacyClusterMap({ city, ranked, selectedId, onSelect, bagPins = [] }: 
               </Polygon>
             )
           })}
-          <StayBagFlagLayer pins={bagPins} />
+          {overlay}
         </MapContainer>
         <div className="absolute right-3 top-3 z-[1000] flex flex-col items-end gap-1">
           <button
@@ -253,7 +254,6 @@ function LegacyClusterMap({ city, ranked, selectedId, onSelect, bagPins = [] }: 
         <p className="mt-1.5 text-[0.62rem] text-muted">
           Google Map of {city.label}. Coloured neighbourhoods are stay areas, not
           official cadastral borders. Use Fit city to reset the view.
-          {bagPins.length > 0 ? ' 🚩 marks plans from your trip bag.' : ''}
         </p>
       </div>
 

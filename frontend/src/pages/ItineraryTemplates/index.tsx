@@ -1,53 +1,40 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Nav } from '../../components/landing/Nav'
 import { Footer } from '../../components/landing/Footer'
-import { TEMPLATE_SECTIONS, sectionAnchor } from './data/sections'
+import { BROWSE_SECTIONS, sectionAnchor } from './data/sections'
 import { ITINERARY_TEMPLATES } from './data/templates'
-import { rankedTemplatesForSection, sortBySectionRank } from './data/rankTemplates'
-import type { TemplateSectionId, TripShape } from './data/types'
-import { isShapeSet, matchTemplates } from './lib/matchTemplates'
-import { MatchedStrip } from './components/MatchedStrip'
+import { rankedTemplatesForSection } from './data/rankTemplates'
+import type { ItineraryTemplate } from './data/types'
+import {
+  DEFAULT_TEMPLATE_FILTERS,
+  filterTemplates,
+  templateFiltersAreActive,
+  type TemplateCatalogFilters,
+} from './lib/matchTemplates'
 import { TemplateCard } from './components/TemplateCard'
-import { TemplateFilterBar, scrollToSection } from './components/TemplateFilterBar'
-import { TripShapeBar } from './components/TripShapeBar'
+import { TemplateFilterBar } from './components/TemplateFilterBar'
 
-const EMPTY_SHAPE: TripShape = { days: null, people: null, pace: null }
+const BROWSE_TEMPLATES = ITINERARY_TEMPLATES.filter((template) => template.section !== 'city-stays')
+
+function cityCatalog(templates: ItineraryTemplate[]) {
+  const counts: Record<string, number> = {}
+  for (const template of templates) {
+    const seen = new Set<string>()
+    for (const city of template.cities) {
+      if (seen.has(city)) continue
+      seen.add(city)
+      counts[city] = (counts[city] ?? 0) + 1
+    }
+  }
+  const cities = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))
+  return { cities, counts }
+}
 
 export function ItineraryTemplatesPage() {
-  const [shape, setShape] = useState<TripShape>(EMPTY_SHAPE)
-  const [active, setActive] = useState<TemplateSectionId | 'all'>('all')
-
-  const matched = useMemo(
-    () => (isShapeSet(shape) ? sortBySectionRank(matchTemplates(ITINERARY_TEMPLATES, shape)) : []),
-    [shape],
-  )
-  const showMatched = isShapeSet(shape)
-
-  useEffect(() => {
-    const ids = TEMPLATE_SECTIONS.map((s) => sectionAnchor(s.id))
-    const nodes = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => Boolean(el))
-    if (!nodes.length) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
-        const first = visible[0]?.target.id?.replace(/^tpl-/, '') as TemplateSectionId | undefined
-        if (first) setActive(first)
-      },
-      { rootMargin: '0px 0px -62% 0px', threshold: 0.15 },
-    )
-    nodes.forEach((node) => observer.observe(node))
-    return () => observer.disconnect()
-  }, [])
-
-  function handleFilter(id: TemplateSectionId | 'all') {
-    setActive(id)
-    scrollToSection(id)
-  }
+  const [filters, setFilters] = useState<TemplateCatalogFilters>(DEFAULT_TEMPLATE_FILTERS)
+  const filtering = templateFiltersAreActive(filters)
+  const matched = useMemo(() => filterTemplates(BROWSE_TEMPLATES, filters), [filters])
+  const { cities, counts } = useMemo(() => cityCatalog(BROWSE_TEMPLATES), [])
 
   return (
     <>
@@ -75,33 +62,46 @@ export function ItineraryTemplatesPage() {
           </div>
         </header>
 
-        <div className="mt-8">
-          <TripShapeBar
-            shape={shape}
-            onChange={(patch) => setShape((prev) => ({ ...prev, ...patch }))}
-            onClear={() => setShape(EMPTY_SHAPE)}
+        <div
+          id={sectionAnchor('catalog')}
+          className="mt-8 scroll-mt-24 lg:grid lg:grid-cols-[minmax(16rem,19rem)_minmax(0,1fr)] lg:items-start lg:gap-6"
+        >
+          <TemplateFilterBar
+            filters={filters}
+            onChange={setFilters}
+            onClear={() => setFilters(DEFAULT_TEMPLATE_FILTERS)}
+            cities={cities}
+            cityCounts={counts}
+            resultCount={matched.length}
           />
-        </div>
 
-        <div className="mt-10 space-y-8">
-          {showMatched ? <MatchedStrip templates={matched} shape={shape} /> : null}
-
-          <div
-            id={sectionAnchor('catalog')}
-            className="scroll-mt-24 lg:grid lg:grid-cols-[minmax(16rem,19rem)_minmax(0,1fr)] lg:items-start lg:gap-6"
-          >
-            <TemplateFilterBar active={active} onSelect={handleFilter} />
-
-            <div className="mt-4 min-w-0 space-y-10 lg:mt-0">
-              {TEMPLATE_SECTIONS.map((section) => {
+          <div className="mt-4 min-w-0 space-y-10 lg:mt-0">
+            {filtering ? (
+              <section className="rounded-[20px] bg-paper px-4 py-5 shadow-soft ring-1 ring-terracotta/35 sm:px-6 sm:py-6">
+                <h2 className="font-serif text-[1.45rem] font-semibold text-ink">Matches</h2>
+                <p className="mt-1 max-w-[56ch] text-[0.86rem] text-muted">
+                  {matched.length
+                    ? `${matched.length} itinerar${matched.length === 1 ? 'y' : 'ies'} for these filters.`
+                    : 'Nothing in the library fits these filters yet.'}
+                </p>
+                {matched.length ? (
+                  <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                    {matched.map((template) => (
+                      <TemplateCard key={template.id} template={template} />
+                    ))}
+                  </div>
+                ) : null}
+              </section>
+            ) : (
+              BROWSE_SECTIONS.map((section) => {
                 const templates = rankedTemplatesForSection(section.id)
+                if (!templates.length) return null
                 return (
                   <section
                     key={section.id}
                     id={sectionAnchor(section.id)}
-                    className={`scroll-mt-24 rounded-[20px] bg-paper px-4 py-5 shadow-soft ring-1 sm:px-6 sm:py-6 ${
-                      active === section.id ? 'ring-terracotta/35' : 'ring-ink/[0.06]'
-                    }`}
+                    className="scroll-mt-24 rounded-[20px] bg-paper px-4 py-5 shadow-soft ring-1 ring-ink/[0.06] sm:px-6 sm:py-6"
+                    style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 32rem' }}
                   >
                     <h2 className="font-serif text-[1.45rem] font-semibold text-ink">
                       {section.label}
@@ -109,13 +109,13 @@ export function ItineraryTemplatesPage() {
                     <p className="mt-1 max-w-[56ch] text-[0.86rem] text-muted">{section.intro}</p>
                     <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                       {templates.map((template) => (
-                        <TemplateCard key={template.id} template={template} shape={shape} />
+                        <TemplateCard key={template.id} template={template} />
                       ))}
                     </div>
                   </section>
                 )
-              })}
-            </div>
+              })
+            )}
           </div>
         </div>
       </main>

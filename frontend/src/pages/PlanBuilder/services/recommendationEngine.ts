@@ -1,6 +1,6 @@
 import type { Experience, ExperienceSignal, TimeOfDay, TravelStyle } from '../types'
 import type { TripBasics } from '../../../store/tripStore'
-import { EXPERIENCES } from '../data/experiences'
+import { EXPERIENCES, SIGHT_CATALOG, getExperienceById } from '../data/experiences'
 import { monthFromDate } from '../data/tripSignals'
 
 export type TripFitResult = {
@@ -51,8 +51,8 @@ export type ExperienceFilters = {
   query: string
   likings: LikingFilter[]
   practical: PracticalFilter[]
-  /** Jump / filter catalog to one city */
-  city: string | 'all'
+  /** Selected cities (OR). Empty = all cities. */
+  cities: string[]
   region: string | 'all'
   duration: 'all' | 'short' | 'medium' | 'longer' | 'flexible'
   cost: 'all' | 'free-low' | 'mid' | 'high'
@@ -65,13 +65,38 @@ export const DEFAULT_FILTERS: ExperienceFilters = {
   query: '',
   likings: [],
   practical: [],
-  city: 'all',
+  cities: [],
   region: 'all',
   duration: 'all',
   cost: 'all',
   accessibility: 'all',
   bestTime: 'all',
   minFit: 0,
+}
+
+export function experienceFiltersAreActive(filters: ExperienceFilters): boolean {
+  return (
+    Boolean(filters.query) ||
+    filters.likings.length > 0 ||
+    filters.practical.length > 0 ||
+    (filters.cities?.length ?? 0) > 0 ||
+    filters.region !== 'all' ||
+    filters.duration !== 'all' ||
+    filters.cost !== 'all' ||
+    filters.accessibility !== 'all' ||
+    filters.bestTime !== 'all' ||
+    filters.minFit > 0
+  )
+}
+
+function selectedExperiences(ids: string[]): Experience[] {
+  if (ids.length === 0) return []
+  const out: Experience[] = []
+  for (const id of ids) {
+    const e = getExperienceById(id)
+    if (e) out.push(e)
+  }
+  return out
 }
 
 function tripMonth(basics: TripBasics): number | null {
@@ -92,7 +117,7 @@ export function computeTripFit(experience: Experience, basics: TripBasics, selec
   let score = 62
   const reasons: string[] = []
   const month = tripMonth(basics)
-  const selected = EXPERIENCES.filter((e) => selectedIds.includes(e.id))
+  const selected = selectedExperiences(selectedIds)
 
   if (month != null) {
     if (experience.monthsIdeal.includes(month)) {
@@ -188,6 +213,9 @@ function matchesLiking(e: Experience, liking: LikingFilter) {
   if (liking === 'eat-drink') return e.category === 'Food' || e.dna.some((d) => /FOOD|EAT|DRINK/i.test(d))
   if (liking === 'culture-history')
     return e.category === 'Culture' || e.category === 'History' || e.signal === 'vietnam-special'
+  if (liking === 'must-do') return e.popularityTag === 'Must do'
+  if (liking === 'hidden-gem') return e.popularityTag === 'Hidden gem'
+  if (liking === 'local-life') return e.popularityTag === 'Local favourite'
   return e.signal === liking
 }
 
@@ -213,7 +241,7 @@ function matchesPractical(e: Experience, p: PracticalFilter): boolean {
     case 'Museum':
       return /museum|ethnolog|remnant|exhibition|gallery/i.test(hay)
     case 'Temple':
-      return /temple|pagoda|spiritual|shrine|literature|thien mu|quan thanh|jade emperor|linh ung|po nagar|bai dinh/i.test(hay)
+      return /temple|pagoda|spiritual|shrine|literature|thien mu|quan thanh|jade emperor|linh ung|po nagar|bai dinh|long s[oơ]n|h[aả]i đ[uứ]c|cathedral|kim s[oơ]n|chua ong|munir|pothi|khmer|truc lam/i.test(hay)
     case 'Fun':
       return /fun|crazy|ba na|cable|entertainment|family|promenade|walking/i.test(hay) || e.signal === 'picture-perfect'
     case 'Family':
@@ -272,6 +300,10 @@ function matchesFilters(
     const hay = `${e.name} ${e.city} ${e.region} ${e.hook} ${e.dna.join(' ')} ${e.category} ${e.cardSummary}`.toLowerCase()
     if (!hay.includes(q)) return false
   }
+  if ((filters.cities ?? []).length > 0) {
+    const key = e.city || e.region
+    if (!filters.cities.includes(key)) return false
+  }
   if (filters.likings.length > 0 && !filters.likings.some((l) => matchesLiking(e, l))) return false
   if (filters.practical.length > 0) {
     const ok = filters.practical.some((p) => matchesPractical(e, p))
@@ -304,75 +336,33 @@ export function filterExperiences(
   selectedIds: string[],
   filters: ExperienceFilters,
 ) {
-  return filterExperienceItems(EXPERIENCES, basics, selectedIds, filters).sort(
-    (a, b) => scoreExperience(b, basics, selectedIds) - scoreExperience(a, basics, selectedIds),
-  )
+  return filterExperienceItems(SIGHT_CATALOG, basics, selectedIds, filters)
 }
 
 export function filterExperienceItems(
   items: Experience[],
-  basics: TripBasics,
+  basics: TripBasics | null,
   selectedIds: string[],
   filters: ExperienceFilters,
 ) {
+  const needFit = filters.minFit > 0 && basics != null
   return items.filter((e) => {
-    const fit = scoreExperience(e, basics, selectedIds)
+    const fit = needFit ? scoreExperience(e, basics, selectedIds) : 0
     return matchesFilters(e, filters, fit)
   })
 }
+
+const VIETNAM_BEST = SIGHT_CATALOG.filter((e) => e.vietnamBest).slice(0, 8)
 
 export function buildDiscoverySections(
   basics: TripBasics,
   selectedIds: string[],
   filters: ExperienceFilters,
 ): DiscoverySections {
-  const filtered = filterExperiences(basics, selectedIds, filters)
-  const selected = EXPERIENCES.filter((e) => selectedIds.includes(e.id))
-  const last = selected[selected.length - 1]
-  const filtering =
-    filters.query ||
-    filters.likings.length > 0 ||
-    filters.practical.length > 0 ||
-    filters.region !== 'all' ||
-    filters.duration !== 'all' ||
-    filters.cost !== 'all' ||
-    filters.accessibility !== 'all' ||
-    filters.bestTime !== 'all' ||
-    filters.minFit > 0
-
-  const chosen = [...filtered]
-    .sort((a, b) => scoreExperience(b, basics, selectedIds) - scoreExperience(a, basics, selectedIds))
-    .filter((e) => !selectedIds.includes(e.id))
-    .slice(0, 6)
-
-  let becauseSelected: DiscoverySections['becauseSelected'] = null
-  if (last && !filtering) {
-    const nearby = filtered
-      .filter(
-        (e) =>
-          e.id !== last.id &&
-          !selectedIds.includes(e.id) &&
-          (e.region === last.region || last.relatedIds.includes(e.id) || e.relatedIds.includes(last.id)),
-      )
-      .slice(0, 4)
-    if (nearby.length) {
-      becauseSelected = {
-        title:
-          selected.length >= 2 && selected.filter((s) => s.region === last.region).length >= 2
-            ? `Complete your ${last.region} day`
-            : `Because you're already in ${last.region}…`,
-        items: nearby,
-      }
-    }
-  }
-
-  const vietnamBest = EXPERIENCES.filter((e) => e.vietnamBest).slice(0, 8)
-
-  // Keep every matching experience in the city catalog (including Best Fits picks)
-  // so single-city / single-item destinations still get a jumpable section.
-  const catalog = filtered
-
-  return { chosen, becauseSelected, vietnamBest, catalog }
+  const catalog = experienceFiltersAreActive(filters)
+    ? filterExperienceItems(SIGHT_CATALOG, basics, selectedIds, filters)
+    : SIGHT_CATALOG
+  return { chosen: [], becauseSelected: null, vietnamBest: VIETNAM_BEST, catalog }
 }
 
 export function buildTripFeedback(

@@ -40,6 +40,16 @@ export const CITY_MARKERS: CityMarker[] = [
   { id: 'hcmc', name: 'Ho Chi Minh City', lng: 106.7, lat: 10.78, regionId: 'southeast' },
 ]
 
+export const POPULAR_CITIES_BY_REGION: Record<ClimateRegionId, string[]> = {
+  'northern-mountains': ['Sapa', 'Ha Giang', 'Cao Bang'],
+  'northern-delta': ['Hanoi', 'Ninh Binh', 'Ha Long'],
+  'north-central': ['Hue', 'Dong Hoi', 'Phong Nha'],
+  'south-central-coast': ['Da Nang', 'Hoi An', 'Nha Trang'],
+  'central-highlands': ['Da Lat', 'Buon Ma Thuot', 'Pleiku'],
+  southeast: ['Ho Chi Minh City', 'Vung Tau', 'Can Gio'],
+  'mekong-delta': ['Can Tho', 'My Tho', 'Phu Quoc'],
+}
+
 /** Fallback bbox; prefer bounds computed from loaded GeoJSON. */
 export const VIETNAM_BOUNDS: [[number, number], [number, number]] = [
   [102.1, 8.3],

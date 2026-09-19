@@ -1,22 +1,11 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Nav } from '../../components/landing/Nav'
-import { FeatureStrip, type FeatureKey } from '../../components/landing/FeatureStrip'
 import { Footer } from '../../components/landing/Footer'
 import { SEASONS, seasonFromMonthIndex } from './seasons'
 import { ClockBackdrop } from './ClockBackdrop'
 import { TravelClock } from './TravelClock'
 import { ExpandedSeasonDetails } from './ExpandedSeasonDetails'
-
-/** All feature buttons except When to Go (hidden automatically while on this route). */
-const WHEN_TO_GO_ORDER: FeatureKey[] = [
-  'why-vietnam',
-  'see-and-do',
-  'taste-of-vietnam',
-  'getting-around',
-  'know-before-you-go',
-  'bring-home',
-]
 
 export function WhenToGoPage() {
   const [seasonId, setSeasonId] = useState(SEASONS[0].id)
@@ -38,9 +27,7 @@ export function WhenToGoPage() {
   return (
     <>
       <Nav />
-      <FeatureStrip order={WHEN_TO_GO_ORDER} />
       <main className="min-h-screen bg-cream-deep">
-        {/* Hero + clock stage with photo carousel behind */}
         <section className="relative overflow-hidden">
           <ClockBackdrop season={season} />
 

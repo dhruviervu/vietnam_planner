@@ -130,6 +130,20 @@ export const ATM_GUIDANCE = {
 }
 
 /** Best places travellers typically find reliable ATMs */
+/** Named ATM operators travellers actually see — availability is typical, not a live map. */
+export const ATM_NETWORKS = [
+  { name: 'Vietcombank', availability: 'Widely available nationwide — the usual tourist-friendly network' },
+  { name: 'BIDV', availability: 'Widely available nationwide' },
+  { name: 'VietinBank', availability: 'Widely available nationwide' },
+  { name: 'Agribank', availability: 'Widely available, including smaller towns' },
+  { name: 'Techcombank', availability: 'Widely available in cities and tourist areas' },
+  { name: 'Sacombank', availability: 'Common in the south and major cities' },
+  { name: 'MB Bank', availability: 'Common in cities' },
+  { name: 'ACB', availability: 'Common in cities' },
+  { name: 'VPBank', availability: 'Common in cities' },
+  { name: 'TPBank', availability: 'Cities — some 24/7 LiveBank machines' },
+] as const
+
 export const ATM_LOCATIONS = [
   {
     id: 'bank',

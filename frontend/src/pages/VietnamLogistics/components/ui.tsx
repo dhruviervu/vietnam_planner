@@ -120,3 +120,11 @@ export function Label({ children }: { children: ReactNode }) {
     <p className="text-[0.58rem] font-bold uppercase tracking-[0.14em] text-muted">{children}</p>
   )
 }
+
+export function BlockTitle({ children }: { children: ReactNode }) {
+  return (
+    <h3 className="font-serif text-[1.45rem] font-bold tracking-[-0.03em] text-ink sm:text-[1.7rem]">
+      {children}
+    </h3>
+  )
+}

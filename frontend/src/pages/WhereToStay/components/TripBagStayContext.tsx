@@ -4,22 +4,15 @@ import type { TripBagCitySummary } from '../services/tripBagStayIntelligence'
 
 type Props = {
   cities: TripBagCitySummary[]
-  totalBagItems: number
   unmappedLabels: string[]
   activitiesHref?: string
-  experiencesHref?: string
-  onExploreAllStays?: () => void
 }
 
 export function TripBagStayContext({
   cities,
-  totalBagItems,
   unmappedLabels,
-  experiencesHref = '/plan/builder/experiences',
   activitiesHref = '/plan/builder/activities',
-  onExploreAllStays,
 }: Props) {
-  const cityNames = cities.map((c) => c.label)
   const singleActivityCities = cities.filter((c) => c.activityCount === 1)
 
   return (
@@ -33,29 +26,9 @@ export function TripBagStayContext({
         aria-hidden
       />
       <div className="relative px-5 py-5 sm:px-6 sm:py-6">
-        <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-terracotta">
-          Tailored to your trip bag
-        </p>
-        <h2 className="mt-1 font-serif text-[clamp(1.35rem,2.8vw,1.75rem)] font-semibold leading-snug text-ink">
+        <h2 className="font-serif text-[clamp(1.35rem,2.8vw,1.75rem)] font-semibold leading-snug text-ink">
           Showing cities where you already have plans
         </h2>
-        <p className="mt-2 max-w-[62ch] text-[0.92rem] leading-relaxed text-muted">
-          You have <span className="font-bold text-ink">{totalBagItems}</span> item
-          {totalBagItems === 1 ? '' : 's'} in your trip bag
-          {cityNames.length > 0 ? (
-            <>
-              {' '}
-              across{' '}
-              <span className="font-bold text-ink">
-                {cityNames.length === 1
-                  ? cityNames[0]
-                  : `${cityNames.slice(0, -1).join(', ')} and ${cityNames[cityNames.length - 1]}`}
-              </span>
-            </>
-          ) : null}
-          . We&apos;re focusing stay options on those cities so your base sits near what you want to
-          do.
-        </p>
 
         <ul className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {cities.map((c) => (
@@ -98,33 +71,6 @@ export function TripBagStayContext({
             ))}
           </div>
         ) : null}
-
-        <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-ink/8 pt-4">
-          {onExploreAllStays ? (
-            <button
-              type="button"
-              onClick={onExploreAllStays}
-              className="rounded-full bg-terracotta px-4 py-2 text-[0.8rem] font-bold text-paper transition hover:brightness-105"
-            >
-              Explore All Stays
-            </button>
-          ) : null}
-          <p className="text-[0.84rem] text-ink/85">
-            Want another city? Add experiences or activities there first.
-          </p>
-          <Link
-            to={experiencesHref}
-            className="rounded-full bg-ink px-4 py-2 text-[0.8rem] font-bold text-paper transition hover:bg-ink/90"
-          >
-            Back to experiences →
-          </Link>
-          <Link
-            to={activitiesHref}
-            className="rounded-full border border-ink/12 bg-paper px-4 py-2 text-[0.8rem] font-bold text-ink hover:border-ink/25"
-          >
-            Things to do →
-          </Link>
-        </div>
       </div>
     </motion.section>
   )

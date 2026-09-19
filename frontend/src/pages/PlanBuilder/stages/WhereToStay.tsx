@@ -63,7 +63,6 @@ export function WhereToStay() {
   const [comparePanelVisible, setComparePanelVisible] = useState(true)
   const [mobileStayOpen, setMobileStayOpen] = useState(false)
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>('none')
-  const [progressHovered, setProgressHovered] = useState(false)
   const [areaPickerOpen, setAreaPickerOpen] = useState(false)
   const [filters, setFilters] = useState<StayFiltersState>(() => {
     const range = suggestedPriceRange(basics)
@@ -204,8 +203,7 @@ export function WhereToStay() {
   const filterExplanation =
     STAY_PRIORITY_OPTIONS.find((o) => o.id === filters.priority)?.explanation ?? null
 
-  const filtersExpanded = pipelineActive ? !progressHovered : true
-  const progressExpanded = pipelineActive && progressHovered
+  const filtersExpanded = true
 
   function openMobile(mode: Exclude<MobilePanel, 'none'>) {
     setMobilePanel((prev) => (prev === mode ? 'none' : mode))
@@ -246,14 +244,7 @@ export function WhereToStay() {
     <div className="relative flex pb-28 xl:pb-0">
       {/* Desktop: filters expanded by default; progress expands on hover */}
       <div className="sticky top-[72px] z-20 hidden shrink-0 self-start lg:flex">
-        {pipelineActive ? (
-          <div
-            onMouseEnter={() => setProgressHovered(true)}
-            onMouseLeave={() => setProgressHovered(false)}
-          >
-            <StayProgressPanel expanded={progressExpanded} />
-          </div>
-        ) : null}
+        {pipelineActive ? <StayProgressPanel /> : null}
         <StayFilterPanel
           expanded={filtersExpanded}
           filters={filters}

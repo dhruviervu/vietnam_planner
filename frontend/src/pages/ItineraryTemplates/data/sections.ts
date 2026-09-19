@@ -8,6 +8,12 @@ export type TemplateSection = {
 
 export const TEMPLATE_SECTIONS: TemplateSection[] = [
   {
+    id: 'city-stays',
+    label: 'City stays',
+    intro:
+      'Packed 3-day plans for one city — must-visits clustered the same way Your Itinerary packs a stay. Relaxed, luxury, fun, and nightlife versions live in those sections.',
+  },
+  {
     id: 'solo',
     label: 'Solo',
     intro: 'Room to wander, eat what you like, and set the day’s pace without a committee.',
@@ -33,6 +39,16 @@ export const TEMPLATE_SECTIONS: TemplateSection[] = [
     intro: 'Group energy, late tables, and a route that still leaves space for whoever wants a slower morning.',
   },
   {
+    id: 'fun',
+    label: 'Fun',
+    intro: 'Boats, classes, parks, and cities that play well with a crew that wants a full day.',
+  },
+  {
+    id: 'nightlife',
+    label: 'Nightlife',
+    intro: 'Lanterns, night markets, rooftops, and bia hơi — daylight only as the runway into the dark.',
+  },
+  {
     id: 'large-groups',
     label: 'Large groups',
     intro: 'Bigger crews need simpler logistics: fewer bases, shared meals, and cities that absorb a crowd.',
@@ -46,6 +62,12 @@ export const TEMPLATE_SECTIONS: TemplateSection[] = [
     id: 'relaxed',
     label: 'Relaxed',
     intro: 'Fewer cities, longer stays, and days that are allowed to stay empty on purpose.',
+  },
+  {
+    id: 'slow',
+    label: 'Slow',
+    intro:
+      'One or two sights a day, two to four hours between them, and the water-first outings — bay cruises, boats, beaches — that actually reward going slowly.',
   },
   {
     id: 'beaches',
@@ -88,3 +110,7 @@ export const TEMPLATE_SECTIONS: TemplateSection[] = [
 export function sectionAnchor(id: TemplateSectionId | 'catalog') {
   return `tpl-${id}`
 }
+
+/** Packed 3-day city stays live on Packed itineraries — not in this catalog’s filter bar. */
+export const BROWSE_SECTIONS = TEMPLATE_SECTIONS.filter((section) => section.id !== 'city-stays')
+

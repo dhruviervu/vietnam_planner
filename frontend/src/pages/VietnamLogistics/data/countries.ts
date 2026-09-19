@@ -6,49 +6,56 @@ export type OriginCountry = {
   popular?: boolean
 }
 
-/** Common traveller origins — searchable subset, not every ISO country. */
-export const ORIGIN_COUNTRIES: OriginCountry[] = [
-  { code: 'IN', name: 'India', flag: '🇮🇳', currency: 'INR', popular: true },
-  { code: 'US', name: 'United States', flag: '🇺🇸', currency: 'USD', popular: true },
-  { code: 'GB', name: 'United Kingdom', flag: '🇬🇧', currency: 'GBP', popular: true },
-  { code: 'AU', name: 'Australia', flag: '🇦🇺', currency: 'AUD', popular: true },
-  { code: 'CA', name: 'Canada', flag: '🇨🇦', currency: 'CAD', popular: true },
-  { code: 'DE', name: 'Germany', flag: '🇩🇪', currency: 'EUR', popular: true },
-  { code: 'FR', name: 'France', flag: '🇫🇷', currency: 'EUR', popular: true },
-  { code: 'SG', name: 'Singapore', flag: '🇸🇬', currency: 'SGD', popular: true },
-  { code: 'MY', name: 'Malaysia', flag: '🇲🇾', currency: 'MYR', popular: true },
-  { code: 'TH', name: 'Thailand', flag: '🇹🇭', currency: 'THB', popular: true },
-  { code: 'JP', name: 'Japan', flag: '🇯🇵', currency: 'JPY', popular: true },
-  { code: 'KR', name: 'South Korea', flag: '🇰🇷', currency: 'KRW', popular: true },
-  { code: 'CN', name: 'China', flag: '🇨🇳', currency: 'CNY' },
-  { code: 'TW', name: 'Taiwan', flag: '🇹🇼', currency: 'TWD' },
-  { code: 'HK', name: 'Hong Kong', flag: '🇭🇰', currency: 'HKD' },
-  { code: 'NZ', name: 'New Zealand', flag: '🇳🇿', currency: 'NZD' },
-  { code: 'IE', name: 'Ireland', flag: '🇮🇪', currency: 'EUR' },
-  { code: 'NL', name: 'Netherlands', flag: '🇳🇱', currency: 'EUR' },
-  { code: 'IT', name: 'Italy', flag: '🇮🇹', currency: 'EUR' },
-  { code: 'ES', name: 'Spain', flag: '🇪🇸', currency: 'EUR' },
-  { code: 'SE', name: 'Sweden', flag: '🇸🇪', currency: 'SEK' },
-  { code: 'NO', name: 'Norway', flag: '🇳🇴', currency: 'NOK' },
-  { code: 'CH', name: 'Switzerland', flag: '🇨🇭', currency: 'CHF' },
-  { code: 'AE', name: 'United Arab Emirates', flag: '🇦🇪', currency: 'AED' },
-  { code: 'SA', name: 'Saudi Arabia', flag: '🇸🇦', currency: 'SAR' },
-  { code: 'ZA', name: 'South Africa', flag: '🇿🇦', currency: 'ZAR' },
-  { code: 'BR', name: 'Brazil', flag: '🇧🇷', currency: 'BRL' },
-  { code: 'MX', name: 'Mexico', flag: '🇲🇽', currency: 'MXN' },
-  { code: 'PH', name: 'Philippines', flag: '🇵🇭', currency: 'PHP' },
-  { code: 'ID', name: 'Indonesia', flag: '🇮🇩', currency: 'IDR' },
-  { code: 'KH', name: 'Cambodia', flag: '🇰🇭', currency: 'KHR' },
-  { code: 'LA', name: 'Laos', flag: '🇱🇦', currency: 'LAK' },
-  { code: 'RU', name: 'Russia', flag: '🇷🇺', currency: 'RUB' },
-  { code: 'PL', name: 'Poland', flag: '🇵🇱', currency: 'PLN' },
-  { code: 'PT', name: 'Portugal', flag: '🇵🇹', currency: 'EUR' },
-  { code: 'BE', name: 'Belgium', flag: '🇧🇪', currency: 'EUR' },
-  { code: 'AT', name: 'Austria', flag: '🇦🇹', currency: 'EUR' },
-  { code: 'DK', name: 'Denmark', flag: '🇩🇰', currency: 'DKK' },
-  { code: 'FI', name: 'Finland', flag: '🇫🇮', currency: 'EUR' },
-  { code: 'IL', name: 'Israel', flag: '🇮🇱', currency: 'ILS' },
-]
+const POPULAR_CODES = new Set([
+  'IN',
+  'US',
+  'GB',
+  'AU',
+  'CA',
+  'DE',
+  'FR',
+  'SG',
+  'MY',
+  'TH',
+  'JP',
+  'KR',
+])
+
+/** ISO 3166-1 alpha-2 — every listed country / territory, not a traveller subset. */
+const ISO_ALPHA2 = [
+  'AD', 'AE', 'AF', 'AG', 'AI', 'AL', 'AM', 'AO', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AW', 'AX', 'AZ',
+  'BA', 'BB', 'BD', 'BE', 'BF', 'BG', 'BH', 'BI', 'BJ', 'BL', 'BM', 'BN', 'BO', 'BQ', 'BR', 'BS',
+  'BT', 'BV', 'BW', 'BY', 'BZ', 'CA', 'CC', 'CD', 'CF', 'CG', 'CH', 'CI', 'CK', 'CL', 'CM', 'CN',
+  'CO', 'CR', 'CU', 'CV', 'CW', 'CX', 'CY', 'CZ', 'DE', 'DJ', 'DK', 'DM', 'DO', 'DZ', 'EC', 'EE',
+  'EG', 'EH', 'ER', 'ES', 'ET', 'FI', 'FJ', 'FK', 'FM', 'FO', 'FR', 'GA', 'GB', 'GD', 'GE', 'GF',
+  'GG', 'GH', 'GI', 'GL', 'GM', 'GN', 'GP', 'GQ', 'GR', 'GS', 'GT', 'GU', 'GW', 'GY', 'HK', 'HM',
+  'HN', 'HR', 'HT', 'HU', 'ID', 'IE', 'IL', 'IM', 'IN', 'IO', 'IQ', 'IR', 'IS', 'IT', 'JE', 'JM',
+  'JO', 'JP', 'KE', 'KG', 'KH', 'KI', 'KM', 'KN', 'KP', 'KR', 'KW', 'KY', 'KZ', 'LA', 'LB', 'LC',
+  'LI', 'LK', 'LR', 'LS', 'LT', 'LU', 'LV', 'LY', 'MA', 'MC', 'MD', 'ME', 'MF', 'MG', 'MH', 'MK',
+  'ML', 'MM', 'MN', 'MO', 'MP', 'MQ', 'MR', 'MS', 'MT', 'MU', 'MV', 'MW', 'MX', 'MY', 'MZ', 'NA',
+  'NC', 'NE', 'NF', 'NG', 'NI', 'NL', 'NO', 'NP', 'NR', 'NU', 'NZ', 'OM', 'PA', 'PE', 'PF', 'PG',
+  'PH', 'PK', 'PL', 'PM', 'PN', 'PR', 'PS', 'PT', 'PW', 'PY', 'QA', 'RE', 'RO', 'RS', 'RU', 'RW',
+  'SA', 'SB', 'SC', 'SD', 'SE', 'SG', 'SH', 'SI', 'SJ', 'SK', 'SL', 'SM', 'SN', 'SO', 'SR', 'SS',
+  'ST', 'SV', 'SX', 'SY', 'SZ', 'TC', 'TD', 'TF', 'TG', 'TH', 'TJ', 'TK', 'TL', 'TM', 'TN', 'TO',
+  'TR', 'TT', 'TV', 'TW', 'TZ', 'UA', 'UG', 'UM', 'US', 'UY', 'UZ', 'VA', 'VC', 'VE', 'VG', 'VI',
+  'VN', 'VU', 'WF', 'WS', 'XK', 'YE', 'YT', 'ZA', 'ZM', 'ZW',
+] as const
+
+function flagFromCode(code: string): string {
+  if (!/^[A-Z]{2}$/.test(code)) return '🏳️'
+  const base = 0x1f1e6
+  return String.fromCodePoint(...[...code].map((c) => base + c.charCodeAt(0) - 65))
+}
+
+const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
+
+export const ORIGIN_COUNTRIES: OriginCountry[] = ISO_ALPHA2.map((code) => ({
+  code,
+  name: regionNames.of(code) ?? code,
+  flag: flagFromCode(code),
+  currency: 'USD',
+  popular: POPULAR_CODES.has(code) || undefined,
+})).sort((a, b) => a.name.localeCompare(b.name))
 
 export function getOriginCountry(code: string | null) {
   if (!code) return null
@@ -57,9 +64,11 @@ export function getOriginCountry(code: string | null) {
 
 export function searchOriginCountries(query: string) {
   const q = query.trim().toLowerCase()
-  if (!q) return ORIGIN_COUNTRIES.filter((c) => c.popular).concat(
-    ORIGIN_COUNTRIES.filter((c) => !c.popular),
-  )
+  if (!q) {
+    return ORIGIN_COUNTRIES.filter((c) => c.popular).concat(
+      ORIGIN_COUNTRIES.filter((c) => !c.popular),
+    )
+  }
   return ORIGIN_COUNTRIES.filter(
     (c) =>
       c.name.toLowerCase().includes(q) ||

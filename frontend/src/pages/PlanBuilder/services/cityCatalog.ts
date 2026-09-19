@@ -1,6 +1,12 @@
 import type { Experience } from '../types'
+import { SIGHT_CATALOG } from '../data/experiences'
+import { bayesianRating, rankAndSortSights, buildCategoryStats, touristReviewCount, type SightScores } from '../lib/sightRanking'
+import { experienceToSight } from '../lib/sightRankingFromExperience'
+import { cityToSlug } from './citySlug'
 
-export type RankedExperience = Experience & { cityRank: number }
+export { cityToSlug, cityAnchorId, experiencesCityPath } from './citySlug'
+
+export type RankedExperience = Experience & SightScores & { cityRank: number }
 
 export type CityExperienceGroup = {
   city: string
@@ -9,38 +15,54 @@ export type CityExperienceGroup = {
   topTags: string[]
 }
 
-function popularityScore(e: Experience) {
-  const rank = e.popularityRank ?? 99
-  const reviews = e.reviewCount ?? 0
-  const rating = e.rating ?? 0
-  return rank * 100000 - reviews * 10 - rating * 100
+/**
+ * Traveler-weighted rating 0–5. Google Maps volume is capped / civic-damped
+ * before the Bayesian average. Display order is `rankCityExperiences`.
+ * Itinerary packing still uses `experiencePriority` — do not swap those to totalScore.
+ */
+export function reviewPopularityScore(e: Experience) {
+  return bayesianRating(e.reviewCount, e.rating)
 }
 
-export function cityToSlug(city: string): string {
-  return city
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
-}
+let GLOBAL_RANK_STATS: ReturnType<typeof buildCategoryStats> | undefined
 
-export function cityAnchorId(city: string): string {
-  return `city-${cityToSlug(city)}`
+function globalRankStats() {
+  GLOBAL_RANK_STATS ??= buildCategoryStats(SIGHT_CATALOG.map(experienceToSight))
+  return GLOBAL_RANK_STATS
 }
 
 export function slugToCity(slug: string, cities: string[]): string | null {
   return cities.find((c) => cityToSlug(c) === slug) ?? null
 }
 
-export function experiencesCityPath(city: string): string {
-  return `/plan/builder/experiences/city/${cityToSlug(city)}`
-}
-
 export function rankCityExperiences(items: Experience[]): RankedExperience[] {
-  return [...items]
-    .sort((a, b) => popularityScore(a) - popularityScore(b))
-    .map((item, index) => ({ ...item, cityRank: index + 1 }))
+  const byId = new Map(items.map((item) => [item.id, item]))
+  return rankAndSortSights(items.map(experienceToSight), {
+    stats: globalRankStats(),
+    promoteAnchors: true,
+  }).map((scored, index) => {
+    const item = byId.get(scored.id)
+    if (!item) {
+      throw new Error(`rankCityExperiences: missing experience ${scored.id}`)
+    }
+    return {
+      ...item,
+      cityRank: index + 1,
+      bayesianRating: scored.bayesianRating,
+      bayesianScore: scored.bayesianScore,
+      volumeFactor: scored.volumeFactor,
+      freshnessMultiplier: scored.freshnessMultiplier,
+      durationFairness: scored.durationFairness,
+      touristWeight: scored.touristWeight,
+      civicScale: scored.civicScale,
+      belowReviewFloor: scored.belowReviewFloor,
+      isAnchor: scored.isAnchor,
+      tierWeight: scored.tierWeight,
+      categoryWeight: scored.categoryWeight,
+      frictionPenalty: scored.frictionPenalty,
+      totalScore: scored.totalScore,
+    }
+  })
 }
 
 /** Group by city, sort items by rank, cities by top sight popularity. */
@@ -73,12 +95,37 @@ export function groupExperiencesByCity(items: Experience[]): CityExperienceGroup
     })
   }
 
-  return groups.sort(
-    (a, b) => popularityScore(a.items[0]) - popularityScore(b.items[0]),
-  )
+  return groups.sort((a, b) => {
+    const reviewsA = a.items.reduce((sum, item) => sum + touristReviewCount(experienceToSight(item)), 0)
+    const reviewsB = b.items.reduce((sum, item) => sum + touristReviewCount(experienceToSight(item)), 0)
+    if (reviewsB !== reviewsA) return reviewsB - reviewsA
+    return (b.items[0]?.totalScore ?? 0) - (a.items[0]?.totalScore ?? 0)
+  })
+}
+
+type UnfilteredCityCatalog = {
+  groups: CityExperienceGroup[]
+  rankById: Map<string, number>
+  cities: string[]
+}
+
+let unfilteredCityCatalog: UnfilteredCityCatalog | null = null
+
+/** Rank the full sight catalog once; browsing the sights page should reuse this. */
+export function getUnfilteredCityCatalog(): UnfilteredCityCatalog {
+  if (!unfilteredCityCatalog) {
+    const groups = groupExperiencesByCity(SIGHT_CATALOG)
+    const rankById = new Map<string, number>()
+    for (const group of groups) {
+      for (const item of group.items) rankById.set(item.id, item.cityRank)
+    }
+    unfilteredCityCatalog = { groups, rankById, cities: groups.map((g) => g.city) }
+  }
+  return unfilteredCityCatalog
 }
 
 export function buildCityRankIndex(items: Experience[]): Map<string, number> {
+  if (items === SIGHT_CATALOG) return getUnfilteredCityCatalog().rankById
   const map = new Map<string, number>()
   for (const group of groupExperiencesByCity(items)) {
     for (const item of group.items) {
@@ -90,5 +137,6 @@ export function buildCityRankIndex(items: Experience[]): Map<string, number> {
 
 /** All unique cities from a list, popularity-sorted (for top jump buttons). */
 export function listCitiesByPopularity(items: Experience[]): string[] {
+  if (items === SIGHT_CATALOG) return getUnfilteredCityCatalog().cities
   return groupExperiencesByCity(items).map((g) => g.city)
 }

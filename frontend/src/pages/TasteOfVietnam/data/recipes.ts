@@ -15,11 +15,7 @@ const RECIPES: DishRecipe[] = [
       'The soul is a long, quiet broth: beef bones (or chicken), charred onion and ginger, star anise, cinnamon, clove and a measured splash of fish sauce. Fresh bánh phở noodles carry it. Rare steak or brisket goes in at the last second; scallion, herbs, lime and white pepper finish the bowl. Southern tables add a wider herb plate, bean sprouts, hoisin and chilli — the north keeps the garnish spare so the broth can speak.',
     howServed:
       'Phở is a morning and anytime-stool dish. You sit close, steam in your face, and eat with chopsticks in one hand and a soup spoon in the other. Slurp is expected. Lime and chilli are yours to dose. In Hanoi the best shops sell out before lunch; in Saigon you can find a bowl after midnight. Do not drown a northern cup in hoisin — taste it first.',
-    images: [
-      wiki('Pho-Beef-Noodles-2008-07-09.jpg'),
-      wiki('Pho_bo.jpg'),
-      wiki('Phở_gà.jpg'),
-    ],
+    images: [wiki('Pho_bo.jpg'), wiki('Pho.jpg'), wiki('Chicken_pho.jpg')],
     ingredients: [
       { amount: '2 kg', item: 'Beef bones (knuckle and marrow)' },
       { amount: '500 g', item: 'Beef brisket, plus 300 g thinly sliced rare steak' },
@@ -54,11 +50,7 @@ const RECIPES: DishRecipe[] = [
       'Start with a Vietnamese baguette that shatters: rice flour in the dough keeps the crumb light. Then fat and acid — liver pâté, mayonnaise, grilled pork or cold cuts, pickled carrot and daikon, cucumber, cilantro, fresh chilli, and a few drops of Maggi or soy. Nothing should sit heavy. The pickle is as important as the meat.',
     howServed:
       'Bánh mì is walk-away food. You order at a hatch or cart, the loaf is split while it is still loud, and you eat it from paper on the street. Saigon versions run richer and sweeter; Hanoi loaves are often leaner with a sharper pickle. Eat it immediately — the crust dies in a backpack. Late-afternoon queues (Huỳnh Hoa and its cousins) are a feature, not a bug.',
-    images: [
-      wiki('Banh_mi_thit.jpg'),
-      wiki('Bánh_mì.jpg'),
-      wiki('Vietnamese_Banh_Mi.jpg'),
-    ],
+    images: [wiki('Bánh_mì.jpg')],
     ingredients: [
       { amount: '4', item: 'Vietnamese baguettes (light, crackly crumb)' },
       { amount: '150 g', item: 'Liver pâté' },
@@ -87,11 +79,7 @@ const RECIPES: DishRecipe[] = [
       'Two porks matter: minced patties and sliced belly, both kissed with fish sauce, shallot, garlic and a little honey, then grilled over charcoal until the edges catch. The dipping broth is warm nước chấm — fish sauce, water, sugar, lime — with green papaya and carrot. Cool bún (rice vermicelli) and a heap of herbs (lettuce, perilla, mint, coriander) complete the plate. Nem rán often rides along.',
     howServed:
       'This is a lunch architecture, not a single bowl. Pork arrives on a plate; the dipping broth is shared or personal; noodles and herbs sit to the side. You dunk, wrap, bite. Charcoal should be in the air. Classic hours are late morning to early afternoon, with a second wave at dinner. Sit on a low stool, order the combo, and do not be precious about sticky fingers.',
-    images: [
-      wiki('Bún_chả.jpg'),
-      wiki('Bun_cha.jpg'),
-      wiki('Vietnamese_bun_cha.jpg'),
-    ],
+    images: [wiki('Bún_chả.jpg'), wiki('Bun_cha.jpg')],
     ingredients: [
       { amount: '400 g', item: 'Pork belly, sliced' },
       { amount: '400 g', item: 'Minced pork shoulder' },
@@ -122,11 +110,7 @@ const RECIPES: DishRecipe[] = [
       'The broth is lemongrass, beef shank, pork hock, annatto (for colour), chilli, and a careful dose of fermented shrimp paste (mắm ruốc). Thick round rice noodles are mandatory — they should have chew. Meats vary: shank, hock, cubicle pork loaf, sometimes congealed blood. Banana blossom, mint, cilantro, lime and extra chilli paste ride on the side, not in the pot.',
     howServed:
       'Eat it like Huế does: early. The best shops are breakfast-to-lunch and the pot thins by noon. You get a deep bowl, herbs on a separate plate, and permission to add heat. Ask for less spice if you need to — the lemongrass should still come through. A plastic stool, a pile of lime wedges, and a fast turnover are signs you are in the right room.',
-    images: [
-      wiki('Bun_bo_Hue.jpg'),
-      wiki('Bún_bò_Huế.jpg'),
-      wiki('Vietnamese_Bun_Bo_Hue.jpg'),
-    ],
+    images: [wiki('Bún_bò_Huế.jpg')],
     ingredients: [
       { amount: '1 kg', item: 'Beef shank and pork hock' },
       { amount: '4 stalks', item: 'Lemongrass, smashed' },
@@ -156,11 +140,7 @@ const RECIPES: DishRecipe[] = [
       'The noodles are the whole argument: chewy, slightly alkaline, traditionally tied to Hội An well water. They get roast pork (five-spice, garlic, honey), pork crackling or fried skins, bean sprouts, local greens, herbs, and only a splash of light pork broth. Chilli-lime is the finish. If the bowl is swimming, it is not cao lầu — it is soup with the wrong noodles.',
     howServed:
       'Order it in Hội An’s old town, usually from late morning. It arrives as a composed plate-bowl: noodles piled, pork sliced, crackling on top, greens tucked in. Eat with chopsticks; there is little broth to spoon. Sit upstairs if the street is loud. Tourist rooms still get it right if the noodle bounce is there — that bite is the test.',
-    images: [
-      wiki('Cao_lau.jpg'),
-      wiki('Cao_lầu.jpg'),
-      wiki('Hoi_An_cao_lau.jpg'),
-    ],
+    images: [wiki('Cao_lầu.jpg'), wiki('Cao_Lầu.jpg')],
     ingredients: [
       { amount: '400 g', item: 'Cao lầu noodles (or chewy Japanese-style wheat noodles in a pinch)' },
       { amount: '350 g', item: 'Pork shoulder, roasted with five-spice, garlic and honey' },
@@ -187,11 +167,7 @@ const RECIPES: DishRecipe[] = [
       'Only a few things, done right: egg yolks whipped with sweetened condensed milk until they hold a ribbon, and a small, fierce Vietnamese phin of robusta. Optional cocoa on the foam. The coffee must be bitter enough to cut the custard. Weak brew makes dessert; strong brew makes Hanoi.',
     howServed:
       'The glass usually sits in a bowl of hot water so it does not seize. Spoon the foam first, then stir, then drink slowly. Upstairs rooms at Giang and its cousins are quieter than the door. Iced egg coffee exists for humid afternoons. This is a sit-down ritual, not a takeaway — give it twenty unhurried minutes.',
-    images: [
-      wiki('Egg_coffee.jpg'),
-      wiki('Cà_phê_trứng.jpg'),
-      wiki('Vietnamese_egg_coffee.jpg'),
-    ],
+    images: [wiki('Cà_phê_trứng.jpg')],
     ingredients: [
       { amount: '2', item: 'Egg yolks' },
       { amount: '3 tbsp', item: 'Sweetened condensed milk' },
@@ -218,11 +194,7 @@ const RECIPES: DishRecipe[] = [
       'Rice paper (bánh tráng), cooked rice vermicelli, poached prawn, thin pork, and a serious handful of herbs: lettuce, mint, cilantro, garlic chives. The dip decides the region — hoisin-peanut with fried shallot in the south, nước chấm (fish sauce, lime, garlic, chilli, sugar) in the north. Nothing fried belongs in a gỏi cuốn; that is a different roll.',
     howServed:
       'They arrive cool, often in even numbers, with a communal dip. Eat soon after they hit the table so the paper stays tender. Dip, do not drown. In the heat this is lunch or a shared starter; you will order another plate. Watch how locals roll extras at the table if herbs are served on the side.',
-    images: [
-      wiki('Gỏi_cuốn.jpg'),
-      wiki('Goi_cuon.jpg'),
-      wiki('Vietnamese_spring_rolls.jpg'),
-    ],
+    images: [wiki('Gỏi_cuốn.jpg'), wiki('Vietnamese_spring_rolls.jpg'), wiki('Summer_roll.jpg')],
     ingredients: [
       { amount: '12', item: 'Rice paper sheets (bánh tráng)' },
       { amount: '200 g', item: 'Rice vermicelli, cooked' },
@@ -251,9 +223,9 @@ const RECIPES: DishRecipe[] = [
     howServed:
       'This is Saigon lunch and late lunch: a metal plate, iced tea, grill smoke still on the chop. You spoon sauce onto the rice, cut the pork, and mix. Street shops and canteens both count. Ask for sườn if you want the chop to be the star; extras (egg, skin, shredded pork) are normal, not greedy. Eat it while the rice is hot and the pickle is cold.',
     images: [
-      wiki('Cơm_tấm.jpg'),
-      wiki('Com_tam.jpg'),
-      wiki('Broken_rice_Vietnam.jpg'),
+      wiki('Com-Tam-2008.jpg'),
+      wiki('Cơm tấm bì chả.jpg'),
+      wiki('Cơm Tấm Bì Sườn Chả.jpg'),
     ],
     ingredients: [
       { amount: '400 g', item: 'Broken rice (cơm tấm), rinsed' },
@@ -282,6 +254,6 @@ export function getRecipeForDish(dishId: string): DishRecipe | undefined {
   return {
     ...recipe,
     videoEmbedUrl: dish.recipeVideoUrl,
-    images: dish.images.slice(0, 3),
+    images: recipe.images.length ? recipe.images : dish.images.slice(0, 3),
   }
 }

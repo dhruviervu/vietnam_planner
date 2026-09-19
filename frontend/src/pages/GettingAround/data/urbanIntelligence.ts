@@ -1,5 +1,6 @@
 import { haversineKm } from '../maps/project'
 import type { MapClickResolution } from '../maps/cityGeography'
+import { overlaySeaHopOnUrbanOptions } from '../lib/islandMainland'
 import { getMode } from './modes'
 import { getPlace } from './places'
 import type { LuggageLevel, PlaceId, TransportMode, UrbanModeId } from './types'
@@ -89,6 +90,8 @@ export type UrbanJourneyResult = {
   destinationZone?: UrbanZoneKind
   /** True when road geometry was unavailable and ranking used straight-line distance. */
   routeEstimated?: boolean
+  /** Island ↔ mainland or other water crossing — scooter is not the crossing. */
+  seaCrossing?: boolean
 }
 
 export type UrbanRouteMetrics = {
@@ -943,7 +946,8 @@ function buildLocalExperienceOption(
     ],
     waterKind: null,
     trafficSensitivity: 'Low',
-    image: '',
+    image:
+      'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=80',
   }
 
   return {
@@ -1202,7 +1206,7 @@ export function resolveUrbanJourney(
     `${origin.lat},${origin.lng}`,
   )}&destination=${encodeURIComponent(`${destination.lat},${destination.lng}`)}`
 
-  return {
+  const result: UrbanJourneyResult = {
     origin,
     destination,
     distanceKm,
@@ -1217,6 +1221,21 @@ export function resolveUrbanJourney(
     destinationZone: destZone,
     routeEstimated: route?.estimated ?? !route?.roadKm,
   }
+
+  const sea = overlaySeaHopOnUrbanOptions(origin, destination, allOptions)
+  if (sea) {
+    return {
+      ...result,
+      scale: 'long',
+      options: sea.options,
+      recommendations: sea.recommendations,
+      insight: sea.insight,
+      routeEstimated: true,
+      seaCrossing: true,
+    }
+  }
+
+  return result
 }
 
 export function selectionFromResolution(
@@ -1338,6 +1357,7 @@ export function selectionFromTypedPlace(
   lng: number,
   cityId: PlaceId,
   cityLabel: string,
+  area = cityLabel,
 ): UrbanSelection {
   return {
     id: `typed-${lat.toFixed(5)}-${lng.toFixed(5)}`,
@@ -1345,7 +1365,7 @@ export function selectionFromTypedPlace(
     lng,
     cityId,
     label,
-    area: cityLabel,
+    area,
     districtId: null,
     districtName: null,
     nearestAreaId: null,

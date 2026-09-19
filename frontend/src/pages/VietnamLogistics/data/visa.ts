@@ -150,87 +150,104 @@ function exemptProfile(
 }
 
 /**
- * Curated entry snapshots for common passports.
- * Always verify on evisa.gov.vn — exemptions and fees change.
+ * Ordinary-passport tourist exemptions (stay days).
+ * Everyone else uses the 90-day e-visa — we resolve that here, not by sending the user away.
  */
-const PROFILES: Record<string, VisaProfile> = {
-  IN: evisaProfile('IN'),
-  US: evisaProfile('US'),
-  GB: evisaProfile('GB'),
-  AU: evisaProfile('AU'),
-  CA: evisaProfile('CA'),
-  DE: evisaProfile('DE'),
-  FR: evisaProfile('FR'),
-  JP: evisaProfile('JP'),
-  KR: evisaProfile('KR'),
-  CN: evisaProfile('CN'),
-  TW: evisaProfile('TW'),
-  HK: evisaProfile('HK'),
-  NZ: evisaProfile('NZ'),
-  IE: evisaProfile('IE'),
-  NL: evisaProfile('NL'),
-  IT: evisaProfile('IT'),
-  ES: evisaProfile('ES'),
-  SE: evisaProfile('SE'),
-  NO: evisaProfile('NO'),
-  CH: evisaProfile('CH'),
-  AE: evisaProfile('AE'),
-  SA: evisaProfile('SA'),
-  ZA: evisaProfile('ZA'),
-  BR: evisaProfile('BR'),
-  MX: evisaProfile('MX'),
-  RU: evisaProfile('RU'),
-  PL: evisaProfile('PL'),
-  PT: evisaProfile('PT'),
-  BE: evisaProfile('BE'),
-  AT: evisaProfile('AT'),
-  DK: evisaProfile('DK'),
-  FI: evisaProfile('FI'),
-  IL: evisaProfile('IL'),
-  // ASEAN — often visa-exempt for short tourism stays; duration varies by nationality.
-  SG: exemptProfile('SG', 30, [
-    'Singapore passport holders commonly qualify for short visa-free stays — confirm current length.',
-  ]),
-  MY: exemptProfile('MY', 30, [
-    'Malaysian passport holders commonly qualify for short visa-free stays — confirm current length.',
-  ]),
-  TH: exemptProfile('TH', 30, [
-    'Thai passport holders commonly qualify for short visa-free stays — confirm current length.',
-  ]),
-  ID: exemptProfile('ID', 30, [
-    'Indonesian passport holders commonly qualify for short visa-free stays — confirm current length.',
-  ]),
-  PH: exemptProfile('PH', 21, [
-    'Philippine passport holders may have a shorter exemption window than some ASEAN neighbours — verify exactly.',
-  ]),
-  KH: exemptProfile('KH', 30, [
-    'Cambodian passport holders commonly qualify for short visa-free stays — confirm current length.',
-  ]),
-  LA: exemptProfile('LA', 30, [
-    'Lao passport holders commonly qualify for short visa-free stays — confirm current length.',
-  ]),
+const EXEMPT_DAYS: Record<string, number> = {
+  // ASEAN
+  BN: 14,
+  KH: 30,
+  ID: 30,
+  LA: 30,
+  MY: 30,
+  MM: 30,
+  PH: 21,
+  SG: 30,
+  TH: 30,
+  // 45-day tourism stimulus (Resolutions 44 & 229 / NQ-CP)
+  BY: 45,
+  BE: 45,
+  BG: 45,
+  HR: 45,
+  CZ: 45,
+  DK: 45,
+  FI: 45,
+  FR: 45,
+  DE: 45,
+  HU: 45,
+  IT: 45,
+  JP: 45,
+  KR: 45,
+  LU: 45,
+  NL: 45,
+  NO: 45,
+  PL: 45,
+  RO: 45,
+  RU: 45,
+  SK: 45,
+  SI: 45,
+  ES: 45,
+  SE: 45,
+  CH: 45,
+  GB: 45,
+  // Bilateral / other ordinary-passport exemptions
+  CL: 90,
+  PA: 90,
+  KZ: 30,
+  KG: 30,
+  MN: 30,
 }
 
-const FALLBACK: VisaProfile = {
-  countryCode: 'XX',
-  status: 'unknown',
-  headline: 'Check official source',
-  summary:
-    'We do not have a curated entry snapshot for this passport yet. Use the official e-visa portal to confirm eligibility, stay length and fees.',
-  primaryTypeId: 'tourist-evisa-single',
-  types: EVISA_TYPES,
-  requirements: BASE_REQS,
-  conditions: ['Do not rely on third-party summaries alone.'],
-  passportValidityMonths: 6,
-  officialSourceUrl: OFFICIAL,
-  officialSourceLabel: OFFICIAL_LABEL,
-  lastVerified: null,
-  confidence: 'unknown',
+function citizenProfile(): VisaProfile {
+  return {
+    countryCode: 'VN',
+    status: 'exempt',
+    headline: 'Vietnamese citizen',
+    summary:
+      'A Vietnamese passport is for entering as a citizen — no tourist visa or e-visa is needed.',
+    primaryTypeId: null,
+    types: [
+      {
+        id: 'citizen',
+        label: 'Citizen entry',
+        stayDays: null,
+        feeUsd: [0, 0],
+        processingDays: null,
+        entries: 'Not a tourist visa',
+      },
+    ],
+    requirements: [
+      {
+        id: 'passport',
+        label: 'Valid Vietnamese passport',
+        state: 'required',
+      },
+    ],
+    conditions: [],
+    passportValidityMonths: null,
+    officialSourceUrl: OFFICIAL,
+    officialSourceLabel: OFFICIAL_LABEL,
+    lastVerified: VERIFIED,
+    confidence: 'updated',
+  }
+}
+
+const PROFILES: Record<string, VisaProfile> = {
+  VN: citizenProfile(),
+  ...Object.fromEntries(
+    Object.entries(EXEMPT_DAYS).map(([code, days]) => [
+      code,
+      exemptProfile(code, days, [
+        `Visa-free for about ${days} days on a qualifying short tourist stay.`,
+      ]),
+    ]),
+  ),
 }
 
 export function getVisaProfile(countryCode: string | null): VisaProfile | null {
   if (!countryCode) return null
-  return PROFILES[countryCode] ?? { ...FALLBACK, countryCode }
+  if (countryCode === 'VN') return PROFILES.VN
+  return PROFILES[countryCode] ?? evisaProfile(countryCode)
 }
 
 export const VISA_PROCESS_STEPS = [

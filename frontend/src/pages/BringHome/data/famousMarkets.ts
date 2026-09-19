@@ -269,6 +269,14 @@ export function resolveMarketCityLabel(place: string): string | null {
   if (s.includes('hue') || s.includes('huế')) return 'Hue'
   if (s.includes('nha trang')) return 'Nha Trang'
   if (s.includes('da lat') || s.includes('dalat') || s.includes('đà lạt')) return 'Da Lat'
+  if (s.includes('phu quoc') || s.includes('phú quốc')) return 'Phu Quoc'
+  if (s.includes('sapa') || s.includes('sa pa')) return 'Sapa'
+  if (s.includes('ha giang') || s.includes('hà giang')) return 'Ha Giang'
+  if (s.includes('can tho') || s.includes('cần thơ')) return 'Can Tho'
+  if (s.includes('cat ba') || s.includes('cát bà')) return 'Cat Ba'
+  if (s.includes('dong van') || s.includes('đồng văn')) return 'Dong Van'
+  if (s.includes('ha long') || s.includes('hạ long') || s.includes('halong')) return 'Ha Long'
+  if (s.includes('phong nha')) return 'Phong Nha'
   // Exact catalog match
   const exact = allMarketCities().find((c) => c.toLowerCase() === s)
   return exact ?? null

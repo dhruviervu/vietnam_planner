@@ -9,12 +9,20 @@ import type { ShopCity } from '../data/types'
 const SHOP_CITY_ORDER: ShopCity[] = [
   'Hanoi',
   'Ninh Binh',
+  'Sapa',
+  'Ha Giang',
+  'Dong Van',
+  'Ha Long',
+  'Cat Ba',
   'Hue',
   'Da Nang',
   'Hoi An',
-  'Ho Chi Minh City',
+  'Phong Nha',
   'Nha Trang',
   'Da Lat',
+  'Ho Chi Minh City',
+  'Can Tho',
+  'Phu Quoc',
 ]
 
 const STAY_CITY_TO_SHOP: Record<string, ShopCity> = {
@@ -25,6 +33,15 @@ const STAY_CITY_TO_SHOP: Record<string, ShopCity> = {
   hue: 'Hue',
   'nha-trang': 'Nha Trang',
   dalat: 'Da Lat',
+  'phu-quoc': 'Phu Quoc',
+  sapa: 'Sapa',
+  'ha-giang': 'Ha Giang',
+  'ha-long': 'Ha Long',
+  'ninh-binh': 'Ninh Binh',
+  'phong-nha': 'Phong Nha',
+  'can-tho': 'Can Tho',
+  'cat-ba': 'Cat Ba',
+  'dong-van': 'Dong Van',
 }
 
 const CITY_ALIASES: Record<string, ShopCity> = {
@@ -42,6 +59,16 @@ const CITY_ALIASES: Record<string, ShopCity> = {
   'nha trang': 'Nha Trang',
   'da lat': 'Da Lat',
   dalat: 'Da Lat',
+  'phu quoc': 'Phu Quoc',
+  sapa: 'Sapa',
+  'sa pa': 'Sapa',
+  'ha giang': 'Ha Giang',
+  'can tho': 'Can Tho',
+  'cat ba': 'Cat Ba',
+  'dong van': 'Dong Van',
+  'ha long': 'Ha Long',
+  halong: 'Ha Long',
+  'phong nha': 'Phong Nha',
 }
 
 function toShopCity(value: string | undefined | null): ShopCity | null {

@@ -27,9 +27,10 @@ export function ArrivalHero() {
         <h1 className="mt-1.5 font-serif text-[clamp(1.75rem,3.8vw,2.55rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-paper">
           Airport Transfers, Made Clear
         </h1>
-        <p className="mt-2 max-w-[50ch] text-[0.9rem] leading-relaxed text-paper/85">
+        <p className="mt-2 max-w-[54ch] text-[0.9rem] leading-relaxed text-paper/85">
           Pick a city with an airport from your trip, then see clear ways in and out — tailored to
-          party size, luggage, timing, and whether you already have a stay.
+          party size and luggage. This page is just to remind you to take care of your Airport
+          transfer to and from the airport beforehand itself.
         </p>
       </motion.div>
     </section>

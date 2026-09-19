@@ -1,19 +1,54 @@
 import { EXPERIENCE_GUIDES_PART2 } from './experienceGuidesPart2'
 import { EXPERIENCE_GUIDES_PART3 } from './experienceGuidesPart3'
 import { EXPERIENCE_GUIDES_PART4 } from './experienceGuidesPart4'
-import { EXPERIENCES } from './experiences'
-import { buildExperienceGuideStory } from './buildExperienceGuideStory'
+import { EXPERIENCE_GUIDES_HOI_AN } from './experienceGuidesHoiAn'
+import { EXPERIENCE_GUIDES_HOI_AN_MORE } from './experienceGuidesHoiAnMore'
+import { EXPERIENCE_GUIDES_HOI_AN_OUT } from './experienceGuidesHoiAnOut'
+import { EXPERIENCE_GUIDES_HANOI } from './experienceGuidesHanoi'
+import { EXPERIENCE_GUIDES_HANOI_MORE } from './experienceGuidesHanoiMore'
+import { EXPERIENCE_GUIDES_HCMC } from './experienceGuidesHcmc'
+import { EXPERIENCE_GUIDES_HCMC_MORE } from './experienceGuidesHcmcMore'
+import { EXPERIENCE_GUIDES_NINH_BINH } from './experienceGuidesNinhBinh'
+import { EXPERIENCE_GUIDES_DA_LAT } from './experienceGuidesDaLat'
+import { EXPERIENCE_GUIDES_HUE } from './experienceGuidesHue'
+import { EXPERIENCE_GUIDES_HUE_TOMBS } from './experienceGuidesHueTombs'
+import { EXPERIENCE_GUIDES_HUE_OUT } from './experienceGuidesHueOut'
+import { EXPERIENCE_GUIDES_DA_NANG } from './experienceGuidesDaNang'
+import { EXPERIENCE_GUIDES_DA_NANG_MORE } from './experienceGuidesDaNangMore'
+import { EXPERIENCE_GUIDES_SAPA } from './experienceGuidesSapa'
+import { EXPERIENCE_GUIDES_PHU_QUOC } from './experienceGuidesPhuQuoc'
+import { EXPERIENCE_GUIDES_PHU_QUOC_MORE } from './experienceGuidesPhuQuocMore'
+import { EXPERIENCE_GUIDES_HA_LONG } from './experienceGuidesHaLong'
+import { EXPERIENCE_GUIDES_HA_LONG_SHORE } from './experienceGuidesHaLongShore'
+import { EXPERIENCE_GUIDES_PHONG_NHA } from './experienceGuidesPhongNha'
+import { EXPERIENCE_GUIDES_NHA_TRANG } from './experienceGuidesNhaTrang'
+import { EXPERIENCE_GUIDES_NHA_TRANG_MORE } from './experienceGuidesNhaTrangMore'
+import { EXPERIENCE_GUIDES_CAN_THO } from './experienceGuidesCanTho'
+import { EXPERIENCE_GUIDES_HA_GIANG } from './experienceGuidesHaGiang'
+import { EXPERIENCE_GUIDES_HA_GIANG_LIFE } from './experienceGuidesHaGiangLife'
+import { EXPERIENCE_GUIDES_CAT_BA } from './experienceGuidesCatBa'
+import { EXPERIENCE_GUIDES_DONG_VAN } from './experienceGuidesDongVan'
+import { getExperienceById } from './experiences'
+import { composeExperienceGuide, curatedWordCount } from './composeExperienceGuide'
+import {
+  clipGuideWords,
+  HERITAGE_GUIDE_MIN_WORDS,
+  isDeepHeritageSight,
+} from './heritageDeepSights'
 
 export function wordCount(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length
 }
 
 export function getExperienceGuide(id: string): string {
-  const curated = EXPERIENCE_GUIDES[id]
-  if (curated) return curated
-  const experience = EXPERIENCES.find((e) => e.id === id)
+  const experience = getExperienceById(id)
   if (!experience) return ''
-  return buildExperienceGuideStory(experience)
+  const curated = EXPERIENCE_GUIDES[id] || ''
+  if (!isDeepHeritageSight(experience)) return curated
+  if (curatedWordCount(curated) >= HERITAGE_GUIDE_MIN_WORDS) {
+    return clipGuideWords(curated)
+  }
+  return clipGuideWords(composeExperienceGuide(experience, curated))
 }
 
 const EXPERIENCE_GUIDES_PART1: Record<string, string> = {
@@ -216,9 +251,51 @@ Choose businesses responsibly. Fair wages, manageable group sizes, transparent s
 The best cooking class leaves you with judgment rather than just a printed recipe. You should understand how to build a dipping sauce, handle a herb platter, control heat, and adapt a dish without losing its logic. Select a regionally coherent menu, communicate needs, participate in every stage, and listen to the stories attached to everyday ingredients. The resulting meal will be enjoyable, but the lasting pleasure comes later, when one aroma or practiced movement returns you to a Vietnamese market and the generosity of the person who taught you.`,
 }
 
-export const EXPERIENCE_GUIDES: Record<string, string> = {
-  ...EXPERIENCE_GUIDES_PART1,
-  ...EXPERIENCE_GUIDES_PART2,
-  ...EXPERIENCE_GUIDES_PART3,
-  ...EXPERIENCE_GUIDES_PART4,
+const GUIDE_LAYERS: Record<string, string>[] = [
+  EXPERIENCE_GUIDES_PART1,
+  EXPERIENCE_GUIDES_PART2,
+  EXPERIENCE_GUIDES_PART3,
+  EXPERIENCE_GUIDES_PART4,
+  EXPERIENCE_GUIDES_HOI_AN,
+  EXPERIENCE_GUIDES_HOI_AN_MORE,
+  EXPERIENCE_GUIDES_HOI_AN_OUT,
+  EXPERIENCE_GUIDES_HANOI,
+  EXPERIENCE_GUIDES_HANOI_MORE,
+  EXPERIENCE_GUIDES_HCMC,
+  EXPERIENCE_GUIDES_HCMC_MORE,
+  EXPERIENCE_GUIDES_NINH_BINH,
+  EXPERIENCE_GUIDES_DA_LAT,
+  EXPERIENCE_GUIDES_HUE,
+  EXPERIENCE_GUIDES_HUE_TOMBS,
+  EXPERIENCE_GUIDES_HUE_OUT,
+  EXPERIENCE_GUIDES_DA_NANG,
+  EXPERIENCE_GUIDES_DA_NANG_MORE,
+  EXPERIENCE_GUIDES_SAPA,
+  EXPERIENCE_GUIDES_PHU_QUOC,
+  EXPERIENCE_GUIDES_PHU_QUOC_MORE,
+  EXPERIENCE_GUIDES_HA_LONG,
+  EXPERIENCE_GUIDES_HA_LONG_SHORE,
+  EXPERIENCE_GUIDES_PHONG_NHA,
+  EXPERIENCE_GUIDES_NHA_TRANG,
+  EXPERIENCE_GUIDES_NHA_TRANG_MORE,
+  EXPERIENCE_GUIDES_CAN_THO,
+  EXPERIENCE_GUIDES_HA_GIANG,
+  EXPERIENCE_GUIDES_HA_GIANG_LIFE,
+  EXPERIENCE_GUIDES_CAT_BA,
+  EXPERIENCE_GUIDES_DONG_VAN,
+]
+
+export const EXPERIENCE_GUIDES: Record<string, string> = Object.assign({}, ...GUIDE_LAYERS)
+
+/** Keys that appear in more than one guide module (later layers silently overwrite). */
+export function duplicateExperienceGuideKeys(): string[] {
+  const seen = new Set<string>()
+  const dupes = new Set<string>()
+  for (const layer of GUIDE_LAYERS) {
+    for (const key of Object.keys(layer)) {
+      if (seen.has(key)) dupes.add(key)
+      seen.add(key)
+    }
+  }
+  return [...dupes].sort()
 }

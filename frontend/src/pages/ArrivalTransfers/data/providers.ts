@@ -1,5 +1,4 @@
 import type {
-  BookingProvider,
   ProviderOption,
   TransferDirection,
   TransportModeId,
@@ -249,50 +248,17 @@ export function rankOptionsForProfile(
   })
 }
 
-export function getBookingProviders(option: ProviderOption): BookingProvider[] {
-  const base = option.priceFrom
-  return [
-    {
-      id: `${option.id}-a`,
-      name: `${option.name} · Provider A`,
-      priceLabel: `From $${base}`,
-      rating: option.rating,
-      cancellation: option.cancellationPolicy,
-      flightDelay: option.flightDelayPolicy,
-      luggage: option.luggage,
-      pickup: option.pickupStyle,
-      availability: 'Estimated availability',
-      bookingUrl: `https://example.com/book/${option.id}/a`,
-      providerUrl: 'https://example.com',
-      source: 'Prototype affiliate link',
-    },
-    {
-      id: `${option.id}-b`,
-      name: `${option.name} · Provider B`,
-      priceLabel: `From $${base + 2}`,
-      rating: Math.min(5, option.rating + 0.1),
-      cancellation: 'Free cancellation 24h',
-      flightDelay: 'Flight tracking included',
-      luggage: option.luggage,
-      pickup: option.pickupStyle,
-      availability: 'Estimated availability',
-      bookingUrl: `https://example.com/book/${option.id}/b`,
-      providerUrl: 'https://example.com',
-      source: 'Prototype affiliate link',
-    },
-    {
-      id: `${option.id}-c`,
-      name: `${option.name} · Provider C`,
-      priceLabel: `From $${base + 4}`,
-      rating: Math.min(5, option.rating + 0.2),
-      cancellation: 'Check provider policy',
-      flightDelay: 'Policy not confirmed',
-      luggage: option.luggage,
-      pickup: option.pickupStyle,
-      availability: 'Estimated availability',
-      bookingUrl: `https://example.com/book/${option.id}/c`,
-      providerUrl: 'https://example.com',
-      source: 'Prototype affiliate link',
-    },
-  ]
+export function bookingUrlForOption(option: ProviderOption): string {
+  const name = option.name.toLowerCase()
+  if (/grab/.test(name)) return 'https://www.grab.com/vn/'
+  if (/xanh/.test(name)) return 'https://www.xanhsm.com/'
+  if (/\bbe\b/.test(name)) return 'https://be.com.vn/'
+  if (option.modeId === 'car-taxi') return 'https://www.grab.com/vn/'
+  if (option.modeId === 'public-bus') return 'https://12go.asia/'
+  if (option.modeId === 'rental-driver') {
+    return /driver/.test(name)
+      ? 'https://www.klook.com/'
+      : 'https://www.rentalcars.com/'
+  }
+  return 'https://www.klook.com/'
 }

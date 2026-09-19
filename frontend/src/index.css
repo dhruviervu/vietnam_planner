@@ -165,8 +165,14 @@
   animation: build-itinerary-pulse 2.4s ease-in-out infinite;
 }
 
-.btn-build-itinerary:hover {
-  filter: brightness(1.06);
+.btn-build-itinerary-hero {
+  box-shadow:
+    0 0 0 1px rgba(255, 243, 232, 0.22),
+    0 18px 40px rgba(164, 72, 46, 0.45);
+}
+
+.btn-build-itinerary-hero:hover {
+  filter: brightness(1.08);
 }
 
 .btn-build-itinerary__shine {
@@ -208,3 +214,81 @@
   background: none !important;
   border: none !important;
 }
+
+@keyframes ios-wobble {
+  0% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+  100% {
+    transform: rotate(-1.5deg);
+  }
+}
+
+.ios-wobble {
+  animation: ios-wobble 0.22s ease-in-out infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.ios-wobble:nth-child(2n) {
+  animation-delay: -0.07s;
+}
+
+.ios-wobble:nth-child(3n) {
+  animation-delay: -0.13s;
+}
+
+.ios-wobble:nth-child(4n) {
+  animation-delay: -0.04s;
+}
+
+.ios-wobble-paused,
+.ios-wobble-paused.ios-wobble {
+  animation: none;
+}
+
+.ask-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ask-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #8a7a68;
+  animation: ask-dot 1.05s ease-in-out infinite;
+}
+
+.ask-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.ask-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes ask-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.28;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ask-dots span {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+

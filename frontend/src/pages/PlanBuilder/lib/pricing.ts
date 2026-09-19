@@ -1,7 +1,7 @@
 import type { Experience, PriceType } from '../types'
 import { getExperienceMedia } from '../data/experienceMedia'
 import { EXPERIENCE_IMAGES } from '../data/experienceImages'
-import { withPhotoFallbacks } from './resolveCatalogPhotos'
+import { catalogCardPhotoUrl, rankPhotosForSight, withPhotoFallbacks } from './resolveCatalogPhotos'
 
 export function formatFromPrice(price: number, priceType: PriceType): string {
   if (priceType === 'free' || price === 0) return 'Free'
@@ -17,14 +17,35 @@ export function priceTypeFromLegacy(costUsd: number, costLabel: string): PriceTy
   return 'per_person'
 }
 
-export function getExperienceImages(
+function rankedSightPhotos(
   experience: Pick<Experience, 'id' | 'name' | 'city' | 'category' | 'hook' | 'images' | 'seeds'>,
 ) {
   const media = getExperienceMedia(experience.id)?.photos ?? []
   const curated = EXPERIENCE_IMAGES[experience.id] ?? []
   const inline = experience.images ?? []
+  const ranked = rankPhotosForSight([...media, ...curated, ...inline], experience)
   const hint = `${experience.id} ${experience.name} ${experience.category} ${experience.city} ${experience.hook}`
-  const resolved = withPhotoFallbacks([...media, ...curated, ...inline], hint)
+  return withPhotoFallbacks(ranked, hint)
+}
+
+export function getExperienceImages(
+  experience: Pick<Experience, 'id' | 'name' | 'city' | 'category' | 'hook' | 'images' | 'seeds'>,
+) {
+  const resolved = rankedSightPhotos(experience)
   if (resolved.length) return resolved
-  return experience.seeds.map((seed) => `https://picsum.photos/seed/${seed}/880/560`)
+  return [
+    'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1400&q=80',
+  ]
+}
+
+/** Catalog cards only need a couple of modest thumbs, not the full 1280px gallery. */
+export function getExperienceCardPhotos(
+  experience: Pick<Experience, 'id' | 'name' | 'city' | 'category' | 'hook' | 'images' | 'seeds'>,
+  limit = 3,
+) {
+  const resolved = rankedSightPhotos(experience).slice(0, limit).map(catalogCardPhotoUrl)
+  if (resolved.length) return resolved
+  return experience.seeds
+    .slice(0, limit)
+    .map((seed) => `https://picsum.photos/seed/${seed}/640/400`)
 }

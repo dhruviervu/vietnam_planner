@@ -1,5 +1,6 @@
 import type { AuthoredPlan } from './types'
 import { getTemplateById, ITINERARY_TEMPLATES } from '../templates'
+import { parseThemedCityTemplateId } from '../cityStayTemplates'
 import { cityKey } from '../../lib/cityKey'
 import { SOLO_PLANS } from './solo'
 import { COUPLES_PLANS } from './couples'
@@ -9,6 +10,7 @@ import { FRIENDS_PLANS } from './friends'
 import { LARGE_GROUPS_PLANS } from './largeGroups'
 import { BUDGET_PLANS } from './budget'
 import { RELAXED_PLANS } from './relaxed'
+import { SLOW_PLANS } from './slow'
 import { BEACHES_PLANS } from './beaches'
 import { FOOD_PLANS } from './food'
 import { ADVENTURE_PLANS } from './adventure'
@@ -29,6 +31,7 @@ const ALL_PLANS: AuthoredPlan[] = [
   ...LARGE_GROUPS_PLANS,
   ...BUDGET_PLANS,
   ...RELAXED_PLANS,
+  ...SLOW_PLANS,
   ...BEACHES_PLANS,
   ...FOOD_PLANS,
   ...ADVENTURE_PLANS,
@@ -79,12 +82,9 @@ export function validateAuthoredPlans() {
     }
   }
   for (const template of ITINERARY_TEMPLATES) {
+    if (template.section === 'city-stays') continue
+    if (parseThemedCityTemplateId(template.id)) continue
     if (!BY_ID.has(template.id)) errors.push(`missing plan for ${template.id}`)
   }
   return errors
-}
-
-if (import.meta.env.DEV) {
-  const errors = validateAuthoredPlans()
-  if (errors.length) console.error('[itinerary templates]', errors.join('\n'))
 }

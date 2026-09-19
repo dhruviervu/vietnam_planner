@@ -21,10 +21,7 @@ type Props = {
 export function WorldNav({ active, onActive }: Props) {
   return (
     <nav aria-label="Transport worlds" className="mt-8">
-      <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-muted">
-        How Vietnam moves
-      </p>
-      <div className="mt-3 grid gap-2 sm:grid-cols-3">
+      <div className="grid gap-2 sm:grid-cols-3">
         {WORLDS.map((w) => {
           const on = active === w.key
           return (

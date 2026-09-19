@@ -1,15 +1,15 @@
 import { Link, useParams } from 'react-router-dom'
-import { Nav } from '../../components/landing/Nav'
 import { getHappenById, typeBadge, timeStars } from './data/monthEvents'
+import { WhenToGoPageShell, useWhenToGoHomePath } from './WhenToGoPageShell'
 
 /** Placeholder detail route for happenings without a linked experience page yet. */
 export function HappenDetailPlaceholder() {
   const { id = '' } = useParams()
   const item = getHappenById(id)
+  const home = useWhenToGoHomePath()
 
   return (
-    <>
-      <Nav />
+    <WhenToGoPageShell footer={false}>
       <main className="mx-auto max-w-[720px] px-[clamp(1.1rem,4vw,2rem)] py-10 pb-20">
         <p className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-sage">
           Event & seasonal detail
@@ -43,12 +43,12 @@ export function HappenDetailPlaceholder() {
           </>
         )}
         <Link
-          to="/when-to-go/discover"
+          to={home}
           className="mt-8 inline-flex rounded-full bg-ink px-5 py-2.5 text-[0.85rem] font-bold text-paper"
         >
           ← Back to When to go
         </Link>
       </main>
-    </>
+    </WhenToGoPageShell>
   )
 }

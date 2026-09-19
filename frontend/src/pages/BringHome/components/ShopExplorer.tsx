@@ -19,7 +19,6 @@ type Props = {
 }
 
 const PAGE_SIZE = 4
-const TOP_CITY_COUNT = 6
 
 const SORTS: { id: ShopSort; label: string }[] = [
   { id: 'best-overall', label: 'Best overall' },
@@ -41,22 +40,17 @@ export function ShopExplorer({ items, selectedItemId, onSelectItem }: Props) {
     selectedItemId === 'All' ? undefined : items.find((i) => i.id === selectedItemId)
 
   const listingCities = useMemo(() => citiesForItem(selectedItemId), [selectedItemId])
-  const availableCities = useMemo(
-    () => (hasTrip ? listingCities.filter((c) => tripCities.includes(c)) : listingCities),
-    [hasTrip, listingCities, tripCities],
-  )
+  const availableCities = listingCities
   const cityCounts = useMemo(() => destinationCityCounts(selectedItemId), [selectedItemId])
   const itemCounts = useMemo(() => destinationItemCounts(), [])
 
   const [city, setCity] = useState<ShopCity | 'All'>('All')
   const [sort, setSort] = useState<ShopSort>('best-overall')
   const [filters, setFilters] = useState<ShopFilter>({})
-  const [moreCities, setMoreCities] = useState(false)
   const [page, setPage] = useState(1)
 
   useEffect(() => {
     setCity('All')
-    setMoreCities(false)
   }, [selectedItemId])
 
   useEffect(() => {
@@ -64,9 +58,7 @@ export function ShopExplorer({ items, selectedItemId, onSelectItem }: Props) {
   }, [selectedItemId, city, sort, filters, tripTick])
 
   const activeCity = city === 'All' || availableCities.includes(city) ? city : 'All'
-  const topCities = availableCities.slice(0, TOP_CITY_COUNT)
-  const extraCities = hasTrip ? [] : availableCities.slice(TOP_CITY_COUNT)
-  const visibleCities = hasTrip || moreCities ? availableCities : topCities
+  const visibleCities = availableCities
 
   const destinations = useMemo(
     () => getDestinationsForItem(selectedItemId, activeCity, sort, filters, tripCities),
@@ -101,19 +93,21 @@ export function ShopExplorer({ items, selectedItemId, onSelectItem }: Props) {
       <h2 className="font-serif text-[clamp(1.35rem,2.8vw,1.7rem)] font-semibold text-ink">
         Where to Shop
       </h2>
-      <p className="mt-1 max-w-[54ch] text-[0.88rem] text-muted">
-        Traditional markets first, then historic streets, then craft villages, specialty shops and
-        malls — ranked for the filter you choose.
+      <p className="mt-1 max-w-[62ch] text-[0.88rem] text-muted">
+        Here we list top shopping centres to find the products listed above and sure you can find
+        other stuff at these centres as well. These are the top tourist friendly centres across
+        Vietnam.
       </p>
       {hasTrip ? (
         <p className="mt-2 text-[0.75rem] font-semibold text-sage">
-          Showing places near your trip — walkable or a short cab from{' '}
-          {tripCities.map((c) => (c === 'Ho Chi Minh City' ? 'HCMC' : c)).join(', ')}.
+          Your trip includes{' '}
+          {tripCities.map((c) => (c === 'Ho Chi Minh City' ? 'HCMC' : c)).join(', ')} — use the city
+          chips to jump there, or browse every shopping city.
         </p>
       ) : (
         <p className="mt-2 text-[0.75rem] text-muted">
-          No stays or experiences in the trip bag yet — listings are nationwide, still grouped by
-          type then ranked.
+          Shopping centres and markets across Vietnam — filter by city, then add a stop to a trip
+          day.
         </p>
       )}
 
@@ -181,17 +175,6 @@ export function ShopExplorer({ items, selectedItemId, onSelectItem }: Props) {
                   </FilterChip>
                 ))}
               </div>
-              {extraCities.length > 0 ? (
-                <button
-                  type="button"
-                  onClick={() => setMoreCities((v) => !v)}
-                  className="mt-2 text-[0.72rem] font-bold text-terracotta hover:underline"
-                >
-                  {moreCities
-                    ? 'Show fewer cities'
-                    : `Show ${extraCities.length} more ${extraCities.length === 1 ? 'city' : 'cities'}`}
-                </button>
-              ) : null}
             </section>
 
             <section>

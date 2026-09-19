@@ -1,0 +1,6078 @@
+[
+  {
+    "id": "vn-north-7",
+    "kind": "country",
+    "title": "7-day Northern Vietnam",
+    "description": "The classic first week north of Hai Van: Hanoi’s Old Quarter and temples, Ninh Binh boats and Hang Mua, then a Ha Long / Bai Tu Long day on the water. Packed, not a cruise brochure — highest-ROI walks, markets, and one bay day.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg",
+    "days": 7,
+    "cities": [
+      "Hanoi",
+      "Ninh Binh",
+      "Ha Long"
+    ],
+    "previewNames": [
+      "Ho Chi Minh Mausoleum Complex",
+      "Stilt House & Presidential Gardens",
+      "One Pillar Pagoda",
+      "Hoa Lo Prison Museum",
+      "St. Joseph’s Cathedral",
+      "Egg Coffee Café Crawl",
+      "Trấn Quốc Pagoda",
+      "West Lake & Tay Ho Circuit"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ho-chi-minh-mausoleum",
+          "hcm-stilt-house",
+          "one-pillar-pagoda",
+          "hoa-lo-prison",
+          "st-joseph-cathedral",
+          "egg-coffee"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "tran-quoc-pagoda",
+          "west-lake",
+          "temple-literature",
+          "hoan-kiem-lake",
+          "ngoc-son-temple",
+          "train-street"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ethnology-museum",
+          "old-quarter",
+          "vietnamese-womens-museum",
+          "hanoi-opera-house",
+          "shop-hanoi-coffee"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "cuc-phuong",
+          "co-vien-lau",
+          "pho-co-hoa-lu"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "van-long",
+          "bear-sanctuary-ninh-binh",
+          "dong-thien-ha",
+          "van-lam-embroidery",
+          "bai-dinh",
+          "phat-diem-cathedral"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "halong-cruise",
+          "bai-chay-bridge",
+          "bai-chay-night-market"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "bai-tu-long-bay"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "ethnology-museum",
+      "old-quarter",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "bai-dinh",
+      "phat-diem-cathedral",
+      "halong-cruise",
+      "bai-chay-bridge",
+      "bai-chay-night-market",
+      "bai-tu-long-bay"
+    ],
+    "shoppingIds": [
+      "shop-hanoi-coffee"
+    ],
+    "allIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "ethnology-museum",
+      "old-quarter",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "shop-hanoi-coffee",
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "bai-dinh",
+      "phat-diem-cathedral",
+      "halong-cruise",
+      "bai-chay-bridge",
+      "bai-chay-night-market",
+      "bai-tu-long-bay"
+    ]
+  },
+  {
+    "id": "vn-central-7",
+    "kind": "country",
+    "title": "7-day Central coast",
+    "description": "Hue’s citadel and tombs, Da Nang’s Marble Mountains and dragon river, Hoi An’s ancient town, lanterns, tailors, and An Bang. The DAD airport week everyone actually flies.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tomb_of_Minh_M%E1%BA%A1ng.jpg",
+    "days": 7,
+    "cities": [
+      "Hue",
+      "Da Nang",
+      "Hoi An"
+    ],
+    "previewNames": [
+      "Tomb of Minh Mạng (Hiếu Lăng)",
+      "Trường Tiền Bridge (Tràng Tiền Bridge)",
+      "Từ Hiếu Pagoda",
+      "Tomb of Tự Đức (Khiêm Lăng)",
+      "Thủy Xuân Incense & Conical Hat Village",
+      "Thanh Toàn Tile-Roofed Bridge (Cầu Thanh Toàn)",
+      "Tomb of Khải Định (Ứng Lăng)",
+      "Imperial City (Đại Nội)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "minh-mang-tomb",
+          "truong-tien-bridge",
+          "tu-hieu-pagoda",
+          "tu-duc-tomb",
+          "thuy-xuan-village",
+          "thanh-toan-bridge"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "khai-dinh-tomb",
+          "hue-citadel",
+          "dong-ba-market",
+          "an-dinh-palace",
+          "ho-thuy-tien"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "cham-sculpture-museum",
+          "marble-mountains",
+          "da-nang-beach",
+          "dragon-bridge",
+          "da-nang-cathedral"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "ba-na-hills"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "hoi-an-ancient-town",
+          "hoi-an-history-museum",
+          "fujian-assembly-hall",
+          "tan-ky-old-house",
+          "hoi-an-market",
+          "japanese-covered-bridge",
+          "hoi-an-lanterns"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "tra-que-village",
+          "thanh-ha-pottery",
+          "kim-bong-village",
+          "shop-hoian-tailor"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "my-son"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge",
+      "khai-dinh-tomb",
+      "hue-citadel",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "ho-thuy-tien",
+      "cham-sculpture-museum",
+      "marble-mountains",
+      "da-nang-beach",
+      "dragon-bridge",
+      "da-nang-cathedral",
+      "ba-na-hills",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "my-son"
+    ],
+    "shoppingIds": [
+      "shop-hoian-tailor"
+    ],
+    "allIds": [
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge",
+      "khai-dinh-tomb",
+      "hue-citadel",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "ho-thuy-tien",
+      "cham-sculpture-museum",
+      "marble-mountains",
+      "da-nang-beach",
+      "dragon-bridge",
+      "da-nang-cathedral",
+      "ba-na-hills",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "shop-hoian-tailor",
+      "my-son"
+    ]
+  },
+  {
+    "id": "vn-classic-10",
+    "kind": "country",
+    "title": "10-day Vietnam spine",
+    "description": "The first-timer line Google keeps recommending: Hanoi streets and egg coffee, a Ninh Binh karst day, Hoi An heritage plus a Da Nang / Ba Na or Marble Mountains swing, then Saigon museums, Independence Palace, and Bến Thành. North to south, no filler islands.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg",
+    "days": 10,
+    "cities": [
+      "Hanoi",
+      "Ninh Binh",
+      "Hoi An",
+      "Ho Chi Minh City"
+    ],
+    "previewNames": [
+      "Ho Chi Minh Mausoleum Complex",
+      "Stilt House & Presidential Gardens",
+      "One Pillar Pagoda",
+      "Hoa Lo Prison Museum",
+      "St. Joseph’s Cathedral",
+      "Egg Coffee Café Crawl",
+      "Trấn Quốc Pagoda",
+      "West Lake & Tay Ho Circuit"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ho-chi-minh-mausoleum",
+          "hcm-stilt-house",
+          "one-pillar-pagoda",
+          "hoa-lo-prison",
+          "st-joseph-cathedral",
+          "egg-coffee"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "tran-quoc-pagoda",
+          "west-lake",
+          "temple-literature",
+          "hoan-kiem-lake",
+          "ngoc-son-temple",
+          "train-street"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ethnology-museum",
+          "old-quarter",
+          "vietnamese-womens-museum",
+          "hanoi-opera-house",
+          "shop-hanoi-coffee"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "cuc-phuong",
+          "co-vien-lau",
+          "pho-co-hoa-lu"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "van-long",
+          "bear-sanctuary-ninh-binh",
+          "dong-thien-ha",
+          "van-lam-embroidery",
+          "bai-dinh",
+          "phat-diem-cathedral"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "hoi-an-ancient-town",
+          "hoi-an-history-museum",
+          "fujian-assembly-hall",
+          "tan-ky-old-house",
+          "hoi-an-market",
+          "japanese-covered-bridge",
+          "hoi-an-lanterns"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "tra-que-village",
+          "thanh-ha-pottery",
+          "kim-bong-village",
+          "shop-hoian-tailor"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "my-son"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "hcmc-fine-arts",
+          "war-remnants",
+          "independence-palace",
+          "saigon-central-post-office",
+          "saigon-book-street",
+          "notre-dame-saigon",
+          "saigon-opera-house",
+          "hcmc-peoples-committee",
+          "nguyen-hue-walking",
+          "bitexco-skydeck",
+          "ben-thanh"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "cu-chi"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "ethnology-museum",
+      "old-quarter",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "bai-dinh",
+      "phat-diem-cathedral",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "my-son",
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "cu-chi"
+    ],
+    "shoppingIds": [
+      "shop-hanoi-coffee",
+      "shop-hoian-tailor"
+    ],
+    "allIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "ethnology-museum",
+      "old-quarter",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "shop-hanoi-coffee",
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "bai-dinh",
+      "phat-diem-cathedral",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "shop-hoian-tailor",
+      "my-son",
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "cu-chi"
+    ]
+  },
+  {
+    "id": "vn-classic-14",
+    "kind": "country",
+    "title": "14-day Classic Vietnam",
+    "description": "Two weeks the way desk agents still write it: Hanoi, Ha Long water, imperial Hue, lantern Hoi An (with Da Nang in reach), Saigon history, and a Mekong dawn at Cái Răng. Shopping sits on the evening markets — Đồng Xuân, Hội An tailors, Bến Thành — not as an afterthought.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg",
+    "days": 14,
+    "cities": [
+      "Hanoi",
+      "Ha Long",
+      "Hue",
+      "Hoi An",
+      "Ho Chi Minh City",
+      "Can Tho"
+    ],
+    "previewNames": [
+      "Ho Chi Minh Mausoleum Complex",
+      "Stilt House & Presidential Gardens",
+      "One Pillar Pagoda",
+      "Hoa Lo Prison Museum",
+      "St. Joseph’s Cathedral",
+      "Egg Coffee Café Crawl",
+      "Trấn Quốc Pagoda",
+      "West Lake & Tay Ho Circuit"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ho-chi-minh-mausoleum",
+          "hcm-stilt-house",
+          "one-pillar-pagoda",
+          "hoa-lo-prison",
+          "st-joseph-cathedral",
+          "egg-coffee"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "tran-quoc-pagoda",
+          "west-lake",
+          "temple-literature",
+          "hoan-kiem-lake",
+          "ngoc-son-temple",
+          "train-street"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ethnology-museum",
+          "old-quarter",
+          "vietnamese-womens-museum",
+          "hanoi-opera-house",
+          "shop-hanoi-coffee"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "halong-cruise",
+          "bai-chay-bridge",
+          "bai-chay-night-market"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "bai-tu-long-bay"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "minh-mang-tomb",
+          "truong-tien-bridge",
+          "tu-hieu-pagoda",
+          "tu-duc-tomb",
+          "thuy-xuan-village",
+          "thanh-toan-bridge"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "khai-dinh-tomb",
+          "hue-citadel",
+          "dong-ba-market",
+          "an-dinh-palace",
+          "ho-thuy-tien"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "hoi-an-ancient-town",
+          "hoi-an-history-museum",
+          "fujian-assembly-hall",
+          "tan-ky-old-house",
+          "hoi-an-market",
+          "japanese-covered-bridge",
+          "hoi-an-lanterns"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "tra-que-village",
+          "thanh-ha-pottery",
+          "kim-bong-village",
+          "shop-hoian-tailor"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "my-son"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "hcmc-fine-arts",
+          "war-remnants",
+          "independence-palace",
+          "saigon-central-post-office",
+          "saigon-book-street",
+          "notre-dame-saigon",
+          "saigon-opera-house",
+          "hcmc-peoples-committee",
+          "nguyen-hue-walking",
+          "bitexco-skydeck",
+          "ben-thanh"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "cu-chi"
+        ]
+      },
+      {
+        "city": "Can Tho",
+        "placeId": "can-tho",
+        "sourceIds": [
+          "mekong-delta",
+          "ninh-kieu-love-bridge",
+          "can-tho-night-market",
+          "can-tho-bridge"
+        ]
+      },
+      {
+        "city": "Can Tho",
+        "placeId": "can-tho",
+        "sourceIds": [
+          "can-tho-museum",
+          "can-tho-old-market",
+          "binh-thuy-ancient-house",
+          "chua-ong-can-tho",
+          "munir-ansay",
+          "ninh-kieu-wharf",
+          "truc-lam-phuong-nam",
+          "my-khanh-village",
+          "con-son",
+          "bang-lang-stork"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "ethnology-museum",
+      "old-quarter",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "halong-cruise",
+      "bai-chay-bridge",
+      "bai-chay-night-market",
+      "bai-tu-long-bay",
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge",
+      "khai-dinh-tomb",
+      "hue-citadel",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "ho-thuy-tien",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "my-son",
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "cu-chi",
+      "mekong-delta",
+      "ninh-kieu-love-bridge",
+      "can-tho-night-market",
+      "can-tho-bridge",
+      "can-tho-museum",
+      "can-tho-old-market",
+      "binh-thuy-ancient-house",
+      "chua-ong-can-tho",
+      "munir-ansay",
+      "ninh-kieu-wharf",
+      "truc-lam-phuong-nam",
+      "my-khanh-village",
+      "con-son",
+      "bang-lang-stork"
+    ],
+    "shoppingIds": [
+      "shop-hanoi-coffee",
+      "shop-hoian-tailor"
+    ],
+    "allIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "ethnology-museum",
+      "old-quarter",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "shop-hanoi-coffee",
+      "halong-cruise",
+      "bai-chay-bridge",
+      "bai-chay-night-market",
+      "bai-tu-long-bay",
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge",
+      "khai-dinh-tomb",
+      "hue-citadel",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "ho-thuy-tien",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "shop-hoian-tailor",
+      "my-son",
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "cu-chi",
+      "mekong-delta",
+      "ninh-kieu-love-bridge",
+      "can-tho-night-market",
+      "can-tho-bridge",
+      "can-tho-museum",
+      "can-tho-old-market",
+      "binh-thuy-ancient-house",
+      "chua-ong-can-tho",
+      "munir-ansay",
+      "ninh-kieu-wharf",
+      "truc-lam-phuong-nam",
+      "my-khanh-village",
+      "con-son",
+      "bang-lang-stork"
+    ]
+  },
+  {
+    "id": "vn-nature-14",
+    "kind": "country",
+    "title": "14-day Nature & heritage",
+    "description": "Mountains before museums: Hanoi launch, Sapa terraces and Fansipan, Ninh Binh boats, Phong Nha cave country, then Hoi An to land. Built from the sights travellers actually rank — not a 4×4 brochure dump.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg",
+    "days": 14,
+    "cities": [
+      "Hanoi",
+      "Sapa",
+      "Ninh Binh",
+      "Phong Nha",
+      "Hoi An"
+    ],
+    "previewNames": [
+      "Ho Chi Minh Mausoleum Complex",
+      "Stilt House & Presidential Gardens",
+      "One Pillar Pagoda",
+      "Hoa Lo Prison Museum",
+      "St. Joseph’s Cathedral",
+      "Egg Coffee Café Crawl",
+      "Trấn Quốc Pagoda",
+      "West Lake & Tay Ho Circuit"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ho-chi-minh-mausoleum",
+          "hcm-stilt-house",
+          "one-pillar-pagoda",
+          "hoa-lo-prison",
+          "st-joseph-cathedral",
+          "egg-coffee"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "tran-quoc-pagoda",
+          "west-lake",
+          "temple-literature",
+          "hoan-kiem-lake",
+          "ngoc-son-temple",
+          "train-street"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "sapa-trek",
+          "muong-hoa-valley",
+          "ta-van-village",
+          "lao-chai-village"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "cat-cat-village",
+          "cat-cat-waterfall",
+          "ham-rong-mountain",
+          "sapa-stone-church",
+          "ta-phin-village"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "fansipan"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "cuc-phuong",
+          "co-vien-lau",
+          "pho-co-hoa-lu"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "van-long",
+          "bear-sanctuary-ninh-binh",
+          "dong-thien-ha",
+          "van-lam-embroidery",
+          "bai-dinh",
+          "phat-diem-cathedral"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "hang-en"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "son-doong-cave"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "tu-lan-caves"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cu-lao-cham",
+          "hoi-an-lanterns",
+          "shop-hoian-lanterns"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "hoi-an-ancient-town",
+          "hoi-an-history-museum",
+          "fujian-assembly-hall",
+          "tan-ky-old-house",
+          "hoi-an-market",
+          "japanese-covered-bridge",
+          "hoian-tailor",
+          "market-hoian-night"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "tra-que-village",
+          "kim-bong-village",
+          "thanh-ha-pottery",
+          "market-hoian-central",
+          "shop-hoian-tailor",
+          "an-bang"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "my-son",
+          "hoian-lantern",
+          "cua-dai-beach",
+          "hoian-silk-village"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "sapa-trek",
+      "muong-hoa-valley",
+      "ta-van-village",
+      "lao-chai-village",
+      "cat-cat-village",
+      "cat-cat-waterfall",
+      "ham-rong-mountain",
+      "sapa-stone-church",
+      "ta-phin-village",
+      "fansipan",
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "bai-dinh",
+      "phat-diem-cathedral",
+      "hang-en",
+      "son-doong-cave",
+      "tu-lan-caves",
+      "cu-lao-cham",
+      "hoi-an-lanterns",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "tra-que-village",
+      "kim-bong-village",
+      "thanh-ha-pottery",
+      "an-bang",
+      "my-son",
+      "cua-dai-beach"
+    ],
+    "shoppingIds": [
+      "shop-hoian-lanterns",
+      "hoian-tailor",
+      "market-hoian-night",
+      "market-hoian-central",
+      "shop-hoian-tailor",
+      "hoian-lantern",
+      "hoian-silk-village"
+    ],
+    "allIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "sapa-trek",
+      "muong-hoa-valley",
+      "ta-van-village",
+      "lao-chai-village",
+      "cat-cat-village",
+      "cat-cat-waterfall",
+      "ham-rong-mountain",
+      "sapa-stone-church",
+      "ta-phin-village",
+      "fansipan",
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "bai-dinh",
+      "phat-diem-cathedral",
+      "hang-en",
+      "son-doong-cave",
+      "tu-lan-caves",
+      "cu-lao-cham",
+      "hoi-an-lanterns",
+      "shop-hoian-lanterns",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoian-tailor",
+      "market-hoian-night",
+      "tra-que-village",
+      "kim-bong-village",
+      "thanh-ha-pottery",
+      "market-hoian-central",
+      "shop-hoian-tailor",
+      "an-bang",
+      "my-son",
+      "hoian-lantern",
+      "cua-dai-beach",
+      "hoian-silk-village"
+    ]
+  },
+  {
+    "id": "vn-grand-21",
+    "kind": "country",
+    "title": "21-day Grand Vietnam",
+    "description": "Three weeks, north to island: Hanoi, the Hà Giang loop, Ninh Binh, Phong Nha, Hue, Hoi An / Da Nang, Da Lat pines, Saigon, then Phú Quốc to finish. Packed days, shopping markets included, timing from the same engine as Your Itinerary.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg",
+    "days": 21,
+    "cities": [
+      "Hanoi",
+      "Ha Giang",
+      "Ninh Binh",
+      "Phong Nha",
+      "Hue",
+      "Hoi An",
+      "Da Lat",
+      "Ho Chi Minh City",
+      "Phu Quoc"
+    ],
+    "previewNames": [
+      "Ho Chi Minh Mausoleum Complex",
+      "Stilt House & Presidential Gardens",
+      "One Pillar Pagoda",
+      "Hoa Lo Prison Museum",
+      "St. Joseph’s Cathedral",
+      "Egg Coffee Café Crawl",
+      "Trấn Quốc Pagoda",
+      "West Lake & Tay Ho Circuit"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ho-chi-minh-mausoleum",
+          "hcm-stilt-house",
+          "one-pillar-pagoda",
+          "hoa-lo-prison",
+          "st-joseph-cathedral",
+          "egg-coffee"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "tran-quoc-pagoda",
+          "west-lake",
+          "temple-literature",
+          "hoan-kiem-lake",
+          "ngoc-son-temple",
+          "train-street"
+        ]
+      },
+      {
+        "city": "Ha Giang",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "ha-giang-loop"
+        ]
+      },
+      {
+        "city": "Ha Giang",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "chieu-lau-thi",
+          "ha-giang-km0",
+          "hoang-su-phi-terraces",
+          "quan-ba-heaven-gate",
+          "quan-ba-market",
+          "meo-vac-market",
+          "khau-vai-love-market"
+        ]
+      },
+      {
+        "city": "Ha Giang",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "lung-khuy-cave",
+          "lung-tam-weaving",
+          "nam-dam-village",
+          "bac-sum-pass",
+          "chin-khoanh-pass"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "cuc-phuong",
+          "co-vien-lau",
+          "pho-co-hoa-lu"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "van-long",
+          "bear-sanctuary-ninh-binh",
+          "dong-thien-ha",
+          "van-lam-embroidery",
+          "bai-dinh",
+          "phat-diem-cathedral"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "hang-en"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "son-doong-cave"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "minh-mang-tomb",
+          "truong-tien-bridge",
+          "tu-hieu-pagoda",
+          "tu-duc-tomb",
+          "thuy-xuan-village",
+          "thanh-toan-bridge"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "khai-dinh-tomb",
+          "hue-citadel",
+          "dong-ba-market",
+          "an-dinh-palace",
+          "ho-thuy-tien"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "hoi-an-ancient-town",
+          "hoi-an-history-museum",
+          "fujian-assembly-hall",
+          "tan-ky-old-house",
+          "hoi-an-market",
+          "japanese-covered-bridge",
+          "hoi-an-lanterns"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "tra-que-village",
+          "thanh-ha-pottery",
+          "kim-bong-village",
+          "shop-hoian-tailor"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "my-son"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "datanla-waterfall",
+          "elephant-falls",
+          "prenn-waterfall",
+          "tiger-cave-waterfall",
+          "cam-ly-waterfall"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "linh-phuoc-pagoda",
+          "truc-lam-monastery",
+          "tuyen-lam-lake",
+          "da-lat-market",
+          "xuan-huong-lake",
+          "da-lat-night-market"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "hcmc-fine-arts",
+          "war-remnants",
+          "independence-palace",
+          "saigon-central-post-office",
+          "saigon-book-street",
+          "notre-dame-saigon",
+          "saigon-opera-house",
+          "hcmc-peoples-committee",
+          "nguyen-hue-walking",
+          "bitexco-skydeck",
+          "ben-thanh"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "cu-chi"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "hon-thom-island",
+          "kiss-bridge"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "sao-beach",
+          "phu-quoc-sunset",
+          "ong-lang-beach"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "dinh-cau",
+          "duong-dong-night-market",
+          "grand-world-pq",
+          "ham-ninh-village",
+          "khai-hoan-fish-sauce"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "ha-giang-loop",
+      "chieu-lau-thi",
+      "ha-giang-km0",
+      "hoang-su-phi-terraces",
+      "quan-ba-heaven-gate",
+      "quan-ba-market",
+      "meo-vac-market",
+      "khau-vai-love-market",
+      "lung-khuy-cave",
+      "lung-tam-weaving",
+      "nam-dam-village",
+      "bac-sum-pass",
+      "chin-khoanh-pass",
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "bai-dinh",
+      "phat-diem-cathedral",
+      "hang-en",
+      "son-doong-cave",
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge",
+      "khai-dinh-tomb",
+      "hue-citadel",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "ho-thuy-tien",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "my-son",
+      "datanla-waterfall",
+      "elephant-falls",
+      "prenn-waterfall",
+      "tiger-cave-waterfall",
+      "cam-ly-waterfall",
+      "linh-phuoc-pagoda",
+      "truc-lam-monastery",
+      "tuyen-lam-lake",
+      "da-lat-market",
+      "xuan-huong-lake",
+      "da-lat-night-market",
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "cu-chi",
+      "hon-thom-island",
+      "kiss-bridge",
+      "sao-beach",
+      "phu-quoc-sunset",
+      "ong-lang-beach",
+      "dinh-cau",
+      "duong-dong-night-market",
+      "grand-world-pq",
+      "ham-ninh-village",
+      "khai-hoan-fish-sauce"
+    ],
+    "shoppingIds": [
+      "shop-hoian-tailor"
+    ],
+    "allIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "ha-giang-loop",
+      "chieu-lau-thi",
+      "ha-giang-km0",
+      "hoang-su-phi-terraces",
+      "quan-ba-heaven-gate",
+      "quan-ba-market",
+      "meo-vac-market",
+      "khau-vai-love-market",
+      "lung-khuy-cave",
+      "lung-tam-weaving",
+      "nam-dam-village",
+      "bac-sum-pass",
+      "chin-khoanh-pass",
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "bai-dinh",
+      "phat-diem-cathedral",
+      "hang-en",
+      "son-doong-cave",
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge",
+      "khai-dinh-tomb",
+      "hue-citadel",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "ho-thuy-tien",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "shop-hoian-tailor",
+      "my-son",
+      "datanla-waterfall",
+      "elephant-falls",
+      "prenn-waterfall",
+      "tiger-cave-waterfall",
+      "cam-ly-waterfall",
+      "linh-phuoc-pagoda",
+      "truc-lam-monastery",
+      "tuyen-lam-lake",
+      "da-lat-market",
+      "xuan-huong-lake",
+      "da-lat-night-market",
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "cu-chi",
+      "hon-thom-island",
+      "kiss-bridge",
+      "sao-beach",
+      "phu-quoc-sunset",
+      "ong-lang-beach",
+      "dinh-cau",
+      "duong-dong-night-market",
+      "grand-world-pq",
+      "ham-ninh-village",
+      "khai-hoan-fish-sauce"
+    ]
+  },
+  {
+    "id": "city-hanoi-1",
+    "kind": "city",
+    "title": "1-day Hanoi itinerary",
+    "description": "1-day packed Hanoi plan: Ho Chi Minh Mausoleum Complex, Stilt House & Presidential Gardens, One Pillar Pagoda, Hoa Lo Prison Museum, St. Joseph’s Cathedral, Egg Coffee Café Crawl. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg",
+    "days": 1,
+    "cities": [
+      "Hanoi"
+    ],
+    "previewNames": [
+      "Ho Chi Minh Mausoleum Complex",
+      "Stilt House & Presidential Gardens",
+      "One Pillar Pagoda",
+      "Hoa Lo Prison Museum",
+      "St. Joseph’s Cathedral",
+      "Egg Coffee Café Crawl"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ho-chi-minh-mausoleum",
+          "hcm-stilt-house",
+          "one-pillar-pagoda",
+          "hoa-lo-prison",
+          "st-joseph-cathedral",
+          "egg-coffee"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee"
+    ]
+  },
+  {
+    "id": "city-hanoi-2",
+    "kind": "city",
+    "title": "2-day Hanoi itinerary",
+    "description": "2-day packed Hanoi plan: Ho Chi Minh Mausoleum Complex, Stilt House & Presidential Gardens, One Pillar Pagoda, Hoa Lo Prison Museum, St. Joseph’s Cathedral, Egg Coffee Café Crawl…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg",
+    "days": 2,
+    "cities": [
+      "Hanoi"
+    ],
+    "previewNames": [
+      "Ho Chi Minh Mausoleum Complex",
+      "Stilt House & Presidential Gardens",
+      "One Pillar Pagoda",
+      "Hoa Lo Prison Museum",
+      "St. Joseph’s Cathedral",
+      "Egg Coffee Café Crawl",
+      "Trấn Quốc Pagoda",
+      "West Lake & Tay Ho Circuit"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ho-chi-minh-mausoleum",
+          "hcm-stilt-house",
+          "one-pillar-pagoda",
+          "hoa-lo-prison",
+          "st-joseph-cathedral",
+          "egg-coffee"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "tran-quoc-pagoda",
+          "west-lake",
+          "temple-literature",
+          "hoan-kiem-lake",
+          "ngoc-son-temple",
+          "train-street"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street"
+    ]
+  },
+  {
+    "id": "city-hanoi-3",
+    "kind": "city",
+    "title": "3-day Hanoi itinerary",
+    "description": "3-day packed Hanoi plan: Ho Chi Minh Mausoleum Complex, Stilt House & Presidential Gardens, One Pillar Pagoda, Hoa Lo Prison Museum, St. Joseph’s Cathedral, Egg Coffee Café Crawl…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg",
+    "days": 3,
+    "cities": [
+      "Hanoi"
+    ],
+    "previewNames": [
+      "Ho Chi Minh Mausoleum Complex",
+      "Stilt House & Presidential Gardens",
+      "One Pillar Pagoda",
+      "Hoa Lo Prison Museum",
+      "St. Joseph’s Cathedral",
+      "Egg Coffee Café Crawl",
+      "Trấn Quốc Pagoda",
+      "West Lake & Tay Ho Circuit"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ho-chi-minh-mausoleum",
+          "hcm-stilt-house",
+          "one-pillar-pagoda",
+          "hoa-lo-prison",
+          "st-joseph-cathedral",
+          "egg-coffee"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "tran-quoc-pagoda",
+          "west-lake",
+          "temple-literature",
+          "hoan-kiem-lake",
+          "ngoc-son-temple",
+          "train-street"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ethnology-museum",
+          "old-quarter",
+          "vietnamese-womens-museum",
+          "hanoi-opera-house",
+          "shop-hanoi-coffee"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "ethnology-museum",
+      "old-quarter",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house"
+    ],
+    "shoppingIds": [
+      "shop-hanoi-coffee"
+    ],
+    "allIds": [
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "hoa-lo-prison",
+      "st-joseph-cathedral",
+      "egg-coffee",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "temple-literature",
+      "hoan-kiem-lake",
+      "ngoc-son-temple",
+      "train-street",
+      "ethnology-museum",
+      "old-quarter",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "shop-hanoi-coffee"
+    ]
+  },
+  {
+    "id": "city-hanoi-4",
+    "kind": "city",
+    "title": "4-day Hanoi itinerary",
+    "description": "4-day packed Hanoi plan: Perfume Pagoda, Hanoi Bia Hoi Corner, Old Quarter Weekend Night Market, Ho Chi Minh Mausoleum Complex, Stilt House & Presidential Gardens, One Pillar Pagoda…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Houng_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%2840%29_%2837802939494%29.jpg",
+    "days": 4,
+    "cities": [
+      "Hanoi"
+    ],
+    "previewNames": [
+      "Perfume Pagoda",
+      "Hanoi Bia Hoi Corner",
+      "Old Quarter Weekend Night Market",
+      "Ho Chi Minh Mausoleum Complex",
+      "Stilt House & Presidential Gardens",
+      "One Pillar Pagoda",
+      "Vietnamese Women’s Museum",
+      "Hanoi Opera House"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "perfume-pagoda",
+          "bia-hoi",
+          "market-hanoi-night"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ho-chi-minh-mausoleum",
+          "hcm-stilt-house",
+          "one-pillar-pagoda",
+          "vietnamese-womens-museum",
+          "hanoi-opera-house",
+          "hanoi-lacquer-street",
+          "bat-trang",
+          "vietnam-fine-arts-hanoi",
+          "hoa-lo-prison",
+          "quan-thanh-temple",
+          "van-phuc",
+          "hang-gai-silk",
+          "st-joseph-cathedral"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "vietnam-military-history-museum",
+          "thang-long-citadel",
+          "temple-literature",
+          "tran-quoc-pagoda",
+          "west-lake"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "bat-trang-pottery",
+          "ethnology-museum",
+          "long-bien-bridge",
+          "hoan-kiem-lake",
+          "market-dong-xuan",
+          "dong-xuan-market",
+          "old-quarter",
+          "egg-coffee",
+          "train-street",
+          "ngoc-son-temple",
+          "shop-hanoi-crafts",
+          "shop-hanoi-coffee",
+          "hanoi-coffee-roaster",
+          "trang-tien-plaza",
+          "lotte-center-hanoi"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "perfume-pagoda",
+      "bia-hoi",
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "vietnam-fine-arts-hanoi",
+      "hoa-lo-prison",
+      "quan-thanh-temple",
+      "st-joseph-cathedral",
+      "vietnam-military-history-museum",
+      "thang-long-citadel",
+      "temple-literature",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "bat-trang-pottery",
+      "ethnology-museum",
+      "long-bien-bridge",
+      "hoan-kiem-lake",
+      "dong-xuan-market",
+      "old-quarter",
+      "egg-coffee",
+      "train-street",
+      "ngoc-son-temple"
+    ],
+    "shoppingIds": [
+      "market-hanoi-night",
+      "hanoi-lacquer-street",
+      "bat-trang",
+      "van-phuc",
+      "hang-gai-silk",
+      "market-dong-xuan",
+      "shop-hanoi-crafts",
+      "shop-hanoi-coffee",
+      "hanoi-coffee-roaster",
+      "trang-tien-plaza",
+      "lotte-center-hanoi"
+    ],
+    "allIds": [
+      "perfume-pagoda",
+      "bia-hoi",
+      "market-hanoi-night",
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "hanoi-lacquer-street",
+      "bat-trang",
+      "vietnam-fine-arts-hanoi",
+      "hoa-lo-prison",
+      "quan-thanh-temple",
+      "van-phuc",
+      "hang-gai-silk",
+      "st-joseph-cathedral",
+      "vietnam-military-history-museum",
+      "thang-long-citadel",
+      "temple-literature",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "bat-trang-pottery",
+      "ethnology-museum",
+      "long-bien-bridge",
+      "hoan-kiem-lake",
+      "market-dong-xuan",
+      "dong-xuan-market",
+      "old-quarter",
+      "egg-coffee",
+      "train-street",
+      "ngoc-son-temple",
+      "shop-hanoi-crafts",
+      "shop-hanoi-coffee",
+      "hanoi-coffee-roaster",
+      "trang-tien-plaza",
+      "lotte-center-hanoi"
+    ]
+  },
+  {
+    "id": "city-hanoi-5",
+    "kind": "city",
+    "title": "5-day Hanoi itinerary",
+    "description": "5-day packed Hanoi plan: Perfume Pagoda, Hanoi Bia Hoi Corner, Old Quarter Weekend Night Market, Ho Chi Minh Mausoleum Complex, Stilt House & Presidential Gardens, One Pillar Pagoda…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Houng_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%2840%29_%2837802939494%29.jpg",
+    "days": 5,
+    "cities": [
+      "Hanoi"
+    ],
+    "previewNames": [
+      "Perfume Pagoda",
+      "Hanoi Bia Hoi Corner",
+      "Old Quarter Weekend Night Market",
+      "Ho Chi Minh Mausoleum Complex",
+      "Stilt House & Presidential Gardens",
+      "One Pillar Pagoda",
+      "Vietnamese Women’s Museum",
+      "Hanoi Opera House"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "perfume-pagoda",
+          "bia-hoi",
+          "market-hanoi-night"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "ho-chi-minh-mausoleum",
+          "hcm-stilt-house",
+          "one-pillar-pagoda",
+          "vietnamese-womens-museum",
+          "hanoi-opera-house",
+          "hanoi-lacquer-street",
+          "bat-trang",
+          "vietnam-fine-arts-hanoi",
+          "hoa-lo-prison",
+          "quan-thanh-temple",
+          "van-phuc",
+          "hang-gai-silk",
+          "st-joseph-cathedral"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "vietnam-military-history-museum",
+          "thang-long-citadel",
+          "temple-literature",
+          "tran-quoc-pagoda",
+          "west-lake"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "bat-trang-pottery",
+          "ethnology-museum",
+          "long-bien-bridge",
+          "hoan-kiem-lake"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "market-dong-xuan",
+          "dong-xuan-market",
+          "old-quarter",
+          "egg-coffee",
+          "train-street",
+          "ngoc-son-temple",
+          "shop-hanoi-crafts",
+          "shop-hanoi-coffee",
+          "hanoi-coffee-roaster",
+          "trang-tien-plaza",
+          "lotte-center-hanoi"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "perfume-pagoda",
+      "bia-hoi",
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "vietnam-fine-arts-hanoi",
+      "hoa-lo-prison",
+      "quan-thanh-temple",
+      "st-joseph-cathedral",
+      "vietnam-military-history-museum",
+      "thang-long-citadel",
+      "temple-literature",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "bat-trang-pottery",
+      "ethnology-museum",
+      "long-bien-bridge",
+      "hoan-kiem-lake",
+      "dong-xuan-market",
+      "old-quarter",
+      "egg-coffee",
+      "train-street",
+      "ngoc-son-temple"
+    ],
+    "shoppingIds": [
+      "market-hanoi-night",
+      "hanoi-lacquer-street",
+      "bat-trang",
+      "van-phuc",
+      "hang-gai-silk",
+      "market-dong-xuan",
+      "shop-hanoi-crafts",
+      "shop-hanoi-coffee",
+      "hanoi-coffee-roaster",
+      "trang-tien-plaza",
+      "lotte-center-hanoi"
+    ],
+    "allIds": [
+      "perfume-pagoda",
+      "bia-hoi",
+      "market-hanoi-night",
+      "ho-chi-minh-mausoleum",
+      "hcm-stilt-house",
+      "one-pillar-pagoda",
+      "vietnamese-womens-museum",
+      "hanoi-opera-house",
+      "hanoi-lacquer-street",
+      "bat-trang",
+      "vietnam-fine-arts-hanoi",
+      "hoa-lo-prison",
+      "quan-thanh-temple",
+      "van-phuc",
+      "hang-gai-silk",
+      "st-joseph-cathedral",
+      "vietnam-military-history-museum",
+      "thang-long-citadel",
+      "temple-literature",
+      "tran-quoc-pagoda",
+      "west-lake",
+      "bat-trang-pottery",
+      "ethnology-museum",
+      "long-bien-bridge",
+      "hoan-kiem-lake",
+      "market-dong-xuan",
+      "dong-xuan-market",
+      "old-quarter",
+      "egg-coffee",
+      "train-street",
+      "ngoc-son-temple",
+      "shop-hanoi-crafts",
+      "shop-hanoi-coffee",
+      "hanoi-coffee-roaster",
+      "trang-tien-plaza",
+      "lotte-center-hanoi"
+    ]
+  },
+  {
+    "id": "city-ninh-binh-1",
+    "kind": "city",
+    "title": "1-day Ninh Binh itinerary",
+    "description": "1-day packed Ninh Binh plan: Cúc Phương National Park, Trang An Boat Ride, Bích Động Pagoda, Trang An Boat Circuit, Thung Nham Bird Park. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/58/Thousand_year_old_tree_in_Cuc_Phuong_National_Park%2C_Vietnam.jpg",
+    "days": 1,
+    "cities": [
+      "Ninh Binh"
+    ],
+    "previewNames": [
+      "Cúc Phương National Park",
+      "Trang An Boat Ride",
+      "Bích Động Pagoda",
+      "Trang An Boat Circuit",
+      "Thung Nham Bird Park"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "cuc-phuong",
+          "ninh-binh",
+          "bich-dong-pagoda",
+          "trang-an-boats",
+          "thung-nham"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cuc-phuong",
+      "ninh-binh",
+      "bich-dong-pagoda",
+      "trang-an-boats",
+      "thung-nham"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cuc-phuong",
+      "ninh-binh",
+      "bich-dong-pagoda",
+      "trang-an-boats",
+      "thung-nham"
+    ]
+  },
+  {
+    "id": "city-ninh-binh-2",
+    "kind": "city",
+    "title": "2-day Ninh Binh itinerary",
+    "description": "2-day packed Ninh Binh plan: Cúc Phương National Park, Cố Viên Lầu, Phố Cổ Hoa Lư, Van Long Nature Reserve, BEAR SANCTUARY Ninh Binh, Động Thiên Hà (Galaxy Cave)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/58/Thousand_year_old_tree_in_Cuc_Phuong_National_Park%2C_Vietnam.jpg",
+    "days": 2,
+    "cities": [
+      "Ninh Binh"
+    ],
+    "previewNames": [
+      "Cúc Phương National Park",
+      "Cố Viên Lầu",
+      "Phố Cổ Hoa Lư",
+      "Van Long Nature Reserve",
+      "BEAR SANCTUARY Ninh Binh",
+      "Động Thiên Hà (Galaxy Cave)",
+      "Văn Lâm Lace Embroidery Village",
+      "Bai Dinh Pagoda Complex"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "cuc-phuong",
+          "co-vien-lau",
+          "pho-co-hoa-lu"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "van-long",
+          "bear-sanctuary-ninh-binh",
+          "dong-thien-ha",
+          "van-lam-embroidery",
+          "bai-dinh",
+          "phat-diem-cathedral"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "bai-dinh",
+      "phat-diem-cathedral"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "bai-dinh",
+      "phat-diem-cathedral"
+    ]
+  },
+  {
+    "id": "city-ninh-binh-3",
+    "kind": "city",
+    "title": "3-day Ninh Binh itinerary",
+    "description": "3-day packed Ninh Binh plan: Cúc Phương National Park, Cố Viên Lầu, Phố Cổ Hoa Lư, Van Long Nature Reserve, BEAR SANCTUARY Ninh Binh, Động Thiên Hà (Galaxy Cave)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/58/Thousand_year_old_tree_in_Cuc_Phuong_National_Park%2C_Vietnam.jpg",
+    "days": 3,
+    "cities": [
+      "Ninh Binh"
+    ],
+    "previewNames": [
+      "Cúc Phương National Park",
+      "Cố Viên Lầu",
+      "Phố Cổ Hoa Lư",
+      "Van Long Nature Reserve",
+      "BEAR SANCTUARY Ninh Binh",
+      "Động Thiên Hà (Galaxy Cave)",
+      "Văn Lâm Lace Embroidery Village",
+      "Ninh Vân Stone Carving Village"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "cuc-phuong",
+          "co-vien-lau",
+          "pho-co-hoa-lu"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "van-long",
+          "bear-sanctuary-ninh-binh",
+          "dong-thien-ha",
+          "van-lam-embroidery",
+          "ninh-van-stone",
+          "bai-dinh",
+          "phat-diem-cathedral",
+          "kim-son-sedge"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "ninh-binh",
+          "den-tran-hoa-lu",
+          "bich-dong-pagoda",
+          "hoa-lu",
+          "trang-an-boats",
+          "hang-thien-huong",
+          "thai-vi-temple",
+          "dinh-le-tombs",
+          "tuyet-tinh-coc",
+          "thung-nham",
+          "mua-cave"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "ninh-van-stone",
+      "bai-dinh",
+      "phat-diem-cathedral",
+      "kim-son-sedge",
+      "ninh-binh",
+      "den-tran-hoa-lu",
+      "bich-dong-pagoda",
+      "hoa-lu",
+      "trang-an-boats",
+      "hang-thien-huong",
+      "thai-vi-temple",
+      "dinh-le-tombs",
+      "tuyet-tinh-coc",
+      "thung-nham",
+      "mua-cave"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cuc-phuong",
+      "co-vien-lau",
+      "pho-co-hoa-lu",
+      "van-long",
+      "bear-sanctuary-ninh-binh",
+      "dong-thien-ha",
+      "van-lam-embroidery",
+      "ninh-van-stone",
+      "bai-dinh",
+      "phat-diem-cathedral",
+      "kim-son-sedge",
+      "ninh-binh",
+      "den-tran-hoa-lu",
+      "bich-dong-pagoda",
+      "hoa-lu",
+      "trang-an-boats",
+      "hang-thien-huong",
+      "thai-vi-temple",
+      "dinh-le-tombs",
+      "tuyet-tinh-coc",
+      "thung-nham",
+      "mua-cave"
+    ]
+  },
+  {
+    "id": "city-sapa-2",
+    "kind": "city",
+    "title": "2-day Sapa itinerary",
+    "description": "2-day packed Sapa plan: Sapa Rice Terrace Trek, Mường Hoa Valley, Tả Van Village, Lao Chải Village, Cát Cát Village, Cat Cat Waterfall…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice_terraces_in_Sa_Pa.jpg",
+    "days": 2,
+    "cities": [
+      "Sapa"
+    ],
+    "previewNames": [
+      "Sapa Rice Terrace Trek",
+      "Mường Hoa Valley",
+      "Tả Van Village",
+      "Lao Chải Village",
+      "Cát Cát Village",
+      "Cat Cat Waterfall",
+      "Hàm Rồng Mountain",
+      "Sa Pa Stone Church"
+    ],
+    "dayPlans": [
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "sapa-trek",
+          "muong-hoa-valley",
+          "ta-van-village",
+          "lao-chai-village"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "cat-cat-village",
+          "cat-cat-waterfall",
+          "ham-rong-mountain",
+          "sapa-stone-church",
+          "ta-phin-village"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "sapa-trek",
+      "muong-hoa-valley",
+      "ta-van-village",
+      "lao-chai-village",
+      "cat-cat-village",
+      "cat-cat-waterfall",
+      "ham-rong-mountain",
+      "sapa-stone-church",
+      "ta-phin-village"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "sapa-trek",
+      "muong-hoa-valley",
+      "ta-van-village",
+      "lao-chai-village",
+      "cat-cat-village",
+      "cat-cat-waterfall",
+      "ham-rong-mountain",
+      "sapa-stone-church",
+      "ta-phin-village"
+    ]
+  },
+  {
+    "id": "city-sapa-3",
+    "kind": "city",
+    "title": "3-day Sapa itinerary",
+    "description": "3-day packed Sapa plan: Sapa Rice Terrace Trek, Mường Hoa Valley, Tả Van Village, Lao Chải Village, Cát Cát Village, Cat Cat Waterfall…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice_terraces_in_Sa_Pa.jpg",
+    "days": 3,
+    "cities": [
+      "Sapa"
+    ],
+    "previewNames": [
+      "Sapa Rice Terrace Trek",
+      "Mường Hoa Valley",
+      "Tả Van Village",
+      "Lao Chải Village",
+      "Cát Cát Village",
+      "Cat Cat Waterfall",
+      "Hàm Rồng Mountain",
+      "Sa Pa Stone Church"
+    ],
+    "dayPlans": [
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "sapa-trek",
+          "muong-hoa-valley",
+          "ta-van-village",
+          "lao-chai-village"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "cat-cat-village",
+          "cat-cat-waterfall",
+          "ham-rong-mountain",
+          "sapa-stone-church",
+          "ta-phin-village"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "fansipan"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "sapa-trek",
+      "muong-hoa-valley",
+      "ta-van-village",
+      "lao-chai-village",
+      "cat-cat-village",
+      "cat-cat-waterfall",
+      "ham-rong-mountain",
+      "sapa-stone-church",
+      "ta-phin-village",
+      "fansipan"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "sapa-trek",
+      "muong-hoa-valley",
+      "ta-van-village",
+      "lao-chai-village",
+      "cat-cat-village",
+      "cat-cat-waterfall",
+      "ham-rong-mountain",
+      "sapa-stone-church",
+      "ta-phin-village",
+      "fansipan"
+    ]
+  },
+  {
+    "id": "city-sapa-4",
+    "kind": "city",
+    "title": "4-day Sapa itinerary",
+    "description": "4-day packed Sapa plan: Sapa Rice Terrace Trek, Mường Hoa Valley, Tả Van Village, Lao Chải Village, Hoàng Liên National Park, Sapa Ancient Stone Field…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Rice_terraces_in_Sa_Pa.jpg",
+    "days": 4,
+    "cities": [
+      "Sapa"
+    ],
+    "previewNames": [
+      "Sapa Rice Terrace Trek",
+      "Mường Hoa Valley",
+      "Tả Van Village",
+      "Lao Chải Village",
+      "Hoàng Liên National Park",
+      "Sapa Ancient Stone Field",
+      "Silver Waterfall (Thác Bạc)",
+      "Sa Pa Lake"
+    ],
+    "dayPlans": [
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "sapa-trek",
+          "muong-hoa-valley",
+          "ta-van-village",
+          "lao-chai-village"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "hoang-lien-national-park",
+          "sapa-ancient-stone-field",
+          "silver-waterfall",
+          "sapa-lake",
+          "sapa-museum",
+          "sapa-stone-church",
+          "sapa-center-square",
+          "sapa-night-market"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "coc-ly-market",
+          "bac-ha-market",
+          "cao-son-market",
+          "can-cau-market",
+          "muong-hum-market",
+          "ham-rong-mountain",
+          "shop-sapa-textiles",
+          "cat-cat-village",
+          "ta-phin-village",
+          "sin-chai-village",
+          "cau-may",
+          "sapa-central-market",
+          "cat-cat-waterfall",
+          "ban-ho-village",
+          "sapa-market",
+          "coc-san-cave",
+          "seng-my-ty-reservoir",
+          "nam-sai-village"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "fansipan",
+          "o-quy-ho-pass"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "sapa-trek",
+      "muong-hoa-valley",
+      "ta-van-village",
+      "lao-chai-village",
+      "hoang-lien-national-park",
+      "sapa-ancient-stone-field",
+      "silver-waterfall",
+      "sapa-lake",
+      "sapa-museum",
+      "sapa-stone-church",
+      "sapa-center-square",
+      "coc-ly-market",
+      "bac-ha-market",
+      "cao-son-market",
+      "can-cau-market",
+      "muong-hum-market",
+      "ham-rong-mountain",
+      "cat-cat-village",
+      "ta-phin-village",
+      "sin-chai-village",
+      "cau-may",
+      "cat-cat-waterfall",
+      "ban-ho-village",
+      "sapa-market",
+      "coc-san-cave",
+      "seng-my-ty-reservoir",
+      "nam-sai-village",
+      "fansipan",
+      "o-quy-ho-pass"
+    ],
+    "shoppingIds": [
+      "sapa-night-market",
+      "shop-sapa-textiles",
+      "sapa-central-market"
+    ],
+    "allIds": [
+      "sapa-trek",
+      "muong-hoa-valley",
+      "ta-van-village",
+      "lao-chai-village",
+      "hoang-lien-national-park",
+      "sapa-ancient-stone-field",
+      "silver-waterfall",
+      "sapa-lake",
+      "sapa-museum",
+      "sapa-stone-church",
+      "sapa-center-square",
+      "sapa-night-market",
+      "coc-ly-market",
+      "bac-ha-market",
+      "cao-son-market",
+      "can-cau-market",
+      "muong-hum-market",
+      "ham-rong-mountain",
+      "shop-sapa-textiles",
+      "cat-cat-village",
+      "ta-phin-village",
+      "sin-chai-village",
+      "cau-may",
+      "sapa-central-market",
+      "cat-cat-waterfall",
+      "ban-ho-village",
+      "sapa-market",
+      "coc-san-cave",
+      "seng-my-ty-reservoir",
+      "nam-sai-village",
+      "fansipan",
+      "o-quy-ho-pass"
+    ]
+  },
+  {
+    "id": "city-ha-long-1",
+    "kind": "city",
+    "title": "1-day Ha Long itinerary",
+    "description": "1-day packed Ha Long plan: Ha Long Bay Cruise, Bãi Cháy Night Market. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg/1280px-Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg",
+    "days": 1,
+    "cities": [
+      "Ha Long"
+    ],
+    "previewNames": [
+      "Ha Long Bay Cruise",
+      "Bãi Cháy Night Market"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "halong-cruise",
+          "bai-chay-night-market"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "halong-cruise",
+      "bai-chay-night-market"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "halong-cruise",
+      "bai-chay-night-market"
+    ]
+  },
+  {
+    "id": "city-ha-long-2",
+    "kind": "city",
+    "title": "2-day Ha Long itinerary",
+    "description": "2-day packed Ha Long plan: Ha Long Bay Cruise, Bãi Cháy Bridge, Bãi Cháy Night Market, Bái Tử Long Bay. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg/1280px-Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg",
+    "days": 2,
+    "cities": [
+      "Ha Long"
+    ],
+    "previewNames": [
+      "Ha Long Bay Cruise",
+      "Bãi Cháy Bridge",
+      "Bãi Cháy Night Market",
+      "Bái Tử Long Bay"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "halong-cruise",
+          "bai-chay-bridge",
+          "bai-chay-night-market"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "bai-tu-long-bay"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "halong-cruise",
+      "bai-chay-bridge",
+      "bai-chay-night-market",
+      "bai-tu-long-bay"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "halong-cruise",
+      "bai-chay-bridge",
+      "bai-chay-night-market",
+      "bai-tu-long-bay"
+    ]
+  },
+  {
+    "id": "city-ha-long-3",
+    "kind": "city",
+    "title": "3-day Ha Long itinerary",
+    "description": "3-day packed Ha Long plan: Ha Long Bay Cruise, Bãi Cháy Bridge, Bãi Cháy Night Market, Bái Tử Long Bay, Cô Tô Island, Mắt Rồng Island (Dragon Eye)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg/1280px-Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg",
+    "days": 3,
+    "cities": [
+      "Ha Long"
+    ],
+    "previewNames": [
+      "Ha Long Bay Cruise",
+      "Bãi Cháy Bridge",
+      "Bãi Cháy Night Market",
+      "Bái Tử Long Bay",
+      "Cô Tô Island",
+      "Mắt Rồng Island (Dragon Eye)",
+      "Quảng Ninh Museum & Library",
+      "Trần Quốc Nghiễn Temple"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "halong-cruise",
+          "bai-chay-bridge",
+          "bai-chay-night-market"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "bai-tu-long-bay"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "co-to-island",
+          "mat-rong-island",
+          "quang-ninh-museum",
+          "tran-quoc-nghien-temple",
+          "bai-tho-mountain",
+          "loi-am-pagoda",
+          "long-tien-pagoda",
+          "funny-art-museum-halong",
+          "ha-long-night-market",
+          "bai-chay-beach",
+          "ha-long-flower-park",
+          "ha-long-market",
+          "bao-bien-road",
+          "hon-gai-market",
+          "bai-chay-commercial",
+          "cua-ong-temple"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "halong-cruise",
+      "bai-chay-bridge",
+      "bai-chay-night-market",
+      "bai-tu-long-bay",
+      "co-to-island",
+      "mat-rong-island",
+      "quang-ninh-museum",
+      "tran-quoc-nghien-temple",
+      "bai-tho-mountain",
+      "loi-am-pagoda",
+      "long-tien-pagoda",
+      "funny-art-museum-halong",
+      "bai-chay-beach",
+      "ha-long-flower-park",
+      "ha-long-market",
+      "bao-bien-road",
+      "cua-ong-temple"
+    ],
+    "shoppingIds": [
+      "ha-long-night-market",
+      "hon-gai-market",
+      "bai-chay-commercial"
+    ],
+    "allIds": [
+      "halong-cruise",
+      "bai-chay-bridge",
+      "bai-chay-night-market",
+      "bai-tu-long-bay",
+      "co-to-island",
+      "mat-rong-island",
+      "quang-ninh-museum",
+      "tran-quoc-nghien-temple",
+      "bai-tho-mountain",
+      "loi-am-pagoda",
+      "long-tien-pagoda",
+      "funny-art-museum-halong",
+      "ha-long-night-market",
+      "bai-chay-beach",
+      "ha-long-flower-park",
+      "ha-long-market",
+      "bao-bien-road",
+      "hon-gai-market",
+      "bai-chay-commercial",
+      "cua-ong-temple"
+    ]
+  },
+  {
+    "id": "city-cat-ba-1",
+    "kind": "city",
+    "title": "1-day Cat Ba itinerary",
+    "description": "1-day packed Cat Ba plan: Cát Bà National Park. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Cat_Ba_National_Park_267.JPG",
+    "days": 1,
+    "cities": [
+      "Cat Ba"
+    ],
+    "previewNames": [
+      "Cát Bà National Park"
+    ],
+    "dayPlans": [
+      {
+        "city": "Cat Ba",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "cat-ba-national-park"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cat-ba-national-park"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cat-ba-national-park"
+    ]
+  },
+  {
+    "id": "city-cat-ba-2",
+    "kind": "city",
+    "title": "2-day Cat Ba itinerary",
+    "description": "2-day packed Cat Ba plan: Cát Bà National Park, Cat Ba Island Escape. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Cat_Ba_National_Park_267.JPG",
+    "days": 2,
+    "cities": [
+      "Cat Ba"
+    ],
+    "previewNames": [
+      "Cát Bà National Park",
+      "Cat Ba Island Escape"
+    ],
+    "dayPlans": [
+      {
+        "city": "Cat Ba",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "cat-ba-national-park"
+        ]
+      },
+      {
+        "city": "Cat Ba",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "cat-ba"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cat-ba-national-park",
+      "cat-ba"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cat-ba-national-park",
+      "cat-ba"
+    ]
+  },
+  {
+    "id": "city-cat-ba-3",
+    "kind": "city",
+    "title": "3-day Cat Ba itinerary",
+    "description": "3-day packed Cat Ba plan: Cát Bà National Park, Cat Ba Island Escape, Cát Bà Cable Car (Sun World Cát Bà), Hospital Cave (Hang Quân Y), Hoa Cương Cave (Diamond Cave), Nguồn Giống Cave…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Cat_Ba_National_Park_267.JPG",
+    "days": 3,
+    "cities": [
+      "Cat Ba"
+    ],
+    "previewNames": [
+      "Cát Bà National Park",
+      "Cat Ba Island Escape",
+      "Cát Bà Cable Car (Sun World Cát Bà)",
+      "Hospital Cave (Hang Quân Y)",
+      "Hoa Cương Cave (Diamond Cave)",
+      "Nguồn Giống Cave",
+      "Thiên Long Cave",
+      "Cannon Fort (Cao Điểm 177)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Cat Ba",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "cat-ba-national-park"
+        ]
+      },
+      {
+        "city": "Cat Ba",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "cat-ba"
+        ]
+      },
+      {
+        "city": "Cat Ba",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "cat-ba-cable-car",
+          "hospital-cave-cat-ba",
+          "hoa-cuong-cave",
+          "nguon-giong-cave",
+          "thien-long-cave-cat-ba",
+          "cannon-fort-cat-ba",
+          "tung-thu-beach",
+          "cat-ba-night-market",
+          "cat-ba-square",
+          "cat-co-1",
+          "cat-co-3",
+          "cat-co-2",
+          "phu-long-mangrove"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cat-ba-national-park",
+      "cat-ba",
+      "cat-ba-cable-car",
+      "hospital-cave-cat-ba",
+      "hoa-cuong-cave",
+      "nguon-giong-cave",
+      "thien-long-cave-cat-ba",
+      "cannon-fort-cat-ba",
+      "tung-thu-beach",
+      "cat-ba-night-market",
+      "cat-ba-square",
+      "cat-co-1",
+      "cat-co-3",
+      "cat-co-2",
+      "phu-long-mangrove"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cat-ba-national-park",
+      "cat-ba",
+      "cat-ba-cable-car",
+      "hospital-cave-cat-ba",
+      "hoa-cuong-cave",
+      "nguon-giong-cave",
+      "thien-long-cave-cat-ba",
+      "cannon-fort-cat-ba",
+      "tung-thu-beach",
+      "cat-ba-night-market",
+      "cat-ba-square",
+      "cat-co-1",
+      "cat-co-3",
+      "cat-co-2",
+      "phu-long-mangrove"
+    ]
+  },
+  {
+    "id": "city-ha-giang-3",
+    "kind": "city",
+    "title": "3-day Ha Giang itinerary",
+    "description": "3-day packed Ha Giang plan: Ha Giang Loop (Day Section), Chieu Lau Thi Mountain, Km 0 Milestone (Ha Giang City Center), Hoang Su Phi Rice Terraces, Quan Ba Heaven Gate, Quan Ba Market…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Ha_Giang_Loop%2C_Northern_Vietnam.jpg/1280px-Ha_Giang_Loop%2C_Northern_Vietnam.jpg",
+    "days": 3,
+    "cities": [
+      "Ha Giang"
+    ],
+    "previewNames": [
+      "Ha Giang Loop (Day Section)",
+      "Chieu Lau Thi Mountain",
+      "Km 0 Milestone (Ha Giang City Center)",
+      "Hoang Su Phi Rice Terraces",
+      "Quan Ba Heaven Gate",
+      "Quan Ba Market",
+      "Meo Vac Market",
+      "Khau Vai Love Market site"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ha Giang",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "ha-giang-loop"
+        ]
+      },
+      {
+        "city": "Ha Giang",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "chieu-lau-thi",
+          "ha-giang-km0",
+          "hoang-su-phi-terraces",
+          "quan-ba-heaven-gate",
+          "quan-ba-market",
+          "meo-vac-market",
+          "khau-vai-love-market"
+        ]
+      },
+      {
+        "city": "Ha Giang",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "lung-khuy-cave",
+          "lung-tam-weaving",
+          "nam-dam-village",
+          "bac-sum-pass",
+          "chin-khoanh-pass"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ha-giang-loop",
+      "chieu-lau-thi",
+      "ha-giang-km0",
+      "hoang-su-phi-terraces",
+      "quan-ba-heaven-gate",
+      "quan-ba-market",
+      "meo-vac-market",
+      "khau-vai-love-market",
+      "lung-khuy-cave",
+      "lung-tam-weaving",
+      "nam-dam-village",
+      "bac-sum-pass",
+      "chin-khoanh-pass"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "ha-giang-loop",
+      "chieu-lau-thi",
+      "ha-giang-km0",
+      "hoang-su-phi-terraces",
+      "quan-ba-heaven-gate",
+      "quan-ba-market",
+      "meo-vac-market",
+      "khau-vai-love-market",
+      "lung-khuy-cave",
+      "lung-tam-weaving",
+      "nam-dam-village",
+      "bac-sum-pass",
+      "chin-khoanh-pass"
+    ]
+  },
+  {
+    "id": "city-ha-giang-4",
+    "kind": "city",
+    "title": "4-day Ha Giang itinerary",
+    "description": "4-day packed Ha Giang plan: Ha Giang Loop (Day Section), Tay Con Linh Mountain, Km 0 Milestone (Ha Giang City Center), Chieu Lau Thi Mountain, Hoang Su Phi Rice Terraces, Hoang Su Phi Market…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Ha_Giang_Loop%2C_Northern_Vietnam.jpg/1280px-Ha_Giang_Loop%2C_Northern_Vietnam.jpg",
+    "days": 4,
+    "cities": [
+      "Ha Giang"
+    ],
+    "previewNames": [
+      "Ha Giang Loop (Day Section)",
+      "Tay Con Linh Mountain",
+      "Km 0 Milestone (Ha Giang City Center)",
+      "Chieu Lau Thi Mountain",
+      "Hoang Su Phi Rice Terraces",
+      "Hoang Su Phi Market",
+      "Meo Vac Market",
+      "Khau Vai Love Market site"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ha Giang",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "ha-giang-loop"
+        ]
+      },
+      {
+        "city": "Ha Giang",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "tay-con-linh",
+          "ha-giang-km0",
+          "chieu-lau-thi",
+          "hoang-su-phi-terraces",
+          "hoang-su-phi-market",
+          "meo-vac-market",
+          "khau-vai-love-market",
+          "dong-van-sunday-market",
+          "quan-ba-heaven-gate",
+          "quan-ba-market"
+        ]
+      },
+      {
+        "city": "Ha Giang",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "lung-khuy-cave",
+          "lung-tam-weaving",
+          "nam-dam-village",
+          "bac-sum-pass",
+          "chin-khoanh-pass"
+        ]
+      },
+      {
+        "city": "Ha Giang",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "du-gia-waterfall",
+          "du-gia-village"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ha-giang-loop",
+      "tay-con-linh",
+      "ha-giang-km0",
+      "chieu-lau-thi",
+      "hoang-su-phi-terraces",
+      "hoang-su-phi-market",
+      "meo-vac-market",
+      "khau-vai-love-market",
+      "dong-van-sunday-market",
+      "quan-ba-heaven-gate",
+      "quan-ba-market",
+      "lung-khuy-cave",
+      "lung-tam-weaving",
+      "nam-dam-village",
+      "bac-sum-pass",
+      "chin-khoanh-pass",
+      "du-gia-waterfall",
+      "du-gia-village"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "ha-giang-loop",
+      "tay-con-linh",
+      "ha-giang-km0",
+      "chieu-lau-thi",
+      "hoang-su-phi-terraces",
+      "hoang-su-phi-market",
+      "meo-vac-market",
+      "khau-vai-love-market",
+      "dong-van-sunday-market",
+      "quan-ba-heaven-gate",
+      "quan-ba-market",
+      "lung-khuy-cave",
+      "lung-tam-weaving",
+      "nam-dam-village",
+      "bac-sum-pass",
+      "chin-khoanh-pass",
+      "du-gia-waterfall",
+      "du-gia-village"
+    ]
+  },
+  {
+    "id": "city-dong-van-1",
+    "kind": "city",
+    "title": "1-day Dong Van itinerary",
+    "description": "1-day packed Dong Van plan: Pho Bang Ancient Town, Tham Ma Pass, Sung La Valley, Dong Van Sunday Market, Don Cao Fortress (French Bunker Viewpoint), North Pole Milestone (Cực Bắc)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dong_Van.jpg?width=1200",
+    "days": 1,
+    "cities": [
+      "Dong Van"
+    ],
+    "previewNames": [
+      "Pho Bang Ancient Town",
+      "Tham Ma Pass",
+      "Sung La Valley",
+      "Dong Van Sunday Market",
+      "Don Cao Fortress (French Bunker Viewpoint)",
+      "North Pole Milestone (Cực Bắc)",
+      "Dong Van Old Market",
+      "Dong Van Market"
+    ],
+    "dayPlans": [
+      {
+        "city": "Dong Van",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "pho-bang-ancient-town",
+          "tham-ma-dong-van",
+          "sung-la-dong-van",
+          "sunday-market-dong-van",
+          "don-cao-fortress",
+          "cuc-bac-milestone",
+          "dong-van-old-market",
+          "dong-van-market"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "pho-bang-ancient-town",
+      "tham-ma-dong-van",
+      "sung-la-dong-van",
+      "sunday-market-dong-van",
+      "don-cao-fortress",
+      "cuc-bac-milestone",
+      "dong-van-old-market"
+    ],
+    "shoppingIds": [
+      "dong-van-market"
+    ],
+    "allIds": [
+      "pho-bang-ancient-town",
+      "tham-ma-dong-van",
+      "sung-la-dong-van",
+      "sunday-market-dong-van",
+      "don-cao-fortress",
+      "cuc-bac-milestone",
+      "dong-van-old-market",
+      "dong-van-market"
+    ]
+  },
+  {
+    "id": "city-dong-van-2",
+    "kind": "city",
+    "title": "2-day Dong Van itinerary",
+    "description": "2-day packed Dong Van plan: Pho Bang Ancient Town, Lung Cam Cultural Village, Pho Cao Village, Don Cao Fortress (French Bunker Viewpoint), Thien Huong Ancient Village, Ma Le Market…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dong_Van.jpg?width=1200",
+    "days": 2,
+    "cities": [
+      "Dong Van"
+    ],
+    "previewNames": [
+      "Pho Bang Ancient Town",
+      "Lung Cam Cultural Village",
+      "Pho Cao Village",
+      "Don Cao Fortress (French Bunker Viewpoint)",
+      "Thien Huong Ancient Village",
+      "Ma Le Market",
+      "North Pole Milestone (Cực Bắc)",
+      "Lo Lo Chai Village"
+    ],
+    "dayPlans": [
+      {
+        "city": "Dong Van",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "pho-bang-ancient-town",
+          "lung-cam-village",
+          "pho-cao-village",
+          "don-cao-fortress",
+          "thien-huong-village",
+          "ma-le-market",
+          "cuc-bac-milestone",
+          "lo-lo-chai-dong-van",
+          "tham-ma-dong-van",
+          "lao-sa-dong-van",
+          "chin-khoanh-dong-van"
+        ]
+      },
+      {
+        "city": "Dong Van",
+        "placeId": "ha-giang",
+        "sourceIds": [
+          "sunday-market-dong-van",
+          "sung-la-dong-van",
+          "lung-ngoc-ho-cave",
+          "dong-van-old-market",
+          "dong-van-market"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "pho-bang-ancient-town",
+      "lung-cam-village",
+      "pho-cao-village",
+      "don-cao-fortress",
+      "thien-huong-village",
+      "ma-le-market",
+      "cuc-bac-milestone",
+      "lo-lo-chai-dong-van",
+      "tham-ma-dong-van",
+      "lao-sa-dong-van",
+      "chin-khoanh-dong-van",
+      "sunday-market-dong-van",
+      "sung-la-dong-van",
+      "lung-ngoc-ho-cave",
+      "dong-van-old-market"
+    ],
+    "shoppingIds": [
+      "dong-van-market"
+    ],
+    "allIds": [
+      "pho-bang-ancient-town",
+      "lung-cam-village",
+      "pho-cao-village",
+      "don-cao-fortress",
+      "thien-huong-village",
+      "ma-le-market",
+      "cuc-bac-milestone",
+      "lo-lo-chai-dong-van",
+      "tham-ma-dong-van",
+      "lao-sa-dong-van",
+      "chin-khoanh-dong-van",
+      "sunday-market-dong-van",
+      "sung-la-dong-van",
+      "lung-ngoc-ho-cave",
+      "dong-van-old-market",
+      "dong-van-market"
+    ]
+  },
+  {
+    "id": "city-hue-1",
+    "kind": "city",
+    "title": "1-day Hue itinerary",
+    "description": "1-day packed Hue plan: Tomb of Minh Mạng (Hiếu Lăng), Trường Tiền Bridge (Tràng Tiền Bridge), Từ Hiếu Pagoda, Tomb of Tự Đức (Khiêm Lăng), Thủy Xuân Incense & Conical Hat Village, Thanh Toàn Tile-Roofed Bridge (Cầu Thanh Toàn). Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tomb_of_Minh_M%E1%BA%A1ng.jpg",
+    "days": 1,
+    "cities": [
+      "Hue"
+    ],
+    "previewNames": [
+      "Tomb of Minh Mạng (Hiếu Lăng)",
+      "Trường Tiền Bridge (Tràng Tiền Bridge)",
+      "Từ Hiếu Pagoda",
+      "Tomb of Tự Đức (Khiêm Lăng)",
+      "Thủy Xuân Incense & Conical Hat Village",
+      "Thanh Toàn Tile-Roofed Bridge (Cầu Thanh Toàn)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "minh-mang-tomb",
+          "truong-tien-bridge",
+          "tu-hieu-pagoda",
+          "tu-duc-tomb",
+          "thuy-xuan-village",
+          "thanh-toan-bridge"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge"
+    ]
+  },
+  {
+    "id": "city-hue-2",
+    "kind": "city",
+    "title": "2-day Hue itinerary",
+    "description": "2-day packed Hue plan: Tomb of Minh Mạng (Hiếu Lăng), Trường Tiền Bridge (Tràng Tiền Bridge), Từ Hiếu Pagoda, Tomb of Tự Đức (Khiêm Lăng), Thủy Xuân Incense & Conical Hat Village, Thanh Toàn Tile-Roofed Bridge (Cầu Thanh Toàn)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tomb_of_Minh_M%E1%BA%A1ng.jpg",
+    "days": 2,
+    "cities": [
+      "Hue"
+    ],
+    "previewNames": [
+      "Tomb of Minh Mạng (Hiếu Lăng)",
+      "Trường Tiền Bridge (Tràng Tiền Bridge)",
+      "Từ Hiếu Pagoda",
+      "Tomb of Tự Đức (Khiêm Lăng)",
+      "Thủy Xuân Incense & Conical Hat Village",
+      "Thanh Toàn Tile-Roofed Bridge (Cầu Thanh Toàn)",
+      "Tomb of Khải Định (Ứng Lăng)",
+      "Imperial City (Đại Nội)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "minh-mang-tomb",
+          "truong-tien-bridge",
+          "tu-hieu-pagoda",
+          "tu-duc-tomb",
+          "thuy-xuan-village",
+          "thanh-toan-bridge"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "khai-dinh-tomb",
+          "hue-citadel",
+          "dong-ba-market",
+          "an-dinh-palace",
+          "ho-thuy-tien"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge",
+      "khai-dinh-tomb",
+      "hue-citadel",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "ho-thuy-tien"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge",
+      "khai-dinh-tomb",
+      "hue-citadel",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "ho-thuy-tien"
+    ]
+  },
+  {
+    "id": "city-hue-3",
+    "kind": "city",
+    "title": "3-day Hue itinerary",
+    "description": "3-day packed Hue plan: Tomb of Minh Mạng (Hiếu Lăng), Trường Tiền Bridge (Tràng Tiền Bridge), Từ Hiếu Pagoda, Tomb of Tự Đức (Khiêm Lăng), Thủy Xuân Incense & Conical Hat Village, Thanh Toàn Tile-Roofed Bridge (Cầu Thanh Toàn)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tomb_of_Minh_M%E1%BA%A1ng.jpg",
+    "days": 3,
+    "cities": [
+      "Hue"
+    ],
+    "previewNames": [
+      "Tomb of Minh Mạng (Hiếu Lăng)",
+      "Trường Tiền Bridge (Tràng Tiền Bridge)",
+      "Từ Hiếu Pagoda",
+      "Tomb of Tự Đức (Khiêm Lăng)",
+      "Thủy Xuân Incense & Conical Hat Village",
+      "Thanh Toàn Tile-Roofed Bridge (Cầu Thanh Toàn)",
+      "Tomb of Khải Định (Ứng Lăng)",
+      "Imperial City (Đại Nội)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "minh-mang-tomb",
+          "truong-tien-bridge",
+          "tu-hieu-pagoda",
+          "tu-duc-tomb",
+          "thuy-xuan-village",
+          "thanh-toan-bridge"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "khai-dinh-tomb",
+          "hue-citadel",
+          "dong-ba-market",
+          "an-dinh-palace",
+          "ho-thuy-tien"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "thien-mu-pagoda",
+          "perfume-river"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge",
+      "khai-dinh-tomb",
+      "hue-citadel",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "ho-thuy-tien",
+      "thien-mu-pagoda",
+      "perfume-river"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "minh-mang-tomb",
+      "truong-tien-bridge",
+      "tu-hieu-pagoda",
+      "tu-duc-tomb",
+      "thuy-xuan-village",
+      "thanh-toan-bridge",
+      "khai-dinh-tomb",
+      "hue-citadel",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "ho-thuy-tien",
+      "thien-mu-pagoda",
+      "perfume-river"
+    ]
+  },
+  {
+    "id": "city-da-nang-1",
+    "kind": "city",
+    "title": "1-day Da Nang itinerary",
+    "description": "1-day packed Da Nang plan: Museum of Cham Sculpture, Marble Mountains, My Khe Beach Afternoon, Dragon Bridge Fire Show, Da Nang Cathedral (Pink Church). Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/73/Pedestal%2C_Buddha%2C_Bodhisattva%2C_and_Monk%2C_view_4%2C_Dong_Duang%2C_late_9th_to_early_10th_century%2C_Quang_Nam_-_Museum_of_Cham_Sculpture_-_Danang%2C_Vietnam_-_DSC01795.JPG",
+    "days": 1,
+    "cities": [
+      "Da Nang"
+    ],
+    "previewNames": [
+      "Museum of Cham Sculpture",
+      "Marble Mountains",
+      "My Khe Beach Afternoon",
+      "Dragon Bridge Fire Show",
+      "Da Nang Cathedral (Pink Church)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "cham-sculpture-museum",
+          "marble-mountains",
+          "da-nang-beach",
+          "dragon-bridge",
+          "da-nang-cathedral"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cham-sculpture-museum",
+      "marble-mountains",
+      "da-nang-beach",
+      "dragon-bridge",
+      "da-nang-cathedral"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cham-sculpture-museum",
+      "marble-mountains",
+      "da-nang-beach",
+      "dragon-bridge",
+      "da-nang-cathedral"
+    ]
+  },
+  {
+    "id": "city-da-nang-2",
+    "kind": "city",
+    "title": "2-day Da Nang itinerary",
+    "description": "2-day packed Da Nang plan: Museum of Cham Sculpture, Marble Mountains, My Khe Beach Afternoon, Dragon Bridge Fire Show, Da Nang Cathedral (Pink Church), Ba Na Hills & Golden Bridge. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/73/Pedestal%2C_Buddha%2C_Bodhisattva%2C_and_Monk%2C_view_4%2C_Dong_Duang%2C_late_9th_to_early_10th_century%2C_Quang_Nam_-_Museum_of_Cham_Sculpture_-_Danang%2C_Vietnam_-_DSC01795.JPG",
+    "days": 2,
+    "cities": [
+      "Da Nang"
+    ],
+    "previewNames": [
+      "Museum of Cham Sculpture",
+      "Marble Mountains",
+      "My Khe Beach Afternoon",
+      "Dragon Bridge Fire Show",
+      "Da Nang Cathedral (Pink Church)",
+      "Ba Na Hills & Golden Bridge"
+    ],
+    "dayPlans": [
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "cham-sculpture-museum",
+          "marble-mountains",
+          "da-nang-beach",
+          "dragon-bridge",
+          "da-nang-cathedral"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "ba-na-hills"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cham-sculpture-museum",
+      "marble-mountains",
+      "da-nang-beach",
+      "dragon-bridge",
+      "da-nang-cathedral",
+      "ba-na-hills"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cham-sculpture-museum",
+      "marble-mountains",
+      "da-nang-beach",
+      "dragon-bridge",
+      "da-nang-cathedral",
+      "ba-na-hills"
+    ]
+  },
+  {
+    "id": "city-da-nang-3",
+    "kind": "city",
+    "title": "3-day Da Nang itinerary",
+    "description": "3-day packed Da Nang plan: Museum of Cham Sculpture, Marble Mountains, My Khe Beach Afternoon, Dragon Bridge Fire Show, Da Nang Cathedral (Pink Church), Ba Na Hills & Golden Bridge…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/73/Pedestal%2C_Buddha%2C_Bodhisattva%2C_and_Monk%2C_view_4%2C_Dong_Duang%2C_late_9th_to_early_10th_century%2C_Quang_Nam_-_Museum_of_Cham_Sculpture_-_Danang%2C_Vietnam_-_DSC01795.JPG",
+    "days": 3,
+    "cities": [
+      "Da Nang"
+    ],
+    "previewNames": [
+      "Museum of Cham Sculpture",
+      "Marble Mountains",
+      "My Khe Beach Afternoon",
+      "Dragon Bridge Fire Show",
+      "Da Nang Cathedral (Pink Church)",
+      "Ba Na Hills & Golden Bridge",
+      "Son Tra (Monkey Mountain)",
+      "Linh Ung Pagoda (Lady Buddha)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "cham-sculpture-museum",
+          "marble-mountains",
+          "da-nang-beach",
+          "dragon-bridge",
+          "da-nang-cathedral"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "ba-na-hills"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "son-tra",
+          "linh-ung-pagoda"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cham-sculpture-museum",
+      "marble-mountains",
+      "da-nang-beach",
+      "dragon-bridge",
+      "da-nang-cathedral",
+      "ba-na-hills",
+      "son-tra",
+      "linh-ung-pagoda"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cham-sculpture-museum",
+      "marble-mountains",
+      "da-nang-beach",
+      "dragon-bridge",
+      "da-nang-cathedral",
+      "ba-na-hills",
+      "son-tra",
+      "linh-ung-pagoda"
+    ]
+  },
+  {
+    "id": "city-da-nang-4",
+    "kind": "city",
+    "title": "4-day Da Nang itinerary",
+    "description": "4-day packed Da Nang plan: Fifth Military Zone Museum, Da Nang Cathedral (Pink Church), Da Nang Museum, Museum of Cham Sculpture, Nam Sơn Pagoda, Cồn Market…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://live.staticflickr.com/65535/49869456797_d2c1ed1994_b.jpg",
+    "days": 4,
+    "cities": [
+      "Da Nang"
+    ],
+    "previewNames": [
+      "Fifth Military Zone Museum",
+      "Da Nang Cathedral (Pink Church)",
+      "Da Nang Museum",
+      "Museum of Cham Sculpture",
+      "Nam Sơn Pagoda",
+      "Cồn Market",
+      "Quan Thế Âm Pagoda",
+      "Asia Park (Sun World Da Nang)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "fifth-military-zone-museum",
+          "da-nang-cathedral",
+          "da-nang-museum",
+          "cham-sculpture-museum",
+          "nam-son-pagoda",
+          "con-market",
+          "quan-the-am-pagoda",
+          "asia-park-danang",
+          "shop-danang-souvenirs",
+          "da-nang-beach",
+          "non-nuoc-stone"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "marble-mountains",
+          "han-market",
+          "thuan-phuoc-bridge",
+          "hai-van-pass"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "ba-na-hills"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "son-tra",
+          "linh-ung-pagoda",
+          "vincom-da-nang",
+          "non-nuoc-beach",
+          "han-river-bridge",
+          "dragon-bridge",
+          "love-lock-bridge",
+          "son-tra-night-market"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "fifth-military-zone-museum",
+      "da-nang-cathedral",
+      "da-nang-museum",
+      "cham-sculpture-museum",
+      "nam-son-pagoda",
+      "con-market",
+      "quan-the-am-pagoda",
+      "asia-park-danang",
+      "da-nang-beach",
+      "marble-mountains",
+      "han-market",
+      "thuan-phuoc-bridge",
+      "hai-van-pass",
+      "ba-na-hills",
+      "son-tra",
+      "linh-ung-pagoda",
+      "non-nuoc-beach",
+      "han-river-bridge",
+      "dragon-bridge",
+      "love-lock-bridge"
+    ],
+    "shoppingIds": [
+      "shop-danang-souvenirs",
+      "non-nuoc-stone",
+      "vincom-da-nang",
+      "son-tra-night-market"
+    ],
+    "allIds": [
+      "fifth-military-zone-museum",
+      "da-nang-cathedral",
+      "da-nang-museum",
+      "cham-sculpture-museum",
+      "nam-son-pagoda",
+      "con-market",
+      "quan-the-am-pagoda",
+      "asia-park-danang",
+      "shop-danang-souvenirs",
+      "da-nang-beach",
+      "non-nuoc-stone",
+      "marble-mountains",
+      "han-market",
+      "thuan-phuoc-bridge",
+      "hai-van-pass",
+      "ba-na-hills",
+      "son-tra",
+      "linh-ung-pagoda",
+      "vincom-da-nang",
+      "non-nuoc-beach",
+      "han-river-bridge",
+      "dragon-bridge",
+      "love-lock-bridge",
+      "son-tra-night-market"
+    ]
+  },
+  {
+    "id": "city-hoi-an-1",
+    "kind": "city",
+    "title": "1-day Hoi An itinerary",
+    "description": "1-day packed Hoi An plan: Cam Thanh Basket Boats, Hoi An Ancient Town (Day), Hội An Museum of History and Culture, Fujian Assembly Hall, Old House of Tan Ky, Hội An Central Market…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Basket_boat_Vietnam.jpg",
+    "days": 1,
+    "cities": [
+      "Hoi An"
+    ],
+    "previewNames": [
+      "Cam Thanh Basket Boats",
+      "Hoi An Ancient Town (Day)",
+      "Hội An Museum of History and Culture",
+      "Fujian Assembly Hall",
+      "Old House of Tan Ky",
+      "Hội An Central Market",
+      "Japanese Covered Bridge (Chùa Cầu)",
+      "Hoi An Ancient Town Evening"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "hoi-an-ancient-town",
+          "hoi-an-history-museum",
+          "fujian-assembly-hall",
+          "tan-ky-old-house",
+          "hoi-an-market",
+          "japanese-covered-bridge",
+          "hoi-an-lanterns"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns"
+    ]
+  },
+  {
+    "id": "city-hoi-an-2",
+    "kind": "city",
+    "title": "2-day Hoi An itinerary",
+    "description": "2-day packed Hoi An plan: Cam Thanh Basket Boats, Hoi An Ancient Town (Day), Hội An Museum of History and Culture, Fujian Assembly Hall, Old House of Tan Ky, Hội An Central Market…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Basket_boat_Vietnam.jpg",
+    "days": 2,
+    "cities": [
+      "Hoi An"
+    ],
+    "previewNames": [
+      "Cam Thanh Basket Boats",
+      "Hoi An Ancient Town (Day)",
+      "Hội An Museum of History and Culture",
+      "Fujian Assembly Hall",
+      "Old House of Tan Ky",
+      "Hội An Central Market",
+      "Japanese Covered Bridge (Chùa Cầu)",
+      "Hoi An Ancient Town Evening"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "hoi-an-ancient-town",
+          "hoi-an-history-museum",
+          "fujian-assembly-hall",
+          "tan-ky-old-house",
+          "hoi-an-market",
+          "japanese-covered-bridge",
+          "hoi-an-lanterns"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "tra-que-village",
+          "thanh-ha-pottery",
+          "kim-bong-village",
+          "shop-hoian-tailor"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village"
+    ],
+    "shoppingIds": [
+      "shop-hoian-tailor"
+    ],
+    "allIds": [
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "shop-hoian-tailor"
+    ]
+  },
+  {
+    "id": "city-hoi-an-3",
+    "kind": "city",
+    "title": "3-day Hoi An itinerary",
+    "description": "3-day packed Hoi An plan: Cam Thanh Basket Boats, Hoi An Ancient Town (Day), Hội An Museum of History and Culture, Fujian Assembly Hall, Old House of Tan Ky, Hội An Central Market…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Basket_boat_Vietnam.jpg",
+    "days": 3,
+    "cities": [
+      "Hoi An"
+    ],
+    "previewNames": [
+      "Cam Thanh Basket Boats",
+      "Hoi An Ancient Town (Day)",
+      "Hội An Museum of History and Culture",
+      "Fujian Assembly Hall",
+      "Old House of Tan Ky",
+      "Hội An Central Market",
+      "Japanese Covered Bridge (Chùa Cầu)",
+      "Hoi An Ancient Town Evening"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "hoi-an-ancient-town",
+          "hoi-an-history-museum",
+          "fujian-assembly-hall",
+          "tan-ky-old-house",
+          "hoi-an-market",
+          "japanese-covered-bridge",
+          "hoi-an-lanterns"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "tra-que-village",
+          "thanh-ha-pottery",
+          "kim-bong-village",
+          "shop-hoian-tailor"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "my-son"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "my-son"
+    ],
+    "shoppingIds": [
+      "shop-hoian-tailor"
+    ],
+    "allIds": [
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoi-an-lanterns",
+      "tra-que-village",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "shop-hoian-tailor",
+      "my-son"
+    ]
+  },
+  {
+    "id": "city-hoi-an-4",
+    "kind": "city",
+    "title": "4-day Hoi An itinerary",
+    "description": "4-day packed Hoi An plan: Cù Lao Chàm (Chàm Islands), Hoi An Ancient Town Evening, Silk lanterns, Cam Thanh Basket Boats, Hoi An Ancient Town (Day), Hội An Museum of History and Culture…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2f/ChamIslands4.jpg",
+    "days": 4,
+    "cities": [
+      "Hoi An"
+    ],
+    "previewNames": [
+      "Cù Lao Chàm (Chàm Islands)",
+      "Hoi An Ancient Town Evening",
+      "Silk lanterns",
+      "Cam Thanh Basket Boats",
+      "Hoi An Ancient Town (Day)",
+      "Hội An Museum of History and Culture",
+      "Fujian Assembly Hall",
+      "Old House of Tan Ky"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cu-lao-cham",
+          "hoi-an-lanterns",
+          "shop-hoian-lanterns"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "hoi-an-ancient-town",
+          "hoi-an-history-museum",
+          "fujian-assembly-hall",
+          "tan-ky-old-house",
+          "hoi-an-market",
+          "japanese-covered-bridge",
+          "hoian-tailor",
+          "market-hoian-night"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "tra-que-village",
+          "kim-bong-village",
+          "thanh-ha-pottery",
+          "market-hoian-central",
+          "shop-hoian-tailor",
+          "an-bang"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "my-son",
+          "hoian-lantern",
+          "cua-dai-beach",
+          "hoian-silk-village"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cu-lao-cham",
+      "hoi-an-lanterns",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "tra-que-village",
+      "kim-bong-village",
+      "thanh-ha-pottery",
+      "an-bang",
+      "my-son",
+      "cua-dai-beach"
+    ],
+    "shoppingIds": [
+      "shop-hoian-lanterns",
+      "hoian-tailor",
+      "market-hoian-night",
+      "market-hoian-central",
+      "shop-hoian-tailor",
+      "hoian-lantern",
+      "hoian-silk-village"
+    ],
+    "allIds": [
+      "cu-lao-cham",
+      "hoi-an-lanterns",
+      "shop-hoian-lanterns",
+      "cam-thanh-basket-boats",
+      "hoi-an-ancient-town",
+      "hoi-an-history-museum",
+      "fujian-assembly-hall",
+      "tan-ky-old-house",
+      "hoi-an-market",
+      "japanese-covered-bridge",
+      "hoian-tailor",
+      "market-hoian-night",
+      "tra-que-village",
+      "kim-bong-village",
+      "thanh-ha-pottery",
+      "market-hoian-central",
+      "shop-hoian-tailor",
+      "an-bang",
+      "my-son",
+      "hoian-lantern",
+      "cua-dai-beach",
+      "hoian-silk-village"
+    ]
+  },
+  {
+    "id": "city-phong-nha-2",
+    "kind": "city",
+    "title": "2-day Phong Nha itinerary",
+    "description": "2-day packed Phong Nha plan: Hang Én, Sơn Đoòng Cave. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/43/Hang_%C3%89n_Cave_-_201505_-_JB.jpg",
+    "days": 2,
+    "cities": [
+      "Phong Nha"
+    ],
+    "previewNames": [
+      "Hang Én",
+      "Sơn Đoòng Cave"
+    ],
+    "dayPlans": [
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "hang-en"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "son-doong-cave"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hang-en",
+      "son-doong-cave"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hang-en",
+      "son-doong-cave"
+    ]
+  },
+  {
+    "id": "city-phong-nha-3",
+    "kind": "city",
+    "title": "3-day Phong Nha itinerary",
+    "description": "3-day packed Phong Nha plan: Hang Én, Sơn Đoòng Cave, Tú Làn Cave System. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/43/Hang_%C3%89n_Cave_-_201505_-_JB.jpg",
+    "days": 3,
+    "cities": [
+      "Phong Nha"
+    ],
+    "previewNames": [
+      "Hang Én",
+      "Sơn Đoòng Cave",
+      "Tú Làn Cave System"
+    ],
+    "dayPlans": [
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "hang-en"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "son-doong-cave"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "tu-lan-caves"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hang-en",
+      "son-doong-cave",
+      "tu-lan-caves"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hang-en",
+      "son-doong-cave",
+      "tu-lan-caves"
+    ]
+  },
+  {
+    "id": "city-phong-nha-4",
+    "kind": "city",
+    "title": "4-day Phong Nha itinerary",
+    "description": "4-day packed Phong Nha plan: Hang Én, Sơn Đoòng Cave, Tú Làn Cave System, Hang Vòm, Rục Mòn Cave, Hang Đại Ả…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/43/Hang_%C3%89n_Cave_-_201505_-_JB.jpg",
+    "days": 4,
+    "cities": [
+      "Phong Nha"
+    ],
+    "previewNames": [
+      "Hang Én",
+      "Sơn Đoòng Cave",
+      "Tú Làn Cave System",
+      "Hang Vòm",
+      "Rục Mòn Cave",
+      "Hang Đại Ả",
+      "Dark Cave (Hang Tối)",
+      "Paradise Cave (Động Thiên Đường)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "hang-en"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "son-doong-cave"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "tu-lan-caves"
+        ]
+      },
+      {
+        "city": "Phong Nha",
+        "placeId": "phong-nha",
+        "sourceIds": [
+          "hang-vom",
+          "ruc-mon-cave",
+          "hang-dai-a",
+          "dark-cave",
+          "paradise-cave",
+          "e-cave",
+          "phong-nha-main-street",
+          "son-nu-cave",
+          "eight-ladies-cave"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hang-en",
+      "son-doong-cave",
+      "tu-lan-caves",
+      "hang-vom",
+      "ruc-mon-cave",
+      "hang-dai-a",
+      "dark-cave",
+      "paradise-cave",
+      "e-cave",
+      "son-nu-cave",
+      "eight-ladies-cave"
+    ],
+    "shoppingIds": [
+      "phong-nha-main-street"
+    ],
+    "allIds": [
+      "hang-en",
+      "son-doong-cave",
+      "tu-lan-caves",
+      "hang-vom",
+      "ruc-mon-cave",
+      "hang-dai-a",
+      "dark-cave",
+      "paradise-cave",
+      "e-cave",
+      "phong-nha-main-street",
+      "son-nu-cave",
+      "eight-ladies-cave"
+    ]
+  },
+  {
+    "id": "city-nha-trang-1",
+    "kind": "city",
+    "title": "1-day Nha Trang itinerary",
+    "description": "1-day packed Nha Trang plan: Hòn Mun Island (Ebony Island), Skylight Nha Trang (360° Skydeck, Havana Hotel). Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Hon_Mun_island_%28H%C3%B2n_Mun%29%2C_Cam_Ranh%2C_Nha_Trang%2C_Vi%E1%BB%87t_Nam_20140518_105634_%28taken_with_Samsung_Galaxy_Note_3%29.jpg",
+    "days": 1,
+    "cities": [
+      "Nha Trang"
+    ],
+    "previewNames": [
+      "Hòn Mun Island (Ebony Island)",
+      "Skylight Nha Trang (360° Skydeck, Havana Hotel)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "hon-mun-island",
+          "skylight-nha-trang"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hon-mun-island",
+      "skylight-nha-trang"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hon-mun-island",
+      "skylight-nha-trang"
+    ]
+  },
+  {
+    "id": "city-nha-trang-2",
+    "kind": "city",
+    "title": "2-day Nha Trang itinerary",
+    "description": "2-day packed Nha Trang plan: Hòn Mun Island (Ebony Island), Skylight Nha Trang (360° Skydeck, Havana Hotel), Hòn Tre Island (Bamboo Island), VinWonders Nha Trang (Vinpearl Land). Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Hon_Mun_island_%28H%C3%B2n_Mun%29%2C_Cam_Ranh%2C_Nha_Trang%2C_Vi%E1%BB%87t_Nam_20140518_105634_%28taken_with_Samsung_Galaxy_Note_3%29.jpg",
+    "days": 2,
+    "cities": [
+      "Nha Trang"
+    ],
+    "previewNames": [
+      "Hòn Mun Island (Ebony Island)",
+      "Skylight Nha Trang (360° Skydeck, Havana Hotel)",
+      "Hòn Tre Island (Bamboo Island)",
+      "VinWonders Nha Trang (Vinpearl Land)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "hon-mun-island",
+          "skylight-nha-trang"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "hon-tre-island",
+          "vinwonders-nha-trang"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hon-mun-island",
+      "skylight-nha-trang",
+      "hon-tre-island",
+      "vinwonders-nha-trang"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hon-mun-island",
+      "skylight-nha-trang",
+      "hon-tre-island",
+      "vinwonders-nha-trang"
+    ]
+  },
+  {
+    "id": "city-nha-trang-3",
+    "kind": "city",
+    "title": "3-day Nha Trang itinerary",
+    "description": "3-day packed Nha Trang plan: Hòn Mun Island (Ebony Island), Skylight Nha Trang (360° Skydeck, Havana Hotel), Hòn Tre Island (Bamboo Island), VinWonders Nha Trang (Vinpearl Land), Po Nagar Cham Towers, Christ the King Cathedral (Mountain / Stone Church)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Hon_Mun_island_%28H%C3%B2n_Mun%29%2C_Cam_Ranh%2C_Nha_Trang%2C_Vi%E1%BB%87t_Nam_20140518_105634_%28taken_with_Samsung_Galaxy_Note_3%29.jpg",
+    "days": 3,
+    "cities": [
+      "Nha Trang"
+    ],
+    "previewNames": [
+      "Hòn Mun Island (Ebony Island)",
+      "Skylight Nha Trang (360° Skydeck, Havana Hotel)",
+      "Hòn Tre Island (Bamboo Island)",
+      "VinWonders Nha Trang (Vinpearl Land)",
+      "Po Nagar Cham Towers",
+      "Christ the King Cathedral (Mountain / Stone Church)",
+      "Long Sơn Pagoda (Great White Buddha)",
+      "I-Resort Mud Bath"
+    ],
+    "dayPlans": [
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "hon-mun-island",
+          "skylight-nha-trang"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "hon-tre-island",
+          "vinwonders-nha-trang"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "po-nagar",
+          "nha-trang-cathedral",
+          "long-son-pagoda",
+          "i-resort-mud-bath",
+          "hon-chong"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hon-mun-island",
+      "skylight-nha-trang",
+      "hon-tre-island",
+      "vinwonders-nha-trang",
+      "po-nagar",
+      "nha-trang-cathedral",
+      "long-son-pagoda",
+      "i-resort-mud-bath",
+      "hon-chong"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hon-mun-island",
+      "skylight-nha-trang",
+      "hon-tre-island",
+      "vinwonders-nha-trang",
+      "po-nagar",
+      "nha-trang-cathedral",
+      "long-son-pagoda",
+      "i-resort-mud-bath",
+      "hon-chong"
+    ]
+  },
+  {
+    "id": "city-nha-trang-4",
+    "kind": "city",
+    "title": "4-day Nha Trang itinerary",
+    "description": "4-day packed Nha Trang plan: Hòn Mun Island (Ebony Island), Đố Theatre (Nhà hát Đố), Skylight Nha Trang (360° Skydeck, Havana Hotel), Nha Trang Night Market, Trầm Hương Tower (Incense / Lotus Tower), Hòn Tre Island (Bamboo Island)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Hon_Mun_island_%28H%C3%B2n_Mun%29%2C_Cam_Ranh%2C_Nha_Trang%2C_Vi%E1%BB%87t_Nam_20140518_105634_%28taken_with_Samsung_Galaxy_Note_3%29.jpg",
+    "days": 4,
+    "cities": [
+      "Nha Trang"
+    ],
+    "previewNames": [
+      "Hòn Mun Island (Ebony Island)",
+      "Đố Theatre (Nhà hát Đố)",
+      "Skylight Nha Trang (360° Skydeck, Havana Hotel)",
+      "Nha Trang Night Market",
+      "Trầm Hương Tower (Incense / Lotus Tower)",
+      "Hòn Tre Island (Bamboo Island)",
+      "VinWonders Nha Trang (Vinpearl Land)",
+      "Hòn Bà Nature Reserve"
+    ],
+    "dayPlans": [
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "hon-mun-island",
+          "do-theatre",
+          "skylight-nha-trang",
+          "nha-trang-night-market",
+          "tram-huong-tower"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "hon-tre-island",
+          "vinwonders-nha-trang"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "hon-ba-nature-reserve",
+          "hundred-egg-mud-bath",
+          "nha-trang-cathedral",
+          "chua-tu-ton"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "van-phong-bay",
+          "diep-son-island",
+          "doc-let-beach",
+          "hon-lao-island",
+          "ninh-van-bay",
+          "hoa-lan-island",
+          "ba-ho-waterfalls",
+          "ta-gu-waterfall",
+          "thap-ba-hot-springs",
+          "yang-bay",
+          "suoi-mo",
+          "suoi-thach-lam",
+          "bai-dai-beach"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hon-mun-island",
+      "do-theatre",
+      "skylight-nha-trang",
+      "nha-trang-night-market",
+      "tram-huong-tower",
+      "hon-tre-island",
+      "vinwonders-nha-trang",
+      "hon-ba-nature-reserve",
+      "hundred-egg-mud-bath",
+      "nha-trang-cathedral",
+      "chua-tu-ton",
+      "van-phong-bay",
+      "diep-son-island",
+      "doc-let-beach",
+      "hon-lao-island",
+      "ninh-van-bay",
+      "hoa-lan-island",
+      "ba-ho-waterfalls",
+      "ta-gu-waterfall",
+      "thap-ba-hot-springs",
+      "yang-bay",
+      "suoi-mo",
+      "suoi-thach-lam",
+      "bai-dai-beach"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hon-mun-island",
+      "do-theatre",
+      "skylight-nha-trang",
+      "nha-trang-night-market",
+      "tram-huong-tower",
+      "hon-tre-island",
+      "vinwonders-nha-trang",
+      "hon-ba-nature-reserve",
+      "hundred-egg-mud-bath",
+      "nha-trang-cathedral",
+      "chua-tu-ton",
+      "van-phong-bay",
+      "diep-son-island",
+      "doc-let-beach",
+      "hon-lao-island",
+      "ninh-van-bay",
+      "hoa-lan-island",
+      "ba-ho-waterfalls",
+      "ta-gu-waterfall",
+      "thap-ba-hot-springs",
+      "yang-bay",
+      "suoi-mo",
+      "suoi-thach-lam",
+      "bai-dai-beach"
+    ]
+  },
+  {
+    "id": "city-da-lat-1",
+    "kind": "city",
+    "title": "1-day Da Lat itinerary",
+    "description": "1-day packed Da Lat plan: Datanla Waterfall, Elephant Falls (Thác Voi), Prenn Waterfall, Tiger Cave Waterfall, Cam Ly Waterfall. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/81/Vendor_at_Datanla_Waterfall%2C_Da_Lat.jpg",
+    "days": 1,
+    "cities": [
+      "Da Lat"
+    ],
+    "previewNames": [
+      "Datanla Waterfall",
+      "Elephant Falls (Thác Voi)",
+      "Prenn Waterfall",
+      "Tiger Cave Waterfall",
+      "Cam Ly Waterfall"
+    ],
+    "dayPlans": [
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "datanla-waterfall",
+          "elephant-falls",
+          "prenn-waterfall",
+          "tiger-cave-waterfall",
+          "cam-ly-waterfall"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "datanla-waterfall",
+      "elephant-falls",
+      "prenn-waterfall",
+      "tiger-cave-waterfall",
+      "cam-ly-waterfall"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "datanla-waterfall",
+      "elephant-falls",
+      "prenn-waterfall",
+      "tiger-cave-waterfall",
+      "cam-ly-waterfall"
+    ]
+  },
+  {
+    "id": "city-da-lat-2",
+    "kind": "city",
+    "title": "2-day Da Lat itinerary",
+    "description": "2-day packed Da Lat plan: Datanla Waterfall, Elephant Falls (Thác Voi), Prenn Waterfall, Tiger Cave Waterfall, Cam Ly Waterfall, Linh Phước Pagoda…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/81/Vendor_at_Datanla_Waterfall%2C_Da_Lat.jpg",
+    "days": 2,
+    "cities": [
+      "Da Lat"
+    ],
+    "previewNames": [
+      "Datanla Waterfall",
+      "Elephant Falls (Thác Voi)",
+      "Prenn Waterfall",
+      "Tiger Cave Waterfall",
+      "Cam Ly Waterfall",
+      "Linh Phước Pagoda",
+      "Trúc Lâm Zen Monastery",
+      "Tuyền Lâm Lake"
+    ],
+    "dayPlans": [
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "datanla-waterfall",
+          "elephant-falls",
+          "prenn-waterfall",
+          "tiger-cave-waterfall",
+          "cam-ly-waterfall"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "linh-phuoc-pagoda",
+          "truc-lam-monastery",
+          "tuyen-lam-lake",
+          "da-lat-market",
+          "xuan-huong-lake",
+          "da-lat-night-market"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "datanla-waterfall",
+      "elephant-falls",
+      "prenn-waterfall",
+      "tiger-cave-waterfall",
+      "cam-ly-waterfall",
+      "linh-phuoc-pagoda",
+      "truc-lam-monastery",
+      "tuyen-lam-lake",
+      "da-lat-market",
+      "xuan-huong-lake",
+      "da-lat-night-market"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "datanla-waterfall",
+      "elephant-falls",
+      "prenn-waterfall",
+      "tiger-cave-waterfall",
+      "cam-ly-waterfall",
+      "linh-phuoc-pagoda",
+      "truc-lam-monastery",
+      "tuyen-lam-lake",
+      "da-lat-market",
+      "xuan-huong-lake",
+      "da-lat-night-market"
+    ]
+  },
+  {
+    "id": "city-da-lat-3",
+    "kind": "city",
+    "title": "3-day Da Lat itinerary",
+    "description": "3-day packed Da Lat plan: Datanla Waterfall, Elephant Falls (Thác Voi), Prenn Waterfall, Tiger Cave Waterfall, Cam Ly Waterfall, Linh Phước Pagoda…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/81/Vendor_at_Datanla_Waterfall%2C_Da_Lat.jpg",
+    "days": 3,
+    "cities": [
+      "Da Lat"
+    ],
+    "previewNames": [
+      "Datanla Waterfall",
+      "Elephant Falls (Thác Voi)",
+      "Prenn Waterfall",
+      "Tiger Cave Waterfall",
+      "Cam Ly Waterfall",
+      "Linh Phước Pagoda",
+      "Trúc Lâm Zen Monastery",
+      "Tuyền Lâm Lake"
+    ],
+    "dayPlans": [
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "datanla-waterfall",
+          "elephant-falls",
+          "prenn-waterfall",
+          "tiger-cave-waterfall",
+          "cam-ly-waterfall"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "linh-phuoc-pagoda",
+          "truc-lam-monastery",
+          "tuyen-lam-lake",
+          "da-lat-market",
+          "xuan-huong-lake",
+          "da-lat-night-market"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "valley-of-love",
+          "crazy-house",
+          "domaine-de-marie",
+          "da-lat-railway-station",
+          "thien-vuong-pagoda"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "datanla-waterfall",
+      "elephant-falls",
+      "prenn-waterfall",
+      "tiger-cave-waterfall",
+      "cam-ly-waterfall",
+      "linh-phuoc-pagoda",
+      "truc-lam-monastery",
+      "tuyen-lam-lake",
+      "da-lat-market",
+      "xuan-huong-lake",
+      "da-lat-night-market",
+      "valley-of-love",
+      "crazy-house",
+      "domaine-de-marie",
+      "da-lat-railway-station",
+      "thien-vuong-pagoda"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "datanla-waterfall",
+      "elephant-falls",
+      "prenn-waterfall",
+      "tiger-cave-waterfall",
+      "cam-ly-waterfall",
+      "linh-phuoc-pagoda",
+      "truc-lam-monastery",
+      "tuyen-lam-lake",
+      "da-lat-market",
+      "xuan-huong-lake",
+      "da-lat-night-market",
+      "valley-of-love",
+      "crazy-house",
+      "domaine-de-marie",
+      "da-lat-railway-station",
+      "thien-vuong-pagoda"
+    ]
+  },
+  {
+    "id": "city-da-lat-4",
+    "kind": "city",
+    "title": "4-day Da Lat itinerary",
+    "description": "4-day packed Da Lat plan: Dambri Waterfall, Prenn Waterfall, Cam Ly Waterfall, Hang Nga Crazy House, Lumiere Light Garden, 100 Roofs Bar (Maze Bar)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://live.staticflickr.com/1543/23799358049_d20a6d54dc_b.jpg",
+    "days": 4,
+    "cities": [
+      "Da Lat"
+    ],
+    "previewNames": [
+      "Dambri Waterfall",
+      "Prenn Waterfall",
+      "Cam Ly Waterfall",
+      "Hang Nga Crazy House",
+      "Lumiere Light Garden",
+      "100 Roofs Bar (Maze Bar)",
+      "Da Lat Night Market",
+      "Datanla Waterfall"
+    ],
+    "dayPlans": [
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "dambri-waterfall",
+          "prenn-waterfall",
+          "cam-ly-waterfall",
+          "crazy-house",
+          "lumiere-light-garden",
+          "hundred-roofs-bar",
+          "da-lat-night-market"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "datanla-waterfall",
+          "tiger-cave-waterfall",
+          "elephant-falls"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "thien-vuong-pagoda",
+          "linh-phuoc-pagoda",
+          "linh-an-pagoda",
+          "domaine-de-marie",
+          "da-lat-cathedral",
+          "van-thanh-flowers",
+          "french-quarter-dalat",
+          "xuan-huong-lake",
+          "lam-vien-square",
+          "market-dalat-night",
+          "valley-of-love",
+          "da-lat-railway-station",
+          "da-lat-flower-gardens",
+          "lake-of-sighs",
+          "fresh-garden-dalat",
+          "dalat-market",
+          "cau-dat-tea",
+          "chicken-village-kho",
+          "thai-phien-flowers",
+          "bao-dai-palace-iii",
+          "bao-dai-palace-ii",
+          "da-lat-market",
+          "fairytale-land-dalat",
+          "clay-tunnel-dalat",
+          "truc-lam-monastery",
+          "tuyen-lam-lake",
+          "xq-da-lat",
+          "hydrangea-trai-mat",
+          "mongo-land-dalat",
+          "langbiang",
+          "cu-lan-village",
+          "bao-dai-palace-i"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "pongour-waterfall"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "dambri-waterfall",
+      "prenn-waterfall",
+      "cam-ly-waterfall",
+      "crazy-house",
+      "lumiere-light-garden",
+      "hundred-roofs-bar",
+      "da-lat-night-market",
+      "datanla-waterfall",
+      "tiger-cave-waterfall",
+      "elephant-falls",
+      "thien-vuong-pagoda",
+      "linh-phuoc-pagoda",
+      "linh-an-pagoda",
+      "domaine-de-marie",
+      "da-lat-cathedral",
+      "van-thanh-flowers",
+      "french-quarter-dalat",
+      "xuan-huong-lake",
+      "lam-vien-square",
+      "valley-of-love",
+      "da-lat-railway-station",
+      "da-lat-flower-gardens",
+      "lake-of-sighs",
+      "fresh-garden-dalat",
+      "cau-dat-tea",
+      "chicken-village-kho",
+      "thai-phien-flowers",
+      "bao-dai-palace-iii",
+      "bao-dai-palace-ii",
+      "da-lat-market",
+      "fairytale-land-dalat",
+      "clay-tunnel-dalat",
+      "truc-lam-monastery",
+      "tuyen-lam-lake",
+      "hydrangea-trai-mat",
+      "mongo-land-dalat",
+      "langbiang",
+      "cu-lan-village",
+      "bao-dai-palace-i",
+      "pongour-waterfall"
+    ],
+    "shoppingIds": [
+      "market-dalat-night",
+      "dalat-market",
+      "xq-da-lat"
+    ],
+    "allIds": [
+      "dambri-waterfall",
+      "prenn-waterfall",
+      "cam-ly-waterfall",
+      "crazy-house",
+      "lumiere-light-garden",
+      "hundred-roofs-bar",
+      "da-lat-night-market",
+      "datanla-waterfall",
+      "tiger-cave-waterfall",
+      "elephant-falls",
+      "thien-vuong-pagoda",
+      "linh-phuoc-pagoda",
+      "linh-an-pagoda",
+      "domaine-de-marie",
+      "da-lat-cathedral",
+      "van-thanh-flowers",
+      "french-quarter-dalat",
+      "xuan-huong-lake",
+      "lam-vien-square",
+      "market-dalat-night",
+      "valley-of-love",
+      "da-lat-railway-station",
+      "da-lat-flower-gardens",
+      "lake-of-sighs",
+      "fresh-garden-dalat",
+      "dalat-market",
+      "cau-dat-tea",
+      "chicken-village-kho",
+      "thai-phien-flowers",
+      "bao-dai-palace-iii",
+      "bao-dai-palace-ii",
+      "da-lat-market",
+      "fairytale-land-dalat",
+      "clay-tunnel-dalat",
+      "truc-lam-monastery",
+      "tuyen-lam-lake",
+      "xq-da-lat",
+      "hydrangea-trai-mat",
+      "mongo-land-dalat",
+      "langbiang",
+      "cu-lan-village",
+      "bao-dai-palace-i",
+      "pongour-waterfall"
+    ]
+  },
+  {
+    "id": "city-ho-chi-minh-city-1",
+    "kind": "city",
+    "title": "1-day Ho Chi Minh City itinerary",
+    "description": "1-day packed Ho Chi Minh City plan: HCMC Museum of Fine Arts, War Remnants Museum, Independence Palace, Saigon Central Post Office, Saigon Book Street, Notre-Dame Cathedral Basilica…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/HCMC_Fine_Arts_Museum_Outdoor_Art_%289997381814%29.jpg",
+    "days": 1,
+    "cities": [
+      "Ho Chi Minh City"
+    ],
+    "previewNames": [
+      "HCMC Museum of Fine Arts",
+      "War Remnants Museum",
+      "Independence Palace",
+      "Saigon Central Post Office",
+      "Saigon Book Street",
+      "Notre-Dame Cathedral Basilica",
+      "Saigon Opera House",
+      "People’s Committee Hall"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "hcmc-fine-arts",
+          "war-remnants",
+          "independence-palace",
+          "saigon-central-post-office",
+          "saigon-book-street",
+          "notre-dame-saigon",
+          "saigon-opera-house",
+          "hcmc-peoples-committee",
+          "nguyen-hue-walking",
+          "bitexco-skydeck",
+          "ben-thanh"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh"
+    ]
+  },
+  {
+    "id": "city-ho-chi-minh-city-2",
+    "kind": "city",
+    "title": "2-day Ho Chi Minh City itinerary",
+    "description": "2-day packed Ho Chi Minh City plan: HCMC Museum of Fine Arts, War Remnants Museum, Independence Palace, Saigon Central Post Office, Saigon Book Street, Notre-Dame Cathedral Basilica…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/HCMC_Fine_Arts_Museum_Outdoor_Art_%289997381814%29.jpg",
+    "days": 2,
+    "cities": [
+      "Ho Chi Minh City"
+    ],
+    "previewNames": [
+      "HCMC Museum of Fine Arts",
+      "War Remnants Museum",
+      "Independence Palace",
+      "Saigon Central Post Office",
+      "Saigon Book Street",
+      "Notre-Dame Cathedral Basilica",
+      "Saigon Opera House",
+      "People’s Committee Hall"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "hcmc-fine-arts",
+          "war-remnants",
+          "independence-palace",
+          "saigon-central-post-office",
+          "saigon-book-street",
+          "notre-dame-saigon",
+          "saigon-opera-house",
+          "hcmc-peoples-committee",
+          "nguyen-hue-walking",
+          "bitexco-skydeck",
+          "ben-thanh"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "cu-chi"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "cu-chi"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "cu-chi"
+    ]
+  },
+  {
+    "id": "city-ho-chi-minh-city-3",
+    "kind": "city",
+    "title": "3-day Ho Chi Minh City itinerary",
+    "description": "3-day packed Ho Chi Minh City plan: HCMC Museum of Fine Arts, War Remnants Museum, Independence Palace, Saigon Central Post Office, Saigon Book Street, Notre-Dame Cathedral Basilica…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/HCMC_Fine_Arts_Museum_Outdoor_Art_%289997381814%29.jpg",
+    "days": 3,
+    "cities": [
+      "Ho Chi Minh City"
+    ],
+    "previewNames": [
+      "HCMC Museum of Fine Arts",
+      "War Remnants Museum",
+      "Independence Palace",
+      "Saigon Central Post Office",
+      "Saigon Book Street",
+      "Notre-Dame Cathedral Basilica",
+      "Saigon Opera House",
+      "People’s Committee Hall"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "hcmc-fine-arts",
+          "war-remnants",
+          "independence-palace",
+          "saigon-central-post-office",
+          "saigon-book-street",
+          "notre-dame-saigon",
+          "saigon-opera-house",
+          "hcmc-peoples-committee",
+          "nguyen-hue-walking",
+          "bitexco-skydeck",
+          "ben-thanh"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "cu-chi"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "jade-emperor-pagoda",
+          "cho-lon",
+          "vinh-nghiem-pagoda",
+          "tao-dan-park",
+          "hcmc-city-museum"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "cu-chi",
+      "jade-emperor-pagoda",
+      "cho-lon",
+      "vinh-nghiem-pagoda",
+      "tao-dan-park",
+      "hcmc-city-museum"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hcmc-fine-arts",
+      "war-remnants",
+      "independence-palace",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "cu-chi",
+      "jade-emperor-pagoda",
+      "cho-lon",
+      "vinh-nghiem-pagoda",
+      "tao-dan-park",
+      "hcmc-city-museum"
+    ]
+  },
+  {
+    "id": "city-ho-chi-minh-city-4",
+    "kind": "city",
+    "title": "4-day Ho Chi Minh City itinerary",
+    "description": "4-day packed Ho Chi Minh City plan: Xá Lợi Pagoda, Jade Emperor Pagoda, Mariamman Hindu Temple, Giác Lâm Pagoda, Vĩnh Nghiêm Pagoda, Saigon Central Post Office…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b2/2023-12-10_X%C3%A1_L%E1%BB%A3i_Pagoda%2C_Saigon_09.jpg",
+    "days": 4,
+    "cities": [
+      "Ho Chi Minh City"
+    ],
+    "previewNames": [
+      "Xá Lợi Pagoda",
+      "Jade Emperor Pagoda",
+      "Mariamman Hindu Temple",
+      "Giác Lâm Pagoda",
+      "Vĩnh Nghiêm Pagoda",
+      "Saigon Central Post Office",
+      "Saigon Book Street",
+      "Notre-Dame Cathedral Basilica"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "xa-loi-pagoda",
+          "jade-emperor-pagoda",
+          "mariamman-temple",
+          "giac-lam-pagoda",
+          "vinh-nghiem-pagoda",
+          "saigon-central-post-office",
+          "saigon-book-street",
+          "notre-dame-saigon",
+          "saigon-opera-house",
+          "hcmc-peoples-committee",
+          "nguyen-hue-walking",
+          "bitexco-skydeck",
+          "ben-thanh",
+          "hcmc-fine-arts",
+          "hcmc-city-museum",
+          "war-remnants",
+          "independence-palace",
+          "tao-dan-park",
+          "apartment-cafes",
+          "fitom-museum",
+          "nho-rong-museum",
+          "museum-vietnamese-history-hcmc",
+          "cha-tam-church",
+          "tan-dinh-church",
+          "hcmc-tea-house",
+          "landmark81-viewpoint",
+          "bui-vien-street",
+          "cho-lon",
+          "binh-tay-market",
+          "market-ben-thanh",
+          "saigon-square",
+          "takashimaya-saigon"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "southern-womens-museum",
+          "binh-quoi-village",
+          "thao-cam-vien",
+          "trung-nguyen",
+          "shop-hcmc-markets"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "suoi-tien-theme-park",
+          "shop-hcmc-fashion",
+          "vincom-dong-khoi"
+        ]
+      },
+      {
+        "city": "Ho Chi Minh City",
+        "placeId": "hcmc",
+        "sourceIds": [
+          "cu-chi"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "xa-loi-pagoda",
+      "jade-emperor-pagoda",
+      "mariamman-temple",
+      "giac-lam-pagoda",
+      "vinh-nghiem-pagoda",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "hcmc-fine-arts",
+      "hcmc-city-museum",
+      "war-remnants",
+      "independence-palace",
+      "tao-dan-park",
+      "apartment-cafes",
+      "fitom-museum",
+      "nho-rong-museum",
+      "museum-vietnamese-history-hcmc",
+      "cha-tam-church",
+      "tan-dinh-church",
+      "landmark81-viewpoint",
+      "bui-vien-street",
+      "cho-lon",
+      "binh-tay-market",
+      "southern-womens-museum",
+      "binh-quoi-village",
+      "thao-cam-vien",
+      "suoi-tien-theme-park",
+      "cu-chi"
+    ],
+    "shoppingIds": [
+      "hcmc-tea-house",
+      "market-ben-thanh",
+      "saigon-square",
+      "takashimaya-saigon",
+      "trung-nguyen",
+      "shop-hcmc-markets",
+      "shop-hcmc-fashion",
+      "vincom-dong-khoi"
+    ],
+    "allIds": [
+      "xa-loi-pagoda",
+      "jade-emperor-pagoda",
+      "mariamman-temple",
+      "giac-lam-pagoda",
+      "vinh-nghiem-pagoda",
+      "saigon-central-post-office",
+      "saigon-book-street",
+      "notre-dame-saigon",
+      "saigon-opera-house",
+      "hcmc-peoples-committee",
+      "nguyen-hue-walking",
+      "bitexco-skydeck",
+      "ben-thanh",
+      "hcmc-fine-arts",
+      "hcmc-city-museum",
+      "war-remnants",
+      "independence-palace",
+      "tao-dan-park",
+      "apartment-cafes",
+      "fitom-museum",
+      "nho-rong-museum",
+      "museum-vietnamese-history-hcmc",
+      "cha-tam-church",
+      "tan-dinh-church",
+      "hcmc-tea-house",
+      "landmark81-viewpoint",
+      "bui-vien-street",
+      "cho-lon",
+      "binh-tay-market",
+      "market-ben-thanh",
+      "saigon-square",
+      "takashimaya-saigon",
+      "southern-womens-museum",
+      "binh-quoi-village",
+      "thao-cam-vien",
+      "trung-nguyen",
+      "shop-hcmc-markets",
+      "suoi-tien-theme-park",
+      "shop-hcmc-fashion",
+      "vincom-dong-khoi",
+      "cu-chi"
+    ]
+  },
+  {
+    "id": "city-can-tho-1",
+    "kind": "city",
+    "title": "1-day Can Tho itinerary",
+    "description": "1-day packed Can Tho plan: Bằng Lăng Stork Sanctuary, Sơn Islet (Cồn Sơn), Ninh Kiều Wharf (Bến Ninh Kiều), Ninh Kiều Pedestrian Bridge (Love Bridge), Cần Thơ Night Market, Thiền Viện Trúc Lâm Phương Nam. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mekong_Delta.jpg?width=1200",
+    "days": 1,
+    "cities": [
+      "Can Tho"
+    ],
+    "previewNames": [
+      "Bằng Lăng Stork Sanctuary",
+      "Sơn Islet (Cồn Sơn)",
+      "Ninh Kiều Wharf (Bến Ninh Kiều)",
+      "Ninh Kiều Pedestrian Bridge (Love Bridge)",
+      "Cần Thơ Night Market",
+      "Thiền Viện Trúc Lâm Phương Nam"
+    ],
+    "dayPlans": [
+      {
+        "city": "Can Tho",
+        "placeId": "can-tho",
+        "sourceIds": [
+          "bang-lang-stork",
+          "con-son",
+          "ninh-kieu-wharf",
+          "ninh-kieu-love-bridge",
+          "can-tho-night-market",
+          "truc-lam-phuong-nam"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "bang-lang-stork",
+      "con-son",
+      "ninh-kieu-wharf",
+      "ninh-kieu-love-bridge",
+      "can-tho-night-market",
+      "truc-lam-phuong-nam"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "bang-lang-stork",
+      "con-son",
+      "ninh-kieu-wharf",
+      "ninh-kieu-love-bridge",
+      "can-tho-night-market",
+      "truc-lam-phuong-nam"
+    ]
+  },
+  {
+    "id": "city-can-tho-2",
+    "kind": "city",
+    "title": "2-day Can Tho itinerary",
+    "description": "2-day packed Can Tho plan: Mekong Delta Day Trip, Ninh Kiều Pedestrian Bridge (Love Bridge), Cần Thơ Night Market, Cần Thơ Bridge (Cầu Cần Thơ), Cần Thơ Museum, Cần Thơ Market (Chợ Cổ / Old Market)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/C%C3%A1i_R%C4%83ng_floating_market.jpg",
+    "days": 2,
+    "cities": [
+      "Can Tho"
+    ],
+    "previewNames": [
+      "Mekong Delta Day Trip",
+      "Ninh Kiều Pedestrian Bridge (Love Bridge)",
+      "Cần Thơ Night Market",
+      "Cần Thơ Bridge (Cầu Cần Thơ)",
+      "Cần Thơ Museum",
+      "Cần Thơ Market (Chợ Cổ / Old Market)",
+      "Bình Thủy Ancient House",
+      "Ông Temple (Chùa Ông – Quảng Đông Assembly Hall)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Can Tho",
+        "placeId": "can-tho",
+        "sourceIds": [
+          "mekong-delta",
+          "ninh-kieu-love-bridge",
+          "can-tho-night-market",
+          "can-tho-bridge"
+        ]
+      },
+      {
+        "city": "Can Tho",
+        "placeId": "can-tho",
+        "sourceIds": [
+          "can-tho-museum",
+          "can-tho-old-market",
+          "binh-thuy-ancient-house",
+          "chua-ong-can-tho",
+          "munir-ansay",
+          "ninh-kieu-wharf",
+          "truc-lam-phuong-nam",
+          "my-khanh-village",
+          "con-son",
+          "bang-lang-stork"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "mekong-delta",
+      "ninh-kieu-love-bridge",
+      "can-tho-night-market",
+      "can-tho-bridge",
+      "can-tho-museum",
+      "can-tho-old-market",
+      "binh-thuy-ancient-house",
+      "chua-ong-can-tho",
+      "munir-ansay",
+      "ninh-kieu-wharf",
+      "truc-lam-phuong-nam",
+      "my-khanh-village",
+      "con-son",
+      "bang-lang-stork"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "mekong-delta",
+      "ninh-kieu-love-bridge",
+      "can-tho-night-market",
+      "can-tho-bridge",
+      "can-tho-museum",
+      "can-tho-old-market",
+      "binh-thuy-ancient-house",
+      "chua-ong-can-tho",
+      "munir-ansay",
+      "ninh-kieu-wharf",
+      "truc-lam-phuong-nam",
+      "my-khanh-village",
+      "con-son",
+      "bang-lang-stork"
+    ]
+  },
+  {
+    "id": "city-phu-quoc-2",
+    "kind": "city",
+    "title": "2-day Phu Quoc itinerary",
+    "description": "2-day packed Phu Quoc plan: Hòn Thơm Island (Pineapple Island), Kiss Bridge (Cầu Hôn), Sao Beach (Bãi Sao), Phu Quoc Sunset Beach, Ông Lang Beach. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg?width=1200",
+    "days": 2,
+    "cities": [
+      "Phu Quoc"
+    ],
+    "previewNames": [
+      "Hòn Thơm Island (Pineapple Island)",
+      "Kiss Bridge (Cầu Hôn)",
+      "Sao Beach (Bãi Sao)",
+      "Phu Quoc Sunset Beach",
+      "Ông Lang Beach"
+    ],
+    "dayPlans": [
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "hon-thom-island",
+          "kiss-bridge"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "sao-beach",
+          "phu-quoc-sunset",
+          "ong-lang-beach"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hon-thom-island",
+      "kiss-bridge",
+      "sao-beach",
+      "phu-quoc-sunset",
+      "ong-lang-beach"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hon-thom-island",
+      "kiss-bridge",
+      "sao-beach",
+      "phu-quoc-sunset",
+      "ong-lang-beach"
+    ]
+  },
+  {
+    "id": "city-phu-quoc-3",
+    "kind": "city",
+    "title": "3-day Phu Quoc itinerary",
+    "description": "3-day packed Phu Quoc plan: Hòn Thơm Island (Pineapple Island), Kiss Bridge (Cầu Hôn), Sao Beach (Bãi Sao), Phu Quoc Sunset Beach, Ông Lang Beach, Dinh Cậu Shrine (Dinh Cậu Rock)…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg?width=1200",
+    "days": 3,
+    "cities": [
+      "Phu Quoc"
+    ],
+    "previewNames": [
+      "Hòn Thơm Island (Pineapple Island)",
+      "Kiss Bridge (Cầu Hôn)",
+      "Sao Beach (Bãi Sao)",
+      "Phu Quoc Sunset Beach",
+      "Ông Lang Beach",
+      "Dinh Cậu Shrine (Dinh Cậu Rock)",
+      "Dương Đông Night Market",
+      "Grand World Phú Quốc (The Sleepless City)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "hon-thom-island",
+          "kiss-bridge"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "sao-beach",
+          "phu-quoc-sunset",
+          "ong-lang-beach"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "dinh-cau",
+          "duong-dong-night-market",
+          "grand-world-pq",
+          "ham-ninh-village",
+          "khai-hoan-fish-sauce"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hon-thom-island",
+      "kiss-bridge",
+      "sao-beach",
+      "phu-quoc-sunset",
+      "ong-lang-beach",
+      "dinh-cau",
+      "duong-dong-night-market",
+      "grand-world-pq",
+      "ham-ninh-village",
+      "khai-hoan-fish-sauce"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hon-thom-island",
+      "kiss-bridge",
+      "sao-beach",
+      "phu-quoc-sunset",
+      "ong-lang-beach",
+      "dinh-cau",
+      "duong-dong-night-market",
+      "grand-world-pq",
+      "ham-ninh-village",
+      "khai-hoan-fish-sauce"
+    ]
+  },
+  {
+    "id": "city-phu-quoc-4",
+    "kind": "city",
+    "title": "4-day Phu Quoc itinerary",
+    "description": "4-day packed Phu Quoc plan: Cội Nguồn Museum, Đức Phát Pepper Farm, Khải Hoàn Fish Sauce Factory, Khu Cượng Pepper Farm, Phụng Hưng Fish Sauce Factory, Ngọc Hiền Pearl Farm…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://images.unsplash.com/photo-1554907984-15263bfd63bd?auto=format&fit=crop&w=1200&q=80",
+    "days": 4,
+    "cities": [
+      "Phu Quoc"
+    ],
+    "previewNames": [
+      "Cội Nguồn Museum",
+      "Đức Phát Pepper Farm",
+      "Khải Hoàn Fish Sauce Factory",
+      "Khu Cượng Pepper Farm",
+      "Phụng Hưng Fish Sauce Factory",
+      "Ngọc Hiền Pearl Farm",
+      "Hàm Ninh Fishing Village",
+      "Sim Wine Factory (Vườn Sim)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "coi-nguon-museum",
+          "duc-phat-pepper",
+          "khai-hoan-fish-sauce",
+          "khu-cuong-pepper",
+          "phung-hung-fish-sauce",
+          "ngoc-hien-pearl",
+          "ham-ninh-village",
+          "sim-wine-farm",
+          "cao-dai-phu-quoc"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "vinpearl-safari-pq",
+          "suoi-da-ban",
+          "sung-hung-pagoda",
+          "su-muon-pagoda",
+          "ho-quoc-pagoda",
+          "phu-quoc-sunset",
+          "suoi-tranh",
+          "phu-quoc-national-park",
+          "ong-lang-beach",
+          "sao-beach",
+          "long-beach-pq",
+          "khem-beach",
+          "starfish-beach",
+          "ganh-dau-cape",
+          "ganh-dau-beach",
+          "thom-beach"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "hon-thom-island",
+          "kiss-bridge"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "phu-quoc-prison",
+          "cua-can-village",
+          "vung-bau-beach",
+          "cua-can-beach"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "coi-nguon-museum",
+      "duc-phat-pepper",
+      "khai-hoan-fish-sauce",
+      "khu-cuong-pepper",
+      "phung-hung-fish-sauce",
+      "ngoc-hien-pearl",
+      "ham-ninh-village",
+      "sim-wine-farm",
+      "cao-dai-phu-quoc",
+      "vinpearl-safari-pq",
+      "suoi-da-ban",
+      "sung-hung-pagoda",
+      "su-muon-pagoda",
+      "ho-quoc-pagoda",
+      "phu-quoc-sunset",
+      "suoi-tranh",
+      "phu-quoc-national-park",
+      "ong-lang-beach",
+      "sao-beach",
+      "long-beach-pq",
+      "khem-beach",
+      "starfish-beach",
+      "ganh-dau-cape",
+      "ganh-dau-beach",
+      "thom-beach",
+      "hon-thom-island",
+      "kiss-bridge",
+      "phu-quoc-prison",
+      "cua-can-village",
+      "vung-bau-beach",
+      "cua-can-beach"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "coi-nguon-museum",
+      "duc-phat-pepper",
+      "khai-hoan-fish-sauce",
+      "khu-cuong-pepper",
+      "phung-hung-fish-sauce",
+      "ngoc-hien-pearl",
+      "ham-ninh-village",
+      "sim-wine-farm",
+      "cao-dai-phu-quoc",
+      "vinpearl-safari-pq",
+      "suoi-da-ban",
+      "sung-hung-pagoda",
+      "su-muon-pagoda",
+      "ho-quoc-pagoda",
+      "phu-quoc-sunset",
+      "suoi-tranh",
+      "phu-quoc-national-park",
+      "ong-lang-beach",
+      "sao-beach",
+      "long-beach-pq",
+      "khem-beach",
+      "starfish-beach",
+      "ganh-dau-cape",
+      "ganh-dau-beach",
+      "thom-beach",
+      "hon-thom-island",
+      "kiss-bridge",
+      "phu-quoc-prison",
+      "cua-can-village",
+      "vung-bau-beach",
+      "cua-can-beach"
+    ]
+  },
+  {
+    "id": "city-phu-quoc-5",
+    "kind": "city",
+    "title": "5-day Phu Quoc itinerary",
+    "description": "5-day packed Phu Quoc plan: Cội Nguồn Museum, Đức Phát Pepper Farm, Khải Hoàn Fish Sauce Factory, Khu Cượng Pepper Farm, Phụng Hưng Fish Sauce Factory, Ngọc Hiền Pearl Farm…. Markets and shopping stops sit on the same timeline as the sights.",
+    "image": "https://images.unsplash.com/photo-1554907984-15263bfd63bd?auto=format&fit=crop&w=1200&q=80",
+    "days": 5,
+    "cities": [
+      "Phu Quoc"
+    ],
+    "previewNames": [
+      "Cội Nguồn Museum",
+      "Đức Phát Pepper Farm",
+      "Khải Hoàn Fish Sauce Factory",
+      "Khu Cượng Pepper Farm",
+      "Phụng Hưng Fish Sauce Factory",
+      "Ngọc Hiền Pearl Farm",
+      "Hàm Ninh Fishing Village",
+      "Sim Wine Factory (Vườn Sim)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "coi-nguon-museum",
+          "duc-phat-pepper",
+          "khai-hoan-fish-sauce",
+          "khu-cuong-pepper",
+          "phung-hung-fish-sauce",
+          "ngoc-hien-pearl",
+          "ham-ninh-village",
+          "sim-wine-farm",
+          "cao-dai-phu-quoc"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "vinpearl-safari-pq",
+          "suoi-da-ban",
+          "sung-hung-pagoda",
+          "su-muon-pagoda",
+          "ho-quoc-pagoda",
+          "phu-quoc-sunset",
+          "suoi-tranh",
+          "phu-quoc-national-park",
+          "ong-lang-beach",
+          "sao-beach",
+          "long-beach-pq",
+          "khem-beach",
+          "starfish-beach",
+          "ganh-dau-cape",
+          "ganh-dau-beach",
+          "thom-beach"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "hon-thom-island",
+          "kiss-bridge"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "phu-quoc-prison",
+          "cua-can-village",
+          "vung-bau-beach",
+          "cua-can-beach"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "kingkong-mart",
+          "duong-dong-market",
+          "dinh-cau",
+          "duong-dong-night-market",
+          "grand-world-pq",
+          "phu-quoc-night-market"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "coi-nguon-museum",
+      "duc-phat-pepper",
+      "khai-hoan-fish-sauce",
+      "khu-cuong-pepper",
+      "phung-hung-fish-sauce",
+      "ngoc-hien-pearl",
+      "ham-ninh-village",
+      "sim-wine-farm",
+      "cao-dai-phu-quoc",
+      "vinpearl-safari-pq",
+      "suoi-da-ban",
+      "sung-hung-pagoda",
+      "su-muon-pagoda",
+      "ho-quoc-pagoda",
+      "phu-quoc-sunset",
+      "suoi-tranh",
+      "phu-quoc-national-park",
+      "ong-lang-beach",
+      "sao-beach",
+      "long-beach-pq",
+      "khem-beach",
+      "starfish-beach",
+      "ganh-dau-cape",
+      "ganh-dau-beach",
+      "thom-beach",
+      "hon-thom-island",
+      "kiss-bridge",
+      "phu-quoc-prison",
+      "cua-can-village",
+      "vung-bau-beach",
+      "cua-can-beach",
+      "dinh-cau",
+      "duong-dong-night-market",
+      "grand-world-pq"
+    ],
+    "shoppingIds": [
+      "kingkong-mart",
+      "duong-dong-market",
+      "phu-quoc-night-market"
+    ],
+    "allIds": [
+      "coi-nguon-museum",
+      "duc-phat-pepper",
+      "khai-hoan-fish-sauce",
+      "khu-cuong-pepper",
+      "phung-hung-fish-sauce",
+      "ngoc-hien-pearl",
+      "ham-ninh-village",
+      "sim-wine-farm",
+      "cao-dai-phu-quoc",
+      "vinpearl-safari-pq",
+      "suoi-da-ban",
+      "sung-hung-pagoda",
+      "su-muon-pagoda",
+      "ho-quoc-pagoda",
+      "phu-quoc-sunset",
+      "suoi-tranh",
+      "phu-quoc-national-park",
+      "ong-lang-beach",
+      "sao-beach",
+      "long-beach-pq",
+      "khem-beach",
+      "starfish-beach",
+      "ganh-dau-cape",
+      "ganh-dau-beach",
+      "thom-beach",
+      "hon-thom-island",
+      "kiss-bridge",
+      "phu-quoc-prison",
+      "cua-can-village",
+      "vung-bau-beach",
+      "cua-can-beach",
+      "kingkong-mart",
+      "duong-dong-market",
+      "dinh-cau",
+      "duong-dong-night-market",
+      "grand-world-pq",
+      "phu-quoc-night-market"
+    ]
+  }
+]

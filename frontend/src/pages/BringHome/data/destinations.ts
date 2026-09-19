@@ -6,21 +6,93 @@ import type {
   ShopSort,
 } from './types'
 
+import { CATALOG_MARKETS } from './catalogMarkets'
+import shopIntelJson from './shopPlaceIntel.json'
+
 export const SHOP_CITIES: ShopCity[] = [
   'Hanoi',
   'Ninh Binh',
+  'Sapa',
+  'Ha Giang',
+  'Dong Van',
+  'Ha Long',
+  'Cat Ba',
   'Hue',
   'Da Nang',
   'Hoi An',
-  'Ho Chi Minh City',
+  'Phong Nha',
   'Nha Trang',
   'Da Lat',
+  'Ho Chi Minh City',
+  'Can Tho',
+  'Phu Quoc',
 ]
 
 const img = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=80`
 
-export const DESTINATIONS: ShoppingDestination[] = [
+const REPLACED_IDS = new Set([
+  'ninh-binh-market',
+  'hue-dong-ba',
+  'danang-han-market',
+  'hoian-central-market',
+  'hoian-night-market',
+  'ben-thanh',
+  'saigon-square',
+  'binh-tay',
+  'takashimaya-saigon',
+  'vincom-dong-khoi',
+  'dam-nha-trang',
+  'dalat-night-market',
+])
+
+type ShopIntel = {
+  lat?: number | null
+  lng?: number | null
+  rating?: number | null
+  openingHours?: string | null
+  hoursSource?: string
+  weekdayDescriptions?: string[]
+  googleMapsUri?: string | null
+  address?: string | null
+  reviewCount?: number | null
+}
+
+const INTEL = shopIntelJson as Record<string, ShopIntel>
+
+function displayHours(row: ShopIntel, fallback: string): string {
+  const raw = row.openingHours?.trim()
+  if (raw) {
+    const pair = raw.match(/(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})/)
+    if (pair) return `${pair[1]}–${pair[2]}`
+    return raw
+  }
+  if (row.weekdayDescriptions && row.weekdayDescriptions.length > 0) {
+    return row.weekdayDescriptions[0].replace(/^[^:]+:\s*/, '')
+  }
+  return fallback
+}
+
+function applyIntel(d: ShoppingDestination): ShoppingDestination {
+  const row = INTEL[d.id]
+  if (!row) return d
+  const hoursRaw = row.openingHours?.trim() || undefined
+  const hoursLabel = displayHours(row, d.openingHours)
+  return {
+    ...d,
+    rating: row.rating ?? d.rating,
+    openingHours: hoursLabel || d.openingHours,
+    hoursRaw,
+    hoursUnknown: !hoursRaw,
+    weekdayDescriptions: row.weekdayDescriptions,
+    lat: row.lat ?? d.lat,
+    lng: row.lng ?? d.lng,
+    mapUrl: row.googleMapsUri || d.mapUrl,
+    distanceNote: row.address && !d.distanceNote ? row.address.split(',').slice(0, 3).join(',') : d.distanceNote,
+  }
+}
+
+const SPECIALTY_DESTINATIONS: ShoppingDestination[] = [
   {
     id: 'dong-xuan',
     name: 'Đồng Xuân Market',
@@ -729,6 +801,11 @@ export const DESTINATIONS: ShoppingDestination[] = [
   },
 ]
 
+export const DESTINATIONS: ShoppingDestination[] = [
+  ...SPECIALTY_DESTINATIONS.filter((d) => !REPLACED_IDS.has(d.id)),
+  ...CATALOG_MARKETS,
+].map(applyIntel)
+
 export function crowdDots(level: number): string {
   return '●'.repeat(level) + '○'.repeat(5 - level)
 }
@@ -773,14 +850,13 @@ export function getDestinationsForItem(
   city: ShopCity | 'All',
   sort: ShopSort,
   filters: ShopFilter,
-  tripCities: ShopCity[] = [],
+  _tripCities: ShopCity[] = [],
 ): ShoppingDestination[] {
   let list =
     itemId === 'All'
       ? [...DESTINATIONS]
       : DESTINATIONS.filter((d) => d.bestForItemIds.includes(itemId))
   if (city !== 'All') list = list.filter((d) => d.city === city)
-  else if (tripCities.length > 0) list = list.filter((d) => tripCities.includes(d.city))
   if (filters.openNow) list = list.filter((d) => d.openNow)
   if (filters.type === 'markets') list = list.filter((d) => d.type === 'Market')
   if (filters.type === 'specialty') list = list.filter((d) => d.type === 'Specialty Store' || d.type === 'Shop')

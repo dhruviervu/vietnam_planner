@@ -1,22 +1,14 @@
 import type { ArrivalContext, TransportMode } from '../data/types'
-import type {
-  SmartAdvice,
-  StayPathAdvice,
-  StayTransferContext,
-} from '../data/tripAirportIntelligence'
+import type { SmartAdvice } from '../data/tripAirportIntelligence'
 
 type Props = {
   advice: SmartAdvice
-  stay: StayTransferContext | null
-  stayPath: StayPathAdvice | null
   recommendedMode: TransportMode | null
   direction: ArrivalContext['direction']
 }
 
 export function SmartTransferGuide({
   advice,
-  stay,
-  stayPath,
   recommendedMode,
   direction,
 }: Props) {
@@ -66,41 +58,6 @@ export function SmartTransferGuide({
           ))}
         </ul>
       </div>
-
-      {stay && stayPath ? (
-        <div className="rounded-[22px] border border-terracotta/20 bg-gradient-to-br from-terracotta/[0.08] via-paper to-cream/70 px-5 py-5 shadow-soft sm:px-6">
-          <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-terracotta">
-            Because you have a stay
-          </p>
-          <h3 className="mt-1 font-serif text-[1.35rem] font-semibold text-ink">{stayPath.title}</h3>
-          <p className="mt-1 text-[0.82rem] text-muted">
-            Two calm ways to use the transfer — neither needs to be perfect, both can feel intentional.
-          </p>
-
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            <article className="rounded-[16px] bg-paper/90 px-4 py-4 ring-1 ring-ink/8">
-              <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-ink/55">
-                Option A
-              </p>
-              <p className="mt-1 font-serif text-[1.15rem] font-semibold text-ink">
-                {stayPath.directTitle}
-              </p>
-              <p className="mt-2 text-[0.86rem] leading-relaxed text-muted">{stayPath.directBody}</p>
-            </article>
-            <article className="rounded-[16px] bg-paper/90 px-4 py-4 ring-1 ring-ink/8">
-              <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-ink/55">
-                Option B
-              </p>
-              <p className="mt-1 font-serif text-[1.15rem] font-semibold text-ink">
-                {stayPath.exploreTitle}
-              </p>
-              <p className="mt-2 text-[0.86rem] leading-relaxed text-muted">{stayPath.exploreBody}</p>
-            </article>
-          </div>
-
-          <p className="mt-4 text-[0.8rem] font-semibold text-terracotta-deep">{stayPath.tip}</p>
-        </div>
-      ) : null}
     </section>
   )
 }

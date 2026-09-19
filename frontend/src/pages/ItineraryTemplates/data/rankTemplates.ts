@@ -1,14 +1,17 @@
-import { EXPERIENCES } from '../../PlanBuilder/data/experiences'
 import { TEMPLATE_SECTIONS } from './sections'
 import { ITINERARY_TEMPLATES } from './templates'
 import type { ItineraryTemplate, TemplatePace, TemplateSectionId, TemplateTag } from './types'
 
 const SECTION_TAGS: Record<TemplateSectionId, TemplateTag[]> = {
+  'city-stays': ['First-timer'],
   solo: ['Solo'],
   couples: ['Couple'],
   'family-young': ['Family'],
   'family-older': ['Family'],
   friends: ['Friends'],
+  fun: ['Friends'],
+  nightlife: ['Nightlife'],
+  slow: ['Relaxing'],
   'large-groups': ['Group'],
   budget: ['Budget'],
   relaxed: ['Relaxing'],
@@ -22,11 +25,15 @@ const SECTION_TAGS: Record<TemplateSectionId, TemplateTag[]> = {
 }
 
 const SECTION_PACE: Record<TemplateSectionId, TemplatePace> = {
+  'city-stays': 'packed',
   solo: 'balanced',
   couples: 'relaxed',
   'family-young': 'relaxed',
   'family-older': 'packed',
   friends: 'packed',
+  fun: 'packed',
+  nightlife: 'balanced',
+  slow: 'relaxed',
   'large-groups': 'balanced',
   budget: 'packed',
   relaxed: 'relaxed',
@@ -40,11 +47,25 @@ const SECTION_PACE: Record<TemplateSectionId, TemplatePace> = {
 }
 
 const SECTION_CITIES: Record<TemplateSectionId, string[]> = {
+  'city-stays': [
+    'Hanoi',
+    'Ho Chi Minh City',
+    'Da Nang',
+    'Hoi An',
+    'Hue',
+    'Da Lat',
+    'Nha Trang',
+    'Phu Quoc',
+    'Sapa',
+  ],
   solo: ['Hanoi', 'Hoi An'],
   couples: ['Hoi An', 'Ha Long Bay'],
   'family-young': ['Hoi An', 'Da Nang'],
   'family-older': ['Hanoi', 'Hoi An', 'Da Nang'],
   friends: ['Hanoi', 'Hoi An', 'Ho Chi Minh City'],
+  fun: ['Hoi An', 'Da Nang', 'Nha Trang', 'Da Lat', 'Phu Quoc'],
+  nightlife: ['Hanoi', 'Ho Chi Minh City', 'Hoi An', 'Da Nang', 'Nha Trang'],
+  slow: ['Ha Long', 'Hoi An', 'Hue', 'Ninh Binh', 'Phu Quoc', 'Da Nang'],
   'large-groups': ['Da Nang', 'Hoi An'],
   budget: ['Hanoi', 'Hue', 'Hoi An'],
   relaxed: ['Hue', 'Hoi An'],
@@ -91,16 +112,6 @@ function lengthScore(template: ItineraryTemplate) {
   return 4
 }
 
-function experiencePopularity(cities: string[]) {
-  const keys = new Set(cities.map(cityKey))
-  const hits = EXPERIENCES.filter(
-    (e) => keys.has(cityKey(e.city)) || keys.has(cityKey(e.region)),
-  )
-  if (!hits.length) return 40
-  const mean = hits.reduce((s, e) => s + (e.popularityRank ?? 50), 0) / hits.length
-  return Math.max(0, 90 - mean)
-}
-
 function templateScore(template: ItineraryTemplate): number {
   const wantedTags = SECTION_TAGS[template.section]
   const tagHit = template.tags.filter((tag) => wantedTags.includes(tag)).length
@@ -110,16 +121,12 @@ function templateScore(template: ItineraryTemplate): number {
     const key = cityKey(city)
     return n + (signature.some((c) => cityKey(c) === key) ? 8 : 0)
   }, 0)
-  return (
-    tagHit * 36 +
-    paceHit +
-    Math.min(24, cityHit) +
-    lengthScore(template) +
-    experiencePopularity(template.cities) * 0.35
-  )
+  return tagHit * 36 + paceHit + Math.min(24, cityHit) + lengthScore(template)
 }
 
 const RANK_BY_ID: Record<string, number> = {}
+
+const RANKED_BY_SECTION: Record<string, ItineraryTemplate[]> = {}
 
 for (const section of TEMPLATE_SECTIONS) {
   const ranked = ITINERARY_TEMPLATES.filter((t) => t.section === section.id).sort((a, b) => {
@@ -130,6 +137,7 @@ for (const section of TEMPLATE_SECTIONS) {
   ranked.forEach((template, i) => {
     RANK_BY_ID[template.id] = i + 1
   })
+  RANKED_BY_SECTION[section.id] = ranked
 }
 
 export function rankInSection(template: ItineraryTemplate): number {
@@ -137,9 +145,7 @@ export function rankInSection(template: ItineraryTemplate): number {
 }
 
 export function rankedTemplatesForSection(section: TemplateSectionId) {
-  return ITINERARY_TEMPLATES.filter((t) => t.section === section)
-    .slice()
-    .sort((a, b) => rankInSection(a) - rankInSection(b) || a.title.localeCompare(b.title))
+  return RANKED_BY_SECTION[section] ?? []
 }
 
 export function sortBySectionRank(templates: ItineraryTemplate[]) {

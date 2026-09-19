@@ -37,15 +37,13 @@ export function dailySpendBand(dailyUsd: number): DailyBand {
   return 'mid'
 }
 
-export function hourBudgetForTrip(kind: HolidayKind, band: DailyBand): number {
-  const resolved = kind === 'action' ? 'action' : 'leisure'
-  const base = resolved === 'leisure' ? 5.5 : 11
-  if (band !== 'tight') return base
-  return resolved === 'leisure' ? base - 0.75 : base - 0.5
+export function hourBudgetForTrip(kind: HolidayKind, _band: DailyBand): number {
+  // Sightseeing-only hours per day. Action: 6–8h. Relaxed/leisure: 3–5h.
+  return kind === 'action' ? 8 : 5
 }
 
 export function perDayCapacityForKind(kind: HolidayKind): number {
-  return kind === 'action' ? 5 : 3
+  return kind === 'action' ? 6 : 4
 }
 
 export function addCapForKind(kind: HolidayKind): number {

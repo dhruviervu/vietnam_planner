@@ -27,9 +27,8 @@ export function LogisticsHero() {
         <h1 className="mt-1.5 font-serif text-[clamp(1.5rem,3vw,2.05rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-paper">
           Vietnam Logistics
         </h1>
-        <p className="mt-1.5 max-w-[48ch] text-[0.8rem] leading-snug text-paper/75">
-          Entry, connectivity, money, everyday costs and insurance — choose a control, read the
-          result.
+        <p className="mt-1.5 max-w-[52ch] text-[0.8rem] leading-snug text-paper/75">
+          Check Visa Requirement, Sim Card, Money and the cost of living in Vietnam
         </p>
       </motion.div>
     </section>

@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { useTripStore } from '../../../store/tripStore'
+import { useItineraryTripStore } from '../../../store/itineraryTripStore'
 import type { HolidayKind } from '../types'
 import { HOLIDAY_KIND_META } from '../lib/yourVietnam/holidayKind'
+import { tripIsoDate } from '../lib/yourVietnam/openingHours'
 
 const DURATION_PRESETS = [5, 7, 10, 14] as const
 
 const KIND_ORDER: HolidayKind[] = ['action', 'leisure']
+
+const fieldWarn = 'rounded-2xl ring-1 ring-terracotta/40 bg-terracotta/5 p-2'
 
 function MoneyField({
   value,
@@ -49,6 +52,7 @@ function MoneyField({
 }
 
 export function TripVariablesBar() {
+  const useTripStore = useItineraryTripStore()
   const basics = useTripStore((s) => s.basics)
   const setBasics = useTripStore((s) => s.setBasics)
   const [customDays, setCustomDays] = useState(
@@ -57,21 +61,86 @@ export function TripVariablesBar() {
       : String(basics.days),
   )
 
+  const missingGroup = !basics.groupSizeKnown
+  const missingKind = !basics.holidayKindKnown
+  const missingBudget = !basics.budgetKnown && !basics.budgetAllocationKnown
+  const missingAny = missingGroup || missingKind || missingBudget
+
   return (
     <section
       data-yv="shape-itinerary"
       className="rounded-[24px] border border-ink/8 bg-paper px-4 py-4 shadow-soft sm:px-5"
     >
-      <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-sage">
+      <h2 className="font-serif text-[1.45rem] font-semibold text-ink">
         Shape this itinerary
+      </h2>
+      <p className="mt-0.5 text-[0.88rem] text-muted">
+        Group size, holiday kind and budget shape the pace. Nights in each city are decided from
+        the sights you saved — duration, travel, meals and opening hours.
       </p>
-      <p className="mt-0.5 text-[0.78rem] text-muted">
-        Duration, group, kind of holiday and budget — change any, the days rebuild.
-      </p>
+      {missingAny ? (
+        <p className="mt-1.5 text-[0.78rem] font-semibold text-terracotta">
+          Set the highlighted fields to craft a day-by-day itinerary.
+        </p>
+      ) : null}
 
       <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <div>
-          <p className="text-[0.68rem] font-bold uppercase tracking-wide text-ink">Trip duration</p>
+          <p className="text-[0.68rem] font-bold uppercase tracking-wide text-ink">
+            Trip dates
+            <span className="ml-1 font-semibold normal-case tracking-normal text-muted">· optional</span>
+          </p>
+          <div className="mt-1.5 flex flex-col gap-1.5">
+            <input
+              type="date"
+              aria-label="Trip start date"
+              value={basics.startDate}
+              onChange={(e) => {
+                const nextStart = e.target.value
+                if (!nextStart) {
+                  setBasics({ startDate: '', endDate: '', dateMode: 'unknown' })
+                  return
+                }
+                const nextEnd =
+                  basics.endDate && basics.endDate >= nextStart
+                    ? basics.endDate
+                    : tripIsoDate(nextStart, basics.days)
+                setBasics({
+                  startDate: nextStart,
+                  endDate: nextEnd,
+                  dateMode: 'exact',
+                })
+              }}
+              className="rounded-full bg-cream px-3 py-1.5 text-[0.85rem] font-semibold text-ink"
+            />
+            <input
+              type="date"
+              aria-label="Trip end date"
+              value={basics.endDate}
+              min={basics.startDate || undefined}
+              onChange={(e) => {
+                const nextEnd = e.target.value
+                if (!nextEnd) {
+                  setBasics({ endDate: '', dateMode: basics.startDate ? 'exact' : 'unknown' })
+                  return
+                }
+                const nextStart =
+                  basics.startDate && basics.startDate <= nextEnd ? basics.startDate : nextEnd
+                setBasics({
+                  startDate: nextStart,
+                  endDate: nextEnd,
+                  dateMode: 'exact',
+                })
+              }}
+              className="rounded-full bg-cream px-3 py-1.5 text-[0.85rem] font-semibold text-ink"
+            />
+          </div>
+        </div>
+        <div>
+          <p className="text-[0.68rem] font-bold uppercase tracking-wide text-ink">
+            Trip duration
+            <span className="ml-1 font-semibold normal-case tracking-normal text-muted">· optional</span>
+          </p>
           <div className="mt-1.5 flex flex-wrap items-center gap-1">
             {DURATION_PRESETS.map((d) => (
               <button
@@ -79,10 +148,13 @@ export function TripVariablesBar() {
                 type="button"
                 onClick={() => {
                   setCustomDays('')
-                  setBasics({ days: d, durationKnown: true })
+                  const endDate = basics.startDate
+                    ? tripIsoDate(basics.startDate, d)
+                    : basics.endDate
+                  setBasics({ days: d, durationKnown: true, ...(endDate ? { endDate } : {}) })
                 }}
                 className={`rounded-full px-2.5 py-1 text-[0.75rem] font-bold transition ${
-                  basics.days === d && !customDays
+                  basics.durationKnown && basics.days === d && !customDays
                     ? 'bg-ink text-paper'
                     : 'bg-cream text-muted hover:text-ink'
                 }`}
@@ -100,15 +172,23 @@ export function TripVariablesBar() {
                 const v = e.target.value
                 setCustomDays(v)
                 const n = Number(v)
-                if (n >= 1 && n <= 45) setBasics({ days: n, durationKnown: true })
+                if (n >= 1 && n <= 45) {
+                  const endDate = basics.startDate
+                    ? tripIsoDate(basics.startDate, n)
+                    : basics.endDate
+                  setBasics({ days: n, durationKnown: true, ...(endDate ? { endDate } : {}) })
+                }
               }}
               className="w-[3.4rem] rounded-full border border-ink/10 bg-cream px-2 py-1 text-[0.75rem] font-semibold text-ink outline-none focus:border-terracotta/40"
             />
           </div>
         </div>
 
-        <div>
-          <p className="text-[0.68rem] font-bold uppercase tracking-wide text-ink">Group size</p>
+        <div className={missingGroup ? fieldWarn : undefined}>
+          <p className="text-[0.68rem] font-bold uppercase tracking-wide text-ink">
+            Group size
+            {missingGroup ? <span className="ml-1 font-semibold normal-case tracking-normal text-terracotta">· Set this to craft</span> : null}
+          </p>
           <div className="mt-1.5 flex flex-wrap items-center gap-1">
             {(
               [
@@ -122,7 +202,7 @@ export function TripVariablesBar() {
                 type="button"
                 onClick={() => setBasics({ groupSize: n, groupSizeKnown: true })}
                 className={`rounded-full px-2.5 py-1 text-[0.75rem] font-bold transition ${
-                  basics.groupSize === n
+                  basics.groupSizeKnown && basics.groupSize === n
                     ? 'bg-ink text-paper'
                     : 'bg-cream text-muted hover:text-ink'
                 }`}
@@ -164,15 +244,16 @@ export function TripVariablesBar() {
           </div>
         </div>
 
-        <div>
+        <div className={missingKind ? fieldWarn : undefined}>
           <p className="text-[0.68rem] font-bold uppercase tracking-wide text-ink">
             Kind of holiday
+            {missingKind ? <span className="ml-1 font-semibold normal-case tracking-normal text-terracotta">· Set this to craft</span> : null}
           </p>
           <div className="mt-1.5 flex flex-wrap gap-1">
             {KIND_ORDER.map((id) => {
               const meta = HOLIDAY_KIND_META[id]
               const current = basics.holidayKind === 'action' ? 'action' : 'leisure'
-              const on = current === id
+              const on = basics.holidayKindKnown && current === id
               return (
                 <button
                   key={id}
@@ -193,10 +274,11 @@ export function TripVariablesBar() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className={`grid grid-cols-2 gap-2 ${missingBudget ? fieldWarn : ''}`}>
           <label>
             <span className="text-[0.68rem] font-bold uppercase tracking-wide text-terracotta">
               Fixed budget
+              {missingBudget ? <span className="ml-1 font-semibold normal-case tracking-normal">· Set this to craft</span> : null}
             </span>
             <MoneyField
               value={basics.budgetFixedUsd}

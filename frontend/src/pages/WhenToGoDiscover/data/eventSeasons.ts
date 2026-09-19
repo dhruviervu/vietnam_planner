@@ -58,10 +58,10 @@ export const SEASON_META: Record<
   'year-round': {
     id: 'year-round',
     filterLabel: 'Year round',
-    title: 'Year Round cultural performances',
+    title: 'Year Round cultural performances/events',
     symbol: '🎭',
     intro:
-      'Folk opera, court music, and water puppetry run on indoor stages throughout the year — rain-proof culture in every travel month.',
+      'Lantern nights, folk opera, court music, and water puppetry run throughout the year — rain-proof culture and monthly rites in every travel month.',
   },
 }
 

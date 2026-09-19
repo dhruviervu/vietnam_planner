@@ -5,7 +5,6 @@ const SECTIONS = [
   { id: 'logistics-sim', n: '02', label: 'Connectivity' },
   { id: 'logistics-money', n: '03', label: 'Money' },
   { id: 'logistics-costs', n: '04', label: 'Costs' },
-  { id: 'logistics-insurance', n: '05', label: 'Insurance' },
 ] as const
 
 export function SectionNav() {

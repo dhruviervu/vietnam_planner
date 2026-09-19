@@ -92,8 +92,10 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
       <h2 className="font-serif text-[clamp(1.35rem,2.8vw,1.7rem)] font-semibold text-ink">
         Where Should You Eat?
       </h2>
-      <p className="mt-1 max-w-[50ch] text-[0.88rem] text-muted">
-        Places worth going to — filter by dish if you already know what you want to taste.
+      <p className="mt-1 max-w-[62ch] text-[0.88rem] text-muted">
+        We are showing a shortlist of some restaurants there are MANY more places to eat so don&apos;t
+        worry, there will always be options on places to eat - just make sure to check the menu and
+        reviews!
       </p>
       {hasTrip ? (
         <p className="mt-2 text-[0.75rem] font-semibold text-sage">

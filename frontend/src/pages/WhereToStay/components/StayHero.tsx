@@ -14,9 +14,10 @@ export function StayHero() {
         <h1 className="mt-1 font-serif text-[clamp(1.45rem,3vw,1.95rem)] font-semibold leading-[1.12] text-paper">
           Neighbourhoods and hotels
         </h1>
-        <p className="mt-1 max-w-[58ch] text-[0.84rem] leading-relaxed text-paper/80">
-          Pick a city, compare neighbourhoods, then browse hotels — independently, like restaurants
-          and dishes.
+        <p className="mt-1 max-w-[62ch] text-[0.84rem] leading-relaxed text-paper/80">
+          Check out all major neighbourhoods in each city, then browse hotels and stays. You CAN use
+          other booking websites to find hotels you like we just show a shortlist of some popular
+          hotels in each neighbourhood.
         </p>
       </motion.div>
     </section>

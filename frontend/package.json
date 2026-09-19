@@ -7,14 +7,20 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
+    "test": "vitest run",
     "preview": "vite preview",
     "generate:maps": "node scripts/generate-getting-around-maps.mjs",
     "generate:city-geo": "node scripts/generate-city-geography.mjs",
     "generate:hoi-an-stay-map": "node scripts/generate-hoi-an-stay-map.mjs",
     "fetch:hoi-an-stay-map": "node scripts/fetch-hoi-an-osm-tiles.mjs",
-    "fetch:experience-media": "node scripts/fetch-experience-media.mjs"
+    "fetch:experience-media": "node scripts/fetch-experience-media.mjs",
+    "fetch:place-hours": "npx tsx scripts/fetch-place-hours.ts",
+    "seed:sight-images": "npx tsx ../scripts/seed-images/seed-images.ts --dry-run"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "d3-geo": "^3.1.1",
     "framer-motion": "^13.1.0",
     "jspdf": "^4.2.1",
@@ -42,6 +48,7 @@
     "tailwindcss": "^3.4.19",
     "topojson-client": "^3.1.0",
     "typescript": "~6.0.2",
-    "vite": "^8.2.0"
+    "vite": "^8.2.0",
+    "vitest": "^5.0.0"
   }
 }

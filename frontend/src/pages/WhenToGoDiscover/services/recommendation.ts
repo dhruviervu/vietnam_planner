@@ -245,7 +245,7 @@ export function classifyMonthChoices(_rec?: TravelRecommendation): ChoiceGroup[]
     },
     {
       id: 'tet',
-      label: 'Built around Tết',
+      label: 'Built around Tết Festival',
       months: [2],
     },
     {

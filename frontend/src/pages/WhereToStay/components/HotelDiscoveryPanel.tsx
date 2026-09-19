@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { hotelWebsiteLinks } from '../data/hotelWebsites'
 import type { StayCityId, StayProperty } from '../data/types'
-import { lookupHotel } from '../services/hotelLookup'
+import { lookupHotel, INVALID_HOTEL_LINK_MESSAGE, looksLikeWebUrl } from '../services/hotelLookup'
 
 type Props = {
   cityId: StayCityId
@@ -43,6 +43,10 @@ export function HotelDiscoveryPanel({
     setStatus(null)
     setLoading(true)
     try {
+      if (!looksLikeWebUrl(query)) {
+        setError(INVALID_HOTEL_LINK_MESSAGE)
+        return
+      }
       const result = await lookupHotel({
         query,
         cityId,
@@ -63,7 +67,7 @@ export function HotelDiscoveryPanel({
       )
       setQuery('')
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Lookup failed. Try another name.'
+      const message = err instanceof Error ? err.message : INVALID_HOTEL_LINK_MESSAGE
       setError(message)
     } finally {
       setLoading(false)
@@ -78,8 +82,9 @@ export function HotelDiscoveryPanel({
         Browse the full market
       </p>
       <p className="mt-1.5 max-w-[64ch] text-[0.86rem] leading-relaxed text-ink/85">
-        We don&apos;t have every hotel in {cityLabel} yet. Find one you like, then paste its name or
-        website link here — we&apos;ll add it to your itinerary.
+        We don&apos;t list every hotel in every city yet. Find one you like - from the websites shown
+        below, then paste the URL link of the hotel you are selecting here — we&apos;ll add it to
+        your itinerary.
       </p>
 
       <div className="mt-4 grid gap-2 sm:grid-cols-5">
@@ -104,7 +109,7 @@ export function HotelDiscoveryPanel({
       >
         <label className="min-w-0 flex-1">
           <span className="text-[0.62rem] font-bold uppercase tracking-[0.12em] text-muted">
-            Hotel name or listing URL
+            Hotel listing URL
           </span>
           <input
             value={query}
@@ -113,7 +118,7 @@ export function HotelDiscoveryPanel({
               setError(null)
               setStatus(null)
             }}
-            placeholder="e.g. Metropole Hanoi, or paste a hotel website"
+            placeholder="Paste the hotel URL here"
             className="mt-1 w-full rounded-[10px] border border-ink/15 bg-paper px-3 py-2 text-[0.86rem] text-ink outline-none transition focus:border-terracotta/40 focus:ring-2 focus:ring-terracotta/20"
           />
         </label>
@@ -130,7 +135,7 @@ export function HotelDiscoveryPanel({
         </label>
         <button
           type="submit"
-          disabled={loading || query.trim().length < 3}
+          disabled={loading || query.trim().length < 8}
           className="rounded-[10px] bg-terracotta px-4 py-2 text-[0.8rem] font-bold text-paper transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-50 sm:mb-px"
         >
           {loading ? 'Fetching…' : 'Add Stay'}

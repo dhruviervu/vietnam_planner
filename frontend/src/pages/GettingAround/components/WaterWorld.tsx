@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { WATER_MODES } from '../data/modes'
-import { WATER_OVERVIEW } from '../data/modeGuides'
 import { ModeJumpNav } from './ModeJumpNav'
 import { ModeSection } from './ModeSection'
 import { ComparisonStrip } from './ComparisonStrip'
+import { IslandWaterDesk } from './IslandWaterDesk'
 
 const WATER_ATLAS = WATER_MODES
 
@@ -55,34 +55,12 @@ export function WaterWorld({
         </div>
       </div>
 
-      <div className="space-y-4">
-        {WATER_OVERVIEW.map((block) => (
-          <article
-            key={block.title}
-            className="overflow-hidden rounded-[18px] border border-ink/8 bg-cream/55"
-          >
-            <div className="grid gap-0 sm:grid-cols-[minmax(0,1fr)_10rem]">
-              <div className="px-5 py-4">
-                <h3 className="font-serif text-[1.15rem] font-semibold text-ink">{block.title}</h3>
-                <p className="mt-2 text-[0.92rem] leading-[1.75] text-ink/90">{block.body}</p>
-              </div>
-              {block.image ? (
-                <div className="relative hidden aspect-square sm:block">
-                  <img src={block.image} alt="" className="h-full w-full object-cover" loading="lazy" />
-                </div>
-              ) : null}
-            </div>
-            {block.image ? (
-              <div className="relative aspect-[16/7] sm:hidden">
-                <img src={block.image} alt="" className="h-full w-full object-cover" loading="lazy" />
-              </div>
-            ) : null}
-          </article>
-        ))}
-      </div>
+      <IslandWaterDesk />
 
-      <div className="mt-10">
-        <p className="text-[0.58rem] font-bold uppercase tracking-[0.12em] text-muted">Water modes</p>
+      <div className="mt-14">
+        <p className="text-[0.58rem] font-bold uppercase tracking-[0.12em] text-muted">
+          Water modes in more detail
+        </p>
         <ModeJumpNav
           modes={WATER_ATLAS}
           activeId={activeModeId}

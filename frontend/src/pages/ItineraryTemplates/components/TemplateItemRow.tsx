@@ -74,7 +74,7 @@ export function TemplateItemRow({ slot, compact }: Props) {
       tabIndex={itemHref ? 0 : undefined}
     >
       {slot.thumb ? (
-        <img src={slot.thumb} alt="" className={`${thumbSize} shrink-0 rounded-[10px] object-cover`} />
+        <img src={slot.thumb} alt="" loading="lazy" decoding="async" className={`${thumbSize} shrink-0 rounded-[10px] object-cover`} />
       ) : (
         <div
           className={`flex ${thumbSize} shrink-0 items-center justify-center rounded-[10px] text-[1.25rem] ${

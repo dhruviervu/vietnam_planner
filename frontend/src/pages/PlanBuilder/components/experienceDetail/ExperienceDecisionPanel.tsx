@@ -1,9 +1,12 @@
 import { useState, type MouseEvent } from 'react'
 import type { Experience } from '../../types'
 import { formatFromPrice } from '../../lib/pricing'
+import { hoursLabelForSource } from '../../lib/yourVietnam/openingHours'
 import { flyToTripBag } from '../../lib/flyToTripBag'
 import { getExperienceImages } from '../../lib/pricing'
 import { getExperienceDetailBlurb } from '../../lib/experienceDetailBlurb'
+import { getSightProviderOffers } from '../../data/sightProviders'
+import { SeeProvidersControl } from '../SeeProvidersControl'
 
 type Props = {
   experience: Experience
@@ -23,6 +26,7 @@ export function ExperienceDecisionPanel({
   const [justAdded, setJustAdded] = useState(false)
   const fromPrice = formatFromPrice(experience.price, experience.priceType)
   const blurb = getExperienceDetailBlurb(experience)
+  const providerOffers = getSightProviderOffers(experience)
 
   function handlePrimary(e: MouseEvent<HTMLButtonElement>) {
     if (selected) {
@@ -71,6 +75,12 @@ export function ExperienceDecisionPanel({
         <Fact label="Duration" value={`⏱ ${experience.durationLabel}`} />
         <Fact label="From" value={`💰 ${fromPrice}`} />
       </div>
+      <div className="mt-2 rounded-xl bg-cream px-3 py-2.5">
+        <p className="text-[0.62rem] font-bold uppercase tracking-wide text-muted">Opening hours</p>
+        <p className="mt-0.5 text-[0.88rem] font-semibold leading-snug text-ink">
+          {hoursLabelForSource('experience', experience.id, experience.hours)}
+        </p>
+      </div>
 
       <p className="mt-5 text-[0.94rem] leading-[1.65] text-ink/90">
         {blurb.replace(/[.…]+$/, '').trim()}{' '}
@@ -83,7 +93,7 @@ export function ExperienceDecisionPanel({
         </button>
       </p>
 
-      <div className="mt-5 flex flex-wrap gap-3">
+      <SeeProvidersControl offers={providerOffers} sightName={experience.name}>
         <button
           type="button"
           onClick={handlePrimary}
@@ -99,7 +109,7 @@ export function ExperienceDecisionPanel({
               ? '✓ Added to Your Trip'
               : '+ Add to Trip'}
         </button>
-      </div>
+      </SeeProvidersControl>
     </div>
   )
 }
