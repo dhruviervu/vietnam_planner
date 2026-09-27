@@ -5,10 +5,12 @@ export type PriceBasis = 'per_vehicle' | 'per_person' | 'per_trip' | 'fixed'
 export type DataConfidence = 'typical' | 'estimated' | 'current' | 'unknown'
 export type AvailabilityStatus = 'available' | 'limited' | 'unavailable' | 'unknown'
 export type TimeBucket = 'not-set' | 'morning' | 'afternoon' | 'evening' | 'late'
+export type TransferBudget = 'saver' | 'typical' | 'comfort'
 
-/** Canonical transport modes — do not add taxi/ride-hail/bus variants here. */
+/** Canonical transport modes shown on the airport transfer page. */
 export type TransportModeId =
   | 'car-taxi'
+  | 'ride-hailing'
   | 'private-transfer'
   | 'public-bus'
   | 'shared-transfer'
@@ -156,6 +158,7 @@ export type ArrivalContext = {
   hasAccessibilityNeed: boolean
   arrivalLabel: string | null
   direction: TransferDirection
+  budget: TransferBudget
   budgetPriority: boolean
   /** Optional route labels for explanations — not required for typical browsing. */
   routeAirportCode?: AirportId | null

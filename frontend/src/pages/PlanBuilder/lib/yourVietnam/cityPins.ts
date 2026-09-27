@@ -1,8 +1,10 @@
-import { PLACES, getPlace } from '../../../GettingAround/data/places'
+import { getPlace } from '../../../GettingAround/data/places'
 import type { PlaceId } from '../../../GettingAround/data/types'
-import { mapLabelToPlaceId } from '../../../GettingAround/lib/tripBagPlaces'
 import { CITY_ACTIVITIES } from '../../data/activities'
 import { EXPERIENCES } from '../../data/experiences'
+import { resolvePlaceId } from './placeResolve'
+
+export { resolvePlaceId }
 
 export type CityPin = {
   placeId: PlaceId
@@ -29,18 +31,6 @@ const PLACE_LEG_REGION: Partial<Record<PlaceId, string>> = {
   mekong: 'Mekong',
   'can-tho': 'Mekong',
   'phu-quoc': 'Phu Quoc',
-}
-
-export function resolvePlaceId(city?: string, region?: string): PlaceId | null {
-  if (city) {
-    const fromCity = mapLabelToPlaceId(city)
-    if (fromCity) return fromCity
-    const folded = fold(city)
-    const byLabel = PLACES.find((p) => fold(p.label) === folded)
-    if (byLabel) return byLabel.id
-  }
-  if (region) return mapLabelToPlaceId(region)
-  return null
 }
 
 export function placeLabel(placeId: PlaceId): string {
@@ -125,12 +115,4 @@ export function buildCityPins(
   return northToSouth(pins.map((p) => p.placeId))
     .map((id) => pins.find((p) => p.placeId === id)!)
     .filter(Boolean)
-}
-
-function fold(s: string) {
-  return s
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .trim()
 }

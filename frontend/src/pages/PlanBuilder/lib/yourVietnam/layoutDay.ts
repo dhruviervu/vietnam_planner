@@ -28,6 +28,9 @@ import { PIN_BY_SOURCE_ID } from './itineraryPinCatalog'
 import { placeCoords } from './cityPins'
 import type { PlaceId } from '../../../GettingAround/data/types'
 import { timePreferenceForItem, timePreferenceViolation } from './sightTiming'
+import { isSight, newDaySlotId } from './itemKind'
+
+export { isSight, newDaySlotId }
 
 function sightseeingFirst(tour: ItineraryItem[]): ItineraryItem[] {
   const evening: ItineraryItem[] = []
@@ -37,17 +40,6 @@ function sightseeingFirst(tour: ItineraryItem[]): ItineraryItem[] {
     else rest.push(it)
   }
   return [...rest, ...evening]
-}
-
-export function isSight(
-  item: ItineraryItem,
-): item is ItineraryItem & { kind: 'experience' | 'activity' | 'shopping' | 'meal' } {
-  return (
-    item.kind === 'experience' ||
-    item.kind === 'activity' ||
-    item.kind === 'shopping' ||
-    (item.kind === 'meal' && Boolean(item.sourceId))
-  )
 }
 
 function insertMealIntoTour(tour: ItineraryItem[], meal: ItineraryItem): ItineraryItem[] {
@@ -228,10 +220,6 @@ export function applySightOrder(
 
 export function sightSourceIds(period: DayPeriod): string[] {
   return period.items.filter(isSight).map((it) => it.sourceId).filter((id): id is string => Boolean(id))
-}
-
-export function newDaySlotId() {
-  return `slot:${Math.random().toString(36).slice(2, 8)}${Date.now().toString(36).slice(-4)}`
 }
 
 export function derivedSlotsFromDays(days: YourVietnamDay[]) {

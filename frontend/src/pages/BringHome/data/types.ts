@@ -101,9 +101,12 @@ export type ShopSort =
 
 export type ShopTypeFilter = 'markets' | 'specialty' | 'craft' | 'malls' | null
 
+export type ShopGoodsCategory = 'apparel' | 'bags' | 'footwear' | 'electronics'
+
 export type ShopFilter = {
   openNow?: boolean
   type?: ShopTypeFilter
+  goods?: ShopGoodsCategory | null
 }
 
 export type ShoppingDestination = {
@@ -141,4 +144,6 @@ export type ShoppingDestination = {
   featured: boolean
   /** Famous-marketplace id used by the trip bag / itinerary, when this listing is that market. */
   itineraryId?: string
+  /** Product categories this place actually stocks — used by shop filters. */
+  goodsCategories?: ShopGoodsCategory[]
 }

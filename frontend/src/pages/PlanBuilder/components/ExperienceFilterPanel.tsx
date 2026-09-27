@@ -135,6 +135,7 @@ type BodyProps = {
   regions: string[]
   onSelectCity: (city: string, turningOn: boolean) => void
   resultCount: number
+  compact?: boolean
 }
 
 export function ExperienceFilterPanelBody({
@@ -146,6 +147,7 @@ export function ExperienceFilterPanelBody({
   regions: _regions,
   onSelectCity,
   resultCount,
+  compact = false,
 }: BodyProps) {
   const activeCount = countActiveExperienceFilters(filters)
   const selectedCities = filters.cities ?? []
@@ -155,11 +157,19 @@ export function ExperienceFilterPanelBody({
     ? rest
     : rest.filter((city) => selectedCities.includes(city))
 
+  const allVietnamOn = selectedCities.length === 0
+
+  function selectAllVietnam() {
+    if (allVietnamOn) return
+    onChange({ ...filters, cities: [] })
+    onSelectCity('', false)
+  }
+
   function toggleCity(city: string) {
     const turningOn = !selectedCities.includes(city)
     onChange({
       ...filters,
-      cities: turningOn ? [...selectedCities, city] : selectedCities.filter((c) => c !== city),
+      cities: turningOn ? [city] : [],
     })
     onSelectCity(city, turningOn)
   }
@@ -171,6 +181,83 @@ export function ExperienceFilterPanelBody({
         ? filters.likings.filter((x) => x !== id)
         : [...filters.likings, id],
     })
+  }
+
+  const cityChips = (
+    <>
+      <button
+        type="button"
+        onClick={selectAllVietnam}
+        className={`rounded-full px-2.5 py-1.5 text-[0.72rem] font-bold ${
+          allVietnamOn
+            ? 'bg-ink text-paper'
+            : 'bg-cream text-ink ring-1 ring-ink/10 hover:bg-cream-deep'
+        } ${compact ? 'px-2 py-1 text-[0.68rem]' : ''}`}
+      >
+        All Vietnam
+      </button>
+      {pinned.map((city) => (
+        <FilterChip
+          key={city}
+          active={selectedCities.includes(city)}
+          onClick={() => toggleCity(city)}
+          className={compact ? 'px-2 py-1 text-[0.68rem]' : ''}
+        >
+          {city}
+          {compact ? null : <span className="ml-1 opacity-70">{cityCounts[city] ?? 0}</span>}
+        </FilterChip>
+      ))}
+      {extraCities.map((city) => (
+        <FilterChip
+          key={city}
+          active={selectedCities.includes(city)}
+          onClick={() => toggleCity(city)}
+          className={compact ? 'px-2 py-1 text-[0.68rem]' : ''}
+        >
+          {city}
+          {compact ? null : <span className="ml-1 opacity-70">{cityCounts[city] ?? 0}</span>}
+        </FilterChip>
+      ))}
+      {rest.length > 0 ? (
+        <button
+          type="button"
+          onClick={() => setMoreCities((v) => !v)}
+          className="rounded-full px-2 py-1 text-[0.68rem] font-bold text-terracotta hover:underline"
+        >
+          {moreCities ? 'Fewer' : `+${rest.length} cities`}
+        </button>
+      ) : null}
+    </>
+  )
+
+  const vibeChips = CATALOG_LIKING_CHIPS.map((c) => (
+    <FilterChip
+      key={c.id}
+      active={filters.likings.includes(c.id)}
+      onClick={() => toggleLiking(c.id)}
+      className={compact ? 'px-2 py-1 text-[0.68rem]' : ''}
+    >
+      {c.label}
+    </FilterChip>
+  ))
+
+  if (compact) {
+    return (
+      <div className="space-y-1.5">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span className="shrink-0 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-muted">
+            Cities
+          </span>
+          {cityChips}
+        </div>
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span className="shrink-0 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-muted">
+            Show me
+          </span>
+          {vibeChips}
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -195,106 +282,59 @@ export function ExperienceFilterPanelBody({
         <p className="mb-1.5 text-[0.64rem] font-bold uppercase tracking-[0.14em] text-muted">
           Cities
         </p>
-        <div className="flex flex-wrap gap-1.5">
-          {pinned.map((city) => (
-            <FilterChip
-              key={city}
-              active={selectedCities.includes(city)}
-              onClick={() => toggleCity(city)}
-            >
-              {city}
-              <span className="ml-1 opacity-70">{cityCounts[city] ?? 0}</span>
-            </FilterChip>
-          ))}
-          {extraCities.map((city) => (
-            <FilterChip
-              key={city}
-              active={selectedCities.includes(city)}
-              onClick={() => toggleCity(city)}
-            >
-              {city}
-              <span className="ml-1 opacity-70">{cityCounts[city] ?? 0}</span>
-            </FilterChip>
-          ))}
-          {rest.length > 0 ? (
-            <button
-              type="button"
-              onClick={() => setMoreCities((v) => !v)}
-              className="rounded-full px-2.5 py-1.5 text-[0.72rem] font-bold text-terracotta hover:underline"
-            >
-              {moreCities ? 'Fewer cities' : `+${rest.length} cities`}
-            </button>
-          ) : null}
-        </div>
+        <div className="flex flex-wrap gap-1.5">{cityChips}</div>
       </div>
 
       <div>
         <p className="mb-1.5 text-[0.64rem] font-bold uppercase tracking-[0.14em] text-muted">
           Show me
         </p>
-        <div className="flex flex-wrap gap-1.5">
-        {CATALOG_LIKING_CHIPS.map((c) => (
-          <FilterChip
-            key={c.id}
-            active={filters.likings.includes(c.id)}
-            onClick={() => toggleLiking(c.id)}
-          >
-            {c.label}
-          </FilterChip>
-        ))}
-        </div>
+        <div className="flex flex-wrap gap-1.5">{vibeChips}</div>
       </div>
     </div>
   )
 }
 
-export function ExperienceFilterBar(props: BodyProps) {
-  const [open, setOpen] = useState(true)
-  const activeCount = countActiveExperienceFilters(props.filters)
+export function ExperienceFilterBar(
+  props: BodyProps & { expanded?: boolean; onToggle?: () => void },
+) {
+  const { expanded, onToggle, ...body } = props
+  const [localOpen, setLocalOpen] = useState(true)
+  const open = expanded ?? localOpen
+  const setOpen = onToggle ?? (() => setLocalOpen((v) => !v))
+  const activeCount = countActiveExperienceFilters(body.filters)
 
   return (
-    <div className="rounded-[18px] border border-ink/8 bg-paper/90 px-3.5 py-2.5 shadow-soft">
-      <div className="flex items-center justify-between gap-2">
+    <div className="flex items-start gap-3 py-1.5">
+      <button
+        type="button"
+        onClick={setOpen}
+        aria-expanded={open}
+        aria-label={open ? 'Hide filters' : 'Show filters'}
+        className="mt-0.5 flex shrink-0 items-center gap-1.5 rounded-full px-1 py-0.5 text-ink transition hover:bg-cream-deep"
+      >
+        <span className="grid h-7 w-7 place-items-center rounded-full bg-paper text-ink ring-1 ring-ink/8">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+            <path d="M4 6h16M7 12h10M10 18h4" strokeLinecap="round" />
+          </svg>
+        </span>
+        <span className="text-[0.72rem] font-bold tracking-wide">{open ? 'Hide' : 'Show'}</span>
+      </button>
+      <div
+        className="min-w-0 flex-1 overflow-hidden transition-[opacity,max-height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ maxHeight: open ? 160 : 0, opacity: open ? 1 : 0 }}
+      >
+        <ExperienceFilterPanelBody {...body} compact />
+      </div>
+      {activeCount > 0 ? (
         <button
           type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          className="flex items-center gap-2 text-left"
+          onClick={body.onClear}
+          className="mt-1 shrink-0 text-[0.7rem] font-bold text-terracotta hover:underline"
         >
-          <span className="grid h-8 w-8 place-items-center rounded-xl bg-cream text-ink">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-              <path d="M4 6h16M7 12h10M10 18h4" strokeLinecap="round" />
-            </svg>
-          </span>
-          <span>
-            <span className="block text-[0.78rem] font-bold text-ink">
-              Filters{activeCount > 0 ? ` · ${activeCount}` : ''}
-            </span>
-            <span className="block text-[0.68rem] text-muted">
-              {open ? 'Hide' : 'Show cities and vibes'}
-            </span>
-          </span>
+          Clear
         </button>
-        {activeCount > 0 ? (
-          <button
-            type="button"
-            onClick={props.onClear}
-            className="text-[0.72rem] font-bold text-terracotta hover:underline"
-          >
-            Clear
-          </button>
-        ) : null}
-      </div>
-      <div
-        className="grid transition-[grid-template-rows,opacity] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
-        style={{ gridTemplateRows: open ? '1fr' : '0fr', opacity: open ? 1 : 0.35 }}
-      >
-        <div className="overflow-hidden">
-          <div className="pt-3">
-            <ExperienceFilterPanelBody {...props} />
-          </div>
-        </div>
-      </div>
+      ) : null}
     </div>
   )
 }

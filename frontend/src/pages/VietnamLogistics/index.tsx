@@ -8,7 +8,6 @@ import { SectionNav } from './components/SectionNav'
 import { VisaSection } from './components/VisaSection'
 import { SimSection } from './components/SimSection'
 import { MoneySection } from './components/MoneySection'
-import { CostsSection } from './components/CostsSection'
 import { InsuranceSection } from './components/InsuranceSection'
 
 const DEFAULT_PROFILE: TravelProfile = {
@@ -47,17 +46,9 @@ export function VietnamLogisticsPage({ embedded = false }: { embedded?: boolean 
             tripLength={profile.tripLength}
           />
           <div className="h-px bg-ink/10" aria-hidden />
-          <SimSection
-            tripLength={profile.tripLength}
-            arrivalDate={profile.arrivalDate}
-          />
+          <SimSection fx={rates} />
           <div className="h-px bg-ink/10" aria-hidden />
           <MoneySection fx={rates} fxStatus={status} />
-          <div className="h-px bg-ink/10" aria-hidden />
-          <CostsSection
-            fx={rates}
-            travellerType={profile.travellerType}
-          />
           <div className="h-px bg-ink/10" aria-hidden />
           <InsuranceSection />
         </div>

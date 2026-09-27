@@ -81,6 +81,17 @@ export function startTripCompareSync() {
   }
 
   window.addEventListener('storage', (e) => {
+    if (e.key === 'vn-itinerary-pipeline') {
+      const on = e.newValue === '1'
+      try {
+        if (on) sessionStorage.setItem('vn-itinerary-pipeline', '1')
+        else sessionStorage.removeItem('vn-itinerary-pipeline')
+      } catch {
+        /* ignore */
+      }
+      useTripStore.setState({ itineraryPipelineActive: on })
+      return
+    }
     if (e.key !== STORAGE_KEY || !e.newValue) return
     try {
       applyRemote(JSON.parse(e.newValue) as SyncPayload)

@@ -4,7 +4,7 @@ import type {
   PeriodId,
   YourVietnamDay,
 } from '../pages/PlanBuilder/lib/yourVietnam/types'
-import { isSight } from '../pages/PlanBuilder/lib/yourVietnam/layoutDay'
+import { isSight } from '../pages/PlanBuilder/lib/yourVietnam/itemKind'
 import type { TransportModeId } from '../pages/PlanBuilder/lib/yourVietnam/osrmRoute'
 
 export type ItineraryPlanSource = 'bag' | 'blank'

@@ -4,10 +4,11 @@ import { CITY_ACTIVITIES, getActivityImages } from '../data/activities'
 import { ExperienceCard } from './ExperienceCard'
 import { ActivityCard } from './ActivityCard'
 import { getExperienceImages } from '../lib/pricing'
-import { experiencesCityUrl, experiencesUrl } from '../lib/yourVietnam/links'
+import { experiencesCityUrl, experiencesUrl, openDetailHref } from '../lib/yourVietnam/links'
 import { buildCityRankIndex } from '../services/cityCatalog'
 import type { CitySightGroup, ScoredBagItem } from '../lib/yourVietnam/itineraryOptimize'
 import { useItineraryTripStore } from '../../../store/itineraryTripStore'
+import '../../../store/tripCatalogBoot'
 
 export function BagItemCards({ items }: { items: ScoredBagItem[] }) {
   const rankById = useMemo(() => buildCityRankIndex(EXPERIENCES), [])
@@ -50,7 +51,7 @@ function openItemDetail(it: ScoredBagItem) {
     it.kind === 'experience'
       ? `/plan/builder/experience/${it.id}`
       : `/plan/builder/activity/${it.id}`
-  window.open(href, '_blank')
+  openDetailHref(href)
 }
 
 function BagMiniSightCard({

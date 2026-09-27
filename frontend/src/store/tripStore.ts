@@ -1,6 +1,5 @@
 import { create, type StateCreator } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { buildItinerary, selectedRegionsFromExperiences } from '../pages/PlanBuilder/lib/buildItinerary'
 import type {
   BudgetMode,
   BuilderStepId,
@@ -17,7 +16,7 @@ import type {
 import { stepIndex } from '../pages/PlanBuilder/steps'
 import type { StayProperty } from '../pages/WhereToStay/data/types'
 import type { ItineraryBreak, ItineraryDaySlot, PeriodId } from '../pages/PlanBuilder/lib/yourVietnam/types'
-import { newDaySlotId } from '../pages/PlanBuilder/lib/yourVietnam/layoutDay'
+import { newDaySlotId } from '../pages/PlanBuilder/lib/yourVietnam/itemKind'
 import { DEFAULT_DAY_START_TIME } from '../pages/PlanBuilder/lib/yourVietnam/dayWindows'
 import type { HopTransportRule, TransportModeId } from '../pages/PlanBuilder/lib/yourVietnam/osrmRoute'
 import {
@@ -26,12 +25,12 @@ import {
   type ItineraryPlan,
   type ItineraryPlanPlanning,
 } from './itineraryPlans'
-import { EXPERIENCES } from '../pages/PlanBuilder/data/experiences'
-import { CITY_ACTIVITIES } from '../pages/PlanBuilder/data/activities'
-import { SHOPPING_ITEMS } from '../pages/PlanBuilder/data/shopping'
-import { resolvePlaceId } from '../pages/PlanBuilder/lib/yourVietnam/cityPins'
+import { resolvePlaceId } from '../pages/PlanBuilder/lib/yourVietnam/placeResolve'
+import { getTripCatalog } from './tripCatalog'
 
 const PERSIST_KEY = 'vietnam-trip-builder'
+
+const EMPTY_COST_TOTALS: CostTotals = { activities: 0, food: 0, stay: 0, transport: 0, shopping: 0, total: 0 }
 
 function uniqueIds(ids: string[] | undefined, fallback: string[]): string[] {
   const seen = new Set<string>()
@@ -123,8 +122,7 @@ export type TripState = {
   itineraryPlans: ItineraryPlan[]
   activeItineraryPlanId: string
   /**
-   * True only after the user starts via "Build itinerary".
-   * Browse links to the same builder URLs must not show the left progress rail.
+   * True while the traveller is moving through trip pages with the progress rail.
    */
   itineraryPipelineActive: boolean
   enterItineraryPipeline: () => void
@@ -967,16 +965,17 @@ const createTripSlice: StateCreator<TripState> = (set, get) => ({
         set((state) => {
           const { [placeId]: _nights, ...cityNightOverrides } = state.cityNightOverrides
           const { [placeId]: _transfer, ...cityTransferSlot } = state.cityTransferSlot
+          const catalog = getTripCatalog()
           const expDrop = state.selectedExperienceIds.filter((id) => {
-            const e = EXPERIENCES.find((row) => row.id === id)
+            const e = catalog?.experiences.find((row) => row.id === id)
             return Boolean(e && bagPlaceId(e.city, e.region) === placeId)
           })
           const actDrop = state.selectedActivityIds.filter((id) => {
-            const a = CITY_ACTIVITIES.find((row) => row.id === id)
+            const a = catalog?.activities.find((row) => row.id === id)
             return Boolean(a && bagPlaceId(a.cityName, a.cityId) === placeId)
           })
           const shopDrop = state.selectedShoppingIds.filter((id) => {
-            const s = SHOPPING_ITEMS.find((row) => row.id === id)
+            const s = catalog?.shopping.find((row) => row.id === id)
             return Boolean(s && bagPlaceId(s.city, s.region) === placeId)
           })
           const dropIds = [...expDrop, ...actDrop, ...shopDrop]
@@ -1000,11 +999,14 @@ const createTripSlice: StateCreator<TripState> = (set, get) => ({
           return next
         }),
 
-      getSelectedRegions: () => selectedRegionsFromExperiences(get().selectedExperienceIds),
+      getSelectedRegions: () =>
+        getTripCatalog()?.selectedRegionsFromExperiences(get().selectedExperienceIds) ?? [],
 
       getItinerary: () => {
         const s = get()
-        return buildItinerary({
+        const catalog = getTripCatalog()
+        if (!catalog) return { days: [], totals: EMPTY_COST_TOTALS }
+        return catalog.buildItinerary({
           days: s.basics.days,
           startDate: s.basics.startDate,
           travelStyle: s.basics.travelStyle,

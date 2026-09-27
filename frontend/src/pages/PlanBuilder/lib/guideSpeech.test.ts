@@ -19,6 +19,29 @@ Keep voices down.`
     expect(sections[0]?.body).toContain('Mid tide')
   })
 
+  it('keeps every paragraph under a numbered heading in one section', () => {
+    const guide = `## Overview
+
+Official name: Test
+Location: District 1
+
+Current visitor note.
+
+## 1. First impression
+
+First body paragraph.
+
+Second body paragraph.
+
+## 2. Next
+
+Only this.`
+    const sections = titleGuideParagraphs(guide, 'Test sight')
+    expect(sections.map((s) => s.title)).toEqual(['Overview', '1. First impression', '2. Next'])
+    expect(sections[1]?.body).toContain('First body paragraph')
+    expect(sections[1]?.body).toContain('Second body paragraph')
+  })
+
   it('joins a lone heading with the next block', () => {
     const blocks = parseGuideBlocks(`## On deck
 
@@ -37,6 +60,17 @@ describe('guideSpeech', () => {
     expect(spoken).toContain('Bai Chay')
     expect(spoken).toContain('dong')
     expect(spoken).toContain('25 metres')
+    expect(foldForSpeech('Notre-Dame. Pope John XXIII. Walk Notre-Dame → the post office.')).toMatch(
+      /Notre Dame.*Pope John the twenty-third.*then the post office/s,
+    )
+  })
+
+  it('announces numbered titles as parts, separate from the body', () => {
+    const units = unitsForSections([
+      { title: '1. First impression', body: 'The cathedral rises from Cong xa Paris.' },
+    ])
+    expect(units[0]?.text).toMatch(/^Part 1\./)
+    expect(units.some((u) => /cathedral rises/i.test(u.text))).toBe(true)
   })
 
   it('does not slice words mid-syllable on long sentences', () => {

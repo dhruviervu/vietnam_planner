@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { SHOPPING_ITEMS } from '../data/shopping'
 import { StageFooter } from '../components/StageFooter'
 import { useTripStore } from '../../../store/tripStore'
+import '../../../store/tripCatalogBoot'
 
 export function Shopping() {
   const regions = useTripStore((s) => s.getSelectedRegions())
@@ -33,9 +34,6 @@ export function Shopping() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-      <p className="mb-2 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">
-        Stage 5
-      </p>
       <h1 className="mb-3 font-serif text-[clamp(2rem,4vw,2.8rem)] font-semibold text-ink">
         Shopping along the way
       </h1>

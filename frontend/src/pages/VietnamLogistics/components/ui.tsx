@@ -95,7 +95,7 @@ export function SectionIntro({
         {title}
       </h2>
       {support ? (
-        <p className="mt-1 max-w-[58ch] text-[0.78rem] leading-snug text-muted">{support}</p>
+        <p className="mt-1 w-full text-[0.78rem] leading-snug text-muted">{support}</p>
       ) : null}
     </header>
   )

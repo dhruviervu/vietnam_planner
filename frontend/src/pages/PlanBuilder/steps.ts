@@ -12,7 +12,7 @@ export type BuilderStep = {
 }
 
 /**
- * Final Vietnam, Curated planning pipeline.
+ * Final TripBuilder planning pipeline.
  * Build itinerary walks the user through these stages in order.
  */
 export const BUILDER_STEPS: BuilderStep[] = [
@@ -21,21 +21,21 @@ export const BUILDER_STEPS: BuilderStep[] = [
     path: 'when-to-go',
     label: 'When to go',
     short: 'Timing',
-    continueLabel: 'Continue to Sights',
+    continueLabel: 'Continue to Attractions',
     nextId: 'experiences',
   },
   {
     id: 'experiences',
     path: 'experiences',
-    label: 'Sights',
-    short: 'Sights',
-    continueLabel: 'Continue to Things to Do',
+    label: 'Attractions',
+    short: 'Attractions',
+    continueLabel: 'Continue to Activities',
     nextId: 'activities',
   },
   {
     id: 'activities',
     path: 'activities',
-    label: 'Things to Do',
+    label: 'Activities',
     short: 'Activities',
     continueLabel: 'Continue to Where to Stay',
     nextId: 'stay',
@@ -59,15 +59,15 @@ export const BUILDER_STEPS: BuilderStep[] = [
   {
     id: 'eat',
     path: 'eat',
-    label: 'Taste of Vietnam',
-    short: 'Food',
+    label: 'Where to Eat',
+    short: 'Eat',
     continueLabel: 'Continue to Shopping',
     nextId: 'shopping',
   },
   {
     id: 'shopping',
     path: 'shopping',
-    label: 'Shopping',
+    label: 'Shopping in Vietnam',
     short: 'Shop',
     continueLabel: 'Continue to Airport Transfers',
     nextId: 'airport',
@@ -75,17 +75,17 @@ export const BUILDER_STEPS: BuilderStep[] = [
   {
     id: 'airport',
     path: 'airport',
-    label: 'Airport Transfers',
+    label: 'Airport Transfer',
     short: 'Airport',
-    continueLabel: 'Continue to Logistics',
+    continueLabel: 'Continue to Know before you go',
     nextId: 'logistics',
     optional: true,
   },
   {
     id: 'logistics',
     path: 'logistics',
-    label: 'Logistics',
-    short: 'Logistics',
+    label: 'Know before you go',
+    short: 'Prep',
     continueLabel: 'Review My Trip',
     nextId: 'itinerary',
   },
@@ -103,6 +103,41 @@ export function stepPath(id: BuilderStepId) {
   const step = BUILDER_STEPS.find((s) => s.id === id)
   return `/plan/builder/${step?.path ?? 'when-to-go'}`
 }
+
+export type PipelineNavItem = { to: string; label: string; step: BuilderStepId }
+
+export type PipelineNavGroup = {
+  title: string
+  items: PipelineNavItem[]
+}
+
+/** Same grouping as the home browse rail. */
+export const PIPELINE_NAV_GROUPS: PipelineNavGroup[] = [
+  {
+    title: 'Basics',
+    items: [
+      { to: stepPath('when-to-go'), label: 'When to Go', step: 'when-to-go' },
+      { to: stepPath('logistics'), label: 'Know before you go', step: 'logistics' },
+    ],
+  },
+  {
+    title: 'Logistics',
+    items: [
+      { to: stepPath('stay'), label: 'Where to stay', step: 'stay' },
+      { to: stepPath('transport'), label: 'Getting Around', step: 'transport' },
+      { to: stepPath('airport'), label: 'Airport Transfer', step: 'airport' },
+    ],
+  },
+  {
+    title: 'Itinerary',
+    items: [
+      { to: stepPath('experiences'), label: 'Attractions', step: 'experiences' },
+      { to: stepPath('activities'), label: 'Activities', step: 'activities' },
+      { to: stepPath('eat'), label: 'Where to Eat', step: 'eat' },
+      { to: stepPath('shopping'), label: 'Shopping in Vietnam', step: 'shopping' },
+    ],
+  },
+]
 
 export function stepIndex(id: BuilderStepId) {
   // Legacy aliases from the previous builder order

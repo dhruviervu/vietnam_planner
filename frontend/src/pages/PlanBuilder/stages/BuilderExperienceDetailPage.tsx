@@ -11,8 +11,7 @@ import { ExperienceDecisionPanel } from '../components/experienceDetail/Experien
 import { ExperienceGuide } from '../components/experienceDetail/ExperienceGuide'
 import { ExperienceVideoSection } from '../components/experienceDetail/ExperienceVideoSection'
 import { WhatToKnowSection } from '../components/experienceDetail/WhatToKnowSection'
-import { getExperienceDetailVideos } from '../lib/experienceMedia'
-import { BuilderProgressChrome } from '../components/BuilderProgressChrome'
+import { getExperienceDetailVideos, hasCuratedSightVideos } from '../lib/experienceMedia'
 import { ExperienceCard } from '../components/ExperienceCard'
 import { rankCityExperiences } from '../services/cityCatalog'
 import { pinNewSightToItinerary, readItineraryAddTarget } from '../lib/yourVietnam/itineraryAddTarget'
@@ -28,7 +27,7 @@ export function BuilderExperienceDetailPage() {
   const setExperienceSlot = useTripStore((s) => s.setExperienceSlot)
   const selected = selectedIds.includes(id)
 
-  const [time, setTime] = useState<TimeOfDay>('morning')
+  const [time] = useState<TimeOfDay>('morning')
   const [askSlot, setAskSlot] = useState(false)
 
   const tripDate = basics.dateMode === 'exact' && basics.startDate ? basics.startDate : null
@@ -53,14 +52,12 @@ export function BuilderExperienceDetailPage() {
 
   if (!experience || !details || !fit) {
     return (
-      <BuilderProgressChrome current="experiences" withNav>
         <main className="mx-auto max-w-content px-6 py-20 text-center">
           <h1 className="font-serif text-3xl font-semibold text-ink">Experience not found</h1>
           <button type="button" onClick={goBackToCatalog} className="btn-solid mt-6">
             Back to experiences
           </button>
         </main>
-      </BuilderProgressChrome>
     )
   }
 
@@ -68,12 +65,15 @@ export function BuilderExperienceDetailPage() {
     SIGHT_CATALOG.filter((item) => item.city === experience.city),
   )
   const alsoLike = cityRanked.filter((item) => item.id !== experience.id).slice(0, 4)
-  const videoCap =
-    experience.popularityTag === 'Must do' || experience.popularityTag === 'Popular' ? 3 : 2
-  const detailVideos = getExperienceDetailVideos(experience).slice(0, videoCap)
+  const detailVideosRaw = getExperienceDetailVideos(experience)
+  const detailVideos = hasCuratedSightVideos(experience.id)
+    ? detailVideosRaw
+    : detailVideosRaw.slice(
+        0,
+        experience.popularityTag === 'Must do' || experience.popularityTag === 'Popular' ? 3 : 2,
+      )
 
   return (
-    <BuilderProgressChrome current="experiences" withNav>
       <main className="mx-auto max-w-[1280px] px-[clamp(1.1rem,4vw,2rem)] pb-20 pt-5">
         {/* Decision-first viewport */}
         <section className="grid gap-6 lg:grid-cols-2 lg:items-start lg:gap-8">
@@ -157,6 +157,5 @@ export function BuilderExperienceDetailPage() {
           </section>
         )}
       </main>
-    </BuilderProgressChrome>
   )
 }

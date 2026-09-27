@@ -13,7 +13,7 @@ export const MODE_DEFINITIONS: Record<TransportModeId, ModeDef> = {
     shortLabel: 'Car / Taxi',
     image: img('photo-1511527661048-7f093d1f8c0b'),
     description:
-      'Point-to-point cars arranged at the airport or through an app. Usually the simplest option when you want to leave quickly without pre-booking a dedicated transfer.',
+      'Metered taxis (Mai Linh, Vinasun) at official ranks, or a pre-booked car with a name board. Same door-to-door idea — not ride-hailing apps.',
     bestFor: ['Solo / couples', 'Flexible timing', 'Direct destination'],
     whyChoose: ['Immediate availability', 'Direct journey', 'No fixed route'],
     tradeoff: 'Traffic and fare variation can make the final cost less predictable.',
@@ -34,6 +34,35 @@ export const MODE_DEFINITIONS: Record<TransportModeId, ModeDef> = {
       { icon: '📍', label: 'Destination' },
     ],
     journeyNote: 'Direct · typically 25–60 min',
+  },
+  'ride-hailing': {
+    id: 'ride-hailing',
+    symbol: '📱',
+    label: 'Ride-hailing',
+    shortLabel: 'Apps',
+    image: img('photo-1556742049-0cfed4f6a45d'),
+    description:
+      'Grab, Xanh SM, and Be — booked in-app with upfront fares. Walk to the marked pickup bay after you request the car.',
+    bestFor: ['Most tourists', 'Solo travellers', 'Transparent pricing'],
+    whyChoose: ['Fixed in-app price', 'GPS tracking', 'No language/currency barrier'],
+    tradeoff: 'Needs a SIM or data; pickup is a short walk from arrivals.',
+    priceBasis: 'per_trip',
+    passengers: '1–4',
+    luggageStars: 3,
+    luggageLabel: 'OK',
+    accessibilityLevel: 'Partial',
+    accessible: false,
+    lateNightOk: true,
+    groupFriendly: false,
+    comfort: 4,
+    reliability: 4,
+    operatingWindow: 'Typically 24/7 at major airports',
+    journey: [
+      { icon: '✈️', label: 'Airport' },
+      { icon: '📱', label: 'App pickup bay' },
+      { icon: '📍', label: 'Destination' },
+    ],
+    journeyNote: 'App ride · typically 25–60 min',
   },
   'private-transfer': {
     id: 'private-transfer',
@@ -100,7 +129,7 @@ export const MODE_DEFINITIONS: Record<TransportModeId, ModeDef> = {
     symbol: '🚐',
     label: 'Shared Transfer',
     shortLabel: 'Shared',
-    image: img('photo-1544620341-11cb2f96f2ca'),
+    image: img('photo-1464219789935-c2d9d9aba644'),
     description:
       'Reservation-based shared vans carrying multiple passengers — usually more structured than a street taxi and more direct than a public bus.',
     bestFor: ['Value', 'Couples / small groups', 'Moderate luggage'],
@@ -131,7 +160,7 @@ export const MODE_DEFINITIONS: Record<TransportModeId, ModeDef> = {
     shortLabel: 'Rental',
     image: img('photo-1485291571150-772bcfc10da5'),
     description:
-      'A rental vehicle or hired car-with-driver when you want control beyond a simple airport-to-hotel transfer — multi-stop days and independent itineraries.',
+      'A rental vehicle or hired car-with-driver when you want control beyond a simple airport-to-hotel drop. In Vietnam, car + driver is the usual choice; self-drive is limited and legally strict.',
     bestFor: ['Multi-stop trips', 'Independent itineraries', 'Continuing by road'],
     whyChoose: ['Flexible routing', 'Useful beyond one drop', 'Driver packages available'],
     tradeoff: 'More setup, higher cost, and unnecessary for a simple hotel transfer.',
@@ -155,33 +184,36 @@ export const MODE_DEFINITIONS: Record<TransportModeId, ModeDef> = {
   },
 }
 
-export const ALL_MODE_IDS: TransportModeId[] = [
-  'private-transfer',
-  'car-taxi',
-  'public-bus',
-  'shared-transfer',
-  'rental-driver',
-]
+export const ALL_MODE_IDS: TransportModeId[] = ['car-taxi', 'rental-driver', 'public-bus']
 
-/** Map legacy catalog IDs → canonical modes. */
+/** Map legacy catalog IDs → canonical modes. Shared shuttles and ride-hailing are dropped from the board. */
 export function toCanonicalModeIds(legacyIds: string[]): TransportModeId[] {
-  const map: Record<string, TransportModeId> = {
-    'private-transfer': 'private-transfer',
+  const map: Record<string, TransportModeId | null> = {
+    'private-transfer': 'car-taxi',
     taxi: 'car-taxi',
+    'car-taxi': 'car-taxi',
     'ride-hailing': 'car-taxi',
     'public-bus': 'public-bus',
     train: 'public-bus',
-    'airport-shuttle': 'shared-transfer',
+    'airport-shuttle': null,
+    'shared-transfer': null,
     'rental-car': 'rental-driver',
-    'car-taxi': 'car-taxi',
-    'shared-transfer': 'shared-transfer',
     'rental-driver': 'rental-driver',
   }
-  return [...new Set(legacyIds.map((id) => map[id]).filter(Boolean) as TransportModeId[])]
+  const set = new Set<TransportModeId>()
+  for (const id of legacyIds) {
+    const next = map[id]
+    if (next) set.add(next)
+  }
+  if (legacyIds.some((id) => id === 'taxi' || id === 'car-taxi' || id === 'ride-hailing' || id === 'private-transfer')) {
+    set.add('car-taxi')
+  }
+  return ALL_MODE_IDS.filter((id) => set.has(id))
 }
 
 const DEFAULT_COST: Record<TransportModeId, [number, number]> = {
   'car-taxi': [8, 20],
+  'ride-hailing': [5, 16],
   'private-transfer': [14, 28],
   'public-bus': [1, 4],
   'shared-transfer': [4, 10],
@@ -190,6 +222,7 @@ const DEFAULT_COST: Record<TransportModeId, [number, number]> = {
 
 const DEFAULT_TIME: Record<TransportModeId, [number, number]> = {
   'car-taxi': [25, 60],
+  'ride-hailing': [25, 60],
   'private-transfer': [25, 55],
   'public-bus': [45, 90],
   'shared-transfer': [35, 75],
@@ -230,6 +263,13 @@ function outboundJourney(id: TransportModeId): { icon: string; label: string }[]
     return [
       { icon: '📍', label: 'City pickup' },
       { icon: '🚕', label: 'Taxi / app' },
+      { icon: '✈️', label: 'Airport' },
+    ]
+  }
+  if (id === 'ride-hailing') {
+    return [
+      { icon: '📍', label: 'City pickup' },
+      { icon: '📱', label: 'App pickup' },
       { icon: '✈️', label: 'Airport' },
     ]
   }

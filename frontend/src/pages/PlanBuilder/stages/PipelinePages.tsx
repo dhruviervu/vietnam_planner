@@ -1,16 +1,26 @@
+import { Suspense, type ReactNode } from 'react'
+import { lazyPage } from '../../../lib/lazyPage'
 import { PipelineStepShell } from '../components/PipelineStepShell'
-import { WhenToGoDiscoverPage } from '../../WhenToGoDiscover'
-import { WhereToStayPage } from '../../WhereToStay'
-import { GettingAroundPage } from '../../GettingAround'
-import { TasteOfVietnamPage } from '../../TasteOfVietnam'
-import { BringHomePage } from '../../BringHome'
-import { ArrivalTransfersPage } from '../../ArrivalTransfers'
-import { VietnamLogisticsPage } from '../../VietnamLogistics'
+import { BuilderStageSkeleton } from '../components/BuilderStageSkeleton'
+
+const WhenToGoDiscoverPage = lazyPage(() => import('../../WhenToGoDiscover'), 'WhenToGoDiscoverPage')
+const WhereToStayPage = lazyPage(() => import('../../WhereToStay'), 'WhereToStayPage')
+const GettingAroundPage = lazyPage(() => import('../../GettingAround'), 'GettingAroundPage')
+const TasteOfVietnamPage = lazyPage(() => import('../../TasteOfVietnam'), 'TasteOfVietnamPage')
+const BringHomePage = lazyPage(() => import('../../BringHome'), 'BringHomePage')
+const ArrivalTransfersPage = lazyPage(() => import('../../ArrivalTransfers'), 'ArrivalTransfersPage')
+const VietnamLogisticsPage = lazyPage(() => import('../../VietnamLogistics'), 'VietnamLogisticsPage')
+
+function Step({ children }: { children: ReactNode }) {
+  return <Suspense fallback={<BuilderStageSkeleton />}>{children}</Suspense>
+}
 
 export function PipelineWhenToGo() {
   return (
-    <PipelineStepShell step="when-to-go" continueLabel="Continue to Sights →">
-      <WhenToGoDiscoverPage embedded />
+    <PipelineStepShell step="when-to-go" continueLabel="Continue to Attractions →">
+      <Step>
+        <WhenToGoDiscoverPage embedded />
+      </Step>
     </PipelineStepShell>
   )
 }
@@ -18,7 +28,9 @@ export function PipelineWhenToGo() {
 export function PipelineStay() {
   return (
     <PipelineStepShell step="stay" continueLabel="Continue to Getting Around →">
-      <WhereToStayPage embedded />
+      <Step>
+        <WhereToStayPage embedded />
+      </Step>
     </PipelineStepShell>
   )
 }
@@ -26,7 +38,9 @@ export function PipelineStay() {
 export function PipelineTransport() {
   return (
     <PipelineStepShell step="transport" continueLabel="Continue to Taste of Vietnam →">
-      <GettingAroundPage embedded />
+      <Step>
+        <GettingAroundPage embedded />
+      </Step>
     </PipelineStepShell>
   )
 }
@@ -34,7 +48,9 @@ export function PipelineTransport() {
 export function PipelineEat() {
   return (
     <PipelineStepShell step="eat" continueLabel="Continue to Shopping →">
-      <TasteOfVietnamPage embedded />
+      <Step>
+        <TasteOfVietnamPage embedded />
+      </Step>
     </PipelineStepShell>
   )
 }
@@ -42,7 +58,9 @@ export function PipelineEat() {
 export function PipelineShopping() {
   return (
     <PipelineStepShell step="shopping" continueLabel="Continue to Airport Transfers →">
-      <BringHomePage embedded />
+      <Step>
+        <BringHomePage embedded />
+      </Step>
     </PipelineStepShell>
   )
 }
@@ -51,7 +69,7 @@ export function PipelineAirport() {
   return (
     <PipelineStepShell
       step="airport"
-      continueLabel="Continue to Logistics →"
+      continueLabel="Continue to Know before you go →"
       note={
         <div className="rounded-[20px] border border-sage/30 bg-sage/8 px-5 py-4">
           <p className="text-[0.72rem] font-bold uppercase tracking-[0.12em] text-sage">
@@ -64,7 +82,9 @@ export function PipelineAirport() {
         </div>
       }
     >
-      <ArrivalTransfersPage embedded />
+      <Step>
+        <ArrivalTransfersPage embedded />
+      </Step>
     </PipelineStepShell>
   )
 }
@@ -72,7 +92,9 @@ export function PipelineAirport() {
 export function PipelineLogistics() {
   return (
     <PipelineStepShell step="logistics" continueLabel="Review My Trip →">
-      <VietnamLogisticsPage embedded />
+      <Step>
+        <VietnamLogisticsPage embedded />
+      </Step>
     </PipelineStepShell>
   )
 }

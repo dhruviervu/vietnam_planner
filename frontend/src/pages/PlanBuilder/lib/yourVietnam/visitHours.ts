@@ -113,10 +113,7 @@ export function isAccessShell(id: string, selectedIds: string[]): boolean {
     if (canonicalSightId(member.id) === canonicalSightId(complex.parentId)) return false
     if (member.soft) return false
     if (!selected.has(canonicalSightId(member.id))) return false
-    const hours =
-      EXPERIENCES.find((e) => e.id === member.id)?.durationHours ??
-      CITY_ACTIVITIES.find((a) => a.id === member.id)?.durationHours ??
-      0
+    const hours = EXPERIENCES.find((e) => e.id === member.id)?.durationHours ?? 0
     return hours >= 6
   })
 }

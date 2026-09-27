@@ -17,7 +17,10 @@ export async function askLlmStatus(): Promise<AskLlmProvider> {
   }
 }
 
-async function readRealLlm(messages: ChatMsg[], signal: AbortSignal) {
+async function readRealLlm(
+  messages: ChatMsg[],
+  signal: AbortSignal,
+): Promise<{ text: string; provider: AskLlmProvider }> {
   const res = await fetch('/api/ask-llm', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -39,7 +42,7 @@ export async function completeAskTurn(
   tools: AskToolResult,
   extra?: { userText: string; history?: AskMessage[] },
 ): Promise<{ text: string; source: AskLlmProvider | 'local' }> {
-  if (ticket.verdict === 'refuse' || ticket.verdict === 'ask' || LOCAL_INTENTS.has(ticket.intent)) {
+  if (ticket.verdict === 'refuse' || ticket.verdict === 'ask' || LOCAL_INTENTS.has(ticket.intent) || ticket.intent === 'help') {
     return { text: composeAskReply(ticket, facts, tools), source: 'local' }
   }
 

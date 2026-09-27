@@ -50,6 +50,9 @@ export function parseGuideBlocks(guide: string): ParsedBlock[] {
       if (!body && raw[i + 1] && !raw[i + 1]!.startsWith('##')) {
         body = raw[++i]!
       }
+      while (raw[i + 1] && !raw[i + 1]!.startsWith('##')) {
+        body = body ? `${body}\n\n${raw[++i]!}` : raw[++i]!
+      }
       if (body) out.push({ title, body, explicit: true })
       continue
     }

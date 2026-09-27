@@ -16,3 +16,15 @@ export function cityAnchorId(city: string): string {
 export function experiencesCityPath(city: string): string {
   return `/plan/builder/experiences/city/${cityToSlug(city)}`
 }
+
+export function experiencesTopPath(): string {
+  return '/plan/builder/experiences/top'
+}
+
+export function activitiesCityPath(city: string): string {
+  return `/plan/builder/activities/city/${cityToSlug(city)}`
+}
+
+export function activitiesTopPath(): string {
+  return '/plan/builder/activities/top'
+}

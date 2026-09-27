@@ -5,6 +5,12 @@ import './index.css'
 import App from './App.tsx'
 import { startTripCompareSync } from './pages/PlanBuilder/lib/tripCompareSync'
 import { OutboundRedirectProvider } from './components/outbound/OutboundRedirectProvider'
+import { clearStaleChunkFlag, reloadOnceForStaleChunk } from './lib/lazyPage'
+
+window.addEventListener('vite:preloadError', (event) => {
+  if (reloadOnceForStaleChunk()) event.preventDefault()
+})
+window.addEventListener('load', () => window.setTimeout(clearStaleChunkFlag, 10_000))
 
 startTripCompareSync()
 

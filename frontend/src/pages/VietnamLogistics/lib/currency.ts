@@ -75,6 +75,13 @@ export function formatMoney(amount: number, currency: string): string {
   }
 }
 
+export function formatVndWithUsd(vnd: number, usdRates: Record<string, number>): string {
+  const usd = convertAmount(vnd, 'VND', 'USD', usdRates)
+  const vndLabel = formatMoney(vnd, 'VND')
+  if (usd == null) return vndLabel
+  return `${vndLabel} (~${formatMoney(usd, 'USD')})`
+}
+
 export function vndToDisplay(
   vnd: number,
   display: string,

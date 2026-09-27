@@ -53,9 +53,6 @@ export function WhereToEat() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-      <p className="mb-2 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">
-        Stage 4
-      </p>
       <h1 className="mb-3 font-serif text-[clamp(2rem,4vw,2.8rem)] font-semibold text-ink">
         Where to eat
       </h1>

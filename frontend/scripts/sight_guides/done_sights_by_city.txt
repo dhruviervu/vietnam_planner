@@ -1,0 +1,196 @@
+overnight pool 217
+done 163
+not yet 54
+
+Da Lat (33)
+  - Hang Nga Crazy House
+  - Valley of Love
+  - Datanla Waterfall
+  - Da Lat Night Market
+  - Lake of Sighs (Hồ Than Thở)
+  - Da Lat Cathedral (Chicken Church)
+  - Domaine de Marie (Pink Church)
+  - Linh Phước Pagoda
+  - Trúc Lâm Zen Monastery
+  - Linh Ẩn Pagoda
+  - Thiên Vương Cổ Sát (Chùa Tàu)
+  - Bảo Đại Summer Palace I
+  - Clay Tunnel (Dalat Sculpture Tunnel)
+  - Elephant Falls (Thác Voi)
+  - Pongour Waterfall
+  - Prenn Waterfall
+  - Tiger Cave Waterfall
+  - Cam Ly Waterfall
+  - Dambri Waterfall
+  - Langbiang Mountain & Peak
+  - Da Lat Flower Gardens
+  - Thái Phiên Flower Village
+  - Cầu Đất Tea Hill
+  - Da Lat Market
+  - Da Lat Fairytale Land
+  - Lumiere Light Garden
+  - Hydrangea Flower Farm (Trại Mát)
+  - Fresh Garden Dalat
+  - Cu Lần Village
+  - Chicken Village (Đồng K’Ho)
+  - Mongo Land Dalat
+  - French Quarter Villa Complex
+  - 100 Roofs Bar (Maze Bar)
+
+Can Tho (28)
+  - Cái Răng Floating Market
+  - Phong Điền Floating Market
+  - Ninh Kiều Wharf (Bến Ninh Kiều)
+  - Mới Canal (Rạch Mới)
+  - Nam Nhã Pagoda
+  - Phước Hậu Pagoda
+  - Chùa Pôthi SômRôn (Khmer Pagoda)
+  - Chùa Munir Ansay (Khmer Pagoda)
+  - Thiền Viện Trúc Lâm Phương Nam
+  - Cần Thơ Cathedral (Giáo xứ Chính Tòa)
+  - Cần Thơ Grand Prison (Khám Lớn / Nhà Tù Cần Thơ)
+  - Cần Thơ Museum
+  - Military Zone 9 Museum
+  - Bằng Lăng Stork Sanctuary
+  - Sơn Islet (Cồn Sơn)
+  - Ấu Islet (Cồn Ấu)
+  - Khương Islet (Cồn Khương)
+  - Mỹ Khánh Eco-Tourism Village
+  - Giọt Đắng / Chín Hồng Fruit Orchard
+  - Ba Láng Fruit Gardens
+  - Lung Ngọc Hoàng Nature Reserve
+  - Ninh Kiều Pedestrian Bridge (Love Bridge)
+  - Cần Thơ Bridge (Cầu Cần Thơ)
+  - Cần Thơ Market (Chợ Cổ / Old Market)
+  - Cần Thơ Night Market
+  - Tây Đô Market
+  - Lưu Hữu Phước Park
+  - Sông Hậu Park
+
+Sapa (27)
+  - Sapa Rice Terrace Trek
+  - Fansipan Mountain
+  - Cát Cát Village
+  - Sa Pa Town Market
+  - Hoàng Liên National Park
+  - Sapa Ancient Stone Field
+  - Séng Mỹ Tý Reservoir (Hồ Séo Mý Tỷ)
+  - Cốc San Cave & Waterfalls
+  - Fairy Cave
+  - Cat Cat Waterfall
+  - Rồng Mây Glass Skywalk Bridge
+  - Tả Phìn Village
+  - Ý Linh Hồ Village
+  - Sín Chải Village
+  - Sả Pả Village
+  - Hầu Thảo Village
+  - Sa Pa Stone Church
+  - Sa Pa Center Square
+  - Sa Pa Lake
+  - Kim Sơn Bảo Thắng Temple
+  - Bích Vân Thiền Tự Temple
+  - Grand Buddha Statue of Fansipan
+  - Sapa Museum
+  - Sun Plaza Sapa
+  - Bắc Hà Market
+  - Cán Cấu Market
+  - Mường Hum Market
+
+Phong Nha (26)
+  - Phong Nha–Kẻ Bàng National Park
+  - Dark Cave (Hang Tối)
+  - Paradise Cave (Động Thiên Đường)
+  - Hang Va
+  - Nước Nứt Cave
+  - Trà Ang Cave
+  - Hang Over
+  - Hang Pygmy
+  - Sơn Nữ Cave
+  - E Cave
+  - Moọc Spring (Suối Nước Moọc)
+  - Chày River (Sông Chày)
+  - Hava Valley (Thung lũng Ngọc Bích)
+  - Phong Nha Botanical Garden
+  - Bồng Lai Valley
+  - The Duck Stop
+  - Pub with Cold Beer
+  - East Hill Phong Nha
+  - Thác Gió (Wind Waterfall)
+  - Eight Ladies Cave (Hang Tám Cô)
+  - Highway 20 Martyrs Memorial
+  - Bến Tiến Ferry
+  - Trạm Trăn
+  - Phong Nha–Kẻ Bàng National Park Headquarters
+  - Khe Gát Secret Airfield
+  - Phong Nha Town Market
+
+Dong Van (21)
+  - Dong Van Ancient Town
+  - Dong Van Old Market
+  - Palace of the Hmong King (Vuong Family Palace)
+  - Tu San Canyon
+  - Nho Que River
+  - Lung Cu Flag Tower
+  - North Pole Milestone (Cực Bắc)
+  - Lao Sa Village
+  - Sung La Valley
+  - Pao's House (Lao Sa)
+  - Tham Ma Pass
+  - Chin Khoanh Pass
+  - Ma Le Ancient Village
+  - Dong Van Sunday Market
+  - Ma Le Market
+  - Don Cao Fortress (French Bunker Viewpoint)
+  - Thien Huong Ancient Village
+  - Lung Ngoc Ho Cave
+  - Pho Cao Village
+  - Pho Bang Ancient Town
+  - Lung Cam Cultural Village
+
+Cat Ba (17)
+  - Cat Ba Island Escape
+  - Cát Bà National Park
+  - Lan Hạ Bay
+  - Trung Trang Cave
+  - Hoa Cương Cave (Diamond Cave)
+  - Thiên Long Cave
+  - Nguồn Giống Cave
+  - Cannon Fort (Cao Điểm 177)
+  - Cửa Vạn Fishing Village
+  - Cái Bèo Floating Village (Vạn Chài Cái Bèo)
+  - Hới Lake (Hải Hải)
+  - Kim Giao Forest
+  - Nho Khôi Mountain
+  - Đỉnh Ngự Lâm (Ngự Lâm Peak)
+  - Cát Bà Market
+  - Cát Bà Night Market
+  - Cát Bà Central Square
+
+Hanoi (4)
+  - Hanoi Bia Hoi Corner
+  - Hanoi Weekend Night Market
+  - Trang Tien Plaza
+  - Phủ Tây Hồ
+
+Ho Chi Minh City (4)
+  - Turtle Lake (Hồ Con Rùa)
+  - The Factory Contemporary Arts Centre
+  - Gia Định Park
+  - Phan Xích Long street food hub
+
+Da Nang (3)
+  - My Khe Beach Afternoon
+  - Ban Co Peak
+  - Thousand-Year Banyan Tree
+
+not yet by city:
+  Sapa: 12 — Hàm Rồng Mountain, Ô Quy Hồ Pass, Mường Hoa Valley, Silver Waterfall (Thác Bạc), Love Waterfall (Thác Tình Yêu), Cầu Mây, Tả Van Village, Lao Chải Village, Bản Hồ Village, Nậm Sài Village, Cốc Ly Market, Cao Sơn Market
+  Cat Ba: 10 — Hospital Cave (Hang Quân Y), Cát Cò 1 Beach, Cát Cò 2 Beach, Cát Cò 3 Beach, Tùng Thu Beach, Monkey Island (Đảo Cát Dứa), Việt Hải Ancient Village, Việt Hải Fishing Village, Cát Bà Cable Car (Sun World Cát Bà), Phù Long Mangrove Forest
+  Phong Nha: 10 — Phong Nha Cave, Sơn Đoòng Cave, Hang Én, Tú Làn Cave System, Hang Tiên, Hang Vòm, Hang Đại Ả, Rục Mòn Cave, Ozo Treetop Park, Vàng Macaque Enclosure
+  Da Lat: 7 — Xuan Huong Lake Loop, Tuyền Lâm Lake, Da Lat Railway Station, Bảo Đại Summer Palace II, Bảo Đại Summer Palace III, Lâm Viên Square, Vạn Thành Flower Village
+  Can Tho: 5 — Mekong Delta Day Trip, Ông Temple (Chùa Ông – Quảng Đông Assembly Hall), Quang Đức Pagoda, Bình Thủy Ancient House, Hồ Chí Minh Museum (Cần Thơ Branch)
+  Da Nang: 3 — My Khe Beach, Son Tra Night Market, Ghềnh Bàng & Bãi Bụt
+  Dong Van: 3 — Dong Van Karst Plateau, Ma Pi Leng Pass, Lo Lo Chai Village
+  Hue: 2 — Imperial City (Đại Nội), Perfume River (Sông Hương)
+  Ha Giang: 1 — Ha Giang Loop (Day Section)
+  Ho Chi Minh City: 1 — Vincom Mega Mall Thảo Điền

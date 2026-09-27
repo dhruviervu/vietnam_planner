@@ -6,13 +6,22 @@ import { catalogCardPhotoUrl } from '../lib/resolveCatalogPhotos'
 import { useTripStore } from '../../../store/tripStore'
 import { flyToTripBag } from '../lib/flyToTripBag'
 import { pinNewSightToItinerary, readItineraryAddTarget } from '../lib/yourVietnam/itineraryAddTarget'
+import { openDetailHref } from '../lib/yourVietnam/links'
+import { activitiesCityPath } from '../services/citySlug'
 
 type Props = {
   activity: CityActivity
   cityRank?: number
+  compact?: boolean
+  dense?: boolean
 }
 
-export const ActivityCard = memo(function ActivityCard({ activity, cityRank }: Props) {
+export const ActivityCard = memo(function ActivityCard({
+  activity,
+  cityRank,
+  compact = false,
+  dense = false,
+}: Props) {
   const [justAdded, setJustAdded] = useState(false)
   const [showFitNote, setShowFitNote] = useState(false)
   const [broken, setBroken] = useState<Record<string, boolean>>({})
@@ -32,7 +41,7 @@ export const ActivityCard = memo(function ActivityCard({ activity, cityRank }: P
   }
 
   function openDetail() {
-    window.open(`/plan/builder/activity/${activity.id}`, '_blank')
+    openDetailHref(`/plan/builder/activity/${activity.id}`)
   }
 
   function handleAdd(e: MouseEvent) {
@@ -78,9 +87,11 @@ export const ActivityCard = memo(function ActivityCard({ activity, cityRank }: P
           openDetail()
         }
       }}
-      className="group cursor-pointer overflow-hidden rounded-[18px] bg-paper shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
+      className={`group cursor-pointer overflow-hidden bg-paper shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover ${
+        dense ? 'rounded-[18px]' : 'rounded-[22px]'
+      } ${compact ? 'w-[var(--sight-card-w,calc((100%-2rem)/2.5))] min-w-[var(--sight-card-w,calc((100%-2rem)/2.5))] max-w-none shrink-0 snap-start' : ''}`}
     >
-      <div className="relative aspect-[5/3.4] overflow-hidden bg-cream">
+      <div className={`relative overflow-hidden bg-cream ${dense || compact ? 'aspect-[5/3.4]' : 'aspect-[5/3.2]'}`}>
         {currentPhoto ? (
           <img
             src={currentPhoto}
@@ -138,21 +149,33 @@ export const ActivityCard = memo(function ActivityCard({ activity, cityRank }: P
         </div>
       </div>
 
-      <div className="p-3">
+      <div className={dense || compact ? 'p-3' : 'p-4'}>
         <h3 className="flex items-start gap-1.5 font-serif text-[1.02rem] font-semibold leading-tight text-ink">
           {cityRank != null ? (
-            <span
-              title={`Ranked #${cityRank} in ${activity.cityName} by popularity`}
-              aria-label={`Ranked #${cityRank} in ${activity.cityName} by popularity`}
-              className="inline-flex h-7 min-w-7 shrink-0 cursor-default items-center justify-center rounded-full bg-terracotta/12 px-1.5 font-serif text-[0.82rem] font-bold tabular-nums text-terracotta ring-1 ring-terracotta/30"
+            <a
+              href={activitiesCityPath(activity.cityName)}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={`#${cityRank} in ${activity.cityName}`}
+              aria-label={`#${cityRank} in ${activity.cityName}`}
+              onClick={stop}
+              className="inline-flex h-7 min-w-7 shrink-0 items-center justify-center rounded-full bg-terracotta/12 px-1.5 font-serif text-[0.82rem] font-bold tabular-nums text-terracotta underline decoration-terracotta/40 underline-offset-2 ring-1 ring-terracotta/30 transition hover:bg-terracotta hover:text-paper hover:no-underline"
             >
               #{cityRank}
-            </span>
+            </a>
           ) : null}
           <span className="min-w-0 flex-1">{activity.name}</span>
         </h3>
         <p className="mt-0.5 text-[0.68rem] font-bold uppercase tracking-wide text-terracotta">
-          {activity.cityName}
+          <a
+            href={activitiesCityPath(activity.cityName)}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={stop}
+            className="underline decoration-terracotta/35 underline-offset-2 hover:decoration-terracotta"
+          >
+            {activity.cityName}
+          </a>
         </p>
         <p className="mt-1.5 line-clamp-3 text-[0.82rem] leading-snug text-muted">
           {activity.cardSummary}{' '}

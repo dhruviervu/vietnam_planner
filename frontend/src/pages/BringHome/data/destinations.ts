@@ -2,12 +2,14 @@ import type {
   DestinationType,
   ShopCity,
   ShopFilter,
+  ShopGoodsCategory,
   ShoppingDestination,
   ShopSort,
 } from './types'
 
 import { CATALOG_MARKETS } from './catalogMarkets'
 import shopIntelJson from './shopPlaceIntel.json'
+import { goodsCategoriesForShop } from './shopGoods'
 
 export const SHOP_CITIES: ShopCity[] = [
   'Hanoi',
@@ -74,12 +76,14 @@ function displayHours(row: ShopIntel, fallback: string): string {
 }
 
 function applyIntel(d: ShoppingDestination): ShoppingDestination {
+  const goodsCategories = d.goodsCategories ?? goodsCategoriesForShop(d.id)
   const row = INTEL[d.id]
-  if (!row) return d
+  if (!row) return { ...d, goodsCategories }
   const hoursRaw = row.openingHours?.trim() || undefined
   const hoursLabel = displayHours(row, d.openingHours)
   return {
     ...d,
+    goodsCategories,
     rating: row.rating ?? d.rating,
     openingHours: hoursLabel || d.openingHours,
     hoursRaw,
@@ -799,6 +803,109 @@ const SPECIALTY_DESTINATIONS: ShoppingDestination[] = [
     featured: true,
     itineraryId: 'market-dalat-night',
   },
+  {
+    id: 'pico-hanoi',
+    name: 'Pico / Nguyễn Kim Hanoi',
+    type: 'Specialty Store',
+    city: 'Hanoi',
+    region: 'North',
+    area: 'Cầu Giấy · Trần Duy Hưng',
+    images: [img('photo-1518770660439-4636190af475'), img('photo-1519566336512-e0c32916a47e')],
+    bestForItemIds: [],
+    bestForLabels: ['Electronics', 'Appliances'],
+    crowdLevel: 3,
+    crowdType: 'Typical',
+    crowdLabel: 'Moderate',
+    valueLevel: 'Medium',
+    touristFriendly: 'High',
+    bargaining: 'No · Fixed price',
+    priceRange: '$$–$$$',
+    rating: 4.3,
+    openNow: true,
+    openingHours: '9:00–21:30',
+    distanceKm: 4.2,
+    whyRecommended:
+      'Fixed-price phones, cameras and appliances — the reliable electronics desk, not a night-market stall.',
+    mapUrl: 'https://maps.google.com/?q=Pico+Tran+Duy+Hung+Hanoi',
+    featured: false,
+  },
+  {
+    id: 'phong-vu-hcmc',
+    name: 'Phong Vũ — District 1',
+    type: 'Specialty Store',
+    city: 'Ho Chi Minh City',
+    region: 'South',
+    area: 'District 1',
+    images: [img('photo-1496181133206-80ce9b88a853'), img('photo-1517336714731-489689fd1ca8')],
+    bestForItemIds: [],
+    bestForLabels: ['Laptops', 'Electronics'],
+    crowdLevel: 3,
+    crowdType: 'Typical',
+    crowdLabel: 'Moderate',
+    valueLevel: 'Medium',
+    touristFriendly: 'High',
+    bargaining: 'No · Fixed price',
+    priceRange: '$$–$$$',
+    rating: 4.4,
+    openNow: true,
+    openingHours: '8:30–21:00',
+    distanceKm: 0.8,
+    whyRecommended:
+      'Computer and gadget chain with warranty paperwork — for real electronics, not souvenir chargers.',
+    mapUrl: 'https://maps.google.com/?q=Phong+Vu+District+1+Ho+Chi+Minh+City',
+    featured: false,
+  },
+  {
+    id: 'nguyen-kim-hcmc',
+    name: 'Nguyễn Kim — District 1',
+    type: 'Specialty Store',
+    city: 'Ho Chi Minh City',
+    region: 'South',
+    area: 'District 1',
+    images: [img('photo-1550009158-9ebf69173e03'), img('photo-1518770660439-4636190af475')],
+    bestForItemIds: [],
+    bestForLabels: ['Electronics', 'Appliances'],
+    crowdLevel: 3,
+    crowdType: 'Typical',
+    crowdLabel: 'Moderate',
+    valueLevel: 'Medium',
+    touristFriendly: 'High',
+    bargaining: 'No · Fixed price',
+    priceRange: '$$–$$$',
+    rating: 4.2,
+    openNow: true,
+    openingHours: '8:00–22:00',
+    distanceKm: 1.2,
+    whyRecommended: 'Major appliance and electronics retailer with receipts and after-sales support.',
+    mapUrl: 'https://maps.google.com/?q=Nguyen+Kim+District+1+Ho+Chi+Minh+City',
+    featured: false,
+  },
+  {
+    id: 'hoian-leather',
+    name: 'Hội An Leather Workshops',
+    type: 'Historic Street',
+    city: 'Hoi An',
+    region: 'Central',
+    area: 'Old Town',
+    images: [img('photo-1473187983305-f615310bd15e'), img('photo-1548036328-c9fa89d128fa')],
+    bestForItemIds: ['traditional-gifts'],
+    bestForLabels: ['Leather bags', 'Belts'],
+    crowdLevel: 3,
+    crowdType: 'Typical',
+    crowdLabel: 'Moderate',
+    valueLevel: 'Medium',
+    touristFriendly: 'High',
+    bargaining: 'Limited',
+    priceRange: '$$',
+    rating: 4.4,
+    openNow: true,
+    openingHours: '9:00–21:00',
+    distanceKm: 0.3,
+    whyRecommended:
+      'Custom leather bags and belts made in Old Town workshops — not a clothes-only tailor street.',
+    mapUrl: 'https://maps.google.com/?q=Hoi+An+leather+shop',
+    featured: true,
+  },
 ]
 
 export const DESTINATIONS: ShoppingDestination[] = [
@@ -864,6 +971,9 @@ export function getDestinationsForItem(
     list = list.filter((d) => d.type === 'Craft District' || d.type === 'Historic Street')
   }
   if (filters.type === 'malls') list = list.filter((d) => d.type === 'Mall')
+  if (filters.goods) {
+    list = list.filter((d) => (d.goodsCategories ?? []).includes(filters.goods!))
+  }
 
   return [...list].sort((a, b) => {
     const bucket = destinationTypeBucket(a.type) - destinationTypeBucket(b.type)
@@ -903,6 +1013,27 @@ export function destinationItemCounts(): Record<string, number> {
   for (const d of DESTINATIONS) {
     for (const id of d.bestForItemIds) {
       counts[id] = (counts[id] ?? 0) + 1
+    }
+  }
+  return counts
+}
+
+export function destinationGoodsCounts(
+  itemId: string | 'All',
+  city: ShopCity | 'All',
+  filters: ShopFilter,
+): Record<ShopGoodsCategory, number> {
+  const withoutGoods = { ...filters, goods: null }
+  const list = getDestinationsForItem(itemId, city, 'best-overall', withoutGoods)
+  const counts: Record<ShopGoodsCategory, number> = {
+    apparel: 0,
+    bags: 0,
+    footwear: 0,
+    electronics: 0,
+  }
+  for (const d of list) {
+    for (const g of d.goodsCategories ?? []) {
+      counts[g] += 1
     }
   }
   return counts

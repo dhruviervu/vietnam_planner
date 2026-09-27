@@ -26,7 +26,7 @@ function emptyDay(overrides: Partial<YourVietnamDay> = {}): YourVietnamDay {
       { id: 'evening', label: 'Evening', windowLabel: '', items: [] },
       { id: 'night', label: 'Night', windowLabel: '', items: [] },
     ],
-    costs: { stay: 0, food: 0, transport: 0, experiences: 0, shopping: 0, other: 0 },
+    costs: { stay: 0, food: 0, transport: 0, experiences: 0, shopping: 0, other: 0, total: 0 },
     issues: [],
     ...overrides,
   }

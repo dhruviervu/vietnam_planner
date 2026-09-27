@@ -4,12 +4,7 @@ import { SIGHT_CATALOG } from '../data/experiences'
 import { ExperienceCard } from '../components/ExperienceCard'
 import { TripBag } from '../components/TripBag'
 import { StageFooter } from '../components/StageFooter'
-import { StayProgressPanel } from '../components/StayProgressPanel'
-import {
-  ExperienceFilterPanel,
-  ExperienceFilterPanelBody,
-  countActiveExperienceFilters,
-} from '../components/ExperienceFilterPanel'
+import { ExperienceFilterBar } from '../components/ExperienceFilterPanel'
 import { VerticalTripProgress } from '../components/VerticalTripProgress'
 import { useTripStore } from '../../../store/tripStore'
 import {
@@ -23,17 +18,17 @@ import { loadCatalogViewState, saveCatalogViewState } from '../lib/catalogViewSt
 import {
   getUnfilteredCityCatalog,
   groupExperiencesByCity,
+  rankVietnamBestSights,
   type CityExperienceGroup,
-  type RankedExperience,
 } from '../services/cityCatalog'
-import { cityAnchorId, experiencesCityPath } from '../services/citySlug'
+import { PopularCitiesStrip } from '../components/PopularCitiesStrip'
+import { cityAnchorId, experiencesCityPath, experiencesTopPath } from '../services/citySlug'
 
 const CATALOG_SCROLL_ID = 'sights-by-city'
-const CITY_PREVIEW_COUNT = 6
-const VIETNAM_BEST = SIGHT_CATALOG.filter((e) => e.vietnamBest).slice(0, 8)
+const CITY_PREVIEW_COUNT = 5
 const CATALOG_REGIONS = [...new Set(SIGHT_CATALOG.map((e) => e.region))].sort()
 
-type MobilePanel = 'none' | 'progress' | 'filters'
+type MobilePanel = 'none' | 'progress'
 
 export function ThingsToDo() {
   const tripDate = useTripStore((s) =>
@@ -112,6 +107,7 @@ export function ThingsToDo() {
   const cityRankById = unfiltered.rankById
   const allCityButtons = unfiltered.cities
   const regions = CATALOG_REGIONS
+  const vietnamBest = useMemo(() => rankVietnamBestSights(20), [])
 
   const dayPlan = buildDayId ? suggestDayAround(buildDayId) : null
 
@@ -132,9 +128,14 @@ export function ThingsToDo() {
   }, [cityCatalogItems, deferredFilters, isFiltering])
 
   function scrollToSection(target: string) {
-    const id = target === 'catalog' ? CATALOG_SCROLL_ID : cityAnchorId(target)
+    const id =
+      target === 'catalog'
+        ? CATALOG_SCROLL_ID
+        : target === 'vietnam-best' || target === ''
+          ? 'vietnam-best'
+          : cityAnchorId(target)
     const run = () => {
-      const el = document.getElementById(id) ?? document.getElementById(CATALOG_SCROLL_ID)
+      const el = document.getElementById(id) ?? document.getElementById('vietnam-best')
       if (!el) return false
       el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
       return true
@@ -170,14 +171,14 @@ export function ThingsToDo() {
   }, [])
 
   function applyFilters(next: ExperienceFilters) {
-    if (pendingScroll.current == null) {
-      pendingScroll.current = next.cities[0] ?? 'catalog'
+    if (pendingScroll.current == null && next.cities[0]) {
+      pendingScroll.current = next.cities[0]
     }
     setFilters({ ...next, duration: 'all' })
   }
 
   function onSelectCity(city: string, turningOn: boolean) {
-    pendingScroll.current = turningOn ? city : 'catalog'
+    if (turningOn) pendingScroll.current = city
     setFocusCity(turningOn ? city : null)
     setMobilePanel('none')
   }
@@ -188,8 +189,6 @@ export function ThingsToDo() {
     dayPlan.secondaryIds.forEach((id) => addExperience(id, 'afternoon'))
     setBuildDayId(null)
   }
-
-  const activeFilterCount = countActiveExperienceFilters(filters)
 
   const filterPanelProps = {
     filters,
@@ -204,19 +203,8 @@ export function ThingsToDo() {
 
   return (
     <div className="relative flex pb-28 xl:pb-0">
-      {/* Desktop: filters open by default; progress expands on hover only in Build itinerary */}
-      <div className="sticky top-[72px] z-20 hidden shrink-0 self-start lg:flex">
-        {pipelineActive ? <StayProgressPanel current="experiences" /> : null}
-        <ExperienceFilterPanel
-          expanded={filtersOpen}
-          onToggle={() => setFiltersOpen((v) => !v)}
-          {...filterPanelProps}
-        />
-      </div>
-
-      {/* Mobile pipeline / filters */}
-      <div className="fixed inset-x-0 bottom-[4.6rem] z-30 flex justify-center gap-2 px-3 lg:hidden">
-        {pipelineActive ? (
+      {pipelineActive ? (
+        <div className="fixed inset-x-0 bottom-[4.6rem] z-30 flex justify-center gap-2 px-3 lg:hidden">
           <button
             type="button"
             onClick={() => setMobilePanel((p) => (p === 'progress' ? 'none' : 'progress'))}
@@ -226,17 +214,8 @@ export function ThingsToDo() {
           >
             Pipeline
           </button>
-        ) : null}
-        <button
-          type="button"
-          onClick={() => setMobilePanel((p) => (p === 'filters' ? 'none' : 'filters'))}
-          className={`rounded-full px-4 py-2.5 text-[0.8rem] font-bold shadow-card ${
-            mobilePanel === 'filters' ? 'bg-ink text-paper' : 'bg-paper text-ink'
-          }`}
-        >
-          Filters{activeFilterCount > 0 ? ` · ${activeFilterCount}` : ''}
-        </button>
-      </div>
+        </div>
+      ) : null}
 
       <AnimatePresence>
         {mobilePanel !== 'none' && (
@@ -269,69 +248,76 @@ export function ThingsToDo() {
           </motion.aside>
         )}
       </AnimatePresence>
-      <AnimatePresence>
-        {mobilePanel === 'filters' && (
-          <motion.aside
-            className="fixed inset-y-0 left-0 z-50 w-[min(92vw,340px)] overflow-y-auto bg-paper p-5 shadow-hero lg:hidden"
-            initial={{ x: -24, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -16, opacity: 0 }}
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-sage">
-                Filters
-              </p>
-              <button type="button" onClick={() => setMobilePanel('none')} className="text-muted">
-                Close
-              </button>
-            </div>
-            <ExperienceFilterPanelBody {...filterPanelProps} />
-          </motion.aside>
-        )}
-      </AnimatePresence>
-
-      <div className="min-w-0 flex-1 px-[clamp(1.1rem,4vw,2rem)] pt-2 lg:pt-4">
-        <p className="mb-2 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">
-          Stage 2 · SightSeeing
-        </p>
-        <h1 className="font-serif text-[clamp(1.85rem,3.8vw,2.7rem)] font-semibold leading-[1.12] text-ink">
-          Explore all Major Sights in Vietnam Sorted City by City
-        </h1>
-        <p className="mt-2 max-w-[52ch] text-[0.98rem] text-muted">
-          We&apos;ll show sights for the trip you&apos;re building. Nothing is locked in — add
-          sights that excite you and we&apos;ll help you shape your trip.
-        </p>
-
-        <div className="mt-5 flex flex-wrap items-center gap-3 text-[0.82rem]">
-          {isFiltering && (
+      <div className="min-w-0 flex-1">
+        <div className="px-[clamp(1.1rem,4vw,2rem)] pt-3 lg:pt-5">
+          <h1 className="font-serif text-[clamp(1.85rem,3.8vw,2.7rem)] font-semibold leading-[1.12] text-ink">
+            Explore all Major Attractions in Vietnam
+          </h1>
+          <p className="mt-3 w-full text-[0.95rem] leading-[1.6] text-muted">
+            On this page you can view all major tourist attractions and places worth visiting in
+            Vietnam. You can browse them city by city. To view all attractions in a city, click the
+            location on the card. Click See more for details and add it to your trip bag — your
+            itinerary is crafted from what you add, then you can customize it.
+          </p>
+          {isFiltering ? (
             <button
               type="button"
               onClick={() => applyFilters({ ...DEFAULT_FILTERS })}
-              className="font-bold text-terracotta hover:underline"
+              className="mt-3 text-[0.82rem] font-bold text-terracotta hover:underline"
             >
               Relax filters
             </button>
-          )}
+          ) : null}
         </div>
 
+        <div className="sticky top-0 z-30 mt-4 border-b border-ink/8 bg-cream px-[clamp(1.1rem,4vw,2rem)]">
+          <ExperienceFilterBar
+            expanded={filtersOpen}
+            onToggle={() => setFiltersOpen((v) => !v)}
+            {...filterPanelProps}
+          />
+        </div>
+
+        <div className="px-[clamp(1.1rem,4vw,2rem)] pt-4">
         {!isFiltering && (
+          <>
           <DiscoverySection
+            id="vietnam-best"
             title="Vietnam, At Its Best"
-            subtitle="These are some Must Visit Sights in Vietnam"
+            subtitle="These are some Must Visit Attractions in Vietnam"
           >
-            <VietnamBestScroller>
-              {VIETNAM_BEST.map((item, i) => (
+            <SightRowScroller>
+              {vietnamBest.slice(0, CITY_PREVIEW_COUNT).map((item, i) => (
                 <ExperienceCard
                   key={item.id}
                   experience={item}
                   tripDate={tripDate}
                   compact
+                  cityRank={item.cityRank}
                   priority={i < 2}
                   onBuildDay={setBuildDayId}
                 />
               ))}
-            </VietnamBestScroller>
+              <a
+                href={experiencesTopPath()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-[280px] w-[var(--sight-card-w,calc((100%-2rem)/2.5))] min-w-[var(--sight-card-w,calc((100%-2rem)/2.5))] shrink-0 snap-start flex-col items-center justify-center rounded-[22px] border border-terracotta/30 bg-terracotta/10 px-5 text-center transition hover:border-terracotta/50 hover:bg-terracotta/16"
+              >
+                <span className="font-serif text-[1.2rem] font-semibold text-ink">
+                  See All Top Sights
+                </span>
+                <span className="mt-1 text-[0.78rem] font-bold text-terracotta">
+                  Ranked 1–20 across Vietnam
+                </span>
+              </a>
+            </SightRowScroller>
           </DiscoverySection>
+          <PopularCitiesStrip
+            availableCities={unfiltered.cities}
+            hrefForCity={experiencesCityPath}
+          />
+          </>
         )}
 
         {resultCount === 0 ? (
@@ -353,24 +339,27 @@ export function ThingsToDo() {
             title={isFiltering ? 'Matching sights by city' : 'Explore by city'}
             subtitle={
               isFiltering
-                ? 'Ranked by tourist reviews within each city. Open a city to see every matching sight.'
-                : 'Top sights in each city — open a city tab to see the full ranked list.'
+                ? 'Must-visit ranking within each city — history, landscape, and culture, not review volume.'
+                : 'Top must-visit sights in each city — open a city page for the full ranked list.'
             }
             className="mt-12"
           >
             <CityCatalogSections
               groups={cityGroups}
+              fullGroups={unfiltered.groups}
               tripDate={tripDate}
               onBuildDay={setBuildDayId}
               cityRankById={cityRankById}
               focusCity={focusCity}
+              selectedCities={filters.cities}
             />
           </DiscoverySection>
         )}
 
         {pipelineActive ? (
-          <StageFooter current="experiences" continueLabel="Continue to Things to Do →" />
+          <StageFooter current="experiences" continueLabel="Continue to Activities →" />
         ) : null}
+        </div>
       </div>
 
       <TripBag
@@ -430,58 +419,106 @@ export function ThingsToDo() {
   )
 }
 
+function rankedCityItems(
+  group: CityExperienceGroup,
+  fullGroups: CityExperienceGroup[],
+  cityRankById: Map<string, number>,
+) {
+  const source = fullGroups.find((g) => g.city === group.city)?.items ?? group.items
+  return [...source].sort(
+    (a, b) => (cityRankById.get(a.id) ?? a.cityRank) - (cityRankById.get(b.id) ?? b.cityRank),
+  )
+}
+
 const CityCatalogSections = memo(function CityCatalogSections({
   groups,
+  fullGroups,
   tripDate,
   onBuildDay,
   cityRankById,
   focusCity,
+  selectedCities,
 }: {
   groups: CityExperienceGroup[]
+  fullGroups: CityExperienceGroup[]
   tripDate: string | null
   onBuildDay: (id: string) => void
   cityRankById: Map<string, number>
   focusCity: string | null
+  selectedCities: string[]
 }) {
   return (
     <div className="space-y-5">
       {groups.map((group, index) => {
-        const visible = group.items.slice(0, CITY_PREVIEW_COUNT)
-        const eager = index < 2 || group.city === focusCity
+        const expand =
+          group.city === focusCity ||
+          selectedCities.includes(group.city) ||
+          (selectedCities.length === 1 && selectedCities[0] === group.city)
+        const ranked = rankedCityItems(group, fullGroups, cityRankById)
+        const visible = expand ? ranked : ranked.slice(0, CITY_PREVIEW_COUNT)
+        const eager = index < 2 || expand
         return (
           <section
             key={group.city}
             id={cityAnchorId(group.city)}
-            className="scroll-mt-[7.5rem] overflow-hidden rounded-[24px] border border-ink/8 bg-gradient-to-br from-paper via-paper to-cream/40 shadow-soft"
+            className="scroll-mt-[9rem] overflow-hidden rounded-[24px] border border-ink/8 bg-gradient-to-br from-paper via-paper to-cream/40 shadow-soft"
           >
             <div className="px-4 py-4 sm:px-5">
               <div className="min-w-0">
                 <h3 className="font-serif text-[1.35rem] font-semibold text-ink">{group.city}</h3>
                 <p className="mt-1 text-[0.8rem] text-muted">
                   {group.region !== group.city ? `${group.region} · ` : ''}
-                  {group.items.length} sight{group.items.length === 1 ? '' : 's'}
+                  {ranked.length} sight{ranked.length === 1 ? '' : 's'}
+                  {expand ? ' · full rank order' : ''}
                   {group.topTags.length > 0 ? ` · ${group.topTags.join(' · ')}` : ''}
                 </p>
               </div>
             </div>
 
             <div className="border-t border-ink/6 px-4 pb-4 pt-3 sm:px-5">
-              <DeferredMount eager={eager} minHeight={480}>
-                <CardGrid
-                  items={visible}
-                  tripDate={tripDate}
-                  onBuildDay={onBuildDay}
-                  cityRankById={cityRankById}
-                  priorityCount={eager && index < 2 ? 2 : 0}
-                />
-                <a
-                  href={experiencesCityPath(group.city)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 flex w-full items-center justify-center rounded-full border border-terracotta/25 bg-terracotta/8 py-3 text-[0.88rem] font-bold text-terracotta-deep transition hover:border-terracotta/45 hover:bg-terracotta/12"
-                >
-                  See all sights in {group.city}
-                </a>
+              <DeferredMount eager={eager} minHeight={280}>
+                {expand ? (
+                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                    {visible.map((item, i) => (
+                      <ExperienceCard
+                        key={item.id}
+                        experience={item}
+                        tripDate={tripDate}
+                        dense
+                        cityRank={cityRankById.get(item.id) ?? item.cityRank}
+                        priority={i < 3}
+                        onBuildDay={onBuildDay}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <SightRowScroller key={`${group.city}-preview`}>
+                    {visible.map((item, i) => (
+                      <ExperienceCard
+                        key={item.id}
+                        experience={item}
+                        tripDate={tripDate}
+                        compact
+                        cityRank={cityRankById.get(item.id) ?? item.cityRank}
+                        priority={eager && index < 2 && i < 2}
+                        onBuildDay={onBuildDay}
+                      />
+                    ))}
+                    <a
+                      href={experiencesCityPath(group.city)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex min-h-[280px] w-[var(--sight-card-w,calc((100%-2rem)/2.5))] min-w-[var(--sight-card-w,calc((100%-2rem)/2.5))] shrink-0 snap-start flex-col items-center justify-center rounded-[22px] border border-terracotta/30 bg-terracotta/10 px-5 text-center transition hover:border-terracotta/50 hover:bg-terracotta/16"
+                    >
+                      <span className="font-serif text-[1.2rem] font-semibold text-ink">
+                        See ranked sights in {group.city}
+                      </span>
+                      <span className="mt-1 text-[0.78rem] font-bold text-terracotta">
+                        Full city ranking
+                      </span>
+                    </a>
+                  </SightRowScroller>
+                )}
               </DeferredMount>
             </div>
           </section>
@@ -538,7 +575,7 @@ function DeferredMount({
   )
 }
 
-function VietnamBestScroller({ children }: { children: React.ReactNode }) {
+function SightRowScroller({ children }: { children: React.ReactNode }) {
   const scrollerRef = useRef<HTMLDivElement>(null)
   const lastLeftRef = useRef(0)
   const stopTimerRef = useRef<number | null>(null)
@@ -596,7 +633,7 @@ function VietnamBestScroller({ children }: { children: React.ReactNode }) {
     <div className="relative">
       <div
         ref={scrollerRef}
-        className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-2 pr-14 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-2 pr-14 snap-x snap-mandatory max-sm:[--sight-card-w:calc((100%-0.75rem)/1.35)] sm:[--sight-card-w:calc((100%-2rem)/2.5)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {children}
       </div>
@@ -649,31 +686,3 @@ function DiscoverySection({
   )
 }
 
-function CardGrid({
-  items,
-  tripDate,
-  onBuildDay,
-  cityRankById,
-  priorityCount = 0,
-}: {
-  items: RankedExperience[]
-  tripDate: string | null
-  onBuildDay: (id: string) => void
-  cityRankById?: Map<string, number>
-  priorityCount?: number
-}) {
-  return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      {items.map((item, index) => (
-        <ExperienceCard
-          key={item.id}
-          experience={item}
-          tripDate={tripDate}
-          onBuildDay={onBuildDay}
-          cityRank={item.cityRank ?? cityRankById?.get(item.id)}
-          priority={index < priorityCount}
-        />
-      ))}
-    </div>
-  )
-}

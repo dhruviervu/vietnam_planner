@@ -5,7 +5,7 @@ const REFUSE_RE =
   /\b(python|javascript|typescript|code|sql|regex|election|president|crypto|bitcoin|stock|homework|essay|recipe for(?! pho)|who won|make me a|linux|windows install|medical diagnos|legal advice|girlfriend|boyfriend)\b/i
 
 const SITE_RE =
-  /\b(this site|this app|this website|vietnam[, ]?curated|who are you|what (can|do) you|how (does|do) (this|the site|the app)|what is this)\b/i
+  /\b(this site|this app|this website|how to use|vietnam[, ]?curated|who are you|what (can|do) you|how (does|do) (this|the site|the app)|what is this)\b/i
 
 const IN_SCOPE_RE =
   /\b(vietnam|viet nam|itinerary|sight|temple|pagoda|bay|cruise|beach|island|cave|market|pho|hanoi|saigon|hoi an|sapa|hue|danang|da nang|ninh binh|phu quoc|halong|ha long|mekong|trip|travel|destination|stay|hotel|eat|food|train|visa|sim|weather|season|shopping|airport|itinerary)\b/i
@@ -44,7 +44,7 @@ function intentOf(text: string): AskIntent {
 }
 
 function compactLine(intent: AskIntent, names: string[], raw: string) {
-  const who = names.slice(0, 3).join(', ') || 'Vietnam, Curated'
+  const who = names.slice(0, 3).join(', ') || 'TripBuilder'
   const clipped = raw.replace(/\s+/g, ' ').trim().slice(0, 140)
   return `${intent} · ${who} · ${clipped}`
 }
@@ -105,7 +105,7 @@ export function gatekeepAsk(raw: string, page: AskPageContext): AskTicket {
         intent: siteQuestion ? 'help' : intent,
         entities: [],
         cityHint,
-        compact: compactLine(siteQuestion ? 'help' : intent, cityHint ? [cityHint] : ['Vietnam, Curated'], text),
+        compact: compactLine(siteQuestion ? 'help' : intent, cityHint ? [cityHint] : ['TripBuilder'], text),
       })
     }
     if (page.city && (intent === 'similar' || intent === 'show')) {

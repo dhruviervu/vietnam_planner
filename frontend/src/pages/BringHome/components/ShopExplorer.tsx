@@ -6,9 +6,11 @@ import {
   DESTINATIONS,
   citiesForItem,
   destinationCityCounts,
+  destinationGoodsCounts,
   destinationItemCounts,
   getDestinationsForItem,
 } from '../data/destinations'
+import { SHOP_GOODS_FILTERS } from '../data/shopGoods'
 import { getTripShopCities } from '../lib/tripShopCities'
 import { ShopPlaceCard } from './ShopPlaceCard'
 
@@ -60,6 +62,17 @@ export function ShopExplorer({ items, selectedItemId, onSelectItem }: Props) {
   const activeCity = city === 'All' || availableCities.includes(city) ? city : 'All'
   const visibleCities = availableCities
 
+  const goodsCounts = useMemo(
+    () => destinationGoodsCounts('All', activeCity, { ...filters, goods: null }),
+    [activeCity, filters.openNow, filters.type],
+  )
+
+  useEffect(() => {
+    if (filters.goods && (goodsCounts[filters.goods] ?? 0) === 0) {
+      setFilters((f) => ({ ...f, goods: null }))
+    }
+  }, [filters.goods, goodsCounts])
+
   const destinations = useMemo(
     () => getDestinationsForItem(selectedItemId, activeCity, sort, filters, tripCities),
     [selectedItemId, activeCity, sort, filters, tripCities],
@@ -76,6 +89,7 @@ export function ShopExplorer({ items, selectedItemId, onSelectItem }: Props) {
     (sort !== 'best-overall' ? 1 : 0) +
     (filters.openNow ? 1 : 0) +
     (filters.type ? 1 : 0) +
+    (filters.goods ? 1 : 0) +
     (activeCity !== 'All' ? 1 : 0)
 
   function clearFilters() {
@@ -135,7 +149,13 @@ export function ShopExplorer({ items, selectedItemId, onSelectItem }: Props) {
               </h3>
               <p className="mt-1 text-[0.72rem] text-muted">See every place, or shops for one thing.</p>
               <div className="mt-2 flex flex-wrap gap-1.5">
-                <FilterChip active={selectedItemId === 'All'} onClick={() => onSelectItem('All')}>
+                <FilterChip
+                  active={selectedItemId === 'All' && !filters.goods}
+                  onClick={() => {
+                    onSelectItem('All')
+                    setFilters((f) => ({ ...f, goods: null }))
+                  }}
+                >
                   All items
                   <span className="ml-1 opacity-70">{DESTINATIONS.length}</span>
                 </FilterChip>
@@ -143,10 +163,26 @@ export function ShopExplorer({ items, selectedItemId, onSelectItem }: Props) {
                   <FilterChip
                     key={item.id}
                     active={selectedItemId === item.id}
-                    onClick={() => onSelectItem(item.id)}
+                    onClick={() => {
+                      onSelectItem(item.id)
+                      setFilters((f) => ({ ...f, goods: null }))
+                    }}
                   >
                     {item.name}
                     <span className="ml-1 opacity-70">{itemCounts[item.id] ?? 0}</span>
+                  </FilterChip>
+                ))}
+                {SHOP_GOODS_FILTERS.filter((g) => (goodsCounts[g.id] ?? 0) > 0).map((g) => (
+                  <FilterChip
+                    key={g.id}
+                    active={filters.goods === g.id}
+                    onClick={() => {
+                      onSelectItem('All')
+                      setFilters((f) => ({ ...f, goods: f.goods === g.id ? null : g.id }))
+                    }}
+                  >
+                    {g.label}
+                    <span className="ml-1 opacity-70">{goodsCounts[g.id]}</span>
                   </FilterChip>
                 ))}
               </div>
@@ -276,7 +312,7 @@ export function ShopExplorer({ items, selectedItemId, onSelectItem }: Props) {
             </p>
           ) : (
             <>
-              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="mt-4 grid grid-cols-2 gap-3">
                 {pageDestinations.map((d, i) => (
                   <ShopPlaceCard
                     key={d.id}

@@ -25,7 +25,7 @@ export function Nav({ mode = 'default' }: Props) {
           onClick={() => exitItineraryPipeline()}
           className="shrink-0 font-serif text-[1.15rem] font-semibold text-terracotta-deep"
         >
-          Vietnam, Curated
+          TripBuilder
         </Link>
       </div>
 

@@ -70,7 +70,7 @@ function drawCover(doc: jsPDF, trip: YourVietnamTrip) {
   let y = 42
   setFont(doc, 'bold', 9)
   doc.setTextColor(SAGE)
-  doc.text('VIETNAM, CURATED', MARGIN, y)
+  doc.text('TRIPBUILDER', MARGIN, y)
 
   y += 14
   setFont(doc, 'bold', 28)
@@ -437,7 +437,7 @@ function drawSummary(doc: jsPDF, trip: YourVietnamTrip) {
   y = Math.max(y + 10, BOTTOM - 20)
   setFont(doc, 'normal', 7)
   doc.setTextColor(MUTED)
-  doc.text('Vietnam, Curated · Your Vietnam day-by-day itinerary', MARGIN, y)
+  doc.text('TripBuilder · Your Vietnam day-by-day itinerary', MARGIN, y)
   doc.text(
     'Confirm availability, opening hours, provider terms and final prices before travel.',
     MARGIN,

@@ -77,11 +77,7 @@ export function isIncludedCompanion(id: string, selectedIds: string[]): boolean 
 
 function catalogDurationHours(id: string): number {
   const canon = canonicalSightId(id)
-  return (
-    EXPERIENCES.find((e) => e.id === id || e.id === canon)?.durationHours ??
-    CITY_ACTIVITIES.find((a) => a.id === id || a.id === canon)?.durationHours ??
-    0
-  )
+  return EXPERIENCES.find((e) => e.id === id || e.id === canon)?.durationHours ?? 0
 }
 
 /** Landings on a trek / boat / cable / exclusive day-trip — clocks sit on the parent outing. */

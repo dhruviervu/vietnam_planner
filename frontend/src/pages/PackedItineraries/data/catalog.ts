@@ -3,7 +3,7 @@ import type { PackedTemplate } from './catalogTypes'
 
 export type { PackedDay, PackedTemplate } from './catalogTypes'
 
-export const PACKED_TEMPLATES: PackedTemplate[] = raw
+export const PACKED_TEMPLATES = raw as PackedTemplate[]
 
 const BY_ID = new Map(PACKED_TEMPLATES.map((template) => [template.id, template]))
 

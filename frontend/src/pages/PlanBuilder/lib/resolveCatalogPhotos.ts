@@ -277,7 +277,6 @@ const BY_ID: Record<string, string[]> = {
   'nb-cuc-phuong': THEMES.mountain,
   'nb-hoa-lu-cycle': THEMES.citadel,
   'nb-paddle-van-long': THEMES.kayak,
-  'nb-countryside-cook': THEMES.cooking,
   'nb-thung-nam': THEMES.kayak,
   'nb-rice-homestay': THEMES.rice,
   'nb-bike-picnic': THEMES.rice,
@@ -312,11 +311,9 @@ const BY_ID: Record<string, string[]> = {
   'sp-paraglide': THEMES.mountain,
   'sp-waterfall-scooter': THEMES.mountain,
   'sp-bac-ha-market': THEMES.city,
-  'sp-homestay-cook': THEMES.cooking,
   'sp-terrace-walk-games': THEMES.rice,
   'sp-evening-song': THEMES.temple,
   'hue-dragon-sunset': THEMES.kayak,
-  'hue-royal-cook': THEMES.cooking,
   'hue-ao-dai-photo': THEMES.citadel,
   'hue-incense-craft': THEMES.craft,
   'hue-truc-lam-bach-ma': THEMES.temple,
@@ -334,7 +331,6 @@ const BY_ID: Record<string, string[]> = {
   'pn-duck-stop': THEMES.rice,
   'pn-bike': THEMES.rice,
   'pn-cha-loi': THEMES.cave,
-  'pn-farmstay-cook': THEMES.cooking,
   'pn-son-kayak': THEMES.kayak,
   'mk-cai-rang': THEMES.kayak,
   'mk-coconut-candy': THEMES.food,
@@ -600,31 +596,45 @@ export function isGenericCityPhoto(
   return true
 }
 
+const WEAK_LEAD =
+  /\b(bridge|highway|motorway|roundabout|parking|signboard|road sign|map of|flag of|coat of arms|logo|diagram|floor plan|poster|stamp|coin|banknote|screenshot|selfie|graduation|promoting|actor|actress|film still)\b/i
+
 export function rankPhotosForSight(
   urls: string[],
   sight: { id?: string; name?: string; city?: string },
+  prefer: string[] = [],
 ): string[] {
   const unique = uniquePhotos(urls.filter(isDirectImageUrl))
   const tokens = sightPhotoTokens(sight)
-  const scored = unique.map((url) => {
-    const stem = photoFileStem(url)
+  const preferSet = new Set(prefer.filter(isDirectImageUrl))
+  const title = `${sight.id ?? ''} ${sight.name ?? ''}`.toLowerCase()
+  const scored = unique.map((url, index) => {
+    const stem = photoFileStem(url) || ''
     let score = 0
     for (const token of tokens) {
-      if (token.length >= 3 && stem.includes(token)) score += token.length >= 5 ? 3 : 2
+      if (token.length >= 3 && stem.includes(token)) score += token.length >= 5 ? 4 : 2
     }
-    if (isGenericCityPhoto(url, sight)) score -= 14
-    if (/\b(film|movie|actor|actress|promoting)\b/i.test(stem) && !/cinema|theatre|theater|movie/i.test(`${sight.id} ${sight.name}`)) {
+    if (preferSet.has(url)) score += 12
+    if (isGenericCityPhoto(url, sight)) score -= 18
+    if (WEAK_LEAD.test(stem) && !WEAK_LEAD.test(title)) score -= 10
+    if (/\b(film|movie|actor|actress|promoting)\b/i.test(stem) && !/cinema|theatre|theater|movie/i.test(title)) {
       score -= 12
     }
     if (/upload\.wikimedia\.org/.test(url) && /\/thumb\//.test(url)) score += 1
-    return { url, score }
+    score -= index * 0.01
+    return { url, score, stem }
   })
   scored.sort((a, b) => b.score - a.score)
-  const matched = scored.filter((row) => row.score > 0).map((row) => row.url)
-  const rest = scored
-    .filter((row) => row.score <= 0 && !isGenericCityPhoto(row.url, sight))
-    .map((row) => row.url)
-  return uniquePhotos([...matched, ...rest])
+  const usedStems = new Set<string>()
+  const ordered: string[] = []
+  for (const row of scored) {
+    if (isGenericCityPhoto(row.url, sight) && row.score <= 0) continue
+    const key = row.stem.replace(/\d+/g, '').slice(0, 28)
+    if (ordered.length < 3 && key && usedStems.has(key) && row.score < 8) continue
+    if (key) usedStems.add(key)
+    ordered.push(row.url)
+  }
+  return uniquePhotos(ordered)
 }
 
 export function isDirectImageUrl(url: string) {
@@ -635,11 +645,14 @@ export function isDirectImageUrl(url: string) {
   return true
 }
 
-/** Smaller files for catalog cards so a long sights page does not fetch 1280px originals. */
+/**
+ * Smaller files for catalog cards so a long sights page does not fetch 1280px originals.
+ * Wikimedia only serves its standard thumbnail widths (250, 330, 500, 960, 1280, …); others return 400.
+ */
 export function catalogCardPhotoUrl(src: string): string {
   if (!src) return src
   return src
-    .replace(/\/(\d{3,4})px-/g, (_, n: string) => (Number(n) > 640 ? '/640px-' : `/${n}px-`))
+    .replace(/\/(\d{3,4})px-/g, (_, n: string) => (Number(n) > 500 ? '/500px-' : `/${n}px-`))
     .replace(/([?&]w=)(\d+)/g, (full, prefix: string, w: string) =>
       Number(w) > 800 ? `${prefix}640` : full,
     )

@@ -14,12 +14,6 @@ import {
 } from './services/recommendation'
 import { ClimateMapSection } from './components/ClimateMapSection'
 import { WhatsHappeningSection } from './components/WhatsHappeningSection'
-import {
-  EVENT_SEASONS,
-  monthToSeason,
-  seasonSectionId,
-  type EventSeason,
-} from './data/eventSeasons'
 import { WhenToGoPageShell } from './WhenToGoPageShell'
 
 const CLIMATE_MAP_ID = 'climate-map'
@@ -33,8 +27,7 @@ export function WhenToGoDiscoverPage({ embedded = false }: { embedded?: boolean 
   const location = useLocation()
   const choiceGroups = useMemo(() => classifyMonthChoices(), [])
   const [selectedMonth, setSelectedMonth] = useState<MonthId>(3)
-  const [eventFocusSeason, setEventFocusSeason] = useState<EventSeason | null>(null)
-  const [mapLayerRequest, setMapLayerRequest] = useState<{
+  const [mapLayerRequest] = useState<{
     layer: 'temperature' | 'rainfall'
     key: number
   } | null>(null)
@@ -44,8 +37,6 @@ export function WhenToGoDiscoverPage({ embedded = false }: { embedded?: boolean 
   useEffect(() => {
     const hash = location.hash.replace(/^#/, '')
     if (!hash) return
-    const season = EVENT_SEASONS.find((s) => seasonSectionId(s) === hash)
-    if (season) setEventFocusSeason(season)
     const timer = window.setTimeout(() => {
       document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }, 80)
@@ -53,9 +44,7 @@ export function WhenToGoDiscoverPage({ embedded = false }: { embedded?: boolean 
   }, [location.hash])
 
   function seeCulturalEvents() {
-    const season = monthToSeason(selectedMonth)
-    setEventFocusSeason(season)
-    scrollToSection(seasonSectionId(season))
+    scrollToSection(EVENT_CALENDAR_ID)
   }
 
   const page = (
@@ -119,10 +108,7 @@ export function WhenToGoDiscoverPage({ embedded = false }: { embedded?: boolean 
         </div>
 
         <div id={EVENT_CALENDAR_ID} className="scroll-mt-24 mt-10">
-          <WhatsHappeningSection
-            selectedMonth={selectedMonth}
-            focusSeason={eventFocusSeason}
-          />
+          <WhatsHappeningSection selectedMonth={selectedMonth} />
         </div>
       </main>
   )

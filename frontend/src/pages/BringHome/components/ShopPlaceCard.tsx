@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { useTripStore } from '../../../store/tripStore'
 import type { ShopCity, ShoppingDestination } from '../data/types'
 import { crowdDots } from '../data/destinations'
+import { SHOP_GOODS_LABELS } from '../data/shopGoods'
 import {
   SHOP_PERIOD_OPTIONS,
   addShopToItinerary,
@@ -191,6 +192,14 @@ export function ShopPlaceCard({ destination: d, rank, cityScope }: Props) {
           </span>
           {d.bestForLabels.join(' · ')}
         </p>
+        {(d.goodsCategories ?? []).length > 0 ? (
+          <p className="mt-1 text-[0.62rem] font-semibold text-ink/70">
+            <span className="text-[0.55rem] font-bold uppercase tracking-[0.08em] text-muted">
+              Also stocks ·{' '}
+            </span>
+            {(d.goodsCategories ?? []).map((g) => SHOP_GOODS_LABELS[g]).join(' · ')}
+          </p>
+        ) : null}
 
         <p className="mt-2.5 text-[0.8rem] font-medium leading-relaxed text-ink/85">{d.whyRecommended}</p>
         {d.valueNote && rank === 1 ? (

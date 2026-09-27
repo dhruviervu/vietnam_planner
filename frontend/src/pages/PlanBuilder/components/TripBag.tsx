@@ -8,6 +8,7 @@ import { getActivityById, getActivityImages } from '../data/activities'
 import { getExperienceImages } from '../lib/pricing'
 import { onTripBagPop, registerTripBag } from '../lib/tripBagTarget'
 import { TripBagItem } from './TripBagItem'
+import { openDetailHref } from '../lib/yourVietnam/links'
 
 type Props = {
   mobileOpen?: boolean
@@ -102,7 +103,7 @@ export function TripBag({ mobileOpen = false, onToggleMobile }: Props) {
       item.kind === 'activity'
         ? `/plan/builder/activity/${item.id}`
         : `/plan/builder/experience/${item.id}`
-    window.open(path, '_blank', 'noopener,noreferrer')
+    openDetailHref(path)
   }
 
   function removeItem(item: BagEntry) {

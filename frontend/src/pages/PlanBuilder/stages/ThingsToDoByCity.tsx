@@ -1,177 +1,208 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { memo, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { TripBag } from '../components/TripBag'
 import { StageFooter } from '../components/StageFooter'
 import { ActivityCard } from '../components/ActivityCard'
-import { StayProgressPanel } from '../components/StayProgressPanel'
 import { VerticalTripProgress } from '../components/VerticalTripProgress'
 import {
-  ActivityFilterPanel,
-  ActivityFilterPanelBody,
+  ActivityFilterBar,
   DEFAULT_ACTIVITY_FILTERS,
-  countActiveActivityFilters,
+  type ActivityCatalogFilters,
 } from '../components/ActivityFilterPanel'
 import { useTripStore } from '../../../store/tripStore'
-import { EXPERIENCES, SIGHT_CATALOG } from '../data/experiences'
+import { SIGHT_CATALOG } from '../data/experiences'
 import {
   CITY_ACTIVITIES,
-  activityCityIdForPlace,
-  activityDurationBand,
   activityKindFilters,
   groupActivitiesByCity,
-  listActivityCitiesByPopularity,
-  type RankedActivity,
+  rankCityActivities,
+  type ActivityCityGroup,
+  type CityActivity,
 } from '../data/activities'
 import { groupIdForSourceId } from '../lib/yourVietnam/sightTiming'
+import { PopularCitiesStrip } from '../components/PopularCitiesStrip'
+import { cityAnchorId, activitiesCityPath, activitiesTopPath } from '../services/citySlug'
 
-const CITY_SCROLL_OFFSET = 96
+const CATALOG_SCROLL_ID = 'activities-by-city'
+const CITY_PREVIEW_COUNT = 5
 
-type MobilePanel = 'none' | 'progress' | 'filters'
+type MobilePanel = 'none' | 'progress'
+
+function activitiesWithoutSightDupes(): CityActivity[] {
+  const sightGroups = new Set<string>()
+  for (const e of SIGHT_CATALOG) {
+    sightGroups.add(e.id)
+    if (e.groupId) sightGroups.add(e.groupId)
+    sightGroups.add(groupIdForSourceId(e.id))
+  }
+  return CITY_ACTIVITIES.filter((a) => {
+    const group = a.groupId ?? groupIdForSourceId(a.id)
+    return !sightGroups.has(group) && !sightGroups.has(a.id)
+  })
+}
 
 export function ThingsToDoByCity() {
   const mark = useTripStore((s) => s.markStepVisited)
   const pipelineActive = useTripStore((s) => s.itineraryPipelineActive)
-  const [mobileTripOpen, setMobileTripOpen] = useState(false)
-  const [filters, setFilters] = useState(DEFAULT_ACTIVITY_FILTERS)
-  const [activeCity, setActiveCity] = useState<string | null>(null)
-  const [mobilePanel, setMobilePanel] = useState<MobilePanel>('none')
+  const [filters, setFilters] = useState<ActivityCatalogFilters>(() => ({
+    ...DEFAULT_ACTIVITY_FILTERS,
+  }))
   const [filtersOpen, setFiltersOpen] = useState(true)
-
-  const scrollLockRef = useRef<string | null>(null)
-  const scrollLockTimerRef = useRef<number | null>(null)
-  const rafSpyRef = useRef<number | null>(null)
+  const [mobileTripOpen, setMobileTripOpen] = useState(false)
+  const [mobilePanel, setMobilePanel] = useState<MobilePanel>('none')
+  const [focusCity, setFocusCity] = useState<string | null>(null)
+  const pendingScroll = useRef<string | null>(null)
 
   useEffect(() => {
     mark('activities')
   }, [mark])
 
-  const selectedExperienceIds = useTripStore((s) => s.selectedExperienceIds)
-
-  const sightGroups = useMemo(() => {
-    const groups = new Set<string>()
-    for (const e of SIGHT_CATALOG) {
-      groups.add(e.id)
-      if (e.groupId) groups.add(e.groupId)
-      groups.add(groupIdForSourceId(e.id))
-    }
-    return groups
-  }, [])
-
-  const filtered = useMemo(() => {
-    return CITY_ACTIVITIES.filter((a) => {
-      if (filters.kind !== 'all' && a.kind !== filters.kind) return false
-      if (filters.duration !== 'all' && activityDurationBand(a) !== filters.duration) return false
-      const group = a.groupId ?? groupIdForSourceId(a.id)
-      if (sightGroups.has(group) || sightGroups.has(a.id)) return false
-      return true
-    })
-  }, [filters, sightGroups])
-
-  const bagCityIds = useMemo(() => {
-    const ids = new Set<string>()
-    for (const exp of EXPERIENCES) {
-      if (!selectedExperienceIds.includes(exp.id)) continue
-      const cityId = activityCityIdForPlace(exp.city) ?? activityCityIdForPlace(exp.region)
-      if (cityId) ids.add(cityId)
-    }
-    return ids
-  }, [selectedExperienceIds])
-
-  const groups = useMemo(
-    () => groupActivitiesByCity(filtered, bagCityIds),
-    [filtered, bagCityIds],
+  const catalog = useMemo(() => activitiesWithoutSightDupes(), [])
+  const vietnamBest = useMemo(
+    () => rankCityActivities(catalog).slice(0, 20),
+    [catalog],
   )
-  const kinds = useMemo(() => activityKindFilters(), [])
-  const cities = useMemo(() => listActivityCitiesByPopularity(filtered), [filtered])
-  const resultCount = filtered.length
-  const activeFilterCount = countActiveActivityFilters(filters)
-  const isFiltering = filters.kind !== 'all' || filters.duration !== 'all'
 
-  const cityIdsKey = groups.map((g) => g.cityId).join('|')
+  const deferredFilters = useDeferredValue(filters)
+  const isFiltering =
+    deferredFilters.kind !== 'all' || deferredFilters.cities.length > 0
+
+  const kinds = useMemo(() => {
+    const source =
+      deferredFilters.cities.length > 0
+        ? catalog.filter((a) => deferredFilters.cities.includes(a.cityName))
+        : catalog
+    return activityKindFilters(source).filter((k) => k.count > 0)
+  }, [catalog, deferredFilters.cities])
 
   useEffect(() => {
-    const cityIds = cityIdsKey ? cityIdsKey.split('|') : []
-    if (cityIds.length === 0) return
+    if (filters.kind === 'all') return
+    if (kinds.some((k) => k.id === filters.kind)) return
+    setFilters((prev) => ({ ...prev, kind: 'all' }))
+  }, [filters.kind, kinds])
 
-    setActiveCity((prev) => (prev && cityIds.includes(prev) ? prev : cityIds[0]))
+  const filteredItems = useMemo(() => {
+    return catalog.filter((a) => {
+      if (deferredFilters.kind !== 'all' && a.kind !== deferredFilters.kind) return false
+      if (
+        deferredFilters.cities.length > 0 &&
+        !deferredFilters.cities.includes(a.cityName)
+      ) {
+        return false
+      }
+      return true
+    })
+  }, [catalog, deferredFilters])
 
-    const spy = () => {
-      if (scrollLockRef.current) {
-        setActiveCity((prev) => (prev === scrollLockRef.current ? prev : scrollLockRef.current))
-        return
-      }
-      const marker = CITY_SCROLL_OFFSET + 12
-      let current = cityIds[0]
-      for (const id of cityIds) {
-        const el = document.getElementById(`activity-city-${id}`)
-        if (!el) continue
-        if (el.getBoundingClientRect().top <= marker) current = id
-      }
-      setActiveCity((prev) => (prev === current ? prev : current))
+  const cityGroups = useMemo(
+    () => groupActivitiesByCity(filteredItems).filter((g) => g.activities.length > 0),
+    [filteredItems],
+  )
+  const fullGroups = useMemo(() => groupActivitiesByCity(catalog), [catalog])
+
+  const cityButtons = useMemo(() => {
+    const source =
+      deferredFilters.kind === 'all'
+        ? catalog
+        : catalog.filter((a) => a.kind === deferredFilters.kind)
+    return [...new Set(groupActivitiesByCity(source).map((g) => g.cityName))]
+  }, [catalog, deferredFilters.kind])
+
+  useEffect(() => {
+    if (filters.cities.length === 0) return
+    const allowed = new Set(cityButtons)
+    const next = filters.cities.filter((c) => allowed.has(c))
+    if (next.length === filters.cities.length) return
+    setFilters((prev) => ({ ...prev, cities: next }))
+  }, [cityButtons, filters.cities])
+
+  const cityCounts = useMemo(() => {
+    const source =
+      deferredFilters.kind === 'all'
+        ? catalog
+        : catalog.filter((a) => a.kind === deferredFilters.kind)
+    const map: Record<string, number> = {}
+    for (const a of source) {
+      map[a.cityName] = (map[a.cityName] ?? 0) + 1
     }
+    return map
+  }, [catalog, deferredFilters.kind])
 
-    const onScroll = () => {
-      if (rafSpyRef.current != null) return
-      rafSpyRef.current = window.requestAnimationFrame(() => {
-        rafSpyRef.current = null
-        spy()
+  const resultCount = filteredItems.length
+
+  function scrollToSection(target: string) {
+    const id =
+      target === 'catalog'
+        ? CATALOG_SCROLL_ID
+        : target === 'vietnam-best' || target === ''
+          ? 'vietnam-best'
+          : cityAnchorId(target)
+    const run = () => {
+      const el = document.getElementById(id) ?? document.getElementById('vietnam-best')
+      if (!el) return false
+      el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+      return true
+    }
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        if (run()) return
+        window.setTimeout(run, 80)
       })
-    }
-
-    spy()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      if (rafSpyRef.current != null) window.cancelAnimationFrame(rafSpyRef.current)
-      if (scrollLockTimerRef.current != null) window.clearTimeout(scrollLockTimerRef.current)
-    }
-  }, [cityIdsKey])
-
-  function scrollToCity(id: string) {
-    const el = document.getElementById(`activity-city-${id}`)
-    if (!el) return
-    const top = el.getBoundingClientRect().top + window.scrollY - CITY_SCROLL_OFFSET
-    window.scrollTo({ top, behavior: 'smooth' })
+    })
   }
 
-  function selectCityFromFilter(cityId: string) {
-    setActiveCity(cityId)
-    scrollLockRef.current = cityId
-    if (scrollLockTimerRef.current != null) window.clearTimeout(scrollLockTimerRef.current)
-    scrollToCity(cityId)
-    scrollLockTimerRef.current = window.setTimeout(() => {
-      scrollLockRef.current = null
-      setActiveCity(cityId)
-    }, 900)
+  useLayoutEffect(() => {
+    if (deferredFilters !== filters) return
+    const target = pendingScroll.current
+    if (target == null) return
+    pendingScroll.current = null
+    scrollToSection(target)
+  }, [cityGroups, deferredFilters, filters])
+
+  useEffect(() => {
+    const jump = () => {
+      const raw = window.location.hash.replace(/^#/, '')
+      if (!raw.startsWith('city-')) return
+      const match = groupActivitiesByCity(catalog).find(
+        (g) => cityAnchorId(g.cityName) === raw,
+      )
+      if (!match) return
+      setFocusCity(match.cityName)
+      scrollToSection(match.cityName)
+    }
+    jump()
+    window.addEventListener('hashchange', jump)
+    return () => window.removeEventListener('hashchange', jump)
+  }, [catalog])
+
+  function applyFilters(next: ActivityCatalogFilters) {
+    if (pendingScroll.current == null && next.cities[0]) {
+      pendingScroll.current = next.cities[0]
+    }
+    setFilters(next)
+  }
+
+  function onSelectCity(city: string, turningOn: boolean) {
+    if (turningOn) pendingScroll.current = city
+    setFocusCity(turningOn ? city : null)
     setMobilePanel('none')
   }
 
   const filterPanelProps = {
     filters,
-    onChange: setFilters,
-    onClear: () => setFilters(DEFAULT_ACTIVITY_FILTERS),
-    cities,
+    onChange: applyFilters,
+    onClear: () => applyFilters({ ...DEFAULT_ACTIVITY_FILTERS }),
+    cities: cityButtons,
+    cityCounts,
     kinds,
-    activeCity,
-    onSelectCity: selectCityFromFilter,
+    onSelectCity,
     resultCount,
   }
 
   return (
     <div className="relative flex pb-28 xl:pb-0">
-      <div className="sticky top-[72px] z-20 hidden shrink-0 self-start lg:flex">
-        {pipelineActive ? <StayProgressPanel current="activities" /> : null}
-        <ActivityFilterPanel
-          expanded={filtersOpen}
-          onToggle={() => setFiltersOpen((v) => !v)}
-          {...filterPanelProps}
-        />
-      </div>
-
-      <div className="fixed inset-x-0 bottom-[4.6rem] z-30 flex justify-center gap-2 px-3 lg:hidden">
-        {pipelineActive ? (
+      {pipelineActive ? (
+        <div className="fixed inset-x-0 bottom-[4.6rem] z-30 flex justify-center gap-2 px-3 lg:hidden">
           <button
             type="button"
             onClick={() => setMobilePanel((p) => (p === 'progress' ? 'none' : 'progress'))}
@@ -181,17 +212,8 @@ export function ThingsToDoByCity() {
           >
             Pipeline
           </button>
-        ) : null}
-        <button
-          type="button"
-          onClick={() => setMobilePanel((p) => (p === 'filters' ? 'none' : 'filters'))}
-          className={`rounded-full px-4 py-2.5 text-[0.8rem] font-bold shadow-card ${
-            mobilePanel === 'filters' ? 'bg-ink text-paper' : 'bg-paper text-ink'
-          }`}
-        >
-          Filters{activeFilterCount > 0 ? ` · ${activeFilterCount}` : ''}
-        </button>
-      </div>
+        </div>
+      ) : null}
 
       <AnimatePresence>
         {mobilePanel !== 'none' && (
@@ -224,87 +246,92 @@ export function ThingsToDoByCity() {
           </motion.aside>
         )}
       </AnimatePresence>
-      <AnimatePresence>
-        {mobilePanel === 'filters' && (
-          <motion.aside
-            className="fixed inset-y-0 left-0 z-50 w-[min(92vw,340px)] overflow-y-auto bg-paper p-5 shadow-hero lg:hidden"
-            initial={{ x: -24, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -16, opacity: 0 }}
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-sage">
-                Filters
-              </p>
-              <button type="button" onClick={() => setMobilePanel('none')} className="text-muted">
-                Close
-              </button>
-            </div>
-            <ActivityFilterPanelBody {...filterPanelProps} />
-          </motion.aside>
-        )}
-      </AnimatePresence>
 
-      <div className="min-w-0 flex-1 px-[clamp(1.1rem,4vw,2rem)] pt-2 lg:pt-4">
-        <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
-          <p className="mb-2 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">
-            Stage 3 · Activities
-          </p>
-          <h1 className="font-serif text-[clamp(1.9rem,4vw,2.85rem)] font-semibold leading-[1.1] text-ink">
-            Join in!
+      <div className="min-w-0 flex-1">
+        <div className="px-[clamp(1.1rem,4vw,2rem)] pt-3 lg:pt-5">
+          <h1 className="font-serif text-[clamp(1.85rem,3.8vw,2.7rem)] font-semibold leading-[1.12] text-ink">
+            Activities in Vietnam
           </h1>
-          <p className="mt-3 max-w-[54ch] text-[1.02rem] leading-relaxed text-muted">
-            These are the activities and fun stuff you can partake in. Completely optional but also
-            completely change the holiday - in a good way.
+          <p className="mt-3 w-full text-[0.95rem] leading-[1.6] text-muted">
+            Browse hands-on classes, adventures, workshops, and nights out city by city — ranked
+            from the activities travelers actually do first, not obscure workshops. Click a city
+            name on a card to open the ranked list, or See ranked activities at the end of a row.
           </p>
+          {isFiltering ? (
+            <button
+              type="button"
+              onClick={() => applyFilters({ ...DEFAULT_ACTIVITY_FILTERS })}
+              className="mt-3 text-[0.82rem] font-bold text-terracotta hover:underline"
+            >
+              Relax filters
+            </button>
+          ) : null}
+        </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span className="text-[0.8rem] text-muted">
-              {resultCount} activit{resultCount === 1 ? 'y' : 'ies'}
-              {isFiltering ? ' match' : ` · ${groups.length} cities`}
-            </span>
-            {isFiltering ? (
-              <button
-                type="button"
-                onClick={() => setFilters(DEFAULT_ACTIVITY_FILTERS)}
-                className="text-[0.8rem] font-bold text-terracotta hover:underline"
-              >
-                Relax filters
-              </button>
-            ) : null}
-          </div>
+        <div className="sticky top-0 z-30 mt-4 border-b border-ink/8 bg-cream px-[clamp(1.1rem,4vw,2rem)]">
+          <ActivityFilterBar
+            expanded={filtersOpen}
+            onToggle={() => setFiltersOpen((v) => !v)}
+            {...filterPanelProps}
+          />
+        </div>
 
-          {groups.length === 0 ? (
-            <div className="mt-10 rounded-[22px] bg-paper p-8 text-center shadow-soft">
-              <p className="font-serif text-[1.35rem] font-semibold text-ink">
-                No activities match these filters right now.
-              </p>
-              <button
-                type="button"
-                onClick={() => setFilters(DEFAULT_ACTIVITY_FILTERS)}
-                className="mt-4 rounded-full bg-ink px-5 py-2.5 text-[0.88rem] font-bold text-paper"
-              >
-                Show all
-              </button>
-            </div>
-          ) : (
-            <div className="mt-8 space-y-5">
-              {groups.map((group) => (
-                <CityActivitySection
-                  key={group.cityId}
-                  cityId={group.cityId}
-                  cityName={group.cityName}
-                  activities={group.activities}
-                  becauseSights={bagCityIds.has(group.cityId)}
-                />
-              ))}
-            </div>
+        <div className="px-[clamp(1.1rem,4vw,2rem)] pt-4">
+          {!isFiltering && (
+            <DiscoverySection
+              id="vietnam-best"
+              title="Vietnam, at its best"
+              subtitle="The activities most travelers actually do — ranked, not a random Unique tag."
+            >
+              <ActivityRowScroller>
+                {vietnamBest.slice(0, CITY_PREVIEW_COUNT).map((item) => (
+                  <ActivityCard key={item.id} activity={item} compact cityRank={item.cityRank} />
+                ))}
+                <a
+                  href={activitiesTopPath()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-[280px] w-[var(--sight-card-w,calc((100%-2rem)/2.5))] min-w-[var(--sight-card-w,calc((100%-2rem)/2.5))] shrink-0 snap-start flex-col items-center justify-center rounded-[22px] border border-terracotta/30 bg-terracotta/10 px-5 text-center transition hover:border-terracotta/50 hover:bg-terracotta/16"
+                >
+                  <span className="font-serif text-[1.2rem] font-semibold text-ink">
+                    See All Top Activities
+                  </span>
+                  <span className="mt-1 text-[0.78rem] font-bold text-terracotta">
+                    Ranked 1–20 across Vietnam
+                  </span>
+                </a>
+              </ActivityRowScroller>
+            </DiscoverySection>
           )}
+          {!isFiltering && (
+            <PopularCitiesStrip
+              availableCities={[...new Set(catalog.map((a) => a.cityName))]}
+              hrefForCity={activitiesCityPath}
+            />
+          )}
+
+          <DiscoverySection
+            id={CATALOG_SCROLL_ID}
+            title={isFiltering ? 'Matching activities by city' : 'Explore by city'}
+            subtitle={
+              isFiltering
+                ? 'Must-visit ranking within each city — culture and landscape, not star counts.'
+                : 'Must-visit activities in each city — open a city page for the full ranked list.'
+            }
+            className="mt-12"
+          >
+            <CityCatalogSections
+              groups={cityGroups}
+              fullGroups={fullGroups}
+              focusCity={focusCity}
+              selectedCities={filters.cities}
+            />
+          </DiscoverySection>
 
           {pipelineActive ? (
             <StageFooter current="activities" continueLabel="Continue to Where to Stay →" />
           ) : null}
-        </motion.div>
+        </div>
       </div>
 
       <TripBag
@@ -315,39 +342,244 @@ export function ThingsToDoByCity() {
   )
 }
 
-function CityActivitySection({
-  cityId,
-  cityName,
-  activities,
-  becauseSights,
+const CityCatalogSections = memo(function CityCatalogSections({
+  groups,
+  fullGroups,
+  focusCity,
+  selectedCities,
 }: {
-  cityId: string
-  cityName: string
-  activities: RankedActivity[]
-  becauseSights: boolean
+  groups: ActivityCityGroup[]
+  fullGroups: ActivityCityGroup[]
+  focusCity: string | null
+  selectedCities: string[]
 }) {
   return (
-    <section
-      id={`activity-city-${cityId}`}
-      className="scroll-mt-32 overflow-hidden rounded-[24px] border border-ink/8 bg-gradient-to-br from-paper via-paper to-cream/40 shadow-soft"
-    >
-      <div className="px-4 py-4 sm:px-5">
-        <h2 className="font-serif text-[1.35rem] font-semibold text-ink">
-          {becauseSights ? `Because You have Sights in ${cityName}` : cityName}
-        </h2>
-        <p className="mt-1 text-[0.8rem] text-muted">
-          {activities.length} activit{activities.length === 1 ? 'y' : 'ies'}
-        </p>
+    <div className="space-y-5">
+      {groups.map((group, index) => {
+        const expand =
+          group.cityName === focusCity || selectedCities.includes(group.cityName)
+        const ranked = [...(fullGroups.find((g) => g.cityId === group.cityId)?.activities ?? group.activities)].sort(
+          (a, b) => a.cityRank - b.cityRank,
+        )
+        const visible = expand ? ranked : ranked.slice(0, CITY_PREVIEW_COUNT)
+        const eager = index < 2 || expand
+        return (
+          <section
+            key={group.cityId}
+            id={cityAnchorId(group.cityName)}
+            className="scroll-mt-[9rem] overflow-hidden rounded-[24px] border border-ink/8 bg-gradient-to-br from-paper via-paper to-cream/40 shadow-soft"
+          >
+            <div className="px-4 py-4 sm:px-5">
+              <div className="min-w-0">
+                <h3 className="font-serif text-[1.35rem] font-semibold text-ink">{group.cityName}</h3>
+                <p className="mt-1 text-[0.8rem] text-muted">
+                  {ranked.length} activit{ranked.length === 1 ? 'y' : 'ies'} ·
+                  {expand ? ' full rank order' : ' ranked by must-visit value'}
+                </p>
+              </div>
+            </div>
+
+            <div className="border-t border-ink/6 px-4 pb-4 pt-3 sm:px-5">
+              <DeferredMount eager={eager} minHeight={280}>
+                {expand ? (
+                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                    {visible.map((item) => (
+                      <ActivityCard
+                        key={item.id}
+                        activity={item}
+                        dense
+                        cityRank={item.cityRank}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <ActivityRowScroller key={`${group.cityId}-preview`}>
+                    {visible.map((item) => (
+                      <ActivityCard
+                        key={item.id}
+                        activity={item}
+                        compact
+                        cityRank={item.cityRank}
+                      />
+                    ))}
+                    <a
+                      href={activitiesCityPath(group.cityName)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex min-h-[280px] w-[var(--sight-card-w,calc((100%-2rem)/2.5))] min-w-[var(--sight-card-w,calc((100%-2rem)/2.5))] shrink-0 snap-start flex-col items-center justify-center rounded-[22px] border border-terracotta/30 bg-terracotta/10 px-5 text-center transition hover:border-terracotta/50 hover:bg-terracotta/16"
+                    >
+                      <span className="font-serif text-[1.2rem] font-semibold text-ink">
+                        See ranked activities in {group.cityName}
+                      </span>
+                      <span className="mt-1 text-[0.78rem] font-bold text-terracotta">
+                        Full city ranking
+                      </span>
+                    </a>
+                  </ActivityRowScroller>
+                )}
+              </DeferredMount>
+            </div>
+          </section>
+        )
+      })}
+    </div>
+  )
+})
+
+function DeferredMount({
+  eager,
+  minHeight,
+  children,
+}: {
+  eager: boolean
+  minHeight: number
+  children: React.ReactNode
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(eager)
+
+  useEffect(() => {
+    if (eager) setVisible(true)
+  }, [eager])
+
+  useEffect(() => {
+    if (visible) return
+    const el = ref.current
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setVisible(true)
+      return
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setVisible(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin: '900px 0px' },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [visible])
+
+  if (visible) return <>{children}</>
+  return (
+    <div
+      ref={ref}
+      style={{ minHeight }}
+      aria-hidden
+      className="rounded-[16px] bg-cream/50"
+    />
+  )
+}
+
+function ActivityRowScroller({ children }: { children: React.ReactNode }) {
+  const scrollerRef = useRef<HTMLDivElement>(null)
+  const lastLeftRef = useRef(0)
+  const stopTimerRef = useRef<number | null>(null)
+  const [atEnd, setAtEnd] = useState(false)
+  const [scrollingRight, setScrollingRight] = useState(false)
+
+  function measureEnd(el: HTMLDivElement) {
+    const reachedEnd =
+      el.scrollWidth <= el.clientWidth + 8 ||
+      el.scrollLeft + el.clientWidth >= el.scrollWidth - 8
+    setAtEnd(reachedEnd)
+  }
+
+  useEffect(() => {
+    const el = scrollerRef.current
+    if (!el) return
+
+    lastLeftRef.current = el.scrollLeft
+    measureEnd(el)
+
+    const onScroll = () => {
+      const left = el.scrollLeft
+      const goingRight = left > lastLeftRef.current + 0.5
+      lastLeftRef.current = left
+      measureEnd(el)
+      if (!goingRight) return
+      setScrollingRight(true)
+      if (stopTimerRef.current != null) window.clearTimeout(stopTimerRef.current)
+      stopTimerRef.current = window.setTimeout(() => {
+        setScrollingRight(false)
+        measureEnd(el)
+      }, 220)
+    }
+
+    const onResize = () => measureEnd(el)
+    el.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onResize)
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(onResize) : null
+    ro?.observe(el)
+    return () => {
+      el.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
+      ro?.disconnect()
+      if (stopTimerRef.current != null) window.clearTimeout(stopTimerRef.current)
+    }
+  }, [])
+
+  const showArrow = !atEnd && !scrollingRight
+
+  function scrollMore() {
+    scrollerRef.current?.scrollBy({ left: 320, behavior: 'smooth' })
+  }
+
+  return (
+    <div className="relative">
+      <div
+        ref={scrollerRef}
+        className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-2 pr-14 snap-x snap-mandatory max-sm:[--sight-card-w:calc((100%-0.75rem)/1.35)] sm:[--sight-card-w:calc((100%-2rem)/2.5)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {children}
       </div>
-      <div className="border-t border-ink/6 px-4 pb-4 pt-3 sm:px-5">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <AnimatePresence mode="popLayout">
-            {activities.map((activity) => (
-              <ActivityCard key={activity.id} activity={activity} cityRank={activity.cityRank} />
-            ))}
-          </AnimatePresence>
-        </div>
-      </div>
+      <button
+        type="button"
+        aria-label="Scroll to more activities"
+        tabIndex={showArrow ? 0 : -1}
+        aria-hidden={!showArrow}
+        onClick={scrollMore}
+        className={`absolute inset-y-0 right-0 z-10 flex w-14 items-center justify-center bg-gradient-to-l from-cream via-cream/90 to-transparent transition-opacity duration-200 ${
+          showArrow ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+      >
+        <span className="grid h-11 w-11 place-items-center rounded-full bg-ink text-paper shadow-hero ring-2 ring-paper/80 transition hover:bg-terracotta">
+          <svg
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.4"
+            aria-hidden
+          >
+            <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      </button>
+    </div>
+  )
+}
+
+function DiscoverySection({
+  id,
+  title,
+  subtitle,
+  className,
+  children,
+}: {
+  id?: string
+  title: string
+  subtitle?: string
+  className?: string
+  children: React.ReactNode
+}) {
+  return (
+    <section id={id} className={`scroll-mt-[7.5rem] ${className ?? (id ? 'mt-10' : 'mt-10')}`}>
+      <h2 className="font-serif text-[1.45rem] font-semibold text-ink">{title}</h2>
+      {subtitle && <p className="mt-1 max-w-[56ch] text-[0.92rem] text-muted">{subtitle}</p>}
+      <div className="mt-4">{children}</div>
     </section>
   )
 }

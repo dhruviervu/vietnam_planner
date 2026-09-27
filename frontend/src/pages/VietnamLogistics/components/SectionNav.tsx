@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 
 const SECTIONS = [
   { id: 'logistics-visa', n: '01', label: 'Visa' },
-  { id: 'logistics-sim', n: '02', label: 'Connectivity' },
+  { id: 'logistics-sim', n: '02', label: 'SIM' },
   { id: 'logistics-money', n: '03', label: 'Money' },
-  { id: 'logistics-costs', n: '04', label: 'Costs' },
+  { id: 'logistics-insurance', n: '04', label: 'Insurance' },
 ] as const
 
 export function SectionNav() {

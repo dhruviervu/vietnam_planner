@@ -2,17 +2,14 @@ import { SIGHT_CATALOG, getExperienceById } from '../../PlanBuilder/data/experie
 import { getActivityById } from '../../PlanBuilder/data/activities'
 import { SHOPPING_ITEMS } from '../../PlanBuilder/data/shopping'
 import { rankCityExperiences } from '../../PlanBuilder/services/cityCatalog'
-import { catalogHoursForSourceId, planCityStay } from '../../PlanBuilder/lib/yourVietnam/dayAllocation'
-import { alternativesOf, isAtomicExclusive, parentTourIdOf } from '../../PlanBuilder/lib/yourVietnam/sightIntelligence'
-import { groupIdForSourceId, timePreferenceForSourceId } from '../../PlanBuilder/lib/yourVietnam/sightTiming'
+import { planCityStay } from '../../PlanBuilder/lib/yourVietnam/dayAllocation'
+import { alternativesOf, parentTourIdOf } from '../../PlanBuilder/lib/yourVietnam/sightIntelligence'
+import { groupIdForSourceId } from '../../PlanBuilder/lib/yourVietnam/sightTiming'
 import { resolvePlaceId } from '../../PlanBuilder/lib/yourVietnam/cityPins'
-import { PACE_DAY_HOURS, PACE_DAY_HOURS_MIN } from '../../PlanBuilder/lib/yourVietnam/planningProfile'
 import type { PlaceId } from '../../GettingAround/data/types'
 import { CITY_STAY_CORES } from '../data/cityStayCores'
 import { ensureStayDays } from './themeStayPack'
 
-const DAY_MAX = PACE_DAY_HOURS.packed
-const DAY_MIN = PACE_DAY_HOURS_MIN.packed
 const TARGET_STOPS = 8
 
 export function cityMatchKeys(city: string): string[] {
@@ -27,14 +24,6 @@ export function isCityMatch(itemCity: string | undefined, city: string): boolean
   const keys = cityMatchKeys(city)
   const fold = (s: string) => s.trim().toLowerCase()
   return keys.some((k) => fold(itemCity) === fold(k))
-}
-
-function billedHours(id: string): number {
-  return catalogHoursForSourceId(id)
-}
-
-function isEvening(id: string) {
-  return timePreferenceForSourceId(id) === 'EVENING' || /night|lantern|bia.?hoi|sunset/i.test(id)
 }
 
 function shoppingForCity(city: string) {
@@ -66,76 +55,6 @@ export function highRoiPool(city: string, days: number): string[] {
   for (const shop of shops) consider(shop.id, shop.name)
 
   return out.slice(0, Math.max(14, days * TARGET_STOPS + 6))
-}
-
-function takeWholeDay(id: string) {
-  return isAtomicExclusive(id) || billedHours(id) >= DAY_MIN + 0.5
-}
-
-function fillOneDay(remaining: string[]): { day: string[]; rest: string[] } {
-  const rest = [...remaining]
-  if (!rest.length) return { day: [], rest }
-
-  if (takeWholeDay(rest[0])) {
-    return { day: [rest[0]], rest: rest.slice(1) }
-  }
-
-  const day: string[] = []
-  let hours = 0
-  const evening: string[] = []
-
-  const tryAdd = (idx: number) => {
-    const id = rest[idx]
-    const h = billedHours(id)
-    if (day.length && hours + h > DAY_MAX + 0.2) return false
-    rest.splice(idx, 1)
-    if (isEvening(id) && hours < DAY_MIN - 1) {
-      evening.push(id)
-      return true
-    }
-    day.push(id)
-    hours += h
-    return true
-  }
-
-  while (rest.length) {
-    if (hours >= DAY_MAX && day.length >= 5) break
-    if (day.length >= TARGET_STOPS && hours >= DAY_MIN) break
-
-    const exclusiveIdx = rest.findIndex(takeWholeDay)
-    if (exclusiveIdx >= 0 && day.length && hours >= DAY_MIN) break
-    if (exclusiveIdx === 0 && !day.length) {
-      tryAdd(0)
-      break
-    }
-
-    let idx = rest.findIndex((id, i) => {
-      if (takeWholeDay(id) && day.length) return false
-      if (isEvening(id) && hours < DAY_MIN - 1) return false
-      return i === 0 || hours + billedHours(id) <= DAY_MAX + 0.2
-    })
-    if (idx < 0) {
-      idx = rest.findIndex((id) => !takeWholeDay(id) && hours + billedHours(id) <= DAY_MAX + 0.2)
-    }
-    if (idx < 0) {
-      if (hours >= DAY_MIN || day.length >= 5) break
-      idx = rest.findIndex((id) => !takeWholeDay(id))
-    }
-    if (idx < 0) break
-    if (!tryAdd(idx)) break
-  }
-
-  for (const id of evening) {
-    const h = billedHours(id)
-    if (hours + h > DAY_MAX + 0.4 && day.length >= 5) {
-      rest.unshift(id)
-      continue
-    }
-    day.push(id)
-    hours += h
-  }
-
-  return { day, rest }
 }
 
 function poolCap(days: number, coreCount: number) {

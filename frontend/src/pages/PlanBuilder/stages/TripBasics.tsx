@@ -538,7 +538,7 @@ export function TripBasics() {
             Nothing here is final. You can change your dates, budget, pace, and choices later.
           </p>
           <Link to={stepPath('experiences')} className="btn-solid inline-flex">
-            Continue to Things To Do →
+            Continue to Activities →
           </Link>
         </div>
       </motion.div>

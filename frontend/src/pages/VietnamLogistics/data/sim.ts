@@ -28,6 +28,7 @@ export const SIM_PROVIDERS: SimProvider[] = [
     source: 'Curated tourist retail snapshot',
     lastUpdated: '2026-03-01',
     freshness: 'updated',
+    officialUrl: 'https://vietteltelecom.vn/en',
   },
   {
     id: 'vinaphone',
@@ -49,6 +50,7 @@ export const SIM_PROVIDERS: SimProvider[] = [
     source: 'Curated tourist retail snapshot',
     lastUpdated: '2026-03-01',
     freshness: 'updated',
+    officialUrl: 'https://vinaphone.com.vn/',
   },
   {
     id: 'mobifone',
@@ -70,6 +72,7 @@ export const SIM_PROVIDERS: SimProvider[] = [
     source: 'Curated tourist retail snapshot',
     lastUpdated: '2026-03-01',
     freshness: 'updated',
+    officialUrl: 'https://www.mobifone.vn/',
   },
   {
     id: 'travel-esim',
@@ -93,6 +96,8 @@ export const SIM_PROVIDERS: SimProvider[] = [
     freshness: 'estimated',
   },
 ]
+
+export const PHYSICAL_SIM_PROVIDERS = SIM_PROVIDERS.filter((p) => p.id !== 'travel-esim')
 
 export const BUY_PATHS = [
   {

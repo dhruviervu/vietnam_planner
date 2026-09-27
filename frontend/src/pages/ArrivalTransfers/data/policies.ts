@@ -52,6 +52,6 @@ export const BOOKING_POLICIES: PolicyTopic[] = [
     id: 'changes',
     title: 'Changes',
     summary: 'Flight or address changes may need provider confirmation.',
-    body: 'Update your provider as soon as plans change. Change fees and cut-offs are set by the provider, not Vietnam, Curated.',
+    body: 'Update your provider as soon as plans change. Change fees and cut-offs are set by the provider, not TripBuilder.',
   },
 ]

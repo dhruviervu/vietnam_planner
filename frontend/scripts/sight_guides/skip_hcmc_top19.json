@@ -1,0 +1,97 @@
+[
+  {
+    "rank": 1,
+    "id": "notre-dame-saigon",
+    "name": "Notre-Dame Cathedral Basilica"
+  },
+  {
+    "rank": 2,
+    "id": "independence-palace",
+    "name": "Independence Palace"
+  },
+  {
+    "rank": 3,
+    "id": "cu-chi",
+    "name": "Cu Chi Tunnels"
+  },
+  {
+    "rank": 4,
+    "id": "war-remnants",
+    "name": "War Remnants Museum"
+  },
+  {
+    "rank": 5,
+    "id": "ben-thanh",
+    "name": "Ben Thanh Market Evening"
+  },
+  {
+    "rank": 6,
+    "id": "jade-emperor-pagoda",
+    "name": "Jade Emperor Pagoda"
+  },
+  {
+    "rank": 7,
+    "id": "thao-cam-vien",
+    "name": "Thảo Cầm Viên (Saigon Zoo)"
+  },
+  {
+    "rank": 8,
+    "id": "tan-dinh-church",
+    "name": "Tân Định Church (Pink Church)"
+  },
+  {
+    "rank": 9,
+    "id": "saigon-opera-house",
+    "name": "Saigon Opera House"
+  },
+  {
+    "rank": 10,
+    "id": "vinh-nghiem-pagoda",
+    "name": "Vĩnh Nghiêm Pagoda"
+  },
+  {
+    "rank": 11,
+    "id": "tao-dan-park",
+    "name": "Tao Đàn Park"
+  },
+  {
+    "rank": 12,
+    "id": "saigon-outcast",
+    "name": "Saigon Outcast"
+  },
+  {
+    "rank": 13,
+    "id": "xa-loi-pagoda",
+    "name": "Xá Lợi Pagoda"
+  },
+  {
+    "rank": 14,
+    "id": "giac-lam-pagoda",
+    "name": "Giác Lâm Pagoda"
+  },
+  {
+    "rank": 15,
+    "id": "phap-hoa-pagoda",
+    "name": "Pháp Hoa Pagoda"
+  },
+  {
+    "rank": 16,
+    "id": "hcmc-fine-arts",
+    "name": "HCMC Museum of Fine Arts"
+  },
+  {
+    "rank": 17,
+    "id": "mariamman-temple",
+    "name": "Mariamman Hindu Temple"
+  },
+  {
+    "rank": 18,
+    "id": "cha-tam-church",
+    "name": "Cha Tam Church"
+  },
+  {
+    "rank": 19,
+    "id": "hcmc-city-museum",
+    "name": "Ho Chi Minh City Museum"
+  }
+]

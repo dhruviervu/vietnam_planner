@@ -53,7 +53,7 @@ export const SEASON_META: Record<
     title: 'Winter Events',
     symbol: '❄️',
     intro:
-      'November through February is Vietnam’s classic dry, festive stretch — Tết, lantern evenings, Khmer moon rites, and peak travel weather.',
+      'November through February is Vietnam’s classic dry, festive stretch — Lunar New Year, lantern evenings, Khmer moon rites, and peak travel weather.',
   },
   'year-round': {
     id: 'year-round',

@@ -29,7 +29,7 @@ export function SightsShell({
       <header className="px-[clamp(1.2rem,5vw,3.5rem)] py-6">
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
           <Link to="/sights-templates" className="font-serif text-[1.05rem] text-terracotta-deep">
-            Vietnam, Curated
+            TripBuilder
           </Link>
           <nav className="flex flex-wrap gap-x-5 gap-y-1 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
             {TEMPLATES.map((t) => {

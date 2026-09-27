@@ -281,6 +281,7 @@ function ModeBlock({
 function modeStructureHint(modeId: TransportModeId): string {
   if (modeId === 'private-transfer') return 'Direct · Dedicated'
   if (modeId === 'car-taxi') return 'Direct'
+  if (modeId === 'ride-hailing') return 'App pickup bay'
   if (modeId === 'public-bus') return 'Fixed route · final connection may be required'
   if (modeId === 'shared-transfer') return 'Shared · possible additional stops'
   return 'Self-drive / dedicated driver'

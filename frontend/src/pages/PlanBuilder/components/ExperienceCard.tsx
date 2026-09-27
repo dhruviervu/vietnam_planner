@@ -6,6 +6,7 @@ import { flyToTripBag } from '../lib/flyToTripBag'
 import { captureCatalogScroll } from '../lib/catalogViewState'
 import { experiencesCityPath } from '../services/citySlug'
 import { pinNewSightToItinerary, readItineraryAddTarget, itineraryTargetQuery } from '../lib/yourVietnam/itineraryAddTarget'
+import { openDetailHref } from '../lib/yourVietnam/links'
 import { sightCardCopy } from '../lib/sightCardCopy'
 
 type Props = {
@@ -42,7 +43,7 @@ export const ExperienceCard = memo(function ExperienceCard({
     captureCatalogScroll()
     const target = readItineraryAddTarget()
     const qs = target ? `?${itineraryTargetQuery(target)}` : ''
-    window.open(`/plan/builder/experience/${experience.id}${qs}`, '_blank')
+    openDetailHref(`/plan/builder/experience/${experience.id}${qs}`)
   }
 
   function handleAdd(e: MouseEvent) {
@@ -84,7 +85,7 @@ export const ExperienceCard = memo(function ExperienceCard({
       }}
       className={`group cursor-pointer overflow-hidden bg-paper shadow-card transition-shadow hover:shadow-card-hover ${
         dense ? 'rounded-[18px]' : 'rounded-[22px]'
-      } ${compact ? 'min-w-[280px] max-w-[300px] shrink-0' : ''}`}
+      } ${compact ? 'w-[var(--sight-card-w,calc((100%-2rem)/2.5))] min-w-[var(--sight-card-w,calc((100%-2rem)/2.5))] max-w-none shrink-0 snap-start' : ''}`}
     >
       <div
         className={`relative overflow-hidden bg-cream ${dense ? 'aspect-[5/3.4]' : 'aspect-[5/3.2]'}`}
@@ -97,7 +98,7 @@ export const ExperienceCard = memo(function ExperienceCard({
             loading={priority ? 'eager' : 'lazy'}
             fetchPriority={priority ? 'high' : 'low'}
             decoding="async"
-            sizes={compact ? '300px' : dense ? '(max-width: 768px) 100vw, 33vw' : '(max-width: 640px) 100vw, 420px'}
+            sizes={compact ? '(max-width: 640px) 70vw, 40vw' : dense ? '(max-width: 768px) 100vw, 33vw' : '(max-width: 640px) 100vw, 420px'}
             referrerPolicy="no-referrer"
             onError={() => setBroken((prev) => ({ ...prev, [currentPhoto]: true }))}
           />

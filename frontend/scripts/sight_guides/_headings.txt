@@ -1,0 +1,316 @@
+temple-literature words=722 heads=7
+  ## Overview
+  ## 1. Founded in 1070 by King Lý Thánh Tông
+  ## 2. Approaching the complex from Quốc Tử Giám Street
+  ## 3. The Second Courtyard houses the defining architectural symbol
+  ## 4. Flanking the Well of Heavenly Clarity in the
+  ## 5. Passing through the Đại Thành Gate brings you
+  ## 6. Directly behind the main sanctuary is the Fifth
+
+old-quarter words=1094 heads=7
+  ## Overview
+  ## 1. Introduction and Eastern Perimeter – Hoàn Kiếm Lake to Hang Bac Street
+  ## 2. Traditional Architecture and Craft Streets – Ma May to Hang Ma
+  ## 3. The Central Market District – Dong Xuan Market to Hang Duong
+  ## 4. Textile and Culinary Corridors – Hang Gai to Ta Hien
+  ## 5. Southwestern Fringe – St. Joseph's Cathedral and Craft Alleys
+  ## 6. Western Edge and Conclusion – Hanoi Train Street to Hoàn Kiếm Return
+
+hoan-kiem-lake words=961 heads=5
+  ## Overview
+  ## 1. Introduction, Legend of the Restored Sword, and Southern Shore Promenade
+  ## 2. Eastern Promenade, Pen Tower, and the Húc Bridge
+  ## 3. Exploring Jade Island and Ngọc Sơn Temple
+  ## 4. Western Shore Promenade, French Quarter Fringe, and Square Culture
+
+thang-long-citadel words=1009 heads=6
+  ## Overview
+  ## 1. Introduction, Historical Legacy, and the Hanoi Flag Tower
+  ## 2. The Grand Entrance and The Main Courtyard – Đoan Môn Gate
+  ## 3. Royal Foundations and Sacred Terraces – Kính Thiên Palace
+  ## 4. Cold War Command Centers – House D67 and Bunker
+  ## 5. Northern Perimeter and Archaeological Treasures – Hậu Lâu and 18 Hoàng Diệu
+
+ho-chi-minh-mausoleum words=1891 heads=6
+  ## Overview
+  ## 1. Arrival, Security Controls, Ba Dinh Square, and Mausoleum Exterior Architecture
+  ## 2. Entering the Sanctuary – The Embalmed Body and Honor Guard Ceremony
+  ## 3. The Presidential Palace Grounds and House 54
+  ## 4. Ho Chi Minh’s Stilt House and the Presidential Car Display
+  ## 5. One Pillar Pagoda and Ho Chi Minh Museum
+
+hcm-stilt-house words=835 heads=3
+  ## Overview
+  ## 1. Presidential Palace Facade, Mango Alley, and House 54
+  ## 2. The Carp Pond, Stilt House Architecture, and Surrounding Gardens
+
+st-joseph-cathedral words=758 heads=3
+  ## Overview
+  ## 1. Historical Foundations, Neo-Gothic Architecture, and the Cathedral Plaza
+  ## 2. Interior Sanctuary, Stained Glass Windows, and Cultural Context
+
+ngoc-son-temple words=774 heads=3
+  ## Overview
+  ## 1. Approaching Jade Island – Pen Tower, Ink Slab, and Cầu Thê Húc
+  ## 2. Temple Architecture, Main Altars, and the Preserved Giant Turtle Specimen
+
+one-pillar-pagoda words=581 heads=2
+  ## Overview
+  ## 1. Historical Origins, Architectural Symbolism, and Sacred Shrine Grounds
+
+hoa-lo-prison words=938 heads=7
+  ## Overview
+  ## 1. Arrival, Historical Foundations, and the Colonial Main Gate
+  ## 2. Architecture of Control, Security Perimeter, and Entry Portal
+  ## 3. Communal Mass Dungeons and Subjugation Mechanisms
+  ## 4. Death Row, Solitary Confinement, and the French Guillotine
+  ## 5. Resistance, The Sewer Escape, and The Almond Tree Courtyard
+  ## 6. The American POW Era and the "Hanoi Hilton" Displays
+
+fansipan words=1265 heads=10
+  ## Overview
+  ## 1. Regional Geography, Alpine Ecology, and the Roof of Indochina
+  ## 2. The Muong Hoa Monorail and Departure from Sun World Station
+  ## 3. The World-Record Sun World Cable Car System
+  ## 4. Engineered by the Doppelmayr Garaventa Group, the tri-cable system holds two Guinness World Records: the longest non-stop tri-cable car line in the world (6,292.5 meters) and the greatest elevation gain achieved by a non-stop cable car (1,410 meters). Each spacious cabin accommodates up to 35 passengers and features floor-to-ceiling glass windows that provide unobstructed 360-degree views. As the cabin ascends, it floats over deep forest ravines, pierces through dense ocean-like cloud layers (sea of clouds), and glides past sheer granite cliffs, offering a birds-eye perspective of the Hoàng Liên Sơn wilderness that was previously accessible only via grueling multi-day wilderness treks.
+  ## 5. The High-Altitude Spiritual Complex and BICH VAN THIEN TU
+  ## 6. The Grand Buddha Statue and the Path of the Arhats
+  ## 7. Kim Son Bao Thang Pagoda and the Grand Avalokiteshvara Statue
+  ## 8. Reaching the Summit Marker and Flagpole
+  ## 9. Alternative Overland Trekking Route for Adventurers
+
+cat-cat-village words=1049 heads=8
+  ## Overview
+  ## 1. Origins, Ethno-History, and the Black H'Mong Heritage
+  ## 2. The Stone-Paved Descent and Traditional Architecture
+  ## 3. Botanical Indigo Dyeing and Textile Craftsmanship
+  ## 4. The Central Waterfall Plaza, Giant Waterwheels, and Bamboo Bridges
+  ## 5. The Historic French Hydroelectric Power Station
+  ## 6. Silver Smithing Workshops and Cultural Arts
+  ## 7. The Upper Mountain Trail, Terraced Fields, and Exit Route
+
+ta-van-village words=898 heads=8
+  ## Overview
+  ## 1. Ethno-Cultural Tapestry and the Giáy Community
+  ## 2. Architecture of the Giáy Earthen and Stilt Houses
+  ## 3. The Grand Terraced Rice Paddies of Mường Hoa Valley
+  ## 4. The Mường Hoa River, Bamboo Suspension Bridges, and Ancient Carved Stones
+  ## 5. Red Dao Herbal Baths and Traditional Healing Practices
+  ## 6. Local Culinary Traditions and Homestay Hospitality
+  ## 7. Cross-Valley Trekking Routes to Lao Chải and Giang Ta Chải
+
+muong-hoa-valley words=886 heads=7
+  ## Overview
+  ## 1. Geography, Topography, and Natural Setting
+  ## 2. The Living Mosaic of Ethnic Minority Communities
+  ## 3. The Iconic Terraced Rice Fields and Seasonal Transformations
+  ## 4. The Sapa Ancient Carved Stone Field (Petroglyphs)
+  ## 5. The Mường Hoa River, Waterfalls, and Bamboo Bridges
+  ## 6. Classic Trekking Routes and Valley Trails
+
+lao-chai-village words=870 heads=8
+  ## Overview
+  ## 1. Cultural Foundations and the Black H'Mong Community
+  ## 2. Traditional Architecture and Village Layout
+  ## 3. Terraced Agriculture and Crop Cycles
+  ## 4. Indigo Textile Production and Local Crafts
+  ## 5. Local Markets, Roadside Stalls, and Elementary Schools
+  ## 6. Scenic Trekking Trails and River Crossings
+  ## 7. Traditional Cuisine and Mountain Hospitality
+
+sapa-stone-church words=795 heads=7
+  ## Overview
+  ## 1. Colonial Origins and Architectural Heritage
+  ## 2. Structural Design, Bell Tower, and Gothic Elements
+  ## 3. Interior Nave and Sacred Space
+  ## 4. Historical Resilience and Restoration Efforts
+  ## 5. Sapa Town Plaza and Weekend Love Market Cultural Hub
+  ## 6. Photographic Vantage Points and Evening Atmosphere
+
+fansipan-buddha words=757 heads=7
+  ## Overview
+  ## 1. Monumental Scale and Engineering Achievement
+  ## 2. Artistic Iconography and Traditional Vietnamese Motifs
+  ## 3. The Multi-Tiered Pedestal and Relic Shrine
+  ## 4. The Path of the Arhats and Spiritual Setting
+  ## 5. Weather Phenomena and Visual Splendor
+  ## 6. Pilgrimage Practices and Visitor Etiquette
+
+ta-phin-village words=909 heads=8
+  ## Overview
+  ## 1. Dual-Ethnic Heritage and Community Coexistence
+  ## 2. Red Dao Herbal Baths and Medicinal Knowledge
+  ## 3. Brocade Weaving, Embroidery, and Handicraft Cooperatives
+  ## 4. The French Convent Ruins (Nhà Thờ Đổ Tả Phìn)
+  ## 5. Exploring Tả Phìn Cave (Hang Tả Phìn)
+  ## 6. Countryside Walking Trails and Agricultural Landscapes
+  ## 7. Traditional Culinary Flavors and Homestay Hospitality
+
+hoi-an-ancient-town words=2450 heads=21
+  ## Overview
+  ## 1. Maritime Trading History and Architectural Fusion
+  ## 2. Architectural Preservation and Urban Layout
+  ## 3. The Japanese Covered Bridge (Chùa Cầu)
+  ## 4. Historical Significance of the Japanese Quarter
+  ## 5. Phúc Kiến Assembly Hall (Fujian Assembly Hall)
+  ## 6. Interior Altars and Incense Spirals of Phúc Kiến
+  ## 7. Quảng Đông Assembly Hall (Cantonese Assembly Hall)
+  ## 8. Artifacts and Relics of Cantonese Traders
+  ## 9. Triều Châu and Hải Nam Assembly Halls
+  ## 10. Tấn Ký Old House (Nhà Cổ Tấn Ký)
+  ## 11. Living Heritage and Antiques inside Tấn Ký
+  ## 12. Phùng Hưng Old House (Nhà Cổ Phùng Hưng)
+  ## 13. Commercial History and Upper Floor Balconies
+  ## 14. Đức An Old House and Revolutionary History
+  ## 15. Hội An Central Market (Chợ Hội An)
+  ## 16. The Indoor Food Hall and Culinary Specialties
+  ## 17. Custom Tailoring Culture and Textile Heritage
+  ## 18. Silk Craftsmanship and Lantern Workshops
+  ## 19. The Thu Bồn Riverfront and Sampan Life
+  ## 20. Nearby River Islets and Craft Villages
+
+hoi-an-lanterns words=632 heads=7
+  ## Overview
+  ## 1. The Lantern Transformation & Streetscape
+  ## 2. The Floating Lantern Ritual on the Thu Bồn River (Hoa Đăng)
+  ## 3. The Japanese Covered Bridge at Night
+  ## 4. The Nguyễn Hoàng Night Market
+  ## 5. Traditional Games and Street Performances
+  ## 6. Dining, Riverside Bars, and Nightlife
+
+fujian-assembly-hall words=746 heads=7
+  ## Overview
+  ## 1. History and Cultural Role of the Fujian Guild
+  ## 2. The Grand Triple Gate (Tam Quan)
+  ## 3. Courtyard Statuary and The Dragon Fountain
+  ## 4. The Main Sanctuary and Shrine to Mazu
+  ## 5. Hanging Incense Spirals and Aromatic Hall
+  ## 6. Rear Altars: The Twelve Midwives and Six Generals
+
+quan-cong-temple words=496 heads=5
+  ## Overview
+  ## 1. History and Cultural Dedication
+  ## 2. Traditional Architecture and Courtyard Layout
+  ## 3. The Main Sanctuary and Statuary
+  ## 4. The Sacred Red Horse and Historical Relics
+
+cantonese-assembly-hall words=429 heads=5
+  ## Overview
+  ## 1. History and Cantonese Guild Heritage
+  ## 2. Courtyard Architecture and The Ceramic Dragon Fountain
+  ## 3. Main Shrine to Quan Công and Interior Artworks
+  ## 4. Rear Garden and Historical Artifacts
+
+thanh-ha-pottery words=637 heads=6
+  ## Overview
+  ## 1. 500-Year Heritage and Architectural Impact
+  ## 2. Traditional Clay Preparation and Technique
+  ## 3. Wood-Fired Kilns and Firing Process
+  ## 4. Hands-On Crafting Experience
+  ## 5. Thanh Hà Terracotta Park (Museum & World Miniatures)
+
+teochew-assembly-hall words=446 heads=5
+  ## Overview
+  ## 1. History and Teochew Community Heritage
+  ## 2. Unique Wood Carving and Relief Craftsmanship
+  ## 3. Courtyard and Ceramic Porcelain Mosaics (Khảm Sành Sứ)
+  ## 4. The Main Sanctuary Altar and Worship Halls
+
+folk-culture-museum words=362 heads=4
+  ## Overview
+  ## 1. Historic Shophouse Architecture
+  ## 2. The Four Primary Exhibition Themes
+  ## 3. Live Artisan Demonstrations
+
+chinese-assembly-hall words=420 heads=5
+  ## Overview
+  ## 1. Unified Heritage of the Five Chinese Dialect Groups
+  ## 2. Architecture and Courtyard Layout
+  ## 3. Worship Halls and Altars
+  ## 4. Historical Relics and Significance
+
+linh-ung-pagoda words=666 heads=5
+  ## Overview
+  ## 1. Founding History, Spiritual Legends, and Sacred Location
+  ## 2. Today, the pagoda serves as a spiritual anchor for Da Nang’s coastal community, with locals believing that the presence of the compassionate Avalokiteshvara protects the city from destructive tropical typhoons during the annual monsoon season.
+  ## 3. The 67-Meter Lady Buddha Statue and Architectural Grandeur
+  ## 4. Courtyard of Arhats, Panoramic Views, and Visitor Experience
+
+ba-na-hills words=1828 heads=19
+  ## Overview
+  ## 1. Geographic Setting, Mountain Microclimate, and French Colonial History
+  ## 2. Recognized for its crisp, temperate alpine air and cool breezes, French administrators developed the summit as a high-altitude sanatorium and luxury summer retreat (station d'altitude) to escape the sweltering heat and tropical diseases of the coastal lowlands. During the early 20th century, over 200 colonial villas, sports clubs, hotels, and paved roads were constructed across the ridge. Following decades of war and abandonment during the mid-20th century, the site was comprehensively redeveloped by the Sun Group starting in 2007, transforming the former colonial hill station into one of Southeast Asia's premier mountain theme parks and resorts.
+  ## 3. World-Record Cable Car System Network
+  ## 4. The Golden Bridge (Cầu Vàng) Architectural Marvel
+  ## 5. Designed by TA Landscape Architecture, the 150-meter-long pedestrian walkway curves gracefully across the mountainside, framed by shimmering golden steel balustrades and lined with purple Lobelia Chrysanthemum flowers. The structural bridge deck is held aloft by two colossal weathered hands constructed from fiberglass mesh and wire framing, engineered to appear like ancient moss-covered stone hands of mountain deities drawing a golden thread from the earth.
+  ## 6. Visiting Strategy and Photographics at the Golden Bridge
+  ## 7. Le Jardin D'Amour Flower Gardens
+  ## 8. Debay Wine Cellar (Hầm Rượu Debay)
+  ## 9. Linh Ung Pagoda of Ba Na Summit
+  ## 10. The French Village (Làng Pháp) Architecture and Atmosphere
+  ## 11. Saint Denis Cathedral Recreation
+  ## 12. Alpine Coaster System (Double-Loop Mountain Toboggan)
+  ## 13. Fantasy Park (Indoor Amusement and Entertainment Center)
+  ## 14. Wax Museum (Bảo Tàng Tượng Sáp)
+  ## 15. High-Altitude Spiritual Complex and Ba Na Peak
+  ## 16. Dining Options and International Buffets
+  ## 17. Sun Kingdom Festivals and Seasonal Events
+  ## 18. Transportation Logistics and Practical Tips
+
+son-tra words=901 heads=10
+  ## Overview
+  ## 1. Geographic Significance and Ecological Heritage
+  ## 2. The Endangered Red-Shanked Douc Langur (Pygathrix nemaeus)
+  ## 3. Linh Ung Pagoda and the 67-Meter Lady Buddha
+  ## 4. Ban Dao Ban (Chessboard Peak / Đỉnh Bàn Cờ)
+  ## 5. The 1,000-Year-Old Banyan Tree (Cây Đa Ngàn Năm)
+  ## 6. Mũi Nghệ (Nghệ Cape) and Coral Reefs
+  ## 7. Historic American Radar Station ("Indochina's Eyes")
+  ## 8. Tiên Sa Lighthouse and Coastal Viewpoints
+  ## 9. Transportation, Safety Regulations, and Route Planning
+
+my-khe-beach words=1115 heads=9
+  ## Overview
+  ## 1. Geographic Extent, Natural Features, and Ocean Conditions
+  ## 2. Historical Background and Military Origins
+  ## 3. Dawn Traditions, Local Fitness Culture, and Sunrise Photography
+  ## 4. Water Sports, Surfing, and Outdoor Adventure Activities
+  ## 5. Coastal Promenade and Public Amenities
+  ## 6. Fresh Seafood Gastronomy and Beachside Dining
+  ## 7. Evening Atmosphere, Beach Clubs, and Nightlife
+  ## 8. Seasonal Weather and Optimal Visiting Tips
+
+hai-van-pass words=1084 heads=8
+  ## Overview
+  ## 1. Geographic Significance, Natural Division, and Climate Gateway
+  ## 2. Historical Boundary and Strategic Military Importance
+  ## 3. Hai Van Gate Fortress and Summit Historic Ruins
+  ## 4. Legendary Winding Roadways and Biker Experiences
+  ## 5. Coastal Panoramic Viewpoints and Railroad Photography
+  ## 6. Lăng Cô Bay, Lap An Lagoon, and Seafood Delicacies
+  ## 7. Safety Precautions, Weather Strategy, and Driving Advice
+
+da-nang-cathedral words=426 heads=3
+  ## Overview
+  ## 1. Architectural Design, French Colonial History, and the Rooster Weathercock
+  ## 2. Sacred Courtyard, Grotto of Our Lady, and Religious Life
+
+cham-sculpture-museum words=593 heads=4
+  ## Overview
+  ## 1. Historical Origins, Founding, and Colonial Architecture
+  ## 2. The Champa Kingdom, Spiritual Legacy, and Masterpiece Artifacts
+  ## 3. Visiting Experience, Audio Guides, and Nearby Cultural Connections
+
+non-nuoc-stone-village words=455 heads=3
+  ## Overview
+  ## 1. Three-Century Heritage, Guild Origins, and Cultural Evolution
+  ## 2. Artistic Range, Workshop Atmosphere, and Visitor Shopping Experience
+
+marble-mountains words=1012 heads=7
+  ## Overview
+  ## 1. Five Elements Legend, Imperial History, and Royal Patronage
+  ## 2. Thủy Sơn Ascent, Historic Pagodas, and Sacred Shrines
+  ## 3. Huyền Không Cave and Subterranean Cavern Shrines
+  ## 4. Vân Thông Cave, Summit Peaks, and Panoramic Views
+  ## 5. Am Phủ Cave (Hell Cave) and Buddhist Mythology
+  ## 6. Practical Visiting Logistics, Accessibility, and Visitor Advice

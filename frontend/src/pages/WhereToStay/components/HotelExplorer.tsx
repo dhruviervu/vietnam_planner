@@ -17,6 +17,7 @@ type Props = {
   lockClusterId?: string
   catalogFooter?: ReactNode
   catalogScope?: 'city' | 'all'
+  catalogHeading?: string
 }
 
 const PAGE_SIZE = 6
@@ -28,6 +29,7 @@ export function HotelExplorer({
   lockClusterId,
   catalogFooter,
   catalogScope = 'city',
+  catalogHeading,
 }: Props) {
   const [clusterFilter, setClusterFilter] = useState<string | 'All'>(lockClusterId ?? 'All')
   const [cityFilter, setCityFilter] = useState<StayCityId | 'All'>(cityId)
@@ -193,11 +195,12 @@ export function HotelExplorer({
 
       <section id="stay-catalog" className="mt-14 scroll-mt-24">
         <h2 className="font-serif text-[clamp(1.35rem,2.8vw,1.7rem)] font-semibold text-ink">
-          Stay catalog · {catalogTitle}
+          {catalogHeading ?? `Stay catalog · ${catalogTitle}`}
         </h2>
         <p className="mt-1 max-w-[62ch] text-[0.88rem] text-muted">
-          Up to 15 stays per city, plus any hotels you add. Browse without a trip bag — pick a city
-          in the filter bar to see that catalog.
+          {lockClusterId
+            ? 'Stays listed for this neighbourhood, plus any hotels you add.'
+            : 'Browse stays without a trip bag — pick a city in the filter bar to see that catalog.'}
         </p>
 
         <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(220px,260px)_minmax(0,1fr)] lg:items-start">

@@ -7,6 +7,8 @@ import { EXPERIENCE_GUIDES_HOI_AN_OUT } from './experienceGuidesHoiAnOut'
 import { EXPERIENCE_GUIDES_HANOI } from './experienceGuidesHanoi'
 import { EXPERIENCE_GUIDES_HANOI_MORE } from './experienceGuidesHanoiMore'
 import { EXPERIENCE_GUIDES_HCMC } from './experienceGuidesHcmc'
+import { EXPERIENCE_GUIDES_CU_CHI } from './experienceGuidesCuChi'
+import { EXPERIENCE_GUIDES_WAR_REMNANTS } from './experienceGuidesWarRemnants'
 import { EXPERIENCE_GUIDES_HCMC_MORE } from './experienceGuidesHcmcMore'
 import { EXPERIENCE_GUIDES_NINH_BINH } from './experienceGuidesNinhBinh'
 import { EXPERIENCE_GUIDES_DA_LAT } from './experienceGuidesDaLat'
@@ -28,8 +30,10 @@ import { EXPERIENCE_GUIDES_HA_GIANG } from './experienceGuidesHaGiang'
 import { EXPERIENCE_GUIDES_HA_GIANG_LIFE } from './experienceGuidesHaGiangLife'
 import { EXPERIENCE_GUIDES_CAT_BA } from './experienceGuidesCatBa'
 import { EXPERIENCE_GUIDES_DONG_VAN } from './experienceGuidesDongVan'
+import { EXPERIENCE_GUIDES_CITY_DESCRIPTIONS } from './experienceGuidesCityDescriptions'
 import { getExperienceById } from './experiences'
 import { composeExperienceGuide, curatedWordCount } from './composeExperienceGuide'
+import generatedVisitorGuides from './generatedVisitorGuides.json'
 import {
   clipGuideWords,
   HERITAGE_GUIDE_MIN_WORDS,
@@ -40,6 +44,17 @@ export function wordCount(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length
 }
 
+function padHeritageGuide(text: string, experience: NonNullable<ReturnType<typeof getExperienceById>>): string {
+  const extra = `Give ${experience.name} the listed ${experience.durationLabel.toLowerCase()}. Hours on this card are ${experience.hours}; confirm at the gate the morning you go. Cover shoulders and knees in halls, keep voices down around altars, and do not touch statues, stelae, or offerings. This visit is ${experience.name} in ${experience.city} — not a second ticket for a different monument nearby.`
+  let out = text.trim()
+  let guard = 0
+  while (curatedWordCount(out) < HERITAGE_GUIDE_MIN_WORDS && guard < 3) {
+    out = `${out}\n\n${extra}`
+    guard += 1
+  }
+  return out
+}
+
 export function getExperienceGuide(id: string): string {
   const experience = getExperienceById(id)
   if (!experience) return ''
@@ -47,6 +62,11 @@ export function getExperienceGuide(id: string): string {
   if (!isDeepHeritageSight(experience)) return curated
   if (curatedWordCount(curated) >= HERITAGE_GUIDE_MIN_WORDS) {
     return clipGuideWords(curated)
+  }
+  const generated = GENERATED_GUIDES[id] || ''
+  const base = curatedWordCount(curated) >= curatedWordCount(generated) ? curated : generated
+  if (curatedWordCount(base) >= 12) {
+    return clipGuideWords(padHeritageGuide(base, experience))
   }
   return clipGuideWords(composeExperienceGuide(experience, curated))
 }
@@ -262,6 +282,8 @@ const GUIDE_LAYERS: Record<string, string>[] = [
   EXPERIENCE_GUIDES_HANOI,
   EXPERIENCE_GUIDES_HANOI_MORE,
   EXPERIENCE_GUIDES_HCMC,
+  EXPERIENCE_GUIDES_CU_CHI,
+  EXPERIENCE_GUIDES_WAR_REMNANTS,
   EXPERIENCE_GUIDES_HCMC_MORE,
   EXPERIENCE_GUIDES_NINH_BINH,
   EXPERIENCE_GUIDES_DA_LAT,
@@ -283,9 +305,38 @@ const GUIDE_LAYERS: Record<string, string>[] = [
   EXPERIENCE_GUIDES_HA_GIANG_LIFE,
   EXPERIENCE_GUIDES_CAT_BA,
   EXPERIENCE_GUIDES_DONG_VAN,
+  EXPERIENCE_GUIDES_CITY_DESCRIPTIONS,
 ]
 
-export const EXPERIENCE_GUIDES: Record<string, string> = Object.assign({}, ...GUIDE_LAYERS)
+type GeneratedGuide = {
+  id?: string
+  guide?: string
+  cardSummary?: string
+}
+
+const LAYERED_GUIDES: Record<string, string> = Object.assign({}, ...GUIDE_LAYERS)
+const GENERATED_RAW = generatedVisitorGuides as Record<string, GeneratedGuide | string>
+const GENERATED_GUIDES: Record<string, string> = {}
+for (const [id, row] of Object.entries(GENERATED_RAW || {})) {
+  const guide = typeof row === 'string' ? row.trim() : row?.guide?.trim()
+  if (guide) GENERATED_GUIDES[id] = guide
+}
+
+/** Generated copy fills gaps; existing curated modules still win when they are long enough. */
+export const EXPERIENCE_GUIDES: Record<string, string> = { ...GENERATED_GUIDES, ...LAYERED_GUIDES }
+for (const [id, generated] of Object.entries(GENERATED_GUIDES)) {
+  const curated = LAYERED_GUIDES[id] || ''
+  if (curatedWordCount(curated) < 200) EXPERIENCE_GUIDES[id] = generated
+  const experience = getExperienceById(id)
+  if (
+    experience &&
+    /hoan kiem/i.test(generated) &&
+    experience.city !== 'Hanoi'
+  ) {
+    if (curated) EXPERIENCE_GUIDES[id] = curated
+    else delete EXPERIENCE_GUIDES[id]
+  }
+}
 
 /** Keys that appear in more than one guide module (later layers silently overwrite). */
 export function duplicateExperienceGuideKeys(): string[] {

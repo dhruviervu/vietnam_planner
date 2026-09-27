@@ -81,7 +81,7 @@ export function NeighbourhoodCard({
             onClick={onOpenHotels}
             className="rounded-full bg-terracotta px-3.5 py-2 text-[0.75rem] font-bold text-paper hover:bg-terracotta/90"
           >
-            See hotels in this neighbourhood
+            See more about {cluster.name}
           </button>
         </div>
       </div>

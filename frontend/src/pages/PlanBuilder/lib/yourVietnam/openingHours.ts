@@ -483,7 +483,7 @@ export function compactWeekdayDescriptions(lines: string[]): string {
 }
 
 /** Google weekly hours when we have them; otherwise the authored catalog string. */
-export function hoursLabelForSource(kind: string, sourceId: string, fallback: string): string {
+export function hoursLabelForSource(_kind: string, sourceId: string, fallback: string): string {
   const row = placeOpeningHoursRow(sourceId)
   const note = row?.exceptionNotes?.filter(Boolean).join(' · ')
   let base = fallback

@@ -43,6 +43,38 @@ async function fetchProfile(
   }
 }
 
+export type OsrmAlternative = {
+  km: number
+  minutes: number
+  geometry: [number, number][]
+}
+
+/** Up to three driving alternatives for overlaying airport-transfer routes. */
+export async function fetchOsrmAlternatives(
+  from: LatLng,
+  to: LatLng,
+): Promise<OsrmAlternative[]> {
+  const url = `${OSRM_BASE}/route/v1/driving/${from.lng},${from.lat};${to.lng},${to.lat}?overview=full&geometries=geojson&alternatives=true`
+  try {
+    const res = await fetch(url)
+    if (!res.ok) return []
+    const data = (await res.json()) as OsrmJson
+    if (data.code !== 'Ok' || !data.routes?.length) return []
+    return data.routes
+      .map((route) => {
+        const coords = route.geometry?.coordinates ?? []
+        return {
+          km: route.distance / 1000,
+          minutes: route.duration / 60,
+          geometry: coords.map(([lng, lat]) => [lat, lng] as [number, number]),
+        }
+      })
+      .filter((r) => r.geometry.length >= 2)
+  } catch {
+    return []
+  }
+}
+
 /** Road geometry (driving) plus foot duration for walk/cycle ranking. */
 export async function fetchOsrmRoutes(from: LatLng, to: LatLng): Promise<OsrmRouteResult | null> {
   const [driving, foot] = await Promise.all([

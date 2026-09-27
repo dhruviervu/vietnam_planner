@@ -2,13 +2,25 @@ import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTripStore } from '../../../store/tripStore'
 import { getDishById } from '../data/dishes'
-import type { Dish, FoodCity, Restaurant, RestaurantFilter, RestaurantSort } from '../data/types'
+import type {
+  Dish,
+  FoodCity,
+  Restaurant,
+  RestaurantFilter,
+  RestaurantKind,
+  RestaurantPriceLevel,
+  RestaurantSort,
+} from '../data/types'
 import {
+  KIND_CHIPS,
+  PRICE_CHIPS,
   RESTAURANTS,
   citiesForDish,
   getRestaurantsForDish,
   restaurantCityCounts,
   restaurantDishCounts,
+  restaurantKindCounts,
+  restaurantPriceCounts,
 } from '../data/restaurants'
 import { getTripFoodCities } from '../lib/tripFoodCities'
 import { RestaurantCard } from './RestaurantCard'
@@ -20,7 +32,7 @@ type Props = {
 }
 
 const TOP_CITY_COUNT = 6
-const PAGE_SIZE = 4
+const PAGE_SIZE = 6
 
 function cardDishName(restaurant: Restaurant, selectedDish?: Dish) {
   if (selectedDish) return selectedDish.name
@@ -36,18 +48,41 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
   const hasTrip = tripCities.length > 0
   const selectedDish = selectedDishId === 'All' ? undefined : getDishById(selectedDishId)
 
-  const listingCities = useMemo(() => citiesForDish(selectedDishId), [selectedDishId])
-  const availableCities = useMemo(
-    () => (hasTrip ? listingCities.filter((c) => tripCities.includes(c)) : listingCities),
-    [hasTrip, listingCities, tripCities],
-  )
-  const cityCounts = useMemo(() => restaurantCityCounts(selectedDishId), [selectedDishId])
-  const dishCounts = useMemo(() => restaurantDishCounts(), [])
   const [city, setCity] = useState<FoodCity | 'All'>('All')
   const [sort, setSort] = useState<RestaurantSort>('reviews-high')
   const [filters, setFilters] = useState<RestaurantFilter>({})
   const [moreCities, setMoreCities] = useState(false)
   const [page, setPage] = useState(1)
+
+  const listingCities = useMemo(
+    () => citiesForDish(selectedDishId, filters, tripCities),
+    [selectedDishId, filters, tripCities],
+  )
+  const availableCities = useMemo(
+    () => (hasTrip ? listingCities.filter((c) => tripCities.includes(c)) : listingCities),
+    [hasTrip, listingCities, tripCities],
+  )
+  const activeCity = city === 'All' || availableCities.includes(city) ? city : 'All'
+  const cityCounts = useMemo(
+    () => restaurantCityCounts(selectedDishId, filters, tripCities),
+    [selectedDishId, filters, tripCities],
+  )
+  const dishCounts = useMemo(
+    () => restaurantDishCounts(activeCity, filters, tripCities),
+    [activeCity, filters, tripCities],
+  )
+  const priceCounts = useMemo(
+    () => restaurantPriceCounts(selectedDishId, activeCity, filters, tripCities),
+    [selectedDishId, activeCity, filters, tripCities],
+  )
+  const kindCounts = useMemo(
+    () => restaurantKindCounts(selectedDishId, activeCity, filters, tripCities),
+    [selectedDishId, activeCity, filters, tripCities],
+  )
+
+  const visibleDishes = dishes.filter((d) => (dishCounts[d.id] ?? 0) > 0)
+  const visiblePrices = PRICE_CHIPS.filter((chip) => priceCounts[chip.id] > 0)
+  const visibleKinds = KIND_CHIPS.filter((chip) => kindCounts[chip.id] > 0)
 
   useEffect(() => {
     setCity('All')
@@ -58,13 +93,65 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
     setPage(1)
   }, [selectedDishId, city, sort, filters])
 
-  const activeCity = city === 'All' || availableCities.includes(city) ? city : 'All'
+  useEffect(() => {
+    if (city !== 'All' && !availableCities.includes(city)) setCity('All')
+  }, [availableCities, city])
+
+  useEffect(() => {
+    if (selectedDishId === 'All') return
+    if ((dishCounts[selectedDishId] ?? 0) > 0) return
+    onSelectDish('All')
+  }, [dishCounts, onSelectDish, selectedDishId])
+
+  useEffect(() => {
+    const selected = filters.priceLevels ?? []
+    if (selected.length === 0) return
+    const next = selected.filter((p) => priceCounts[p] > 0)
+    if (next.length === selected.length) return
+    setFilters((prev) => ({ ...prev, priceLevels: next }))
+  }, [filters.priceLevels, priceCounts])
+
+  useEffect(() => {
+    if (!filters.kind) return
+    if (kindCounts[filters.kind] > 0) return
+    setFilters((prev) => ({ ...prev, kind: undefined }))
+  }, [filters.kind, kindCounts])
+
+  const showAlcohol = getRestaurantsForDish(
+    selectedDishId,
+    activeCity,
+    sort,
+    { ...filters, servesAlcohol: false },
+    tripCities,
+    { preferNearby: false },
+  ).some((r) => r.servesAlcohol)
+  const showSmoking = getRestaurantsForDish(
+    selectedDishId,
+    activeCity,
+    sort,
+    { ...filters, allowsSmoking: false },
+    tripCities,
+    { preferNearby: false },
+  ).some((r) => r.allowsSmoking)
+
+  useEffect(() => {
+    if (filters.servesAlcohol && !showAlcohol) {
+      setFilters((prev) => ({ ...prev, servesAlcohol: false }))
+    }
+  }, [filters.servesAlcohol, showAlcohol])
+
+  useEffect(() => {
+    if (filters.allowsSmoking && !showSmoking) {
+      setFilters((prev) => ({ ...prev, allowsSmoking: false }))
+    }
+  }, [filters.allowsSmoking, showSmoking])
+
   const topCities = availableCities.slice(0, TOP_CITY_COUNT)
   const extraCities = hasTrip ? [] : availableCities.slice(TOP_CITY_COUNT)
   const visibleCities = hasTrip || moreCities ? availableCities : topCities
 
   const restaurants = useMemo(
-    () => getRestaurantsForDish(selectedDishId, activeCity, sort, filters, tripCities),
+    () => getRestaurantsForDish(selectedDishId, activeCity, sort, filters, tripCities, { preferNearby: false }),
     [selectedDishId, activeCity, sort, filters, tripCities],
   )
   const pageCount = Math.max(1, Math.ceil(restaurants.length / PAGE_SIZE))
@@ -78,6 +165,8 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
     (sort !== 'reviews-high' ? 1 : 0) +
     (filters.servesAlcohol ? 1 : 0) +
     (filters.allowsSmoking ? 1 : 0) +
+    (filters.kind ? 1 : 0) +
+    (filters.priceLevels?.length ? 1 : 0) +
     (activeCity !== 'All' ? 1 : 0)
 
   function clearFilters() {
@@ -87,15 +176,27 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
     setFilters({})
   }
 
+  function togglePrice(level: RestaurantPriceLevel) {
+    setFilters((prev) => {
+      const cur = prev.priceLevels ?? []
+      const next = cur.includes(level) ? cur.filter((p) => p !== level) : [...cur, level]
+      return { ...prev, priceLevels: next }
+    })
+  }
+
+  function toggleKind(kind: RestaurantKind) {
+    setFilters((prev) => ({ ...prev, kind: prev.kind === kind ? undefined : kind }))
+  }
+
   return (
     <section id="where-to-eat" className="scroll-mt-24">
       <h2 className="font-serif text-[clamp(1.35rem,2.8vw,1.7rem)] font-semibold text-ink">
         Where Should You Eat?
       </h2>
       <p className="mt-1 max-w-[62ch] text-[0.88rem] text-muted">
-        We are showing a shortlist of some restaurants there are MANY more places to eat so don&apos;t
-        worry, there will always be options on places to eat - just make sure to check the menu and
-        reviews!
+        A shortlist of rooms worth planning around — the most-reviewed traveller classics, plus local
+        tables that still work for visitors. Vietnam has thousands more kitchens; check the live
+        menu and recent reviews before you go.
       </p>
       {hasTrip ? (
         <p className="mt-2 text-[0.75rem] font-semibold text-sage">
@@ -109,7 +210,7 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
         </p>
       )}
 
-      <div className="mt-5 overflow-hidden rounded-[22px] bg-paper shadow-soft lg:grid lg:grid-cols-[minmax(10.5rem,0.22fr)_minmax(0,0.78fr)]">
+      <div className="mt-5 overflow-hidden rounded-[22px] bg-paper shadow-soft lg:grid lg:grid-cols-[minmax(11rem,0.24fr)_minmax(0,0.76fr)]">
         <aside className="border-b border-ink/8 bg-cream/40 lg:border-b-0 lg:border-r">
           <div className="flex items-center justify-between gap-2 px-3 pt-3">
             <p className="text-[0.62rem] font-bold uppercase tracking-[0.12em] text-muted">
@@ -137,7 +238,7 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
                   All dishes
                   <span className="ml-1 opacity-70">{RESTAURANTS.length}</span>
                 </CityChip>
-                {dishes.map((d) => (
+                {visibleDishes.map((d) => (
                   <CityChip
                     key={d.id}
                     active={selectedDishId === d.id}
@@ -155,7 +256,7 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
                 Explore by city
               </h3>
               <p className="mt-1 text-[0.72rem] text-muted">
-                {selectedDish ? `Jump to a city for ${selectedDish.name}.` : 'Jump to a city.'}
+                {selectedDish ? `Cities that serve ${selectedDish.name} well.` : 'Jump to a city.'}
               </p>
               <div className="mt-2 flex flex-wrap gap-1">
                 <CityChip active={activeCity === 'All'} onClick={() => setCity('All')}>
@@ -186,6 +287,48 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
 
             <section>
               <h3 className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
+                Cost
+              </h3>
+              <p className="mt-1 text-[0.72rem] text-muted">Street stools through to a special night.</p>
+              <div className="mt-2 flex flex-wrap gap-1">
+                {visiblePrices.map((chip) => (
+                  <CityChip
+                    key={chip.id}
+                    active={!!filters.priceLevels?.includes(chip.id)}
+                    onClick={() => togglePrice(chip.id)}
+                  >
+                    {chip.label}
+                    <span className="ml-1 opacity-70">{priceCounts[chip.id]}</span>
+                  </CityChip>
+                ))}
+              </div>
+            </section>
+
+            {visibleKinds.length > 0 ? (
+              <section>
+                <h3 className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
+                  Worth going
+                </h3>
+                <p className="mt-1 text-[0.72rem] text-muted">
+                  High visitor volume, or rooms locals send guests to.
+                </p>
+                <div className="mt-2 flex flex-wrap gap-1">
+                  {visibleKinds.map((chip) => (
+                    <CityChip
+                      key={chip.id}
+                      active={filters.kind === chip.id}
+                      onClick={() => toggleKind(chip.id)}
+                    >
+                      {chip.label}
+                      <span className="ml-1 opacity-70">{kindCounts[chip.id]}</span>
+                    </CityChip>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
+            <section>
+              <h3 className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
                 Sort
               </h3>
               <div className="mt-2 flex flex-wrap gap-1">
@@ -201,29 +344,35 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
               </div>
             </section>
 
-            <section>
-              <h3 className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
-                More filters
-              </h3>
-              <div className="mt-2 flex flex-wrap gap-1">
-                <CityChip
-                  active={!!filters.servesAlcohol}
-                  onClick={() =>
-                    setFilters((prev) => ({ ...prev, servesAlcohol: !prev.servesAlcohol }))
-                  }
-                >
-                  Serves alcohol
-                </CityChip>
-                <CityChip
-                  active={!!filters.allowsSmoking}
-                  onClick={() =>
-                    setFilters((prev) => ({ ...prev, allowsSmoking: !prev.allowsSmoking }))
-                  }
-                >
-                  Smoking
-                </CityChip>
-              </div>
-            </section>
+            {showAlcohol || showSmoking ? (
+              <section>
+                <h3 className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted">
+                  More filters
+                </h3>
+                <div className="mt-2 flex flex-wrap gap-1">
+                  {showAlcohol ? (
+                    <CityChip
+                      active={!!filters.servesAlcohol}
+                      onClick={() =>
+                        setFilters((prev) => ({ ...prev, servesAlcohol: !prev.servesAlcohol }))
+                      }
+                    >
+                      Serves alcohol
+                    </CityChip>
+                  ) : null}
+                  {showSmoking ? (
+                    <CityChip
+                      active={!!filters.allowsSmoking}
+                      onClick={() =>
+                        setFilters((prev) => ({ ...prev, allowsSmoking: !prev.allowsSmoking }))
+                      }
+                    >
+                      Smoking
+                    </CityChip>
+                  ) : null}
+                </div>
+              </section>
+            ) : null}
           </div>
         </aside>
 
@@ -242,71 +391,59 @@ export function RestaurantExplorer({ dishes, selectedDishId, onSelectDish }: Pro
               <p className="mt-0.5 text-[0.8rem] text-muted">
                 {restaurants.length} place{restaurants.length === 1 ? '' : 's'}
                 {activeCity !== 'All' ? ` in ${activeCity}` : hasTrip ? ' near your trip' : ''}
+                {' · ranked by tourist reviews'}
               </p>
             </motion.div>
           </AnimatePresence>
 
-          {restaurants.length === 0 ? (
-            <p className="mt-6 text-[0.88rem] text-muted">
-              No restaurants match these filters
-              {selectedDish ? ` for ${selectedDish.name}` : ''}. Try clearing a filter or choosing
-              another city.
-            </p>
-          ) : (
-            <>
-              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {pageRestaurants.map((r, i) => (
-                  <RestaurantCard
-                    key={r.id}
-                    restaurant={r}
-                    dishName={cardDishName(r, selectedDish)}
-                    isTop={pageStart + i === 0}
-                    hasTripContext={hasTrip && (activeCity === 'All' || tripCities.includes(r.city))}
-                  />
-                ))}
-              </div>
-              {pageCount > 1 ? (
-                <nav
-                  aria-label="Restaurant pages"
-                  className="mt-5 flex flex-wrap items-center justify-center gap-1.5"
-                >
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {pageRestaurants.map((r, i) => (
+              <RestaurantCard
+                key={r.id}
+                restaurant={r}
+                dishName={cardDishName(r, selectedDish)}
+                isTop={pageStart + i === 0 && sort === 'reviews-high'}
+                hasTripContext={hasTrip && (activeCity === 'All' || tripCities.includes(r.city))}
+              />
+            ))}
+          </div>
+          {pageCount > 1 ? (
+            <nav
+              aria-label="Restaurant pages"
+              className="mt-5 flex flex-wrap items-center justify-center gap-1.5"
+            >
+              <PageBtn
+                disabled={currentPage <= 1}
+                onClick={() => setPage(currentPage - 1)}
+                label="Previous page"
+              >
+                ‹
+              </PageBtn>
+              {pageNumbers.map((n, i) =>
+                n === '…' ? (
+                  <span key={`gap-${i}`} className="px-1.5 text-[0.78rem] font-bold text-muted">
+                    …
+                  </span>
+                ) : (
                   <PageBtn
-                    disabled={currentPage <= 1}
-                    onClick={() => setPage(currentPage - 1)}
-                    label="Previous page"
+                    key={n}
+                    active={n === currentPage}
+                    onClick={() => setPage(n)}
+                    label={`Page ${n}`}
                   >
-                    ‹
+                    {n}
                   </PageBtn>
-                  {pageNumbers.map((n, i) =>
-                    n === '…' ? (
-                      <span
-                        key={`gap-${i}`}
-                        className="px-1.5 text-[0.78rem] font-bold text-muted"
-                      >
-                        …
-                      </span>
-                    ) : (
-                      <PageBtn
-                        key={n}
-                        active={n === currentPage}
-                        onClick={() => setPage(n)}
-                        label={`Page ${n}`}
-                      >
-                        {n}
-                      </PageBtn>
-                    ),
-                  )}
-                  <PageBtn
-                    disabled={currentPage >= pageCount}
-                    onClick={() => setPage(currentPage + 1)}
-                    label="Next page"
-                  >
-                    ›
-                  </PageBtn>
-                </nav>
-              ) : null}
-            </>
-          )}
+                ),
+              )}
+              <PageBtn
+                disabled={currentPage >= pageCount}
+                onClick={() => setPage(currentPage + 1)}
+                label="Next page"
+              >
+                ›
+              </PageBtn>
+            </nav>
+          ) : null}
         </div>
       </div>
     </section>

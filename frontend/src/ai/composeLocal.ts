@@ -1,4 +1,5 @@
 import { getCityDescription } from '../pages/PlanBuilder/data/cityDescriptions'
+import { isHowToUsePrompt } from './howToUse'
 import type { AskFact, AskMessage, AskTicket, AskToolResult, DaySketch } from './types'
 
 function factLines(facts: AskFact[]) {
@@ -40,11 +41,21 @@ export function composeAskReply(
       .join('\n')}`
   }
 
+  if (isHowToUsePrompt(ticket.compact)) {
+    return [
+      'TripBuilder is built so you can design a Vietnam trip without guessing the order.',
+      'Use the left rail to browse on your own: When to Go and Know before you go, then stays, getting around, and airport transfer. Sights, things to do, where to eat, and shopping live under Itinerary.',
+      'The fastest path is Build My Itinerary. It walks you stage by stage, starting with timing, then major sights. Open a sight, tap See more, and add it to your trip bag — the itinerary is crafted from what you save, and you can still rearrange days after.',
+      'On a sight card, tap the location to open every major sight in that city. Ask me later about hours, whether something fits a day, or where to stay.',
+      'When you are ready to start, use the button below.',
+    ].join('\n\n')
+  }
+
   const first = facts[0]
   const extra = tools.did.length ? `${tools.did.join('. ')}. ` : ''
 
   if (ticket.intent === 'help' && !first && !ticket.cityHint) {
-    return `${extra}Vietnam, Curated is a trip planner for Vietnam: pick listed sights and activities, pin them in your bag, and build a day-by-day itinerary. Ask me what a place is, when it opens, or to take you to that city. Use Take me there when you want the page.`
+    return `${extra}TripBuilder is a trip planner for Vietnam: pick listed sights and activities, pin them in your bag, and build a day-by-day itinerary. Ask me what a place is, when it opens, or to take you to that city. Use Take me there when you want the page.`
   }
 
   if (ticket.intent === 'hours' && first) {
@@ -115,7 +126,7 @@ export function askLlmMessages(
   },
 ) {
   const system = [
-    'You are the in-product assistant for Vietnam, Curated, a Vietnam trip planner.',
+    'You are the in-product assistant for TripBuilder, a Vietnam trip planner.',
     'Travellers browse listed sights and activities, pin a trip bag, and build a day-by-day itinerary.',
     'Be conversational and useful. Answer questions about this site, Vietnam destinations, and listed sights.',
     'Prefer FACTS for opening hours, duration, and prices — never invent clocks.',

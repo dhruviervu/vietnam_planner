@@ -16,11 +16,8 @@ export function KnowBeforeYouGo() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-      <p className="mb-2 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">
-        Stage 7
-      </p>
       <h1 className="mb-3 font-serif text-[clamp(2rem,4vw,2.8rem)] font-semibold text-ink">
-        Before You Finalize Your Trip
+        Know before you go
       </h1>
       <p className="mb-8 max-w-[48ch] text-muted">
         Essential logistics — short, visual, and expandable. Nothing here locks your itinerary.

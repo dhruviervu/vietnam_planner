@@ -20,5 +20,5 @@ export type PackedTemplate = {
   shoppingIds: string[]
   allIds: string[]
   /** Packed JSON omits this; slow ideas set it so the catalog can section them. */
-  pace?: 'packed' | 'slow'
+  pace?: 'packed' | 'slow' | 'relaxed'
 }

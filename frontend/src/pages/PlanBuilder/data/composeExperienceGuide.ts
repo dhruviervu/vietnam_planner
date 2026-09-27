@@ -177,7 +177,7 @@ function wikiFor(e: Experience): { title: string; extract: string } {
 function relatedExplain(e: Experience, short: string): string {
   const others = e.relatedIds
     .map((id) => getExperienceById(id))
-    .filter((x): x is Experience => Boolean(x) && x.id !== e.id && x.city === e.city)
+    .filter((x): x is Experience => x != null && x.id !== e.id && x.city === e.city)
     .slice(0, 5)
   if (!others.length) {
     return `Do not invent a second copy of ${short} on the same morning. One honest visit in ${e.city} is the stop.`

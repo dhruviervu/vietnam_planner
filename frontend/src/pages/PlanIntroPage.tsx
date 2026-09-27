@@ -165,7 +165,7 @@ export function PlanIntroPage() {
         to="/"
         className="absolute left-5 top-5 z-20 font-serif text-[0.95rem] font-semibold text-paper/70 transition-colors hover:text-paper sm:left-7 sm:top-6"
       >
-        Vietnam, Curated
+        TripBuilder
       </Link>
     </main>
   )

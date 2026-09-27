@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 type Props = {
   videoSrc: string
+  /** Smaller encode for phones (under 768px wide). */
+  mobileVideoSrc?: string
   posterSrc: string
   headline: string
   subtext?: string
@@ -11,6 +13,7 @@ type Props = {
 
 export function VideoHero({
   videoSrc,
+  mobileVideoSrc,
   posterSrc,
   headline,
   subtext,
@@ -19,6 +22,9 @@ export function VideoHero({
 }: Props) {
   const [showVideo, setShowVideo] = useState(true)
   const [videoReady, setVideoReady] = useState(false)
+  const [src] = useState(() =>
+    mobileVideoSrc && window.matchMedia('(max-width: 767px)').matches ? mobileVideoSrc : videoSrc,
+  )
 
   return (
     <section className="relative h-[100vh] min-h-[640px] w-full overflow-hidden bg-ink">
@@ -45,14 +51,13 @@ export function VideoHero({
           playsInline
           preload="auto"
           poster={posterSrc}
+          src={src}
           onLoadedData={() => setVideoReady(true)}
           onError={() => {
             setShowVideo(false)
             setVideoReady(false)
           }}
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
+        />
       )}
 
       {/* Lighter mid-frame so footage stays vivid; darker only where type sits */}

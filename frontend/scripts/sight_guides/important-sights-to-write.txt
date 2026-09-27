@@ -1,0 +1,219 @@
+
+Important WRITE list: 61 sights. HCMC ranks 1–19 are skip.
+Write these by hand. Rank matches Attractions.
+skip = long curated guide already in the app (overnight generated copy does not count as done).
+WRITE = still needs you.
+
+Vietnam at its best (20)
+  1. Cát Bà National Park  [Cat Ba]  WRITE
+  2. Independence Palace  [Ho Chi Minh City]  skip
+  3. Trang An Boat Circuit  [Ninh Binh]  skip
+  4. Lan Hạ Bay  [Cat Ba]  WRITE
+  5. Dong Van Karst Plateau Geopark  [Ha Giang]  skip
+  6. Po Nagar Cham Towers  [Nha Trang]  skip
+  7. Tomb of Khải Định (Ứng Lăng)  [Hue]  skip
+  8. Ngọ Môn Gate (Noon Gate)  [Hue]  skip
+  9. Ma Pi Leng Pass  [Ha Giang]  skip
+  10. Ma Pi Leng Pass  [Dong Van]  WRITE
+  11. Mường Hoa Valley  [Sapa]  WRITE
+  12. Paradise Cave (Động Thiên Đường)  [Phong Nha]  WRITE
+  13. Sơn Đoòng Cave  [Phong Nha]  WRITE
+  14. Trang An Boat Ride  [Ninh Binh]  skip
+  15. Ha Long Bay Cruise  [Ha Long]  skip
+  16. Ha Giang Loop (Day Section)  [Ha Giang]  WRITE
+  17. Cái Răng Floating Market  [Can Tho]  WRITE
+  18. Hoi An Ancient Town (Day)  [Hoi An]  skip
+  19. Japanese Covered Bridge (Chùa Cầu)  [Hoi An]  skip
+  20. Hoi An Ancient Town Evening  [Hoi An]  skip
+
+Hanoi (top 12)
+  1. Temple of Literature  skip
+  2. Hanoi Old Quarter Walk  skip
+  3. Hoan Kiem Lake Walk  skip
+  4. Thang Long Imperial Citadel  skip
+  5. Ho Chi Minh Mausoleum Complex  skip
+  6. Stilt House & Presidential Gardens  skip
+  7. St. Joseph’s Cathedral  skip
+  8. Ngọc Sơn Temple  skip
+  9. One Pillar Pagoda  skip
+  10. Hoa Lo Prison Museum  skip
+  11. Hanoi Opera House  skip
+  12. Trấn Quốc Pagoda  skip
+
+Ho Chi Minh City (top 25)
+  1. Notre-Dame Cathedral Basilica — you wrote this  skip
+  2. Independence Palace — you wrote this  skip
+  3. Cu Chi Tunnels — you wrote this  skip
+  4. War Remnants Museum — you wrote this  skip
+  5. Ben Thanh Market Evening — you wrote this  skip
+  6. Jade Emperor Pagoda — you wrote this  skip
+  7. Thảo Cầm Viên (Saigon Zoo) — you wrote this  skip
+  8. Tân Định Church (Pink Church) — you wrote this  skip
+  9. Saigon Opera House — you wrote this  skip
+  10. Vĩnh Nghiêm Pagoda — you wrote this  skip
+  11. Tao Đàn Park — you wrote this  skip
+  12. Saigon Outcast — you wrote this  skip
+  13. Xá Lợi Pagoda — you wrote this  skip
+  14. Giác Lâm Pagoda — you wrote this  skip
+  15. Pháp Hoa Pagoda — you wrote this  skip
+  16. HCMC Museum of Fine Arts — you wrote this  skip
+  17. Mariamman Hindu Temple — you wrote this  skip
+  18. Cha Tam Church — you wrote this  skip
+  19. Ho Chi Minh City Museum — you wrote this  skip
+  20. Saigon Central Post Office  skip
+  21. Bình Quới Village  skip
+  22. Ho Chi Minh Museum (Nhà Rồng)  skip
+  23. Museum of Vietnamese History  skip
+  24. Southern Women’s Museum  skip
+  25. District 1 Apartment Cafés  skip
+
+Hoi An (top 10)
+  1. Hoi An Ancient Town (Day)  skip
+  2. Hoi An Ancient Town Evening  skip
+  3. Fujian Assembly Hall  skip
+  4. Quan Cong Temple (Chùa Ông)  skip
+  5. Cantonese Assembly Hall  skip
+  6. Thanh Ha Pottery Village  skip
+  7. Cù Lao Chàm (Chàm Islands)  skip
+  8. Teochew Assembly Hall  skip
+  9. Museum of Folk Culture  skip
+  10. Chinese Assembly Hall of Hoi An  skip
+
+Hue (top 10)
+  1. Imperial City (Đại Nội)  WRITE
+  2. Tomb of Khải Định (Ứng Lăng)  skip
+  3. Ngọ Môn Gate (Noon Gate)  skip
+  4. Thiên Mụ Pagoda (Linh Mụ Pagoda)  skip
+  5. Tomb of Tự Đức (Khiêm Lăng)  skip
+  6. Tomb of Minh Mạng (Hiếu Lăng)  skip
+  7. Thái Hòa Palace (Palace of Supreme Harmony)  skip
+  8. Trường Tiền Bridge (Tràng Tiền Bridge)  skip
+  9. Forbidden Purple City (Tử Cấm Thành)  skip
+  10. Flag Tower of Hue (Cột Cờ Huế)  skip
+
+Da Nang (top 10)
+  1. Linh Ung Pagoda (Lady Buddha)  skip
+  2. Ba Na Hills & Golden Bridge  skip
+  3. Son Tra (Monkey Mountain)  skip
+  4. My Khe Beach  WRITE
+  5. Hải Vân Pass  skip
+  6. Da Nang Cathedral (Pink Church)  skip
+  7. Museum of Cham Sculpture  skip
+  8. Non Nước Stone Carving Village  skip
+  9. Linh Ưng Pagoda (Marble Mountains)  skip
+  10. Non Nước Beach  skip
+
+Ha Long (top 8)
+  1. Ha Long Bay Cruise  skip
+  2. Sửng Sốt Cave (Surprise Cave)  skip
+  3. Ti Tốp Island & Viewpoint  skip
+  4. Đẩu Gỗ Cave (Wooden Stake Cave)  skip
+  5. Cửa Vạn Floating Fishing Village  skip
+  6. Hòn Trống Mái (Fighting Cocks Islet)  skip
+  7. Sun World Halong Complex  skip
+  8. Luồn Cave  skip
+
+Ninh Binh (top 8)
+  1. Trang An Boat Circuit  skip
+  2. Trang An Boat Ride  skip
+  3. Tam Coc Boat Ride  skip
+  4. Bai Dinh Pagoda Complex  skip
+  5. Bích Động Pagoda  skip
+  6. Phát Diệm Stone Cathedral  skip
+  7. Chùa Bái Đính Cổ  skip
+  8. Cúc Phương National Park  skip
+
+Sapa (top 10)
+  1. Fansipan Mountain  WRITE
+  2. Cát Cát Village  WRITE
+  3. Tả Van Village  WRITE
+  4. Mường Hoa Valley  WRITE
+  5. Lao Chải Village  WRITE
+  6. Sa Pa Stone Church  WRITE
+  7. Hàm Rồng Mountain  WRITE
+  8. Grand Buddha Statue of Fansipan  WRITE
+  9. Ô Quy Hồ Pass  WRITE
+  10. Tả Phìn Village  WRITE
+
+Da Lat (top 10)
+  1. Hang Nga Crazy House  WRITE
+  2. Linh Phước Pagoda  WRITE
+  3. Da Lat Railway Station  WRITE
+  4. Datanla Waterfall  WRITE
+  5. Domaine de Marie (Pink Church)  WRITE
+  6. Valley of Love  WRITE
+  7. Da Lat Cathedral (Chicken Church)  WRITE
+  8. Trúc Lâm Zen Monastery  WRITE
+  9. Tuyền Lâm Lake  WRITE
+  10. Bảo Đại Summer Palace III  WRITE
+
+Nha Trang (top 10)
+  1. Po Nagar Cham Towers  skip
+  2. Long Sơn Pagoda (Great White Buddha)  skip
+  3. Trần Phú Boulevard Promenade  skip
+  4. Nha Trang Beach (Trần Phú Beach)  skip
+  5. VinWonders Nha Trang (Vinpearl Land)  skip
+  6. Ba Hồ Waterfalls  skip
+  7. Christ the King Cathedral (Mountain / Stone Church)  skip
+  8. Hòn Tre Island (Bamboo Island)  skip
+  9. Hòn Chồng Promontory  skip
+  10. Hòn Mun Island (Ebony Island)  skip
+
+Phu Quoc (top 8)
+  1. Hộ Quốc Pagoda (Trúc Lâm Hộ Quốc)  skip
+  2. Sao Beach (Bãi Sao)  skip
+  3. Dinh Cậu Shrine (Dinh Cậu Rock)  skip
+  4. Hòn Thơm Island (Pineapple Island)  skip
+  5. Hòn Thơm Cable Car Station  skip
+  6. Long Beach (Bãi Trường)  skip
+  7. Starfish Beach (Rạch Vẹm)  skip
+  8. An Thới Archipelago  skip
+
+Phong Nha (top 8)
+  1. Phong Nha–Kẻ Bàng National Park  WRITE
+  2. Paradise Cave (Động Thiên Đường)  WRITE
+  3. Sơn Đoòng Cave  WRITE
+  4. Phong Nha Cave  WRITE
+  5. Bồng Lai Valley  WRITE
+  6. Hang Én  WRITE
+  7. Moọc Spring (Suối Nước Moọc)  WRITE
+  8. Eight Ladies Cave (Hang Tám Cô)  WRITE
+
+Ha Giang (top 8)
+  1. Dong Van Karst Plateau Geopark  skip
+  2. Lung Cu Flag Tower  skip
+  3. Ma Pi Leng Pass  skip
+  4. Palace of the Hmong King (Vuong Family Palace)  skip
+  5. Nho Que River  skip
+  6. Quan Ba Heaven Gate  skip
+  7. Ha Giang Loop (Day Section)  WRITE
+  8. Tu San Canyon  skip
+
+Cat Ba (top 8)
+  1. Cát Bà National Park  WRITE
+  2. Lan Hạ Bay  WRITE
+  3. Việt Hải Ancient Village  WRITE
+  4. Đỉnh Ngự Lâm (Ngự Lâm Peak)  WRITE
+  5. Cannon Fort (Cao Điểm 177)  WRITE
+  6. Cát Cò 1 Beach  WRITE
+  7. Cái Bèo Floating Village (Vạn Chài Cái Bèo)  WRITE
+  8. Hospital Cave (Hang Quân Y)  WRITE
+
+Dong Van (top 6)
+  1. Palace of the Hmong King (Vuong Family Palace)  WRITE
+  2. Lung Cu Flag Tower  WRITE
+  3. Ma Pi Leng Pass  WRITE
+  4. Lo Lo Chai Village  WRITE
+  5. Nho Que River  WRITE
+  6. Don Cao Fortress (French Bunker Viewpoint)  WRITE
+
+Can Tho (top 8)
+  1. Bình Thủy Ancient House  WRITE
+  2. Ông Temple (Chùa Ông – Quảng Đông Assembly Hall)  WRITE
+  3. Thiền Viện Trúc Lâm Phương Nam  WRITE
+  4. Sơn Islet (Cồn Sơn)  WRITE
+  5. Chùa Munir Ansay (Khmer Pagoda)  WRITE
+  6. Mỹ Khánh Eco-Tourism Village  WRITE
+  7. Nam Nhã Pagoda  WRITE
+  8. Bằng Lăng Stork Sanctuary  WRITE
+

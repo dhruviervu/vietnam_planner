@@ -76,6 +76,7 @@ export type SimProvider = {
   source: string
   lastUpdated: string
   freshness: DataFreshness
+  officialUrl?: string
 }
 
 export type CostCityId =

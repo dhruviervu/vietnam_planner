@@ -34,7 +34,7 @@ const MONTH_VISIT_INSIGHTS: Record<MonthId, MonthVisitInsight> = {
   },
   2: {
     visitDescription:
-      'February is Tết — lantern nights in Hanoi and Ho Chi Minh City, family festivals nationwide, and dry beaches in Da Nang and Hoi An. Plan stays early around closures, then enjoy quieter countryside days once the holiday peak eases.',
+      'February is Lunar New Year — lantern nights in Hanoi and Ho Chi Minh City, family festivals nationwide, and dry beaches in Da Nang and Hoi An. Plan stays early around closures, then enjoy quieter countryside days once the holiday peak eases.',
     temperatureRange: '19–27°C',
     rainfallMm: 24,
     rainCategory: 'Low',
@@ -155,7 +155,7 @@ const SNAPSHOT_OVERRIDES: Partial<
   2: {
     bestRegions: ['Hanoi', 'Ho Chi Minh City', 'Central Coast'],
     monthSummary:
-      'February centres on Tết energy — plan around closures, peak demand and festive city nights.',
+      'February centres on Lunar New Year — plan around closures, peak demand and festive city nights.',
     majorEventsLabel: '1–2 major festive peaks',
   },
   3: {

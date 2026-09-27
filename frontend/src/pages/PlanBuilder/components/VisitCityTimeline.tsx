@@ -820,7 +820,6 @@ export function VisitCityTimeline({
   cityDays,
   sights,
   closedSights = [],
-  tourOrder = [],
   hoursBySourceId,
   isoDate,
   highlightId,

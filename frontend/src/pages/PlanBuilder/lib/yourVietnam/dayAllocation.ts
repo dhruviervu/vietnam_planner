@@ -750,8 +750,6 @@ function dayLocksToSameOuting(placed: string[]): boolean {
   })
 }
 
-type DayOracleHit = { ok: boolean; ordered: string[] }
-
 function flattenPieces(pieces: PackUnit[], idxs: number[]): string[] {
   const ids: string[] = []
   for (const i of idxs) ids.push(...pieces[i].ids)
@@ -761,23 +759,6 @@ function flattenPieces(pieces: PackUnit[], idxs: number[]): string[] {
 function pieceOpenOnDate(piece: PackUnit, iso: string): boolean {
   if (!iso) return true
   return piece.ids.some((id) => !isSourceClosedOnDate(id, iso) || isExclusiveDayTrip(id))
-}
-
-/**
- * True when every sight in `ids` can take a full visit on `isoDate` in some
- * travel-feasible order. This is the day-bin feasibility oracle — not a
- * greedy grow step.
- */
-function dayIsFeasible(
-  ids: string[],
-  isoDate: string,
-  startCoord?: PinCoord | null,
-  allowShorten = false,
-): DayOracleHit {
-  if (ids.length === 0) return { ok: true, ordered: [] }
-  const walk = nearestFeasibleWalk(ids, ids, isoDate, startCoord, PACK_DAY_OPEN, null, allowShorten)
-  if (walk.ok) return { ok: true, ordered: walk.ordered }
-  return { ok: false, ordered: [] }
 }
 
 function canonicalizeDay(

@@ -7,7 +7,8 @@
  *
  *   v* = touristReviewCount (capped Maps volume, civic-damped)
  *   S  = (v*·R + m·C) / (v* + m)     Bayesian average
- *   Final = S · volume(v*) · freshness · duration · travelerFame · civicScale
+ * Must-visit score leans on historical integrity, landscape uniqueness, and
+ * cultural preservation — not raw Maps volume from backpacker strips.
  *
  * Then: review floor, then UNESCO / must-see anchors locked into city #1–#3.
  * Not used to pack itinerary days.
@@ -193,6 +194,38 @@ export function volumeFactor(reviewCount?: number | null, alpha = VOLUME_ALPHA):
   return 1 + alpha * Math.log10(v)
 }
 
+/** Historical / dynastic / archaeological weight. Markets next to tourist strips score low. */
+export function heritageIntegrity(sight: Sight): number {
+  const cat = sight.rankCategory ?? 'urban'
+  if (sight.isAnchor && (cat === 'historical' || cat === 'museums')) return 1.55
+  if (cat === 'historical') return 1.38
+  if (cat === 'museums') return 1.28
+  if (cat === 'nature' || cat === 'beaches' || cat === 'adventure') return 1.02
+  if (cat === 'markets' || cat === 'nightlife' || cat === 'food') return 0.78
+  return 0.88
+}
+
+/** Geological rarity and landscape that cannot be swapped for a city park. */
+export function landscapeUniqueness(sight: Sight): number {
+  const cat = sight.rankCategory ?? 'urban'
+  if (sight.isAnchor && (cat === 'nature' || cat === 'adventure' || cat === 'beaches')) return 1.55
+  if (cat === 'nature' || cat === 'adventure') return 1.36
+  if (cat === 'beaches') return 1.18
+  if (cat === 'historical' || cat === 'museums') return 1.04
+  if (cat === 'urban' || cat === 'markets' || cat === 'nightlife') return 0.76
+  return 0.92
+}
+
+/** Living culture that is not just foot-traffic around a backpacker street. */
+export function culturalPreservation(sight: Sight): number {
+  const cat = sight.rankCategory ?? 'urban'
+  if (sight.isAnchor && (cat === 'historical' || cat === 'urban')) return 1.4
+  if (cat === 'historical') return 1.22
+  if (cat === 'food' || cat === 'markets') return 1.08
+  if (cat === 'nightlife' || cat === 'urban') return 0.74
+  return 1
+}
+
 /**
  * A 15-minute statue and an all-day park are different products.
  * Don't let either win purely by being long or by being a photo stop with a viral pin.
@@ -261,13 +294,17 @@ export function scoreSight(sight: Sight, stats?: RankingStats): SightScores {
   const { C, m } = statsFor(sight, stats)
   const v = touristReviewCount(sight)
   const S = bayesianRating(v, sight.rating, m, C)
-  const vol = volumeFactor(v)
+  const vol = 1 + 0.06 * Math.log10(Math.max(1, v))
   const age = sight.meanReviewAgeYears ?? inferMeanReviewAgeYears(v)
-  const fresh = freshnessMultiplier(age)
+  const fresh = 0.85 + 0.15 * (freshnessMultiplier(age) / 3)
   const dur = durationFairness(sight.durationHours)
   const fame = travelerFame(sight.popularityRank)
   const civic = sight.localReviewBias ? CIVIC_SCORE_SCALE : 1
-  const total = S * vol * fresh * dur * fame * civic
+  const heritage = heritageIntegrity(sight)
+  const landscape = landscapeUniqueness(sight)
+  const culture = culturalPreservation(sight)
+  const quality = 0.92 + 0.08 * (S / RATING_SCALE)
+  const total = heritage * landscape * culture * civic * dur * fame * vol * fresh * quality * 8
   return {
     bayesianRating: S,
     volumeFactor: vol,
@@ -280,7 +317,7 @@ export function scoreSight(sight: Sight, stats?: RankingStats): SightScores {
     totalScore: total,
     bayesianScore: (S / RATING_SCALE) * 100,
     tierWeight: sight.isAnchor ? 1 : 0,
-    categoryWeight: 0,
+    categoryWeight: heritage * landscape * culture,
     frictionPenalty: 0,
   }
 }
@@ -308,7 +345,7 @@ function promoteAnchors(ranked: ScoredSight[], slots = ANCHOR_TOP_SLOTS): Scored
 export function rankAndSortSights(sights: Sight[], options: RankOptions = {}): ScoredSight[] {
   const raw = Array.isArray(sights) ? sights : []
   if (raw.length === 0) return []
-  const list = options.cityRelativeFame === false ? raw : withTouristVolumeFame(raw)
+  const list = options.cityRelativeFame === true ? withTouristVolumeFame(raw) : raw
   const stats = options.stats ?? buildCategoryStats(list)
   const ranked = list
     .map((sight) => ({ ...sight, ...scoreSight(sight, stats) }))

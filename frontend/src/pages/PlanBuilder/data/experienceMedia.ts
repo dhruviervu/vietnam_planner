@@ -12,16 +12,14 @@ export type ExperienceMedia = {
 export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
   "halong-cruise": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg/1280px-Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Junk_Halong_Bay_Vietnam.jpg/1280px-Junk_Halong_Bay_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Ha_Long_Bay%2C_Vietnam%2C_Rock_formations.jpg/1280px-Ha_Long_Bay%2C_Vietnam%2C_Rock_formations.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Sailing_in_Ha_Long_Bay_2%2C_Vietnam.jpg/1280px-Sailing_in_Ha_Long_Bay_2%2C_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Ha_Long_Bay%2C_Vietnam%2C_View_from_above.jpg/1280px-Ha_Long_Bay%2C_Vietnam%2C_View_from_above.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bai_Chai_Bridge%2C_Ha_Long_Bay%2C_Vietnam2.jpg/1280px-Bai_Chai_Bridge%2C_Ha_Long_Bay%2C_Vietnam2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Ha_Long_Bay_in_2019.jpg/1280px-Ha_Long_Bay_in_2019.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Ha_Long_Bay%2C_Tower_karsts.jpg/1280px-Ha_Long_Bay%2C_Tower_karsts.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Ha_Long_Bay%2C_an_island.jpg/1280px-Ha_Long_Bay%2C_an_island.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/fa/Boats_in_Ha_Long_bay.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/A_line_up_of_cruise_boats_on_the_Ha_Long_Bay_%2831598856166%29.jpg/1280px-A_line_up_of_cruise_boats_on_the_Ha_Long_Bay_%2831598856166%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53164482453.jpg/1280px-Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53164482453.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53164482858.jpg/1280px-Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53164482858.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53164431050.jpg/1280px-Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53164431050.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53164482448.jpg/1280px-Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53164482448.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53164221924.jpg/1280px-Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53164221924.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA.jpg/1280px-Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53163384877.jpg/1280px-Ha_long_bay_cruise_%E3%83%8F%E3%83%AD%E3%83%B3%E6%B9%BE%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%BA_-_53163384877.jpg"
     ],
     "videos": [
       {
@@ -31,25 +29,19 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "ReMD5B8sDgU",
         "title": "Which Ha Long Bay cruise should you book? | Vietnam Travel Guide"
-      },
-      {
-        "youtubeId": "Vl7YOcQUZz4",
-        "title": "Luxury Ha Long Bay Cruise 2 Days 1 Night 2026 - FOR FIRST TIMER IN VIETNAM"
       }
     ]
   },
   "temple-literature": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Main_gate_of_the_Temple_of_Literature%2C_Hanoi%2C_Vietnam%2C_20240123_0929_3068.jpg/1280px-Main_gate_of_the_Temple_of_Literature%2C_Hanoi%2C_Vietnam%2C_20240123_0929_3068.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Constellation_of_Literature_pavilion%2C_Temple_of_Literature%2C_Hanoi%2C_Vietnam%2C_20240123_0935_3091.jpg/1280px-Constellation_of_Literature_pavilion%2C_Temple_of_Literature%2C_Hanoi%2C_Vietnam%2C_20240123_0935_3091.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Constellation_of_Literature_pavilion%2C_Temple_of_Literature%2C_Hanoi%2C_Vietnam%2C_20240123_0931_3072.jpg/1280px-Constellation_of_Literature_pavilion%2C_Temple_of_Literature%2C_Hanoi%2C_Vietnam%2C_20240123_0931_3072.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Constellation_of_Literature_pavilion%2C_Temple_of_Literature%2C_Hanoi%2C_Vietnam%2C_20240123_0939_3103.jpg/1280px-Constellation_of_Literature_pavilion%2C_Temple_of_Literature%2C_Hanoi%2C_Vietnam%2C_20240123_0939_3103.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Main_gate_-_Temple_of_Literature%2C_Hanoi_-_DSC04529.JPG/1280px-Main_gate_-_Temple_of_Literature%2C_Hanoi_-_DSC04529.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Main_gate_-_Temple_of_Literature%2C_Hanoi_-_DSC04519.JPG/1280px-Main_gate_-_Temple_of_Literature%2C_Hanoi_-_DSC04519.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Main_gate_-_Temple_of_Literature%2C_Hanoi_-_DSC04534.JPG/1280px-Main_gate_-_Temple_of_Literature%2C_Hanoi_-_DSC04534.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Main_gate_of_the_Temple_of_Literature%2C_Hanoi_%2832231064992%29.jpg/1280px-Main_gate_of_the_Temple_of_Literature%2C_Hanoi_%2832231064992%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Hanoi-Graduation_Day_at_the_Temple_of_Literature_%285%29.jpg/1280px-Hanoi-Graduation_Day_at_the_Temple_of_Literature_%285%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Main_gate_of_the_Temple_of_Literature%2C_Hanoi.jpg/1280px-Main_gate_of_the_Temple_of_Literature%2C_Hanoi.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Temple_of_Literature.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/39/Hanoi_Temple_of_Literature_%28cropped%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Hanoi_Temple_of_Literature_%28cropped%29.jpg/1280px-Hanoi_Temple_of_Literature_%28cropped%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Tortoise_stelae%2C_Temple_of_Literature%2C_Hanoi%2C_15th-18th_centuries_%2838465702492%29.jpg/1280px-Tortoise_stelae%2C_Temple_of_Literature%2C_Hanoi%2C_15th-18th_centuries_%2838465702492%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Temple_of_Literature%2C_Hanoi_%2832381051575%29.jpg/1280px-Temple_of_Literature%2C_Hanoi_%2832381051575%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Entrance_to_the_Temple_of_Literature%2C_Hanoi_%282%29_%2824623112728%29.jpg/1280px-Entrance_to_the_Temple_of_Literature%2C_Hanoi_%282%29_%2824623112728%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Great_Drum_Temple_of_Literature%2C_Hanoi_%283%29_%2838495016651%29.jpg/1280px-Great_Drum_Temple_of_Literature%2C_Hanoi_%283%29_%2838495016651%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/20220605_Temple_of_Literature%2C_Hanoi_23.jpg/1280px-20220605_Temple_of_Literature%2C_Hanoi_23.jpg"
     ],
     "videos": [
       {
@@ -59,10 +51,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "SYDt9TEN4pc",
         "title": "Visit the Temple of Literature, Hanoi, Vietnam"
-      },
-      {
-        "youtubeId": "hK8om9_Z6dE",
-        "title": "Discover Vietnam in English | Temple of Literature Hanoi Walking Tour with Freya Bui"
       }
     ]
   },
@@ -75,18 +63,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Old_Quarter.jpg",
       "https://commons.wikimedia.org/wiki/Special:FilePath/Hang_Ma_Street.jpg",
       "https://commons.wikimedia.org/wiki/Special:FilePath/Old_Quarter_Hanoi_street.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hanoi_shophouse_2.jpg/1280px-Hanoi_shophouse_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/H%C3%A0ng_%C4%90%C3%A0o%2C_one_of_36_streets_of_HaNoi.jpg/1280px-H%C3%A0ng_%C4%90%C3%A0o%2C_one_of_36_streets_of_HaNoi.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b1/Hanoi_le_marche_aux_bronzes.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hanoi_shophouse_2.jpg/1280px-Hanoi_shophouse_2.jpg"
     ],
     "videos": [
       {
         "youtubeId": "BrQB8Pv_0mA",
         "title": "Arriving in Vietnam! Hanoi Old Quarter - Walking Tour, Street Food Tour & AMAZING Vietnamese Coffee"
-      },
-      {
-        "youtubeId": "xId3cHWsta4",
-        "title": "Hanoi 4K Walking Tour (Vietnam) - Old Quarter Tour with Train Street and Night Walk | 4K HD/60fps"
       },
       {
         "youtubeId": "NQBZAtiyDak",
@@ -103,22 +85,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Trang_An%2C_Ninh_Binh_%2824089563857%29.jpg/1280px-Trang_An%2C_Ninh_Binh_%2824089563857%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Lang_Hoi_sedge_weaving_mat_in_temple_of_Tr%E1%BA%A7n_dynasty_%28Trang_An%2C_Ninh_Binh%29_2.jpg/1280px-Lang_Hoi_sedge_weaving_mat_in_temple_of_Tr%E1%BA%A7n_dynasty_%28Trang_An%2C_Ninh_Binh%29_2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Trang_An%2C_Ninh_Binh.jpg/1280px-Trang_An%2C_Ninh_Binh.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Hoi_village%27s_sedge_weaving_mat_in_temple_of_Tr%E1%BA%A7n_dynasty_%28Trang_An%2C_Ninh_Binh%29.jpg/1280px-Hoi_village%27s_sedge_weaving_mat_in_temple_of_Tr%E1%BA%A7n_dynasty_%28Trang_An%2C_Ninh_Binh%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Trang_An_Scenic_Landscape_Complex%2C_northern_Vietnam_%28265%29_%2837634801525%29.jpg/1280px-Trang_An_Scenic_Landscape_Complex%2C_northern_Vietnam_%28265%29_%2837634801525%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/TrangAn17_HangTinh.JPG/1280px-TrangAn17_HangTinh.JPG"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Hoi_village%27s_sedge_weaving_mat_in_temple_of_Tr%E1%BA%A7n_dynasty_%28Trang_An%2C_Ninh_Binh%29.jpg/1280px-Hoi_village%27s_sedge_weaving_mat_in_temple_of_Tr%E1%BA%A7n_dynasty_%28Trang_An%2C_Ninh_Binh%29.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "B8saBzxK1L0",
-        "title": "Trang An vs Tam Coc – Which Ninh Binh Boat Ride Is Better?"
+        "youtubeId": "fjVvSYKKoDI",
+        "title": "Trang An Boat Ride - Ninh Binh, Vietnam 🇻🇳 (Highlights)"
       },
       {
-        "youtubeId": "L85Bns9HzBw",
-        "title": "Scenic TRANG AN Boat Tour in VIETNAM with kids in Ninh Binh BEST Route 🇻🇳 Vietnam Travel Guide/Vlog"
-      },
-      {
-        "youtubeId": "xO5KJm9Af5A",
-        "title": "The most INCREDIBLE boat tour in NINH BINH, VIETNAM - TRANG AN Boat Tour"
+        "youtubeId": "FKBEOQPLecE",
+        "title": "Vietnam's Most Beautiful Boat Ride — Trang An 🇻🇳 [4K Boat Tour]"
       }
     ]
   },
@@ -131,9 +107,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/View_from_Hang_Mua_2.jpg/1280px-View_from_Hang_Mua_2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/View_from_Hang_Mua.jpg/1280px-View_from_Hang_Mua.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Ninh_Binh_-_NinhBinh1648.jpg/1280px-Ninh_Binh_-_NinhBinh1648.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mua_Cave%2C_Ninh_Binh%2C_Vietnam%2C_20240202_0926_4964.jpg/1280px-Mua_Cave%2C_Ninh_Binh%2C_Vietnam%2C_20240202_0926_4964.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/View_of_Ninh_Binh_atop_limestone_rocks_near_Mua_Cave.jpg/1280px-View_of_Ninh_Binh_atop_limestone_rocks_near_Mua_Cave.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mua_Cave%2C_Ninh_Binh.png/1280px-Mua_Cave%2C_Ninh_Binh.png"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Mua_Cave%2C_Ninh_Binh%2C_Vietnam%2C_20240202_0926_4964.jpg/1280px-Mua_Cave%2C_Ninh_Binh%2C_Vietnam%2C_20240202_0926_4964.jpg"
     ],
     "videos": [
       {
@@ -155,9 +129,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Ancient_capital_of_Hoa_Lu%2C_10th_century_%281%29_%2838445751276%29.jpg/1280px-Ancient_capital_of_Hoa_Lu%2C_10th_century_%281%29_%2838445751276%29.jpg",
       "https://commons.wikimedia.org/wiki/Special:FilePath/Hoa_Lu.jpg",
       "https://commons.wikimedia.org/wiki/Special:FilePath/Dinh_Tien_Hoang_Temple.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Ninh_Binh.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Temple_of_Emperor_Le_Dai_Hanh%2C_Hoa_L%C6%B0%2C_Ninh_B%C3%ACnh%2C_Vietnam%2C_20240203_1525_5704.jpg/1280px-Temple_of_Emperor_Le_Dai_Hanh%2C_Hoa_L%C6%B0%2C_Ninh_B%C3%ACnh%2C_Vietnam%2C_20240203_1525_5704.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Tomb_of_the_First_Emperor%2C_Hoa_L%C6%B0%2C_Ninh_B%C3%ACnh%2C_Vietnam%2C_20240203_1515_5695.jpg/1280px-Tomb_of_the_First_Emperor%2C_Hoa_L%C6%B0%2C_Ninh_B%C3%ACnh%2C_Vietnam%2C_20240203_1515_5695.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ninh_Binh.jpg"
     ],
     "videos": [
       {
@@ -167,10 +139,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "CcBoCblLcaI",
         "title": "Ninh Binh Day Tour from Hanoi, Vietnam: Hoa Lu (Ancient Capital) with English-Speaking Guide"
-      },
-      {
-        "youtubeId": "gn7zLnn8hEE",
-        "title": "Hoa Lu Ancient Capital Vietnam 4K | Exploring Vietnam’s First Imperial Capital in Ninh Binh"
       }
     ]
   },
@@ -183,22 +151,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Dragon_fountain_at_the_back_of_the_Cantonese_Assembly_Hall_%28Quang_Trieu%29._Hoi_An_Ancient_Town_pagodas.jpg/1280px-Dragon_fountain_at_the_back_of_the_Cantonese_Assembly_Hall_%28Quang_Trieu%29._Hoi_An_Ancient_Town_pagodas.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Lanterns_in_Hoi_An%2C_Vietnam_%2825708206924%29.jpg/1280px-Lanterns_in_Hoi_An%2C_Vietnam_%2825708206924%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Hoi_An%2C_Vietnam_%2825710326363%29.jpg/1280px-Hoi_An%2C_Vietnam_%2825710326363%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Beautiful_beach_of_Hoi_An_%2824675493337%29.jpg/1280px-Beautiful_beach_of_Hoi_An_%2824675493337%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Boat_by_the_water_-_Hoi_An_%2816922189291%29.jpg/1280px-Boat_by_the_water_-_Hoi_An_%2816922189291%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Hoi_An_%2825653775177%29.jpg/1280px-Hoi_An_%2825653775177%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Beautiful_beach_of_Hoi_An_%2824675493337%29.jpg/1280px-Beautiful_beach_of_Hoi_An_%2824675493337%29.jpg"
     ],
     "videos": [
       {
         "youtubeId": "Nm0T5lPAT7U",
         "title": "Hoi An: A Guide to Visiting the Most Beautiful Ancient Town in Vietnam"
-      },
-      {
-        "youtubeId": "1fW9qrCAN-4",
-        "title": "My HONEST Experience of Hoi An Ancient Town | Vietnam SOLO Travel Vlog by Indian | Khushboo Vasudeva"
-      },
-      {
-        "youtubeId": "CM_PAqBUiew",
-        "title": "The ULTIMATE 3 days in Hoi An, Vietnam | Ancient Town, basket boats, lantern making, & MORE!"
       }
     ]
   },
@@ -211,9 +169,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Beautiful_beach_of_Hoi_An_%2824675493337%29.jpg/1280px-Beautiful_beach_of_Hoi_An_%2824675493337%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Boat_by_the_water_-_Hoi_An_%2816922189291%29.jpg/1280px-Boat_by_the_water_-_Hoi_An_%2816922189291%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Hoi_An_%2842681823051%29.jpg/1280px-Hoi_An_%2842681823051%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Dragon_fountain_at_the_back_of_the_Cantonese_Assembly_Hall_%28Quang_Trieu%29._Hoi_An_Ancient_Town_pagodas.jpg/1280px-Dragon_fountain_at_the_back_of_the_Cantonese_Assembly_Hall_%28Quang_Trieu%29._Hoi_An_Ancient_Town_pagodas.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Fishermen_near_Hoi_An.jpg/1280px-Fishermen_near_Hoi_An.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b5/Dem_ram_Hoi_An_2006.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Dragon_fountain_at_the_back_of_the_Cantonese_Assembly_Hall_%28Quang_Trieu%29._Hoi_An_Ancient_Town_pagodas.jpg/1280px-Dragon_fountain_at_the_back_of_the_Cantonese_Assembly_Hall_%28Quang_Trieu%29._Hoi_An_Ancient_Town_pagodas.jpg"
     ],
     "videos": [
       {
@@ -223,10 +179,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "yCEDY1ELgPU",
         "title": "Jolie Cooking Class in Hoi An – Vietnamese Cooking & Market Tour"
-      },
-      {
-        "youtubeId": "Z3tkv4pqgew",
-        "title": "VIETNAMESE ECO COOKING CLASS & HOI AN COCONUT BOAT TOUR"
       }
     ]
   },
@@ -239,9 +191,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://commons.wikimedia.org/wiki/Special:FilePath/Dong_Van_Karst_Plateau_Geopark.jpg",
       "https://commons.wikimedia.org/wiki/Special:FilePath/Ha_Giang_mountains.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Ma_Pi_Leng_Pass_winding_road_Ha_Giang_Vietnam.jpg/1280px-Ma_Pi_Leng_Pass_winding_road_Ha_Giang_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Flycam_view_of_road_at_Ma_Pi_Leng_pass.png/1280px-Flycam_view_of_road_at_Ma_Pi_Leng_pass.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Stairways_leading_back_to_the_Ma_Pi_Leng_pass_outpost.jpg/1280px-Stairways_leading_back_to_the_Ma_Pi_Leng_pass_outpost.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Ma_Pi_Leng_pass_plateau_in_2014.jpg/1280px-Ma_Pi_Leng_pass_plateau_in_2014.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Flycam_view_of_road_at_Ma_Pi_Leng_pass.png/1280px-Flycam_view_of_road_at_Ma_Pi_Leng_pass.png"
     ],
     "videos": [
       {
@@ -251,10 +201,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "xKCEDwOEElA",
         "title": "What I wish I knew before Ha Giang Loop motorbike tour in Vietnam | Full Guide 🇻🇳"
-      },
-      {
-        "youtubeId": "98klm5WH8E4",
-        "title": "Join Vietnam’s Greatest Adventure | The Ha Giang Loop Tour"
       }
     ]
   },
@@ -267,9 +213,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Rice_terraces_in_Sa_Pa_04.jpg/1280px-Rice_terraces_in_Sa_Pa_04.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Rice_terraces_in_Lao_Ch%E1%BA%A3i_01.jpg/1280px-Rice_terraces_in_Lao_Ch%E1%BA%A3i_01.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Rice_terraces_in_Lao_Ch%E1%BA%A3i_03.jpg/1280px-Rice_terraces_in_Lao_Ch%E1%BA%A3i_03.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Rice_terraces_in_Lao_Ch%E1%BA%A3i_10.jpg/1280px-Rice_terraces_in_Lao_Ch%E1%BA%A3i_10.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Rice_terraces_in_Lao_Ch%E1%BA%A3i_08.jpg/1280px-Rice_terraces_in_Lao_Ch%E1%BA%A3i_08.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Rice_terraces_in_Sa_Pa_11.jpg/1280px-Rice_terraces_in_Sa_Pa_11.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Rice_terraces_in_Lao_Ch%E1%BA%A3i_10.jpg/1280px-Rice_terraces_in_Lao_Ch%E1%BA%A3i_10.jpg"
     ],
     "videos": [
       {
@@ -291,18 +235,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Vietnam%2C_Hue%2C_Imperial_City_of_Hue%2C_The_Meridian_Gate.jpg/1280px-Vietnam%2C_Hue%2C_Imperial_City_of_Hue%2C_The_Meridian_Gate.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/DGJ_1263_-_Hue_Imperial_Citadel_%283439439718%29.jpg/1280px-DGJ_1263_-_Hue_Imperial_Citadel_%283439439718%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/ed/Plan_of_Hue_Imperial_Citadel.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/8/8e/Hue-Imperial_Citadel-Culture-Pham-Travel.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Vietnam%2C_Hue%2C_Imperial_City_of_Hue%2C_Th%E1%BA%BF_Mi%E1%BA%BFu_temple.jpg/1280px-Vietnam%2C_Hue%2C_Imperial_City_of_Hue%2C_Th%E1%BA%BF_Mi%E1%BA%BFu_temple.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Vietnam%2C_Hue%2C_Imperial_City_of_Hue%2C_Th%E1%BA%BF_Mi%E1%BA%BFu.jpg/1280px-Vietnam%2C_Hue%2C_Imperial_City_of_Hue%2C_Th%E1%BA%BF_Mi%E1%BA%BFu.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/8/8e/Hue-Imperial_Citadel-Culture-Pham-Travel.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "k4R0WMNT99U",
-        "title": "[4k] Virtual tour of the Hue Imperial Citadel (UNESCO World Heritage), Vietnam"
+        "youtubeId": "tQXDO6aZScQ",
+        "title": "Imperial City, Đại Nội, Huế"
       },
       {
-        "youtubeId": "qSxWCKHCjCE",
-        "title": "HUE VIETNAM: A MUST VISIT PLACE THE IMPERIAL CITADEL"
+        "youtubeId": "PBFSSDEwXK4",
+        "title": "Kinh thành huế : Hue Imperial City. Hue Citadel. Đại Nội Kinh thành Huế. Rất Huế. Đại nội Huế"
       }
     ]
   },
@@ -315,9 +257,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Da_Nang_china_Beach_2020_IMG_4009.jpg/1280px-Da_Nang_china_Beach_2020_IMG_4009.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/My_Khe_Beach%2C_Da_Nang%2C_Vietnam.jpg/1280px-My_Khe_Beach%2C_Da_Nang%2C_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/My_Khe_Beach_Da_Nang.jpg/1280px-My_Khe_Beach_Da_Nang.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/a/a2/Pictures_of_My_Khe_beach_in_Da_Nang.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/My_Khe_Beach_Danang_Coastline.jpg/1280px-My_Khe_Beach_Danang_Coastline.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/My_Khe_Beach_Danang_Highrises.jpg/1280px-My_Khe_Beach_Danang_Highrises.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/a/a2/Pictures_of_My_Khe_beach_in_Da_Nang.jpg"
     ],
     "videos": [
       {
@@ -339,65 +279,51 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/ThienDuongCave1.jpg/1280px-ThienDuongCave1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/ThienDuongCave2.jpg/1280px-ThienDuongCave2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ThienDuongCave4.jpg/1280px-ThienDuongCave4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Paradise_cave.JPG/1280px-Paradise_cave.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Cueva_Para%C3%ADso%2C_Parque_Nacional_Phong_Nha_-_Ke_Bang%2C_Vietnam_%2841309962172%29.jpg/1280px-Cueva_Para%C3%ADso%2C_Parque_Nacional_Phong_Nha_-_Ke_Bang%2C_Vietnam_%2841309962172%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cueva_Para%C3%ADso%2C_Phong_Nha%2C_Vietnam_%2836277324796%29.jpg/1280px-Cueva_Para%C3%ADso%2C_Phong_Nha%2C_Vietnam_%2836277324796%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Paradise_cave.JPG/1280px-Paradise_cave.JPG"
     ],
     "videos": [
       {
-        "youtubeId": "ZNhd9b4k1Mw",
-        "title": "Visiting Paradise Cave, Phong Nha, Vietnam - walk with me [4k 25fps]"
+        "youtubeId": "IJNbeleD5zI",
+        "title": "Visiting the Phong Nha Ke Bang National Park"
       },
       {
-        "youtubeId": "SqtQNB3YaDU",
-        "title": "Vietnam: Paradise Cave, Dark Cave or Phong Nha Cave - How to visit the great caves in Phong Nha?"
-      },
-      {
-        "youtubeId": "aYzxtSIN1HM",
-        "title": "Paradise Cave 7km Extended Tour | Exploring Vietnam’s Hidden Underground World (Phong Nha) 🇻🇳"
+        "youtubeId": "an26mzR0eQ0",
+        "title": "Vietnam - Phong Nha-Ke Bang National Park"
       }
     ]
   },
   "war-remnants": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Ho_Chi_Minh_City%2C_Vietnam%2C_War_Remnants_Museum.jpg/1280px-Ho_Chi_Minh_City%2C_Vietnam%2C_War_Remnants_Museum.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Main_building_of_the_War_Remnants_Museum%2C_Ho_Chi_Minh_City%2C_Vietnam_-_20120810-02.jpg/1280px-Main_building_of_the_War_Remnants_Museum%2C_Ho_Chi_Minh_City%2C_Vietnam_-_20120810-02.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/War_Remnants_Museum%2C_HCMC%2C_front.JPG",
       "https://commons.wikimedia.org/wiki/Special:FilePath/War_Remnants_Museum.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Independence_Palace.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Ho_Chi_Minh_City.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Vietnam_-_Hanoi_-_War_Remnants_Museum_-_Prisoner.JPG/1280px-Vietnam_-_Hanoi_-_War_Remnants_Museum_-_Prisoner.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Vietnam_-_Hanoi_-_War_Remnants_Museum_-_Guillotine.JPG/1280px-Vietnam_-_Hanoi_-_War_Remnants_Museum_-_Guillotine.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Vietnam_-_Hanoi_-_War_Remnants_Museum_-_Haeberle.JPG/1280px-Vietnam_-_Hanoi_-_War_Remnants_Museum_-_Haeberle.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Vietnam-_War_Remnants_Museum.jpg/1280px-Vietnam-_War_Remnants_Museum.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/War_Remnants_Museum%2C_HCMC%2C_front.JPG/1280px-War_Remnants_Museum%2C_HCMC%2C_front.JPG"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/War_Remnants_Museum%2C_HCMC%2C_front.JPG/3840px-War_Remnants_Museum%2C_HCMC%2C_front.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/War_Remnants_Museum%2C_HCMC%2C_front.JPG/1280px-War_Remnants_Museum%2C_HCMC%2C_front.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Main_building_of_the_War_Remnants_Museum%2C_Ho_Chi_Minh_City%2C_Vietnam_-_20120810-02.jpg/1280px-Main_building_of_the_War_Remnants_Museum%2C_Ho_Chi_Minh_City%2C_Vietnam_-_20120810-02.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Vietnam_-_Hanoi_-_War_Remnants_Museum_-_Prisoner.JPG/1280px-Vietnam_-_Hanoi_-_War_Remnants_Museum_-_Prisoner.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/War_Remnants_Museum_%2836992711312%29.jpg/1280px-War_Remnants_Museum_%2836992711312%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/War_Remnants_Museum_%2832167695818%29.jpg/1280px-War_Remnants_Museum_%2832167695818%29.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "vcDOGorSWRc",
-        "title": "War Remnants Museum – Ho Chi Minh City, Vietnam 🇻🇳 | Ho Chi Minh City (Saigon) Travel Guides - Ep# 2"
+        "youtubeId": "vF9LdqWoa5k",
+        "title": "Vietnam War Remnants Museum walking tour 4k"
       },
       {
-        "youtubeId": "fEBsDzrZ70o",
-        "title": "FULL TOUR INSIDE War Remnants Museum - Ho Chi Minh City, Vietnam"
-      },
-      {
-        "youtubeId": "QK6QxSLEbJQ",
-        "title": "War Remnants Museum Ho Chi Minh City Vietnam/ Most Visited Places In Vietnam"
+        "youtubeId": "iXv8kUywBI8",
+        "title": "Echoes of Conflict | Unveiling Vietnam War Remnants Museum | 4K HDR"
       }
     ]
   },
   "cu-chi": {
     "photos": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/VietnamCuChiTunnels.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/C%E1%BB%A7_Chi_tunnels_entrance.JPG/3840px-C%E1%BB%A7_Chi_tunnels_entrance.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/C%E1%BB%A7_Chi_tunnels_entrance.JPG/1280px-C%E1%BB%A7_Chi_tunnels_entrance.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Cu_Chi_Tunnels_Vietnam_war_6.jpg/1280px-Cu_Chi_Tunnels_Vietnam_war_6.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Cu_Chi_Tunnels_Vietnam_war_7.jpg/1280px-Cu_Chi_Tunnels_Vietnam_war_7.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Chu_Chi_Tun_tunnels_Vietnam.jpg/1280px-Chu_Chi_Tun_tunnels_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cu_Chi_Tunnels_Vietnam_war_5.jpg/1280px-Cu_Chi_Tunnels_Vietnam_war_5.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Cu_Chi_Tunnels_Vietnam_war.jpg/1280px-Cu_Chi_Tunnels_Vietnam_war.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Cu_Chi_Tunnels_Vietnam_war_2.jpg/1280px-Cu_Chi_Tunnels_Vietnam_war_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Cu_Chi_Tunnels_Vietnam_war_4.jpg/1280px-Cu_Chi_Tunnels_Vietnam_war_4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Cu_Chi_Tunnels_Vietnam_war_3.jpg/1280px-Cu_Chi_Tunnels_Vietnam_war_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Chu_Chi_Tun_tunnels_Vietnam_3.jpg/1280px-Chu_Chi_Tun_tunnels_Vietnam_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Chu_Chi_Tun_tunnels_Vietnam_2.jpg/1280px-Chu_Chi_Tun_tunnels_Vietnam_2.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Cu_Chi_Tunnels_Vietnam_war.jpg/1280px-Cu_Chi_Tunnels_Vietnam_war.jpg"
     ],
     "videos": [
       {
@@ -407,10 +333,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "i8zcvsdjnlE",
         "title": "HO CHI MINH CITY CU CHI TUNNELS VIETNAM BEST TOUR LOW BUDGET COMPLETE TRAVEL GUIDE 2025 SHOOTING GUN"
-      },
-      {
-        "youtubeId": "uDE8fSmW5lU",
-        "title": "Visiting the famous CU CHI TUNNELS in Vietnam: Is it worth it? | Tour Vlog & Review 2024"
       }
     ]
   },
@@ -423,9 +345,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Cai_Rang_floating_market%2C_Can_Tho_%2844294953560%29.jpg/1280px-Cai_Rang_floating_market%2C_Can_Tho_%2844294953560%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cai_Rang_floating_market_%2815724707578%29.jpg/1280px-Cai_Rang_floating_market_%2815724707578%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/RTW2009-1780MekongDelta.jpg/1280px-RTW2009-1780MekongDelta.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/RTW2009-1772MekongDelta.jpg/1280px-RTW2009-1772MekongDelta.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/RTW2009-1760MekongDelta.jpg/1280px-RTW2009-1760MekongDelta.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Cai_Rang_floating_market_%2815886375226%29.jpg/1280px-Cai_Rang_floating_market_%2815886375226%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/RTW2009-1772MekongDelta.jpg/1280px-RTW2009-1772MekongDelta.jpg"
     ],
     "videos": [
       {
@@ -435,10 +355,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "ET94LnShdtE",
         "title": "3 Day Mekong Delta Trip with TNK Travel"
-      },
-      {
-        "youtubeId": "MqHxUJR-Nyo",
-        "title": "Cai Rang Floating Market Can Tho Mekong Delta Vietnam I Can Tho Travel Guide I Vemekong.com"
       }
     ]
   },
@@ -451,9 +367,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Phu_quoc_hotel_1.jpg/1280px-Phu_quoc_hotel_1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Phu_quoc_cau_sat.jpg/1280px-Phu_quoc_cau_sat.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/8/8a/Phu_quoc_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/eb/Phu_quoc_fabication_de_nuoc_mam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/4b/Phu_quoc_hotel_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/8/89/Phu_quoc_embouchure_de_la_riviere_duong_dong.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/e/eb/Phu_quoc_fabication_de_nuoc_mam.jpg"
     ],
     "videos": [
       {
@@ -475,15 +389,9 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Kiss_of_the_Sea_fireworks_show_Sunset_Town_Sun_World_Phu_Quoc_night_Vietnam.jpg/1280px-Kiss_of_the_Sea_fireworks_show_Sunset_Town_Sun_World_Phu_Quoc_night_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/1_Phu_Quoc_sunset.jpg/1280px-1_Phu_Quoc_sunset.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Sunset_at_Phu_Quoc.jpg/1280px-Sunset_at_Phu_Quoc.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/9/98/Sunset_on_Phu_Quoc_island.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/8/8f/Phu_Quoc_Island_in_Vietnam_%287707805156%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Bai_Truong_%28Long_Beach%29_Ph%C3%BA_Qu%E1%BB%91c%2C_Vietnam_%283859473907%29.jpg/1280px-Bai_Truong_%28Long_Beach%29_Ph%C3%BA_Qu%E1%BB%91c%2C_Vietnam_%283859473907%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/9/98/Sunset_on_Phu_Quoc_island.jpg"
     ],
     "videos": [
-      {
-        "youtubeId": "tVMw502eZcc",
-        "title": "Starfish Beach Phu Quoc & Sunset Town 🌅 | Full Travel Guide + How to Reach | Vietnam Vlog"
-      },
       {
         "youtubeId": "yPtwUoZfeH8",
         "title": "Vietnam Phu Quoc Sunset Beach Bar#Orangeresort#travel#video#nightcore#life#trendingvideo#videos"
@@ -503,18 +411,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Egg_coffee_at_Caf%C3%A9_Giang.jpg/1280px-Egg_coffee_at_Caf%C3%A9_Giang.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/d2/Egg_coffee_in_Hanoi.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Egg_Coffee_at_Cafe_Gi%E1%BA%A3ng%2C_H%C3%A0_N%E1%BB%99i%2C_Vietnam.jpg/1280px-Egg_Coffee_at_Cafe_Gi%E1%BA%A3ng%2C_H%C3%A0_N%E1%BB%99i%2C_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Egg_Coffee_%286923068614%29.jpg/1280px-Egg_Coffee_%286923068614%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/C%C3%80_PH%C3%8A_KEM_TR%E1%BB%A8NG_%28Egg_cream_coffee%29.jpg/1280px-C%C3%80_PH%C3%8A_KEM_TR%E1%BB%A8NG_%28Egg_cream_coffee%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b7/Viet-coffee.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Egg_Coffee_%286923068614%29.jpg/1280px-Egg_Coffee_%286923068614%29.jpg"
     ],
     "videos": [
       {
         "youtubeId": "RCmf5b7WRn0",
         "title": "🇻🇳 Hanoi Café Crawl | Egg Coffee at Bancông & Coconut Coffee at Cộng Cà Phê! Last Day in Hanoi"
-      },
-      {
-        "youtubeId": "SfdA8OtbTwI",
-        "title": "Hanoi Vietnam Travel Vlog 🇻🇳 Best Restaurants in Hanoi, Egg Coffee Shops, Old Quarter Guide"
       }
     ]
   },
@@ -527,15 +429,9 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hanoi_beer_and_fried_noodles_in_Vietnam_in_a_street_food_cafe.jpg/1280px-Hanoi_beer_and_fried_noodles_in_Vietnam_in_a_street_food_cafe.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Street_Food_-_Hanoi_-_Vietnam_%2815852884012%29_%28cropped%29.jpg/1280px-Street_Food_-_Hanoi_-_Vietnam_%2815852884012%29_%28cropped%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/7a/Street_Food_vendors_Soft_crab_Hanoi_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Street_food_-_Hanoi_%2815657896380%29.jpg/1280px-Street_food_-_Hanoi_%2815657896380%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Street_food_preparation_in_Hanoi_%2849373833518%29.jpg/1280px-Street_food_preparation_in_Hanoi_%2849373833518%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Street_food_preparation_in_Hanoi_%2849373940691%29.jpg/1280px-Street_food_preparation_in_Hanoi_%2849373940691%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Street_food_-_Hanoi_%2815657896380%29.jpg/1280px-Street_food_-_Hanoi_%2815657896380%29.jpg"
     ],
     "videos": [
-      {
-        "youtubeId": "JGgq3HOa5vw",
-        "title": "Hanoi Street Food Guide: Top 5 Must-Try Dishes in Vietnam's Capital City 2025!"
-      },
       {
         "youtubeId": "l5H6jl_g2XE",
         "title": "EXOTIC Vietnamese food tour! SUPER RARE street food of Hanoi Vietnam"
@@ -551,18 +447,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Train_street_in_Hanoi.jpg/1280px-Train_street_in_Hanoi.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Train_Street%2C_Hanoi_%2850004299243%29.jpg/1280px-Train_Street%2C_Hanoi_%2850004299243%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Train_street%2C_Hanoi_%2850012106061%29.jpg/1280px-Train_street%2C_Hanoi_%2850012106061%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Train_Street%2C_Hanoi_%2849321859652%29.jpg/1280px-Train_Street%2C_Hanoi_%2849321859652%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/6e/Hanoi_train_street.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Train_Street_Hanoi.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Train_Street%2C_Hanoi_%2849321859652%29.jpg/1280px-Train_Street%2C_Hanoi_%2849321859652%29.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "78jzoDm8Vcs",
-        "title": "Vietnam Hanoi Train Street IS CRAZY Full Hanoi City Vlog with Shopping & Food Travel Guide Vlog 2025"
-      },
-      {
-        "youtubeId": "9JWATWtRF_I",
-        "title": "HANOI TRAIN STREET & City Guide 🇻🇳 | Vietnam | Day 1 Itinerary + SCAM ALERT!"
+        "youtubeId": "sOskQx0hCQk",
+        "title": "📍Train Street, Hanoi – Vietnam’s wildest café spot"
       }
     ]
   },
@@ -575,18 +465,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/2024-11-23_An_Bang_Beach_in_Hoi_An_in_November.jpg/1280px-2024-11-23_An_Bang_Beach_in_Hoi_An_in_November.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Bang_Hoi_Beach_%2825.08.2025%29.jpg/1280px-Bang_Hoi_Beach_%2825.08.2025%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Playa_An_Bang%2C_Hoi_An%2C_Vietnam_%2839510560665%29.jpg/1280px-Playa_An_Bang%2C_Hoi_An%2C_Vietnam_%2839510560665%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Pla%C5%BCa_An_Bang_w_Hoi_An_%2821634140843%29.jpg/1280px-Pla%C5%BCa_An_Bang_w_Hoi_An_%2821634140843%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/2024_H%E1%BB%99i_An_-_H%E1%BB%99i_Qu%C3%A1n_Ng%C5%A9_Bang_%28Trung_T%C3%A2m_Hoa_V%C4%83n_L%E1%BB%85_Ngh%C4%A9a%29_-_img_01.jpg/1280px-2024_H%E1%BB%99i_An_-_H%E1%BB%99i_Qu%C3%A1n_Ng%C5%A9_Bang_%28Trung_T%C3%A2m_Hoa_V%C4%83n_L%E1%BB%85_Ngh%C4%A9a%29_-_img_01.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Hoi_Cuu_Vien_Si_Quan_Tru_Bi_Thu_Duc_Tieu_Bang_2622.jpg/1280px-Hoi_Cuu_Vien_Si_Quan_Tru_Bi_Thu_Duc_Tieu_Bang_2622.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Pla%C5%BCa_An_Bang_w_Hoi_An_%2821634140843%29.jpg/1280px-Pla%C5%BCa_An_Bang_w_Hoi_An_%2821634140843%29.jpg"
     ],
     "videos": [
       {
         "youtubeId": "rznnZXpiEK8",
         "title": "4K Walking Tour An Bang Beach Hoi An | Vietnam Beach Cafes, Bars & Villas in 2025 🇻🇳"
-      },
-      {
-        "youtubeId": "kxi5c1utIfw",
-        "title": "Hoi An Vietnam Vlog: An Bang Beach Walking Tour & Seafood Lunch"
       },
       {
         "youtubeId": "7OJgO5xz-TY",
@@ -603,18 +487,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/ASI_of_India_helps_Vietnam_to_restore_the_M%E1%BB%B9_S%C6%A1n_Sanctuary.jpg/1280px-ASI_of_India_helps_Vietnam_to_restore_the_M%E1%BB%B9_S%C6%A1n_Sanctuary.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/2024_-_M%E1%BB%B9_S%C6%A1n_Sanctuary_Temple_E7_-_img_01.jpg/1280px-2024_-_M%E1%BB%B9_S%C6%A1n_Sanctuary_Temple_E7_-_img_01.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/2024-04-03-My_Son-3847167A3847.jpg/1280px-2024-04-03-My_Son-3847167A3847.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/My_Son_pedestal.jpg/1280px-My_Son_pedestal.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Linga_1_%28My_Son%29.jpg/1280px-Linga_1_%28My_Son%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/4a/Henri_Parmentier%2C_1909._Mi_Son%2C_A1._Face_principale_restaur%C3%A9e.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/My_Son_pedestal.jpg/1280px-My_Son_pedestal.jpg"
     ],
     "videos": [
       {
         "youtubeId": "hc4Cx_lGnc4",
         "title": "Watch This Before Visiting MY SON SANCTUARY, VIETNAM! (2026)"
-      },
-      {
-        "youtubeId": "E-UMBjzVYig",
-        "title": "My Son Sanctuary Vietnam - Amazing Champa Temples near Hoi An | Day Trip Vlog"
       }
     ]
   },
@@ -627,9 +505,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Hiking_at_Marble_Mountains%2C_Da_Nang%2C_Vietnam.jpg/1280px-Hiking_at_Marble_Mountains%2C_Da_Nang%2C_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%284%29.jpg/1280px-The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%284%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%288%29.jpg/1280px-The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%288%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%2812%29.jpg/1280px-The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%2812%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%287%29.jpg/1280px-The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%287%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%2810%29.jpg/1280px-The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%2810%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%2812%29.jpg/1280px-The_Marble_Mountains_Da_Nang_Viet_Nam_-_panoramio_%2812%29.jpg"
     ],
     "videos": [
       {
@@ -651,18 +527,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Sea_on_the_southeast_coast_of_Cat_Ba_Island_in_Vietnam%2C_20240131_1332_4629.jpg/1280px-Sea_on_the_southeast_coast_of_Cat_Ba_Island_in_Vietnam%2C_20240131_1332_4629.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Islands_southeast_of_Cat_Ba_Island_in_Vietnam%2C_20240131_1433_4704.jpg/1280px-Islands_southeast_of_Cat_Ba_Island_in_Vietnam%2C_20240131_1433_4704.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/View_of_the_sea_from_Cannon_Fort_Park_on_Cat_Ba_Island%2C_Vietnam%2C_20240130_1601_4440.jpg/1280px-View_of_the_sea_from_Cannon_Fort_Park_on_Cat_Ba_Island%2C_Vietnam%2C_20240130_1601_4440.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Cat_Ba_Island%2C_Vietnam%2C_20240131_1426_4686.jpg/1280px-Cat_Ba_Island%2C_Vietnam%2C_20240131_1426_4686.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Cat_Ba_Island%2C_Vietnam%2C_20240131_1441_4725.jpg/1280px-Cat_Ba_Island%2C_Vietnam%2C_20240131_1441_4725.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Islands_southeast_of_Cat_Ba_Island_in_Vietnam%2C_20240131_1402_4656.jpg/1280px-Islands_southeast_of_Cat_Ba_Island_in_Vietnam%2C_20240131_1402_4656.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Cat_Ba_Island%2C_Vietnam%2C_20240131_1426_4686.jpg/1280px-Cat_Ba_Island%2C_Vietnam%2C_20240131_1426_4686.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "wN0BQEJ908g",
-        "title": "Vietnam: Cat Ba Island & Lan Ha Bay | Skip touristy Ha Long Bay, Go here instead!!!"
+        "youtubeId": "lMuhbJjOgzA",
+        "title": "Hanoi to Cat Ba Island: Bus Is Great, But This Is WAY BETTER!"
       },
       {
-        "youtubeId": "h7A6vVfyDSk",
-        "title": "Cat Ba Island, Vietnam travel guide 🇻🇳 Lan Ha Bay cruise, beaches, Trung Trang cave"
+        "youtubeId": "ahp1XTKYbOQ",
+        "title": "Is This Vietnam’s Secret Island Paradise? | Cat Ba Island"
       }
     ]
   },
@@ -675,18 +549,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://commons.wikimedia.org/wiki/Special:FilePath/Cat_Ba_Island.jpg",
       "https://commons.wikimedia.org/wiki/Special:FilePath/Ha_Long_Bay.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/ea/Landed_on_Halfway_Rock%2C_Cusco_Bay%2C_Maine.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg/1280px-Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Limestone_Cliffs-Halong_Bay_Vietnam-Andres_Larin.jpg/1280px-Limestone_Cliffs-Halong_Bay_Vietnam-Andres_Larin.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/f1/FishingVillage_HaLongBay_Vietnam_%28pixinn.net%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg/1280px-Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg"
     ],
     "videos": [
       {
         "youtubeId": "iac_9H1GXEM",
         "title": "The BEST Ha Long Bay Alternative: Lan Ha Bay - Day Trip of Cruising and Kayaking"
-      },
-      {
-        "youtubeId": "wN0BQEJ908g",
-        "title": "Vietnam: Cat Ba Island & Lan Ha Bay | Skip touristy Ha Long Bay, Go here instead!!!"
       }
     ]
   },
@@ -699,9 +567,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Ben_Thanh_Market.jpg/1280px-Ben_Thanh_Market.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Ben_Thanh_Market%2C_2023_%2813%29.jpg/1280px-Ben_Thanh_Market%2C_2023_%2813%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Ben_Thanh_Market_%2836327758224%29.jpg/1280px-Ben_Thanh_Market_%2836327758224%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Ben_Thanh_Market%2C_2023_%2808%29.jpg/1280px-Ben_Thanh_Market%2C_2023_%2808%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Ben_Thanh_Market%2C_Saigon.jpg/1280px-Ben_Thanh_Market%2C_Saigon.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/RedDoorz_Plus_near_Ben_Thanh_Market.jpg/1280px-RedDoorz_Plus_near_Ben_Thanh_Market.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Ben_Thanh_Market%2C_2023_%2808%29.jpg/1280px-Ben_Thanh_Market%2C_2023_%2808%29.jpg"
     ],
     "videos": [
       {
@@ -711,10 +577,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "NQEhcwGdxb4",
         "title": "The Best Replica Market in Vietnam | Ben Thanh Market | Ho Chi Minh City"
-      },
-      {
-        "youtubeId": "ULOM2GJDvak",
-        "title": "Ben Thanh Market Ho Chi Minh City 🇻🇳 | Is Saigon’s Most Famous Market Worth Visiting?"
       }
     ]
   },
@@ -727,9 +589,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Dragon_boat%2C_Perfume_River%2C_Hue%2C_Vietnam_%287073452585%29.jpg/1280px-Dragon_boat%2C_Perfume_River%2C_Hue%2C_Vietnam_%287073452585%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hue_-_Perfume_River_-_Dragon_Boat.jpg/1280px-Hue_-_Perfume_River_-_Dragon_Boat.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Dragon_boats%2C_Perfume_River%2C_Hue_%286927413510%29.jpg/1280px-Dragon_boats%2C_Perfume_River%2C_Hue_%286927413510%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Dragon_boat_cruise%2C_Perfume_River%2C_Hue_%287073484509%29.jpg/1280px-Dragon_boat_cruise%2C_Perfume_River%2C_Hue_%287073484509%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Dragon_boat_cruise%2C_Perfume_River%2C_Hue_%287073510219%29.jpg/1280px-Dragon_boat_cruise%2C_Perfume_River%2C_Hue_%287073510219%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Dragon_boat_cruise%2C_Perfume_River%2C_Hue_%287073503163%29.jpg/1280px-Dragon_boat_cruise%2C_Perfume_River%2C_Hue_%287073503163%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Dragon_boat_cruise%2C_Perfume_River%2C_Hue_%287073484509%29.jpg/1280px-Dragon_boat_cruise%2C_Perfume_River%2C_Hue_%287073484509%29.jpg"
     ],
     "videos": [
       {
@@ -739,10 +599,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "EE_PKZTQGL4",
         "title": "Bong and Xiu come to visit us in Hue! | Perfume River Boat Cruise | Vietnam June 2022"
-      },
-      {
-        "youtubeId": "w6Jy_HNT3ZA",
-        "title": "🚤 EXPLORE VIETNAM’S ICONIC PERFUME RIVER 🐉 DRAGON BOAT TOUR IN HUẾ 🇻🇳 | CULTURE, DESIGN & HISTORY"
       }
     ]
   },
@@ -755,18 +611,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Phong_Nha_cave_entrance.jpg/1280px-Phong_Nha_cave_entrance.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/PhongNhaCave_QuangBinh_Vietnam.jpg/1280px-PhongNhaCave_QuangBinh_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Tu_Lan_Caves_System.jpg/1280px-Tu_Lan_Caves_System.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Ken_Cave.jpg/1280px-Ken_Cave.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/ThienDuongCave1.jpg/1280px-ThienDuongCave1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Ti%C3%AAn_S%C6%A1n_cave_-_ZooKeys-071-001-g002.jpeg/1280px-Ti%C3%AAn_S%C6%A1n_cave_-_ZooKeys-071-001-g002.jpeg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Ken_Cave.jpg/1280px-Ken_Cave.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "PQt4ygn6hKs",
-        "title": "Dark Cave Adventure in Phong Nha, Vietnam"
+        "youtubeId": "UcUSr2AsmrE",
+        "title": "Best Dark Cave Mud Bath Video Ever Recorded - Tabalo Travel"
       },
       {
-        "youtubeId": "-5WoPukcfEk",
-        "title": "Exploring Dark Cave in Phong Nha, Vietnam 🇻🇳 | Zipline, Mud Bath & Adventure Day"
+        "youtubeId": "PxgParziTSc",
+        "title": "Dark Cave (Hang Toi) Central Vietnam"
       }
     ]
   },
@@ -779,9 +633,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Karst%40SinhLung_DongVan_HaGiang.jpg/1280px-Karst%40SinhLung_DongVan_HaGiang.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Tham_Ma_pass_-_Dong_Van.jpg/1280px-Tham_Ma_pass_-_Dong_Van.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Road_to_Dong_Van.jpg/1280px-Road_to_Dong_Van.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Girl_from_the_White_H%27mong_ethnic_group%2C_in_L%C5%A9ng_C%C3%BA%2C_Dong_Van_district_in_Ha_Giang_province%2C_Vietnam.jpg/1280px-Girl_from_the_White_H%27mong_ethnic_group%2C_in_L%C5%A9ng_C%C3%BA%2C_Dong_Van_district_in_Ha_Giang_province%2C_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pham_Van_Dong_president_van_Noord_Vietnam_%2C_kop%2C_Bestanddeelnr_925-5159.jpg/1280px-Pham_Van_Dong_president_van_Noord_Vietnam_%2C_kop%2C_Bestanddeelnr_925-5159.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Dong_Van_communist_propaganda_billboard_in_2014.jpg/1280px-Dong_Van_communist_propaganda_billboard_in_2014.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Girl_from_the_White_H%27mong_ethnic_group%2C_in_L%C5%A9ng_C%C3%BA%2C_Dong_Van_district_in_Ha_Giang_province%2C_Vietnam.jpg/1280px-Girl_from_the_White_H%27mong_ethnic_group%2C_in_L%C5%A9ng_C%C3%BA%2C_Dong_Van_district_in_Ha_Giang_province%2C_Vietnam.jpg"
     ],
     "videos": [
       {
@@ -803,18 +655,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Fansipan_cable_car_aerial_view_terraced_rice_fields_Sa_Pa_Viet_Nam.jpg/1280px-Fansipan_cable_car_aerial_view_terraced_rice_fields_Sa_Pa_Viet_Nam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Fansipan_Cable_Car_Flowers_Field.png/1280px-Fansipan_Cable_Car_Flowers_Field.png",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Fansipan_Cable_Car_in_the_fog.jpg/1280px-Fansipan_Cable_Car_in_the_fog.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Fansipan_Cable_Car_peak_station.jpg/1280px-Fansipan_Cable_Car_peak_station.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Fansipan_summit_spiritual_complex_bare_tree_sea_of_clouds_Sa_Pa_Vietnam.jpg/1280px-Fansipan_summit_spiritual_complex_bare_tree_sea_of_clouds_Sa_Pa_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Fansipan_Summit_3143m_aerial_view_Sa_Pa_Lao_Cai_Vietnam.jpg/1280px-Fansipan_Summit_3143m_aerial_view_Sa_Pa_Lao_Cai_Vietnam.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Fansipan_Cable_Car_peak_station.jpg/1280px-Fansipan_Cable_Car_peak_station.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "WZzo3E9joxE",
-        "title": "Fansipan Sapa Cable Car, Vietnam's Highest Peak (4K walking tour) #sapavietnam"
+        "youtubeId": "vZNKYcMwnDQ",
+        "title": "Fansipan Mountain Trekking | Sapa Vietnam"
       },
       {
-        "youtubeId": "BH2hY_4Ogcc",
-        "title": "🚡 Fansipan Cable Car & Monorail Experience | Sapa, Vietnam 🏔️"
+        "youtubeId": "ajMk1CYzjsg",
+        "title": "Exploring FANSIPAN The Highest Mountain Peak in SaPa Vietnam 🇻🇳@VishakhaAndDivesh"
       }
     ]
   },
@@ -827,9 +677,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Bia_hoi_outlet_in_Hanoi.jpg/1280px-Bia_hoi_outlet_in_Hanoi.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Bia_Hoi_%28fresh_beer%29_in_Hanoi_%281344451343%29.jpg/1280px-Bia_Hoi_%28fresh_beer%29_in_Hanoi_%281344451343%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bia_Hoi_%28fresh_beer%29_in_Hanoi_%281344450417%29.jpg/1280px-Bia_Hoi_%28fresh_beer%29_in_Hanoi_%281344450417%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Bia_Hoi_%28fresh_beer%29_in_Hanoi_%281345342880%29.jpg/1280px-Bia_Hoi_%28fresh_beer%29_in_Hanoi_%281345342880%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/9/9d/Hanoi_bia_hoi_shipping_truck.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Beer_Hoi_Corner_Hanoi_Panoramic.jpg/1280px-Beer_Hoi_Corner_Hanoi_Panoramic.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Bia_Hoi_%28fresh_beer%29_in_Hanoi_%281345342880%29.jpg/1280px-Bia_Hoi_%28fresh_beer%29_in_Hanoi_%281345342880%29.jpg"
     ],
     "videos": [
       {
@@ -851,22 +699,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03695.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03695.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03685.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03685.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03693.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03693.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03687.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03687.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03691.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03691.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Hanoi%2C_Vietnam%2C_Hoan_Kiem_Lake.jpg/1280px-Hanoi%2C_Vietnam%2C_Hoan_Kiem_Lake.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03687.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03687.JPG"
     ],
     "videos": [
       {
         "youtubeId": "CNH_uOefwsU",
         "title": "Hanoi’s Magical Lake! Hoan Kiem Lake Complete Travel Guide 2025 #hanoi #vietnam"
-      },
-      {
-        "youtubeId": "JUlP_0uef4A",
-        "title": "Hoan Kiem Lake | Hanoi Old Quarter - 2020 | Best Places to Visit in Hanoi | Hanoi Vietnam - 2020"
-      },
-      {
-        "youtubeId": "Z2GARKFyKu8",
-        "title": "🇻🇳 My First Day in Hanoi Vietnam Old Quarter, Vietnamese Food, Hoan Kiem Lake & Hanoi City Tour 2025"
       }
     ]
   },
@@ -879,9 +717,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Female_Prisoners_Cell%2C_Hoa_Lo_Prison_%289753956881%29.jpg/1280px-Female_Prisoners_Cell%2C_Hoa_Lo_Prison_%289753956881%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Hoa_Lo_Prison_%289754067582%29.jpg/1280px-Hoa_Lo_Prison_%289754067582%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Articles_Used_by_Communist_Prisoners_of_the_French%2C_Hoa_Lo_Prison_%289753874971%29.jpg/1280px-Articles_Used_by_Communist_Prisoners_of_the_French%2C_Hoa_Lo_Prison_%289753874971%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tiles_from_Hoa_Lo_Prison_%289754251845%29.jpg/1280px-Tiles_from_Hoa_Lo_Prison_%289754251845%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Products_of_Pottery_Kiln_at_Site_of_Hoa_Lo_Prison_%289754260486%29.jpg/1280px-Products_of_Pottery_Kiln_at_Site_of_Hoa_Lo_Prison_%289754260486%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/American_Prisoners%27_Recreation%2C_Hoa_Lo_Prison_%289753891101%29.jpg/1280px-American_Prisoners%27_Recreation%2C_Hoa_Lo_Prison_%289753891101%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tiles_from_Hoa_Lo_Prison_%289754251845%29.jpg/1280px-Tiles_from_Hoa_Lo_Prison_%289754251845%29.jpg"
     ],
     "videos": [
       {
@@ -903,9 +739,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Ho_Chi_Minh_Mausoleum_in_Hanoi.jpg/1280px-Ho_Chi_Minh_Mausoleum_in_Hanoi.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Ho_Chi_Minh_Mausoleum_in_Hanoi3.JPG/1280px-Ho_Chi_Minh_Mausoleum_in_Hanoi3.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ho_Chi_Minh_Mausoleum%2C_Hanoi_%284016818067%29.jpg/1280px-Ho_Chi_Minh_Mausoleum%2C_Hanoi_%284016818067%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Ho_Chi_Minh_mausoleum%2C_July_2003%2C_Hanoi_7.jpg/500px-Ho_Chi_Minh_mausoleum%2C_July_2003%2C_Hanoi_7.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Ho_Chi_Minh_mausoleum%2C_July_2003%2C_Hanoi_6.jpg/500px-Ho_Chi_Minh_mausoleum%2C_July_2003%2C_Hanoi_6.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/1/16/Ho_Chi_Minh_mausoleum%2C_July_2003%2C_Hanoi_24.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Ho_Chi_Minh_mausoleum%2C_July_2003%2C_Hanoi_7.jpg/1280px-Ho_Chi_Minh_mausoleum%2C_July_2003%2C_Hanoi_7.jpg"
     ],
     "videos": [
       {
@@ -915,10 +749,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "ltKc7we_MqQ",
         "title": "Ho Chi Minh Mausoleum-Hanoi, Vietnam (With Tour Guide History Lesson)"
-      },
-      {
-        "youtubeId": "CjTSj34ogB0",
-        "title": "Ho Chi Minh Mausoleum Hanoi Vietnam 🇻🇳| Complete Visitor Guide 2026"
       }
     ]
   },
@@ -926,14 +756,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/WestLake%2CHanoi.png/1280px-WestLake%2CHanoi.png",
       "https://upload.wikimedia.org/wikipedia/commons/7/7d/Temple_on_West_Lake%2C_2003%2C_Hanoi_16.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Temple_on_West_Lake%2C_2003%2C_Hanoi_36.jpg/960px-Temple_on_West_Lake%2C_2003%2C_Hanoi_36.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Temple_on_West_Lake%2C_2003%2C_Hanoi_36.jpg/1280px-Temple_on_West_Lake%2C_2003%2C_Hanoi_36.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b2/Temple_on_West_Lake%2C_2003%2C_Hanoi_7.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/7e/Temple_on_West_Lake%2C_2003%2C_Hanoi_25.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/4c/Temple_on_West_Lake%2C_2003%2C_Hanoi_35.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e4/Temple_on_West_Lake%2C_2003%2C_Hanoi_30.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Temple_on_West_Lake%2C_2003%2C_Hanoi_31.jpg/960px-Temple_on_West_Lake%2C_2003%2C_Hanoi_31.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/ca/Temple_on_West_Lake%2C_2003%2C_Hanoi_22.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Temple_on_West_Lake%2C_2003%2C_Hanoi_14.jpg/960px-Temple_on_West_Lake%2C_2003%2C_Hanoi_14.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Temple_on_West_Lake%2C_2003%2C_Hanoi_31.jpg/1280px-Temple_on_West_Lake%2C_2003%2C_Hanoi_31.jpg"
     ],
     "videos": [
       {
@@ -943,10 +771,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "vQvM0oF1yRY",
         "title": "Exploring Ho Tay (West Lake) Hanoi Vietnam by Bicycle & Travel Tips"
-      },
-      {
-        "youtubeId": "Uv04EV3Omas",
-        "title": "Moving to Tay Ho, Hanoi: What It’s Really Like Living by West Lake"
       }
     ]
   },
@@ -959,9 +783,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Light_Spreads_Out_Forever_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02607.JPG/1280px-Light_Spreads_Out_Forever_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02607.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Vietnam_Museum_of_Ethnology_%2826286953736%29.jpg/1280px-Vietnam_Museum_of_Ethnology_%2826286953736%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tr%E1%BB%91ng_%C4%90%E1%BB%93ng_building%2C_Vietnam_Museum_of_Ethnology.jpg/1280px-Tr%E1%BB%91ng_%C4%90%E1%BB%93ng_building%2C_Vietnam_Museum_of_Ethnology.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Vietnam_Museum_of_Ethnology.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Museum_of_Ethnology_Hanoi.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Vietnam_Museum_of_Ethnology.jpg"
     ],
     "videos": [
       {
@@ -971,10 +793,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "g3G5kCQIRRM",
         "title": "A Must-Visit in Hanoi: Vietnam Museum of Ethnology"
-      },
-      {
-        "youtubeId": "-gFSHbCW8co",
-        "title": "A tour of the AMAZING Vietnam Museum of Ethnology in Hanoi 🇻🇳 Trip to Vietnam 2023"
       }
     ]
   },
@@ -987,9 +805,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Central_Sector_of_the_Imperial_Citadel_of_Thang_Long_-_Hanoi.jpg/1280px-Central_Sector_of_the_Imperial_Citadel_of_Thang_Long_-_Hanoi.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Imperial_Citadel_of_Thang_Long_%2826910835332%29.jpg/1280px-Imperial_Citadel_of_Thang_Long_%2826910835332%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2844506676010%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2844506676010%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410691305%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410691305%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410689605%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410689605%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410689965%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410689965%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410691305%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410691305%29.jpg"
     ],
     "videos": [
       {
@@ -1004,16 +820,14 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
   },
   "dong-xuan-market": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Another_look_at_the_Dong_Xuan_Market_in_the_Hanoi_old_quarter_%2831454085665%29.jpg/1280px-Another_look_at_the_Dong_Xuan_Market_in_the_Hanoi_old_quarter_%2831454085665%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Dong_Xuan_Market_market_in_the_Hanoi_old_quarter_%2830645886763%29.jpg/1280px-Dong_Xuan_Market_market_in_the_Hanoi_old_quarter_%2830645886763%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Hanoi%2C_Dong_Xuan_market_%286225885496%29.jpg/1280px-Hanoi%2C_Dong_Xuan_market_%286225885496%29.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Dong_Xuan_Market.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/%C4%90%E1%BB%93ng_Xu%C3%A2n_Market.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Old_Quarter.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Lascar_Traditional_street_market_and_Dong_Xuan_Market_by_night_%284550974092%29.jpg/1280px-Lascar_Traditional_street_market_and_Dong_Xuan_Market_by_night_%284550974092%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Dong_Xuan_market.jpg/1280px-Dong_Xuan_market.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Dong_Xuan_Market_-_panoramio.jpg/1280px-Dong_Xuan_Market_-_panoramio.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/4f/Hanoi_cho_dong_xuan.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/3/3b/Dong_Xuan_market.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Dong_Xuan_market.jpg/1280px-Dong_Xuan_market.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Another_look_at_the_Dong_Xuan_Market_in_the_Hanoi_old_quarter_%2831454085665%29.jpg/1280px-Another_look_at_the_Dong_Xuan_Market_in_the_Hanoi_old_quarter_%2831454085665%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Dong_Xuan_Market_market_in_the_Hanoi_old_quarter_%2830645886763%29.jpg/1280px-Dong_Xuan_Market_market_in_the_Hanoi_old_quarter_%2830645886763%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Hanoi%2C_Dong_Xuan_market_%286225885496%29.jpg/1280px-Hanoi%2C_Dong_Xuan_market_%286225885496%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Lascar_Traditional_street_market_and_Dong_Xuan_Market_by_night_%284550974092%29.jpg/1280px-Lascar_Traditional_street_market_and_Dong_Xuan_Market_by_night_%284550974092%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Dong_Xuan_Market_-_panoramio.jpg/1280px-Dong_Xuan_Market_-_panoramio.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Notice_by_the_City_of_Hanoi_regarding_land_requisition_to_widen_the_street_for_the_%C4%90%E1%BB%93ng_Xu%C3%A2n_Market_%2827_October_1923%29_01.png/1280px-Notice_by_the_City_of_Hanoi_regarding_land_requisition_to_widen_the_street_for_the_%C4%90%E1%BB%93ng_Xu%C3%A2n_Market_%2827_October_1923%29_01.png"
     ],
     "videos": [
       {
@@ -1028,25 +842,19 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
   },
   "hanoi-opera-house": {
     "photos": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Opera_House%2C_24_December_2016.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/52/Hanoi_Opera_House%2C_24_December_2016.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Hanoi_Opera_House%2C_24_December_2016.jpg/1280px-Hanoi_Opera_House%2C_24_December_2016.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Hanoi_Opera_House_-_detail.jpg/1280px-Hanoi_Opera_House_-_detail.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Hanoi_Opera_House_2018_b.jpg/1280px-Hanoi_Opera_House_2018_b.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hanoi_Opera_House%2C_24_December_2016.jpg/1280px-Hanoi_Opera_House%2C_24_December_2016.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Hanoi_opera_house._Made_as_a_copy_of_the_Opera_Garnier_in_Paris_%2822334215449%29.jpg/1280px-Hanoi_opera_house._Made_as_a_copy_of_the_Opera_Garnier_in_Paris_%2822334215449%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Harley_and_Broyer_-_Hanoi_Opera_House_1.jpg/1280px-Harley_and_Broyer_-_Hanoi_Opera_House_1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Francois_Lagisquet_-_Hanoi_Opera_House.jpg/1280px-Francois_Lagisquet_-_Hanoi_Opera_House.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/27/LUNE_Hanoi_Opera_House_03.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/27/LUNE_Hanoi_Opera_House_02.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/be/Hanoi_Opera_House_2012_1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/65/LUNE_Hanoi_Opera_House_01.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Harley_and_Broyer_-_Hanoi_Opera_House_1.jpg/1280px-Harley_and_Broyer_-_Hanoi_Opera_House_1.jpg"
     ],
     "videos": [
       {
         "youtubeId": "Gm5JgBOddEM",
         "title": "Visiting Hanoi Opera House, Vietnam"
-      },
-      {
-        "youtubeId": "fx5Q6T_cJN0",
-        "title": "(4K HDR) Hanoi Walking Tour - From Hanoi Opera House To St. Joseph's Cathedral, Hanoi - Vietnam 2024"
       }
     ]
   },
@@ -1059,15 +867,9 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2813%29_%2837610260885%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2813%29_%2837610260885%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2819%29_%2838496896871%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2819%29_%2838496896871%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2810%29_%2826721203029%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2810%29_%2826721203029%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%282%29_%2838496996631%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%282%29_%2838496996631%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%286%29_%2838496966511%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%286%29_%2838496966511%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%285%29_%2838464890592%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%285%29_%2838464890592%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%282%29_%2838496996631%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%282%29_%2838496996631%29.jpg"
     ],
     "videos": [
-      {
-        "youtubeId": "DxtDkKqvhH0",
-        "title": "Quan Thanh Temple Hanoi Tour 🇻🇳 Vietnam Travel Vlog"
-      },
       {
         "youtubeId": "uOXLIgt21Vw",
         "title": "Le Temple Quan Thanh, à Hanoi, Vietnam"
@@ -1083,18 +885,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/LONG_BIEN_BRIDGE_HANOI_VIETNAM_FEB_2012_%287011980509%29.jpg/1280px-LONG_BIEN_BRIDGE_HANOI_VIETNAM_FEB_2012_%287011980509%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/LONG_BIEN_BRIDGE_HANOI_VIETNAM_FEB_2012_%287011987601%29.jpg/1280px-LONG_BIEN_BRIDGE_HANOI_VIETNAM_FEB_2012_%287011987601%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Roadside_market_on_Long_Bien_Bridge%2C_Hanoi%2C_Vietnam_%287060682485%29.jpg/1280px-Roadside_market_on_Long_Bien_Bridge%2C_Hanoi%2C_Vietnam_%287060682485%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Motorcycle_%26_bicycle_ramp%2C_Long_Bien_Bridge%2C_Hanoi_%286914594812%29.jpg/1280px-Motorcycle_%26_bicycle_ramp%2C_Long_Bien_Bridge%2C_Hanoi_%286914594812%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/26/HanoiLongBienBridge.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Long_Bi%C3%AAn_Bridge.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Motorcycle_%26_bicycle_ramp%2C_Long_Bien_Bridge%2C_Hanoi_%286914594812%29.jpg/1280px-Motorcycle_%26_bicycle_ramp%2C_Long_Bien_Bridge%2C_Hanoi_%286914594812%29.jpg"
     ],
     "videos": [
       {
         "youtubeId": "sAPChm4gaF8",
         "title": "Guide to Long Bien Bridge in Hanoi - VietnamOnline.com"
-      },
-      {
-        "youtubeId": "YCzROJ08kfc",
-        "title": "Hanoi City, Long Bien Bridge to St. Joseph's Cathedral - 🇻🇳 Vietnam [4K HDR] Walking Tour"
       }
     ]
   },
@@ -1107,18 +903,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://commons.wikimedia.org/wiki/Special:FilePath/Ho_Chi_Minh_City.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Ho_Chi_Minh_City%2C_Notre-Dame_Basilica%2C_2020-01_CN-03.jpg/1280px-Ho_Chi_Minh_City%2C_Notre-Dame_Basilica%2C_2020-01_CN-03.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Main_Gate_of_Notre_Dame_Cathedral_in_Ho_Chi_Minh_City.JPG/1280px-Main_Gate_of_Notre_Dame_Cathedral_in_Ho_Chi_Minh_City.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Notre_Dame_Cathedral_%289982119083%29.jpg/1280px-Notre_Dame_Cathedral_%289982119083%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Notre_Dame_Cathedral_%289982060016%29.jpg/1280px-Notre_Dame_Cathedral_%289982060016%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Notre_Dame_Cathedral_%2826972455386%29.jpg/1280px-Notre_Dame_Cathedral_%2826972455386%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Notre_Dame_Cathedral_%289982119083%29.jpg/1280px-Notre_Dame_Cathedral_%289982119083%29.jpg"
     ],
     "videos": [
       {
         "youtubeId": "__TFa8zyTzM",
         "title": "Notre Dame Cathedral Basilica of Saigon (Ho Chi Minh City), Vietnam"
-      },
-      {
-        "youtubeId": "o7XMiaetrWc",
-        "title": "Notre Dame Cathedral Basilica of Saigon | Vietnam | Malayalam Travel Vlog with English Subtitles"
       },
       {
         "youtubeId": "vWfYQZMZ510",
@@ -1135,9 +925,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/HYUNDAI_COACH_INDEPENDENCE_PALACE_SAIGON_VIETNAM_JAN_2012_%286967502737%29.jpg/1280px-HYUNDAI_COACH_INDEPENDENCE_PALACE_SAIGON_VIETNAM_JAN_2012_%286967502737%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Independence_Palace%2C_Saigon_%2834659743803%29.jpg/1280px-Independence_Palace%2C_Saigon_%2834659743803%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/2023-12-10_T-54_tank_No._843_at_the_Independence_Palace%2C_Saigon_02.jpg/1280px-2023-12-10_T-54_tank_No._843_at_the_Independence_Palace%2C_Saigon_02.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/2023-12-10_T-54_tank_No._390_at_the_Independence_Palace%2C_Saigon_01.jpg/1280px-2023-12-10_T-54_tank_No._390_at_the_Independence_Palace%2C_Saigon_01.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/2023-12-10_T-54_tank_No._390_at_the_Independence_Palace%2C_Saigon_02.jpg/1280px-2023-12-10_T-54_tank_No._390_at_the_Independence_Palace%2C_Saigon_02.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/2023-12-10_Interiors_of_Independence_Palace%2C_Saigon_19.jpg/1280px-2023-12-10_Interiors_of_Independence_Palace%2C_Saigon_19.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/2023-12-10_T-54_tank_No._390_at_the_Independence_Palace%2C_Saigon_01.jpg/1280px-2023-12-10_T-54_tank_No._390_at_the_Independence_Palace%2C_Saigon_01.jpg"
     ],
     "videos": [
       {
@@ -1147,10 +935,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "03CjwyWXuMo",
         "title": "Independence Palace – Ho Chi Minh City, Vietnam 🇻🇳 | Ho Chi Minh City (Saigon) Travel Guides - Ep# 3"
-      },
-      {
-        "youtubeId": "9kJv1nLzLLM",
-        "title": "The Independence (Reunification) Palace, Ho Chi Minh City, Vietnam | Electric Car Guided Tour"
       }
     ]
   },
@@ -1163,9 +947,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Landmark81-_Saigon.jpg/1280px-Landmark81-_Saigon.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Landmark81_1_%2850639695068%29.jpg/1280px-Landmark81_1_%2850639695068%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Vincom_Landmark_81_%2849012084043%29.jpg/1280px-Vincom_Landmark_81_%2849012084043%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Landmark_81.png/1280px-Landmark_81.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/The_Landmark_81_at_night.jpg/1280px-The_Landmark_81_at_night.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Landmark81_582018_NhonHuynh.jpg/1280px-Landmark81_582018_NhonHuynh.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Landmark_81.png/1280px-Landmark_81.png"
     ],
     "videos": [
       {
@@ -1187,9 +969,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Jade_Emperor_Pagoda_Saigon_first_floor.jpg/1280px-Jade_Emperor_Pagoda_Saigon_first_floor.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Jade_Emperor_Pagoda_Saigon_%28238621179%29.jpeg/1280px-Jade_Emperor_Pagoda_Saigon_%28238621179%29.jpeg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Jade_Emperor_Pagoda_%289982008616%29.jpg/1280px-Jade_Emperor_Pagoda_%289982008616%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Jade_Emperor_Pagoda_%289981963564%29.jpg/1280px-Jade_Emperor_Pagoda_%289981963564%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Jade_Emperor_Pagoda_%289981959104%29.jpg/1280px-Jade_Emperor_Pagoda_%289981959104%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Jade_Emperor_Pagoda_%289982068943%29.jpg/1280px-Jade_Emperor_Pagoda_%289982068943%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Jade_Emperor_Pagoda_%289981963564%29.jpg/1280px-Jade_Emperor_Pagoda_%289981963564%29.jpg"
     ],
     "videos": [
       {
@@ -1211,9 +991,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Nguyen_Hue_Boulevard%2C_Saigon_%286359576319%29.jpg/1280px-Nguyen_Hue_Boulevard%2C_Saigon_%286359576319%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Nguyen_Hue_Boulevard_%2811050270393%29.jpg/1280px-Nguyen_Hue_Boulevard_%2811050270393%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Nguyen_Hue_Boulevard_%2811050218634%29.jpg/1280px-Nguyen_Hue_Boulevard_%2811050218634%29.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Nguyen_Hue_Boulevard.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Nguy%E1%BB%85n_Hu%E1%BB%87_Boulevard.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Ho_Chi_Minh_City.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Nguyen_Hue_Boulevard.jpg"
     ],
     "videos": [
       {
@@ -1235,9 +1013,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Binh_Tay_market_3.jpg/1280px-Binh_Tay_market_3.jpg",
       "https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Ma-Cho_Taoist_Temple_%28side_view%29_%28San_Fernando%2C_La_Union%29%282018-11-25%29.jpg/1280px-Ma-Cho_Taoist_Temple_%28side_view%29_%28San_Fernando%2C_La_Union%29%282018-11-25%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Hai_Thuong_Lan_Ong_Blvd%2C_Cholon%2C_HCMC_%281%29.jpg/1280px-Hai_Thuong_Lan_Ong_Blvd%2C_Cholon%2C_HCMC_%281%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Cholon%2C_rue_chinoise.jpg/1280px-Cholon%2C_rue_chinoise.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Longshan_Temple%2C_Taipei_01.jpg/1280px-Longshan_Temple%2C_Taipei_01.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Cholon_--_Le_march%C3%A9.jpg/1280px-Cholon_--_Le_march%C3%A9.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Cholon%2C_rue_chinoise.jpg/1280px-Cholon%2C_rue_chinoise.jpg"
     ],
     "videos": [
       {
@@ -1259,18 +1035,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/04-12-24_Buildings_in_District_1_HCMC_4.jpg/1280px-04-12-24_Buildings_in_District_1_HCMC_4.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Astha_District.jpg/1280px-Astha_District.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Aarhus_montage_%28districts%29_1.jpg/1280px-Aarhus_montage_%28districts%29_1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Dining_District%2C_Al_Ghurair_Center_%5E1_-_Flickr_-_Abubakr_Saeed.jpg/1280px-Dining_District%2C_Al_Ghurair_Center_%5E1_-_Flickr_-_Abubakr_Saeed.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/1/1a/Community_Bookshelf_-_Library_District.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/5/55/Voroshylovs%27kyi_district%2C_Donetsk%2C_Donetsk_Oblast%2C_Ukraine_-_panoramio_%284%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Dining_District%2C_Al_Ghurair_Center_%5E1_-_Flickr_-_Abubakr_Saeed.jpg/1280px-Dining_District%2C_Al_Ghurair_Center_%5E1_-_Flickr_-_Abubakr_Saeed.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "6zR7YdaZxSg",
-        "title": "Ho Chi Minh City: Café Apartments , Ben Thanh Markets & District 1"
+        "youtubeId": "qVZHT7lpxvU",
+        "title": "This is the REAL Saigon District 1 🇻🇳| An Authentic Saigon Food & Cafe Tour"
       },
       {
-        "youtubeId": "rqLVMPazKjk",
-        "title": "I Visited Vietnam’s Famous Cafe Apartment🇻🇳☕️… They Charged Me for the Elevator!🙃"
+        "youtubeId": "bbghh93Jzd8",
+        "title": "Saigon’s best kept secret - The Cafe Apartments | Vietnam Solo Travel | District 1, Ho Chi Minh City"
       }
     ]
   },
@@ -1283,9 +1057,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Hoi_An_Ancient_Town%2C_Vietnam_%286944153314%29.jpg/1280px-Hoi_An_Ancient_Town%2C_Vietnam_%286944153314%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Hoi_An_Ancient_Town%2C_Vietnam_%286944152552%29.jpg/1280px-Hoi_An_Ancient_Town%2C_Vietnam_%286944152552%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Hoi_An_Ancient_town%2C_Vietnam_%286944149036%29.jpg/1280px-Hoi_An_Ancient_town%2C_Vietnam_%286944149036%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Hoi_An_Ancient_Town%2C_Vietnam_%287090217101%29.jpg/1280px-Hoi_An_Ancient_Town%2C_Vietnam_%287090217101%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Hoi_An_Ancient_Town%2C_Vietnam_%287090607967%29.jpg/1280px-Hoi_An_Ancient_Town%2C_Vietnam_%287090607967%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Hoi_An_Ancient_Town%2C_Vietnam_%287090629325%29.jpg/1280px-Hoi_An_Ancient_Town%2C_Vietnam_%287090629325%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Hoi_An_Ancient_Town%2C_Vietnam_%287090217101%29.jpg/1280px-Hoi_An_Ancient_Town%2C_Vietnam_%287090217101%29.jpg"
     ],
     "videos": [
       {
@@ -1295,10 +1067,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "O-G9s-waM2Q",
         "title": "Welcome to Hoi An - Secrets of Vietnam's Charming Ancient Town | Vietnam Travel Guide"
-      },
-      {
-        "youtubeId": "ayrn_JejWgg",
-        "title": "The ULTIMATE Hoi An Ancient Town Travel Guide 2025 | Solo in Vietnam Ep. 2"
       }
     ]
   },
@@ -1311,18 +1079,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/DAI_LO_NGUYEN_TAT_THANH%2C_BAI_DAI%2C_CAM_LAM_-_panoramio.jpg/1280px-DAI_LO_NGUYEN_TAT_THANH%2C_BAI_DAI%2C_CAM_LAM_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/ChiTietTuCamThanh.jpg/1280px-ChiTietTuCamThanh.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Trung_t%C3%A2m_Sinh_ho%E1%BA%A1t_Ch%C3%ADnh_tr%E1%BB%8B_-_V%C4%83n_h%C3%B3a_Th%C3%A0nh_ph%E1%BB%91_Cam_Ranh.jpg/1280px-Trung_t%C3%A2m_Sinh_ho%E1%BA%A1t_Ch%C3%ADnh_tr%E1%BB%8B_-_V%C4%83n_h%C3%B3a_Th%C3%A0nh_ph%E1%BB%91_Cam_Ranh.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/NH%C3%80_M%C3%8CNH-_QL1_CAM_TH%C3%80NH_B%E1%BA%AEC_-_panoramio_-_pqthong0911.jpg/1280px-NH%C3%80_M%C3%8CNH-_QL1_CAM_TH%C3%80NH_B%E1%BA%AEC_-_panoramio_-_pqthong0911.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Mai_Thanh_Dung.png/1280px-Mai_Thanh_Dung.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/NH%C3%80_M%C3%8CNH-_QL1_CAM_TH%C3%80NH_B%E1%BA%AEC_-_panoramio_-_pqthong0911_%281%29.jpg/1280px-NH%C3%80_M%C3%8CNH-_QL1_CAM_TH%C3%80NH_B%E1%BA%AEC_-_panoramio_-_pqthong0911_%281%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/NH%C3%80_M%C3%8CNH-_QL1_CAM_TH%C3%80NH_B%E1%BA%AEC_-_panoramio_-_pqthong0911.jpg/1280px-NH%C3%80_M%C3%8CNH-_QL1_CAM_TH%C3%80NH_B%E1%BA%AEC_-_panoramio_-_pqthong0911.jpg"
     ],
     "videos": [
       {
         "youtubeId": "yOccek1mkWA",
         "title": "Hoi An’s Cam Thanh Coconut Village 2025 | Basket Boats & Eco Adventures"
-      },
-      {
-        "youtubeId": "nVEp6C8ZaEo",
-        "title": "Hoi An basket boat TOUR 🇻🇳 | Cam Thanh Village | VIETNAM VLOG 🇻🇳"
       }
     ]
   },
@@ -1335,15 +1097,9 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Tra_Que_Village%2C_Hoi_An_%2846404328621%29.jpg/1280px-Tra_Que_Village%2C_Hoi_An_%2846404328621%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tra_Que_Village%2C_Hoi_An_%2845491719075%29.jpg/1280px-Tra_Que_Village%2C_Hoi_An_%2845491719075%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tra_Que_Village%2C_Hoi_An_%2846404326471%29.jpg/1280px-Tra_Que_Village%2C_Hoi_An_%2846404326471%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Tra_Que_Village%2C_Hoi_An_%2845681000144%29.jpg/1280px-Tra_Que_Village%2C_Hoi_An_%2845681000144%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tra_Que_Village%2C_Hoi_An_%2846404317941%29.jpg/1280px-Tra_Que_Village%2C_Hoi_An_%2846404317941%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Tra_Que_Village%2C_Hoi_An_%2832532345418%29.jpg/1280px-Tra_Que_Village%2C_Hoi_An_%2832532345418%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Tra_Que_Village%2C_Hoi_An_%2845681000144%29.jpg/1280px-Tra_Que_Village%2C_Hoi_An_%2845681000144%29.jpg"
     ],
     "videos": [
-      {
-        "youtubeId": "HVJyUHYXMxg",
-        "title": "Hoi An Vietnam Vlog 🇻🇳 | An Bang Beach, Tra Que Vegetable Village & Nghé Garden Resort Tour"
-      },
       {
         "youtubeId": "jBUYI0d_9hw",
         "title": "Vietnam Travel guide - Tra Que Hoi An vegetable village - Adventure on Saigon Ha Noi local tour"
@@ -1359,9 +1115,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/House_model_and_water_well%2C_Terra_cotta%2C_1st_-_3rd_century_%28Thanh_H%C3%B3a_province%29_at_room_3_Period_of_the_struggle_for_independence_of_the_Museum_of_Vietnamese_History.JPG/1280px-thumbnail.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Vietnam_del_nord%2C_tripode_a_forma_di_gallo%2C_da_prov._di_thanh_hoa%2C_lach_tuong%2C_tomba_12%2C_I-III_sec._dc.JPG/1280px-Vietnam_del_nord%2C_tripode_a_forma_di_gallo%2C_da_prov._di_thanh_hoa%2C_lach_tuong%2C_tomba_12%2C_I-III_sec._dc.JPG",
       "https://live.staticflickr.com/1537/24739476974_17026ccf8e_b.jpg",
-      "https://live.staticflickr.com/1690/24739469674_9dc627649b_b.jpg",
-      "https://live.staticflickr.com/1572/24739425664_2d06f3f554_b.jpg",
-      "https://live.staticflickr.com/1494/24743335953_b7ff28209c_b.jpg"
+      "https://live.staticflickr.com/1690/24739469674_9dc627649b_b.jpg"
     ],
     "videos": [
       {
@@ -1371,10 +1125,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "8ayxJkvh2D0",
         "title": "A visit to Thanh Ha Pottery village, Hoi An, Vietnam"
-      },
-      {
-        "youtubeId": "1QoxEcNwx9w",
-        "title": "500 years old Pottery Village | Thanh Ha Pottery Village, Hoi An Vietnam"
       }
     ]
   },
@@ -1387,22 +1137,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://commons.wikimedia.org/wiki/Special:FilePath/Thi%C3%AAn_M%E1%BB%A5_Pagoda.jpg",
       "https://commons.wikimedia.org/wiki/Special:FilePath/Thien_Mu_Pagoda.jpg",
       "https://commons.wikimedia.org/wiki/Special:FilePath/Hu%E1%BA%BF.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Thi%C3%AAn_M%E1%BB%A5_Pagoda_Hue%2C_Vietnam_%2812159952963%29.jpg/1280px-Thi%C3%AAn_M%E1%BB%A5_Pagoda_Hue%2C_Vietnam_%2812159952963%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Thi%C3%AAn_M%E1%BB%A5_Pagoda_Hue%2C_Vietnam_%2812159938913%29.jpg/1280px-Thi%C3%AAn_M%E1%BB%A5_Pagoda_Hue%2C_Vietnam_%2812159938913%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Thi%C3%AAn_M%E1%BB%A5_Pagoda_Hue%2C_Vietnam_%2812159946723%29.jpg/1280px-Thi%C3%AAn_M%E1%BB%A5_Pagoda_Hue%2C_Vietnam_%2812159946723%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Thi%C3%AAn_M%E1%BB%A5_Pagoda_Hue%2C_Vietnam_%2812159952963%29.jpg/1280px-Thi%C3%AAn_M%E1%BB%A5_Pagoda_Hue%2C_Vietnam_%2812159952963%29.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "CBRPNqQvlf8",
-        "title": "Buddhist Protest Pagoda - Thien Mu, Hue Vietnam (with Perfume River views) | 4KHD virtual tour"
+        "youtubeId": "lszU2R8fxmw",
+        "title": "Thiên Mụ Pagoda of Huế | 4K Vietnam Walking Tour 🇻🇳 | Mindful Walk"
       },
       {
-        "youtubeId": "yd7Z1_ed5rU",
-        "title": "Thien Mu Pagoda, Hue .📸Amazing Things in Vietnam"
-      },
-      {
-        "youtubeId": "KQFFSqgfqIM",
-        "title": "Thien Mu Pagoda-Hue, Vietnam (With Historical Facts)"
+        "youtubeId": "1BwFrNXZ-2w",
+        "title": "🇻🇳 360° Thiên Mụ Pagoda | Hue, Vietnam"
       }
     ]
   },
@@ -1415,22 +1159,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Tu-Duc-Royal-Tomb.jpg/1280px-Tu-Duc-Royal-Tomb.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/TuDucTombeau_06.jpg/1280px-TuDucTombeau_06.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Annam_-_Hu%C3%A9_-_Pavillons_sur_le_bassin_fleuri_au_Tombeau_de_Tu-Duc.jpg/1280px-Annam_-_Hu%C3%A9_-_Pavillons_sur_le_bassin_fleuri_au_Tombeau_de_Tu-Duc.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Tomb_of_T%E1%BB%B1_%C4%90%E1%BB%A9c.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Tu_Duc_Tomb.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Hu%E1%BA%BF.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Tomb_of_T%E1%BB%B1_%C4%90%E1%BB%A9c.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "_sLazpW5XAU",
-        "title": "Visit to the tomb of Tu Duc (Hue) Vietnam jop TV Travel"
+        "youtubeId": "DPB_dSm_pZ0",
+        "title": "Vietnamese Beauty visiting the Tomb of Tự Đức in Hue | Người đẹp Việt thăm lăng Tự Đức ở Huế"
       },
       {
-        "youtubeId": "fpMMdILJmNI",
-        "title": "Tomb of Tu Duc- Hue, Vietnam"
-      },
-      {
-        "youtubeId": "W3IuhGmFEm4",
-        "title": "Гробница Ту Дука, Хюе, Вьетнам / Tomb of Tu Duc, Hue, Vietnam"
+        "youtubeId": "QYfyq8OoNqI",
+        "title": "Visiting the Homeland - Tomb of Emperor Tự Đức - Lăng Tự Đức - Huế, Vietnam"
       }
     ]
   },
@@ -1443,18 +1181,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-13.jpg/1280px-Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-13.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-01.jpg/1280px-Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-01.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-14a.jpg/1280px-Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-14a.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-03.jpg/1280px-Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-03.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-14.jpg/1280px-Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-14.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-04.jpg/1280px-Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-04.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-03.jpg/1280px-Hue_Vietnam_Tomb-of-Emperor-Minh-Mang-03.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "N3b7szCf4hk",
-        "title": "VIET NAM | HUE | VISIT OF MINH MANG TOMB"
+        "youtubeId": "9FE3898LJCM",
+        "title": "Lăng Minh Mạng ở Huế | Lăng Mộ vua Minh Mạng - Minh Mang Tomb | Du lịch Huế | ZaiTri"
       },
       {
-        "youtubeId": "iIy3B6I4KVA",
-        "title": "Minh Mang Tomb | UrTravelAdvisor.com | Hue Vietnam Travel Guide"
+        "youtubeId": "dixK7E8Hfqk",
+        "title": "Lăng vua Mình Mạng - Emperor Minh Mang's tomb | Huế - ViệtNam"
       }
     ]
   },
@@ -1467,22 +1203,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_06.jpg/1280px-Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_06.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_08.jpg/1280px-Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_08.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_09.jpg/1280px-Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_09.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_01.jpg/1280px-Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_01.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_04.jpg/1280px-Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_04.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Dong_Ba_market%2C_Th%C3%A0nh_ph%E1%BB%91_Hu%E1%BA%BF%2C_Vietnam_%28Unsplash%29.jpg/1280px-Dong_Ba_market%2C_Th%C3%A0nh_ph%E1%BB%91_Hu%E1%BA%BF%2C_Vietnam_%28Unsplash%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_01.jpg/1280px-Dong_Ba_Market_%28Hue%29_-_Ch%E1%BB%A3_%C4%90%C3%B4ng_Ba_Hu%E1%BA%BF_%28July_2024%29_-_img_01.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "8YtQWu7L1P0",
-        "title": "4K 🇻🇳 2024 The Most Famous Market in HUE | Dong Ba Market Walking Tour Vietnam Travel"
+        "youtubeId": "LRx6t-2B2Lc",
+        "title": "Anthony Bourdain's Bún bò Huế lady at Đông Ba Market, Huế"
       },
       {
-        "youtubeId": "xSJOVLkZxOc",
-        "title": "On the banks of the perfume river, The Dong Ba Market in Hue Vietnam"
-      },
-      {
-        "youtubeId": "gbwyO_uZpvc",
-        "title": "DONG BA Market, Hue - Vietnam | What Makes This Market So Special ?"
+        "youtubeId": "Kcr8ukhV2ug",
+        "title": "UNDISCOVERED Street Food of Hue, Vietnam - MEAT SHRINE and Bun Bo Hue in Đông Ba Market!"
       }
     ]
   },
@@ -1495,9 +1225,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/3838/14524957896_54031f62e5_b.jpg",
       "https://live.staticflickr.com/2938/14137294789_9aa6c64a3d_b.jpg",
       "https://live.staticflickr.com/65535/48944946922_665beb5414_b.jpg",
-      "https://live.staticflickr.com/3833/20476150552_5d8a2b3dbd_b.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/0/04/Dragon_Bridge_Da_Nang_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/2a/Dragon_Bridge%2C_Da_Nang_during_day_-_20230819_%28cropped%29.jpg"
+      "https://live.staticflickr.com/3833/20476150552_5d8a2b3dbd_b.jpg"
     ],
     "videos": [
       {
@@ -1507,10 +1235,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "fvfzVx83tUI",
         "title": "Vietnam Da Nang Dragon Bridge 🇻🇳 Night Life, Fire Show, Magic! [ 4K ]"
-      },
-      {
-        "youtubeId": "WBb5Dw04OrA",
-        "title": "Dragon Bridge Fire Show | Cinematic Drone Footage | Da Nang, Vietnam|"
       }
     ]
   },
@@ -1523,9 +1247,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Ho%C3%A0ng_Sa_Road%2C_Son_Tra_Peninsula.jpg/1280px-Ho%C3%A0ng_Sa_Road%2C_Son_Tra_Peninsula.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Son_Tra_Peninsula.jpg/1280px-Son_Tra_Peninsula.jpg",
       "https://commons.wikimedia.org/wiki/Special:FilePath/Son_Tra_Peninsula.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Monkey_Mountain_Da_Nang.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Da_Nang.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/InterContinental-Danang-Sun-Peninsula-Resort-2026-05-03-3.jpg/1280px-InterContinental-Danang-Sun-Peninsula-Resort-2026-05-03-3.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Monkey_Mountain_Da_Nang.jpg"
     ],
     "videos": [
       {
@@ -1535,10 +1257,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "cxgDWss3lOE",
         "title": "EXPLORING Son Tra Marina and LUXURY YACHTS 🛥️ Tour Da Nang Vietnam 🇻🇳"
-      },
-      {
-        "youtubeId": "8zjGFl8w9Ls",
-        "title": "Join Me in My NEIGHBORHOOD TOUR in Son Tra, Da Nang, Vietnam 🇻🇳"
       }
     ]
   },
@@ -1551,9 +1269,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/54/Lady_Buddha_Da_Nang.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/28/Lady_Buddha_Da_Nang_5.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/44/Lady_Buddha_Da_Nang_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/c8/Lady_Buddha_Da_Nang_4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/5/5e/Lady_Buddha_Da_Nang_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/1/15/Linh_Ung_Pagoda_14.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/c/c8/Lady_Buddha_Da_Nang_4.jpg"
     ],
     "videos": [
       {
@@ -1563,10 +1279,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "nK976LWFHXI",
         "title": "Linh Ung Pagoda 4K Walking Tour - Da Nang - Vietnam"
-      },
-      {
-        "youtubeId": "H2DowaKPZFk",
-        "title": "Vietnam Da Nang LADY BUDDHA 🇻🇳 Marble Mountains, Linh Ung Pagoda! [ 4K ] Walking Tour"
       }
     ]
   },
@@ -1579,9 +1291,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/65535/49057632872_04bb6411b6_b.jpg",
       "https://live.staticflickr.com/65535/49056988532_ed1059c867_b.jpg",
       "https://live.staticflickr.com/65535/49057418396_f4531a29c5_b.jpg",
-      "https://live.staticflickr.com/65535/49057440061_c62ef10ceb_b.jpg",
-      "https://live.staticflickr.com/65535/49057658457_1c989b0295_b.jpg",
-      "https://live.staticflickr.com/65535/49056923018_b4d0443dcd_b.jpg"
+      "https://live.staticflickr.com/65535/49057440061_c62ef10ceb_b.jpg"
     ],
     "videos": [
       {
@@ -1591,10 +1301,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "9_V47pHuCUE",
         "title": "Exploring Da Nang, Vietnam: Golden Bridge, Ba Na Hills & Son Tra Night Market"
-      },
-      {
-        "youtubeId": "DoGcJdKym_A",
-        "title": "Golden Bridge Ba na Hills, Da Nang Vietnam |Things To Do In Vietnam |Ba Na Hills- The Way To Heaven"
       }
     ]
   },
@@ -1607,22 +1313,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1607_3883.jpg/1280px-Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1607_3883.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1552_3849.jpg/1280px-Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1552_3849.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1610_3902.jpg/1280px-Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1610_3902.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1607_3880.jpg/1280px-Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1607_3880.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1608_3887.jpg/1280px-Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1608_3887.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1557_3857.jpg/1280px-Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1557_3857.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1607_3880.jpg/1280px-Sung_Sot_Cave%2C_Ha_Long_Bay%2C_Vietnam%2C_20240128_1607_3880.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "x2GG0FB5SKM",
-        "title": "Travel Vietnam EP21 | Ha Long Bay Tour P2 | Explore Sung Sot Cave 🇻🇳 | Natural Wonder in Ha Long Bay"
+        "youtubeId": "96St6CH5MSA",
+        "title": "What’s Inside Sửng Sốt Cave? Ha Long Bay’s Biggest Surprise | Sửng Sốt Cave in 4K #viral"
       },
       {
-        "youtubeId": "PgSQrn6MKDU",
-        "title": "Sung Sot Cave, Largest Cave In Ha Long Bay - 🇻🇳 Vietnam [4K HDR] Walking Tour"
-      },
-      {
-        "youtubeId": "1tHv4n0pJe8",
-        "title": "Inside the Mysterious Sung Sot Cave, Ha Long Bay, Vietnam 🇻🇳"
+        "youtubeId": "BNZ_7z_eBkU",
+        "title": "Sửng Sốt (Surprise) Cave , Ha Long Bay, Vietnam"
       }
     ]
   },
@@ -1639,20 +1339,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Halong_Bay_Titov_island_Pearls_%2871867%29.jpg/1280px-Halong_Bay_Titov_island_Pearls_%2871867%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Halong_Bay_Titov_island_Pearls_%2829024%29.jpg/1280px-Halong_Bay_Titov_island_Pearls_%2829024%29.jpg"
     ],
-    "videos": [
-      {
-        "youtubeId": "W5raX2ZVgWc",
-        "title": "Ti Top Island, Ha Long Bay - 🇻🇳 Vietnam [4K HDR] Walking Tour"
-      },
-      {
-        "youtubeId": "S0edFUZAPF0",
-        "title": "Ti Top Island Ha Long Bay Vietnam 🇻🇳 | Must-Visit Travel Spot"
-      },
-      {
-        "youtubeId": "fxJMHKg7c7k",
-        "title": "Ti Top Island Ha Long Bay | Sunset Party & 1 Day Tour Experience | Explore Vietnam Travel Guide Ep-4"
-      }
-    ]
+    "videos": []
   },
   "trang-an-boats": {
     "photos": [
@@ -1663,19 +1350,9 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://commons.wikimedia.org/wiki/Special:FilePath/Ninh_Binh.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1436_5288.jpg/1280px-Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1436_5288.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1413_5245.jpg/1280px-Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1413_5245.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1413_5244.jpg/1280px-Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1413_5244.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1433_5283.jpg/1280px-Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1433_5283.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1433_5284.jpg/1280px-Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1433_5284.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1413_5244.jpg/1280px-Trang_An_Landscape_Complex%2C_Ninh_Binh_Province%2C_Vietnam%2C_20240202_1413_5244.jpg"
     ],
     "videos": [
-      {
-        "youtubeId": "L85Bns9HzBw",
-        "title": "Scenic TRANG AN Boat Tour in VIETNAM with kids in Ninh Binh BEST Route 🇻🇳 Vietnam Travel Guide/Vlog"
-      },
-      {
-        "youtubeId": "xSra_LNFD84",
-        "title": "Best Boat Tours In Ninh Binh Vietnam: Trang An vs Tam Coc"
-      },
       {
         "youtubeId": "xO5KJm9Af5A",
         "title": "The most INCREDIBLE boat tour in NINH BINH, VIETNAM - TRANG AN Boat Tour"
@@ -1691,19 +1368,9 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Vietnam%2C_Ninh_Binh%2C_Limestone_peaks.jpg/1280px-Vietnam%2C_Ninh_Binh%2C_Limestone_peaks.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ninh_Binh_en_drone.jpg/1280px-Ninh_Binh_en_drone.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Ninh_Binh_vue_d%27en_haut.jpg/1280px-Ninh_Binh_vue_d%27en_haut.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Tam_Coc_from_Summit_-_August_2023.jpg/1280px-Tam_Coc_from_Summit_-_August_2023.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tam_Coc_by_Tuan_Mai_%22007%22_%288888350545%29.jpg/1280px-Tam_Coc_by_Tuan_Mai_%22007%22_%288888350545%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b9/Tam_Coc_taken_by_Harmony_Hiro.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Tam_Coc_from_Summit_-_August_2023.jpg/1280px-Tam_Coc_from_Summit_-_August_2023.jpg"
     ],
     "videos": [
-      {
-        "youtubeId": "MqPnpYcWrsw",
-        "title": "Ep 10 - Ninh Binh day tour, Vietnam | Mua Cave | Tam Coc Boating review, Egg coffee, French Quarter"
-      },
-      {
-        "youtubeId": "bTvj6CxJxe8",
-        "title": "Tam Coc Boat Tour in Ninh Binh, Vietnam | Halong Bay on Land"
-      },
       {
         "youtubeId": "mRyE2Bt6_7k",
         "title": "Best boat tour in Ninh Binh(Tam Coc) - Most beautiful boat tour - Vietnam #vietnamtourism #travel"
@@ -1719,9 +1386,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/407/31536594015_d22489d59e_b.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/2d/Van_Long_Nature_Reserve.jpg",
       "https://live.staticflickr.com/820/40834407132_8667aab396.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/27/Van_Long_Nature_Reserve_Lowland_Wetland_Halong_Bay_Ninh_Binh_Limestone_Karst_Red_River_Delta_%2830644%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/bc/Van_Long_Nature_Reserve_Riet_Grotten_Kalksteen_Ninh_Binh.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/7/7a/Wetlands_Van_Long_Nature_Reserve_%2874622%29.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/2/27/Van_Long_Nature_Reserve_Lowland_Wetland_Halong_Bay_Ninh_Binh_Limestone_Karst_Red_River_Delta_%2830644%29.jpg"
     ],
     "videos": [
       {
@@ -1743,9 +1408,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/VT_Ninh_Binh_-_02_2023_-_MIC04159_-_Bai_Dinh_%281%29_-_Insta.jpg/1280px-VT_Ninh_Binh_-_02_2023_-_MIC04159_-_Bai_Dinh_%281%29_-_Insta.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/VT_Ninh_Binh_-_02_2023_-_MIC04236_-_Bai_Dinh_%281%29_-_Insta.jpg/1280px-VT_Ninh_Binh_-_02_2023_-_MIC04236_-_Bai_Dinh_%281%29_-_Insta.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/VT_Ninh_Binh_-_02_2023_-_MIC04310_-_Bai_Dinh_%281%29_-_Insta.jpg/1280px-VT_Ninh_Binh_-_02_2023_-_MIC04310_-_Bai_Dinh_%281%29_-_Insta.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/ChuabaidinhcoA6.jpg/1280px-ChuabaidinhcoA6.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/BaiDinh_Dien_PhapChu_Trai.JPG/1280px-BaiDinh_Dien_PhapChu_Trai.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Chua_Bai_Dinh_X19.JPG/1280px-Chua_Bai_Dinh_X19.JPG"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/ChuabaidinhcoA6.jpg/1280px-ChuabaidinhcoA6.jpg"
     ],
     "videos": [
       {
@@ -1767,18 +1430,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/3034/2573312119_955f334dce_b.jpg",
       "https://live.staticflickr.com/3195/3137863057_bef61e790a_b.jpg",
       "https://live.staticflickr.com/3381/3613172468_928091c017_b.jpg",
-      "https://live.staticflickr.com/3064/2574146198_7fcb61e47f_b.jpg",
-      "https://live.staticflickr.com/6009/5956788561_884e478486_b.jpg",
-      "https://live.staticflickr.com/6133/5957354722_cdfb915bfd_b.jpg"
+      "https://live.staticflickr.com/3064/2574146198_7fcb61e47f_b.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "6xEGQmBS6FA",
-        "title": "Cat Cat Village, Sapa Vietnam: A Complete Guide (2023) #sapavietnam"
+        "youtubeId": "nkLkMae88Ts",
+        "title": "Calm Morning Walk in Sa Pa to Cát Cát Village 🇻🇳 4K"
       },
       {
-        "youtubeId": "sJuhCtxOzMk",
-        "title": "Cat Cat Village, Sapa Vietnam Day 3 Vlog & Guide #catcatvillage #vietnamtravel"
+        "youtubeId": "kVsY1ZmzFwM",
+        "title": "Sapa Vietnam: Bản Cát Cát Sapa: Từ Hồ Bơi Vô Cực Đến Ruộng Bậc Thang Hùng Vĩ 🏔️🌾✨"
       }
     ]
   },
@@ -1791,22 +1452,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Sapa_%E2%80%93_Prague_Vietnam_2.jpg/1280px-Sapa_%E2%80%93_Prague_Vietnam_2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Sapa_%E2%80%93_Prague_Vietnam_1.jpg/1280px-Sapa_%E2%80%93_Prague_Vietnam_1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Buddha_Statue_Buddhist_Temple_Complex_TTTM_Sapa_Prague.jpg/1280px-Buddha_Statue_Buddhist_Temple_Complex_TTTM_Sapa_Prague.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Gate_Buddhist_Temple_Complex_TTTM_Sapa_Prague.jpg/1280px-Gate_Buddhist_Temple_Complex_TTTM_Sapa_Prague.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/TTTM_Sapa_20230106_101044.jpg/1280px-TTTM_Sapa_20230106_101044.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/TTTM_Sapa_20230106_104508.jpg/1280px-TTTM_Sapa_20230106_104508.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Gate_Buddhist_Temple_Complex_TTTM_Sapa_Prague.jpg/1280px-Gate_Buddhist_Temple_Complex_TTTM_Sapa_Prague.jpg"
     ],
     "videos": [
       {
         "youtubeId": "VHJvHjKbrEQ",
         "title": "SAPA MOUNTAINOUS TOWN | SAPA MARKET | NORTHWEST VIETNAM"
-      },
-      {
-        "youtubeId": "4KMPbR0sycA",
-        "title": "Exploring Sapa Town: Phuong Nam Breakfast, Cộng Café & Night Market | Vietnam Travel Vlog EP2"
-      },
-      {
-        "youtubeId": "2bNYrU8_q70",
-        "title": "Sapa MARKET Vietnam ENV Episode 5 🇻🇳"
       }
     ]
   },
@@ -1826,10 +1477,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "z_NYG9EDR2s",
         "title": "PHU QUOC 💚 Sao Beach | VIETNAM | Walking Tour 4K"
-      },
-      {
-        "youtubeId": "X1rNSky3rfI",
-        "title": "MALDIVES of VIETNAM? BAI SAO Beach & BAI KHEM Beach PHU QUOC | Beach Walking Tour (4K)"
       }
     ]
   },
@@ -1842,18 +1489,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/ce/Dinh_Cau_Night_Market_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/52/Dinh_Cau_Night_Market_-_panoramio_%281%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1e/Dinh_Cau_Night_Market_-_panoramio_%282%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/a/af/Dinh_Cau_Night_Market_-_panoramio_%283%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/2e/Dinh_Cau_Night_Market_-_panoramio_%284%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/40/Vietcong_prisoners_on_HMAS_Perth%2C_February_1971.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/a/af/Dinh_Cau_Night_Market_-_panoramio_%283%29.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "ZOaUcMxaAIM",
-        "title": "Duong Dong night market, Phu Quoc, Vietnam"
+        "youtubeId": "7LeCKJDVXPU",
+        "title": "Vietnam - Phu Quoc Island - Dương Đông Night Market 2024 | 4k Walking Tours"
       },
       {
-        "youtubeId": "26YQBvOvwCI",
-        "title": "Duong Dong Night Market Phu Quoc! Last Day Shopping & Food 🇻🇳 | Vietnam Vlog"
+        "youtubeId": "1LqdcFOkA9w",
+        "title": "Phú Quốc Night Market and Dương Đông Market"
       }
     ]
   },
@@ -1866,22 +1511,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/M%C5%A9i_Dinh_C%E1%BA%ADu%2C_Phu_Quoc%2C_Kien_Giang_-_panoramio.jpg/1280px-M%C5%A9i_Dinh_C%E1%BA%ADu%2C_Phu_Quoc%2C_Kien_Giang_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/B%C3%A3i_Dinh_C%E1%BA%ADu%2C_Duong_Dong_Phuquoc%2C_vietnam_-_panoramio.jpg/1280px-B%C3%A3i_Dinh_C%E1%BA%ADu%2C_Duong_Dong_Phuquoc%2C_vietnam_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Dinh_Cau_-_panoramio_%283%29.jpg/1280px-Dinh_Cau_-_panoramio_%283%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/a/af/Dinh_Cau_Night_Market_-_panoramio_%283%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Dinh_Cau_-_panoramio_%281%29.jpg/1280px-Dinh_Cau_-_panoramio_%281%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/ef/Dinh_Cau_-_panoramio.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/a/af/Dinh_Cau_Night_Market_-_panoramio_%283%29.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "IpRc52Lskss",
-        "title": "Dinh Cau Rock Temple Tour On Phu Quoc Island"
+        "youtubeId": "c7hcVE5pZVc",
+        "title": "Ba truyền thuyết bí ẩn tại Dinh Cậu Phú Quốc | Địa điểm du lịch tâm linh ly kì"
       },
       {
-        "youtubeId": "ZsHXSfQy0X0",
-        "title": "Viet Nam -Phu Quoc Island - DINH CAU Temple Tour 2023 !"
-      },
-      {
-        "youtubeId": "BQ3zoskOWjg",
-        "title": "Vietnam : Phu Quoc island – Dinh Cau Temple | Dinh Cậu – Phú Quốc"
+        "youtubeId": "fpO8qcTrWbc",
+        "title": "Thuyết minh: Diện mạo mới khu vực Dinh Cậu - Cửa Sông Dương Đông…"
       }
     ]
   },
@@ -1894,22 +1533,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/2221/33023735035_c21e4ba19d_b.jpg",
       "https://live.staticflickr.com/7398/9258693129_55d24a53d4_b.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/53/Paradise_cave.JPG",
-      "https://live.staticflickr.com/7283/9261477886_f4f72ec673_b.jpg",
-      "https://live.staticflickr.com/5471/9258699227_8bff24afdb_b.jpg",
-      "https://live.staticflickr.com/3700/9261466630_f49e24365e_b.jpg"
+      "https://live.staticflickr.com/7283/9261477886_f4f72ec673_b.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "ZNhd9b4k1Mw",
-        "title": "Visiting Paradise Cave, Phong Nha, Vietnam - walk with me [4k 25fps]"
+        "youtubeId": "2Zyclxv9atA",
+        "title": "Paradise Cave In 1 Minute (Thiên Đường)"
       },
       {
-        "youtubeId": "aYzxtSIN1HM",
-        "title": "Paradise Cave 7km Extended Tour | Exploring Vietnam’s Hidden Underground World (Phong Nha) 🇻🇳"
-      },
-      {
-        "youtubeId": "SqtQNB3YaDU",
-        "title": "Vietnam: Paradise Cave, Dark Cave or Phong Nha Cave - How to visit the great caves in Phong Nha?"
+        "youtubeId": "AemI8X_W2go",
+        "title": "Inside Paradise Cave 🇻🇳 Unreal Underground World | 4K Walking Tour"
       }
     ]
   },
@@ -1922,15 +1555,9 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Phong_Nha_cave_entrance.jpg/1280px-Phong_Nha_cave_entrance.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/PhongNhaCave_QuangBinh_Vietnam.jpg/1280px-PhongNhaCave_QuangBinh_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/45/Phongnhacave.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Phongnhakebang2.jpg/1280px-Phongnhakebang2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Phongnhakebang11.jpg/1280px-Phongnhakebang11.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Phongnhatourism.jpg/1280px-Phongnhatourism.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Phongnhakebang2.jpg/1280px-Phongnhakebang2.jpg"
     ],
     "videos": [
-      {
-        "youtubeId": "lWAS1gosRSQ",
-        "title": "Phong Nha PARADISE CAVE Boat Tour in Vietnam"
-      },
       {
         "youtubeId": "htO5jgAYMEs",
         "title": "Phong Nha, Phong Nha Caves, Ke Bang National Park, Phong Nha Caves Boat Tour, Dong Hoi, Vietnam"
@@ -1950,9 +1577,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/2413/2483612409_95b4a81321_b.jpg",
       "https://live.staticflickr.com/2133/2483610499_11dfa70e37_b.jpg",
       "https://live.staticflickr.com/2157/2484426452_4993c83c4e_b.jpg",
-      "https://live.staticflickr.com/3131/2484426808_f121b0df75_b.jpg",
-      "https://live.staticflickr.com/3291/2484427136_93d2124b29_b.jpg",
-      "https://live.staticflickr.com/6047/6223880651_b706b9a18c_b.jpg"
+      "https://live.staticflickr.com/3131/2484426808_f121b0df75_b.jpg"
     ],
     "videos": [
       {
@@ -1974,22 +1599,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Nha_Trang%2C_Vietnam_at_night_%2824267026625%29.jpg/1280px-Nha_Trang%2C_Vietnam_at_night_%2824267026625%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Nha_Trang%2C_Vietnam_%2824124059492%29.jpg/1280px-Nha_Trang%2C_Vietnam_%2824124059492%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Nha_Trang%2C_Vietnam_%2823636538624%29.jpg/1280px-Nha_Trang%2C_Vietnam_%2823636538624%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Nha_Trang%2C_Vietnam_-_53120442921.jpg/1280px-Nha_Trang%2C_Vietnam_-_53120442921.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Nha_Trang_%2C_Vietnam_-_panoramio_%2875%29.jpg/1280px-Nha_Trang_%2C_Vietnam_-_panoramio_%2875%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Nha_Trang%2C_Vietnam_-_53119836767.jpg/1280px-Nha_Trang%2C_Vietnam_-_53119836767.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Nha_Trang%2C_Vietnam_-_53120442921.jpg/1280px-Nha_Trang%2C_Vietnam_-_53120442921.jpg"
     ],
     "videos": [
       {
-        "youtubeId": "ki2o4BJaxcI",
-        "title": "[4K WALK] Vietnam Nha Trang 2025 🇻🇳 Sunset Promenade & Beach Tour"
+        "youtubeId": "WcDqRKWnnlM",
+        "title": "Nha Trang đẹp đến ngỡ ngàng | Dạo xe trên đường Trần Phú ven biển tuyệt đẹp ⭐"
       },
       {
-        "youtubeId": "iwpKwQKySY8",
-        "title": "Nha Trang Beach & Promenade, Vietnam 🇻🇳 4K Walking Tour"
-      },
-      {
-        "youtubeId": "_KgqlR-8eRo",
-        "title": "Nha Trang Beach Promenade | POV Walking Tour | 4K"
+        "youtubeId": "AZC2F9Ve-fY",
+        "title": "Review Khách Sạn 5 Sao Panama Nha Trang View Biển Trần Phú: Phần 1"
       }
     ]
   },
@@ -2002,9 +1621,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Xuan_Huong_Lake_06.jpg/1280px-Xuan_Huong_Lake_06.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Xuan_Huong_Lake_07.jpg/1280px-Xuan_Huong_Lake_07.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Xuan_Huong_Lake_05.jpg/1280px-Xuan_Huong_Lake_05.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Xuan_Huong_Lake_17.jpg/1280px-Xuan_Huong_Lake_17.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Xuan_Huong_Lake_18.jpg/1280px-Xuan_Huong_Lake_18.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Xuan_Huong_Lake_09.jpg/1280px-Xuan_Huong_Lake_09.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Xuan_Huong_Lake_17.jpg/1280px-Xuan_Huong_Lake_17.jpg"
     ],
     "videos": [
       {
@@ -2014,10 +1631,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "7IfutnQySyE",
         "title": "Da Lat Vietnam Walking Tour 🌿 Xuan Huong Lake Morning Ambience (4K)"
-      },
-      {
-        "youtubeId": "Iye9fEeQQ9c",
-        "title": "🇻🇳 Vietnam, Da Lat: Walk Around Xuan Huong Lake Afternoon Walking Tour - 4K"
       }
     ]
   },
@@ -2035,10 +1648,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
         "title": "Crazy House Da Lat,Vietnam 🇻🇳 | 4K Walking Tour | Inside Hang Nga Guesthouse | Must-Visit Attraction"
       },
       {
-        "youtubeId": "VJMzI4BT3rg",
-        "title": "Da Lat Virtual Tour, Exploring 'Crazy House' Hang Nga Guesthouse in Dalat - 4K Vietnam Travel Vlog"
-      },
-      {
         "youtubeId": "LK3P4Lco8ok",
         "title": "🇻🇳 Vietnam, Da Lat: Crazy House Hang Nga Villa Morning Walking Tour - 4K"
       }
@@ -2053,9 +1662,7 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Love_Valley_-_26327160961.jpg/1280px-Love_Valley_-_26327160961.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Love_Valley_-_26466276245.jpg/1280px-Love_Valley_-_26466276245.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Love_Valley_-_26373639392.jpg/1280px-Love_Valley_-_26373639392.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Valley_of_Love_02.jpg/1280px-Valley_of_Love_02.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Valley_of_Love_03.jpg/1280px-Valley_of_Love_03.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Valley_of_Love.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Valley_of_Love_02.jpg/1280px-Valley_of_Love_02.jpg"
     ],
     "videos": [
       {
@@ -2065,10 +1672,6 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       {
         "youtubeId": "jVW1Xag9cCY",
         "title": "Valley of Love Dalat, Vietnam| Exploring Love Maze|One in Nature| Famous Tourist Spots| Part 1"
-      },
-      {
-        "youtubeId": "Hopd9HgVvRc",
-        "title": "The Valley of Love Experience, Da Lat, Vietnam"
       }
     ]
   },
@@ -2080,37 +1683,82 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/ae/2024_H%E1%BB%99i_An_-_Japanese_Covered_Bridge_%28Ch%C3%B9a_C%E1%BA%A7u%29_after_renovation_-_img_03.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1d/2024_H%E1%BB%99i_An_-_Japanese_Covered_Bridge_%28Ch%C3%B9a_C%E1%BA%A7u%29_after_renovation_-_img_05.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "XeRnOWaRQV0",
+        "title": "HOI AN - JAPANESE COVERED BRIDGE (VIETNAM)"
+      },
+      {
+        "youtubeId": "4ZtA_xMCne8",
+        "title": "Crossing the Japanese Covered Bridge - Hoi An, Vietnam | Vietnam with Kids"
+      }
+    ]
   },
   "son-doong-cave": {
     "photos": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Son_Doong_Cave_5.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/51/Son_Doong_Cave_5.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/fa/Son_Doong_Cave_DB_%283%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/25/Son_Doong_Cave_DB_%282%29-edited.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/cd/Son_Doong_Cave_DB_%281%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b9/Son_Doong_Cave_Doline_with_Scale.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Son_Doong_Cave_5.jpg/1280px-Son_Doong_Cave_5.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/2f/Son_Doong_Cave_-_Vietnam.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Son_Doong_Cave_DB_%283%29.jpg/1280px-Son_Doong_Cave_DB_%283%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Son_Doong_Cave_DB_%282%29-edited.jpg/1280px-Son_Doong_Cave_DB_%282%29-edited.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Son_Doong_Cave_DB_%281%29.jpg/1280px-Son_Doong_Cave_DB_%281%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Son_Doong_Cave_DB_%282%29.jpg/1280px-Son_Doong_Cave_DB_%282%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "pusjqfnEwGU",
+        "title": "Son Doong - The biggest cave in the world - Caves in vietnam | Sơn Đoòng - hang lớn nhất thế giới"
+      },
+      {
+        "youtubeId": "gz8k23NmX6I",
+        "title": "Sơn Đoòng the World's largest cave"
+      }
+    ]
   },
   "cai-rang-floating-market": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/6/62/M%E1%BB%99t_c%E1%BA%A3nh_%E1%BB%9F_ch%E1%BB%A3_n%E1%BB%95i_C%C3%A1i_R%C4%83ng.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/7/72/M%E1%BB%99t_c%E1%BA%A3nh_ch%E1%BB%A3_n%E1%BB%95i_C%C3%A1i_R%C4%83ng.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/7/71/Cho_noi_%28Cai_Rang%2C_Can_Tho%29.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/f/ff/Cai_rang3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/28/Cai_Rang_1.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Cai_Rang_floating_market%2C_Can_Tho_%2846061353692%29.jpg/1280px-Cai_Rang_floating_market%2C_Can_Tho_%2846061353692%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Cai_Rang_floating_market%2C_Can_Tho_%2844294953560%29.jpg/1280px-Cai_Rang_floating_market%2C_Can_Tho_%2844294953560%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Cai_Rang_Floating_Market_3.jpg/1280px-Cai_Rang_Floating_Market_3.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Cai_Rang_Floating_Market_8.jpg/1280px-Cai_Rang_Floating_Market_8.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Cai_Rang_Floating_Market_6.jpg/1280px-Cai_Rang_Floating_Market_6.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Cai_Rang_Floating_Market_5.jpg/1280px-Cai_Rang_Floating_Market_5.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Cai_Rang_Floating_Market_4.jpg/1280px-Cai_Rang_Floating_Market_4.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Cai_Rang_Floating_Market_2.jpg/1280px-Cai_Rang_Floating_Market_2.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "w_NhIUT_v7w",
+        "title": "Vietnam's Cái Răng Floating Market is Struggling.. 🇻🇳"
+      },
+      {
+        "youtubeId": "XL6l1yx7_94",
+        "title": "NOODLES On A Boat | Vietnam's FLOATING MARKET In Cái Răng, Mekong Tour"
+      }
+    ]
   },
   "phong-dien-floating-market": {
     "photos": [
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Vietnam%2C_Phong_Dien%2C_Floating_market%2C_Boats.jpg/1280px-Vietnam%2C_Phong_Dien%2C_Floating_market%2C_Boats.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Vietnam%2C_Phong_Dien%2C_Floating_market%2C_Women.jpg/1280px-Vietnam%2C_Phong_Dien%2C_Floating_market%2C_Women.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Vietnam%2C_Phong_Dien%2C_Floating_market%2C_Vendor.jpg/1280px-Vietnam%2C_Phong_Dien%2C_Floating_market%2C_Vendor.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Vietnam%2C_Phong_Dien%2C_Floating_market_in_Mekong_Delta%2C_Woman.jpg/1280px-Vietnam%2C_Phong_Dien%2C_Floating_market_in_Mekong_Delta%2C_Woman.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Vietnam%2C_Phong_Dien%2C_Floating_market%2C_Rawing.jpg/1280px-Vietnam%2C_Phong_Dien%2C_Floating_market%2C_Rawing.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/23/Vietnam%2C_Phong_Dien%2C_Floating_market%2C_Vendor.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/9a/Can_Tho%2C_Vietnam%2C_Floating_Market.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/1/15/Can_Tho%2C_Vietnam%2C_Floating_Market%2C_Boats.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/e2/Floating_Market_Thailand.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/ca/Hat-Yai-Klonghae-Floating-Market_09.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/1/15/Can_Tho%2C_Vietnam%2C_Floating_Market%2C_Boats.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "wtBLrwYQxng",
+        "title": "Phong Dien Floating Market & Small Canals Mekong Delta Vietnam | Can Tho Travel Guide | Vemekong.com"
+      },
+      {
+        "youtubeId": "pp3K0JhpDy4",
+        "title": "PHONG DIEN FLOATING MARKET IN CAN THO VIETNAM | Unique Cultural destination of Local People"
+      }
+    ]
   },
   "ninh-kieu-wharf": {
     "photos": [
@@ -2122,7 +1770,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Ninh_Kieu_Quay.jpg/1280px-Ninh_Kieu_Quay.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Ninh_Kieu_Quay_at_night.jpg/1280px-Ninh_Kieu_Quay_at_night.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "KwXDKCmFZpc",
+        "title": "Cần Thơ của 2022 Bến Ninh KIỀU Đẹp Tuyệt || Ninh Kieu Wharf, popular attraction in Can Tho City🤩"
+      },
+      {
+        "youtubeId": "J_cyxanr4X0",
+        "title": "KHÁM PHÁ TOÀN CẢNH BẾN NINH KIỀU CẦN THƠ | Ninh Kieu Wharf - Vietnam"
+      }
+    ]
   },
   "moi-canal": {
     "photos": [
@@ -2149,7 +1806,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/82/Ch%C3%B9a_Nam_Nh%C3%A3_2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/70/Ch%C3%B9a_Nam_Nh%C3%A3_3.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "UJWDCfpYnuw",
+        "title": "Chùa Nam Nhã hơn 130 năm tuổi tại Cần Thơ | Hòa Bình Có Đẹp Không | Tâm Linh - Du Lịch - Khám Phá"
+      },
+      {
+        "youtubeId": "67okk3IidSQ",
+        "title": "Đến Thăm Chùa Nam Nhã ở Cần Thơ mang đậm chất miền tây sông nước /南雅佛堂 - Nam Nhã Phật Đường"
+      }
+    ]
   },
   "pothi-somron": {
     "photos": [
@@ -2159,7 +1825,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/56/Mi%E1%BA%BFu_%E1%BB%9F_Ch%C3%B9a_D%C6%A1i_-_S%C3%B3c_Tr%C4%83ng_%2840553747411%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ch%C3%B9a_D%C6%A1i_%2844919249051%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "W2nYtfj6ZRQ",
+        "title": "Chùa Pôthisômron - Nơi lưu giữ nền văn hóa Khmer| Cần Thơ TV"
+      },
+      {
+        "youtubeId": "b8-ZAeAvS1o",
+        "title": "CHÙA PÔTHI SOMRÔN"
+      }
+    ]
   },
   "munir-ansay": {
     "photos": [
@@ -2169,7 +1844,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/da/Ch%C3%B9a_P%C3%B4thi_Somr%C3%B4n.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ch%C3%B9a_D%C6%A1i_%2844919249051%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "fPbY9xP0tr8",
+        "title": "KHÁM PHÁ CẦN THƠ – SÓC TRĂNG | ẨM THỰC ĐỒNG QUÊ, CHÙA MUNIR ANSAY, CHÙA ÔNG & TÂN HUÊ VIÊN"
+      },
+      {
+        "youtubeId": "JFTLam7jzdM",
+        "title": "NHỊP SÓNG VĂN HOÁ | CHÙA MUNIRENSÂY VÀ DẤU ẤN KHMER TẠI CẦN THƠ"
+      }
+    ]
   },
   "quang-duc-pagoda": {
     "photos": [
@@ -2179,7 +1863,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/ef/Ch%C3%B9a_Hu%E1%BB%87_Quang_%E1%BB%9F_Th%E1%BB%A7_%C4%90%E1%BB%A9c%2C_th%C3%A1ng_12_n%C4%83m_2021_%28c%E1%BB%95ng%29_%287%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/98/Ch%C3%B9a_V%E1%BA%A1n_Quang_%E1%BB%9F_Th%E1%BB%A7_%C4%90%E1%BB%A9c%2C_th%C3%A1ng_12_n%C4%83m_2021_%28c%E1%BB%95ng_nh%C3%ACn_nghi%C3%AAng%29_%282%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "cqmTWk6SNnI",
+        "title": "Chùa Quang Đức - Cần Thơ | Nụ Cười Mêkong chuyên Tour miền Tây"
+      },
+      {
+        "youtubeId": "UH0hl8AVh58",
+        "title": "Chùa Quang Đức Cần Thơ | Tìm hiểu A-Z ngôi chùa linh thiêng giữa lòng thành phố"
+      }
+    ]
   },
   "truc-lam-phuong-nam": {
     "photos": [
@@ -2189,7 +1882,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/e9/L%E1%BA%A7u_chu%C3%B4ng_Thi%E1%BB%81n_vi%E1%BB%87n_Tr%C3%BAc_L%C3%A2m_Ph%C6%B0%C6%A1ng_Nam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/8/89/L%E1%BA%A7u_tr%E1%BB%91ng_Thi%E1%BB%81n_vi%E1%BB%87n_Tr%C3%BAc_L%C3%A2m_Ph%C6%B0%C6%A1ng_Nam.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Yu69MTVVC_g",
+        "title": "Flycam Thiền Viện Trúc Lâm Phương Nam Cần Thơ"
+      },
+      {
+        "youtubeId": "zVaI9cb35xw",
+        "title": "Thiền Viện Trúc Lâm Chánh Giác 18/04"
+      }
+    ]
   },
   "can-tho-cathedral": {
     "photos": [
@@ -2199,7 +1901,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/9a/Can_Tho%2C_Vietnam%2C_Floating_Market.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/c6/Can_Tho%2C_Vietnam%2C_Floating_Market%2C_Sale.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "h5kAgYFE7ZA",
+        "title": "Nhà Thờ Chính Toà Cần Thơ (Can Tho Cathedral) I Cần Thơ I Việt Nam I Thang Vu"
+      },
+      {
+        "youtubeId": "Vgh_NhfNYaw",
+        "title": "NHÀ THỜ CHÍNH TÒA CẦN THƠ (GIÁO PHẬN CẦN THƠ) | SERIES HÌNH ẢNH MỘT SỐ NHÀ THỜ TẠI VIỆT NAM"
+      }
+    ]
   },
   "binh-thuy-ancient-house": {
     "photos": [
@@ -2209,7 +1920,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/d5/H%C3%B2a_B%C3%ACnh.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/a/ad/%C4%90%E1%BB%99ng_Th%C3%A1c_B%E1%BB%9D%2C_Cao_Phong%2C_H%C3%B2a_B%C3%ACnh.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "P7O4w93E564",
+        "title": "Du lịch Cần Thơ - Ghé thăm Chợ nổi Cái Răng - Nhà Cổ Bình Thủy - Bến Ninh Kiều"
+      },
+      {
+        "youtubeId": "KlfSx_mx7Rk",
+        "title": "Bình Thủy Ancient house| Cần Thơ TV"
+      }
+    ]
   },
   "can-tho-grand-prison": {
     "photos": [
@@ -2219,7 +1939,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/2d/Kh%C3%A1m_L%E1%BB%9Bn_C%E1%BA%A7n_Th%C6%A1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/cb/Ch%E1%BB%A3_C%E1%BA%A7n_Th%C6%A1.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Z9dLzrxpX_w",
+        "title": "Di Tích Lịch Sử Ít Ai Biết Ở Cần Thơ - Nhà Tù Pháp Thuộc Ở Cần Thơ - Khám Lớn Cần Thơ"
+      },
+      {
+        "youtubeId": "BHJGuqltNd4",
+        "title": "Vì sao Khám Lớn Cần Thơ được xem như là \"Nhà tù Phú Quốc thứ 2\""
+      }
+    ]
   },
   "can-tho-museum": {
     "photos": [
@@ -2229,7 +1958,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/cb/Ch%E1%BB%A3_C%E1%BA%A7n_Th%C6%A1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/6e/Can_Tho%2C_Vietnam%2C_Floating_market%2C_Early_morning.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "rcXzHyXq48c",
+        "title": "Cần Thơ in the Mekong Delta: Love It OR Skip It? 🇻🇳 | VIETNAM"
+      },
+      {
+        "youtubeId": "DkQWAE_d6Sc",
+        "title": "Photo exhibition \" The beautiful and peaceful Seas and Islands of Vietnam\"| Cần Thơ News"
+      }
+    ]
   },
   "military-zone-9-museum": {
     "photos": [
@@ -2239,7 +1977,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/a7/Bien_Hoa_Museum_MiG-21.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/39/Captured_French_artillery_at_the_Dien_Bien_Phu_Museum.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "PShfnwWqrrU",
+        "title": "Exploring the Can Tho Military Zone 9 Museum ￼"
+      },
+      {
+        "youtubeId": "GC3OmYNr-SY",
+        "title": "Culture and Arts: Military Zone 9 Museum"
+      }
+    ]
   },
   "hcm-museum-can-tho": {
     "photos": [
@@ -2259,7 +2006,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/05/C%E1%BB%93n_S%C6%A1n_C%E1%BA%A7n_Th%C6%A1_ng23th4n2023_%28v%E1%BB%B1a_nu%C3%B4i_c%C3%A1%29_%284%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/09/C%E1%BB%93n_S%C6%A1n_C%E1%BA%A7n_Th%C6%A1_ng23th4n2023_%28v%E1%BB%B1a_nu%C3%B4i_c%C3%A1%29_%283%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "uQUwNMcYA78",
+        "title": "Sơn islet community tourism supervised"
+      },
+      {
+        "youtubeId": "CsbNu2LODXI",
+        "title": "New experiences at Sơn islet | Cần Thơ News"
+      }
+    ]
   },
   "con-khuong": {
     "photos": [
@@ -2286,10 +2042,18 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/C%C3%B4ng_vi%C3%AAn_B%E1%BA%BFn_Ninh_Ki%E1%BB%81u%2C_C%E1%BA%A7n_Th%C6%A1_%28hoa_h%C3%B2e%29%2C_ng%C3%A0y_23_th%C3%A1ng_5_n%C4%83m_2014_%2836%29.jpg/1280px-C%C3%B4ng_vi%C3%AAn_B%E1%BA%BFn_Ninh_Ki%E1%BB%81u%2C_C%E1%BA%A7n_Th%C6%A1_%28hoa_h%C3%B2e%29%2C_ng%C3%A0y_23_th%C3%A1ng_5_n%C4%83m_2014_%2836%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/C%C3%B4ng_vi%C3%AAn_B%E1%BA%BFn_Ninh_Ki%E1%BB%81u%2C_C%E1%BA%A7n_Th%C6%A1%2C_ng%C3%A0y_23_th%C3%A1ng_5_n%C4%83m_2014_%284%29.jpg/1280px-C%C3%B4ng_vi%C3%AAn_B%E1%BA%BFn_Ninh_Ki%E1%BB%81u%2C_C%E1%BA%A7n_Th%C6%A1%2C_ng%C3%A0y_23_th%C3%A1ng_5_n%C4%83m_2014_%284%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/C%C3%B4ng_vi%C3%AAn_B%E1%BA%BFn_Ninh_Ki%E1%BB%81u%2C_C%E1%BA%A7n_Th%C6%A1%2C_ng%C3%A0y_23_th%C3%A1ng_5_n%C4%83m_2014_%285%29.jpg/1280px-C%C3%B4ng_vi%C3%AAn_B%E1%BA%BFn_Ninh_Ki%E1%BB%81u%2C_C%E1%BA%A7n_Th%C6%A1%2C_ng%C3%A0y_23_th%C3%A1ng_5_n%C4%83m_2014_%285%29.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Ninh_Kieu_Love_Bridge.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/C%E1%BA%A7u_t%C3%ACnh_y%C3%AAu_C%E1%BA%A7n_Th%C6%A1.jpg?width=1200"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ninh_Kieu_Love_Bridge.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "vIVTeHBzpgY",
+        "title": "#vlog ! DU LỊCH MIỀN TÂY - Cầu đi bộ Ninh Kiều biểu tượng độc đáo của Cần Thơ"
+      },
+      {
+        "youtubeId": "12pFHr2kbCg",
+        "title": "Ninh Kiều – Converging and shining"
+      }
+    ]
   },
   "can-tho-bridge": {
     "photos": [
@@ -2299,7 +2063,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/6e/Can_Tho%2C_Vietnam%2C_Floating_market%2C_Early_morning.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/9a/Can_Tho%2C_Vietnam%2C_Floating_Market.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "jDswlpFAM-o",
+        "title": "【4K】Cầu đi bộ Cần Thơ | Can Tho Pedestrian Bridge | Can Tho Love Bridge | Can Tho city Vietnam"
+      },
+      {
+        "youtubeId": "vvTU0OqpgCc",
+        "title": "Cầu Đi Bộ Cần Thơ Về Đêm - Can Tho Walking Bridge At Night"
+      }
+    ]
   },
   "can-tho-old-market": {
     "photos": [
@@ -2309,7 +2082,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/28/Floating_Market_Can_Tho1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/cb/Ch%E1%BB%A3_C%E1%BA%A7n_Th%C6%A1.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "6ikG76a8_WM",
+        "title": "Cần Thơ Market – Vietnam Local Life | Fresh Seafood, Meat & Produce | Tân An (No Talking, 4K)"
+      },
+      {
+        "youtubeId": "7xDB6tEwBKA",
+        "title": "Can Tho Vietnam | CHỢ ĐÊM CẦN THƠ | night market can tho | Mekong Delta Vietnam | cần thơ ký sự"
+      }
+    ]
   },
   "can-tho-night-market": {
     "photos": [
@@ -2319,7 +2101,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/28/Floating_Market_Can_Tho1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/cb/Ch%E1%BB%A3_C%E1%BA%A7n_Th%C6%A1.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Na7Y2ZVKWPg",
+        "title": "What to eat at the Cần Thơ Night Market… 2022"
+      },
+      {
+        "youtubeId": "2HWf4ojTPTk",
+        "title": "5- Snack Challenge at the Cần Thơ Night Market (Vietnam)"
+      }
+    ]
   },
   "tay-do-market": {
     "photos": [
@@ -2335,7 +2126,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/f/f5/Bassac_River_-_a_closer_view_by_Ninh_Kieu_Park.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "chre0pHbVg4",
+        "title": "Công Viên Sông Hậu - TP Cần Thơ"
+      },
+      {
+        "youtubeId": "aYpV1Yk1qg0",
+        "title": "Công Viên Sông Hậu | Song Hau Park Can Tho"
+      }
+    ]
   },
   "cat-ba-national-park": {
     "photos": [
@@ -2345,7 +2145,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/ca/Lan_Ha_Bay-Cat_Ba_Vietnam-Andres_Larin.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b1/Main_Corridor%2C_Cave_Hospital%2C_Cat_Ba_Island%2C_Vietnam.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "0hPjHJjt4Io",
+        "title": "HIKING HIDDEN PARADISE : Cát Bà National Park - VIETNAM | Vietnam Eps.1"
+      }
+    ]
   },
   "lan-ha-bay": {
     "photos": [
@@ -2355,7 +2160,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/79/Ha_Long_Bay_in_2019.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1e/Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "22ri8fjTWjQ",
+        "title": "Lan Ha Bay and Ha Long Bay 2016"
+      },
+      {
+        "youtubeId": "Rp6zCktF-l8",
+        "title": "Lan Ha Bay-Be"
+      }
+    ]
   },
   "trung-trang-cave": {
     "photos": [
@@ -2365,7 +2179,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/3b/Trung_Trang_Cave%2C_C%C3%A1t_B%C3%A0_Island%2C_Vietnam%2C_20240130_1144_4267.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/ec/Trung_Trang_Cave%2C_C%C3%A1t_B%C3%A0_Island%2C_Vietnam%2C_20240130_1149_4292.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "pMSVwwWL0Xo",
+        "title": "TRUNG TRANG CAVES ON CAT BA DISCOVERY"
+      },
+      {
+        "youtubeId": "n4-0LzG-PKI",
+        "title": "Exploring the Mysteries of Trung Trang Cave in Cat Ba | Trung Trang Cave | Check in Hai Phong"
+      }
+    ]
   },
   "hospital-cave-cat-ba": {
     "photos": [
@@ -2375,7 +2198,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/30/59762237_76c91817d0_b.jpg",
       "https://live.staticflickr.com/5282/5335582840_111a7acf53_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "8qjNy9ps3E4",
+        "title": "Cat Ba Hospital cave, one of Vietnam's most mysterious attractions"
+      },
+      {
+        "youtubeId": "qc05wSehcNY",
+        "title": "Hang Quan Y (Hospital Cave): Historia en Cat Ba (Vietnam)"
+      }
+    ]
   },
   "hoa-cuong-cave": {
     "photos": [
@@ -2405,7 +2237,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/be/View_of_the_sea_from_Cannon_Fort_Park_on_Cat_Ba_Island%2C_Vietnam%2C_20240130_1601_4441.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/6a/View_of_the_sea_from_Cannon_Fort_Park_on_Cat_Ba_Island%2C_Vietnam%2C_20240130_1618_4458.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "mAW83DHB_WQ",
+        "title": "Cannon Fort hiking trail - Cát Bà Island"
+      }
+    ]
   },
   "cat-co-1": {
     "photos": [
@@ -2435,7 +2272,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/b5/View_from_Ngu_Lam_Peak%2C_Cat_Ba_Island%2C_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/92/Cat_Ba_town.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "bzZOPBLKMMk",
+        "title": "Bãi biển Cát Bà ( Cát Cò 3 - mới ) Cat Ba Beach"
+      }
+    ]
   },
   "cat-dua-island": {
     "photos": [
@@ -2445,7 +2287,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/ca/Lan_Ha_Bay-Cat_Ba_Vietnam-Andres_Larin.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e9/Cat_Ba_Langur_9.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "G8EfeHWYW98",
+        "title": "Trải nghiệm 1 đêm nghỉ dưỡng tuyệt vời tại Monkey Island Resort Cát Bà"
+      },
+      {
+        "youtubeId": "pEfBbnpuRtI",
+        "title": "Monkey Island Cát Bà"
+      }
+    ]
   },
   "viet-hai-village": {
     "photos": [
@@ -2455,7 +2306,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/5a/Bell_for_ritual_use_%28replica%29%2C_Thanh_Mai_pagoda%2C_Ha_Tay_province%2C_cast_in_798_AD%2C_bronze_-_National_Museum_of_Vietnamese_History_-_Hanoi%2C_Vietnam_-_DSC05548.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/e/ee/Buddhanandi%2C_Tay_Phuong_pagoda%2C_Ha_Tay_province%2C_1794_AD%2C_lacquered_wood_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05080.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "bgW588CGW1U",
+        "title": "Homestay Viet Hai Cat Ba Hai Phong - Du lịch trải nghiệm Việt Hải Cát Bà"
+      }
+    ]
   },
   "viet-hai-fishing-village": {
     "photos": [
@@ -2485,7 +2341,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/42/2024-03-25-Cai_Beo_floating_village-2915.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/56/2024-03-25-Cai_Beo_floating_village-2745.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "cD0nPuw4FDE",
+        "title": "LÀNG chài nổi Cái Bèo ở Cát Bà !"
+      },
+      {
+        "youtubeId": "MJkci2YYiGk",
+        "title": "Làng chài Cái Bèo"
+      }
+    ]
   },
   "hoi-lake": {
     "photos": [
@@ -2495,7 +2360,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/a7/Tt._C%C3%A1t_B%C3%A0%2C_C%C3%A1t_H%E1%BA%A3i%2C_H%E1%BA%A3i_Ph%C3%B2ng%2C_Vietnam_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/d1/Khu_du_l%E1%BB%8Bch_%C4%90%E1%BB%93_S%C6%A1n%2C_%C4%90%E1%BB%93_S%C6%A1n%2C_H%E1%BA%A3i_Ph%C3%B2ng%2C_Vietnam_-_panoramio.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "KNWPon61Wik",
+        "title": "Review Hoi Lake Farmstay - Khu du lịch Hồ Hới Cát Bà - Catba.tours"
+      }
+    ]
   },
   "kim-giao-forest": {
     "photos": [
@@ -2518,7 +2388,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/b5/View_from_Ngu_Lam_Peak%2C_Cat_Ba_Island%2C_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/5c/2023-12-13_Xi_Jinping_and_Nguy%E1%BB%85n_Ph%C3%BA_Tr%E1%BB%8Dng.png"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "WsaWO1MFJdo",
+        "title": "Một Ngày Khám Phá Cát Bà Và Trekking Chinh Phục Đỉnh Ngự Lâm"
+      },
+      {
+        "youtubeId": "1q5thkXpHHE",
+        "title": "Lên đỉnh Kim Giao.Ngự Lâm của Cát Bà,leo bộ 3 ngàn bậc như thế nào"
+      }
+    ]
   },
   "cat-ba-market": {
     "photos": [
@@ -2546,14 +2425,32 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/1c/%E4%B8%AD%E5%9B%BD%E7%9A%87%E5%B8%9D%E7%9A%84%E5%AE%AB%E6%AE%BF%E4%B8%8E%E5%BA%99%E5%AE%87._%E7%AC%AC13%E5%B9%85%E5%9B%BE%2C_%E6%AD%A6%E9%99%B5%E6%98%A5%E8%89%B2_-_%28%E6%B8%85%29%E5%AD%99%E7%A5%9C%E3%80%81%E6%B2%88%E6%BA%90Wuling_chunse_-_%28Qing%29Sun_Hu%2C_Shen_Yuan_-_btv1b10520678d.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/a/a5/%E4%B8%AD%E5%9B%BD%E7%9A%87%E5%B8%9D%E7%9A%84%E5%AE%AB%E6%AE%BF%E4%B8%8E%E5%BA%99%E5%AE%87._%E7%AC%AC33%E5%B9%85%E5%9B%BE%2C_%E8%A5%BF%E5%B3%AF%E7%A7%80%E8%89%B2_-_%28%E6%B8%85%29%E5%AD%99%E7%A5%9C%E3%80%81%E6%B2%88%E6%BA%90Xifeng_xiuse_-_%28Qing%29Sun_Hu%2C_Shen_Yuan_-_btv1b105206913.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "QwiXTWq0hFM",
+        "title": "Sun World Cat Ba Cable Car | Vi vu Cát Bà - Không lo tắc phà"
+      },
+      {
+        "youtubeId": "oF145hi4RRo",
+        "title": "Cat Ba Cable Car (Full information) 06/24. Thông tin để đi Cáp treo Cát Bà mới nhất."
+      }
+    ]
   },
   "phu-long-mangrove": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/3/38/C%E1%BA%A7u_Long_Th%C3%A0nh%2C_%C4%90%C6%B0%E1%BB%9Dng_cao_t%E1%BB%91c_TP.HCM_-_Long_Th%C3%A0nh_-_D%E1%BA%A7u_Gi%C3%A2y.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/6/60/Halong_Bay_panorama.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "b5Y8HrbOqfU",
+        "title": "Mangrove Forests in Ao Coi valley and Phu Long village #bsa #blueswimmeradventures"
+      },
+      {
+        "youtubeId": "hK9GfYgEp2E",
+        "title": "Khám phá rừng ngập mặn Phù Long và đảo Cát Bà xinh đẹp"
+      }
+    ]
   },
   "tuyen-lam-lake": {
     "photos": [
@@ -2563,7 +2460,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/ee/A_Rottweiler_at_Truc_Lam_Monastery%2C_Da_Lat%2C_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1a/Ph%C3%ADa_sau_ch%C3%ADnh_%C4%91i%E1%BB%87n_thi%E1%BB%81n_vi%E1%BB%87n_Tr%C3%BAc_L%C3%A2m.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "1TvJBzha-Cs",
+        "title": "Tuyền Lâm Lake, Da Lat, Vietnam - Fly Over (4K)"
+      },
+      {
+        "youtubeId": "BbnfsRiNQ4E",
+        "title": "📍Tuyền Lâm Lake, Dalat, Vietnam"
+      }
+    ]
   },
   "lake-of-sighs": {
     "photos": [
@@ -2573,7 +2479,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/56/H%E1%BB%93_Than_Th%E1%BB%9F%2C_%C4%90%C3%A0_L%E1%BA%A1t.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/a/a2/Xuan_Huong_Lake_11.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "f429bq85x0E",
+        "title": "Da Lat Travel: The Legend of the Lake of Sighs and the Hill of Two Graves"
+      }
+    ]
   },
   "da-lat-railway-station": {
     "photos": [
@@ -2583,7 +2494,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/32/Da_Lat_Nuclear_Research_Institute_01.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/7/73/A_street_of_Da_Lat_ca._1925.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "y6axLsl53Q0",
+        "title": "🇻🇳 Vietnam, Da Lat: Da Lat Railway Station & Train Ride to Trai Mat Station Tour - 4K"
+      },
+      {
+        "youtubeId": "elablbKoOpg",
+        "title": "Da Lat Vietnam 2023 Walking Tour - Dalat Railway Station | 4K HDR Binaural Sound & Captions"
+      }
+    ]
   },
   "da-lat-cathedral": {
     "photos": [
@@ -2593,7 +2513,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/73/A_street_of_Da_Lat_ca._1925.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/08/Da_Lat_ca._1925_%281%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "KJOp0HieJ2Q",
+        "title": "A Quiet Morning at Dalat Cathedral | Slow Travel Vietnam"
+      },
+      {
+        "youtubeId": "GUCfguBQNDc",
+        "title": "CHICKEN CHURCH? DA LAT CATHEDRAL / DA LAT, VIETNAM / MGA TRIP NI LARRY #vietnam #chickenchurch"
+      }
+    ]
   },
   "domaine-de-marie": {
     "photos": [
@@ -2603,7 +2532,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/da/Domaine_de_Marie_in_Da_Lat%2C_Vietnam_-_panoramio_%282%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/50/Nha_tho_Domaine_de_Marie_-_Huy_Phuong_1.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Bn6FxI2uwhw",
+        "title": "Domaine de Marie Catholic Church In Da Lat Vietnam"
+      },
+      {
+        "youtubeId": "OYnDYMGIk1o",
+        "title": "Dalat Tourism: Domaine de Marie - Mai Anh Church - Pink Church | Kim Lien Pi-Vi"
+      }
+    ]
   },
   "linh-phuoc-pagoda": {
     "photos": [
@@ -2612,13 +2550,20 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/7f/Perfume_Pagoda.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1f/Giac_Lam_Pagoda_%2810017925705%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/61/Ch%C3%B9a_Linh_Ph%C6%B0%E1%BB%9Bc_%28B%E1%BA%A3o_th%C3%A1p%29_%283%29.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Hang_Nga_guesthouse.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Valley_of_Love.jpg?width=1200",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Linh_Phuoc_Pagoda_02.JPG/1280px-Linh_Phuoc_Pagoda_02.JPG",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Linh_Phuoc_Pagoda_01.jpg/1280px-Linh_Phuoc_Pagoda_01.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Linh_Phuoc_Pagoda_03.jpg/1280px-Linh_Phuoc_Pagoda_03.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Hang_Nga_guesthouse.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Valley_of_Love.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Linh_Phuoc_Pagoda_02.JPG/1280px-Linh_Phuoc_Pagoda_02.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "8UxVSTn7W6w",
+        "title": "Linh Phuoc Pagoda - Da Lat Vietnam - Chùa Linh Phước Đà Lạt"
+      },
+      {
+        "youtubeId": "nIh5Z6mV8zk",
+        "title": "TRAVEL IN DALAT #3 Linh Phuoc Pagoda - Chùa Linh Phước (Chùa Ve Chai) - Learn Vietnamese with SVFF"
+      }
+    ]
   },
   "truc-lam-monastery": {
     "photos": [
@@ -2628,7 +2573,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/1a/Ph%C3%ADa_sau_ch%C3%ADnh_%C4%91i%E1%BB%87n_thi%E1%BB%81n_vi%E1%BB%87n_Tr%C3%BAc_L%C3%A2m.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/45/Phong_c%E1%BA%A3nh_%E1%BB%9F_thi%E1%BB%81n_vi%E1%BB%87n_Tr%C3%BAc_L%C3%A2m.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "zVFxSLl99S4",
+        "title": "Thiền Viện Trúc Lâm – Góc An Nhiên Giữa Thành Phố Sương Mù#đàlạt"
+      },
+      {
+        "youtubeId": "q1l3tDBsjO4",
+        "title": "Thiền Viện Trúc Lâm Đà Lạt - Phi Vũ DV"
+      }
+    ]
   },
   "linh-an-pagoda": {
     "photos": [
@@ -2638,7 +2592,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/53/Nha_Trang%2C_Long_Son_pagoda.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/db/Lascar_One_Pillar_Pagoda_%284550966464%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "4kF3X3uiTUI",
+        "title": "Linh An pagoda, Da Lat, Vietnam"
+      },
+      {
+        "youtubeId": "1lnkKn6WOh0",
+        "title": "Chùa Linh Ẩn Lâm Đồng 2022 | Vui Music & Travel"
+      }
+    ]
   },
   "thien-vuong-pagoda": {
     "photos": [
@@ -2648,7 +2611,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/d9/M%E1%BB%98T_G%C3%93C_CH%C3%99A_B%C3%81I_%C4%90%C3%8DNH_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/61/ChuaTau_DaLat.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "UFoz_Jx37ic",
+        "title": "Chùa Thiên Vương Cổ Sát chùa Tàu nổi tiếng Đà Lạt. Vietnam discovery journey"
+      },
+      {
+        "youtubeId": "KK9E7dFPU8Y",
+        "title": "Tham quan chùa Tàu ( Thiên Vương Cổ Sát ) Đà Lạt"
+      }
+    ]
   },
   "bao-dai-palace-i": {
     "photos": [
@@ -2658,7 +2630,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/46/Dinh_B%E1%BA%A3o_%C4%90%E1%BA%A1i%2C_%C4%90%C3%A0_L%E1%BA%A1t_%283%29.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/d/d4/Enthronement_of_Emperor_B%E1%BA%A3o_%C4%90%E1%BA%A1i_010.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "621UVTk6fK4",
+        "title": "Dinh Bảo Đại Đà Lạt - Visit Bảo Dai palace in DaLat Viet Nam"
+      },
+      {
+        "youtubeId": "MQU3jzuR9WQ",
+        "title": "Bao Dai King's Palace - Dinh Vua Bảo Đại Đà Lạt"
+      }
+    ]
   },
   "bao-dai-palace-ii": {
     "photos": [
@@ -2668,7 +2649,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/46/Dinh_B%E1%BA%A3o_%C4%90%E1%BA%A1i%2C_%C4%90%C3%A0_L%E1%BA%A1t_%283%29.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/d/d4/Enthronement_of_Emperor_B%E1%BA%A3o_%C4%90%E1%BA%A1i_010.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Yf_A2yz1OVg",
+        "title": "YDL #243: Khách sạn cổ 102 tuổi nơi Vua Bảo Đại lần đầu gặp Nam Phương Hoàng Hậu | Yêu Máy Bay"
+      },
+      {
+        "youtubeId": "WvXn6MBV8jw",
+        "title": "Inside Bảo Đại Palace 1 | Home of Vietnam's Last Emperor | Da Lat, Vietnam (4K POV)"
+      }
+    ]
   },
   "bao-dai-palace-iii": {
     "photos": [
@@ -2678,7 +2668,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/f/f3/Bao_Dai%27s_Summer_Palace_02.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e6/Bao_Dai%27s_Summer_Palace_-_Garden.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Er4nlSdczZc",
+        "title": "[vr360] Dinh Bảo Đại 3 - Bao Dai Summer Palace 3, Dalat, Vietnam"
+      },
+      {
+        "youtubeId": "L-VfDsiW1Jw",
+        "title": "Khám Phá Dinh 3 Vua Bảo Đại Đà Lạt, Nơi Ở Của Vị Vua Cuối Cùng Của Nước Ta!!"
+      }
+    ]
   },
   "lam-vien-square": {
     "photos": [
@@ -2688,7 +2687,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/19/L%C3%A2m_Vi%C3%AAn_square_%28August_7%2C_2018%29_%2843968583912%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/60/L%C3%A2m_Vi%C3%AAn_%C4%90%C3%A0_L%E1%BA%A1t.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "paprQf9ezFE",
+        "title": "Dalat Vietnam 🇻🇳 Walking Tour Lâm Viên Square Lake View #путешествия #travel #asia #vietnam #dalat"
+      },
+      {
+        "youtubeId": "OMBjuDypY8M",
+        "title": "Night View Lâm Viên Square , Da Lat, Vietnam"
+      }
+    ]
   },
   "clay-tunnel-dalat": {
     "photos": [
@@ -2698,7 +2706,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/9b/Dalatvila.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/5/57/Javatuan_dalat_golf.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "3VzOPY1PMlQ",
+        "title": "Clay Tunnels - Dalat Vietnam"
+      },
+      {
+        "youtubeId": "qr8bw6VIaaw",
+        "title": "Clay Sculpture Tunnel Da Lat - Vietnam 🇻🇳 Travel Guide"
+      }
+    ]
   },
   "elephant-falls": {
     "photos": [
@@ -2708,7 +2725,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/7364/9961379455_bb8f24d8f1_b.jpg",
       "https://live.staticflickr.com/3809/10923962756_9b7555cc59_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "F25f_8dDmOI",
+        "title": "Elephant Falls Da Lat (Walking Tour) 4K 1080P Beautiful Hot Sunny Day Vietnam 2023 ☀️🌴"
+      },
+      {
+        "youtubeId": "_5lrqrfTnZA",
+        "title": "The Amazing Waterfalls Of Vietnam: Elephant Falls (Da Lat)"
+      }
+    ]
   },
   "pongour-waterfall": {
     "photos": [
@@ -2718,7 +2744,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/07/ThacPongour.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/f/f7/Thac_Pongour.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "NeIwdNQYMjg",
+        "title": "PONGOUR WATERFALL, VIETNAM"
+      },
+      {
+        "youtubeId": "HnzNPs7U0g0",
+        "title": "Pongour Waterfall, on a day trip from Da Lat Vietnam."
+      }
+    ]
   },
   "prenn-waterfall": {
     "photos": [
@@ -2728,13 +2763,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/4e/Akvofalo_Prenn_09.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/17/Akvofalo_Prenn_10.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "JSFFMrm0CwQ",
+        "title": "Prenn Waterfall DaLat, Vietnam"
+      },
+      {
+        "youtubeId": "vhRqk-bPbRc",
+        "title": "Prenn Waterfall Dalat Vietnam"
+      }
+    ]
   },
   "tiger-cave-waterfall": {
     "photos": [
       "https://live.staticflickr.com/5505/13929264477_c9c6f89c88_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "qZRo9gY_OB0",
+        "title": "KHÁM PHÁ THÁC HANG CỌP ĐÀ LAT- TIGER CAVE WATERFALL TO EXPLORE IN VIET NAM"
+      },
+      {
+        "youtubeId": "vPwkrsrNLnE",
+        "title": "DISCOVER #66: The story of Mr. 30, the mystery of an abandoned tiger cave waterfall in Da Lat"
+      }
+    ]
   },
   "cam-ly-waterfall": {
     "photos": [
@@ -2743,7 +2796,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/dd/Cam_Ly_Waterfall_ca._1925.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/56/Th%C3%A1c_Cam_Ly.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "5QVWvqqyx4E",
+        "title": "Cam ly waterfall Da Lat Viet Nam Travel"
+      },
+      {
+        "youtubeId": "vpSWc5uxwWE",
+        "title": "Đà Lạt Vietnam - Cam Ly Waterfall #vietnam #dalat"
+      }
+    ]
   },
   "dambri-waterfall": {
     "photos": [
@@ -2753,7 +2815,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/2310/2200221145_1575dc1fc3_b.jpg",
       "https://live.staticflickr.com/7044/6943733979_59c9ef2005_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "lTAReRX2kK8",
+        "title": "Dambri Waterfall, Bao Loc: A Vietnam Natural Wonder 🇻🇳"
+      },
+      {
+        "youtubeId": "hJOcsjKT1n0",
+        "title": "DAMBRI WATERFALL IS NICE - BAO LOC, Province Lam Dong, Vietnam"
+      }
+    ]
   },
   "langbiang": {
     "photos": [
@@ -2763,7 +2834,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/ab/Lang_Biang_mountain_in_Da_Lat_Vietnam_-_panoramio_%281%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/71/Lang_Biang_mountain_and_tourist_Jeeps_in_Da_Lat_Vietnam_-_panoramio.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "S0bANARDLpU",
+        "title": "Langbiang Mountain - Dalat, Vietnam"
+      },
+      {
+        "youtubeId": "cKy3FTrGxME",
+        "title": "Hiking to Langbiang Mountain' s Rada in Dalat - Vietnam"
+      }
+    ]
   },
   "da-lat-flower-gardens": {
     "photos": [
@@ -2773,7 +2853,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/73/A_street_of_Da_Lat_ca._1925.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/08/Da_Lat_ca._1925_%281%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "IJar1NRH6Ks",
+        "title": "Explore Dalat Flower Gardens"
+      },
+      {
+        "youtubeId": "QM2xiVSxmLE",
+        "title": "Walking After Rain in Dalat Flower Gardens, Vietnam | 4K ASMR Nature Sounds"
+      }
+    ]
   },
   "cau-dat-tea": {
     "photos": [
@@ -2782,7 +2871,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/86/Artichoketea.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/6f/Hydrangea_in_Dalat%2C_Vietnam_%28T%C3%BA_c%E1%BA%A7u_%C4%90%C3%A0_L%E1%BA%A1t%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "EedzIqBMqkw",
+        "title": "Đồi Chè Cầu Đất Đà Lạt | Dalat Tea Hills"
+      },
+      {
+        "youtubeId": "si4LWXX4hzQ",
+        "title": "Cau Dat Tea Plantation - Đồi Chè Cầu Đất - Dalat Cau Dat 茶园 - Mavic Mini - Gopro 7"
+      }
+    ]
   },
   "da-lat-market": {
     "photos": [
@@ -2792,7 +2890,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/ca/Da_Lat_train_station_21.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/73/A_street_of_Da_Lat_ca._1925.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "IQasGXuA4YM",
+        "title": "Dalat Morning Market | 4K Walking Tour | Vietnam"
+      },
+      {
+        "youtubeId": "nt5zARqnnHM",
+        "title": "Da Lat Night Market 🇻🇳 | VIETNAM 4K Walking Tour of Famous Street Food & 'Hell Market'"
+      }
+    ]
   },
   "hydrangea-trai-mat": {
     "photos": [
@@ -2802,7 +2909,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/86/Tr%E1%BA%A1i_M%C3%A1t%2C_Ph%C6%B0%E1%BB%9Dng_11%2C_tp._%C4%90%C3%A0_L%E1%BA%A1t%2C_L%C3%A2m_%C4%90%E1%BB%93ng%2C_Vietnam_-_panoramio_%282%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/db/DA_LAT_PLATEAU_RAILWAYS_TRAIN_FROM_TRAIMAT_TO_DA_LAT_VIETNAM_JAN_2012_%287048502613%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "edWwa-aTajA",
+        "title": "Hydrangea Flower Farm-Dalat-Vietnam, Vườn Hoa Cẩm Tú Cầu Đà Lạt, 绣球花园"
+      },
+      {
+        "youtubeId": "2ZCz_slUxQs",
+        "title": "Dalat, the city of flowers- hydrangea flower- beautiful nature"
+      }
+    ]
   },
   "fresh-garden-dalat": {
     "photos": [
@@ -2812,14 +2928,32 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/9b/Dalatvila.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/5/57/Javatuan_dalat_golf.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "hxrwUy1JVn4",
+        "title": "\"Fresh Garden Đà Lạt Vietnam\""
+      },
+      {
+        "youtubeId": "zxd6cG3JzP4",
+        "title": "Fresh Garden… Dalat - Vietnam"
+      }
+    ]
   },
   "chicken-village-kho": {
     "photos": [
       "https://live.staticflickr.com/1179/525993818_fa4b76c45f_b.jpg",
       "https://live.staticflickr.com/6/9439290_aa4d3d3676_m.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "y0I8lq-C7F8",
+        "title": "Following four chickens on a local village road in Dalat, Vietnam | Đàn gà đi dạo #shorts"
+      },
+      {
+        "youtubeId": "PiBf8gdN9co",
+        "title": "Exploring Da Lat, Vietnam || Poop coffee, Chicken Village, and beyond!"
+      }
+    ]
   },
   "dong-van-old-quarter": {
     "photos": [
@@ -2829,7 +2963,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/1b/Pho_Co_Coffee_in_Dong_Van.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/9e/Cho_Pho_Co_Dong_Van_in_2014.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "i61UwXny8wE",
+        "title": "Eating Dong Van: a curious breakfast! | Ha Giang, Vietnam"
+      },
+      {
+        "youtubeId": "ZdWcnOnvcTA",
+        "title": "Phố cổ Đồng Văn - Ancient town of Dong Van, Ha Giang province, Vietnam || Thur. July 14th, 2022"
+      }
+    ]
   },
   "dong-van-old-market": {
     "photos": [
@@ -2839,7 +2982,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/1f/Oriental_Market_%26_Pho_NOLA%2C_Metairie%2C_Louisiana_July_2026.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/10/Metairie%2C_Louisiana%2C_14_May_2016_-_Strip_Mall_on_Transcontinental_-_Oriental_Market.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "YIaJ_amLqPE",
+        "title": "A Comprehensive Review of Dong Van Old Town Since 1925 - What Delicious Food and Accommodation Sh..."
+      },
+      {
+        "youtubeId": "duonSJgyILY",
+        "title": "What It's Like to Visit Dong Van Market in Ha Giang"
+      }
+    ]
   },
   "vuong-palace-dong-van": {
     "photos": [
@@ -2848,7 +3000,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/40/AMH-8105-KB_Senior_officials_from_the_Kingdom_of_Tonquin.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b5/Five_Dynasties_Ten_Kingdoms_923_CE.png"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "V8J-1XlRYT8",
+        "title": "The Palace of Hmong King Vuong Chinh Duc in Ha Giang Vietnam"
+      },
+      {
+        "youtubeId": "axB7pbL2SRQ",
+        "title": "Hmong King Palace - The Vuong Family Mansion - Dong Van - Ha Giang"
+      }
+    ]
   },
   "ma-pi-leng-dong-van": {
     "photos": [
@@ -2858,13 +3019,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/23/Ma_Pi_Leng_pass_plateau_in_2014.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/ea/Ma_Pi_Leng_pass_information_board.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "dgPC-K-7_0k",
+        "title": "Journey Across Ma Pi Leng Pass – One of Vietnam’s Four Legendary Mountain Passes"
+      },
+      {
+        "youtubeId": "OlV8jAW6_Kk",
+        "title": "Ma Pi Leng Pass, Northern Vietnam! riding down 14 story pass with drone following"
+      }
+    ]
   },
   "tu-san-dong-van": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/3/3d/TuSan_Canyon.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "iw2YFfugF80",
+        "title": "TU SAN - SOUTHEAST ASIA’S DEEPEST CANYON"
+      },
+      {
+        "youtubeId": "cFHsuJ0gnSw",
+        "title": "A moment in Tu San canyon"
+      }
+    ]
   },
   "nho-que-dong-van": {
     "photos": [
@@ -2874,7 +3053,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/c3/S%C3%B4ng_Nho_Qu%E1%BA%BF_2022_-_NKS.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/68/Th%E1%BB%A7y_%C4%91i%E1%BB%87n_Nho_Qu%E1%BA%BF_1_-_NKS.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "_lneEMA5W5w",
+        "title": "Nho Que River (boat tour) water view - Ha Giang, #Vietnam"
+      },
+      {
+        "youtubeId": "gZHoCV1Iopc",
+        "title": "Nho Que River (boat tour) photos view - Ha Giang, #Vietnam"
+      }
+    ]
   },
   "lung-cu-dong-van": {
     "photos": [
@@ -2885,7 +3073,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Lung_Cu_flag_tower_of_Ha_Giang_in_2014_01.jpg/1280px-Lung_Cu_flag_tower_of_Ha_Giang_in_2014_01.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Lung_Cu_Flag_Tower.jpg/1280px-Lung_Cu_Flag_Tower.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Ljh-NaraouE",
+        "title": "Vietnam Northernmost Point Morning | Lung Cu Flag Tower Walk 4K Ha Giang"
+      },
+      {
+        "youtubeId": "kUOQe00bHHk",
+        "title": "Lung Cu Flag Tower Northern Vietnam"
+      }
+    ]
   },
   "cuc-bac-milestone": {
     "photos": [
@@ -2894,13 +3091,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/04/B%E1%BA%A3n_v%E1%BA%BD_m%E1%BA%B7t_ph%C3%ADa_B%E1%BA%AFc_B%E1%BA%A3o_t%C3%A0ng_Vi%E1%BB%87n_Vi%E1%BB%85n_%C4%90%C3%B4ng_B%C3%A1c_c%E1%BB%95_Ph%C3%A1p_do_Kts_Charles_Batteur_l%E1%BA%ADp_n%C4%83m_1925.png",
       "https://upload.wikimedia.org/wikipedia/commons/9/94/Kim_b%E1%BA%A3o_V%C4%83n_l%C3%BD_m%E1%BA%ADt_s%C3%A1t_%C4%91%C3%B3ng_tr%C3%AAn_b%E1%BA%A3n_ph%E1%BB%A5ng_ch%E1%BB%89_ng%C3%A0y_18_th%C3%A1ng_Gi%C3%AAng_n%C4%83m_Gia_Long_th%E1%BB%A9_5_%281806%29_c%E1%BB%A7a_Ho%C3%A0ng_%C4%91%E1%BA%BF_ban_cho_T%E1%BB%95ng_tr%E1%BA%A5n_B%E1%BA%AFc_th%C3%A0nh_v%E1%BB%81_vi%E1%BB%87c_ch%E1%BB%8Dn_mua_B%E1%BA%AFc_tr%C3%A0_n%E1%BB%99p_v%E1%BB%81_Kinh.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "b9iZ5-JIkyA",
+        "title": "Who Really Got to the North Pole First?"
+      },
+      {
+        "youtubeId": "m0vIzYjLw5Q",
+        "title": "Traveling to the Most Northern Town on Earth (NORTH POLE)"
+      }
+    ]
   },
   "lo-lo-chai-dong-van": {
     "photos": [
       "https://live.staticflickr.com/8216/8272414339_c7316446ea_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "vyJtzo9Yg_M",
+        "title": "🏡 Lo Lo Chai Village – A Peaceful Ethnic Village in Northern Vietnam"
+      },
+      {
+        "youtubeId": "koHkVDRD33U",
+        "title": "Discovering Vietnamese Villages: A Journey to Discover Lo Lo Chai Village."
+      }
+    ]
   },
   "lao-sa-dong-van": {
     "photos": [
@@ -2916,13 +3131,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/5/5e/Tham_Ma_pass_-_Dong_Van.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "ZanxCUyrVWQ",
+        "title": "Getting closer with Tham Ma Pass (Dốc Thẩm Mã, Ha Giang) | A Soothing journey with nature"
+      },
+      {
+        "youtubeId": "MZQ3Z4WCGg4",
+        "title": "Tham Ma Pass | Ha Giang’s Most Thrilling Mountain Road"
+      }
+    ]
   },
   "sunday-market-dong-van": {
     "photos": [
       "https://live.staticflickr.com/3075/2678243218_00a3f32343_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "W7Dt2C8gP6U",
+        "title": "Dong Van Sunday Market, Ha Giang, Vietnam"
+      },
+      {
+        "youtubeId": "umZpgC5QWI0",
+        "title": "Dong Van Sunday Market Vietnam 2016"
+      }
+    ]
   },
   "ma-le-market": {
     "photos": [
@@ -2932,7 +3165,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/3b/Dong_Xuan_market.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/7a/M%C3%A8o_V%E1%BA%A1c_market_-_05.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "z-JD1h4QVO0",
+        "title": "The Year-End Market Selling a Billion Things of the Ethnic Communities at Ma Le (Ha Giang)"
+      },
+      {
+        "youtubeId": "CzlmprEpUWw",
+        "title": "[Gourmet] Local food from the Vietnamese countryside. A market in Ha Giang in the north. No forei..."
+      }
+    ]
   },
   "pho-cao-village": {
     "photos": [
@@ -2942,7 +3184,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/53/Pho-Beef-Noodles-2008.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/0f/Pho_in_Saigon.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "oCND06CGYd0",
+        "title": "mountain road Pho Cao to Dong Van Ha Giang Vietnam"
+      },
+      {
+        "youtubeId": "qOFpu9q83oM",
+        "title": "Traditional Vietnamese Market: Journey to explore Pho Cao market, a famous market in Ha Giang."
+      }
+    ]
   },
   "st-joseph-cathedral": {
     "photos": [
@@ -2952,7 +3203,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/9e/Cathedral_of_St_Joseph%2C_Hanoi%2C_Vietnam_-_54568827691.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/ec/Cathedral_of_St_Joseph%2C_Hanoi%2C_Vietnam_-_54569053103.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Ru3Xq9Mlyk4",
+        "title": "Exploring St. Joseph's Cathedral Hanoi | Vietnam Travel Guide & Architecture"
+      },
+      {
+        "youtubeId": "79vf5c3aHaU",
+        "title": "Downtown Hanoi City From Cau Giay To St. Joseph Cathedral - Vietnam 2023 | 4K HDR 60FPS"
+      }
+    ]
   },
   "hcm-stilt-house": {
     "photos": [
@@ -2962,7 +3222,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/6e/Clinton_Presidential_Center%2C_Airport%2C_and_School_of_Public_Service%2C_aerial.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/10/ClintonPresidentialLibraryInterior.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "DiPahNphQ0g",
+        "title": "Hanoi Presidencial Palace,HoChiMinh Stilt House 2019"
+      },
+      {
+        "youtubeId": "20J4ZI8udJo",
+        "title": "Discover Uncle Ho’s Stilt House – A Simple Yet Profound Legacy"
+      }
+    ]
   },
   "ho-chi-minh-museum-hanoi": {
     "photos": [
@@ -2972,7 +3241,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/07/Ho_Chi_Minh_-_1946_Portrait.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/7f/Mausol%C3%A9e_de_H%C3%B4_Chi_Minh.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "nGiqkeVsNzk",
+        "title": "4K HDR | Walking Dragon Wharf - Ho Chi Minh Museum (HCMC Branch) | Vietnam 2023"
+      },
+      {
+        "youtubeId": "KPx83xhtxL4",
+        "title": "【4K】Inside Ho Chi Minh Museum - Dragon Wharf Saigon - Vietnam Walking Tour"
+      }
+    ]
   },
   "one-pillar-pagoda": {
     "photos": [
@@ -2982,7 +3260,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/67/Dingzhou_Liaodi_Pagoda_2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3b/Aerial_View%2C_Lotus_Pagoda%2C_Guangzhou_Lotus_Hill_20230225~3.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "TmSQcWqlADQ",
+        "title": "[Scenic Walk in Vietnam] A visit to the famous One Pillar Pagoda in Hanoi!"
+      },
+      {
+        "youtubeId": "t2Ty94JMuzM",
+        "title": "One Pillar Pagoda - Hanoi Vietnam 🇻🇳 #hanoi #vietnam #one #pillar #pagoda #chuamotcot"
+      }
+    ]
   },
   "tran-quoc-pagoda": {
     "photos": [
@@ -2992,7 +3279,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/3b/Aerial_View%2C_Lotus_Pagoda%2C_Guangzhou_Lotus_Hill_20230225~3.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/49/Fragrant_Hills-pagoda.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "LUz5h3oQK38",
+        "title": "Tran Quoc Pagoda | Chùa Trấn Quốc Hanoi"
+      }
+    ]
   },
   "ngoc-son-temple": {
     "photos": [
@@ -3002,7 +3294,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/96/NNU_R%C3%B9a_%C4%90%E1%BB%81nng%E1%BB%8DcS%C6%A1n.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3c/NNU_%C4%90%C3%ACnhTr%E1%BA%A5nBa_%C4%90%E1%BB%81nNg%E1%BB%8DcS%C6%A1n.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "pTPccvszIYQ",
+        "title": "Ngọc Sơn Temple, An Unique Culture Experience Of Hanoi"
+      },
+      {
+        "youtubeId": "WwrIehSTRj4",
+        "title": "Temple of the Jade Mountain (Đền Ngọc Sơn) in Hanoi, Vietnam"
+      }
+    ]
   },
   "vietnam-fine-arts-hanoi": {
     "photos": [
@@ -3012,7 +3313,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/8c/Servant%2C_wood_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC04886.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/5/58/Lacquered_box_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05246.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Y9MZxBBmt7I",
+        "title": "4K HDR | Walking Vietnam National Fine Arts Museum in Hanoi | Vietnam 2023 - Captions"
+      },
+      {
+        "youtubeId": "VBOgPMKTIpI",
+        "title": "Hanoi, Vietnam - National Fine Arts Museum - Bảo tàng Mỹ thuật Việt Nam"
+      }
+    ]
   },
   "vietnamese-womens-museum": {
     "photos": [
@@ -3022,7 +3332,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/cb/Betel_Pot%2C_Vietnamese_Women%27s_Museum.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/45/Straw_hat%2C_Vietnamese_Women%27s_Museum.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "9rzuvtQMUjA",
+        "title": "4k Hdr | Walking Vietnamese Women's Museum In Hanoi - Hanoi Vietnam Walk | With Captions"
+      },
+      {
+        "youtubeId": "5ebp2xcgtkM",
+        "title": "Living In Vietnam | Going To The Vietnamese Women's Museum & Making New Friends"
+      }
+    ]
   },
   "vietnam-military-history-museum": {
     "photos": [
@@ -3032,7 +3351,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/de/The_Museum_of_the_Armed_Forces_of_Vietnam_in_Hanoi.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e6/Oct2025._Hanoi_1946_War_Statue%2C_Hanoi%2C_Vietnam_01.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "f4JCjsPRZ74",
+        "title": "The New Vietnam Military History Museum - Hanoi, Vietnam 🇻🇳 - Walking Tour [4K]"
+      },
+      {
+        "youtubeId": "jZ8QtS8yGVE",
+        "title": "Military History Museum, Hanoi - 🇻🇳 Vietnam [4K HDR] Walking Tour"
+      }
+    ]
   },
   "perfume-pagoda": {
     "photos": [
@@ -3042,7 +3370,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/5f/Houng_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%2844%29_%2826742758309%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/53/River_journey_to_the_Perfume_Pagoda%2C_Vietnam_%281%29_%2837804065794%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "uRaPL6Oipkc",
+        "title": "Traveling to the Perfume Pagoda with Jm Nguyễn điệp"
+      },
+      {
+        "youtubeId": "ANj0QqsEDKI",
+        "title": "Perfume Pagoda Day Tour from Hanoi - Vietnam Buddhist Temples"
+      }
+    ]
   },
   "bat-trang-pottery": {
     "photos": [
@@ -3052,27 +3389,60 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/23/Bat_Trang_pottery_and_ceramics_village_in_2016_07.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/29/Bat_Trang_pottery_and_ceramics_village_in_2016_21.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "9iW2Bmgy3s0",
+        "title": "🇻🇳 Bát Tràng Pottery Village - I Got Lost in Vietnam's 700-Year-Old Ceramics Village"
+      },
+      {
+        "youtubeId": "xuBwuGN8bt0",
+        "title": "The Artisans of Bát Tràng | Crafting Vietnam’s Soul in Clay"
+      }
+    ]
   },
   "saigon-central-post-office": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/0/03/Saigon_Central_Post_Office_%2852681461470%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/0/00/Ho_Chi_Minh_City%2C_Central_Post_Office%2C_2020-01_CN-02.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/7/78/Ho_Chi_Minh_City%2C_Central_Post_Office%2C_2020-01_CN-01.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b3/Citadel_of_Saigon_1881.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/bd/Casernes_du_11e_R.I.C._%C3%A0_Saigon.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Saigon_Central_Post_Office_%2852681461470%29.jpg/3840px-Saigon_Central_Post_Office_%2852681461470%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Saigon_Central_Post_Office_%2852681461470%29.jpg/1280px-Saigon_Central_Post_Office_%2852681461470%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Interior_of_Saigon_Central_Post_Office_-_Ho_Chi_Minh_City%2C_Vietnam_-_DSC01153.JPG/1280px-Interior_of_Saigon_Central_Post_Office_-_Ho_Chi_Minh_City%2C_Vietnam_-_DSC01153.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Saigon_Central_Post_Office_-_Ho_Chi_Minh_City%2C_Vietnam_-_DSC01151.JPG/1280px-Saigon_Central_Post_Office_-_Ho_Chi_Minh_City%2C_Vietnam_-_DSC01151.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Saigon_Central_Post_Office-District_1_Ho_Chi_Minh_City-French_Colonial.jpg/1280px-Saigon_Central_Post_Office-District_1_Ho_Chi_Minh_City-French_Colonial.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Saigon_Central_Post_Office%2C_Vietnam.jpg/1280px-Saigon_Central_Post_Office%2C_Vietnam.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Lignes_t%C3%A9l%C3%A9graphiques_du_Sud_Vietnam_et_du_Cambodge_%281936%29%2C_Saigon_Central_Post_Office.JPG/1280px-Lignes_t%C3%A9l%C3%A9graphiques_du_Sud_Vietnam_et_du_Cambodge_%281936%29%2C_Saigon_Central_Post_Office.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/20190923_Saigon_Central_Post_Office-6.jpg/1280px-20190923_Saigon_Central_Post_Office-6.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "jCayjSVzfrI",
+        "title": "Saigon Central Post Office - Ho Chi Minh City 4K Walking Tour | Vietnam (2022)"
+      },
+      {
+        "youtubeId": "3sr9HLR1AcY",
+        "title": "Exploring the Heart of Ho Chi Minh City A Day at the Iconic Central Post Office"
+      }
+    ]
   },
   "saigon-opera-house": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/6/6a/Saigon_Opera_House_Municipal_Theatre_of_Ho_Chi_Minh_City_%2814531950337%29.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Municipal_Theatre_of_Ho_Chi_Minh_City%2C_2023_(01).jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/6b/Saigon_Opera_House_2014.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/8/82/SAIGON_OPERA_HOUSE_VIETNAM_JAN_2012_%286820582672%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/e6/SAIGON_OPERA_HOUSE_VIETNAM_JAN_2012_%286982173919%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/f2/SAIGON_OPERA_HOUSE_VIETNAM_JAN_2012_%286820580194%29.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Saigon_Opera_House_2014.jpg/1280px-Saigon_Opera_House_2014.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Saigon_Opera_House_20190921-1.jpg/1280px-Saigon_Opera_House_20190921-1.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/2023-12-10_Saigon_Opera_House_%28Nh%C3%A0_h%C3%A1t_Th%C3%A0nh_ph%E1%BB%91%2C_S%C3%A0i_G%C3%B2n%29_03.jpg/1280px-2023-12-10_Saigon_Opera_House_%28Nh%C3%A0_h%C3%A1t_Th%C3%A0nh_ph%E1%BB%91%2C_S%C3%A0i_G%C3%B2n%29_03.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/04-12-24_Saigon_Opera_House_1.jpg/1280px-04-12-24_Saigon_Opera_House_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/7e/LUNE_Saigon_Opera_House_03.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Ho_Chi_Minh_City_Opera_House_07-11-2024.jpg/1280px-Ho_Chi_Minh_City_Opera_House_07-11-2024.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "_XdKpqzpCWg",
+        "title": "Vietnam street 4K: Walking near Saigon Opera House, Ho Chi Minh City"
+      },
+      {
+        "youtubeId": "h3wV7zz7-rg",
+        "title": "Ho Chi Minh City Walking Tour 🇻🇳 | Saigon Opera House & Downtown Streets in 4K"
+      }
+    ]
   },
   "hcmc-peoples-committee": {
     "photos": [
@@ -3082,7 +3452,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/d3/20190923_Ho_Chi_Minh_City_Hall-4.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/22/20190923_Ho_Chi_Minh_City_Hall-10.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "KviO9ww2d_o",
+        "title": "Ho Chi Minh City, Vietnam- Uncle Ho Statue and People's Committee Hall"
+      },
+      {
+        "youtubeId": "ULfSrMRQ6yk",
+        "title": "Ho Chi Minh City, Vietnam: Central Post Office, Buddhist Temple, People's Committee Hall."
+      }
+    ]
   },
   "tan-dinh-church": {
     "photos": [
@@ -3092,7 +3471,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/5e/Tan_Dinh_Catholic_Church.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/61/Tan_Dinh_Church.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "aOHjt9WaOnI",
+        "title": "Tân Định Market, Saigon | Vietnam Street Walking Tour (4K)"
+      },
+      {
+        "youtubeId": "WMQJdJ5GhNA",
+        "title": "Tham Quan Nhà Thờ Tân Định Đẹp Lung Linh Mùa Noel | Pink Church (Tan Dinh) | #MiloVo"
+      }
+    ]
   },
   "cha-tam-church": {
     "photos": [
@@ -3102,7 +3490,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cha_Tam_Church_%2810018216585%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/74/Cha_Tam_Church_%2810018161394%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "2NKssSKQCks",
+        "title": "VIETNAM Travel: Explore \"CHA TAM\" Church in Ho Chi Minh City"
+      },
+      {
+        "youtubeId": "PxqRKA5yTjw",
+        "title": "Cha Tam Church (District 5 - Ho Chi Minh City) - Discover Vietnam"
+      }
+    ]
   },
   "hcmc-city-museum": {
     "photos": [
@@ -3112,7 +3509,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/33/Palacio_de_la_Reunificaci%C3%B3n%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_03.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/5/5c/Ho_Chi_Minh_Mausoleum.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "hRrCAIwWXa4",
+        "title": "Front Look - The Ho Chi Minh City Museum"
+      },
+      {
+        "youtubeId": "BzwF8Hk3D1I",
+        "title": "Walking Tour of Vietnam's Famous Dong Khoi Street (Saigon / Ho Chi Minh City Highlights)"
+      }
+    ]
   },
   "museum-vietnamese-history-hcmc": {
     "photos": [
@@ -3122,7 +3528,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/0d/Sakyamuni%2C_Thailand%2C_15th_century_AD%2C_bronze_-_Museum_of_Vietnamese_History_-_Ho_Chi_Minh_City_-_DSC06031.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/1/10/Ceramics_and_sculpture_exhibits_-_Museum_of_Vietnamese_History_-_Ho_Chi_Minh_City_-_DSC05849.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "2DzJYzsyEA0",
+        "title": "SAIGON DAY 7: Museum of Vietnamese History"
+      },
+      {
+        "youtubeId": "RB0RquvcMX0",
+        "title": "The Museum of Vietnamese History - Museum the colonial french"
+      }
+    ]
   },
   "hcmc-fine-arts": {
     "photos": [
@@ -3132,7 +3547,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/93/HCMC_Museum_of_Fine_Arts_%2841135462142%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/03/HCMC_Fine_Arts_Museum_%289997216474%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "w4ulme258-M",
+        "title": "Vietnam : Saigon Fine Arts Museum (12)"
+      },
+      {
+        "youtubeId": "2dv1qTHFDvU",
+        "title": "Vietnam : Saigon Fine Arts Museum (1)"
+      }
+    ]
   },
   "nho-rong-museum": {
     "photos": [
@@ -3142,7 +3566,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/33/Palacio_de_la_Reunificaci%C3%B3n%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_03.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/5/5c/Ho_Chi_Minh_Mausoleum.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "nGiqkeVsNzk",
+        "title": "4K HDR | Walking Dragon Wharf - Ho Chi Minh Museum (HCMC Branch) | Vietnam 2023"
+      },
+      {
+        "youtubeId": "TZvMn9g4i6g",
+        "title": "Ho Chi Minh Port Museum (Nha Rong Dragon Wharf) | HCMC Vietnam"
+      }
+    ]
   },
   "southern-womens-museum": {
     "photos": [
@@ -3152,7 +3585,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/4c/China%2C_Southern_Song_dynasty_-_Birds_and_Ducks_on_a_Snowy_Islet_-_1961.260_-_Cleveland_Museum_of_Art.tif",
       "https://upload.wikimedia.org/wikipedia/commons/d/de/Egypt%2C_Southern_Upper_Egypt%2C_Middle_Kingdom%2C_probably_Dynasty_11%2C_2040-1980_-_Stele_of_Itetioqer_and_Family_-_1914.543_-_Cleveland_Museum_of_Art.tif"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "r2EZVrkMAlA",
+        "title": "SOUTHERN WOMEN'S MUSEUM | SAIGON CORNERS | #3 PODCAST"
+      },
+      {
+        "youtubeId": "hgkH0RV7pR4",
+        "title": "Southern Women's Museum Tour in HCMC 🇻🇳"
+      }
+    ]
   },
   "vinh-nghiem-pagoda": {
     "photos": [
@@ -3162,7 +3604,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/11/Tu_vi%E1%BB%87n_V%C4%A9nh_Nghi%C3%AAm%2C_h%E1%BA%ADu_%C4%91%C6%B0%E1%BB%9Dng_%28gian_nh%C3%A0_sau%29_%2810%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/2b/Tu_vi%E1%BB%87n_V%C4%A9nh_Nghi%C3%AAm%2C_h%E1%BA%ADu_%C4%91%C6%B0%E1%BB%9Dng_%28khung_c%E1%BA%A3nh%29_%2825%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "4l9Xw0rOdQw",
+        "title": "Vĩnh Nghiêm Pagoda, Ho chi Minh City #travel #vietnam"
+      },
+      {
+        "youtubeId": "KmRkQZ0U-lA",
+        "title": "SAIGON - Vĩnh Nghiêm pagoda (dicembre 2015)"
+      }
+    ]
   },
   "xa-loi-pagoda": {
     "photos": [
@@ -3172,7 +3623,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/90/2023-12-10_X%C3%A1_L%E1%BB%A3i_Pagoda%2C_Saigon_23.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/5b/2023-12-10_X%C3%A1_L%E1%BB%A3i_Pagoda%2C_Saigon_24.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "RDm2pxRbqEY",
+        "title": "Xá Lợi Pagoda, Ho Chi Minh city #travel #vietnam"
+      },
+      {
+        "youtubeId": "xqAc0KzGI3U",
+        "title": "Xá Lợi in Bửu Long Pagoda"
+      }
+    ]
   },
   "mariamman-temple": {
     "photos": [
@@ -3182,7 +3642,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/45/Mariamman_temple_in_KL.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/c5/Mariamman.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "oqqrwH3v8YU",
+        "title": "Mariamman Temple | Hindu Temple in Ho Chi Minh City Vietnam 🇻🇳"
+      },
+      {
+        "youtubeId": "qeO_Kx0kEyA",
+        "title": "Hindu Temple in Ho Chi Minh City 🇻🇳| Mariamman Temple Tour"
+      }
+    ]
   },
   "giac-lam-pagoda": {
     "photos": [
@@ -3192,7 +3661,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/d2/Giac_Lam_1744_Sign.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/3/3a/Chua_Giac_Lam_Gate.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "iEzzEke9wKA",
+        "title": "Giác Lâm Pagoda Saigon"
+      },
+      {
+        "youtubeId": "Hq3dZR3DIIU",
+        "title": "Calligrapher At The Giác Lâm Pagoda Saigon"
+      }
+    ]
   },
   "binh-tay-market": {
     "photos": [
@@ -3202,7 +3680,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/ac/Binh_Tay_Market%2C_Ho_Chi_Minh_City%2C_Vietnam%2826485286900%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b2/Binh_Tay_Market%2C_Ho_Chi_Minh_City%2C_Vietnam%2826152580834%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "4zC3SMWLifY",
+        "title": "Walking Tour of the Bình Tây Market, Ho Chi Ming City, Vietnam"
+      },
+      {
+        "youtubeId": "PMfUm4BqDug",
+        "title": "VIETNAM Travel - Walking and Exploring \"Bình Tây Market\" in Ho Chi Minh City - [Are you here yet?]"
+      }
+    ]
   },
   "bitexco-skydeck": {
     "photos": [
@@ -3212,7 +3699,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/ef/Bitexco_Financial_Tower.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/02/Bitexco_Financial_Tower_%2852680930526%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "NV_6HKgXB6Q",
+        "title": "Saigon Skydeck, Bitexco Tower, Vietnam"
+      },
+      {
+        "youtubeId": "7bFgPCP-Bto",
+        "title": "Saigon Skydeck - Bitexco Financial Tower, Ho Chi Minh City Vietnam ประเทศเวียดนาม"
+      }
+    ]
   },
   "bui-vien-street": {
     "photos": [
@@ -3222,7 +3718,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/70/Bui_Vien_Street%2C_District_1%2C_HCMC_%2839256556611%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b5/%27Bui_Vien_Street%27_at_night.%27THE_BACKPACKER_TOURIST_LOCALITY.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "lcLTjd90QiM",
+        "title": "I Went Into Vietnam’s Wildest Nightlife Street 🇻🇳 (Bùi Viện After Dark)"
+      },
+      {
+        "youtubeId": "ODHXll2OxkY",
+        "title": "Bùi Viện street vietnam"
+      }
+    ]
   },
   "saigon-book-street": {
     "photos": [
@@ -3232,7 +3737,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/52/Bui_Vien_Walking_Street_1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/bd/Casernes_du_11e_R.I.C._%C3%A0_Saigon.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Zu9l2cEjdDg",
+        "title": "Saigon Book Street, Ho Chi Minh City, Vietnam 🇻🇳 4K Walking Tour"
+      },
+      {
+        "youtubeId": "ULa3RxOIjEs",
+        "title": "4K Walking Tour of HCMC Book Street in Saigon, Vietnam 🇻🇳"
+      }
+    ]
   },
   "tao-dan-park": {
     "photos": [
@@ -3242,7 +3756,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/5d/2023-12-10_Tao_%C4%90%C3%A0n_Park%2C_Saigon_02.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3d/2023-12-10_Tao_%C4%90%C3%A0n_Park%2C_Saigon_04.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "WDhsmtyMEIs",
+        "title": "MORNING PARK SOUNDS | Tao Đàn Park Walkthrough – Ho Chi Minh City, Vietnam [Ambient 1080p]"
+      },
+      {
+        "youtubeId": "beOueuWuxMk",
+        "title": "Tao Đàn Park, Ho Chi Minh City, Vietnam"
+      }
+    ]
   },
   "thao-cam-vien": {
     "photos": [
@@ -3252,7 +3775,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/9b/Monkey_House_-_Saigon_Zoo_and_Botanical_Gardens_-_Ho_Chi_Minh_City%2C_Vietnam_-_DSC01315.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/8/82/Bonsai_-_Saigon_Zoo_and_Botanical_Gardens_-_Ho_Chi_Minh_City%2C_Vietnam_-_DSC01240.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "NlgqMy9HPMU",
+        "title": "Saigon Zoo & Botanical Gardens（Thảo Cầm Viên Sài Gòn）🐘4K Binaural Vietnam Sounds"
+      },
+      {
+        "youtubeId": "xxAJM6nbbOo",
+        "title": "Saigon Zoo and Botanical Gardens, Ho Chi Minh, Vietnam - Tham quan sở thú Sài Gòn Thảo Cầm Viên"
+      }
+    ]
   },
   "binh-quoi-village": {
     "photos": [
@@ -3262,17 +3794,38 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/8a/Binh_Quoi_Traditional_River_Hut_Jun2005.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/f/f8/BinhQuoiBambooWaterWheel_Jun2005.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "OooeB72JSQM",
+        "title": "Khu du lịch Bình Quới 1 nhìn từ trên cao, cảnh đẹp nghẹn ngào."
+      },
+      {
+        "youtubeId": "wWtAfxK5uyM",
+        "title": "Khu Du lịch Bình Quới 1 Tp.HCM"
+      }
+    ]
   },
   "suoi-tien-theme-park": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/9/91/Ti%C3%AAn_Dong_Beach%2C_Suoi_Tien_Park.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/9/9c/July_2023_Suoi_Tien_Park_51.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/3b/July_2023_Suoi_Tien_Park_17.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/e5/July_2023_Suoi_Tien_Park_58.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/d/d0/July_2023_Suoi_Tien_Park_69.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/July_2023_Suoi_Tien_Park_51.jpg/1280px-July_2023_Suoi_Tien_Park_51.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/July_2023_Suoi_Tien_Park_58.jpg/1280px-July_2023_Suoi_Tien_Park_58.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/July_2023_Suoi_Tien_Park_69.jpg/1280px-July_2023_Suoi_Tien_Park_69.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/July_2023_Suoi_Tien_Park_21.jpg/1280px-July_2023_Suoi_Tien_Park_21.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/July_2023_Suoi_Tien_Park_40.jpg/1280px-July_2023_Suoi_Tien_Park_40.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/July_2023_Suoi_Tien_Park_24.jpg/1280px-July_2023_Suoi_Tien_Park_24.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/July_2023_Suoi_Tien_Park_3.jpg/1280px-July_2023_Suoi_Tien_Park_3.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/July_2023_Suoi_Tien_Park_8.jpg/1280px-July_2023_Suoi_Tien_Park_8.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "mEtldLZ9E34",
+        "title": "Walking Around Suối Tiên in Vietnam: From Metro Station to Theme Park"
+      },
+      {
+        "youtubeId": "-YPmIxNQBvI",
+        "title": "Suối Tiên Cultural Amusement Park | Ho Chi Minh City | Vietnam"
+      }
+    ]
   },
   "han-river-bridge": {
     "photos": [
@@ -3283,11 +3836,18 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/99/Han_River_Bridge_2.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Han_River_Bridge%2C_Da_Nang_-_wide_-_dove.jpg/1280px-Han_River_Bridge%2C_Da_Nang_-_wide_-_dove.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Han_River_Bridge%2C_Da_Nang_-_not_so_wide_-_dove.jpg/1280px-Han_River_Bridge%2C_Da_Nang_-_not_so_wide_-_dove.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Han_River_Bridge%2C_Da_Nang_-_original_-_dove.jpg/1280px-Han_River_Bridge%2C_Da_Nang_-_original_-_dove.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Standing_by_Han_River_Da_Nang.jpg/1280px-Standing_by_Han_River_Da_Nang.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/7/71/Han_River_.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Han_River_Bridge%2C_Da_Nang_-_original_-_dove.jpg/1280px-Han_River_Bridge%2C_Da_Nang_-_original_-_dove.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "n88SNJsRD-o",
+        "title": "[🇻🇳4K] Danang, Vietnam - Walking Along Han River - Danang Walking Tour"
+      },
+      {
+        "youtubeId": "4rt3isindbc",
+        "title": "Han River Bridge is the first and only swing bridge in Vietnam, a highlight of Da Nang’s cityscape."
+      }
+    ]
   },
   "thuan-phuoc-bridge": {
     "photos": [
@@ -3297,7 +3857,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/f/fb/C%E1%BA%A7u_Thu%E1%BA%ADn_Ph%C6%B0%E1%BB%9Bc_%28AH%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e1/Dragon_Bridge%2C_Da_Nang%2C_2026_04_30_Reunification_Day_anniversary.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "NDvs3hksAzA",
+        "title": "CẦU THUẬN PHƯỚC CAO NHẤT ĐÀ NẴNG _CẢNG TIÊN SA RỘNG BÁT NGÁT CỬA BIỂN TẬP 104"
+      },
+      {
+        "youtubeId": "A2IZj0NIu7A",
+        "title": "CẦU THUẬN PHƯỚC - ĐÀ NẴNG (Thuan Phuoc Bridge) | Đà Nẵng Tôi Yêu | PHAM MAO"
+      }
+    ]
   },
   "love-lock-bridge": {
     "photos": [
@@ -3307,7 +3876,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/57/Love_Lock_at_Bridge_in_Foots_Cray_Meadows_%28IV%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/50/Love_Lock_at_Bridge_in_Foots_Cray_Meadows_%28V%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "N0lJI8fT_Hc",
+        "title": "4K HDR | Night Walking Love Lock Bridge Da Nang | Vietnam 2023 - With Captions"
+      },
+      {
+        "youtubeId": "6iupK9pBoBg",
+        "title": "Love Lock Bridge Danang City| Vietnam 🇻🇳| 4K"
+      }
+    ]
   },
   "da-nang-cathedral": {
     "photos": [
@@ -3317,7 +3895,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/6e/Da_Nang_Cathedral_20190919.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/f/fc/Da_Nang_Roman_Catholic_Cathedral.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "4LDYsm-YRDk",
+        "title": "Da Nang Cathedral (Pink Church) – Da Nang, Vietnam 🇻🇳 | Da Nang (Danang) Travel Guide - Ep# 4"
+      },
+      {
+        "youtubeId": "icLUazzp4GQ",
+        "title": "Da Nang, Vietnam - Danang Cathedral (Looking Around the Grounds)"
+      }
+    ]
   },
   "hai-van-pass": {
     "photos": [
@@ -3328,11 +3915,18 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/01/CauHaiVan.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Hai_Van_Pass%2C_Vietnam.jpg/1280px-Hai_Van_Pass%2C_Vietnam.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/%C4%90%C3%A0_N%E1%BA%B5ng%2C_H%E1%BA%A3i_V%C3%A2n_Pass%2C_2020-01_CN-01.jpg/1280px-%C4%90%C3%A0_N%E1%BA%B5ng%2C_H%E1%BA%A3i_V%C3%A2n_Pass%2C_2020-01_CN-01.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/The_H%E1%BA%A3i_V%C3%A2n_Pass%2C_Vietnam_%286944524036%29.jpg/1280px-The_H%E1%BA%A3i_V%C3%A2n_Pass%2C_Vietnam_%286944524036%29.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/The_H%E1%BA%A3i_V%C3%A2n_Pass%2C_Vietnam_%286944515090%29.jpg/1280px-The_H%E1%BA%A3i_V%C3%A2n_Pass%2C_Vietnam_%286944515090%29.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/The_H%E1%BA%A3i_V%C3%A2n_Pass%2C_Vietnam_%287090608927%29.jpg/1280px-The_H%E1%BA%A3i_V%C3%A2n_Pass%2C_Vietnam_%287090608927%29.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/The_H%E1%BA%A3i_V%C3%A2n_Pass%2C_Vietnam_%286944524036%29.jpg/1280px-The_H%E1%BA%A3i_V%C3%A2n_Pass%2C_Vietnam_%286944524036%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "cL1XTpX4_2Q",
+        "title": "Secret Spot On Hải Vân Pass (Da Nang, Vietnam)"
+      },
+      {
+        "youtubeId": "8WpQ9UDvknA",
+        "title": "Vietnam - Da Nang/Hue 3 (Hải Vân Pass)"
+      }
+    ]
   },
   "non-nuoc-beach": {
     "photos": [
@@ -3342,7 +3936,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/1b/Non_nuoc_Basket_boats.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/0b/Cast_of_China_Beach_%28cropped%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "FJMsy5x7BMk",
+        "title": "Vietnam Travel 2023 - Non Nước Beach - Đà Nẵng"
+      },
+      {
+        "youtubeId": "sNUaps7_86E",
+        "title": "DN2-07-12B Đà Nẵng Marriott Resort & spa, Non nước Beach Villas"
+      }
+    ]
   },
   "linh-ung-marble-mountains": {
     "photos": [
@@ -3372,7 +3975,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/b2/Dragon_Marble_Mountain_Da_Nang_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/4a/Ch%C3%B9a_Linh_%E1%BB%A8ng_%28h%E1%BA%ADu_vi%E1%BB%87n%29_t%E1%BA%A1i_S%C6%A1n_Tr%C3%A0%2C_%C4%90%C3%A0_N%E1%BA%B5ng%2C_th%C3%A1ng_3_n%C4%83m_2021_%283%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "fwXD7v5JRBY",
+        "title": "Hidden Temple Da Nang - Chùa Nam Sơn Pagoda"
+      },
+      {
+        "youtubeId": "2WRxOaoUFRc",
+        "title": "Hidden Temple in Da Nang - Chùa Nam Sơn Pagoda"
+      }
+    ]
   },
   "cham-sculpture-museum": {
     "photos": [
@@ -3383,11 +3995,14 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/0e/View_of_Han_River_from_EFEO_Cham_Gardens_in_Da_Nang.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2812%29.JPG/1280px-Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2812%29.JPG",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%281%29.JPG/1280px-Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%281%29.JPG",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2814%29.JPG/1280px-Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2814%29.JPG",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2820%29.JPG/1280px-Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2820%29.JPG",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2822%29.JPG/1280px-Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2822%29.JPG"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2814%29.JPG/1280px-Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2814%29.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "SeUR6-nx2Q4",
+        "title": "Explore the ancient wine cellar at Ba Na Hills and the Cham Sculpture Museum"
+      }
+    ]
   },
   "da-nang-museum": {
     "photos": [
@@ -3397,7 +4012,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/06/Aerial_view_of_Marine_helicopter_flight_line_at_Da_Nang_shortly_after_SHUFLY%27s_relocation_to_I_Corps_in_September_1962.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/58/VNAF_Skyraider_at_Da_Nang_1967.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "WM8baJF36A4",
+        "title": "The Side of Da Nang Tourists Never See | Inside Da Nang Museum"
+      },
+      {
+        "youtubeId": "CZwlvd8TRDg",
+        "title": "Da Nang Free Walking Tour | Cham Museum"
+      }
+    ]
   },
   "fifth-military-zone-museum": {
     "photos": [
@@ -3417,17 +4041,38 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/60/Produce_in_Han_Market_-_Da_Nang%2C_Vietnam_-_DSC02385.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/a/a0/Seafood_in_Han_Market_-_Da_Nang%2C_Vietnam_-_DSC02382.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "4smK53S-0SA",
+        "title": "Da Nang Vietnam, Explore Han Market 'Chợ Hàn' - 4K Virtual Travel"
+      },
+      {
+        "youtubeId": "O_Ik0Cyg3OM",
+        "title": "Hàn Market – Da Nang, Vietnam 🇻🇳 | Da Nang (Danang) Travel Guides - Episode# 3"
+      }
+    ]
   },
   "con-market": {
     "photos": [
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Con_Market_1.jpg/1280px-Con_Market_1.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Con_Market_2.jpg/1280px-Con_Market_2.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Con_Market_at_sunset.jpg/1280px-Con_Market_at_sunset.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/08/Con_Market_1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/0f/Con_Market_2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3b/Con_Market_across_intersection.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/b/b9/Stalls_behind_Con_Market_DN.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/1/1d/Con_Market_at_sunset.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "zT4Yw2oJYDQ",
+        "title": "【4K🇻🇳】Danang's Largest Local Market Walking Tour (Chợ Cồn) - Vietnam Travel Guide"
+      },
+      {
+        "youtubeId": "_ovQg4-hW5g",
+        "title": "🇻🇳 Da Nang Walking Tour 4K | Chợ Cồn Market – Real Vietnamese Street Food & Local Life"
+      }
+    ]
   },
   "asia-park-danang": {
     "photos": [
@@ -3437,7 +4082,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/22/Sun_World_Asia_Park%2C_Da_Nang_%2849356316103%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3a/Sun_World_Asia_Park%2C_Da_Nang_%2849358003906%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "o2edHyp4tzE",
+        "title": "Asia Park DaNang Vietnam"
+      },
+      {
+        "youtubeId": "gGbVvzvtcsw",
+        "title": "Asia Park - Sun World Da Nang Wonders ( VIETNAM )"
+      }
+    ]
   },
   "datanla-waterfall": {
     "photos": [
@@ -3447,7 +4101,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/dd/Datanla_Waterfall.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/2e/Datanla_Waterfall_2.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Epm6kiaPeQ4",
+        "title": "Da Lat Waterfall Adventure 🇻🇳 | Datanla Walking Tour (4K)"
+      },
+      {
+        "youtubeId": "CC0ZJpBXlVg",
+        "title": "DATANLA Waterfall Da Lat (2024) Vietnam – Pristine Beauty & Exciting Experiences"
+      }
+    ]
   },
   "da-lat-night-market": {
     "photos": [
@@ -3457,7 +4120,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/32/Da_Lat_Nuclear_Research_Institute_01.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/c/ca/Da_Lat_train_station_21.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "nt5zARqnnHM",
+        "title": "Da Lat Night Market 🇻🇳 | VIETNAM 4K Walking Tour of Famous Street Food & 'Hell Market'"
+      },
+      {
+        "youtubeId": "q8x2OKQW8ZM",
+        "title": "Da Lat Night Market - Da Lat Vietnam - Walking in Vietnam 4K"
+      }
+    ]
   },
   "ma-pi-leng-pass": {
     "photos": [
@@ -3467,7 +4139,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/0f/Mountain_road_at_M%C3%A3_P%C3%AD_L%C3%A8ng_Pass%2C_H%C3%A0_Giang_Province%2C_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/db/Ma_Pi_Leng_panorama.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "yLqBmSPtB54",
+        "title": "Ma Pi Leng pass - Ha Giang - North Vietnam | #motorbiketourexpert #hagiang #mapilengpass"
+      },
+      {
+        "youtubeId": "3mUUVGf9uT8",
+        "title": "Vietnam Discovery Travel: Ma Pi Leng Pass in Ha Giang province, Part 01"
+      }
+    ]
   },
   "dong-van-geopark": {
     "photos": [
@@ -3480,19 +4161,46 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Cao_nguy%C3%AAn_%C4%91%C3%A1_%C4%90%E1%BB%93ng_V%C4%83n_-_NKS.jpg/1280px-Cao_nguy%C3%AAn_%C4%91%C3%A1_%C4%90%E1%BB%93ng_V%C4%83n_-_NKS.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/B%C3%A3i_%C4%91%C3%A1_m%E1%BA%B7t_tr%C4%83ng_%C4%90%E1%BB%93ng_V%C4%83n_-_NKS.jpg/1280px-B%C3%A3i_%C4%91%C3%A1_m%E1%BA%B7t_tr%C4%83ng_%C4%90%E1%BB%93ng_V%C4%83n_-_NKS.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "SkjRJe3s_1E",
+        "title": "Dong Van Karst Plateau Geopark in Winter / Skywalk | Vietnam Motorbike Trip Pt.5 (2019) #unesco"
+      },
+      {
+        "youtubeId": "_usbBwCFFwI",
+        "title": "Ha Giang | The Last Steps on the Dong Van Karst Plateau"
+      }
+    ]
   },
   "quan-ba-heaven-gate": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/5/53/DuonglencongtroiQuanBa.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "VRasD2BBGVY",
+        "title": "VIETNAM Travel - experience Quan Ba - Ha Giang (P5)"
+      },
+      {
+        "youtubeId": "phwccYklW8k",
+        "title": "Quan Ba Heaven Gate – The Gateway to Ha Giang’s Majestic Landscapes"
+      }
+    ]
   },
   "tu-san-canyon": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/3/3d/TuSan_Canyon.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "iw2YFfugF80",
+        "title": "TU SAN - SOUTHEAST ASIA’S DEEPEST CANYON"
+      },
+      {
+        "youtubeId": "c41SEmCNU30",
+        "title": "Tu San Canyon"
+      }
+    ]
   },
   "nho-que-river": {
     "photos": [
@@ -3502,7 +4210,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/c3/S%C3%B4ng_Nho_Qu%E1%BA%BF_2022_-_NKS.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/68/Th%E1%BB%A7y_%C4%91i%E1%BB%87n_Nho_Qu%E1%BA%BF_1_-_NKS.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "IUFa8hYgwGI",
+        "title": "Nho Que River (boat tour) walking aboard - Ha Giang, #Vietnam"
+      },
+      {
+        "youtubeId": "_lneEMA5W5w",
+        "title": "Nho Que River (boat tour) water view - Ha Giang, #Vietnam"
+      }
+    ]
   },
   "bac-sum-pass": {
     "photos": [
@@ -3511,19 +4228,46 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/4e/Hmong_market_tents_in_rural_Ha_Giang_province%2C_2014.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/33/D%E1%BB%91c_B%E1%BA%AFc_Sum_%2846762031595%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Mr9yUWr1a34",
+        "title": "Ha Giang route. Bac Sum slope in the North beats Khanh Le pass in the South!"
+      },
+      {
+        "youtubeId": "kUdtyQvZEFw",
+        "title": "From Ha Giang City to Bac Sum Pass - Cung đường Hà Giang đến dốc Bắc Sum"
+      }
+    ]
   },
   "quan-ba-twin-mountains": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/1/11/Fairy_Bosom_information_in_Ha_Giang.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "phwccYklW8k",
+        "title": "Quan Ba Heaven Gate – The Gateway to Ha Giang’s Majestic Landscapes"
+      },
+      {
+        "youtubeId": "sWF0AqmzKf8",
+        "title": "QUAN BA TWIN MOUTAINS | HA GIANG VISION TOUR & HOSTEL"
+      }
+    ]
   },
   "yen-minh-pine-forest": {
     "photos": [
       "https://live.staticflickr.com/8477/8157129861_9692f7223f_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Upwhj1DVzZU",
+        "title": "Day 6, Yen Minh pine forest to Dong Van plateau 🤞."
+      },
+      {
+        "youtubeId": "qakCkv_jBBI",
+        "title": "Discover the Hidden GEM of Ha Giang Plateau Yen Minh Pine Forest"
+      }
+    ]
   },
   "du-gia-waterfall": {
     "photos": [
@@ -3533,27 +4277,63 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/ef/Cau_cang_Dao_cu_tron-quan_Dao_nam_du._xa_An_S%C6%A1n%2C_Huyen_Ki%C3%AAn_H%E1%BA%A3i%2C_t%E1%BB%89nh_Ki%C3%AAn_Giang%2C_Vi%E1%BB%87t_Nam%2C02-07-16-Dyt_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/79/SaPhin_HaGiang_Vietnam.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "lWhGgfMzJw8",
+        "title": "Du Gia Waterfall Ha Giang Vietnam | Secret Spot & Nature Adventure"
+      },
+      {
+        "youtubeId": "YCqenwstEzo",
+        "title": "Bathing in HA GIANG Waterfall VIETNAM 4k - Vietnam Beach | Beach walk 4k"
+      }
+    ]
   },
   "hoang-su-phi-terraces": {
     "photos": [
       "https://live.staticflickr.com/65535/53412276917_3a65a73bd0_b.jpg",
       "https://live.staticflickr.com/7534/27422017500_61e5516b3a_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "_pvFPyRCFt8",
+        "title": "Hoang Su Phi Rice Terraces - Ha Giang"
+      },
+      {
+        "youtubeId": "YVk15DO80rI",
+        "title": "Ha Giang Motorbike Tour - Discover Hoang Su Phi and Xin Man - Vietnam"
+      }
+    ]
   },
   "chieu-lau-thi": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/1/12/Chieulauthi2.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "n6knv3e4_7w",
+        "title": "Experience to Chieu Lau Thi mountain, the mountain is highly 2402 meters above sea level."
+      },
+      {
+        "youtubeId": "NhLQKzwpmbA",
+        "title": "Chieu Lau Thi - ecstatic in the sea of clouds floating in the Northwest sky FBNC"
+      }
+    ]
   },
   "tay-con-linh": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/f/fb/Tayconlinh_summit.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1d/Lincoln_Cathedral_Consistory_Court_roof_Boss%2C_North_east_%2839362223625%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "lKZzQiT_--I",
+        "title": "Trekking Tay Con Linh Mountain"
+      },
+      {
+        "youtubeId": "gDraW_ma82E",
+        "title": "Conquering Tay Con Linh - Ha Giang's Highest Peak by Motorcycle"
+      }
+    ]
   },
   "lung-cu-flag-tower": {
     "photos": [
@@ -3566,7 +4346,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Lung_Cu_flag_tower_of_Ha_Giang_in_2014_05.jpg/1280px-Lung_Cu_flag_tower_of_Ha_Giang_in_2014_05.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Lung_Cu_flag_tower_of_Ha_Giang_in_2014_06.jpg/1280px-Lung_Cu_flag_tower_of_Ha_Giang_in_2014_06.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Ljh-NaraouE",
+        "title": "Vietnam Northernmost Point Morning | Lung Cu Flag Tower Walk 4K Ha Giang"
+      },
+      {
+        "youtubeId": "gy8wt8Ab0wE",
+        "title": "Walking Through Lung Cu Flag Tower | Cột Cờ Lũng Cú, Hà Giang"
+      }
+    ]
   },
   "dong-van-ancient-town": {
     "photos": [
@@ -3576,7 +4365,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/d2/Tonkin._Dong-Dang._N%C2%B035_Linh-co_n%C3%A9_%C3%A0_Van-vien%2C_23_ans%2C_tho_de_p%C3%A8re_et_m%C3%A8re._41_m-m_-_%28photogr.%29_A._S%28alles%29_-_btv1b530132115_%282_of_2%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/4b/Tonkin._Dong-Dang._N%C2%B034_Caporal_de_Linh-co%2C_n%C3%A9_%C3%A0_Van-quan%2C_20_ans%2C_tho_de_p%C3%A8re_et_m%C3%A8re._36m-m_-_%28photogr.%29_A._S%28alles%29_-_btv1b53013161v_%282_of_2%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "i61UwXny8wE",
+        "title": "Eating Dong Van: a curious breakfast! | Ha Giang, Vietnam"
+      },
+      {
+        "youtubeId": "ZdWcnOnvcTA",
+        "title": "Phố cổ Đồng Văn - Ancient town of Dong Van, Ha Giang province, Vietnam || Thur. July 14th, 2022"
+      }
+    ]
   },
   "vuong-palace": {
     "photos": [
@@ -3586,7 +4384,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/7c/Ha_Giang_Hmong_King_palace_in_2014_06.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/6d/Ha_Giang_Hmong_King_palace_in_2014_15.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "FVzYrBHp_M0",
+        "title": "Explore the Mysterious Hmong King Palace in Ha Giang"
+      },
+      {
+        "youtubeId": "V8J-1XlRYT8",
+        "title": "The Palace of Hmong King Vuong Chinh Duc in Ha Giang Vietnam"
+      }
+    ]
   },
   "meo-vac-town": {
     "photos": [
@@ -3596,7 +4403,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/7d/Province_de_Ha-Giang_%281909%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/be/S%C3%BAng_th%E1%BA%A7n_c%C3%B4ng_H%C3%A0_Giang.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "-DylZk1b1X0",
+        "title": "Travels in Ha Giang, Vietnam Part II - Dong Van and Meo Vac"
+      },
+      {
+        "youtubeId": "Hn_ULK_zcck",
+        "title": "Exploring Meo Vac Market in Ha Giang l With Jasmine Tour"
+      }
+    ]
   },
   "yen-minh-town": {
     "photos": [
@@ -3606,7 +4422,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/5c/Quang_Minh_Ni_T%E1%BB%B1_%28ti%E1%BB%83u_c%E1%BA%A3nh_Ph%E1%BA%ADt_%C4%91%E1%BA%A3n_sanh%29_%281%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b7/Quang_Minh_Ni_T%E1%BB%B1_%28ch%E1%BA%ADu_hoa_c%C3%BAc%29_%281%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "CRmjdz6PoNQ",
+        "title": "Yen Minh to Dong Van, Vietnam"
+      },
+      {
+        "youtubeId": "baHchrY5mfI",
+        "title": "Yen Minh town Ha Giang Vietnam"
+      }
+    ]
   },
   "ha-giang-km0": {
     "photos": [
@@ -3616,7 +4441,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/46/B%E1%BA%AFc_Giang4.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/f/f3/Th%E1%BB%8B_tr%E1%BA%A5n_Cai_L%E1%BA%ADy%2C_Ti%E1%BB%81n_Giang.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "jTV_YLRgz60",
+        "title": "Ha Giang Km 0 Milestone I Ha Giang City I Ha Giang I Vietnam I Thang Vu"
+      }
+    ]
   },
   "sung-la-valley": {
     "photos": [
@@ -3637,7 +4467,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/0/0c/Thitrantamson.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "K6UvU3w1_2k",
+        "title": "Drive from Ha Giang city over Thai An pass to the beautiful Lung Tam valley, Hagiang, Vietnam"
+      },
+      {
+        "youtubeId": "fDt71rOKYBY",
+        "title": "Lung Tam Linen Cooperativer"
+      }
+    ]
   },
   "du-gia-village": {
     "photos": [
@@ -3647,7 +4486,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/79/SaPhin_HaGiang_Vietnam.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/7/7d/Province_de_Ha-Giang_%281909%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "SPJOKHP2yGo",
+        "title": "🇻🇳 Du Gia Village သို့ | Ha Giang ရဲ့ အလှဆုံးတောင်တန်းအလှများ"
+      }
+    ]
   },
   "nam-dam-village": {
     "photos": [
@@ -3657,13 +4501,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/54/Geography_of_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/42/Nam_Cao_-_N%C3%BAi_Tr%C3%BAc_Street_%28IMG_0078%29.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "tR2kZk0sENA",
+        "title": "Nam Dam village Ly Danh homestay"
+      },
+      {
+        "youtubeId": "LNTIc12OaLU",
+        "title": "Welcome to Nam Dam village"
+      }
+    ]
   },
   "lo-lo-chai-village": {
     "photos": [
       "https://live.staticflickr.com/8216/8272414339_c7316446ea_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "HjBMUXd1OO4",
+        "title": "🇻🇳 Lo Lo Chai Village – Best Tourism Village 2025 in Northern Vietnam"
+      },
+      {
+        "youtubeId": "J33WM040Jn4",
+        "title": "Thật bất ngờ với sự thay đổi của làng Lô Lô Chai Lũng Cú - Beauty of Lo Lo Chai village"
+      }
+    ]
   },
   "seo-lung-village": {
     "photos": [
@@ -3686,13 +4548,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/cf/Bun_Mam_Soc_Trang_-_fish%2C_prawns%2C_pork_-_Vinh_Long_Market_VND20000.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/46/Ma_Pi_Leng_Pass_winding_road_Ha_Giang_Vietnam.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "xmb3tCjubTw",
+        "title": "Love Market (Cho Tinh Khau Vai) - a Feature Film from Vietnam (IGG Fundraiser Video)"
+      },
+      {
+        "youtubeId": "QvENrrNea2E",
+        "title": "Explore Khau Vai Love Market Festival – Vietnam’s Most Unique Tradition & Cultural Beauty"
+      }
+    ]
   },
   "dong-van-sunday-market": {
     "photos": [
       "https://live.staticflickr.com/3075/2678243218_00a3f32343_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "W7Dt2C8gP6U",
+        "title": "Dong Van Sunday Market, Ha Giang, Vietnam"
+      },
+      {
+        "youtubeId": "N6kalcX50Kk",
+        "title": "Vietnam's Most INSANE Market! 🇻🇳 - Dong Van Ha Giang Vietnam"
+      }
+    ]
   },
   "meo-vac-market": {
     "photos": [
@@ -3702,7 +4582,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/7a/M%C3%A8o_V%E1%BA%A1c_market_-_05.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/69/M%C3%A8o_V%E1%BA%A1c_market_-_03.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "-DylZk1b1X0",
+        "title": "Travels in Ha Giang, Vietnam Part II - Dong Van and Meo Vac"
+      },
+      {
+        "youtubeId": "Hn_ULK_zcck",
+        "title": "Exploring Meo Vac Market in Ha Giang l With Jasmine Tour"
+      }
+    ]
   },
   "quan-ba-market": {
     "photos": [
@@ -3712,7 +4601,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/a2/Quy%E1%BA%BFt_Ti%E1%BA%BFn_market%2C_H%C3%A0_Giang%2C_Vietnam_-_1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/f/f5/Quy%E1%BA%BFt_Ti%E1%BA%BFn_market%2C_H%C3%A0_Giang%2C_Vietnam_-_3.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "hkPiurZXHbs",
+        "title": "Visit Quan Ba Market in Hagiang"
+      },
+      {
+        "youtubeId": "-WarieEOijU",
+        "title": "Hà Giang 2025 Self-Guided Tour by Car: Visiting Quan Ba, Lo Lo Chai, Dong Van Old Town, and Ma Pi..."
+      }
+    ]
   },
   "hoang-su-phi-market": {
     "photos": [
@@ -3721,7 +4619,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/3719/13663134623_82e8f0e754_b.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e7/743_LET_L-29_Delphin.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "32FSF4eEpn4",
+        "title": "Rice fields in Hoang Su Phi"
+      },
+      {
+        "youtubeId": "cL1Zcb0rDnk",
+        "title": "Traditional Vietnamese Market: A Journey to Discover Hoang Su Phi Market, Ha Giang Vietnam Part 2"
+      }
+    ]
   },
   "bai-tu-long-bay": {
     "photos": [
@@ -3731,7 +4638,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/3f/Lang_Chai_Floating_Village-Halong_Bay_Vietnam-Andres_Larin.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1e/Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "W3ETlZL-0SE",
+        "title": "Bữa trưa trên tàu 5* (Bái Tử Long Bay)."
+      },
+      {
+        "youtubeId": "n0wiYSjAO-E",
+        "title": "2 Day Journey Through Bái Tử Long Bay Best Deals"
+      }
+    ]
   },
   "thien-cung-cave": {
     "photos": [
@@ -3761,7 +4677,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/39/Litsea_glutinosa-Me_Cung_Cave_%281%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/5a/Dracaena_cambodiana-Me_Cung_Cave_%281%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "YGxpzCl5RrA",
+        "title": "Thien Cung Cave Wonders | Hidden Gem in Ha Long Bay 🇻🇳🪨✨"
+      },
+      {
+        "youtubeId": "o_ZO2odYuaI",
+        "title": "Me Cung Pre-historic Cave - Halong Bay, Vietnam Holidays"
+      }
+    ]
   },
   "trinh-nu-cave": {
     "photos": [
@@ -3791,7 +4716,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/a4/Monkeys_in_Lu%E1%BB%93n_Cave_%2839584095524%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/6f/Monkeys_in_Lu%E1%BB%93n_Cave_%2826423223158%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "0yd7d20H_w0",
+        "title": "Luon Cave - Ha Long Bay (Hang Luồn - Hạ Long)"
+      },
+      {
+        "youtubeId": "qCBUYjybbqU",
+        "title": "Luon Cave & Kayaking (Hang Luồn Vịnh Hạ Long) in Halong Bay Vietnam ประเทศเวียดนาม"
+      }
+    ]
   },
   "dong-tien-cave": {
     "photos": [
@@ -3811,7 +4745,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/5494/14310179943_5e216a4ef4_b.jpg",
       "https://live.staticflickr.com/2935/14103288169_945164a847_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "aCxOASUlkfk",
+        "title": "[ahalong.com] Đảo Soi Sim - Thiên đường giữa lòng di sản Hạ Long"
+      },
+      {
+        "youtubeId": "mCIjKqfWZBw",
+        "title": "Soi Sim island"
+      }
+    ]
   },
   "tuan-chau-island": {
     "photos": [
@@ -3821,7 +4764,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/50/Tu%E1%BA%A7n_Ch%C3%A2u%2C_Th%C3%A0nh_ph%E1%BB%91_H%E1%BA%A1_Long%2C_Qu%E1%BA%A3ng_Ninh%2C_Vietnam_-_panoramio_%284%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/bc/Tu%E1%BA%A7n_Ch%C3%A2u%2C_Th%C3%A0nh_ph%E1%BB%91_H%E1%BA%A1_Long%2C_Qu%E1%BA%A3ng_Ninh%2C_Vietnam_-_panoramio_%2811%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "j-B42xR-gKk",
+        "title": "Công Viên Tuần Châu - Hạ Long Chơi Gì ???"
+      },
+      {
+        "youtubeId": "NNi7BYzog6Q",
+        "title": "Tuần Châu Hạ Long Có Một Bãi Đá Đẹp Miễn Phí Ít Người Biết 🌊 | HinChiBi Travel"
+      }
+    ]
   },
   "co-to-island": {
     "photos": [
@@ -3831,7 +4783,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/4e/Koh_Rong_island.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/d0/Road_clearing_Koh_Rong_island.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "87XSQLEJpd8",
+        "title": "Coto Island Vietnam 2019"
+      },
+      {
+        "youtubeId": "P_FKFBuzqo4",
+        "title": "I found an other Hidden Gem Island in Northern Vietnam"
+      }
+    ]
   },
   "quan-lan-island": {
     "photos": [
@@ -3841,13 +4802,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/23/S%C6%A1n_H%C3%A0o_Beach%2C_Cao_L%C3%B4n_Island%2C_V%C3%A2n_%C4%90%E1%BB%93n%2C_Qu%E1%BA%A3ng_Ninh%2C_Vi%E1%BB%87t_Nam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/8/8e/Duong_Pham_Van_Hai_%2C_quan_Tan_binh_tphcmvn_-_panoramio.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "folKbf8PYvM",
+        "title": "Quan Lạn island."
+      },
+      {
+        "youtubeId": "d3UHO5YqiO4",
+        "title": "Đảo quan lạn-Sơn hào- vân đồn"
+      }
+    ]
   },
   "ngoc-vung-island": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/2/20/Tho_Chu_Island_%28%C4%90%E1%BA%A3o_Th%E1%BB%95_Chu%29_S2-2024.png"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "vToivtGCAQw",
+        "title": "Ngọc Vừng - stormy beach at night (time-lapse)"
+      },
+      {
+        "youtubeId": "mvfZEJUqeP0",
+        "title": "Ngọc Vừng Island"
+      }
+    ]
   },
   "mat-rong-island": {
     "photos": [
@@ -3857,7 +4836,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/4075/4915876931_07b68998e2_b.jpg",
       "https://live.staticflickr.com/3858/14430240697_04bed41a16_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "l9oHo9QHk-I",
+        "title": "Flycam Dragon Eye Island (Đảo Mắt Rồng Hạ Long)"
+      },
+      {
+        "youtubeId": "3hXvTSfxWxk",
+        "title": "Dragon Eyes Island (Đảo Mắt Rồng, Hạ Long, Quảng Ninh)"
+      }
+    ]
   },
   "hon-trong-mai": {
     "photos": [
@@ -3867,7 +4855,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/65535/50046016941_1688595703_b.jpg",
       "https://live.staticflickr.com/65535/50045452053_f1c88c4818_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Yw6tbRldSto",
+        "title": "베트남 하롱베이 싸움닭 섬 | Fighting Cock Islet(Hòn Trống Mái Hạ Long) in Vietnam"
+      },
+      {
+        "youtubeId": "zYwx_LNdePQ",
+        "title": "Hòn Trống Mái - Hòn Gà Chọi biểu tượng du lịch của Hạ Long, Hòn Trống Mái Quảng Ninh, Vịnh Hạ Long"
+      }
+    ]
   },
   "hon-con-coc": {
     "photos": [
@@ -3877,7 +4874,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/1e/Cruise_Ship-Halong_Bay_Vietnam-Andres_Larin.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/ed/Limestone_Cliffs-Halong_Bay_Vietnam-Andres_Larin.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "bnZ0XfzEH9Q",
+        "title": "Hòn Con Cóc – Vịnh Hạ Long"
+      }
+    ]
   },
   "hon-cho-da": {
     "photos": [
@@ -3907,7 +4909,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/8326/8433848097_89588658d6_b.jpg",
       "https://live.staticflickr.com/8365/8434917478_e4cc652fa3_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "IHC2T57OD8o",
+        "title": "Vung Vieng Floating Village in a Minute"
+      }
+    ]
   },
   "ba-hang-village": {
     "photos": [
@@ -3927,7 +4934,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/8f/B%C3%A3i_Ch%C3%A1y_026.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/5/58/B%C3%A3i_Ch%C3%A1y_032.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Lm271amyzYE",
+        "title": "[4K] Ha Long city, Vietnam - Bãi Cháy Tourist Area - Khu du lịch Bãi Cháy, Hạ Long Quảng Ninh"
+      },
+      {
+        "youtubeId": "4z68LEGZx1k",
+        "title": "Tắm biển ở Bãi Cháy - Hạ Long giờ rất khác rồi nhé! video 4k"
+      }
+    ]
   },
   "bai-chay-bridge": {
     "photos": [
@@ -3937,7 +4953,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/48/B%C3%A3i_Ch%C3%A1y_Bridge_from_Ha_Long_Queen_Cable_Car_%2849373501376%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/27/B%C3%A3i_Ch%C3%A1y_Bridge%2C_H%E1%BA%A1_Long_City%2C_Vi%E1%BB%87t_Nam.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "MawSEEoPvtU",
+        "title": "[4K] Ha Long city, Vietnam - Bãi Cháy bridge - From Bãi Cháy Tourist Area to Hòn Gai"
+      },
+      {
+        "youtubeId": "Lm271amyzYE",
+        "title": "[4K] Ha Long city, Vietnam - Bãi Cháy Tourist Area - Khu du lịch Bãi Cháy, Hạ Long Quảng Ninh"
+      }
+    ]
   },
   "bai-tho-mountain": {
     "photos": [
@@ -3947,7 +4972,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/b1/Death_poem_by_Kuroki_Hiroshi.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/4d/Akashi_Gidayu_writing_his_death_poem_before_committing_Seppuku.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "h7kBvYcULj8",
+        "title": "HIKING BÀI THƠ MOUNTAIN - HẠ LONG"
+      },
+      {
+        "youtubeId": "ZnG3GBL3byI",
+        "title": "Poem Mountain (Núi Bài Thơ) and Ha Long Bay"
+      }
+    ]
   },
   "quang-ninh-museum": {
     "photos": [
@@ -3957,7 +4991,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/88/Chignon_jewelry%2C_Dao_Lan_Ten%2C_Quang_Ninh%2C_silver_-_Vietnamese_Women%27s_Museum_-_Hanoi%2C_Vietnam_-_DSC03985.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/5/50/Pin%2C_Dao_Lan_Ten%2C_Quang_Ninh%2C_1983%2C_bone_with_beads_-_Vietnamese_Women%27s_Museum_-_Hanoi%2C_Vietnam_-_DSC03987.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "oF4Ci9hY2SQ",
+        "title": "Du Lịch Hạ Long | Bảo Tàng Thư Viện Quảng Ninh Siêu To"
+      },
+      {
+        "youtubeId": "wpQk5cckAH0",
+        "title": "A Mirror of the Sea Quảng Ninh Museum Reflects the Province’s Rich Legacy"
+      }
+    ]
   },
   "sun-world-halong": {
     "photos": [
@@ -3967,7 +5010,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/52/Fish_pond_in_Sun_World_Halong_Park._Ha_Long_Town%2C_Vietnam%2C_20240129_1453_4113.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/63/Fish_pond_in_Sun_World_Halong_Park._Ha_Long_Town%2C_Vietnam%2C_20240129_1534_4200.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "qrMtPoRn4Sc",
+        "title": "4K Walk Tour | Sun World Halong Complex"
+      },
+      {
+        "youtubeId": "kZwlP-lIbEw",
+        "title": "Sun World Halong Complex {Aerial view}"
+      }
+    ]
   },
   "queen-cable-halong": {
     "photos": [
@@ -3977,7 +5029,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/b5/View_of_Ha_Long_Bay_from_Queen_Cable_Car_%2849355170333%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/48/B%C3%A3i_Ch%C3%A1y_Bridge_from_Ha_Long_Queen_Cable_Car_%2849373501376%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "P7kC6X5cN9s",
+        "title": "What AERIAL EXPERTS Don't Want You to Know About Queen Cable Car"
+      },
+      {
+        "youtubeId": "159HLqhoTnQ",
+        "title": "Queen Cable Car Halong"
+      }
+    ]
   },
   "sun-wheel-halong": {
     "photos": [
@@ -3987,7 +5048,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/d6/Sailing_in_Ha_Long_Bay_2%2C_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b1/Bai_Chai_Bridge%2C_Ha_Long_Bay%2C_Vietnam2.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "smSpZWGGC-M",
+        "title": "Sun Wheel Ha Long | A unique Ferris wheel in Quang Ninh City."
+      },
+      {
+        "youtubeId": "7TM5TmzIO4Q",
+        "title": "Sun Wheel, Ha Long, Viet Nam, Fly Cam, 4K Vdeo"
+      }
+    ]
   },
   "dragon-park-halong": {
     "photos": [
@@ -3997,7 +5067,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/79/Ha_Long_Bay_in_2019.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/42/Ha_Long_2019_taken_by_DJI_FC220.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "4k6lQggBGx0",
+        "title": "Halloween Season 2017 Dragon Park."
+      },
+      {
+        "youtubeId": "Fn1uw2GcC-I",
+        "title": "Tổng hợp - trải nghiệm tại Dragon Park Hạ Long."
+      }
+    ]
   },
   "typhoon-water-park": {
     "photos": [
@@ -4007,7 +5086,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/87/2025_Pacific_typhoon_season_summary.png",
       "https://upload.wikimedia.org/wikipedia/commons/0/08/Typhoon_Ragasa_in_Macau_%28Rua_Nova_da_Areia_Preta%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "qMzUQS1eH60",
+        "title": "Ha Long Typhoon Water Park 2019 - Full Movie"
+      },
+      {
+        "youtubeId": "SrvrEAok8dA",
+        "title": "Exploring Typhoon Water Park Ha Long | VTV4"
+      }
+    ]
   },
   "ha-long-market": {
     "photos": [
@@ -4017,13 +5105,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/42/Ha_Long_2019_taken_by_DJI_FC220.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/f/fa/Boats_in_Ha_Long_bay.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "EB0z-jScq28",
+        "title": "🇻🇳 Cho Ha Long Market Walking Tour & Dicovery - Immersion in Vietnam HD 4K"
+      },
+      {
+        "youtubeId": "2odT08FH46c",
+        "title": "Khám phá chợ hải sản hạ long|explore ha long market|ha long tv🇻🇳"
+      }
+    ]
   },
   "bai-chay-night-market": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/c/c5/Vietnamese_civilians_watching_TV_at_Saigon_market.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "1S6lFkkTjho",
+        "title": "Hạ Long | Đêm tại Hạ Long_ Trải nghiệm đêm bãi Cháy Hạ Long."
+      },
+      {
+        "youtubeId": "eTwgMYZmtQs",
+        "title": "4K walking tour: Hạ Long, Vietnam. Starts at waterfront, Bãi Cháy"
+      }
+    ]
   },
   "ha-long-flower-park": {
     "photos": [
@@ -4033,7 +5139,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/86/%22Flowers_Blossom_at_Valley_of_Flowers_Chamoli%2C_India%22_52.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/79/Valley_of_Flowers%2CUttarakhand_02.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "l5J8aUuagcs",
+        "title": "4K Walk Tour | Halong's Recreational \"Flower\" Park"
+      },
+      {
+        "youtubeId": "6swnZ3m43P0",
+        "title": "TVC dự án Hạ Long Flower Resort"
+      }
+    ]
   },
   "loi-am-pagoda": {
     "photos": [
@@ -4043,7 +5158,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/5c/One_Pillar_Pagoda_0327.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/7/7e/One_Pillar_Pagoda_0324.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "zNz1tlRYgxw",
+        "title": "[4K, original sound] Vãn cảnh chùa Lôi Âm - Tp. Hạ Long - Go to Loi Am pagoda"
+      },
+      {
+        "youtubeId": "r8zNbxvWsp0",
+        "title": "CHÙA LÔI ÂM: Khám Phá Hồ Yên Lập và Truyền Thuyết về Núi Lôi Âm | LOI AM PAGODA and YEN LAP LAKE"
+      }
+    ]
   },
   "long-tien-pagoda": {
     "photos": [
@@ -4053,7 +5177,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/67/Dingzhou_Liaodi_Pagoda_2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3b/Aerial_View%2C_Lotus_Pagoda%2C_Guangzhou_Lotus_Hill_20230225~3.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "_mX_K1Mo_x0",
+        "title": "Chùa Long Tiên - điểm du lịch tâm linh nổi tiếng Hạ Long"
+      },
+      {
+        "youtubeId": "vF9aVix_4HY",
+        "title": "Linh thiêng chùa Long Tiên dưới chân núi Bài Thơ | QTV"
+      }
+    ]
   },
   "cua-ong-temple": {
     "photos": [
@@ -4063,7 +5196,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/aa/C%E1%BB%91c_%C3%94ng_%C4%90%E1%BA%A1o_C%E1%BA%ADy.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/2e/Cua_ong_2007_007.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "8aXT_10zFRM",
+        "title": "Cua Ong Temple Đền Cửa Ông"
+      },
+      {
+        "youtubeId": "aUDCQk9xnZs",
+        "title": "Đền Cửa Ông - Quảng Ninh 360 - Du lịch Quảng Ninh"
+      }
+    ]
   },
   "tran-quoc-nghien-temple": {
     "photos": [
@@ -4073,7 +5215,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/83/Dinh_C%E1%BA%ADu_Ph%C3%BA_Qu%E1%BB%91c.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e8/T%C6%B0%E1%BB%A3ng_%C4%91%E1%BB%93ng_Tr%E1%BA%A7n_H%C6%B0ng_%C4%90%E1%BA%A1o_t%E1%BA%A1i_%C4%91%E1%BB%81n_Ki%E1%BA%BFp_B%E1%BA%A1c.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "pU-skTTwgkw",
+        "title": "Đường bao biển Trần Quốc Nghiễn từ bãi bồi đến đường bao biển đẹp nhất Việt Nam"
+      }
+    ]
   },
   "bao-bien-road": {
     "photos": [
@@ -4083,7 +5230,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/26/B%E1%BA%A3n_chi%E1%BA%BFu_ban_ng%C3%A0y_m%E1%BB%93ng_7_th%C3%A1ng_Hai_n%C4%83m_Gia_Long_th%E1%BB%A9_5_%281806%29_c%E1%BB%A7a_Ho%C3%A0ng_%C4%91%E1%BA%BF_Gia_Long_v%E1%BB%81_vi%E1%BB%87c_truy%E1%BB%81n_cho_T%E1%BB%95ng_tr%E1%BA%A5n_B%E1%BA%AFc_th%C3%A0nh_n%E1%BA%A1p_%C4%91%E1%BA%A5t_%C4%91%E1%BB%83_x%C3%A2y_%C4%91%E1%BA%AFp_%C4%91%C3%A0n_X%C3%A3_T%E1%BA%AFc.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e0/The_Imperial_Records_of_the_Nguy%E1%BB%85n_Dynasty_Vol._3_-_Gia_Long_%22Report_on_Drifting%22_%281817%29_01.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "mxO0_jPp4mc",
+        "title": "Đường bao biển Hạ Long nhìn từ trên cao | shorts | 3 phút tin hay"
+      },
+      {
+        "youtubeId": "WXGOlVCDSHI",
+        "title": "MyWay™ | Trần Quốc Nghiễn, tuyến đường ven biển thành phố Hạ Long - Tuyệt phẩm bên bờ Di sản."
+      }
+    ]
   },
   "tan-ky-old-house": {
     "photos": [
@@ -4093,7 +5249,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/f/f6/DSC1054_-Vecchia_casa_di_Tan_Ky.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3a/DSC1053_-Vecchia_casa_di_Tan_Ky.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "aP3NsApXy5g",
+        "title": "Day 2 - Hoi An Old house of Tan Ky Self Guided"
+      },
+      {
+        "youtubeId": "Qur3NL0Odxg",
+        "title": "Vietnam:Old House.Tan Ki.Quan.Thang.Phung.Hung .Duc An/Back.Stage-Service×Doc.Progr\"Oriente.Express\""
+      }
+    ]
   },
   "phung-hung-old-house": {
     "photos": [
@@ -4103,7 +5268,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/49/DGJ_0967_-_Phung_Hung_Old_House_%283415825802%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/78/Phung_Hung_old_house_2_%28inside%29.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "6I1wpnS0-iw",
+        "title": "Nhà cổ Phùng Hưng - Hội An"
+      },
+      {
+        "youtubeId": "JYyxXc2MTNk",
+        "title": "The Old House of Phùng Hưng, Hội An"
+      }
+    ]
   },
   "duc-an-old-house": {
     "photos": [
@@ -4123,7 +5297,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/4f/Old_House_of_Quan_Thang_%2815428363782%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/8/82/Dsc_%28221219605%29.jpeg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "e1--MgEeGiU",
+        "title": "Afternoon Walk Hoi An Old Town to Quan Thang Old House Nhà cổ Quân Thắng Vietnam Hội An Việt Nam"
+      },
+      {
+        "youtubeId": "lemAb6q8mfc",
+        "title": "Walk Hoi An Old Town to Quan Thang Old House Nhà cổ Quân Thắng Vietnam Hội An Việt Nam"
+      }
+    ]
   },
   "hoi-an-market": {
     "photos": [
@@ -4137,13 +5320,25 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
   },
   "fujian-assembly-hall": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/e/e1/Fujian_Assembly_Hall%2C_Hoi_An_20190920.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/6a/Fujian_Assembly_Hall_Hoi_An_5.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/e3/Fujian_Assembly_Hall_Hoi_An_13.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/21/Fujian_Assembly_Hall_Hoi_An_9.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/31/Fujian_Assembly_Hall_Hoi_An_12.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/H%E1%BB%99i_An_2024_-_Fujian_Assembly_Hall_%28H%E1%BB%99i_qu%C3%A1n_Ph%C3%BAc_Ki%E1%BA%BFn_%2C_%E6%9C%83%E5%AE%89%E7%A6%8F%E5%BB%BA%E6%9C%83%E9%A4%A8%29_-_img_01.jpg/1280px-H%E1%BB%99i_An_2024_-_Fujian_Assembly_Hall_%28H%E1%BB%99i_qu%C3%A1n_Ph%C3%BAc_Ki%E1%BA%BFn_%2C_%E6%9C%83%E5%AE%89%E7%A6%8F%E5%BB%BA%E6%9C%83%E9%A4%A8%29_-_img_01.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Fujian_Assembly_Hall%2C_Hoi_An_20190920.jpg/1280px-Fujian_Assembly_Hall%2C_Hoi_An_20190920.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Fujian_Assembly_Hall_Hoi_An_5.jpg/1280px-Fujian_Assembly_Hall_Hoi_An_5.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Fujian_Assembly_Hall_Hoi_An_13.jpg/1280px-Fujian_Assembly_Hall_Hoi_An_13.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Fujian_Assembly_Hall_Hoi_An_9.jpg/1280px-Fujian_Assembly_Hall_Hoi_An_9.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/H%E1%BB%99i_An%2C_Fujian_Assembly_Hall%2C_2020-01_CN-01.jpg/1280px-H%E1%BB%99i_An%2C_Fujian_Assembly_Hall%2C_2020-01_CN-01.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Fujian_Assembly_Hall_Hoi_An_12.jpg/1280px-Fujian_Assembly_Hall_Hoi_An_12.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Fujian_Assembly_Hall_Hoi_An_10.jpg/1280px-Fujian_Assembly_Hall_Hoi_An_10.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "MwoVjtjiYco",
+        "title": "Fujian Assembly Hoi An #travelshorts #youtubeshorts #vietnamtravel #traveltips #fujian"
+      },
+      {
+        "youtubeId": "Mm0edpuEbOI",
+        "title": "Exploring the Fujian Assembly Hall in Hoi An, Vietnam"
+      }
+    ]
   },
   "cantonese-assembly-hall": {
     "photos": [
@@ -4153,7 +5348,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/18/Cantonese_Assembly_Hall_of_Hoi_An_%282024%29_-_img_01.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/ca/Cantonese_Assembly_Hall_of_Hoi_An_%282024%29_-_img_04.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "qj1KUTfiA48",
+        "title": "Cantonese Assembly Hall In Hoi An - Hidden Dragon Garden"
+      },
+      {
+        "youtubeId": "mQ5_yJotcJQ",
+        "title": "Hoi An Cantonese Assembly Hall 広東会館 Hội Quán Quảng Đông 360video"
+      }
+    ]
   },
   "hainan-assembly-hall": {
     "photos": [
@@ -4163,7 +5367,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/d4/Hainanese_chicken_rice.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3e/Altstadt_von_Haikou_%28Hainan%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "UAKKU7iR4Rw",
+        "title": "Hainan Assembly Hall Temple Hội quán Hải Nam Hoi An Vietnam Hội An Việt Nam @explorevietnamchannel"
+      },
+      {
+        "youtubeId": "CQBWIKrfywY",
+        "title": "Hainan Ba Pagoda - Quynh Phu Assembly Hall, District 5, Saigon | SaLa TV"
+      }
+    ]
   },
   "teochew-assembly-hall": {
     "photos": [
@@ -4183,7 +5396,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/f/fa/Chinese_assembly_hall_-_Hoi_An_%2826653373258%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/39/Chinese_assembly_hall_-_Hoi_An_%2839814123904%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "zg4cmayiVQQ",
+        "title": "ASSEMBLY HALL Hoi an"
+      },
+      {
+        "youtubeId": "Boarzf-MZcA",
+        "title": "Viet Nam travel guide - Phuoc Kien Assembly Hall Hoi An - Sai Gon Ha Noi with local tour"
+      }
+    ]
   },
   "quan-cong-temple": {
     "photos": [
@@ -4193,7 +5415,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/a9/Hoi_An_-_Quan_Cong_Temple_1653.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b7/Quan_Cong_Temple_3.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "q6SahZzA2go",
+        "title": "Hoi An, Vietnam - Quan Cong Temple (Vibrant and Colorful)"
+      },
+      {
+        "youtubeId": "3DNPX7KtK40",
+        "title": "Hoi An, Vietnam - The Ancient City (Quan Cong Temple Entrance)"
+      }
+    ]
   },
   "phap-bao-pagoda": {
     "photos": [
@@ -4203,7 +5434,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/ec/L%C3%A1_%E1%BA%A5n_%C4%91%E1%BB%81n_Tr%E1%BA%A7n_-_Nam_%C4%90%E1%BB%8Bnh_-_B%C3%A1o_%C4%91i%E1%BB%87n_t%E1%BB%AD_Ph%C3%A1p_lu%E1%BA%ADt_Vi%E1%BB%87t_Nam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b3/Th%C6%B0_c%E1%BB%A7a_T%C6%B0_l%E1%BB%87nh_Kh%C3%B4ng_qu%C3%A2n_Ph%C3%A1p_%E1%BB%9F_%C4%90%C3%B4ng_D%C6%B0%C6%A1ng_xin_%C4%91%E1%BA%A5t_%E1%BB%9F_ven_H%E1%BB%93_T%C3%A2y_%C4%91%E1%BB%83_l%C3%A0m_nh%C3%A0_ga_th%E1%BB%A7y_phi_c%C6%A1.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "yR1_TnyGn3M",
+        "title": "Chùa Pháp Võ (Pháp Võ Cổ Tự) Huỳnh Tấn Phát Nhà Bè Tp.Hồ Chí Minh"
+      },
+      {
+        "youtubeId": "TKziKu-rUHA",
+        "title": "Ghé thăm chùa Pháp Bảo phố cổ Hội An"
+      }
+    ]
   },
   "hoi-an-central-mosque": {
     "photos": [
@@ -4223,7 +5463,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/a7/H%E1%BB%99i_An%2C_Museum_of_Trade_Ceramics%2C_2020-01_CN-02.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/f/f6/Hoi_An_Museum_of_Trade_Ceramics.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "KBcX5au4Zro",
+        "title": "A Journey Through Time: Exploring the Museum of Trade Ceramics, Hoi An"
+      },
+      {
+        "youtubeId": "q5FKhXEJyxg",
+        "title": "Hoi An Museum of Trade Ceramics"
+      }
+    ]
   },
   "hoi-an-history-museum": {
     "photos": [
@@ -4233,7 +5482,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/f/fb/Hoi_An_lantern_lampion_%2838834258624%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/35/Hoi_An_Laternen_und_Lampions_%2839543426861%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "j9TXJedxcfU",
+        "title": "Unveiling Hoi An's Rich History: A Visit to the Museum of History and Culture"
+      }
+    ]
   },
   "sa-huynh-museum": {
     "photos": [
@@ -4253,7 +5507,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/a8/Folk_Culture_%2815429113145%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/a/a9/Folk_Culture_%2815242311610%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "TQPdvc_qI2o",
+        "title": "Museum Of Folk Culture, Hoi An"
+      },
+      {
+        "youtubeId": "16rrzCNcQpQ",
+        "title": "Vietnam, Hoi An Bao Tang Museum Folklore"
+      }
+    ]
   },
   "precious-heritage-museum": {
     "photos": [
@@ -4263,7 +5526,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/69/Chennai_National_Art_Gallery.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/a/aa/Cleveland_Museum_of_Art_South_View.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "e5gHmVzp_XM",
+        "title": "The precious heritage museum and art gallery, Hoi An| Must visit - free of cost #travel #vietnam"
+      },
+      {
+        "youtubeId": "qxyvV_RI08s",
+        "title": "Precious Heritage by Réhahn in Hoi An"
+      }
+    ]
   },
   "kim-bong-village": {
     "photos": [
@@ -4273,7 +5545,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/36/Three_Heads_in_Kim_Bong.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/3/3b/Huynh_Ri_Sign_Kim_Bong.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Nvq_V1n2LHk",
+        "title": "KHÁM PHÁ LÀNG MỘC KIM BỒNG | Discover Kim Bong Carpentry Village"
+      }
+    ]
   },
   "cua-dai-beach": {
     "photos": [
@@ -4283,7 +5560,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/f/f6/Hoi-An-Beach.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/0f/Emperor_B%E1%BA%A3o_%C4%90%E1%BA%A1i_on_his_throne_%28cropped%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "0I9Up6nqkoA",
+        "title": "Silent Walk on Cửa Đại Beach | Hoi An Vietnam 2025 | Calm Sea, White Sand & Peaceful Summer Day"
+      },
+      {
+        "youtubeId": "8DKxBGbrLQE",
+        "title": "CUA DAI BEACH - BIỂN CỬA ĐẠI - HỘI AN"
+      }
+    ]
   },
   "cu-lao-cham": {
     "photos": [
@@ -4293,7 +5579,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/c9/Pot_in_phoenix_shape%2C_Cu_Lao_Cham_shipwreck_artifact%2C_Early_Le_dynasty%2C_15th_century_AD%2C_blue_and_white_glazed_ceramic_-_National_Museum_of_Vietnamese_History_-_Hanoi%2C_Vietnam_-_DSC05410.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/b/b5/Woman_figurine%2C_Cu_Lao_Cham_shipwreck_artifact%2C_Early_Le_dynasty%2C_15th_century_AD%2C_polychrome_and_gilded_ceramic_-_National_Museum_of_Vietnamese_History_-_Hanoi%2C_Vietnam_-_DSC05414.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "DWxGxy3HLkI",
+        "title": "San Hô Cực Đẹp tại Cù Lao Chàm với tour Sea trek"
+      },
+      {
+        "youtubeId": "Rh1RT8uBN00",
+        "title": "Dacotours | Cù Lao Chàm - Ngắm nhìn vẻ đẹp của hòn ngọc xanh xứ Quảng từ trên cao"
+      }
+    ]
   },
   "forbidden-purple-city": {
     "photos": [
@@ -4303,7 +5598,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/2e/B%E1%BA%A3n_v%E1%BA%BD_Kinh_th%C3%A0nh_Hu%E1%BA%BF.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/7b/Imperial_City_Hue_20190917-3.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "4WDrBaV-HoY",
+        "title": "PURPLE FORBIDDEN CITY OF VIET NAM - THAM LAI CO DO HUE"
+      }
+    ]
   },
   "ngo-mon-gate": {
     "photos": [
@@ -4313,7 +5613,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/13/Ng%E1%BB%8D_M%C3%B4n_Hu%E1%BA%BF%2C_v%C3%A0o_th%C3%A1ng_3_n%C4%83m_2021_%289%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/13/Ng%E1%BB%8D_m%C3%B4n%2C_Hu%E1%BA%BF.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "2GQNTNzBuJ8",
+        "title": "Kiệt tác kiến trúc triều Nguyễn - Cổng Ngọ Môn"
+      },
+      {
+        "youtubeId": "8QPxsJmrUyc",
+        "title": "Cổng Ngọ Môn Huế và lầu Ngũ Phụng - Di sản kiến trúc dưới triều Nguyễn | Bạch Hoàng Travel"
+      }
+    ]
   },
   "thai-hoa-palace": {
     "photos": [
@@ -4323,7 +5632,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/36/Palace_of_Supreme_Harmony%2C_Hu%E1%BA%BF_%287073485639%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/a/a1/Thai_Hoa_Palace_20190917.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "wZz_iM9F0JQ",
+        "title": "Điện Thái Hòa - The Palace of Supreme Harmony - Hue Citadel"
+      }
+    ]
   },
   "can-chanh-palace": {
     "photos": [
@@ -4331,7 +5645,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/b8/N%E1%BB%81n_%C4%91i%E1%BB%87n_C%E1%BA%A7n_Ch%C3%A1nh_-_Ho%C3%A0ng_th%C3%A0nh_Hu%E1%BA%BF.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/67/U.S._Army_UH-1H_Hueys_insert_ARVN_troops_at_Kh%C3%A2m_%C4%90%E1%BB%A9c%2C_Vietnam%2C_12_July_1970_%2879431435%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "6hIuaEI0Pyg",
+        "title": "Cận cảnh điện Cần Chánh đang được phục dựng giữa Tử Cấm thành"
+      },
+      {
+        "youtubeId": "TYRJlCuO97M",
+        "title": "PS Phục nguyên Điện Cần Chánh"
+      }
+    ]
   },
   "duyet-thi-duong": {
     "photos": [
@@ -4341,7 +5664,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/e7/Hue_Sity%2C_Vietnam_%288104953768%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/a/a7/Hue_Sity%2C_Vietnam_%288104954138%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "qmlghB1m4Zc",
+        "title": "Nhà háy Duyệt Thị Đường | Đại Nội Huế | Tour Huế | Du lịch Huế"
+      },
+      {
+        "youtubeId": "nFGFqFvffco",
+        "title": "Nhã nhạc cung đình Huế tại nhà hát Duyệt Thị Đường #culture #music #traditional #hue #vietnam"
+      }
+    ]
   },
   "the-mieu": {
     "photos": [
@@ -4351,7 +5683,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/f/f6/Van_Mieu_Hanoi_4.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e5/Van_Mieu_Hanoi_11400475_d4f3400470_t.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "5ha0i_L9gZU",
+        "title": "Thế Tổ Miếu Temple: Exploring Vietnam's Rich Cultural Heritage | Travel Guide 2023"
+      },
+      {
+        "youtubeId": "iuVT-1Hi9gk",
+        "title": "Thế Miếu – Nơi tưởng nhớ các Hoàng đế triều Nguyễn | LTQGI"
+      }
+    ]
   },
   "nine-dynastic-urns": {
     "photos": [
@@ -4361,7 +5702,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/60/H%E1%BB%95_kh%E1%BA%AFc_tr%C3%AAn_C%E1%BB%ADu_%C4%90%E1%BB%89nh_Hu%E1%BA%BF_%28Cao_%C4%90%E1%BB%89nh%29%2C_th%C3%A1ng_3_n%C4%83m_2021_%288%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1d/H%E1%BB%95_kh%E1%BA%AFc_tr%C3%AAn_C%E1%BB%ADu_%C4%90%E1%BB%89nh_Hu%E1%BA%BF_%28Cao_%C4%90%E1%BB%89nh%29%2C_th%C3%A1ng_3_n%C4%83m_2021_%2813%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "JE_Yvk4Y4wA",
+        "title": "Nine Dynastic Urns in Hue seeking for UNESCO recognition"
+      },
+      {
+        "youtubeId": "8XPnEzVLUQY",
+        "title": "The Message of the Nine Dynastic Urns"
+      }
+    ]
   },
   "hung-mieu": {
     "photos": [
@@ -4371,7 +5721,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/31/Hanoi_Temple_of_Literature.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/95/Taiyuan_Confucius_Temple_%2854573355745%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "6qGyE-NX5Ag",
+        "title": "HƯNG MIẾU – THỜ HƯNG TỔ HIẾU KHANG HOÀNG ĐẾ | LTQGI"
+      }
+    ]
   },
   "phung-tien-palace": {
     "photos": [
@@ -4381,7 +5736,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/8171/8022276941_d75e3e8bca_b.jpg",
       "https://live.staticflickr.com/8031/8022277626_c75a9a0ca7_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "parWFStKggE",
+        "title": "Khám phá quần thể điện Phụng Tiên qua mô hình công nghệ phục dựng ảo"
+      },
+      {
+        "youtubeId": "NdOiYF4Tg7g",
+        "title": "Hơn 7,3 tỷ đồng trùng tu Điện Phụng Tiên - Đại Nội Huế | THDT"
+      }
+    ]
   },
   "hue-flag-tower": {
     "photos": [
@@ -4391,7 +5755,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/dc/The_old_and_the_young_flee_Tet_offensive_fighting_in_Hue%2C_managing_to_reach_the_south_shore_of_the_Perfume_River_despite_-_NARA_-_541870.tif",
       "https://upload.wikimedia.org/wikipedia/commons/f/fa/Bun_Bo_Hue_1.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "ZZt1tTlP8pc",
+        "title": "Kỳ Đài - Flag Tower"
+      },
+      {
+        "youtubeId": "i12mVCneCf0",
+        "title": "Flag Tower & Noon Gate, Hue, Vietnam"
+      }
+    ]
   },
   "khai-dinh-tomb": {
     "photos": [
@@ -4401,7 +5774,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/71/Kh%E1%BA%A3i_%C4%90%E1%BB%8Bnh%2C_empereur_d%27Annam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/58/T%C6%B0%E1%BB%A3ng_%C4%91%E1%BB%93ng_vua_Kh%E1%BA%A3i_%C4%90%E1%BB%8Bnh.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "TbHWeZG6d6A",
+        "title": "The Tomb of Khải Định near Huế in Vietnam"
+      },
+      {
+        "youtubeId": "PLIe6ENbvzc",
+        "title": "Visiting the Homeland - Tomb of Emperior Khải Định - Lăng Khải Định - Huế, Vietnam"
+      }
+    ]
   },
   "gia-long-tomb": {
     "photos": [
@@ -4411,7 +5793,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/07/L%C4%83ng_Gia_Long%2C_Hu%E1%BA%BF_%2833447904478%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/f/f6/L%C4%83ng_vua_Gia_Long_6.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "GAQrYE6eLxY",
+        "title": "Vietnam | Hue: Gia Long Mausoleum - First Royal Tomb of the Nguyen Dynasty & World Cultural Heritage"
+      },
+      {
+        "youtubeId": "l_DvbhTat1Y",
+        "title": "Tomb of King Gia Long: Renowned Tomb in Hue"
+      }
+    ]
   },
   "dong-khanh-tomb": {
     "photos": [
@@ -4421,7 +5812,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/c6/Tomb_of_DongKhanh4.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/1/1b/N%E1%BB%99i_th%E1%BA%A5t_L%C4%83ng_Kh%E1%BA%A3i_%C4%90%E1%BB%8Bnh.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "p-zlm1M4zcc",
+        "title": "LĂNG ĐỒNG KHÁNH - DONG KHANH KING'S TOMB - DU LỊCH HUẾ [HD]"
+      },
+      {
+        "youtubeId": "_IhdAIShIYE",
+        "title": "DONG KHANH TOMB| HUE | VIET NAM - LĂNG VUA ĐỒNG KHÁNH (HUẾ, VIỆT NAM)"
+      }
+    ]
   },
   "thieu-tri-tomb": {
     "photos": [
@@ -4431,7 +5831,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/ef/Annam._Pr%C3%A8s_Hu%C3%A9._Portique_%C3%A9maill%C3%A9_au_tombeau_de_Thieu-tri_-_%28photogr.%29_A._S%28alles%29_-_btv1b53172332m_%282_of_3%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/de/Annam._Pr%C3%A8s_Hu%C3%A9._Portique_%C3%A9maill%C3%A9_au_tombeau_de_Thieu-tri_-_%28photogr.%29_A._S%28alles%29_-_btv1b53172332m_%281_of_3%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "0LpiXt4xJpc",
+        "title": "Lăng Vua Thiệu Trị - Vẻ đẹp bị quên lãng | Tomb of Thieu Tri an Ancient Construction in Hue Citadel"
+      },
+      {
+        "youtubeId": "S24zHjeGc9s",
+        "title": "Xương Lăng - Emperor Thiệu Trị’s Tomb"
+      }
+    ]
   },
   "duc-duc-tomb": {
     "photos": [
@@ -4441,7 +5850,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/d6/Tomb_of_Emperor_T%E1%BB%B1_%C4%90%E1%BB%A9c_1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1f/Tu-Duc-Royal-Tomb.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "PrHBqHKbgbM",
+        "title": "Khám Phá Lăng Dục Đức Và Kiến Trúc Cung Đình Huế Tại Đây - Emperor Hue Tomb by Beyouvlog"
+      }
+    ]
   },
   "tu-dam-pagoda": {
     "photos": [
@@ -4451,7 +5865,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/62/2024_Hu%E1%BA%BF_-_Tu_Dam_Temple_%28Ch%C3%B9a_T%E1%BB%AB_%C4%90%C3%A0m%29_-_img_09.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/45/Ch%C3%B9a_T%E1%BB%AB_%C4%90%C3%A0m_5.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "nJQExapAmEA",
+        "title": "Tu Dam Pagoda, Hue - Chùa Từ Đàm Huế"
+      },
+      {
+        "youtubeId": "Bq07zShjPTs",
+        "title": "Viet Pagoda in Birmingham, UK: Sư Phước Huệ và chùa Từ Đàm"
+      }
+    ]
   },
   "huyen-tran-temple": {
     "photos": [
@@ -4467,7 +5890,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/39/T%E1%BB%AB_Hi%E1%BA%BFu_Pagoda_02.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/df/T%E1%BB%AB_Hi%E1%BA%BFu_Pagoda_01.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "ScqubXVaUo8",
+        "title": "Tổ Đình Từ Hiếu | Tp Huế | TuHieu Pagoda | Hue City | Vietnam | 2017"
+      },
+      {
+        "youtubeId": "n1ziQ7l6NVg",
+        "title": "Walking meditation at Từ Hiếu pagoda"
+      }
+    ]
   },
   "bao-quoc-pagoda": {
     "photos": [
@@ -4477,7 +5909,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/0a/Hu%E1%BA%BF_2024_July_-_Bao_Quoc_Temple_%28Ch%C3%B9a_B%C3%A1o_Qu%E1%BB%91c%29_-_img_01.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/4c/Hu%E1%BA%BF_2024_July_-_Bao_Quoc_Temple_%28Ch%C3%B9a_B%C3%A1o_Qu%E1%BB%91c%29_-_img_03.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "fjrxBSBd-eI",
+        "title": "Hues.vn - Chùa Báo Quốc"
+      },
+      {
+        "youtubeId": "UdBHiyuadFc",
+        "title": "Chùa Bảo Quốc (Báo Quốc) - Huế trong không khí đón mừng lễ Phật đản"
+      }
+    ]
   },
   "dieu-de-pagoda": {
     "photos": [
@@ -4487,14 +5928,32 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/31/Tu_Dam_Pagoda_1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/9e/B%E1%BA%A3n_ph%E1%BB%A5ng_d%E1%BB%A5_c%E1%BB%A7a_Nguy%E1%BB%85n_Trung_M%E1%BA%ADu%2C_L%C3%BD_V%C4%83n_Ph%E1%BB%A9c%2C_Ho%C3%A0ng_T%E1%BA%BF_M%C4%A9_n%C4%83m_Thi%E1%BB%87u_Tr%E1%BB%8B_4_%281844%29_v%E1%BB%81_vi%E1%BB%87c_chu%E1%BA%A9n_b%E1%BB%8B_l%E1%BA%ADp_%C4%91%C3%A0n_chay_t%E1%BB%A5ng_kinh_c%E1%BA%A7u_ph%C3%BAc_nh%C3%A2n_d%E1%BB%8Bp_ch%C3%B9a_Di%E1%BB%87u_%C4%90%E1%BA%BF_v%E1%BB%ABa_x%C3%A2y_xong.png"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Hg75CoWr7do",
+        "title": "Ghé thăm Chùa DIỆU ĐẾ. Ngôi quốc tự nổi tiếng dưới triều Nguyễn xứ kinh kỳ Huế | Chuyến Xe Sáng"
+      },
+      {
+        "youtubeId": "tqt0JxKqvJc",
+        "title": "#Yougo #Tourism #Vietnam #DuLịchHuế #5 THĂM CHÙA DIỆU ĐẾ - VIỆT NAM QUỐC TỰ #HueStreet2019"
+      }
+    ]
   },
   "truc-lam-bach-ma": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/8/8a/TrucLam_DiAn.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/c/ca/Buddhist_Monk_Service_Hue_Vietnam.jpeg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "IbgVJtCqBuI",
+        "title": "THIỀN VIỆN TRÚC LÂM BẠCH MÃ HUẾ | Chuyến Đi Ngẫu Hứng Đầu Năm Và Khoảnh Khắc Bình Yên Hiếm Có"
+      },
+      {
+        "youtubeId": "iH5I2oB8sEo",
+        "title": "Thiền viện Trúc Lâm Bạch Mã, Giới thiệu Thiền viện Trúc Lâm Bạch Mã, Thiền viện Trúc Lâm Bạch Mã"
+      }
+    ]
   },
   "hon-chen-temple": {
     "photos": [
@@ -4503,7 +5962,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/81/Kap_Hon_Chong.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e8/Thi%C3%AAn_M%E1%BB%A5_Pagoda_Hue%2C_Vietnam_%2812159952963%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "5xFb76MlO6I",
+        "title": "điện hòn chén huế. ngôi đền linh thiêng nhất việt nam. #dienhonchen #hue"
+      },
+      {
+        "youtubeId": "nnyVjNWFpuM",
+        "title": "Điện Hòn Chén độc đáo ở Huế thờ những vị thánh thần nào."
+      }
+    ]
   },
   "dinh-cat-church": {
     "photos": [
@@ -4519,7 +5987,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/f/f0/2024_Hu%E1%BA%BF_-_Ph%E1%BB%A7_Cam_Cathedral_%28Nh%C3%A0_th%E1%BB%9D_ch%C3%ADnh_t%C3%B2a_Ph%E1%BB%A7_Cam%29_-_img_30.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b8/2024_Hu%E1%BA%BF_-_Ph%E1%BB%A7_Cam_Cathedral_%28Nh%C3%A0_th%E1%BB%9D_ch%C3%ADnh_t%C3%B2a_Ph%E1%BB%A7_Cam%29_-_img_31.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "TmS7BakFVDc",
+        "title": "Thăm nhà thờ Phủ Cam (Huế) tháng 7 năm 2023"
+      },
+      {
+        "youtubeId": "4OQC0qpKHDU",
+        "title": "Địa Điểm Du Lịch Huế - Thăm Nhà Thờ Chính Tòa Phủ Cam Huế"
+      }
+    ]
   },
   "hue-royal-antiquities": {
     "photos": [
@@ -4529,7 +6006,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/8e/Hue_Sity%2C_Vietnam_%288104955692%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/f/fb/Hue_Sity%2C_Vietnam_%288104955244%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "u2JS_7HAWTg",
+        "title": "Royal Antiquities Museum | Hue Citadel UNESCO World Heritage| Vietnam June 2021"
+      },
+      {
+        "youtubeId": "EDy-Gjg9ijw",
+        "title": "HUE ROYAL RELIQUIES MUSEUM, VIETNAM"
+      }
+    ]
   },
   "thua-thien-hue-history-museum": {
     "photos": [
@@ -4539,7 +6025,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/0f/Hue_Hotel_Saigon_%2824675543497%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/7b/Imperial_City_Hue_20190917-3.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "y1S-fnwGhXE",
+        "title": "Hue, located in Thừa Thiên-Huế Province, Vietnam Here are some of the top attractions you might"
+      }
+    ]
   },
   "ho-chi-minh-museum-hue": {
     "photos": [
@@ -4549,7 +6040,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/84/B%E1%BA%A3o_t%C3%A0ng_ch%E1%BB%A9ng_t%C3%ADch_chi%E1%BA%BFn_tranh%2C_tp_Ho_chi_minh_vietnam%2C_vo_Van_tan_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/15/Ho_Chi_Minh_-_Bust_-_Chowringhee_Road_-_Kolkata_2013-01-05_2465.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Ogo1w-ZTRVg",
+        "title": "Ho Chi Minh Museum_ Hanoi_Vietnam"
+      },
+      {
+        "youtubeId": "hXX7jV00BvY",
+        "title": "Ho Chi Minh Museum Hanoi 🇻🇳 | A Journey Through Vietnam’s History"
+      }
+    ]
   },
   "le-ba-dang-art": {
     "photos": [
@@ -4565,7 +6065,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/71/B%E1%BA%A1ch_%C4%90%E1%BA%B1ng_Bridge_%2849534690148%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/31/Bridge_over_the_Mekong_River_%283477974277%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "pIFSLVbvjeg",
+        "title": "Developing the Thanh Toan Tile-Roofed Bridge Community Tourism Destination"
+      },
+      {
+        "youtubeId": "Qg7-aWHOwRU",
+        "title": "[Video 4k] Cầu Ngói Thanh Toàn, Huế | Thanh Toan tile bridge, Hue VietNam | Review Huế"
+      }
+    ]
   },
   "truong-tien-bridge": {
     "photos": [
@@ -4575,7 +6084,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/f/fb/Hue_Bridge.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/ec/C%E1%BA%A7u_tr%C3%A0ng_ti%E1%BB%81n.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "A8mGTHxFGa4",
+        "title": "Dạo Cầu Trường Tiền Ngày Cận Tết 2026 Không Khí Bình Yên Đến Lạ Thường"
+      },
+      {
+        "youtubeId": "1hSIQo9pm2M",
+        "title": "☀️ Tản Bộ Ban Ngày Ở Huế🚶– Cầu Trường Tiền & Đời Sống Thực Trên Đường Phố 🌉 Vietnam Highlights 4K 🇻🇳"
+      }
+    ]
   },
   "ho-quyen": {
     "photos": [
@@ -4585,17 +6103,37 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/eb/Ho_Quyen_2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/a/ac/H%E1%BB%95_Quy%E1%BB%81n_Hu%E1%BA%BF.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "A3f-x5mYUUQ",
+        "title": "Hổ Quyền - Đấu trường \"độc nhất vô nhị\" của Việt Nam | VTV24"
+      },
+      {
+        "youtubeId": "WAeT8ol5t2U",
+        "title": "Bí mật Hổ Quyền: Tại sao Voi luôn thắng Hổ trong các trận tử chiến thời Nguyễn? | Vietnam Tourism"
+      }
+    ]
   },
   "an-dinh-palace": {
     "photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/5/51/Tu_Cung_la_m%C3%A8re_de_Bao_Dai_%28Palais_An_Dinh%2C_Hu%C3%A9%29_%284392722991%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/PP0014360_Porte_de_An-Dinh-Cung.jpg/1280px-PP0014360_Porte_de_An-Dinh-Cung.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/71/Kh%E1%BA%A3i_%C4%90%E1%BB%8Bnh%2C_empereur_d%27Annam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/58/T%C6%B0%E1%BB%A3ng_%C4%91%E1%BB%93ng_vua_Kh%E1%BA%A3i_%C4%90%E1%BB%8Bnh.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/1/1b/N%E1%BB%99i_th%E1%BA%A5t_L%C4%83ng_Kh%E1%BA%A3i_%C4%90%E1%BB%8Bnh.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/a/a5/Kh%E1%BA%A3i_%C4%90%E1%BB%8Bnh%27s_1922_visit_to_France.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/c3/C%E1%BB%9D_long_tinh_t%E1%BA%A1i_l%E1%BB%85_an_t%C3%A1ng_Ho%C3%A0ng_%C4%91%E1%BA%BF_Kh%E1%BA%A3i_%C4%90%E1%BB%8Bnh_%281925%29_%2C_%C4%91o%C3%A0n_quan_ch%E1%BB%A9c.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "b_DVbErvpdY",
+        "title": "An Dinh Palace – A Royal Heritage in Hue | Cung An Định – Dấu Ấn Hoàng Gia Giữa Lòng Huế"
+      },
+      {
+        "youtubeId": "LpjVX-Eb5GY",
+        "title": "An Dinh Palace Hue | Cung An Định"
+      }
+    ]
   },
   "ngu-binh-mountain": {
     "photos": [
@@ -4605,7 +6143,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/c5/Ng%E1%BB%B1_Vi%C3%AAn_%C4%90%E1%BA%AFc_Nguy%E1%BB%87t_%28c%E1%BA%A3nh_v%C6%B0%E1%BB%9Dn_Ng%E1%BB%B1_trong_T%E1%BB%AD_C%E1%BA%A5m_th%C3%A0nh_Hu%E1%BA%BF%29_result.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e0/Nui_Ngu_Binh.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Y-v1lFmYSL4",
+        "title": "Gặp Quán Thế Âm trên đỉnh Núi Ngự Bình | HUẾ VIỆT NAM NGÀY NAY"
+      },
+      {
+        "youtubeId": "_j6HGmZroaM",
+        "title": "Cấm địa Ngự Bình| LTQGI"
+      }
+    ]
   },
   "ho-thuy-tien": {
     "photos": [
@@ -4614,7 +6161,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/150/352994385_18950f2036.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/2f/S%C3%A2n_kh%E1%BA%A5u_c%C3%B4ng_vi%C3%AAn_h%E1%BB%93_Th%E1%BB%A7y_Ti%C3%AAn%2C_Hu%E1%BA%BF_%2850800093051%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "SiSWZsbk5EY",
+        "title": "Thủy Tiên Lake, Vietnam 🇻🇳 | Abandoned Water Park"
+      },
+      {
+        "youtubeId": "bkBKgRG_KHw",
+        "title": "Hue Tour (Thủy Tiên Lake, Abandoned Water Park, Huế, Việt Nam)"
+      }
+    ]
   },
   "tam-giang-lagoon": {
     "photos": [
@@ -4624,7 +6180,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/4/40/Tam_Giang_lagoon.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1b/Ph%C3%A1_Tam_Giang.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "D-3C74Cgwq8",
+        "title": "TAM GIANG Lagoon | Hue, Vietnam"
+      },
+      {
+        "youtubeId": "3I_BGPV92Qw",
+        "title": "Tam Giang Lagoon of Huế | 4K Vietnam Tiny Boat Tour 🇻🇳 | Mindful Walk"
+      }
+    ]
   },
   "lap-an-lagoon": {
     "photos": [
@@ -4634,7 +6199,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/57/Lagoon_L%E1%BA%ADp_An_L%C4%83ng_C%C3%B4_%282024%29_-_img_01.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b8/Lagoon_L%E1%BA%ADp_An_L%C4%83ng_C%C3%B4_%282024%29_-_img_11.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "kgJBkoM3SiY",
+        "title": "Lập An Lagoon, Lăng Cô"
+      },
+      {
+        "youtubeId": "vcmNem6eEWI",
+        "title": "Đầm Lập An | Biển Lăng Cô | Lap An Lagoon | Lang Co Beach | Hue Vietnam | Cuoc song hue vietnam"
+      }
+    ]
   },
   "bach-ma-national-park": {
     "photos": [
@@ -4644,13 +6218,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/0/0a/Bach_Ma_National_Park.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/03/Bach_Ma_National_Park_banner.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "E7mt9AjFQCg",
+        "title": "EVERYTHING WANTS TO KILL YOU in Bạch Mã National Park, Vietnam"
+      },
+      {
+        "youtubeId": "PTfFx31-WWU",
+        "title": "🇻🇳📍Bạch Mã National Park, Vietnam"
+      }
+    ]
   },
   "vong-canh-hill": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/0/0b/Newone_-_%C4%90%E1%BB%93i_v%E1%BB%8Dng_c%E1%BA%A3nh_Times_City.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Jwdec96DrI8",
+        "title": "Đồi Vọng Cảnh - Vọng Cảnh Hill, Huế"
+      },
+      {
+        "youtubeId": "_39CuClc0cQ",
+        "title": "Đồi Vọng Cảnh - Huế | Vong Canh hill - Hue city"
+      }
+    ]
   },
   "nguon-dai-river": {
     "photos": [
@@ -4668,13 +6260,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/8b/Phan_Thi%E1%BA%BFt_Beach_-_B%C3%ACnh_Thu%E1%BA%ADn_1966-68_-_Photo_by_Edwards_%289728001209%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/8/8e/Rocky_beach_in_Nui_Chua_National_Park_Vietnam.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "Bk_MtQWxA9s",
+        "title": "Bai Tam Thuận An / Beach & Countryside / Hue / Vietnam"
+      },
+      {
+        "youtubeId": "Z-Xul5LS4LA",
+        "title": "Thuan An Beach- Most Beautiful Beach in Hue- Closest To Hue City/ Biển Thuận An- Biển Đẹp Nhất Huế."
+      }
+    ]
   },
   "canh-duong-beach": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/4/4b/Hue_Vietnam_Citadel-of-Hu%E1%BA%BF-01.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "V6xcjXRnI80",
+        "title": "Bải Biển Cảnh Dương (Lăng Cô, Phú Lộc) Thừa Thiên"
+      },
+      {
+        "youtubeId": "K35Jf0PyHHc",
+        "title": "Biển Cảnh Dương Phú Lộc HUẾ"
+      }
+    ]
   },
   "lang-co-bay": {
     "photos": [
@@ -4684,7 +6294,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/6a/Thua_Thien_Hoi_An_Bay_Estuarium_beach.Hue.Ho_An.Lang_Co_Beach_%2817721%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/f/fe/Thua_Thien_Hoi_An_Bay_Estuarium_beach.Hue.Ho_An.Lang_Co_Beach_%2894780%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "xa-zvB5_9bk",
+        "title": "Lăng Cô Beach Resort Review: Location, Room Rates, Amenities & Pros and Cons #langcobeachresort"
+      },
+      {
+        "youtubeId": "Ta52yqT9M_U",
+        "title": "Toàn Cảnh Biển Lăng Cô Dưới Chân Đèo Hải Vân Tuyệt Đẹp Cùng Hải Sản Tươi Ngon Bình Dân"
+      }
+    ]
   },
   "thuy-xuan-village": {
     "photos": [
@@ -4700,7 +6319,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/4/4b/Hue_Vietnam_Citadel-of-Hu%E1%BA%BF-01.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "KwvnJxZBTjs",
+        "title": "Phước Tích - Làng cổ xứ Huế (Phuoc Tich – An Ancient Village in Hue-VietNam)"
+      },
+      {
+        "youtubeId": "X5W1pKhc_ME",
+        "title": "Khám Phá Làng Cổ Phước Tích (p1)│Những Ngôi Miếu Cổ Linh Thiêng│Khám Phá Huế"
+      }
+    ]
   },
   "tay-loc-market": {
     "photos": [
@@ -4709,7 +6337,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/c7/Ba_Den_Mountain_summit_temple_illuminated_night_fog_Tay_Ninh_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/6/61/C%C3%A9r%C3%A9monie_caoda%C3%AFste_%28Tay_Ninh%2C_Vietnam%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "w0m-vt8qrVo",
+        "title": "Chợ Tây Lộc Huế - Ngôi Chợ Dân Sinh Kỳ Lạ: Sáng Bán Đồ Tươi, Chiều Bán Đồ Si | Hơi Thở Việt Nam"
+      },
+      {
+        "youtubeId": "NLEtSm9IQoo",
+        "title": "Đi Chợ Tây Lộc Huế Buổi Sáng – Có Gì Mà Lúc Nào Cũng Tấp Nập?│Khám Phá Huế"
+      }
+    ]
   },
   "ben-ngu-market": {
     "photos": [
@@ -4719,7 +6356,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/1c/Nguy%E1%BB%85n_Th%C3%A1i_B%C3%ACnh%2C_Qu%E1%BA%ADn_1%2C_TPHCM%2C_Vietnam_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e5/Rap_Hat_cai_luong%2C_tran_hung_dao%2C_phuong_Nguy%E1%BB%85n_C%C6%B0_Trinh%2C_Qu%E1%BA%ADn_1%2C_TPHCM%2C_Vi%E1%BB%87t_Nam_-_panoramio.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "7J7okaodVj0",
+        "title": "Chợ Bến Ngự Huế – Gây Thương Nhớ Huế Xưa Với Tô Cháo Gà Nóng Hổi Ấm Lòng"
+      },
+      {
+        "youtubeId": "6OLwN5-iSsk",
+        "title": "Vòng quanh khu Bến Ngự về đêm gặp nhiều món ngon thơm quầy hàng vui vẻ và sạch đẹp mắt"
+      }
+    ]
   },
   "phuong-duc-village": {
     "photos": [
@@ -4736,7 +6382,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/8d/B%E1%BA%A3n_t%E1%BA%A5u_c%E1%BB%A7a_N%E1%BB%99i_c%C3%A1c_v%E1%BB%81_vi%E1%BB%87c_khen_th%C6%B0%E1%BB%9Fng_c%C3%A1c_vi%C3%AAn_sai_ph%C3%A1i_v%C3%A0_d%C3%A2n_phu_%C4%91i_kh%E1%BA%A3o_s%C3%A1t_%E1%BB%9F_Ho%C3%A0ng_Sa_n%C4%83m_Minh_M%E1%BB%87nh_th%E1%BB%A9_16_%281835%29_01.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/12/B%E1%BA%A3n_t%E1%BA%A5u_c%E1%BB%A7a_B%E1%BB%99_C%C3%B4ng_v%E1%BB%81_vi%E1%BB%87c_th%C6%B0%E1%BB%9Fng_ph%E1%BA%A1t_cho_c%C3%A1c_ph%C3%A1i_vi%C3%AAn%2C_binh_%C4%91%E1%BB%8Bnh_%C4%91i_Ho%C3%A0ng_Sa_n%C4%83m_Minh_M%E1%BB%87nh_th%E1%BB%A9_18_%281837%29_01.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "EH1Kpbci8w8",
+        "title": "Diện mạo mới Cồn Dã Viên Huế Sau Trùng Tu – Có Còn Vẻ Bình Yên Năm Xưa?"
+      },
+      {
+        "youtubeId": "CP4qZagIxsE",
+        "title": "@Love Hue: Cầu Dã Viên, thành phố Huế"
+      }
+    ]
   },
   "long-son-pagoda": {
     "photos": [
@@ -4746,7 +6401,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/2a/Lying_Buddha%2C_Nha_Trang.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/7/75/Buddha_statue%2C_Nha_Trang.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "18RgHBRkZ9c",
+        "title": "Nha Trang 🏞️ | Exploring Long Son Pagoda (Chùa Long Sơn) Vietnam 🕊️"
+      },
+      {
+        "youtubeId": "EDmAfcWjzAs",
+        "title": "Long Sơn Pagoda | Peaceful Walk & Buddha View in Nha Trang, Vietnam"
+      }
+    ]
   },
   "nha-trang-cathedral": {
     "photos": [
@@ -4756,7 +6420,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/6/65/Nha_Trang_Cathedral%2C_Back_Inside.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/8/8f/Nha_Trang_Cathedral.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "totE6BjLv5E",
+        "title": "Christ the King Cathedral (Mountain Church) | POV Walking Tour | 4K"
+      },
+      {
+        "youtubeId": "IUYoCITgFMc",
+        "title": "Christ The King Cathedral (Mountain Church), Nha Trang, Vietnam"
+      }
+    ]
   },
   "hai-duc-pagoda": {
     "photos": [
@@ -4766,7 +6439,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/24/02-DU_HANG_PAGODA_ARCHITECTURE.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/c0/Ch%C3%B9a_B%E1%BA%A3o_Th%E1%BA%AFng_%E1%BB%9F_Th%E1%BB%A7_%C4%90%E1%BB%A9c%2C_th%C3%A1ng_12_n%C4%83m_2021_%28C%E1%BB%95ng_ch%C3%B9a%2C_hai_b%C3%AAn%29_%289%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "aYC9ZgKxKMs",
+        "title": "Du Lịch Nha Trang Cảnh Đẹp Phật Học Viện Hải Đức Li Trần Thoát Tục Khỏi Chốn Thị Thành Ồn Ào Sa Hoa"
+      },
+      {
+        "youtubeId": "E64wCB_E3a4",
+        "title": "Đường Hải Đức Nha Trang | Những Cái Xưa cũ Vẫn Còn Đó"
+      }
+    ]
   },
   "tong-lam-lo-son": {
     "photos": [
@@ -4776,7 +6458,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/10/04052023_Ponagar_Hindu_temples_complex%2C_Nha_Trang_Vietnam_-_27.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/92/Nha_Trang_%2C_Vietnam_-_panoramio_%2815%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "eFJvwIALTb8",
+        "title": "Chùa Tòng Lâm Lô Sơn Nha Trang 2022 | Vui Music & Travel"
+      },
+      {
+        "youtubeId": "0KCxe6VycGs",
+        "title": "CHÙA Tòng Lâm Lô Sơn Tịnh Độ// Vĩnh Phương - Nha Trang - Khánh Hòa"
+      }
+    ]
   },
   "chua-tu-ton": {
     "photos": [
@@ -4786,7 +6477,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/75/ChuaDau_ToanCanh.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/8/8d/ChuaGiacLam02.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "ks7QK5aMQas",
+        "title": "Chùa Từ Tôn Hòn Đỏ Nha Trang 2026 | Ngôi Chùa Nổi Giữa Biển Nha Trang Thu Hút Rất Đông Khách"
+      },
+      {
+        "youtubeId": "PyRW8wL5xXM",
+        "title": "Chùa Từ Tôn Nha Trang trên Hòn Đỏ | AmazingNhaTrang"
+      }
+    ]
   },
   "kim-son-temple": {
     "photos": [
@@ -4795,7 +6495,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/b3/H%C3%B2a_th%C6%B0%E1%BB%A3ng_%E1%BA%A4n_Kim_-_T%E1%BB%95_Tu%C3%A2n_-_Ho%E1%BA%B1ng_T%E1%BB%8Bnh._%E5%8D%B0_%E9%87%91_%E7%A5%96_%E6%81%82_%E5%BC%98_%E5%87%80.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b8/H%C3%B2a_th%C6%B0%E1%BB%A3ng_%E1%BA%A4n_Kim_-_T%E1%BB%95_Tu%C3%A2n_-_Ho%E1%BA%B1ng_T%E1%BB%8Bnh.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "uBEKaOjrMl0",
+        "title": "Du Lịch Nha Trang - Thăm Chùa Săc Tứ Kim Sơn | Vui Music & Travel"
+      },
+      {
+        "youtubeId": "Dz1yOuuXYfQ",
+        "title": "Chùa Sắc Tứ Kim Sơn Nha Trang"
+      }
+    ]
   },
   "nguyen-trung-truc-temple": {
     "photos": [
@@ -4805,7 +6514,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/1c/%C4%90%E1%BB%81n_th%E1%BB%9D_Nguy%E1%BB%85n_Trung_Tr%E1%BB%B1c.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/a/ac/Nguyen_Trung_Truc_portrait.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "dJic6d6PTAY",
+        "title": "Viếng thăm Đình thần linh thiêng Anh Hùng Dân Tộc Nguyễn Trung Trực ở Rạch Giá."
+      },
+      {
+        "youtubeId": "mmdwv5Cs-zM",
+        "title": "Thăm Đền Thờ Nguyễn Trung Trực &TP Rạch Giá, Kiên Giang"
+      }
+    ]
   },
   "oceanographic-museum-nt": {
     "photos": [
@@ -4815,7 +6533,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/7879/32940813988_173b0af8f4_b.jpg",
       "https://live.staticflickr.com/4895/45901685895_e56d968442_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "AO6dutAPiUE",
+        "title": "2017-07-23 Nha Trang National Oceanographic Museum"
+      },
+      {
+        "youtubeId": "sDRg29MDGns",
+        "title": "National Oceanographic Museum of Vietnam"
+      }
+    ]
   },
   "yersin-museum": {
     "photos": [
@@ -4825,7 +6552,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/d/d6/AP0629-Sogny-Marien_Annam%2C_Nha_Trang%2C_1933_%E2%80%93_Visite_officielle_de_l%E2%80%99Institut_Pasteur_%281%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/2a/Petit-Yersin.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "2QKlD9-ACtI",
+        "title": "The Alexandre Yersin Museum, Nha Trang"
+      },
+      {
+        "youtubeId": "aYAdgRmLerY",
+        "title": "ALEXANDRE YERSIN MUSEUM AT THE PASTEUR INSTITUTE IN NHA TRANG"
+      }
+    ]
   },
   "khanh-hoa-museum": {
     "photos": [
@@ -4835,7 +6571,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/f/f7/Vo_Canh_stele_%28National_Museum_of_Vietnamese_History%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/ce/National_Museum_of_Vietnamese_History41.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "cmVpJTPxHyw",
+        "title": "Khanh Hoa Apartments, Nha Trang, Vietnam | Travel With Bhumika"
+      },
+      {
+        "youtubeId": "7H5Fa5BxHTs",
+        "title": "Review: Bảo Tàng Khánh Hòa (Khanh Hoa Museum) I Nha Trang I Khánh Hoà I Việt Nam I Thang Vu"
+      }
+    ]
   },
   "tram-huong-tower": {
     "photos": [
@@ -4844,7 +6589,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/e5/Thap_Tram_Huong.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/1/10/04052023_Ponagar_Hindu_temples_complex%2C_Nha_Trang_Vietnam_-_27.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "_ojGx_E-GdA",
+        "title": "Toàn Cảnh Bên Trong Tháp Trầm Hương Có Gì - Video Chi Tiết Nhất - Tháp Trầm Hương | NTTT"
+      },
+      {
+        "youtubeId": "I1YfunKBKkU",
+        "title": "Tháp Trầm Hương (Frankincense Tower) I Nha Trang I Khánh Hoà I Việt Nam I Thang Vu"
+      }
+    ]
   },
   "do-theatre": {
     "photos": [
@@ -4852,13 +6606,27 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/b9/Around_Nha_Trang%2C_rice_fields_%286224431058%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/d9/Vendistino_de_sunokulvitroj_en_Nha_Trang.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "xwlwchPBMi8",
+        "title": "DO THEATRE NHA TRANG – One of the Most Unique Architectural Landmarks in Vietnam"
+      },
+      {
+        "youtubeId": "iafZEnGLCYs",
+        "title": "Đó Theatre - The Brand New Check-in Spot in Nha Trang - I Love Vietnam - Episode 109"
+      }
+    ]
   },
   "truong-xuan-gallery": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/e/e6/The_birth_certificate_of_Mrs_Mai_Kim_Quy%2C_the_daughter_of_Mr._Mai_Xuan_Tap%2C_a_meteorological_staff_on_Ho%C3%A0ng_Sa_%281940%29_01.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "q4sbPkDIfig",
+        "title": "Episode 1, The Truong Xuan Voyage"
+      }
+    ]
   },
   "tri-nguyen-aquarium": {
     "photos": [
@@ -4878,26 +6646,62 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/9e/Nha_Trang_-_view_of_H%C3%B2n_%C4%90%E1%BB%8F_island_from_the_mainland_Mar_2024.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/8/89/Nha_Trang_-_fishing_boats_near_H%C3%B2n_%C4%90%E1%BB%8F_island_Mar_2024.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "dZmFiMYVJMk",
+        "title": "Hòn Đỏ NHA TRANG_ Red Island in Nha Trang _ By Henry Minh"
+      },
+      {
+        "youtubeId": "bDEodDvKGzc",
+        "title": "Vẻ đẹp Hòn Đỏ Nha Trang | The beauty of Red Island Nha Trang"
+      }
+    ]
   },
   "ba-ho-waterfalls": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/1/10/04052023_Ponagar_Hindu_temples_complex%2C_Nha_Trang_Vietnam_-_27.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "tWG1Tpe6fa0",
+        "title": "Ba Ho Waterfalls (2.0 - NEW AND IMPROVED) | Nha Trang, Vietnam"
+      },
+      {
+        "youtubeId": "hHALVRw54QQ",
+        "title": "Ba Ho Waterfalls Nha Trang Vietnam 🇻🇳 (Nha Trang's Hidden Gem) Tour Guide 4K Walking Tour"
+      }
+    ]
   },
   "yang-bay": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/b/b3/Halong_bay_vietnam.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "A6uBsYDyMOA",
+        "title": "SPA,Yang Bay Tourist Park, Waterfalls 2017 Nha Trang Vietnam"
+      },
+      {
+        "youtubeId": "HQ8Fx601t1I",
+        "title": "VIETNAM YANG BAY \"WISH TREE\""
+      }
+    ]
   },
   "hon-ba-nature-reserve": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/0/04/Aporosatetragona-Tagane-%26-V.-S.-Dang-%28Phyllanthaceae%29-a-new-species-from-Mt.-Hon-Ba-Vietnam-phytokeys-057-051-g001.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/a/ab/Aporosatetragona-Tagane-%26-V.-S.-Dang-%28Phyllanthaceae%29-a-new-species-from-Mt.-Hon-Ba-Vietnam-phytokeys-057-051-g002.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "MDeQ2NOBTtg",
+        "title": "Riding in Cam Lâm ( Suối Tân, Suối Dầu Lake, Hòn Bà Nature Reserve, )"
+      },
+      {
+        "youtubeId": "PmzxcYQyi1g",
+        "title": "Riding in Cam Lâm (Suối Tân, Suối Dầu Lake, Hòn Bà Nature Reserve) SHORT"
+      }
+    ]
   },
   "nha-trang-beach": {
     "photos": [
@@ -4907,7 +6711,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/9c/Nha_Trang_%2C_Vietnam_-_panoramio_%2835%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/1/1c/Nha_Trang_Rooftop_Panorama.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "sLEO106dmg0",
+        "title": "Nha Trang Beach Walk | Vietnam 2023 - Binaural Sound | 4K HDR"
+      },
+      {
+        "youtubeId": "yxNZ78Nu60g",
+        "title": "NHA TRANG BEACH VIETNAM - Complete Walking Guide & What to Expect"
+      }
+    ]
   },
   "bai-duong-beach": {
     "photos": [
@@ -4917,7 +6730,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/3e/Arriving_in_Nha_Trang_-_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/9c/Vietnam_Nha_Trang_Scuba_Diving_2009_-_4163161777.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "yceHlNM4y10",
+        "title": "Hòn Chồng, Bãi Dương - Nha Trang"
+      }
+    ]
   },
   "doc-let-beach": {
     "photos": [
@@ -4927,7 +6745,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/2904/14784021242_da2f6b9b8e_b.jpg",
       "https://live.staticflickr.com/65535/49746534017_42202bf83c_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "6pGx8XqrIGw",
+        "title": "Dốc Lết Beach. Paradise Resort (June). Khánh Hòa, Vietnam. #shorts"
+      },
+      {
+        "youtubeId": "BLUWYSsICc8",
+        "title": "Paradise Resort, Dốc Lết Beach. Khánh Hòa, Vietnam. #shorts"
+      }
+    ]
   },
   "bai-dai-beach": {
     "photos": [
@@ -4937,7 +6764,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/71/N%C3%B3n_l%C3%A1_%26_%C3%81o_d%C3%A0i.png",
       "https://upload.wikimedia.org/wikipedia/commons/3/3b/%C3%81o_D%C3%A0i_2014.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "OezIA3HFogU",
+        "title": "Bãi Dài Cam Ranh đẹp quá, cứ ngỡ đang ở madives. #nhatrang #camranh #baidaicamranh"
+      },
+      {
+        "youtubeId": "A0WSY9Qyqi8",
+        "title": "du lịch Bãi Dài Nha Trang Cam Ranh -biển bãi dài Nha Trang du lịch Khánh Hòa Nha Trang"
+      }
+    ]
   },
   "hon-tre-island": {
     "photos": [
@@ -4947,7 +6783,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/2/21/Nha_Trang_Microwave_and_VHF_Radio_Site%2C_Hon_Tre_Island%2C_August_1966.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/24/Hon_Tre_Island%2C_July_1968.png"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "pt_xtRuuH-g",
+        "title": "6 KM Open Water Swim to Hòn Tre and Back | Nha Trang, Vietnam"
+      }
+    ]
   },
   "hon-tam-island": {
     "photos": [
@@ -4957,7 +6798,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/3e/Arriving_in_Nha_Trang_-_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/9c/Vietnam_Nha_Trang_Scuba_Diving_2009_-_4163161777.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "chGIG7h8y4w",
+        "title": "Nên đi Hòn Tằm TỰ TÚC hay THEO TOUR ? | Review Nha Trang | Đảo Hòn Tằm Nha Trang #dulichnhatrang"
+      },
+      {
+        "youtubeId": "mNEW7A4NsOs",
+        "title": "Khám Phá Đảo Hòn Tằm Nha Trang 2025 | Hướng Dẫn Tham Quan Và Giá Vé Trọn Gói Buffer Chi Tiết"
+      }
+    ]
   },
   "hon-mun-island": {
     "photos": [
@@ -4987,7 +6837,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/55/H%C3%B2n_N%E1%BB%99i%2C_Nha_Trang_Bay%2C_Vietnam.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3e/Arriving_in_Nha_Trang_-_Vietnam.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "sQ_BldQr-Rg",
+        "title": "Hòn Một - TP.Nha Trang - Tỉnh Khánh Hòa - Việt Nam"
+      },
+      {
+        "youtubeId": "TUFPaf6X3oA",
+        "title": "BÃI ĐÁ HÒN MỘT, THÊM MỘT THẮNG CẢNH ĐẸP TRÊN BÃI BIỂN NHA TRANG"
+      }
+    ]
   },
   "hon-lao-island": {
     "photos": [
@@ -5007,7 +6866,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/9/90/T%E1%BB%9D_t%E1%BA%A5u_c%E1%BB%A7a_Vi%E1%BB%87n_C%C6%A1_M%E1%BA%ADt_ng%C3%A0y_18_th%C3%A1ng_8_n%C4%83m_T%E1%BB%B1_%C4%90%E1%BB%A9c_th%E1%BB%A9_23_%281870%29_li%E1%BB%87t_k%C3%AA_c%C3%B4ng_tr%E1%BA%A1ng_v%C3%A0_x%C3%A9t_th%C6%B0%E1%BB%9Fng_nh%E1%BB%AFng_ng%C6%B0%E1%BB%9Di_Nam_K%E1%BB%B3_ch%E1%BB%91ng_Ph%C3%A1p%2C_trong_%C4%91%C3%B3_c%C3%B3_Nguy%E1%BB%85n_Trung_Tr%E1%BB%B1c%2C_Th%E1%BB%A7_khoa_Hu%C3%A2n.png",
       "https://upload.wikimedia.org/wikipedia/commons/5/55/H%C3%B2n_N%E1%BB%99i%2C_Nha_Trang_Bay%2C_Vietnam.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "RtotJ8liKvo",
+        "title": "Đảo Hoa Lan - Orchid island Nha Trang"
+      },
+      {
+        "youtubeId": "9DhCdWb00dc",
+        "title": "|EY.01|: ĐẢO SUỐI HOA LAN- First Travel Video"
+      }
+    ]
   },
   "ninh-van-bay": {
     "photos": [
@@ -5017,7 +6885,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/cd/NhaTrangBay.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/1/10/04052023_Ponagar_Hindu_temples_complex%2C_Nha_Trang_Vietnam_-_27.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "kyDJoyXuzGQ",
+        "title": "Return to Six Sense in Ninh Vân Bay Việt Nam #sixsense #ninhvanbay #nhatrang"
+      },
+      {
+        "youtubeId": "GO-74EMSztE",
+        "title": "Review căn villa có cầu tuột nước đầu tiên ở Việt Nam – Six Senses Ninh Vân Bay Resort Nha Trang"
+      }
+    ]
   },
   "van-phong-bay": {
     "photos": [
@@ -5027,7 +6904,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/10/04052023_Ponagar_Hindu_temples_complex%2C_Nha_Trang_Vietnam_-_27.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/9e/04052023_Ponagar_Hindu_temples_complex%2C_Nha_Trang_Vietnam_-_274.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "p4l0iHAEvns",
+        "title": "Vân Phong Bay Promotional Video.mov"
+      },
+      {
+        "youtubeId": "ughSwiwEOeM",
+        "title": "TTC Vân Phong Bay Resort Dốc Lết | Khu nghỉ dưỡng mới nhất tại Dốc Lết-Khánh Hòa"
+      }
+    ]
   },
   "vinwonders-nha-trang": {
     "photos": [
@@ -5037,7 +6923,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/5/5c/Vinpearl_Nha_Trang_-_panoramio_%285%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/b/b3/Vinpearl_Nha_Trang_%2849374286672%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "VpJ777Ua74o",
+        "title": "🇻🇳 VinWonders Nha Trang Vietnam - Vinpearl Land [Vietnam Travel Videos]"
+      },
+      {
+        "youtubeId": "euFOSXnT7kY",
+        "title": "Vinwonders Nha Trang, Vietnam | Is it better than Disneyland?"
+      }
+    ]
   },
   "vinpearl-harbor": {
     "photos": [
@@ -5047,7 +6942,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://live.staticflickr.com/5090/5353277743_618d1a7985_b.jpg",
       "https://live.staticflickr.com/5209/5355403448_eec565fe21_b.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "ApESHAWpAzE",
+        "title": "day ay the vinpearl harbor, nha trang // castle light show, amusement park, tunnel aquarium"
+      },
+      {
+        "youtubeId": "xIbJ_tqKYn4",
+        "title": "Du lịch Nha Trang 2025| Lặn san hô - Bãi biển Hòn Sỏi - Hải sản trên bè - Show diễn Vinpearl Harbor"
+      }
+    ]
   },
   "dam-market": {
     "photos": [
@@ -5057,13 +6961,27 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/8/8e/CHO_DAM_MARKET_NHA_TRANG_VIETNAM_JAN_2012_%286832785236%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e7/CHO_DAM_MARKET_NHA_TRANG_VIETNAM_JAN_2012_%286910780410%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "ecacpmXz-Is",
+        "title": "CHỢ ĐẦM mới của Nha Trang || New Dam Market of Nha Trang city🦐🐟🐙"
+      }
+    ]
   },
   "xom-moi-market": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/1/10/04052023_Ponagar_Hindu_temples_complex%2C_Nha_Trang_Vietnam_-_27.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "l_CiESNi4I0",
+        "title": "Small Local Market Chợ Xóm Mới in Nha Trang Vietnam"
+      },
+      {
+        "youtubeId": "hcCe8hU5A48",
+        "title": "Chợ XÓM MỚI Nha Trang nhộn nhịp người mua !"
+      }
+    ]
   },
   "nha-trang-night-market": {
     "photos": [
@@ -5073,7 +6991,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/30/Nha_Trang_night_market_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/2/2a/Produce_in_Ben_Thanh_Market_-_Ho_Chi_Minh_City%2C_Vietnam_-_DSC01093.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "kVTp2YVleVw",
+        "title": "VIETNAM 🇻🇳 | NHA TRANG NIGHT MARKET 🔥 | EP-19"
+      },
+      {
+        "youtubeId": "J6F374CVbww",
+        "title": "4K Walking TOUR - Night Market Nha Trang - Vietnam 🇻🇳"
+      }
+    ]
   },
   "skylight-nha-trang": {
     "photos": [
@@ -5083,13 +7010,31 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/7/7b/InterContinental_New_York_Barclay_Hotel_%2855283613836%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/e4/Bromley_Manhattan_Plate_078_publ._1925_%28cropped%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "oMMJGuAjkvA",
+        "title": "Skylight Havana Nha Trang Vietnam 2017 Night life City, Review"
+      },
+      {
+        "youtubeId": "gzfsiRi1fM8",
+        "title": "Skylight Nha Trang (Vietnam)"
+      }
+    ]
   },
   "tuyet-tinh-coc": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/a/ab/Hari_Won_on_the_show_H%C3%A0nh_L%C3%BD_T%C3%ACnh_Y%C3%AAu_2020.png"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "VvgxGeh9pFg",
+        "title": "Tuyệt Tình Cốc - Am Tien Cave in Ninh Binh"
+      },
+      {
+        "youtubeId": "iZ0Qg_REChA",
+        "title": "Khám Phá Tuyệt Tình Cốc Ninh Bình Đẹp Nao Lòng Cùng Đi Ra Đi Vô"
+      }
+    ]
   },
   "cuc-phuong": {
     "photos": [
@@ -5099,14 +7044,32 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/a/a0/U.S._Secretary_of_the_Interior_Sally_Jewell%27s_visit_to_Cuc_Phuong_National_Park_%2819346440075%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/93/U.S._Secretary_of_the_Interior_Sally_Jewell%27s_visit_to_Cuc_Phuong_National_Park_%2819160272099%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "WHccifE-MKw",
+        "title": "Cúc Phương National Park - VIETNAM!"
+      },
+      {
+        "youtubeId": "P65eMRJR5u8",
+        "title": "Review điểm cắm trại Vườn Quốc Gia Cúc Phương, Ninh Bình - Mì Lifestyle"
+      }
+    ]
   },
   "dong-thien-ha": {
     "photos": [
       "https://upload.wikimedia.org/wikipedia/commons/d/dd/Thi%C3%AAn_M%E1%BB%A5_Chung_Thanh_%28c%E1%BA%A3nh_ch%C3%B9a_Thi%C3%AAn_M%E1%BB%A5%29_result.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/a/ab/Tr%E1%BA%ADn_T%E1%BB%91t_%C4%90%E1%BB%99ng_Ch%C3%BAc_%C4%90%E1%BB%99ng_1426.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "2xIlmUE0IFQ",
+        "title": "Động Thiên Hà Ninh Bình Việt Nam - Discovery Galaxy Cave Ninh Binh"
+      },
+      {
+        "youtubeId": "aFMnLaYLYAU",
+        "title": "Động Thiên Hà - Galaxy grotto"
+      }
+    ]
   },
   "dong-tien-canh": {
     "photos": [
@@ -5116,7 +7079,12 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/3/35/Chuaamtien4.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/d/d4/Chuaamtien1.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "VD5T9vTo8Wo",
+        "title": "Khám Phá ĐỘNG TIÊN SƠN Thanh Hóa 2026 | Danh Thắng Tuyệt Đẹp Nhưng Lại ít Người Biết"
+      }
+    ]
   },
   "bich-dong-pagoda": {
     "photos": [
@@ -5127,11 +7095,18 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/e5/Bich_Dong_Pagoda%2C_Ninh_Binh%2C_Vietnam%2C_20240203_1132_5632.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/e/ef/Bich_Dong1_tango7174.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/0/01/Bich_Dong2_tango7174.JPG",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Bia_ch%C3%B9a_B%C3%ADch_%C4%90%E1%BB%99ng.JPG/1280px-Bia_ch%C3%B9a_B%C3%ADch_%C4%90%E1%BB%99ng.JPG",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Th%E1%BB%95_%C4%90%E1%BB%8Ba-_Ch%C3%B9a_B%C3%ADch_%C4%90%E1%BB%99ng.JPG/1280px-Th%E1%BB%95_%C4%90%E1%BB%8Ba-_Ch%C3%B9a_B%C3%ADch_%C4%90%E1%BB%99ng.JPG",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Bich_Dong_Pagoda%2C_Ninh_Binh%2C_Vietnam%2C_20240203_1126_5619.jpg/1280px-Bich_Dong_Pagoda%2C_Ninh_Binh%2C_Vietnam%2C_20240203_1126_5619.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Bia_ch%C3%B9a_B%C3%ADch_%C4%90%E1%BB%99ng.JPG/1280px-Bia_ch%C3%B9a_B%C3%ADch_%C4%90%E1%BB%99ng.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "DhXTI_Woaxg",
+        "title": "🏯Chùa Bích Động – Viên ngọc giữa non xanh | Tam Cốc, Ninh Bình"
+      },
+      {
+        "youtubeId": "Y8rYOrpnO5k",
+        "title": "FULL VIRTUAL TOUR- 490yo PAGODA COMPLEX -Bích Động w Caves- Ninh Binh-Vietnam 2019"
+      }
+    ]
   },
   "thai-vi-temple": {
     "photos": [
@@ -5141,7 +7116,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/c/c2/Thai_Vi_Temple_7.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/48/Thai_Vi_Temple.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "xl7tx1ilEPM",
+        "title": "Đền Thái Vi - Dấu Thời Gian Trên Đá Xanh | VTV Travel - Du Lịch Cùng VTV"
+      },
+      {
+        "youtubeId": "vUcHafR1Veg",
+        "title": "THNB: THĂM QUAN ĐỀN THÁI VI"
+      }
+    ]
   },
   "hang-thien-huong": {
     "photos": [
@@ -5161,17 +7145,36 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/16/TrangAn16_HangSinh.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/3/38/TrangAn25_HangTran.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "ROW3vE0klkg",
+        "title": "Viếng thăm ĐỀN TRẦN ở Tràng An, Ninh Bình - Du lịch miền Trung"
+      },
+      {
+        "youtubeId": "3ththDDDQ8g",
+        "title": "Đền Trần hơn 1000 năm tuổi rất linh thiêng giữa núi rừng Tràng An tại Ninh Bình #tranga"
+      }
+    ]
   },
   "bai-dinh-co": {
     "photos": [
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Ch%C3%B9a_B%C3%A1i_%C4%90%C3%ADnh.jpg/1280px-Ch%C3%B9a_B%C3%A1i_%C4%90%C3%ADnh.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/d9/M%E1%BB%98T_G%C3%93C_CH%C3%99A_B%C3%81I_%C4%90%C3%8DNH_-_panoramio.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/dd/Ch%C3%B9a_B%C3%A1i_%C4%90%C3%ADnh_m%E1%BB%9Bi_-_panoramio_%283%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/5/56/Ch%C3%B9a_B%C3%A1i_%C4%90%C3%ADnh.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/ce/ChuabaidinhcoA6.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/d7/ChuabaidinhcoA4.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "notqPz7gwYQ",
+        "title": "Ngỡ Ngàng trước vẻ đẹp của chùa Bái Đính Ninh Bình"
+      },
+      {
+        "youtubeId": "-W61LIj1r2Y",
+        "title": "Chùa Bái Đính Ninh Bình 2023"
+      }
+    ]
   },
   "pho-co-hoa-lu": {
     "photos": [
@@ -5181,7 +7184,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/be/Codohoalu2010k1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/4/4b/Codohoalu2010k4.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "3GY83iD8uyw",
+        "title": "phố cổ hoa lư ninh bình . phố đi bộ ninh bình #ninhbinh #dulichvietnam #dulich #dulichninhbinh"
+      },
+      {
+        "youtubeId": "ak2jyN83B08",
+        "title": "Phố Cổ Hoa Lư - Ninh Binh ✨✨✨Hoa Lu Encient Capital🌸🌸🌸 #cave #adventure #nature"
+      }
+    ]
   },
   "dinh-le-tombs": {
     "photos": [
@@ -5189,7 +7201,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/b/be/Temple_comm%C3%A9moratif_au_roi_Dinh_Tien_Hoang_%28Hoa_Lu%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/38/C%E1%BA%A7u_Long_Th%C3%A0nh%2C_%C4%90%C6%B0%E1%BB%9Dng_cao_t%E1%BB%91c_TP.HCM_-_Long_Th%C3%A0nh_-_D%E1%BA%A7u_Gi%C3%A2y.JPG"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "-VZEp8XUVZo",
+        "title": "Tam Coc in Ninh Binh, Hoa Lư, King Đinh Tiên Hoàng & Lê Đại Hành Tomb - Sandy The Explorer"
+      },
+      {
+        "youtubeId": "D8_zk0p9_Pk",
+        "title": "Thăm đền Đinh Tiên Hoàng và đền Lê Đại Hành (Ninh Bình)"
+      }
+    ]
   },
   "phat-diem-cathedral": {
     "photos": [
@@ -5199,7 +7220,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/1/14/Nh%C3%A0_tho_Ph%C3%A1t_Diem.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/07/Phatdiemk-77.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "M7BTMGtpH-E",
+        "title": "Phát Diệm Stone Cathedral - Ninh Bình Province - Việt Nam"
+      },
+      {
+        "youtubeId": "LQfCp7cUEnQ",
+        "title": "Nhà Thờ Đá Phát Diệm - The Phát Diệm Cathedral"
+      }
+    ]
   },
   "hang-en": {
     "photos": [
@@ -5209,7 +7239,16 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/e0/Five_tigers%2C_Hang_Trong_painting%2C_Hanoi%2C_paper%2C_view_1_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05281.JPG",
       "https://upload.wikimedia.org/wikipedia/commons/9/91/Hang_pagoda_Tn.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "iOBOa0kxykU",
+        "title": "Hang En Cave Adventure in Vietnam"
+      },
+      {
+        "youtubeId": "ekCV-mXz8Uk",
+        "title": "Hang Va - Unique cave in Vietnam with rarest formations, trekking, rope traversing & camping tour"
+      }
+    ]
   },
   "hang-va": {
     "photos": [
@@ -5219,142 +7258,1742 @@ export const EXPERIENCE_MEDIA: Record<string, ExperienceMedia> = {
       "https://upload.wikimedia.org/wikipedia/commons/e/e8/M%E1%BB%99t_mi%E1%BB%87ng_hang_n%C3%BAi_Mo_So.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/c/c5/M%E1%BB%99t_hang_n%C3%BAi_b%C3%AAn_trong_ch%C3%B9a_Hang.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "ekCV-mXz8Uk",
+        "title": "Hang Va - Unique cave in Vietnam with rarest formations, trekking, rope traversing & camping tour"
+      },
+      {
+        "youtubeId": "8uxeHm2ETCg",
+        "title": "[Hang Ba Deep Jungle Expedition] 6 Highlights: #2 - Explore the outstanding primitive forest"
+      }
+    ]
   },
   "thung-nham": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Tam_Coc%2C_Ninh_Binh.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Trang_An_Landscape_Complex.jpg?width=1200",
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Tam_Coc%2C_Ninh_Binh.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Trang_An_Landscape_Complex.jpg",
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "ElOBtHkIn1o",
+        "title": "Vietnam Motorcycle Trip | Ep. 11 | Thung Nham Bird Park in Ninh Binh"
+      },
+      {
+        "youtubeId": "YltIYfWoU7U",
+        "title": "Thung Nham Bird Sanctuary Is So Peaceful - Ninh Binh, Vietnam 🇻🇳 - Virtual Walking Tour [4K]"
+      }
+    ]
   },
   "ham-rong-mountain": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Sa_Pa_rice_terraces.jpg?width=1200",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sa_Pa_rice_terraces.jpg",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
+      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99",
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Sapa_vu_du_mont_Ham_Rong.jpg/1280px-Sapa_vu_du_mont_Ham_Rong.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/98/C%E1%BB%95ng_v%C3%A0o_KDL_n%C3%BAi_H%C3%A0m_R%E1%BB%93ng%2C_Sa_Pa.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/9/94/Nui_Ham_Rong_mua_xuan.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Vietnam-Sapa-Ham_Rong_Mountain-PANO_20180111_111620.jpg/1280px-Vietnam-Sapa-Ham_Rong_Mountain-PANO_20180111_111620.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Ham_Rong%2C_Ta_Phin%2C_QL.4D.jpg/1280px-Ham_Rong%2C_Ta_Phin%2C_QL.4D.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Ham_Rong%2C_Ta_Phin%2C_QL.4D_%2819211%29.jpg/1280px-Ham_Rong%2C_Ta_Phin%2C_QL.4D_%2819211%29.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Vietnam-Sapa-Ham_Rong_Mountain-PANO_20180111_111620.jpg/1280px-Vietnam-Sapa-Ham_Rong_Mountain-PANO_20180111_111620.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "u_OzFJkVYcc",
+        "title": "Lào Cai- Hàm Rồng Mountain- Dãy Hoàng Liên Sơn"
+      },
+      {
+        "youtubeId": "kAnFz4mIQqM",
+        "title": "Leo núi Hàm Rồng Sapa"
+      }
+    ]
   },
   "o-quy-ho-pass": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Fansipan.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Sa_Pa_rice_terraces.jpg?width=1200",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Fansipan.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sa_Pa_rice_terraces.jpg",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
+      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99",
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Sunset_on_O_Quy_Ho_pass.jpg/1280px-Sunset_on_O_Quy_Ho_pass.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/O_Quy_Ho_pass.jpg/1280px-O_Quy_Ho_pass.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "s65OaGMtr9Q",
+        "title": "Rong May Glass Bridge Sapa – Walk on Air Above O Quy Ho Pass - Vietnam"
+      },
+      {
+        "youtubeId": "DQ-mo_Lrq5M",
+        "title": "O Quy Ho Pass || On the way most dangerous in Vietnam || Sa Pa to Lai Châu || Nice Views"
+      }
+    ]
   },
   "muong-hoa-valley": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Sa_Pa_rice_terraces.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Fansipan.jpg?width=1200",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sa_Pa_rice_terraces.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Fansipan.jpg",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
+      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99",
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/M%C6%B0%E1%BB%9Dng_Hoa_Valley_01.jpg/1280px-M%C6%B0%E1%BB%9Dng_Hoa_Valley_01.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/M%C6%B0%E1%BB%9Dng_Hoa_Valley_02.jpg/1280px-M%C6%B0%E1%BB%9Dng_Hoa_Valley_02.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/M%C6%B0%E1%BB%9Dng_Hoa_Valley_03.jpg/1280px-M%C6%B0%E1%BB%9Dng_Hoa_Valley_03.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/M%C6%B0%E1%BB%9Dng_Hoa_Valley_04.jpg/1280px-M%C6%B0%E1%BB%9Dng_Hoa_Valley_04.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/M%C6%B0%E1%BB%9Dng_Hoa_Valley_07.jpg/1280px-M%C6%B0%E1%BB%9Dng_Hoa_Valley_07.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/M%C6%B0%E1%BB%9Dng_Hoa_Valley_03.jpg/1280px-M%C6%B0%E1%BB%9Dng_Hoa_Valley_03.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "mwLV7zgQZS0",
+        "title": "Mường Hoa Valle Hotel - The Room Looks Crazy | Sapa, Vietnam🏩"
+      },
+      {
+        "youtubeId": "AIbEqoMh3SM",
+        "title": "Mường Hoa Valle Hotel - Unexpected Luxury Here | Sapa, Vietnam🏨"
+      }
+    ]
   },
   "sapa-stone-church": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Sa_Pa_rice_terraces.jpg?width=1200",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sa_Pa_rice_terraces.jpg",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
+      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99",
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "0WD-38puCOg",
+        "title": "Sapa Stone Church, Vietnam 🇻🇳 (4K Cinematic Travel)"
+      },
+      {
+        "youtubeId": "-xeVamHkPvU",
+        "title": "Unique Beauty and History | Sa pa Vietnam | The Stone Church Sa Pa | Walking Tour - Jan 2023"
+      }
+    ]
   },
   "long-beach-pq": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Sao_Beach.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg?width=1200",
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sao_Beach.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1",
+      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Bai_Truong_%28Long_Beach%29_Ph%C3%BA_Qu%E1%BB%91c%2C_Vietnam_%283859473907%29.jpg/1280px-Bai_Truong_%28Long_Beach%29_Ph%C3%BA_Qu%E1%BB%91c%2C_Vietnam_%283859473907%29.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Bai_Truong_%28Long_Beach%29_Ph%C3%BA_Qu%E1%BB%91c%2C_Vietnam_%283859473907%29.jpg/1280px-Bai_Truong_%28Long_Beach%29_Ph%C3%BA_Qu%E1%BB%91c%2C_Vietnam_%283859473907%29.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "TU85--r9R34",
+        "title": "Long Beach (Bãi trường), Phu Quoc, Vietnam | Walking 4K 🇻🇳"
+      },
+      {
+        "youtubeId": "_Xm5eopQGII",
+        "title": "Long Beach (Bãi Trường) - One of the World's Best Beaches in Phu Quoc Island, Vietnam (CNN)"
+      }
+    ]
   },
   "hon-thom-island": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Sao_Beach.jpg?width=1200",
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sao_Beach.jpg",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1",
+      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/H%C3%B2n_Th%C6%A1m_cable_car_pylon.jpg/1280px-H%C3%B2n_Th%C6%A1m_cable_car_pylon.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/H%C3%B2n_Th%C6%A1m_cable_car_above_the_An_Th%E1%BB%9Bi_township.jpg/1280px-H%C3%B2n_Th%C6%A1m_cable_car_above_the_An_Th%E1%BB%9Bi_township.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/H%C3%B2n_Th%C6%A1m_cable_car_station.jpg/1280px-H%C3%B2n_Th%C6%A1m_cable_car_station.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Hon_Thom_Cable_Car_aerial_view_Phu_Quoc_Island_Vietnam.jpg/1280px-Hon_Thom_Cable_Car_aerial_view_Phu_Quoc_Island_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Cap-treo-hon-thom-4.jpg/1280px-Cap-treo-hon-thom-4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Cap-treo-hon-thom-3.jpg/1280px-Cap-treo-hon-thom-3.jpg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/H%C3%B2n_Th%C6%A1m_cable_car_station.jpg/1280px-H%C3%B2n_Th%C6%A1m_cable_car_station.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "TTjhiLDDsP0",
+        "title": "Phú Quốc, Vietnam - Hòn Thơm (Pineapple Island) Cable Car (Longest in the World!)"
+      }
+    ]
   },
   "sunset-town-pq": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Sao_Beach.jpg?width=1200",
-      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1200&q=80",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sao_Beach.jpg",
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000",
+      "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Sunset-town-phu-quoc-1.jpg/1280px-Sunset-town-phu-quoc-1.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Sunset-town-phu-quoc-2.jpg/1280px-Sunset-town-phu-quoc-2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/An_Thoi_fishing_harbour_Sunset_Town_Sun_World_Phu_Quoc_Vietnam.jpg/1280px-An_Thoi_fishing_harbour_Sunset_Town_Sun_World_Phu_Quoc_Vietnam.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "dotNoct0JNU",
+        "title": "Sunset Town - Phu Quoc, Vietnam | 4K Walking Tour"
+      },
+      {
+        "youtubeId": "8zB5PQ4mIOU",
+        "title": "Sunset Town Phu Quoc DAYTIME Guide!"
+      }
+    ]
   },
   "kiss-bridge": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Sao_Beach.jpg?width=1200",
-      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1200&q=80",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sao_Beach.jpg",
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df",
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000",
+      "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Kiss_Bridge_Phu_Quoc_aerial_sunset_view.jpg/1280px-Kiss_Bridge_Phu_Quoc_aerial_sunset_view.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Kiss_Bridge_sunset_silhouette_crowd_Phu_Quoc_Island_Vietnam.jpg/1280px-Kiss_Bridge_sunset_silhouette_crowd_Phu_Quoc_Island_Vietnam.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/Cau-hon-lang-man-2.jpg/1280px-Cau-hon-lang-man-2.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Toan-canh-cau-hon.jpg/1280px-Toan-canh-cau-hon.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/Cau-hon-lang-man-2.jpg/1280px-Cau-hon-lang-man-2.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "-N93PoPF85k",
+        "title": "Vietnam 360° – Kiss Bridge Phu Quoc Walk | 4K HD 2025"
+      },
+      {
+        "youtubeId": "O-34-L3XEhg",
+        "title": "Màn cầu hôn của doanh nhân Đức Hồ và á hậu Phương Anh tại Cầu Hôn Kiss Bridge Phú Quốc"
+      }
+    ]
   },
   "bong-lai-valley": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Phong_Nha-Ke_Bang.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Paradise_Cave.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Phong_Nha_Cave.jpg?width=1200"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Phong_Nha-Ke_Bang.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Paradise_Cave.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Phong_Nha_Cave.jpg"
     ],
-    "videos": []
+    "videos": [
+      {
+        "youtubeId": "dFoGVB2_YQQ",
+        "title": "Đường Rừng Phong Nha Kẻ Bàng, Quảng Bình - Đường vào chốn bồng lai (Vườn Quốc Gia đẹp nhất Việt Nam)"
+      }
+    ]
   },
   "pub-cold-beer": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Phong_Nha-Ke_Bang.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Paradise_Cave.jpg?width=1200",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Phong_Nha_Cave.jpg?width=1200",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Phong_Nha-Ke_Bang.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Paradise_Cave.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Phong_Nha_Cave.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Ice_Cold_Beer%2C_Emerald_Hill_Road%2C_Singapore_-_20121014.jpg/1280px-Ice_Cold_Beer%2C_Emerald_Hill_Road%2C_Singapore_-_20121014.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/0/01/Cold_Beer_at_former_Post_Office_-_geograph.org.uk_-_5701306.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/DFC_1097_A_juicy_cheeseburger_with_lettuce_on_a_sesame_seed_bun_served_on_a_wooden_board_with_a_side_of_fries_and_a_cold_drink.jpg/1280px-DFC_1097_A_juicy_cheeseburger_with_lettuce_on_a_sesame_seed_bun_served_on_a_wooden_board_with_a_side_of_fries_and_a_cold_drink.jpg"
     ],
+    "videos": [
+      {
+        "youtubeId": "4DRTn9qVcGE",
+        "title": "The Pub With Cold Beer at Phong Nha."
+      },
+      {
+        "youtubeId": "DzSESZ2KSxE",
+        "title": "PUB WITH COLD BEER | PHONG NHA VIETNAM 🇻🇳"
+      }
+    ]
+  },
+  "fitom-museum": {
+    "photos": [],
     "videos": []
+  },
+  "non-nuoc-stone-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "p6r7LZ1Kp3A",
+        "title": "坐飛機去玩🇻🇳｜Non Nước石雕博物館【CC字幕】#越南#峴港#NonNuoc#DaNang #NonNuocStoneCarving #DaNangTravel #VietnamTravel"
+      },
+      {
+        "youtubeId": "YUtxUVzGMYw",
+        "title": "Non Nuoc Stone Carving Village, Danang, Vietnam"
+      }
+    ]
+  },
+  "hon-mun-islands": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "4JjrWNQMiPs",
+        "title": "3 Islands Snorkeling Tour | Nha Trang | Hon Tam | Hon Mun | Hon Mot | Vietnam"
+      },
+      {
+        "youtubeId": "zYHz7k0gnfE",
+        "title": "Snorkeling Hon Mun Island Nha Trang | Crystal Clear Water 4K POV DJI Osmo Action 6"
+      }
+    ]
+  },
+  "cam-thanh-nipa-forest": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "LLzdXlck2ZM",
+        "title": "QUẢNG NAM NHỮNG ĐIỂM ĐẾN - RỪNG DỪA CẨM THANH, HỘI AN"
+      }
+    ]
+  },
+  "kim-son-sedge": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "7SpsvyDhfaI",
+        "title": "Introduction to sedge craft-village, Kim Son, Ninh Binh, Vietnam"
+      },
+      {
+        "youtubeId": "Cs00M2_bM3s",
+        "title": "Một ngày ở làng nghề chiếu cói Kim Sơn - Ninh Bình"
+      }
+    ]
+  },
+  "ninh-van-stone": {
+    "photos": [],
+    "videos": []
+  },
+  "van-lam-embroidery": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Naa85NM8n1U",
+        "title": "Văn Lâm Craft Village"
+      },
+      {
+        "youtubeId": "CST0OfrN5uA",
+        "title": "Ghé thăm Tam Cốc Bích Động - Các bước thêu ren Văn Lâm"
+      }
+    ]
+  },
+  "bear-sanctuary-ninh-binh": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "eXFecmA6QGQ",
+        "title": "Our BEAR SANCTUARY Ninh Binh 🌿 | FOUR PAWS | [SUBS: FR]"
+      },
+      {
+        "youtubeId": "4MgkAcSWsCo",
+        "title": "A day at BEAR SANCTUARY Ninh Binh | FOUR PAWS | www.four-paws.org"
+      }
+    ]
+  },
+  "co-vien-lau": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "dA8dAQSAXDk",
+        "title": "Review Làng Việt Cổ Cố Viên Lầu Làng Quê Bắc Bộ Thu Nhỏ Trên Đất Ninh Bình"
+      },
+      {
+        "youtubeId": "U2cZC121cpM",
+        "title": "Cố viên lầu - điểm check in cực hot với giới trẻ"
+      }
+    ]
+  },
+  "van-thanh-flowers": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "kddRUoYBrzo",
+        "title": "LÀNG HOA VẠN THÀNH ĐÀ LẠT điểm su lịch 5 sao."
+      },
+      {
+        "youtubeId": "Fl7ZjHvgRiY",
+        "title": "Làng hoa Vạn Thành Đà Lạt | khanhduc.net"
+      }
+    ]
+  },
+  "thai-phien-flowers": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "vOLt5U1NXLo",
+        "title": "ĐÀ LẠT: LÀNG HOA THÁI PHIÊN XUỐNG GIỐNG 114 HA HOA TẾT | VTV5"
+      },
+      {
+        "youtubeId": "cfpuQruE25M",
+        "title": "Tình hình Đà Lạt hôm nay - Cảnh chợ Thái Phiên Vắng Lặng, bận rộn cuối năm làng hoa tết"
+      }
+    ]
+  },
+  "fairytale-land-dalat": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "PrPAbmjGzi0",
+        "title": "Dalat Fairytale Land 달랏 동화나라 & 와이너리 - newly discovered village"
+      },
+      {
+        "youtubeId": "N4AT5Gt40RE",
+        "title": "Going To Da Lat FairyTale Land In Vietnam"
+      }
+    ]
+  },
+  "lumiere-light-garden": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "S24nhZGBGzw",
+        "title": "LUMIERE LIGHT GARDEN IS REALLY \"Fantasy\"!?|| DA LAT || VIETNAM"
+      },
+      {
+        "youtubeId": "1KcbpHCbOgk",
+        "title": "Da Lat Travel Recommendations: Lang Biang Mountain and Da Lat Lumiere Light Garden, Easily Access..."
+      }
+    ]
+  },
+  "cu-lan-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "9-h8w7t1bv0",
+        "title": "Khám phá Làng Cù Lần - Đà Lạt. Phần 1. Discover Cù Lần Village in Da Lat, Vietnam. Part 1."
+      },
+      {
+        "youtubeId": "LRjbiEYIA10",
+        "title": "✈️ Du lịch Đà Lạt 💖 Làng Cù Lần Đà Lạt - Cu Lan Village Vietnam 📸 Nhiếp Ảnh Du Lịch ✔️"
+      }
+    ]
+  },
+  "mongo-land-dalat": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "2rL5c9bOVz8",
+        "title": "Mongo Land Dalat 🛷🌈 Rainbow Slides, Cute Animals & Nomad Vibes (Jan 2024)"
+      },
+      {
+        "youtubeId": "vR5sKnJ-i1U",
+        "title": "Mongo Land, Dalat 2022"
+      }
+    ]
+  },
+  "french-quarter-dalat": {
+    "photos": [],
+    "videos": []
+  },
+  "hundred-roofs-bar": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Xb3TnMbGy0k",
+        "title": "Tour le Couple: 100 ROOFS MAZE BAR @ DA LAT, VIETNAM"
+      },
+      {
+        "youtubeId": "a_4WFOR6Odg",
+        "title": "100 roofs bar da lat"
+      }
+    ]
+  },
+  "voi-re-temple": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "AMhiHKwidUA",
+        "title": "Voi Re Temple Hue - The Story of Loyalty and Sacrifice #travelhue #voiretemplehue"
+      }
+    ]
+  },
+  "bao-la-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "mtli8E8wSSY",
+        "title": "Bao La Bamboo and Rattan Weaving"
+      },
+      {
+        "youtubeId": "1iSHG7_5l4E",
+        "title": "Exploring Vietnam Phu Vinh bamboo & ratten weaving village"
+      }
+    ]
+  },
+  "hoang-lien-national-park": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "VeiKS7ak4-Y",
+        "title": "Sapa district (Hoàng Liên National Park - Vietnam) 4K drone footage"
+      },
+      {
+        "youtubeId": "DcMGpFD8kOo",
+        "title": "Hoàng Liên National park"
+      }
+    ]
+  },
+  "sapa-ancient-stone-field": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "F0-1JVhAsZw",
+        "title": "Sapa ancient stone beach"
+      },
+      {
+        "youtubeId": "B_IiU3HX0vs",
+        "title": "Sapa Ancient Stone Gallery – Echoes of an Ancient Civilization"
+      }
+    ]
+  },
+  "seng-my-ty-reservoir": {
+    "photos": [],
+    "videos": []
+  },
+  "coc-san-cave": {
+    "photos": [],
+    "videos": []
+  },
+  "fairy-cave-sapa": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "QENwni6mcE0",
+        "title": "Fairy Cave - Escape covid19"
+      },
+      {
+        "youtubeId": "44_As66RaJM",
+        "title": "Fairy Cave 2021 https://www.facebook.com/www.vietnamhiddencharm.info"
+      }
+    ]
+  },
+  "silver-waterfall": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "-KzKEIWV9Ec",
+        "title": "Silver Waterfall – The White Symphony of Sapa | Vietnam’s Mountain Marvel"
+      },
+      {
+        "youtubeId": "T_nu1G1SyQ0",
+        "title": "A Morning at Silver Waterfall: Sapa's Natural Wonder | Day 5 part 1 | Sapa Vietnam 🇻🇳"
+      }
+    ]
+  },
+  "love-waterfall": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "OPQ6AbryJ7I",
+        "title": "Quiet Forest Walk: Love Waterfall to National Park Gate | ASMR Walking Tour"
+      },
+      {
+        "youtubeId": "xXQXxCyku8o",
+        "title": "$4 Fresh Eggs and Potato at Sapa's Tranquil Love Waterfalls, Vietnam 🇻🇳"
+      }
+    ]
+  },
+  "cat-cat-waterfall": {
+    "photos": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Tien_Sa_Waterfall.JPG"
+    ],
+    "videos": [
+      {
+        "youtubeId": "F6pQFcEcYh8",
+        "title": "POV: SAPA, VIETNAM 🇻🇳 | CAT CAT VILLAGE WALKING TOUR | [4k] Binaural Audio🎧"
+      },
+      {
+        "youtubeId": "mXyyuLT0OEI",
+        "title": "CAT CAT Village SAPA VIETNAM | Most Beautiful Mountain Village | It’s The Most Visited Attraction"
+      }
+    ]
+  },
+  "cau-may": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "_t-qvkvVALQ",
+        "title": "CẦU MÂY BẢN TẢ VAN • TẬP 1 • CẦU MÂY SAPA ( CLOUD BRIDGE SAPA)"
+      },
+      {
+        "youtubeId": "mMFkPO5WGVo",
+        "title": "Review: Phố Cầu Mây Sapa I Sapa I Lào Cai I Vietnam I Thang Vu"
+      }
+    ]
+  },
+  "rong-may-skywalk": {
+    "photos": [],
+    "videos": []
+  },
+  "ta-van-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "4oZfU7sd_90",
+        "title": "Hike to explore Ta Van Village (Dzay Tribe) | Trekking in Sapa, Vietnam Travel Video (Part 2)"
+      },
+      {
+        "youtubeId": "RNV8z0t9DsQ",
+        "title": "TẢ VAN VILLAGE | SAPA MÙA LÚA"
+      }
+    ]
+  },
+  "lao-chai-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "XrN2PEkVveA",
+        "title": "Lao Chải Sa Pa"
+      },
+      {
+        "youtubeId": "1ObKwv05MjE",
+        "title": "Thanh niên Sapa thổi sáo....😃😃😃...Lao Chải village..."
+      }
+    ]
+  },
+  "ta-phin-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "-X1seFZLFnk",
+        "title": "Phìn Village – A Hidden Paradise Where Culture Meets Nature"
+      },
+      {
+        "youtubeId": "eTMLZxW-sWM",
+        "title": "Discover Tả Phìn Village – A Serene Cultural Gem in Sapa"
+      }
+    ]
+  },
+  "y-linh-ho-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "6CieC8kS2Vo",
+        "title": "Y Linh Ho Village, Sapa - 7 Reasons Why You Should Visit this Enchanting Destination."
+      },
+      {
+        "youtubeId": "47P87z4r7K0",
+        "title": "Y Linh Ho Village, Sapa Vietnam | Hidden Beauty of Muong Hoa Valley"
+      }
+    ]
+  },
+  "sin-chai-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "aA7sohb5-6c",
+        "title": "Riding Through Rice Fields to Sín Chải, Vietnam (Fansipan Cable Car View)"
+      },
+      {
+        "youtubeId": "uBVqF5qgTz4",
+        "title": "The Black Mông traditional festival in Sín Chải village they are dance _Sa Pa _Lào Cai"
+      }
+    ]
+  },
+  "ban-ho-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "RovN0rQyMqk",
+        "title": "The best nature swimming pool in sapa! Lave waterfall in Bản hồ village"
+      }
+    ]
+  },
+  "nam-sai-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "QSXkJOywjOg",
+        "title": "Mùa gặt Tây Bắc 2023, một góc nhỏ của SaPa | Nậm Sài village #vietnam"
+      }
+    ]
+  },
+  "sa-pa-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "tUHpoisnP4k",
+        "title": "I Stayed in a Hmong Village Sa Pa Mountains 🇻🇳"
+      },
+      {
+        "youtubeId": "qQHLBFd6vWc",
+        "title": "Found the most beautiful village in the World | Cat Cat Village, Sapa Vietnam"
+      }
+    ]
+  },
+  "hau-thao-village": {
+    "photos": [],
+    "videos": []
+  },
+  "sapa-center-square": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Eh21QiWLe6o",
+        "title": "Sa Pa Vietnam in Winter ❄️ | Exploring Sa Pa Square & Town Center 2025"
+      }
+    ]
+  },
+  "sapa-lake": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "yMBI7xGTVtA",
+        "title": "🇻🇳 Sapa Vietnam Today SAPA LAKE, Vietnam 2026 ( HANOI ) Walk (traveling like ) Instagram Facebook"
+      },
+      {
+        "youtubeId": "kKdnoGzEKow",
+        "title": "Sapa Central Square | Sapa lake Night Street Walking Tour | Vietnam Misty Town"
+      }
+    ]
+  },
+  "kim-son-bao-thang": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "h9GNgOF_a6Q",
+        "title": "Flycam Toàn Cảnh Kim Sơn Bảo Thắng Tự - SaPa - Fansipan #ATISOTV"
+      },
+      {
+        "youtubeId": "he6XtnamX7U",
+        "title": "Travel clip: Kim Sơn Bảo Thắng Tự - SaPa Viet Nam"
+      }
+    ]
+  },
+  "bich-van-thien-tu": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "EPqxms-PgLI",
+        "title": "Sapa-Fansipan:Hành trình săn mây /Bích Vân Thiền Tự /Tour Miền Bắc cùng Vietravel - tập 6"
+      },
+      {
+        "youtubeId": "Hm6XRP6pWWQ",
+        "title": "Bích Vân Thiền tự - Fansipan - Sapa - 01/2021"
+      }
+    ]
+  },
+  "fansipan-buddha": {
+    "photos": [],
+    "videos": []
+  },
+  "sapa-museum": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "b-BfUnMSARo",
+        "title": "What to do in Sapa Town, City Tour to the Museum here"
+      },
+      {
+        "youtubeId": "coRcfpJ0VNk",
+        "title": "Sapa Museum, Where The Traditional Culture Of Vietnamese Ethnic Groups Is Preserved"
+      }
+    ]
+  },
+  "sun-plaza-sapa": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "kSvYgOUY_NI",
+        "title": "SUN PLAZA SAPA STATION, VIETNAM #shortvideo #shorts"
+      },
+      {
+        "youtubeId": "lezyqBMvuys",
+        "title": "Sun Plaza Sapa Vietnam #sapa #vietnam #sunplaza #travel #yolo #shorts"
+      }
+    ]
+  },
+  "bac-ha-market": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "wieeNz4791I",
+        "title": "Walking round the Sunday Market, Bắc Hà"
+      }
+    ]
+  },
+  "coc-ly-market": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "GYSdlB8nNd0",
+        "title": "Record-High Buffalo Prices! Cốc Ly Market"
+      },
+      {
+        "youtubeId": "muaHF8POSgA",
+        "title": "Exploring Cốc Ly Market with Local Hmong People"
+      }
+    ]
+  },
+  "can-cau-market": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "wNKAlR1ronY",
+        "title": "A Day at Cán Cấu Market: Discover the Energy and Culture of Sapa"
+      },
+      {
+        "youtubeId": "qEBifmOA1uY",
+        "title": "Cán Cấu Market: A Hidden Gem in Northern Vietnam's Mountains"
+      }
+    ]
+  },
+  "muong-hum-market": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "S1uDAE8B0yM",
+        "title": "Phượt Trên Cung Đường Ruộng Bậc Thang Đẹp Nhất Tây Bắc: Y Tý Về Sapa Qua Thung Lũng Mường Hum| Tập 3"
+      },
+      {
+        "youtubeId": "lMDrt_3cRzM",
+        "title": "Chợ phiên Mường Hum!"
+      }
+    ]
+  },
+  "cao-son-market": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "l1QrQOJVQqI",
+        "title": "Exploring Cao Sơn Market in Vietnam - A Cultural Journey Like No Other"
+      },
+      {
+        "youtubeId": "Y3lt-KOXQPM",
+        "title": "\"A Day at Cao Sơn Market – The Rustic Beauty Amidst the Mountains of Lào Cai\""
+      }
+    ]
+  },
+  "starfish-beach": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "SA1FBMpzXzM",
+        "title": "Starfish Beach (Rạch Vẹm), Phú Quốc – A Hidden Slice of Paradise"
+      },
+      {
+        "youtubeId": "s6b0HVXb5x8",
+        "title": "Don’t Go to Starfish Beach Until You Watch This Video | Phuquoc | Vietnam 2026 🇻🇳"
+      }
+    ]
+  },
+  "khem-beach": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "lEx0slrwBJQ",
+        "title": "PHU QUOC 💚 Khem Beach | VIETNAM | Walking Tour 4K"
+      },
+      {
+        "youtubeId": "F6sNh2W9QJM",
+        "title": "Real Khem Beach Weather December | Phu Quoc 4K Walk"
+      }
+    ]
+  },
+  "ong-lang-beach": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "uJY0qDNjaQk",
+        "title": "Paradise Beach 🏝 Bãi Ông Lang Phú Quốc"
+      },
+      {
+        "youtubeId": "_Pb2EWe5-Ns",
+        "title": "Khám phá vẻ đẹp hoang sơ tại bãi Ông Lang Phú Quốc"
+      }
+    ]
+  },
+  "ganh-dau-beach": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "19jW1vZsHk0",
+        "title": "Khám phá làng ven biển Gành Dầu - Phú Quốc"
+      },
+      {
+        "youtubeId": "nAi_V28h6Vg",
+        "title": "Bãi biển quá đẹp tại MŨI GÀNH DẦU Phú Quốc gần giáp BIÊN GIỚI CAMPUCHIA | PHÚ QUỐC 2022"
+      }
+    ]
+  },
+  "vung-bau-beach": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Z_x0lk0MMcw",
+        "title": "Bãi Vũng Bầu Phú Quốc"
+      },
+      {
+        "youtubeId": "VSGKUu9SdtU",
+        "title": "Đường đến Vũng Bầu PQ"
+      }
+    ]
+  },
+  "cua-can-beach": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "ZtCdZ2L9irQ",
+        "title": "Lý do gọi là Cửa Cạn - Phú Quốc"
+      },
+      {
+        "youtubeId": "Z3dq23UaTNo",
+        "title": "Bãi Biển Cửa Cạn, Bãi Cửa Cạn | Du Lịch Phú Quốc"
+      }
+    ]
+  },
+  "thom-beach": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "R46bS_Bol-0",
+        "title": "Bai Thom Retreat and Beach - Phú Quoc Vietnam 07.02.2026"
+      },
+      {
+        "youtubeId": "LWrgReOTsYw",
+        "title": "Vietnam: Phu Quoc island - Wild beauty Bai Thom beach | Vẻ đẹp hoang sơ của biển Bãi Thơm - Phú Quốc"
+      }
+    ]
+  },
+  "hon-may-rut": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "HTbdAwKReBI",
+        "title": "14 hòn đảo phía Nam Phú Quốc, P9: Hòn Mây Rút Trong (Du Lịch Phú Quốc Online cùng JOHN'S TOURS)."
+      },
+      {
+        "youtubeId": "iUbbfgdCJYY",
+        "title": "#191: Hành Trình 4 Đảo Phú Quốc - Hòn Móng Tay - Hòn Mây Rút Trong - Hòn Gỏi - Hòn Thơm Và Cáp Treo"
+      }
+    ]
+  },
+  "hon-mong-tay": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Tq2hNNZGDqg",
+        "title": "Hòn Móng Tay (Fingernail Island)"
+      },
+      {
+        "youtubeId": "M7Yqx5mTwqo",
+        "title": "TOÀN CẢNH HÒN MÓNG TAY PHÚ QUỐC"
+      }
+    ]
+  },
+  "hon-gam-ghi": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "aC9hK3iqcMI",
+        "title": "14 hòn đảo phía Nam Phú Quốc, P8: Hòn Gầm Ghì (Du Lịch Phú Quốc Online cùng JOHN'S TOURS)."
+      },
+      {
+        "youtubeId": "Wsa3K5OhFYQ",
+        "title": "Review Lặn Ngắm San Hô tại Hòn Gầm Ghì Phú Quốc - Sóc Nâu Family"
+      }
+    ]
+  },
+  "an-thoi-archipelago": {
+    "photos": [],
+    "videos": []
+  },
+  "phu-quoc-national-park": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "_zrfULbbsUE",
+        "title": "Thác Vách Đá Phú Quốc - A waterfall in Phu Quoc National Park"
+      },
+      {
+        "youtubeId": "B9X48EzkCvk",
+        "title": "Phu Quoc National park ( Núi Chúa Phú Quốc )"
+      }
+    ]
+  },
+  "suoi-tranh": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "8CDcEn5AWYg",
+        "title": "Waterfall Adventure 🇻🇳 Wildlife, Suối Tranh Jungle Trails & One of Phu Quoc’s Best Attractions?"
+      },
+      {
+        "youtubeId": "Czgxd72CO10",
+        "title": "Suối Tranh Phú Quốc | khám phá Phú Quốc | tắm suối Phú Quốc | TongTung Tv"
+      }
+    ]
+  },
+  "suoi-da-ban": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Vg_b9y8sZ70",
+        "title": "Tham quan Suối Đá Bàn Phú Quốc chỉ tốn 10.000 đồng - da ban waterfall | YẾN TRẦN TV"
+      },
+      {
+        "youtubeId": "CKDj4Zd358A",
+        "title": "Suối Đá Bàn Phú Quốc - Leo Núi Tắm Suối, Khám Phá Rừng Nguyên Sinh"
+      }
+    ]
+  },
+  "ganh-dau-cape": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "v-ysGFReLq0",
+        "title": "Vietnam : Đường đi Gành Dầu – Bắc đảo Phú Quốc | Way to Ganh Dau in the northwest of Phu Quoc island"
+      },
+      {
+        "youtubeId": "aV0VvkvPqZQ",
+        "title": "Gành Dầu Phú Quốc Vietnam - Beach and Resorts - Island from Above - Flycam 03.02.2026"
+      }
+    ]
+  },
+  "ho-quoc-pagoda": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "2scBkjzToGI",
+        "title": "Việt Nam| Explore Ho Quoc Temple - Phu Quoc| Khám Phá Chùa Hộ Quốc Phú Quốc"
+      },
+      {
+        "youtubeId": "aECv8PhrHPI",
+        "title": "Chùa Hộ Quốc - Ho Quoc Pagoda | Cinematic Travel Video"
+      }
+    ]
+  },
+  "sung-hung-pagoda": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "8Xg6lGXLUxQ",
+        "title": "Sùng Hưng Cổ Tự Ngôi Chùa Lâu Đời Nhất Ở Phú Quốc"
+      },
+      {
+        "youtubeId": "-UFDi3dArBM",
+        "title": "( LÂM VIÊN BẢO THÁP ) Chùa Sùng Hưng Cổ Tự - Phú Quốc - Làng Quê Việt TV"
+      }
+    ]
+  },
+  "su-muon-pagoda": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "_148Uwm6VjY",
+        "title": "Review Hùng Long Tự Phú Quốc (Chùa Sư Muôn)"
+      },
+      {
+        "youtubeId": "NlVsulZbx7I",
+        "title": "Công ty du lịch Cattour Việt Nam: Chùa Sư Muôn Phú Quốc"
+      }
+    ]
+  },
+  "cao-dai-phu-quoc": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "RicWCMROzPM",
+        "title": "Cao Đài Hội Thánh - TP Phú Quốc"
+      },
+      {
+        "youtubeId": "HB3Ma1Uibc0",
+        "title": "Khám Phá Cao Đài Hội Thánh – Nơi Phát Tích Của Đạo Cao Đài"
+      }
+    ]
+  },
+  "phu-quoc-prison": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "MVZOCbwcYPo",
+        "title": "VIETNAM | Phú Quốc Prison Camp Heartbreaking Adventure #travel #VietnamHistory"
+      }
+    ]
+  },
+  "coi-nguon-museum": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "A68SDPPafEA",
+        "title": "Origin Museum - Phú Quốc Island - Bảo tàng Cội Nguồn"
+      },
+      {
+        "youtubeId": "t4afU8vk1Hw",
+        "title": "Du khảo Bảo tàng Cội nguồn (Phú Quốc)"
+      }
+    ]
+  },
+  "ham-ninh-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "FD3wGMB8Reo",
+        "title": "HAM NINH FISHING VILLAGE SEAFOOD | FISHING VILLAGE IN PHU QUOC"
+      },
+      {
+        "youtubeId": "0Jg4SdwbzJ8",
+        "title": "Làng Chài Hàm Ninh Phú Quốc - Video thực tế kèm thuyết minh"
+      }
+    ]
+  },
+  "cua-can-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "_tqkN0omPpU",
+        "title": "review nhanh về Xã Cửa Cạn Phú Quốc"
+      }
+    ]
+  },
+  "grand-world-pq": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "ZUsLgPap0ng",
+        "title": "GRAND WORLD PHÚ QUỐC: THÀNH PHỐ PHONG CÁCH VENICE TẠI VIỆT NAM?! 🇻🇳"
+      },
+      {
+        "youtubeId": "otlPd9JU21I",
+        "title": "Explore Grand World Phu Quoc: The Sleepless City"
+      }
+    ]
+  },
+  "hon-thom-cable": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "sbjFIEdMbNU",
+        "title": "Cáp treo Hòn Thơm Phú Quốc 2021 - tất tần tật mọi thứ cần biết - Hon Thom cable car in phu quoc"
+      },
+      {
+        "youtubeId": "GJRwzxvYUB8",
+        "title": "Khám Phá Cáp Treo Hòn Thơm Phú Quốc - Đi Xuyên Biển Dài Nhất Thế Giới!! Review chi tiết [Phú Quốc]"
+      }
+    ]
+  },
+  "vinwonders-pq": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "MazsK6qW7iY",
+        "title": "Day Walking in The Sea Shell VinWonders Phú Quốc Theme Park"
+      },
+      {
+        "youtubeId": "sM2SNdYfzpU",
+        "title": "Ngắm Cung Điện Hải Vương - The Sea Shell tại VinWonders Phú Quốc #shorts"
+      }
+    ]
+  },
+  "vinpearl-safari-pq": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "uL5OrbZAoI8",
+        "title": "Phu Quoc Vinpearl Safari & Zoo Review [ In English ] - Travel Vietnam - www.phuquoc.createtravel.tv"
+      },
+      {
+        "youtubeId": "TGxvrOitua8",
+        "title": "Phu Quoc Vinpearl Safari & Zoo Vietnam Ep 03 - Part 01"
+      }
+    ]
+  },
+  "aquatopia-pq": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "gHS49xdFupc",
+        "title": "Aquatopia Water Park, Phu Quoc, Vietnam"
+      },
+      {
+        "youtubeId": "pBCtB3XG-eE",
+        "title": "In one Day - Hon Thom island | Sea Cable Car | Aquatopia Water park | Phu Quoc, Vietnam"
+      }
+    ]
+  },
+  "khu-cuong-pepper": {
+    "photos": [],
+    "videos": []
+  },
+  "duc-phat-pepper": {
+    "photos": [],
+    "videos": []
+  },
+  "khai-hoan-fish-sauce": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Z511EYWMn7w",
+        "title": "#26-Nhà Thùng Nước Mắm Khải Hoàn tại Phú Quốc-How to make fish sauce in Phu Quoc Island"
+      },
+      {
+        "youtubeId": "Wd8VaVkhEAs",
+        "title": "Introdue fish sauce Khải Hoàn"
+      }
+    ]
+  },
+  "phung-hung-fish-sauce": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "7LWHYr7Ppjc",
+        "title": "Phụng Hưng Boutique Hotel - Wedding Center - Rooftop Bar Phú Quốc"
+      },
+      {
+        "youtubeId": "eUVZfZIIolM",
+        "title": "Nước Mắm Phú Quốc Phụng Hưng - Fish Sauce Factory in Phu Quoc Island"
+      }
+    ]
+  },
+  "sim-wine-farm": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "CiaVGCGNfEQ",
+        "title": "Sim Wine (made from Rose Myrtle), Phu Quoc Island, Vietnam"
+      },
+      {
+        "youtubeId": "CbjHld6K_3A",
+        "title": "Phu Quoc Sim wine farm"
+      }
+    ]
+  },
+  "ngoc-hien-pearl": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "eq0f6RhcOSQ",
+        "title": "CẬN CẢNH TRẠI NUÔI NGỌC TRAI NGỌC HIỀN - NGOC HIEN PEARL FARM"
+      },
+      {
+        "youtubeId": "vmKLe-gBzj4",
+        "title": "Ngọc Hiền Pearl Farm - Nông trại nuôi cấy ngọc trai lớn nhất Phú Quốc"
+      }
+    ]
+  },
+  "hon-dinh-huong": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "uYq4_QsWtjU",
+        "title": "Hòn Đỉnh Hương - Vịnh Hạ Long"
+      },
+      {
+        "youtubeId": "zgTHeBDgo2k",
+        "title": "Vịnh Hạ Long, hòn đỉnh hương trên tờ tiền 200.000 #shorts #vinhhalong #travel"
+      }
+    ]
+  },
+  "funny-art-museum-halong": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "aTHZ-HsoO6s",
+        "title": "Funny Art Museum Halong in Vietnam"
+      }
+    ]
+  },
+  "nuoc-nut-cave": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "gGZqLM8nnvk",
+        "title": "Hang Va Expedition Tour - Day 1 - Nước Nứt (Water Crack Cave)"
+      }
+    ]
+  },
+  "tu-lan-caves": {
+    "photos": [],
+    "videos": []
+  },
+  "hang-tien": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "8bZ9Cc8Jq14",
+        "title": "Hang Tiên"
+      },
+      {
+        "youtubeId": "qnjzgVQaGGI",
+        "title": "Đừng bỏ lỡ Hang Tiên - Phong Nha Quảng Bình"
+      }
+    ]
+  },
+  "tra-ang-cave": {
+    "photos": [],
+    "videos": []
+  },
+  "hang-vom": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "2_Gv8tKAWnw",
+        "title": "Quảng Bình mở cửa hang Vòm, giếng Voọc đón khách | VTC14"
+      },
+      {
+        "youtubeId": "WyDqNpLabEM",
+        "title": "HANG VÒM 2 NGÀY 1 ĐÊM (2 DAYS 1 NIGHT IN HANG VOM)"
+      }
+    ]
+  },
+  "hang-dai-a": {
+    "photos": [],
+    "videos": []
+  },
+  "hang-over": {
+    "photos": [],
+    "videos": []
+  },
+  "hang-pygmy": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "X7DLZXEistQ",
+        "title": "Hang Pygmy Exploration - Vietnam Vacation Travel"
+      },
+      {
+        "youtubeId": "3E06_TqOGz4",
+        "title": "Hành trình chinh phục hang Pygmy cùng Jungle Boss | Phong Nha, Quảng Bình"
+      }
+    ]
+  },
+  "son-nu-cave": {
+    "photos": [],
+    "videos": []
+  },
+  "ruc-mon-cave": {
+    "photos": [],
+    "videos": []
+  },
+  "e-cave": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "vDOYPfMJY30",
+        "title": "1000 Step Cave | Hang Chieu Mai Chau"
+      },
+      {
+        "youtubeId": "sGCNLOX0RZs",
+        "title": "Discover Abandoned Valley - E cave"
+      }
+    ]
+  },
+  "mooc-spring": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "11EkhlywPQQ",
+        "title": "Suối Moọc Quảng Bình - Mooc Spring (Phong Nha Daily Tours)"
+      },
+      {
+        "youtubeId": "GgThpuaZEhk",
+        "title": "Khám phá Động Phong Nha | Động Phong Nha Kẻ Bàng | Mooc Spring | Suối nước Moọc"
+      }
+    ]
+  },
+  "chay-river": {
+    "photos": [],
+    "videos": []
+  },
+  "hava-valley": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "UINqlh-Tuco",
+        "title": "Khám phá thung lũng Hava Valley mới nhất 2026"
+      },
+      {
+        "youtubeId": "EylMAsV72hk",
+        "title": "HAVA VALLEY - THUNG LŨNG NGỌC BÍCH | Mr Dog Show"
+      }
+    ]
+  },
+  "ozo-treetop": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "dNt_xozsE_o",
+        "title": "[Company Trip 2019] HT Đà Nẵng - An awesome trip to Ozo TreeTop Park"
+      },
+      {
+        "youtubeId": "4-YEw4k_dBQ",
+        "title": "OZO TREETOP PARK"
+      }
+    ]
+  },
+  "phong-nha-botanical": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "UrVulCU5iPE",
+        "title": "Phong Nha Botanic Garden Walking Tour #DiDiThoi #Phongnha"
+      },
+      {
+        "youtubeId": "9mVtnm9UiV8",
+        "title": "@Phong Nha botanical garden trekking 2023.what a beautiful village"
+      }
+    ]
+  },
+  "duck-stop": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "p0UDYCv2ICY",
+        "title": "WHAT the DUCK? 🦆 | DUCK STOP, Phong Nha, Vietnam 🇻🇳 #Shorts"
+      },
+      {
+        "youtubeId": "1T67jrY1jSo",
+        "title": "A Relaxing Day At The Duck Stop (NursePreneurs In Vietnam) Day 13"
+      }
+    ]
+  },
+  "east-hill-phong-nha": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "KsnU4nARwWs",
+        "title": "EAST HILL Phong Nha - điểm check in hot ở Quảng Bình"
+      },
+      {
+        "youtubeId": "e7PBvBf9Uc8",
+        "title": "VỀ PHONG NHA - QUẢNG BÌNH NHỚ GHÉ EAST HILL ĂN GÀ - Mr Dog Show"
+      }
+    ]
+  },
+  "thac-gio": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Uc1SLWdhkyY",
+        "title": "Thác Gió Waterfall | Vietnam"
+      },
+      {
+        "youtubeId": "rjQqNqPtKsQ",
+        "title": "Vườn Thực Vật Phong Nha Quảng Bình -Thác Gió I Điểm đến kỳ thú Quảng Bình Travel"
+      }
+    ]
+  },
+  "vang-macaque": {
+    "photos": [],
+    "videos": []
+  },
+  "eight-ladies-cave": {
+    "photos": [],
+    "videos": []
+  },
+  "highway-20-memorial": {
+    "photos": [],
+    "videos": []
+  },
+  "ben-tien-ferry": {
+    "photos": [],
+    "videos": []
+  },
+  "tram-tran": {
+    "photos": [],
+    "videos": []
+  },
+  "phong-nha-park-hq": {
+    "photos": [],
+    "videos": []
+  },
+  "khe-gat-airfield": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "djPDlSDmsVI",
+        "title": "Đường HCm đoạn Từ Phong Nha Kẻ Bàng qua Khe Gát- Đèo Đá Đẽo"
+      }
+    ]
+  },
+  "phong-nha-market": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Z2usntAYAPk",
+        "title": "Into the Earth: Exploring the Epic Caves of Phong Nha, Vietnam"
+      },
+      {
+        "youtubeId": "haBub3icpK4",
+        "title": "Phong Nha Farm Stay Review! [VN]… Off the Charts!"
+      }
+    ]
+  },
+  "hon-chong": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "5TieYJ1CGBc",
+        "title": "Hòn Chồng Promontory on a windy and wavy day in Nha trang"
+      },
+      {
+        "youtubeId": "AuwmR-lnWQQ",
+        "title": "베트남 전국여행#12-1냐짱/나트랑 야경 야시장 Nha Trang/Bãi biển/Hòn Chồng/Tuệ Tĩnh Vietnam travel all over the Country"
+      }
+    ]
+  },
+  "ta-gu-waterfall": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "8VlFq81Z3-I",
+        "title": "Tà Gụ Waterfall"
+      },
+      {
+        "youtubeId": "ocxgZJVRIPM",
+        "title": "Khach Son - Ta Gu Waterfall | NTTT"
+      }
+    ]
+  },
+  "suoi-thach-lam": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "wqfSY5gNS0I",
+        "title": "CUỘC ĐUA KỲ THÚ 2014 - CHẶNG 7 SUỐI THẠCH LÂM"
+      },
+      {
+        "youtubeId": "Neu2tTnZzqY",
+        "title": "Du Ngoạn SUỐI THẠCH LÂM Nha Trang 2025 - [Review/Alpha Travels]"
+      }
+    ]
+  },
+  "diep-son-island": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "R5exfm7iYDI",
+        "title": "TRAN - FLY WITH ME | Đảo Điệp Sơn, Nha Trang (ISLAND) | Việt Nam | 4K"
+      },
+      {
+        "youtubeId": "1inGZ6jqXwM",
+        "title": "SPECTACULAR !!! Đảo Điệp Sơn ISLAND NHA TRANG VIETNAM / IMPRESSIONS / DJI OSMO POCKET VIDEO"
+      }
+    ]
+  },
+  "thap-ba-hot-springs": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "1YJxtL_G-qs",
+        "title": "VIETNAM Episode 5/5- Mud Bath and Hot Springs in Nha Trang"
+      },
+      {
+        "youtubeId": "BwL_wiDOuiI",
+        "title": "Tấm Bùn Khoáng Tháp Bà #shorts #canquetsaigon #bongtim #tạcôngbằng #tambun #manmanvlogs"
+      }
+    ]
+  },
+  "i-resort-mud-bath": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "n3syVm849iw",
+        "title": "i-Resort Mud Bath | Nha Trang Medianet"
+      },
+      {
+        "youtubeId": "yhKb5-H2QBQ",
+        "title": "Mud Bath I-resort Nha Trang"
+      }
+    ]
+  },
+  "hundred-egg-mud-bath": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "8rFCMvVFAFQ",
+        "title": "Exploring the \"Tram Trung\" (Hundred Eggs) Mud Bath Tourist Area in Nha Trang"
+      },
+      {
+        "youtubeId": "h3rbIdO9bm0",
+        "title": "100 Egg Mud Bath - Tắm Khoáng Bùn Trăm Trứng"
+      }
+    ]
+  },
+  "suoi-mo": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "_lPhqh-xhpk",
+        "title": "Khu du lịch sinh thái Suối Mơ, đèo Cả|Suoi Mo eco- tourism area, Ca pass."
+      },
+      {
+        "youtubeId": "VYDy4nuSvR8",
+        "title": "REVIEW SUỐI MƠ NGÀY MƯA BÃO | KHU DU LỊCH SUỐI MƠ | DU LỊCH SỰ KIỆN ẨM THỰC"
+      }
+    ]
+  },
+  "phuoc-hau-pagoda": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "sRla0iov3Rw",
+        "title": "Chùa Phước Hậu - Nổi tiếng với Vườn Kinh 500 câu ở Trà Ôn Vĩnh Long | Thiên Tùng Đi Đó Đây |"
+      },
+      {
+        "youtubeId": "Xbf3PMovkKc",
+        "title": "Cần Thơ SMC thăm chùa Phước Hậu"
+      }
+    ]
+  },
+  "bang-lang-stork": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "dS2nXTT6BLA",
+        "title": "DU LỊCH CẦN THƠ: Khám phá vườn cò Bằng Lăng"
+      },
+      {
+        "youtubeId": "7KdVs2JWLu4",
+        "title": "Khám phá vườn cò Bằng Lăng Cần Thơ | Miền Tây trong tôi"
+      }
+    ]
+  },
+  "con-au": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "yodOBlyyqwE",
+        "title": "A Trip to Explore Con Son Islet with Many New Experiences | Nguyet Anh"
+      },
+      {
+        "youtubeId": "O4JJX55JoiU",
+        "title": "#160 Azerai Can Tho Resort - A quiet, isolated 5-star resort in Au Islet, 5 million/night | Can Tho"
+      }
+    ]
+  },
+  "my-khanh-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "6NThwSstfWM",
+        "title": "Làng Du Lịch Mỹ Khánh Cũng Có Resort? | Khám Phá Khu Nghỉ Dưỡng Đẹp Bất Ngờ Ở Cần Thơ"
+      },
+      {
+        "youtubeId": "nmlCgS4yUeQ",
+        "title": "Khám Phá Làng Du Lịch Mỹ Khánh Cần Thơ | Miệt Vườn Sông Nước Đậm Chất Nam Bộ | MrDamvlog"
+      }
+    ]
+  },
+  "giot-dang-orchard": {
+    "photos": [],
+    "videos": []
+  },
+  "lung-ngoc-hoang": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Rn_WEdNaDzc",
+        "title": "MỘT NGÀY Ở LUNG NGỌC HOÀNG | VTV CẦN THƠ"
+      },
+      {
+        "youtubeId": "lym07sg4j6U",
+        "title": "Lung Ngọc Hoàng - Địa điểm du lịch nên đến ít nhất một lần."
+      }
+    ]
+  },
+  "luu-huu-phuoc-park": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "hcHo3Qal99M",
+        "title": "Công Viên Lưu Hữu Phước Cần Thơ Quận Ninh Kiều"
+      },
+      {
+        "youtubeId": "j1id6TifWhI",
+        "title": "Cần Thơ Ngày Nay|Toàn Cảnh Công Viên Lưu Hữu Phước Cần Thơ Xanh Sạch Đẹp|Cuộc Sống Cần Thơ"
+      }
+    ]
+  },
+  "tham-ma-pass": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "ZanxCUyrVWQ",
+        "title": "Getting closer with Tham Ma Pass (Dốc Thẩm Mã, Ha Giang) | A Soothing journey with nature"
+      },
+      {
+        "youtubeId": "NgZaEx5SZmE",
+        "title": "Tham Ma Pass Ha Giang 🇻🇳 | Iconic Winding Road of Northern Vietnam | Complete Travel Guide"
+      }
+    ]
+  },
+  "chin-khoanh-pass": {
+    "photos": [],
+    "videos": []
+  },
+  "lung-khuy-cave": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "9dxPj2SPRZU",
+        "title": "Encouraging Friends to Conquer Lung Khuy Cave 🌄🔥 | Ha Giang Adventure"
+      },
+      {
+        "youtubeId": "t19PwnlUie8",
+        "title": "The Beauty of Lung Khuy Cave in Quan Ba, Ha Giang"
+      }
+    ]
+  },
+  "ma-le-village": {
+    "photos": [],
+    "videos": []
+  },
+  "nguon-giong-cave": {
+    "photos": [],
+    "videos": []
+  },
+  "tung-thu-beach": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "UBcJFtS4ww4",
+        "title": "Bãi tắm Tùng Thu - Cát Bà"
+      },
+      {
+        "youtubeId": "JwP6KG0UeQ8",
+        "title": "Chỉ có thể ở Cát Bà , đi cắm trại vẫn xem được World Cup | Review bãi tắm Tùng Thu, Cát Bà ??!!"
+      }
+    ]
+  },
+  "cat-ba-night-market": {
+    "photos": [],
+    "videos": []
+  },
+  "sung-la-dong-van": {
+    "photos": [],
+    "videos": []
+  },
+  "chin-khoanh-dong-van": {
+    "photos": [],
+    "videos": []
+  },
+  "ma-le-dong-van": {
+    "photos": [],
+    "videos": []
+  },
+  "don-cao-fortress": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "xlAZNuUiDqw",
+        "title": "Solo Traveling at Don Cao Fortress or Dong Van French Fort, Dong Van, Vietnam"
+      }
+    ]
+  },
+  "thien-huong-village": {
+    "photos": [],
+    "videos": []
+  },
+  "lung-ngoc-ho-cave": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "wwRZM_kBTnU",
+        "title": "Lung Ngoc Hoang Nature Reserve | Vietnam’s Hidden Wetland Paradise You’ve Never Seen Before!"
+      }
+    ]
+  },
+  "pho-bang-ancient-town": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "2bo8XqlC8HM",
+        "title": "Pho Bang Market in Ha Giang Vietnam"
+      },
+      {
+        "youtubeId": "8RkfPaos0dI",
+        "title": "Ancient beauty in Pho Bang, the ancient capital of Dong Van."
+      }
+    ]
+  },
+  "lung-cam-village": {
+    "photos": [],
+    "videos": [
+      {
+        "youtubeId": "Ww2eoXtFP0w",
+        "title": "What's special about Lung Cam? 🍀 #travel #tourism #explore #lungcam #hagiang #phanuyquyen"
+      }
+    ]
   }
 }
 

@@ -1,6 +1,7 @@
+import { compareCitiesByTouristPriority } from '../data/popularTouristCities'
 import type { Experience } from '../types'
 import { SIGHT_CATALOG } from '../data/experiences'
-import { bayesianRating, rankAndSortSights, buildCategoryStats, touristReviewCount, type SightScores } from '../lib/sightRanking'
+import { bayesianRating, rankAndSortSights, buildCategoryStats, type SightScores } from '../lib/sightRanking'
 import { experienceToSight } from '../lib/sightRankingFromExperience'
 import { cityToSlug } from './citySlug'
 
@@ -33,6 +34,28 @@ function globalRankStats() {
 
 export function slugToCity(slug: string, cities: string[]): string | null {
   return cities.find((c) => cityToSlug(c) === slug) ?? null
+}
+
+const VIETNAM_BEST_LIMIT = 20
+
+let vietnamBestRanked: RankedExperience[] | null = null
+
+/** Ranked Vietnam-wide “at its best” list (20 sights). */
+export function rankVietnamBestSights(limit = VIETNAM_BEST_LIMIT): RankedExperience[] {
+  if (!vietnamBestRanked) {
+    const flagged = SIGHT_CATALOG.filter((e) => e.vietnamBest)
+    const rankedFlagged = rankCityExperiences(flagged)
+    const taken = new Set(rankedFlagged.map((e) => e.id))
+    const fill =
+      rankedFlagged.length >= VIETNAM_BEST_LIMIT
+        ? []
+        : rankCityExperiences(SIGHT_CATALOG.filter((e) => !taken.has(e.id)))
+    vietnamBestRanked = [...rankedFlagged, ...fill].slice(0, VIETNAM_BEST_LIMIT).map((item, index) => ({
+      ...item,
+      cityRank: index + 1,
+    }))
+  }
+  return limit === VIETNAM_BEST_LIMIT ? vietnamBestRanked : vietnamBestRanked.slice(0, limit)
 }
 
 export function rankCityExperiences(items: Experience[]): RankedExperience[] {
@@ -96,9 +119,8 @@ export function groupExperiencesByCity(items: Experience[]): CityExperienceGroup
   }
 
   return groups.sort((a, b) => {
-    const reviewsA = a.items.reduce((sum, item) => sum + touristReviewCount(experienceToSight(item)), 0)
-    const reviewsB = b.items.reduce((sum, item) => sum + touristReviewCount(experienceToSight(item)), 0)
-    if (reviewsB !== reviewsA) return reviewsB - reviewsA
+    const byTourist = compareCitiesByTouristPriority(a.city, b.city)
+    if (byTourist !== 0) return byTourist
     return (b.items[0]?.totalScore ?? 0) - (a.items[0]?.totalScore ?? 0)
   })
 }

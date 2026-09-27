@@ -1,35 +1,22 @@
 import { useState } from 'react'
-import {
-  DURATION_CHIPS,
-  FilterChip,
-  splitPinnedCities,
-} from './ExperienceFilterPanel'
-import {
-  type ActivityDurationFilter,
-  type ActivityKind,
-} from '../data/activities'
+import { FilterChip, splitPinnedCities } from './ExperienceFilterPanel'
+import { type ActivityKind } from '../data/activities'
 
 export type ActivityCatalogFilters = {
   kind: ActivityKind | 'all'
-  duration: ActivityDurationFilter
+  cities: string[]
 }
 
 export const DEFAULT_ACTIVITY_FILTERS: ActivityCatalogFilters = {
   kind: 'all',
-  duration: 'all',
+  cities: [],
 }
 
 export function countActiveActivityFilters(filters: ActivityCatalogFilters) {
   let n = 0
   if (filters.kind !== 'all') n += 1
-  if (filters.duration !== 'all') n += 1
+  n += filters.cities.length
   return n
-}
-
-type CityOption = {
-  cityId: string
-  cityName: string
-  count: number
 }
 
 type KindOption = {
@@ -42,11 +29,12 @@ type BodyProps = {
   filters: ActivityCatalogFilters
   onChange: (next: ActivityCatalogFilters) => void
   onClear: () => void
-  cities: CityOption[]
+  cities: string[]
+  cityCounts: Record<string, number>
   kinds: KindOption[]
-  activeCity: string | null
-  onSelectCity: (cityId: string) => void
+  onSelectCity: (city: string, turningOn: boolean) => void
   resultCount: number
+  compact?: boolean
 }
 
 export function ActivityFilterPanelBody({
@@ -54,24 +42,119 @@ export function ActivityFilterPanelBody({
   onChange,
   onClear,
   cities,
+  cityCounts,
   kinds,
-  activeCity,
   onSelectCity,
   resultCount,
+  compact = false,
 }: BodyProps) {
   const activeCount = countActiveActivityFilters(filters)
+  const selectedCities = filters.cities ?? []
   const [moreCities, setMoreCities] = useState(false)
-  const { pinned, rest } = splitPinnedCities(cities, (city) => city.cityName)
+  const { pinned, rest } = splitPinnedCities(cities, (city) => city)
   const extraCities = moreCities
     ? rest
-    : rest.filter((city) => city.cityId === activeCity)
+    : rest.filter((city) => selectedCities.includes(city))
 
-  function setDuration(next: ActivityDurationFilter) {
-    onChange({ ...filters, duration: filters.duration === next ? 'all' : next })
+  const allVietnamOn = selectedCities.length === 0
+
+  function selectAllVietnam() {
+    if (allVietnamOn) return
+    onChange({ ...filters, cities: [] })
+    onSelectCity('', false)
+  }
+
+  function toggleCity(city: string) {
+    const turningOn = !selectedCities.includes(city)
+    onChange({
+      ...filters,
+      cities: turningOn ? [city] : [],
+    })
+    onSelectCity(city, turningOn)
   }
 
   function setKind(next: ActivityKind) {
     onChange({ ...filters, kind: filters.kind === next ? 'all' : next })
+  }
+
+  const cityChips = (
+    <>
+      <button
+        type="button"
+        onClick={selectAllVietnam}
+        aria-pressed={allVietnamOn}
+        className={`rounded-full px-2.5 py-1.5 text-[0.72rem] font-bold ${
+          allVietnamOn
+            ? 'bg-ink text-paper'
+            : 'bg-cream text-ink ring-1 ring-ink/10 hover:bg-cream-deep'
+        } ${compact ? 'px-2 py-1 text-[0.68rem]' : ''}`}
+      >
+        All Vietnam
+      </button>
+      {pinned.map((city) => (
+        <FilterChip
+          key={city}
+          active={selectedCities.includes(city)}
+          onClick={() => toggleCity(city)}
+          className={compact ? 'px-2 py-1 text-[0.68rem]' : ''}
+        >
+          {city}
+          {compact ? null : <span className="ml-1 opacity-70">{cityCounts[city] ?? 0}</span>}
+        </FilterChip>
+      ))}
+      {extraCities.map((city) => (
+        <FilterChip
+          key={city}
+          active={selectedCities.includes(city)}
+          onClick={() => toggleCity(city)}
+          className={compact ? 'px-2 py-1 text-[0.68rem]' : ''}
+        >
+          {city}
+          {compact ? null : <span className="ml-1 opacity-70">{cityCounts[city] ?? 0}</span>}
+        </FilterChip>
+      ))}
+      {rest.length > 0 ? (
+        <button
+          type="button"
+          onClick={() => setMoreCities((v) => !v)}
+          className="rounded-full px-2 py-1 text-[0.68rem] font-bold text-terracotta hover:underline"
+        >
+          {moreCities ? 'Fewer' : `+${rest.length} cities`}
+        </button>
+      ) : null}
+    </>
+  )
+
+  const typeChips = kinds.map((k) => (
+    <FilterChip
+      key={k.id}
+      active={filters.kind === k.id}
+      onClick={() => setKind(k.id)}
+      className={compact ? 'px-2 py-1 text-[0.68rem]' : ''}
+    >
+      {k.label}
+    </FilterChip>
+  ))
+
+  if (compact) {
+    return (
+      <div className="space-y-1.5">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span className="shrink-0 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-muted">
+            Cities
+          </span>
+          {cityChips}
+        </div>
+        {kinds.length > 0 ? (
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span className="shrink-0 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-muted">
+              Type
+            </span>
+            {typeChips}
+          </div>
+        ) : null}
+      </div>
+    )
   }
 
   return (
@@ -96,163 +179,61 @@ export function ActivityFilterPanelBody({
         <p className="mb-1.5 text-[0.64rem] font-bold uppercase tracking-[0.14em] text-muted">
           Cities
         </p>
-        <div className="flex flex-wrap gap-1.5">
-          {pinned.map((city) => (
-            <FilterChip
-              key={city.cityId}
-              active={activeCity === city.cityId}
-              onClick={() => onSelectCity(city.cityId)}
-            >
-              {city.cityName}
-              <span className="ml-1 opacity-70">{city.count}</span>
-            </FilterChip>
-          ))}
-          {extraCities.map((city) => (
-            <FilterChip
-              key={city.cityId}
-              active={activeCity === city.cityId}
-              onClick={() => onSelectCity(city.cityId)}
-            >
-              {city.cityName}
-              <span className="ml-1 opacity-70">{city.count}</span>
-            </FilterChip>
-          ))}
-          {rest.length > 0 ? (
-            <button
-              type="button"
-              onClick={() => setMoreCities((v) => !v)}
-              className="rounded-full px-2.5 py-1.5 text-[0.72rem] font-bold text-terracotta hover:underline"
-            >
-              {moreCities ? 'Fewer cities' : `+${rest.length} cities`}
-            </button>
-          ) : null}
-        </div>
+        <div className="flex flex-wrap gap-1.5">{cityChips}</div>
       </div>
 
-      <div>
-        <p className="mb-1.5 text-[0.64rem] font-bold uppercase tracking-[0.14em] text-muted">
-          Duration
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          {DURATION_CHIPS.map((chip) => (
-            <FilterChip
-              key={chip.id}
-              active={filters.duration === chip.id}
-              onClick={() => setDuration(chip.id)}
-            >
-              {chip.label}
-            </FilterChip>
-          ))}
+      {kinds.length > 0 ? (
+        <div>
+          <p className="mb-1.5 text-[0.64rem] font-bold uppercase tracking-[0.14em] text-muted">
+            Type
+          </p>
+          <div className="flex flex-wrap gap-1.5">{typeChips}</div>
         </div>
-      </div>
-
-      <div>
-        <p className="mb-1.5 text-[0.64rem] font-bold uppercase tracking-[0.14em] text-muted">
-          Type
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          {kinds.map((k) => (
-            <FilterChip
-              key={k.id}
-              active={filters.kind === k.id}
-              onClick={() => setKind(k.id)}
-            >
-              {k.label}
-            </FilterChip>
-          ))}
-        </div>
-      </div>
+      ) : null}
     </div>
   )
 }
 
-type PanelProps = BodyProps & {
-  expanded: boolean
-  onToggle: () => void
-}
-
-function FilterGlyph() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-      <path d="M4 6h16M7 12h10M10 18h4" strokeLinecap="round" />
-    </svg>
-  )
-}
-
-export function ActivityFilterPanel({
-  expanded,
-  onToggle,
-  filters,
-  onChange,
-  onClear,
-  cities,
-  kinds,
-  activeCity,
-  onSelectCity,
-  resultCount,
-}: PanelProps) {
-  const activeCount = countActiveActivityFilters(filters)
-
-  if (!expanded) {
-    return (
-      <div className="sticky top-[84px] hidden w-[4.4rem] shrink-0 self-start px-1.5 pt-1 lg:block">
-        <button
-          type="button"
-          onClick={onToggle}
-          aria-expanded={false}
-          title="Expand filter panel"
-          className="group relative flex w-full flex-col items-center gap-1.5 rounded-[22px] bg-paper px-1.5 py-3 text-ink shadow-soft ring-1 ring-ink/10 transition hover:-translate-y-0.5 hover:ring-terracotta/35 hover:shadow-card"
-        >
-          <span className="grid h-9 w-9 place-items-center rounded-2xl bg-terracotta text-paper shadow-[0_8px_16px_rgba(196,92,58,0.28)] transition group-hover:scale-105">
-            <FilterGlyph />
-          </span>
-          <span className="px-0.5 text-center text-[0.62rem] font-bold leading-[1.15] text-ink">
-            Expand filters
-          </span>
-          {activeCount > 0 ? (
-            <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-ink px-1 text-[0.6rem] font-bold text-paper">
-              {activeCount}
-            </span>
-          ) : null}
-        </button>
-      </div>
-    )
-  }
+export function ActivityFilterBar(
+  props: BodyProps & { expanded?: boolean; onToggle?: () => void },
+) {
+  const { expanded, onToggle, ...body } = props
+  const [localOpen, setLocalOpen] = useState(true)
+  const open = expanded ?? localOpen
+  const setOpen = onToggle ?? (() => setLocalOpen((v) => !v))
+  const activeCount = countActiveActivityFilters(body.filters)
 
   return (
-    <div className="sticky top-[72px] hidden h-[calc(100vh-72px)] w-[13.5rem] shrink-0 flex-col border-r border-ink/8 bg-paper/92 backdrop-blur-sm lg:flex">
-      <div className="shrink-0 border-b border-ink/8 px-3 py-2.5">
+    <div className="flex items-start gap-3 py-1.5">
+      <button
+        type="button"
+        onClick={setOpen}
+        aria-expanded={open}
+        aria-label={open ? 'Hide filters' : 'Show filters'}
+        className="mt-0.5 flex shrink-0 items-center gap-1.5 rounded-full px-1 py-0.5 text-ink transition hover:bg-cream-deep"
+      >
+        <span className="grid h-7 w-7 place-items-center rounded-full bg-paper text-ink ring-1 ring-ink/8">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+            <path d="M4 6h16M7 12h10M10 18h4" strokeLinecap="round" />
+          </svg>
+        </span>
+        <span className="text-[0.72rem] font-bold tracking-wide">{open ? 'Hide' : 'Show'}</span>
+      </button>
+      <div
+        className="min-w-0 flex-1 overflow-hidden transition-[opacity,max-height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ maxHeight: open ? 220 : 0, opacity: open ? 1 : 0 }}
+      >
+        <ActivityFilterPanelBody {...body} compact />
+      </div>
+      {activeCount > 0 ? (
         <button
           type="button"
-          onClick={onToggle}
-          aria-expanded
-          className="flex w-full items-center justify-between gap-2 rounded-full bg-cream px-3 py-2 text-left text-[0.78rem] font-bold text-ink ring-1 ring-ink/8 transition hover:bg-cream-deep"
+          onClick={body.onClear}
+          className="mt-1 shrink-0 text-[0.7rem] font-bold text-terracotta hover:underline"
         >
-          <span className="flex items-center gap-2">
-            <span className="grid h-6 w-6 place-items-center rounded-full bg-paper text-ink">
-              <FilterGlyph />
-            </span>
-            Hide filters
-          </span>
-          {activeCount > 0 ? (
-            <span className="grid h-5 min-w-5 place-items-center rounded-full bg-terracotta px-1.5 text-[0.62rem] font-bold text-paper">
-              {activeCount}
-            </span>
-          ) : null}
+          Clear
         </button>
-      </div>
-      <div className="min-h-0 flex-1 overflow-y-auto px-3 py-3">
-        <ActivityFilterPanelBody
-          filters={filters}
-          onChange={onChange}
-          onClear={onClear}
-          cities={cities}
-          kinds={kinds}
-          activeCity={activeCity}
-          onSelectCity={onSelectCity}
-          resultCount={resultCount}
-        />
-      </div>
+      ) : null}
     </div>
   )
 }

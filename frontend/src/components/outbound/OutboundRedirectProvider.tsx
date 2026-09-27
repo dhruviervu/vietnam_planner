@@ -53,7 +53,7 @@ export function OutboundRedirectProvider({ children }: { children: React.ReactNo
               >
                 <div className="bg-gradient-to-br from-terracotta to-terracotta-deep px-5 py-4 text-paper">
                   <p className="text-[0.58rem] font-bold uppercase tracking-[0.14em] text-paper/75">
-                    Leaving Vietnam, Curated
+                    Leaving TripBuilder
                   </p>
                   <h2 id="outbound-title" className="mt-1 font-serif text-[1.35rem] font-semibold leading-tight">
                     {guide.headline}

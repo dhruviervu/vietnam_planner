@@ -17,7 +17,7 @@ export function ItemDiscovery({ items, selectedItemId, onShowShops }: Props) {
         The story behind each piece, then the shops and markets that sell it.
       </p>
 
-      <div className="mt-6 flex flex-col gap-6">
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-5">
         {items.map((item) => (
           <ItemCard
             key={item.id}

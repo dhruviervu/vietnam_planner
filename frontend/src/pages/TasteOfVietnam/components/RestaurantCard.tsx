@@ -174,9 +174,13 @@ export function RestaurantCard({
         <img src={r.images[0]} alt={`${r.name} — ${dishName}`} className="h-full w-full object-cover" loading="lazy" />
         {isTop ? (
           <span className="absolute left-2 top-2 rounded-full bg-terracotta px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-wide text-paper">
-            Highly reviewed
+            Most reviewed
           </span>
-        ) : null}
+        ) : (
+          <span className="absolute left-2 top-2 rounded-full bg-ink/55 px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-wide text-paper backdrop-blur-sm">
+            {r.kind === 'local-table' ? 'Local table' : 'Traveller classic'}
+          </span>
+        )}
         <span className="absolute bottom-2 left-2 rounded-full bg-ink/55 px-2 py-0.5 text-[0.55rem] font-bold uppercase tracking-wide text-paper backdrop-blur-sm">
           {dishName}
         </span>

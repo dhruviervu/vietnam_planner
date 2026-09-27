@@ -22,7 +22,7 @@ export function StageFooter({
 
   return (
     <div className="mt-10 flex flex-wrap items-center justify-end gap-4 border-t border-ink/8 pt-6">
-      <Link to={nextTo} onClick={onContinue} className="btn-solid">
+      <Link to={nextTo} state={{ itineraryPipeline: true }} onClick={onContinue} className="btn-solid">
         {primaryLabel}
       </Link>
     </div>

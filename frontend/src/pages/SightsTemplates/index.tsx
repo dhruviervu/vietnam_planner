@@ -5,7 +5,7 @@ export function SightsTemplatesIndex() {
   return (
     <div className="min-h-screen bg-cream px-[clamp(1.2rem,5vw,3.5rem)] py-10">
       <Link to="/" className="font-serif text-[1.05rem] text-terracotta-deep">
-        Vietnam, Curated
+        TripBuilder
       </Link>
       <p className="mt-14 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-muted">
         Sights · five studies

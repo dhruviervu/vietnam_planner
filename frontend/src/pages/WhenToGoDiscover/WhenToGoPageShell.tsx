@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useEffect } from 'react'
 import { Nav } from '../../components/landing/Nav'
 import { Footer } from '../../components/landing/Footer'
 import { BuilderProgressChrome } from '../PlanBuilder/components/BuilderProgressChrome'
@@ -17,7 +18,7 @@ export function useEventCalendarPath(season?: EventSeason) {
   return eventCalendarPath({ pipeline, season })
 }
 
-/** Nav + footer, or pipeline progress rail + Continue, so new tabs stay in the trip. */
+/** Nav + progress rail so every When to Go page stays in the trip. */
 export function WhenToGoPageShell({
   children,
   footer = true,
@@ -25,30 +26,22 @@ export function WhenToGoPageShell({
   children: ReactNode
   footer?: boolean
 }) {
-  const pipelineActive = useTripStore((s) => s.itineraryPipelineActive)
+  const enterItineraryPipeline = useTripStore((s) => s.enterItineraryPipeline)
 
-  if (pipelineActive) {
-    return (
-      <>
-        <Nav />
-        <BuilderProgressChrome current="when-to-go">
-          {children}
-          <div className="mx-auto max-w-[1180px] px-[clamp(1.1rem,4vw,2rem)] pb-10">
-            <StageFooter
-              current="when-to-go"
-              continueLabel="Continue to Sights →"
-            />
-          </div>
-        </BuilderProgressChrome>
-      </>
-    )
-  }
+  useEffect(() => {
+    enterItineraryPipeline()
+  }, [enterItineraryPipeline])
 
   return (
     <>
-      <Nav />
-      {children}
-      {footer ? <Footer /> : null}
+      <Nav mode="builder" />
+      <BuilderProgressChrome current="when-to-go">
+        {children}
+        <div className="mx-auto max-w-[1180px] px-[clamp(1.1rem,4vw,2rem)] pb-10">
+          <StageFooter current="when-to-go" continueLabel="Continue to Attractions →" />
+        </div>
+        {footer ? <Footer /> : null}
+      </BuilderProgressChrome>
     </>
   )
 }

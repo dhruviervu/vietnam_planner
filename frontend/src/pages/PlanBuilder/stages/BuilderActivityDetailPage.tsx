@@ -1,7 +1,6 @@
 import { useMemo, useState, type MouseEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { BuilderProgressChrome } from '../components/BuilderProgressChrome'
 import { useTripStore } from '../../../store/tripStore'
 import {
   CITY_ACTIVITIES,
@@ -11,6 +10,7 @@ import {
 } from '../data/activities'
 import { flyToTripBag } from '../lib/flyToTripBag'
 import {
+  getActivityAbout,
   getActivityDetailBlurb,
   getActivityGuideSections,
 } from '../lib/activityDetailCopy'
@@ -43,11 +43,11 @@ export function BuilderActivityDetailPage() {
 
   const blurb = activity ? getActivityDetailBlurb(activity) : ''
   const aboutParagraphs = activity
-    ? activity.about
+    ? getActivityAbout(activity)
         .split(/\n\n+/)
         .map((p) => p.trim())
         .filter(Boolean)
-        .slice(0, 3)
+        .slice(0, 4)
     : []
   const guide = activity ? getActivityGuideSections(activity) : []
 
@@ -66,14 +66,12 @@ export function BuilderActivityDetailPage() {
 
   if (!activity) {
     return (
-      <BuilderProgressChrome current="activities" withNav>
         <main className="mx-auto max-w-content px-6 py-20 text-center">
           <h1 className="font-serif text-3xl font-semibold text-ink">Activity not found</h1>
           <button type="button" onClick={goBackToCatalog} className="btn-solid mt-6">
             Back to activities
           </button>
         </main>
-      </BuilderProgressChrome>
     )
   }
 
@@ -107,7 +105,6 @@ export function BuilderActivityDetailPage() {
   }
 
   return (
-    <BuilderProgressChrome current="activities" withNav>
       <main className="mx-auto max-w-[1280px] px-[clamp(1.1rem,4vw,2rem)] pb-20 pt-5">
         <section className="grid gap-6 lg:grid-cols-2 lg:items-start lg:gap-7">
           <div className="h-full min-h-[min(46vw,360px)]">
@@ -291,7 +288,6 @@ export function BuilderActivityDetailPage() {
           </section>
         )}
       </main>
-    </BuilderProgressChrome>
   )
 }
 

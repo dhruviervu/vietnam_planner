@@ -1,7 +1,9 @@
 import type { ReactNode } from 'react'
+import { useEffect } from 'react'
 import { Nav } from '../../../components/landing/Nav'
 import { StayProgressPanel } from './StayProgressPanel'
 import type { BuilderStepId } from '../types'
+import { useTripStore } from '../../../store/tripStore'
 
 type Props = {
   current: BuilderStepId
@@ -10,15 +12,23 @@ type Props = {
   withNav?: boolean
 }
 
-/** Collapsible itinerary progress rail for pipeline pages and new-tab detail pages. */
+/** In-flow itinerary progress rail for pipeline pages and standalone product pages. */
 export function BuilderProgressChrome({ current, children, withNav = false }: Props) {
+  const enterItineraryPipeline = useTripStore((s) => s.enterItineraryPipeline)
+  const mark = useTripStore((s) => s.markStepVisited)
+
+  useEffect(() => {
+    enterItineraryPipeline()
+    mark(current)
+  }, [current, enterItineraryPipeline, mark])
+
   return (
     <>
       {withNav ? <Nav mode="builder" /> : null}
-      <aside className="fixed left-0 top-[72px] z-[60] hidden h-[calc(100vh-72px)] md:block">
-        <StayProgressPanel current={current} />
-      </aside>
-      <div className="md:pl-14">{children}</div>
+      <div className="flex min-h-[calc(100vh-72px)]">
+        <StayProgressPanel current={current} inFlow />
+        <div className="min-w-0 flex-1">{children}</div>
+      </div>
     </>
   )
 }

@@ -343,9 +343,6 @@ export function WhereToStay() {
       animate={{ opacity: 1, y: 0 }}
       className="min-w-0 flex-1 px-[clamp(1.1rem,4vw,2rem)] py-6 pb-8 lg:py-8 xl:pr-0 xl:pt-2"
     >
-      <p className="mb-2 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">
-        Stage 3 · Where to stay
-      </p>
       <h1 className="font-serif text-[clamp(1.85rem,3.8vw,2.7rem)] font-semibold leading-[1.12] text-ink">
         Where You Stay Shapes Your Trip
       </h1>

@@ -8,7 +8,6 @@ const PN = {
   paceAffinity: ['balanced', 'packed'] as ExperienceDraft['paceAffinity'],
 }
 
-const SHOW = 'River & Show Caves'
 const EXPED = 'Expedition & Jungle Caves'
 const WATER = 'Springs, Rivers & Forest Play'
 const VALLEY = 'Valleys, Town & Countryside'

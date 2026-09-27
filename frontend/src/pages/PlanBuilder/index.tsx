@@ -1,19 +1,18 @@
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { Nav } from '../../components/landing/Nav'
 import { useTripStore } from '../../store/tripStore'
 import { StayProgressPanel } from './components/StayProgressPanel'
-import { SkipToMenu } from './components/SkipToMenu'
+import { BuilderStageSkeleton } from './components/BuilderStageSkeleton'
 import { BUILDER_STEPS, PIPELINE_START } from './steps'
 import type { BuilderStepId } from './types'
-import { stepIndex } from './steps'
 
 function currentStepFromPath(pathname: string): BuilderStepId {
   const parts = pathname.split('/').filter(Boolean)
   const builderIdx = parts.indexOf('builder')
   const first = (builderIdx >= 0 ? parts[builderIdx + 1] : parts.at(-1)) ?? 'when-to-go'
-  if (first === 'experiences' || first === 'experiences-city') return 'experiences'
-  if (first === 'activities') return 'activities'
+  if (first === 'experiences' || first === 'experiences-city' || first === 'experience') return 'experiences'
+  if (first === 'activities' || first === 'activity') return 'activities'
   if (first === 'stay') return 'stay'
   if (first === 'transport') return 'transport'
   if (first === 'eat') return 'eat'
@@ -34,17 +33,13 @@ export type PipelineLocationState = {
 export function PlanBuilderLayout() {
   const location = useLocation()
   const current = currentStepFromPath(location.pathname)
-  const idx = Math.max(0, stepIndex(current))
-  const pipelineActive = useTripStore((s) => s.itineraryPipelineActive)
   const enterItineraryPipeline = useTripStore((s) => s.enterItineraryPipeline)
+  const mark = useTripStore((s) => s.markStepVisited)
 
-  // Activate from Link state (Build itinerary) — survives persist rehydrate races
   useEffect(() => {
-    const st = location.state as PipelineLocationState | null
-    if (st?.itineraryPipeline) {
-      enterItineraryPipeline()
-    }
-  }, [location.state, location.key, enterItineraryPipeline])
+    enterItineraryPipeline()
+    mark(current)
+  }, [current, enterItineraryPipeline, mark, location.key])
 
   const selfPadded = [
     'when-to-go',
@@ -54,65 +49,26 @@ export function PlanBuilderLayout() {
     'shopping',
     'airport',
     'logistics',
-  ].includes(current)
-
-  const ownsOwnRail =
-    /\/plan\/builder\/experiences$/.test(location.pathname) ||
-    /\/plan\/builder\/activities$/.test(location.pathname)
-  const hideLayoutProgress = ownsOwnRail
+  ].includes(current) || /\/plan\/builder\/(experience|activity|stay\/compare)\//.test(location.pathname)
 
   return (
     <>
       <Nav mode="builder" />
-      {!hideLayoutProgress && (
-        <aside className="fixed left-0 top-[72px] z-[60] hidden h-[calc(100vh-72px)] md:block">
-          <StayProgressPanel current={current} />
-        </aside>
-      )}
-
-      <div
-        className={`mx-auto min-h-[calc(100vh-72px)] max-w-[1600px] ${
-          hideLayoutProgress ? '' : 'md:pl-14'
-        }`}
-      >
-        {pipelineActive ? (
-          <div className="sticky top-[72px] z-20 border-b border-ink/8 bg-cream/95 px-[clamp(1.1rem,4vw,2rem)] py-3 backdrop-blur-sm md:hidden">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-sage">
-                  Step {idx + 1} of {BUILDER_STEPS.length}
-                  {BUILDER_STEPS[idx]?.optional ? ' · Optional' : ''}
-                </p>
-                <p className="font-serif text-[1.05rem] font-semibold text-ink">
-                  {BUILDER_STEPS[idx]?.label}
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="flex gap-1">
-                  {BUILDER_STEPS.map((step, i) => (
-                    <span
-                      key={step.id}
-                      className={`h-1.5 w-1.5 rounded-full ${
-                        i < idx ? 'bg-sage' : i === idx ? 'bg-terracotta' : 'bg-ink/15'
-                      }`}
-                    />
-                  ))}
-                </div>
-                <SkipToMenu current={current} />
-              </div>
-            </div>
-          </div>
-        ) : null}
-
-        <main
-          className={
-            selfPadded
-              ? 'pb-16 pt-2 lg:pt-4'
-              : 'px-[clamp(1.1rem,4vw,2rem)] py-6 pb-16 lg:py-8'
-          }
-        >
-          <Outlet />
-        </main>
+      <div className="flex min-h-[calc(100vh-72px)]">
+        <StayProgressPanel current={current} inFlow />
+        <div className="min-w-0 flex-1">
+          <main
+            className={
+              selfPadded
+                ? 'mx-auto max-w-[1600px] pb-16 pt-2 lg:pt-4'
+                : 'mx-auto max-w-[1600px] px-[clamp(1.1rem,4vw,2rem)] py-6 pb-16 lg:py-8'
+            }
+          >
+            <Suspense fallback={<BuilderStageSkeleton />}>
+              <Outlet />
+            </Suspense>
+          </main>
+        </div>
       </div>
     </>
   )

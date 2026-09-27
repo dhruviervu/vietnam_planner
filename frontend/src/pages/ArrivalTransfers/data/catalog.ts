@@ -819,8 +819,8 @@ function overridesForCanonical(
   modeId: TransportModeId,
 ): Partial<{ timeMin: [number, number]; costUsd: [number, number] }> {
   const o = seed.modeOverrides ?? {}
-  if (modeId === 'car-taxi') return o['taxi'] ?? o['ride-hailing'] ?? o['car-taxi'] ?? {}
-  if (modeId === 'shared-transfer') return o['airport-shuttle'] ?? o['shared-transfer'] ?? {}
+  if (modeId === 'car-taxi') return o['taxi'] ?? o['private-transfer'] ?? o['car-taxi'] ?? {}
+  if (modeId === 'ride-hailing') return o['ride-hailing'] ?? o['taxi'] ?? {}
   if (modeId === 'rental-driver') return o['rental-car'] ?? o['rental-driver'] ?? {}
   if (modeId === 'public-bus') return o['public-bus'] ?? o['train'] ?? {}
   return o[modeId] ?? {}
@@ -834,15 +834,13 @@ export function getModesForRoute(
   return route.modeIds.map((modeId) => {
     const over = seed ? overridesForCanonical(seed, modeId) : {}
     const fallbackCost: [number, number] =
-      modeId === 'private-transfer'
-        ? [14, 22]
-        : modeId === 'car-taxi'
-          ? [8, 20]
+      modeId === 'car-taxi'
+        ? [8, 20]
+        : modeId === 'ride-hailing'
+          ? [5, 16]
           : modeId === 'public-bus'
             ? [1, 4]
-            : modeId === 'shared-transfer'
-              ? [4, 10]
-              : [22, 45]
+            : [22, 45]
     return buildMode(
       modeId,
       {

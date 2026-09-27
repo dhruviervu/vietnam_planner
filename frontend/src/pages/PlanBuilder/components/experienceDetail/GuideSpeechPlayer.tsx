@@ -177,7 +177,9 @@ export function GuideSpeechPlayer({ sections, label }: Props) {
       const finished = list[i]
       indexRef.current += 1
       const next = list[indexRef.current]
-      const gap = next && finished && next.paraIndex !== finished.paraIndex ? 450 : 40
+      const faster = rateRef.current > 1
+      const sectionChange = next && finished && next.paraIndex !== finished.paraIndex
+      const gap = sectionChange ? (faster ? 520 : 450) : faster ? 90 : 55
       window.setTimeout(() => speakNext(), gap)
     }
 

@@ -233,7 +233,6 @@ export function CraftedItineraryBoard({
   highlightId,
   setHighlightId,
   onMoveExperience,
-  unscheduledSights = [],
   mapOpen = false,
   seeVietnamItineraries = false,
   readOnly = false,

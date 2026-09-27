@@ -286,24 +286,43 @@ export function collectTripAirportCities(input: {
     ensureAcc(byId, city).stayCount += 1
   }
 
-  if (byId.size > 0) return scoreAndRankCities([...byId.values()], true)
+  if (byId.size > 0) {
+    const tripRanked = scoreAndRankCities([...byId.values()], true)
+    return mergeAllAirports(tripRanked)
+  }
 
-  const all = AIRPORTS.map((a) => ({
-    city: enrichCity({
-      id: a.id,
+  return mergeAllAirports([])
+}
+
+const HUB_CITY_ID: Record<AirportId, string> = {
+  HAN: 'hanoi',
+  SGN: 'hcmc',
+  DAD: 'da-nang',
+  PQC: 'phu-quoc',
+  CXR: 'nha-trang',
+}
+
+/** Always surface every Vietnam airport we support, then extra trip cities (Hoi An, Hue). */
+function mergeAllAirports(tripRanked: TripAirportCity[]): TripAirportCity[] {
+  const hubs = AIRPORTS.map((a) => {
+    const preferred = HUB_CITY_ID[a.id]
+    const match =
+      tripRanked.find((c) => c.id === preferred) ??
+      tripRanked.find((c) => c.airportId === a.id && c.label === a.city)
+    if (match) return match
+    return enrichCity({
+      id: preferred,
       label: a.city,
       airportId: a.id,
       airportName: a.name,
       airportCode: a.code,
       defaultDestinationId: a.defaultDestinationId,
       transferHint: a.transferHint,
-      source: 'all' as const,
-    }),
-    experienceCount: 0,
-    activityCount: 0,
-    stayCount: 0,
-  }))
-  return scoreAndRankCities(all, false)
+      source: 'all',
+    })
+  })
+  const extras = tripRanked.filter((c) => !hubs.some((h) => h.id === c.id))
+  return [...hubs, ...extras]
 }
 
 export function getSmartFlyIntoPick(cities: TripAirportCity[]): TripAirportCity | null {
@@ -430,7 +449,7 @@ export function buildSmartTransferAdvice(
   const pax = ctx.passengers
   const luggage = ctx.luggageLevel
   const late = ctx.lateArrival || ctx.arrivalTime === 'late'
-  const early = ctx.arrivalTime === 'early'
+  const early = ctx.arrivalTime === 'morning'
   const dest = ctx.routeDestinationLabel ?? 'the city'
   const code = ctx.routeAirportCode ?? 'the airport'
   const selectedCity = opts?.selectedCity ?? null
@@ -492,7 +511,7 @@ export function buildSmartTransferAdvice(
         ? 'Early landings are calm for transfers — a good window to go straight to your base and rest.'
         : 'Early flights: leave with your airport buffer; city traffic can still surprise morning departures.',
     )
-  } else if (ctx.arrivalTime === 'afternoon' || ctx.arrivalTime === 'midday') {
+  } else if (ctx.arrivalTime === 'afternoon') {
     bullets.push('Midday and afternoon can mean heavier traffic — bake in the upper end of the time range.')
   }
 

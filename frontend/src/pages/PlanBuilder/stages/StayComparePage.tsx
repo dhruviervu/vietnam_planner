@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { BuilderProgressChrome } from '../components/BuilderProgressChrome'
 import { useTripStore } from '../../../store/tripStore'
 import { HOTELS, getHotelById, hotelImages } from '../data/hotels'
 import {
@@ -132,7 +131,6 @@ export function StayComparePage() {
 
   if (hotels.length < 2) {
     return (
-      <BuilderProgressChrome current="stay" withNav>
         <main className="mx-auto max-w-[720px] px-6 py-16 text-center">
           <h1 className="font-serif text-3xl font-semibold text-ink">Compare Your Stays</h1>
           <p className="mt-2 text-muted">Add at least 2 stays to comparison to see tradeoffs.</p>
@@ -149,14 +147,12 @@ export function StayComparePage() {
             </button>
           )}
         </main>
-      </BuilderProgressChrome>
     )
   }
 
   const rec = recommendation?.hotel
 
   return (
-    <BuilderProgressChrome current="stay" withNav>
       <main className="mx-auto min-h-[calc(100vh-72px)] max-w-[1440px] px-[clamp(1rem,3.5vw,1.75rem)] py-5 pb-16 lg:py-7">
           {/* Header */}
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -631,7 +627,6 @@ export function StayComparePage() {
             </p>
           </div>
         </main>
-    </BuilderProgressChrome>
   )
 }
 

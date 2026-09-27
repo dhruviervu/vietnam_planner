@@ -1,5 +1,6 @@
 import type { ActivityKind, CityActivity } from '../data/activities'
 import { ACTIVITY_KEEP_IN_MIND } from '../data/activityKeepInMind'
+import generatedActivityGuides from '../data/generatedActivityGuides.json'
 import { hoursLabelForSource } from './yourVietnam/openingHours'
 
 export type ActivityGuideSection = {
@@ -670,6 +671,23 @@ const WHERE_TO_CATCH: Record<string, string> = {
     'Hire bikes on Xuân Hương’s flat loop. Pine MTB is dirt. Tuyền Lâm SUP is another lake.',
 }
 
+type GeneratedActivityGuide = {
+  about?: string
+  where?: string
+  what?: string
+  expect?: string
+  bring?: string
+  know?: string
+}
+
+const GENERATED_ACTIVITY = generatedActivityGuides as Record<string, GeneratedActivityGuide>
+
+export function getActivityAbout(activity: CityActivity): string {
+  const generated = GENERATED_ACTIVITY[activity.id]?.about?.trim()
+  if (generated && generated.split(/\s+/).length >= 80) return generated
+  return activity.about
+}
+
 export function getActivityWhereToCatch(activity: CityActivity) {
   return WHERE_TO_CATCH[activity.id] ?? null
 }
@@ -683,6 +701,23 @@ export function getActivityGuideSections(activity: CityActivity): ActivityGuideS
       { title: 'What to expect', body: authored.expect },
       { title: 'What to bring', body: authored.bring },
       { title: 'Good to know', body: authored.know },
+    ]
+  }
+
+  const generated = GENERATED_ACTIVITY[activity.id]
+  if (
+    generated?.where &&
+    generated.what &&
+    generated.expect &&
+    generated.bring &&
+    generated.know
+  ) {
+    return [
+      { title: 'Where to do this', body: generated.where, wide: true },
+      { title: 'What this is', body: generated.what },
+      { title: 'What to expect', body: generated.expect },
+      { title: 'What to bring', body: generated.bring },
+      { title: 'Good to know', body: generated.know },
     ]
   }
 

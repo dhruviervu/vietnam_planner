@@ -641,7 +641,7 @@ function unhurriedOpenStart(id: string, after: number) {
 }
 
 /** Sequential 10:00 start, opening-hours aware, 2.5h gaps. Landings are clocked on the parent outing. */
-export function timedUnhurriedStops(ids: string[], theme: StayTheme) {
+export function timedUnhurriedStops(ids: string[], _theme: StayTheme) {
   const unique = ids.filter((id, i, arr) => id && arr.indexOf(id) === i)
   const independents = independentUnhurriedStops(unique)
   const spa = independents.filter(isSpaRelaxationId)

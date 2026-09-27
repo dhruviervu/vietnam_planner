@@ -64,7 +64,7 @@ export const STAY_CLUSTERS: StayClusterSeed[] = [
     ],
     transportAccess: { walkabilityLabel: 'Broad pavements by central standards', taxiLabel: 'Reliable hotel and boulevard pickups', transitLabel: 'Several city bus corridors' },
     polygon: box(105.852, 21.014, 105.865, 21.028),
-    stayIds: ['sofitel-legend-metropole', 'capella-hanoi', 'apricot-hotel'],
+    stayIds: ['sofitel-legend-metropole', 'capella-hanoi', 'apricot-hotel', 'grand-cititel-hanoi', 'hanoi-fiesta-grand', 'hotel-de-rond-hanoi', 'la-selva-premium-hanoi'],
     recommendedStartingPoint: 'Between the Opera House and Hoan Kiem Lake',
   },
   {
@@ -83,7 +83,7 @@ export const STAY_CLUSTERS: StayClusterSeed[] = [
     ],
     transportAccess: { walkabilityLabel: 'Pleasant in pockets, spread overall', taxiLabel: 'Grab is the practical default', transitLabel: 'Limited visitor-friendly transit' },
     polygon: box(105.805, 21.052, 105.835, 21.075),
-    stayIds: ['intercontinental-westlake', 'sheraton-hanoi', 'oakwood-residence-hanoi'],
+    stayIds: ['intercontinental-westlake', 'pan-pacific-hanoi', 'sheraton-hanoi', 'irest-orange-tay-ho', 'sunset-westlake-hanoi', 'oakwood-residence-hanoi'],
   },
   {
     id: 'hanoi-ba-dinh', cityId: 'hanoi', name: 'Ba Dinh',
@@ -101,7 +101,7 @@ export const STAY_CLUSTERS: StayClusterSeed[] = [
     ],
     transportAccess: { walkabilityLabel: 'Good around monument corridors', taxiLabel: 'Easy and inexpensive for short hops', transitLabel: 'Useful local bus routes' },
     polygon: box(105.817, 21.024, 105.842, 21.044),
-    stayIds: ['grand-mercure-hanoi', 'la-batisse-kim-ma', 'the-q-hotel'],
+    stayIds: ['lotte-hotel-hanoi', 'fte-ba-dinh-hotel', 'collection-o-ba-dinh', 'grand-mercure-hanoi', 'la-batisse-kim-ma', 'the-q-hotel'],
   },
 
   {
@@ -120,7 +120,7 @@ export const STAY_CLUSTERS: StayClusterSeed[] = [
     ],
     transportAccess: { walkabilityLabel: 'Best concentration of visitor sights', taxiLabel: 'Abundant, though peak traffic slows trips', transitLabel: 'Metro Line 1 and city buses' },
     polygon: box(106.691, 10.766, 106.708, 10.783),
-    stayIds: ['fusion-original-saigon', 'silverland-ben-thanh', 'the-myst-dong-khoi'],
+    stayIds: ['park-hyatt-saigon', 'the-reverie-saigon', 'silverland-sakyo', 'hammock-hotel-fine-arts', 'city-backpackers-hostel', 'fusion-original-saigon', 'silverland-ben-thanh', 'the-myst-dong-khoi'],
     isDefault: true, recommendedStartingPoint: 'Ben Thanh or the quieter Dong Khoi side',
   },
   {
@@ -139,7 +139,7 @@ export const STAY_CLUSTERS: StayClusterSeed[] = [
     ],
     transportAccess: { walkabilityLabel: 'Comfortable on quieter side streets', taxiLabel: 'Short rides into District 1', transitLabel: 'Bus routes on major avenues' },
     polygon: box(106.675, 10.778, 106.692, 10.797),
-    stayIds: ['mai-house-saigon', 'bach-suites-saigon', 'hotel-des-arts-saigon'],
+    stayIds: ['hotel-des-arts-saigon', 'sheraton-saigon-grand-opera', 'mai-house-saigon', 'bach-suites-saigon', 'cozy-home-district-3'],
   },
   {
     id: 'hcmc-thao-dien', cityId: 'hcmc', name: 'Thao Dien / Riverside',
@@ -157,7 +157,7 @@ export const STAY_CLUSTERS: StayClusterSeed[] = [
     ],
     transportAccess: { walkabilityLabel: 'Walkable within village-like pockets', taxiLabel: 'Traffic-sensitive river crossings', transitLabel: 'Metro Line 1 stations nearby' },
     polygon: box(106.725, 10.795, 106.752, 10.825),
-    stayIds: ['mia-saigon', 'villa-song-saigon', 'somerset-vista'],
+    stayIds: ['mia-saigon', 'villa-song-saigon', 'amanaki-thao-dien', 'common-inn-thao-dien', 'm-village-thao-dien', 'somerset-vista'],
   },
   {
     id: 'hcmc-phu-nhuan', cityId: 'hcmc', name: 'Phu Nhuan',
@@ -175,7 +175,7 @@ export const STAY_CLUSTERS: StayClusterSeed[] = [
     ],
     transportAccess: { walkabilityLabel: 'Local walks, busy arterial crossings', taxiLabel: 'Excellent airport access off-peak', transitLabel: 'Frequent buses toward the centre' },
     polygon: box(106.668, 10.794, 106.689, 10.819),
-    stayIds: ['eastin-grand-saigon', 'muong-thanh-luxury-phu-nhuan', 'homee-house-saigon'],
+    stayIds: ['eastin-grand-saigon', 'muong-thanh-luxury-phu-nhuan', 'home-hotel-saigon', 'cactusland-hotel', 'homee-house-saigon'],
   },
 
   {
@@ -212,7 +212,7 @@ export const STAY_CLUSTERS: StayClusterSeed[] = [
     ],
     transportAccess: { walkabilityLabel: 'Easy beach and restaurant walks', taxiLabel: 'Plentiful for centre and airport', transitLabel: 'Limited; taxis are simpler' },
     polygon: box(108.238, 16.04, 108.253, 16.072),
-    stayIds: ['tms-hotel-danang-beach', 'haian-beach-hotel', 'chicland-danang'],
+    stayIds: ['tms-hotel-danang-beach', 'belle-maison-hadian', 'haian-beach-hotel', 'chicland-danang'],
     isDefault: true, recommendedStartingPoint: 'A block inland near Vo Nguyen Giap',
   },
   {
@@ -231,7 +231,7 @@ export const STAY_CLUSTERS: StayClusterSeed[] = [
     ],
     transportAccess: { walkabilityLabel: 'Resort-dependent', taxiLabel: 'Pre-book for remote properties', transitLabel: 'No useful visitor transit' },
     polygon: box(108.245, 16.083, 108.285, 16.115),
-    stayIds: ['intercontinental-danang', 'son-tra-resort', 'radisson-hotel-danang'],
+    stayIds: ['intercontinental-danang', 'mercure-danang-french-village', 'son-tra-resort', 'navy-hotel-danang', 'son-tra-sea-hotel', 'radisson-hotel-danang'],
   },
   {
     id: 'danang-han-river', cityId: 'da-nang', name: 'Han Riverside',
@@ -249,7 +249,7 @@ export const STAY_CLUSTERS: StayClusterSeed[] = [
     ],
     transportAccess: { walkabilityLabel: 'Flat riverside walking', taxiLabel: 'Fast access on both riverbanks', transitLabel: 'Some local bus coverage' },
     polygon: box(108.222, 16.052, 108.237, 16.078),
-    stayIds: ['novotel-danang-premier', 'hilton-danang', 'melia-vinpearl-riverfront'],
+    stayIds: ['novotel-danang-premier', 'melia-vinpearl-riverfront', 'courtyard-marriott-danang', 'haian-riverfront-hotel', 'wink-hotel-danang-riverside', 'hilton-danang'],
   },
 
   {

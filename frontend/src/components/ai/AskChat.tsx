@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { applyAskDay, handleAskTurn, newAskId } from '../../ai/handleTurn'
 import { loadAskMessages, saveAskMessages } from '../../ai/chatMemory'
 import { useSpeechInput } from '../../ai/useSpeechInput'
+import { PIPELINE_START } from '../../pages/PlanBuilder/steps'
+import { useTripStore } from '../../store/tripStore'
 import type { AskMessage, DaySketch, NavigateOffer } from '../../ai/types'
 
 type Props = {
@@ -23,11 +25,19 @@ function cleanAskText(text: string) {
 
 export function AskChat({ pathname, variant, onClose }: Props) {
   const navigate = useNavigate()
-  const [messages, setMessages] = useState<AskMessage[]>(() => loadAskMessages())
+  const [searchParams] = useSearchParams()
+  const enterItineraryPipeline = useTripStore((s) => s.enterItineraryPipeline)
+  const [messages, setMessages] = useState<AskMessage[]>(() => {
+    if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('q')) {
+      return []
+    }
+    return loadAskMessages()
+  })
   const [draft, setDraft] = useState('')
   const [busy, setBusy] = useState(false)
   const scroller = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const autoSent = useRef(false)
 
   const speech = useSpeechInput((text) => setDraft(text))
 
@@ -45,13 +55,13 @@ export function AskChat({ pathname, variant, onClose }: Props) {
     inputRef.current?.focus()
   }, [])
 
-  async function send(text: string) {
+  async function send(text: string, historyBase?: AskMessage[]) {
     const trimmed = text.replace(/\s+/g, ' ').trim()
     if (!trimmed || busy) return
     speech.stop()
     setDraft('')
     const userMsg: AskMessage = { id: newAskId(), role: 'user', text: trimmed }
-    const history = [...messages, userMsg]
+    const history = [...(historyBase ?? messages), userMsg]
     setMessages(history)
     setBusy(true)
     try {
@@ -72,7 +82,21 @@ export function AskChat({ pathname, variant, onClose }: Props) {
     }
   }
 
+  useEffect(() => {
+    const q = searchParams.get('q')?.trim()
+    if (!q || autoSent.current) return
+    autoSent.current = true
+    void send(q, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- once on landing handoff
+  }, [searchParams])
+
   function go(offer: NavigateOffer) {
+    if (offer.path === PIPELINE_START) {
+      enterItineraryPipeline()
+      navigate(PIPELINE_START, { state: { itineraryPipeline: true } })
+      onClose?.()
+      return
+    }
     const hash = offer.hash ? `#${offer.hash.replace(/^#/, '')}` : ''
     navigate(`${offer.path}${hash}`)
     onClose?.()
@@ -240,7 +264,9 @@ function Bubble({
                 onClick={() => onGo(primary)}
                 className="rounded-full bg-terracotta px-3.5 py-1.5 text-[0.72rem] font-bold text-paper"
               >
-                Take me there
+                {primary.path === PIPELINE_START || /build my itinerary/i.test(primary.label)
+                  ? 'Build My Itinerary'
+                  : 'Take me there'}
               </button>
             ) : null}
             {rest.map((offer) => (

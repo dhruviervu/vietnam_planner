@@ -17,10 +17,13 @@ describe('ask gatekeeper', () => {
     expect(ticket.promptQuestions.length).toBeGreaterThan(0)
   })
 
-  it('allows a question about this site', () => {
-    const ticket = gatekeepAsk('hey man what is this site about', page)
+  it('explains how to use the site and offers Build My Itinerary', () => {
+    const q = 'How to Use This website to design my itinerary'
+    const ticket = gatekeepAsk(q, page)
     expect(ticket.verdict).toBe('allow')
     expect(ticket.intent).toBe('help')
+    const offers = collectAskOffers(ticket, '/ask', q)
+    expect(offers.some((o) => o.label === 'Build My Itinerary' && o.confirm)).toBe(true)
   })
 
   it('answers Ha Long Bay as a destination instead of forcing a listing pick', () => {

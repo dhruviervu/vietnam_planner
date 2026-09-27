@@ -26,6 +26,23 @@ type StaySeed = Omit<
   | 'instantBook'
 > & {
   imageIndex: number
+  bookingUrl?: string
+}
+
+const BOOKING_OVERRIDES: Record<string, string> = {
+  'intercontinental-westlake':
+    'https://www.ihg.com/intercontinental/hotels/us/en/hanoi/hanha/hoteldetail',
+  'pan-pacific-hanoi': 'https://www.panpacific.com/en/hotels-and-resorts/pp-hanoi.html',
+  'sheraton-hanoi': 'https://www.marriott.com/en-us/hotels/hansh-sheraton-hanoi-hotel/overview/',
+  'lotte-hotel-hanoi': 'https://www.lottehotel.com/hanoi-hotel/en.html',
+  'park-hyatt-saigon': 'https://www.hyatt.com/park-hyatt/en-US/sgnhp-park-hyatt-saigon',
+  'the-reverie-saigon': 'https://www.thereveriesaigon.com/',
+  'sheraton-saigon-grand-opera':
+    'https://www.marriott.com/en-us/hotels/sgnsi-sheraton-saigon-grand-opera-hotel/overview/',
+  'novotel-danang-premier': 'https://www.ihg.com/novotel/hotels/us/en/da-nang/dadha/hoteldetail',
+  'hilton-danang': 'https://www.hilton.com/en/hotels/dadnnhi-hilton-da-nang/',
+  'intercontinental-danang':
+    'https://www.ihg.com/intercontinental/hotels/us/en/da-nang/dadhc/hoteldetail',
 }
 
 const IMAGES = [
@@ -67,31 +84,53 @@ const SEEDS: StaySeed[] = [
 
   seed('sofitel-legend-metropole', 'hanoi-french-quarter', 'Sofitel Legend Metropole Hanoi', 4.8, 4, [220, 420], '2 min walk to the Opera House', ['Pool', 'Spa', 'Heritage tours'], ['luxury', 'culture', 'first-trip'], 'Hanoi’s landmark heritage hotel, chosen for history, gardens and exceptionally central calm.', 3),
   seed('capella-hanoi', 'hanoi-french-quarter', 'Capella Hanoi', 4.9, 4, [350, 650], '1 min walk to the Opera House', ['Pool', 'Spa', 'Fine dining'], ['luxury', 'culture', 'central'], 'An intimate, theatrical splurge beside the Opera House with highly personal service.', 4),
-  seed('apricot-hotel', 'hanoi-french-quarter', 'Apricot Hotel', 4.5, 4, [110, 210], 'Across from Hoan Kiem Lake', ['Rooftop pool', 'Gym', 'Lake views'], ['luxury', 'walkable', 'first-trip'], 'The practical lake-view luxury pick, especially for travelers who want everything on foot.', 5),
+  seed('apricot-hotel', 'hanoi-french-quarter', 'Apricot Hotel', 4.5, 4, [110, 210], 'Across from Hoan Kiem Lake', ['Rooftop pool', 'Gym', 'Lake views'], ['luxury', 'walkable', 'first-trip'], 'Luxury neo-classical hotel overlooking Hoan Kiem Lake, with an art collection, rooftop pool and fine dining.', 5),
+  seed('grand-cititel-hanoi', 'hanoi-french-quarter', 'Grand Cititel Hanoi Hotel', 4.6, 3, [70, 130], 'Heart of the French Quarter', ['Breakfast', 'Gym', 'Central'], ['first-trip', 'walkable', 'central'], 'Sleek, modern and central, with clean rooms and a convenient base near major dining spots.', 0),
+  seed('hanoi-fiesta-grand', 'hanoi-french-quarter', 'Hanoi Fiesta Grand Hotel & Spa', 4.7, 3, [65, 120], 'Walkable to both quarters', ['Spa', 'Breakfast', 'Boutique'], ['first-trip', 'walkable', 'culture'], 'Boutique stay blending modern comforts with Vietnamese hospitality, plus an on-site spa.', 1),
+  seed('hotel-de-rond-hanoi', 'hanoi-french-quarter', 'Hôtel De Rond Hanoi', 4.6, 3, [80, 150], 'Quiet rooms near the lake', ['Breakfast', 'Gym', 'Quiet rooms'], ['quiet', 'walkable', 'luxury'], 'Stylish mid-to-upscale property with contemporary rooms and calm interiors close to the action.', 2),
+  seed('la-selva-premium-hanoi', 'hanoi-french-quarter', 'La Selva Premium Hotel', 4.7, 3, [60, 110], 'Between Old and French Quarters', ['Breakfast', 'Service', 'Boutique'], ['first-trip', 'walkable', 'food'], 'Highly rated for service, cozy modern rooms, and a location bridging the Old and French Quarters.', 4),
 
   seed('intercontinental-westlake', 'hanoi-tay-ho', 'InterContinental Hanoi Westlake', 4.6, 4, [130, 230], 'Overwater on West Lake', ['Pool', 'Lake views', 'Family rooms'], ['quiet', 'luxury', 'families'], 'Resort-like overwater rooms make the city feel distant while remaining a short taxi away.', 6),
-  seed('sheraton-hanoi', 'hanoi-tay-ho', 'Sheraton Hanoi Hotel', 4.5, 4, [110, 190], '4 min walk to the lake', ['Pool', 'Tennis', 'Club lounge'], ['families', 'quiet', 'luxury'], 'Dependable facilities and generous rooms suit families and longer stays.', 7),
+  seed('sheraton-hanoi', 'hanoi-tay-ho', 'Sheraton Hanoi Hotel', 4.5, 4, [110, 190], '4 min walk to the lake', ['Pool', 'Tennis', 'Club lounge'], ['families', 'quiet', 'luxury'], 'Classic upscale hotel in lakeside gardens, with spacious rooms and a large outdoor pool.', 7),
+  seed('pan-pacific-hanoi', 'hanoi-tay-ho', 'Pan Pacific Hanoi', 4.6, 4, [140, 240], 'Between West Lake and Truc Bach', ['Pool', 'Rooftop bar', 'Lake views'], ['luxury', 'quiet', 'families'], 'Upscale tower between West Lake and Trúc Bạch Lake, with The Summit rooftop bar.', 3),
+  seed('irest-orange-tay-ho', 'hanoi-tay-ho', 'iRest Orange Tay Ho Lakeside Apartment', 4.4, 2, [35, 70], 'On Vu Mien lakeside street', ['Kitchenette', 'Lake views', 'Studios'], ['budget', 'quiet', 'families'], 'Modern serviced studios with kitchenettes and direct lake views at moderate daily rates.', 8),
+  seed('sunset-westlake-hanoi', 'hanoi-tay-ho', 'Sunset Westlake Hanoi Hotel', 4.3, 1, [25, 50], 'On Lac Long Quan', ['Lake views', 'Breakfast', 'Simple rooms'], ['budget', 'quiet'], 'Relaxed budget-friendly hotel along Lạc Long Quân with lake views from select balconies.', 10),
   seed('oakwood-residence-hanoi', 'hanoi-tay-ho', 'Oakwood Residence Hanoi', 4.7, 3, [75, 145], '2 min walk to West Lake', ['Kitchen', 'Pool', 'Laundry'], ['families', 'quiet'], 'Apartment facilities and a calm lakeside position work especially well for longer visits.', 8),
 
   seed('grand-mercure-hanoi', 'hanoi-ba-dinh', 'Grand Mercure Hanoi', 4.7, 4, [100, 180], '8 min walk to Temple of Literature', ['Rooftop pool', 'Spa', 'Gym'], ['culture', 'luxury', 'families'], 'A contemporary full-service base near the city’s major cultural sights.', 9),
+  seed('lotte-hotel-hanoi', 'hanoi-ba-dinh', 'Lotte Hotel Hanoi', 4.6, 4, [150, 280], 'Lotte Center tower', ['Pool', 'Spa', 'City views'], ['luxury', 'quiet', 'culture'], 'Luxury high-rise stay in Lotte Center with panoramic views, an outdoor pool and upscale dining.', 5),
+  seed('fte-ba-dinh-hotel', 'hanoi-ba-dinh', 'FTE Ba Dinh Hotel', 4.5, 3, [50, 95], 'Quieter residential Ba Dinh', ['Rooftop pool', 'Breakfast', 'Gym'], ['quiet', 'walkable', 'families'], 'Contemporary 4-star rooms, attentive service, and a rooftop pool with city views.', 6),
+  seed('collection-o-ba-dinh', 'hanoi-ba-dinh', 'Collection O Ba Dinh - Japanese Town', 4.3, 1, [20, 40], 'Near Dao Tan Japanese enclave', ['Air-conditioning', 'Breakfast', 'Local dining'], ['budget', 'food', 'quiet'], 'Value lodging near Đào Tấn, with simple rooms close to authentic restaurants and cafes.', 11),
   seed('la-batisse-kim-ma', 'hanoi-ba-dinh', 'La Batisse Kim Ma Hotel', 4.4, 2, [35, 65], '10 min walk to Lotte Center', ['Breakfast', 'Restaurant', 'Airport transfer'], ['budget', 'quiet'], 'Straightforward comfort in a local, well-connected part of Ba Dinh.', 10),
   seed('the-q-hotel', 'hanoi-ba-dinh', 'The Q Hotel', 4.5, 2, [40, 75], '12 min walk to Truc Bach Lake', ['Breakfast', 'Gym', 'Family rooms'], ['budget', 'families', 'culture'], 'A sensible midrange choice between the Citadel sights and Truc Bach food streets.', 11),
 
   seed('fusion-original-saigon', 'hcmc-district-1', 'Fusion Original Saigon Centre', 4.7, 4, [130, 230], 'Above Saigon Centre mall', ['Pool', 'Gym', 'Club lounge'], ['first-trip', 'luxury', 'central'], 'Modern rooms, skyline pool and an exceptionally easy downtown position.', 0),
   seed('silverland-ben-thanh', 'hcmc-district-1', 'Silverland Ben Thanh', 4.7, 3, [85, 150], '2 min walk to Ben Thanh Market', ['Rooftop pool', 'Afternoon tea', 'Bar'], ['first-trip', 'walkable', 'food'], 'Distinctive design and generous extras make this a strong-value central boutique.', 1),
   seed('the-myst-dong-khoi', 'hcmc-district-1', 'The Myst Dong Khoi', 4.6, 4, [140, 250], '4 min walk to Nguyen Hue', ['Rooftop pool', 'Spa', 'Balconies'], ['luxury', 'culture', 'central'], 'A characterful alternative to chain hotels, with local materials and private balcony tubs.', 2),
+  seed('park-hyatt-saigon', 'hcmc-district-1', 'Park Hyatt Saigon', 4.8, 4, [280, 520], 'Lam Son Square', ['Pool', 'Spa', 'Fine dining'], ['luxury', 'central', 'culture'], 'French colonial-style luxury at Lam Sơn Square, with a courtyard pool and high-end dining.', 3),
+  seed('the-reverie-saigon', 'hcmc-district-1', 'The Reverie Saigon', 4.8, 4, [300, 580], 'Nguyen Hue Boulevard', ['Pool', 'River views', 'Marble interiors'], ['luxury', 'central', 'nightlife'], 'Italian-designed high-rise in Times Square with river views and grand interiors.', 4),
+  seed('silverland-sakyo', 'hcmc-district-1', 'Silverland Sakyo Hotel', 4.7, 3, [80, 140], 'Le Thanh Ton enclave', ['Rooftop hot tub', 'Afternoon tea', 'Boutique'], ['walkable', 'food', 'quiet'], 'Japanese-Vietnamese boutique rooms with timber interiors and daily afternoon tea.', 5),
+  seed('hammock-hotel-fine-arts', 'hcmc-district-1', 'The Hammock Hotel Fine Arts Museum', 4.6, 2, [45, 85], 'Steps from the Fine Arts Museum', ['Hammocks', 'Rooftop lounge', 'Snacks'], ['budget', 'walkable', 'first-trip'], 'Playful rooms with indoor hammocks and a rooftop lounge near the museum.', 7),
+  seed('city-backpackers-hostel', 'hcmc-district-1', 'CityBackpackers Hostel', 4.5, 1, [12, 28], 'Near Ben Thanh Market', ['Dorms', 'Breakfast', 'Social lounge'], ['budget', 'nightlife', 'first-trip'], 'Clean social hostel with bunks, private rooms and free breakfast near Bến Thành.', 10),
 
   seed('mai-house-saigon', 'hcmc-district-3', 'Mai House Saigon Hotel', 4.7, 4, [105, 180], '6 min walk to War Remnants Museum', ['Pool', 'Spa', 'Family rooms'], ['luxury', 'culture', 'families'], 'Elegant, calm and close enough to walk into District 1 without sleeping amid its noise.', 3),
   seed('bach-suites-saigon', 'hcmc-district-3', 'Bach Suites Saigon', 4.8, 3, [85, 145], 'At Turtle Lake', ['Rooftop pool', 'Kitchenettes', 'Breakfast'], ['walkable', 'quiet', 'food'], 'Small, design-conscious suites in one of the city’s best café pockets.', 4),
   seed('hotel-des-arts-saigon', 'hcmc-district-3', 'Hôtel des Arts Saigon', 4.7, 4, [150, 260], '7 min walk to Notre-Dame Cathedral', ['Rooftop pool', 'Spa', 'Bars'], ['luxury', 'nightlife', 'culture'], 'A polished art-led stay with one of the city’s most atmospheric rooftop pools.', 5),
+  seed('sheraton-saigon-grand-opera', 'hcmc-district-3', 'Sheraton Saigon Grand Opera Hotel', 4.6, 4, [140, 240], 'Near the District 1 border', ['Pool', 'Gym', 'Executive rooms'], ['luxury', 'central', 'families'], 'Classic upscale hotel with spacious rooms, an outdoor pool, and easy access to District 1.', 6),
+  seed('cozy-home-district-3', 'hcmc-district-3', 'Cozy Home District 3', 4.4, 1, [22, 45], 'Quiet residential alley', ['Kitchenette', 'Air-conditioning', 'Guesthouse'], ['budget', 'quiet', 'food'], 'Value rooms and kitchenettes tucked in a District 3 hẻm for budget stays.', 8),
 
   seed('mia-saigon', 'hcmc-thao-dien', 'Mia Saigon', 4.8, 4, [190, 340], 'On the Saigon River', ['Riverfront pool', 'Spa', 'Shuttle boat'], ['luxury', 'quiet', 'families'], 'The strongest resort-style retreat within the city, with spacious river-facing rooms.', 6),
   seed('villa-song-saigon', 'hcmc-thao-dien', 'Villa Song Saigon', 4.7, 4, [150, 260], 'On the Saigon River', ['Pool', 'Boat shuttle', 'Breakfast'], ['quiet', 'luxury', 'families'], 'An intimate colonial-style riverside stay with a genuinely peaceful garden.', 7),
   seed('somerset-vista', 'hcmc-thao-dien', 'Somerset Vista Ho Chi Minh City', 4.5, 3, [90, 160], '8 min taxi to Thao Dien centre', ['Kitchen', 'Pool', 'Laundry'], ['families', 'quiet'], 'Large serviced apartments and excellent recreation facilities suit longer family stays.', 8),
+  seed('amanaki-thao-dien', 'hcmc-thao-dien', 'Amanaki Thao Dien Hotel', 4.6, 3, [70, 130], 'Thao Dien village core', ['Indoor pool', 'Kitchenettes', 'Gym'], ['quiet', 'families', 'walkable'], 'Eco-conscious timber boutique with apartment-style suites and an indoor pool.', 9),
+  seed('common-inn-thao-dien', 'hcmc-thao-dien', 'Common Inn Thao Dien', 4.5, 2, [40, 75], 'Walk to Xuan Thuy cafes', ['Rooftop garden', 'Air-conditioning', 'Boutique'], ['budget', 'walkable', 'food'], 'Compact minimalist rooms and a rooftop terrace on the cafe strip.', 1),
+  seed('m-village-thao-dien', 'hcmc-thao-dien', 'M Village Thảo Điền', 4.4, 1, [28, 55], 'Greenery courtyard', ['Studios', 'Shared kitchen', 'Co-living'], ['budget', 'quiet', 'families'], 'Affordable studios with courtyard lounges and shared kitchens for longer stays.', 11),
 
   seed('eastin-grand-saigon', 'hcmc-phu-nhuan', 'Eastin Grand Hotel Saigon', 4.5, 3, [55, 95], '15 min taxi to the airport', ['Pool', 'Gym', 'Airport access'], ['budget', 'families'], 'A reliable full-service hotel that balances airport convenience and city access.', 9),
   seed('muong-thanh-luxury-phu-nhuan', 'hcmc-phu-nhuan', 'Muong Thanh Luxury Saigon Hotel', 4.4, 3, [50, 90], '10 min taxi to the airport', ['Pool', 'Spa', 'Family rooms'], ['budget', 'families'], 'Spacious rooms and a pool at rates usually below central equivalents.', 10),
   seed('homee-house-saigon', 'hcmc-phu-nhuan', 'Homee House Saigon', 4.5, 1, [22, 42], '15 min taxi to District 1', ['Kitchenette', 'Laundry', 'Self check-in'], ['budget', 'quiet'], 'A simple local apartment-style base for travelers prioritizing value.', 11),
+  seed('home-hotel-saigon', 'hcmc-phu-nhuan', 'HOME Hotel Saigon', 4.6, 2, [35, 65], 'Near local dining streets', ['Breakfast', 'Air-conditioning', 'Boutique'], ['budget', 'food', 'walkable'], 'Cozy contemporary rooms with warm service close to Phú Nhuận dining.', 0),
+  seed('cactusland-hotel', 'hcmc-phu-nhuan', 'Cactusland Hotel & Apartment', 4.5, 2, [30, 60], 'Plant-filled studios', ['Kitchenette', 'Studios', 'Long stay'], ['budget', 'quiet', 'families'], 'Minimalist plant-filled studios with kitchenettes for short or long stays.', 2),
 
   seed('wink-hotel-danang-centre', 'danang-hai-chau', 'Wink Hotel Danang Centre', 4.6, 2, [35, 65], '3 min walk to Han Market', ['24-hour stay', 'Gym', 'Bar'], ['budget', 'central', 'food'], 'Compact, lively and unusually flexible, right beside the market and cathedral.', 0),
   seed('vanda-hotel', 'danang-hai-chau', 'Vanda Hotel', 4.5, 3, [45, 85], 'Overlooking Dragon Bridge', ['Indoor pool', 'Spa', 'River views'], ['families', 'central', 'walkable'], 'River views and full facilities at a practical midrange price.', 1),
@@ -100,14 +139,21 @@ const SEEDS: StaySeed[] = [
   seed('tms-hotel-danang-beach', 'danang-my-khe', 'TMS Hotel Da Nang Beach', 4.7, 3, [65, 120], 'Across from My Khe Beach', ['Infinity pool', 'Kids club', 'Spa'], ['beach', 'families', 'first-trip'], 'Strong sea views and family facilities without top-resort pricing.', 3),
   seed('haian-beach-hotel', 'danang-my-khe', 'HAIAN Beach Hotel & Spa', 4.6, 3, [55, 105], 'Across from My Khe Beach', ['Rooftop pool', 'Spa', 'Airport shuttle'], ['beach', 'first-trip', 'families'], 'A consistent all-rounder for beach access, pool time and nearby dining.', 4),
   seed('chicland-danang', 'danang-my-khe', 'Chicland Danang Beach Hotel', 4.6, 3, [70, 130], 'Across from My Khe Beach', ['Rooftop pool', 'Café', 'Bicycles'], ['beach', 'luxury', 'food'], 'Biophilic design and a quieter northern My Khe position give it boutique appeal.', 5),
+  seed('belle-maison-hadian', 'danang-my-khe', 'Belle Maison Hadian Hotel', 4.6, 3, [70, 125], 'My Khe oceanfront', ['Pool', 'Sea views', 'Breakfast'], ['beach', 'families', 'first-trip'], 'Contemporary oceanfront rooms a short walk to the sand on Võ Nguyên Giáp.', 11),
 
   seed('intercontinental-danang', 'danang-son-tra', 'InterContinental Danang Sun Peninsula Resort', 4.8, 4, [450, 850], 'Private Son Tra bay', ['Private beach', 'Spa', 'Kids club'], ['luxury', 'quiet', 'families', 'beach'], 'A destination resort with dramatic architecture and one of the coast’s finest private settings.', 6),
   seed('son-tra-resort', 'danang-son-tra', 'Son Tra Resort', 4.2, 3, [90, 170], 'Private peninsula beach', ['Private pool villas', 'Beach', 'Restaurant'], ['families', 'quiet', 'beach'], 'Older but spacious villas offer privacy at a more approachable peninsula price.', 7),
   seed('radisson-hotel-danang', 'danang-son-tra', 'Radisson Hotel Danang', 4.6, 3, [75, 140], '2 min walk to north My Khe', ['Rooftop pool', 'Spa', 'Sea views'], ['beach', 'families', 'quiet'], 'Full-service comfort on the calmer northern edge of the main beach strip.', 8),
+  seed('mercure-danang-french-village', 'danang-son-tra', 'Mercure Danang French Village Bana Hills', 4.5, 4, [120, 220], 'Near peninsula approach', ['Pool', 'Ocean views', 'Resort'], ['luxury', 'beach', 'families'], 'Coastal resort rooms and pools with access toward Sơn Trà trails and city beaches.', 2),
+  seed('navy-hotel-danang', 'danang-son-tra', 'Navy Hotel Da Nang', 4.4, 3, [45, 85], 'Foot of Son Tra / Yet Kieu', ['Pool', 'Breakfast', 'Gym'], ['quiet', 'beach', 'families'], 'Modern 4-star rooms and a pool near the peninsula base.', 0),
+  seed('son-tra-sea-hotel', 'danang-son-tra', 'Son Tra Sea Hotel', 4.3, 1, [28, 55], 'Hoang Sa near Linh Ung', ['Sea views', 'Air-conditioning', 'Breakfast'], ['budget', 'beach', 'quiet'], 'Simple beachfront rooms on Hoàng Sa with easy access to Linh Ứng Pagoda.', 10),
 
   seed('novotel-danang-premier', 'danang-han-river', 'Novotel Danang Premier Han River', 4.6, 4, [100, 180], 'On the Han River', ['Pool', 'Kids club', 'Rooftop bar'], ['families', 'central', 'nightlife'], 'A dependable riverfront tower with strong family facilities and panoramic views.', 9),
   seed('hilton-danang', 'danang-han-river', 'Hilton Da Nang', 4.6, 4, [95, 170], 'On the Han River', ['Pool', 'Executive lounge', 'Gym'], ['luxury', 'central', 'walkable'], 'Smart rooms and an excellent upper-river position near city restaurants.', 10),
   seed('melia-vinpearl-riverfront', 'danang-han-river', 'Melia Vinpearl Danang Riverfront', 4.5, 3, [65, 125], 'Across from the city skyline', ['Indoor and outdoor pools', 'Kids club', 'Spa'], ['families', 'central'], 'Large rooms and extensive pools make it an easy family compromise between city and beach.', 11),
+  seed('courtyard-marriott-danang', 'danang-han-river', 'Courtyard by Marriott Danang Han River', 4.5, 3, [80, 150], 'Han River downtown', ['Rooftop dining', 'River views', 'Gym'], ['central', 'walkable', 'families'], 'Contemporary riverfront rooms with rooftop dining and easy market access.', 4),
+  seed('haian-riverfront-hotel', 'danang-han-river', 'Haian Riverfront Hotel Danang', 4.5, 3, [55, 100], 'Bach Dang near Han Market', ['Indoor pool', 'River balconies', 'Boutique'], ['walkable', 'central', 'first-trip'], 'Stylish 4-star boutique on Bạch Đằng within walking distance of Han Market and Dragon Bridge.', 5),
+  seed('wink-hotel-danang-riverside', 'danang-han-river', 'Wink Hotel Danang Riverside', 4.4, 2, [32, 60], 'High-floor river views', ['Smart rooms', '24-hour stay', 'Co-working'], ['budget', 'central', 'nightlife'], 'Tech-boutique rooms with flexible check-in and high-floor Han River views.', 7),
 
   seed('almanity-hoi-an', 'hoian-ancient-town', 'Almanity Hoi An Resort & Spa', 4.7, 4, [90, 170], '10 min walk to Ancient Town', ['Large pool', 'Spa', 'Yoga'], ['luxury', 'first-trip', 'families'], 'Resort facilities within walking range of the heritage core—a rare combination.', 0),
   seed('little-hoi-an-boutique', 'hoian-ancient-town', 'Little Hoi An Boutique Hotel & Spa', 4.6, 3, [65, 115], '4 min walk to Night Market', ['Pool', 'Spa', 'Bicycles'], ['first-trip', 'walkable', 'culture'], 'A charming riverside base just outside the busiest pedestrian lanes.', 1),
@@ -310,7 +356,9 @@ function enrichStay(
     ...rest,
     reason: expandStayReason(rest),
     image: IMAGES[imageIndex],
-    bookingUrl: buildBookingUrl(rest.id, rest.name, propertyType, rest.clusterId),
+    bookingUrl:
+      BOOKING_OVERRIDES[rest.id] ??
+      buildBookingUrl(rest.id, rest.name, propertyType, rest.clusterId),
     mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${rest.name}, Vietnam`)}`,
     sourceLabel: 'See booking options',
     reviewCount,
@@ -327,7 +375,7 @@ function enrichStay(
 
 export const STAY_PROPERTIES: StayProperty[] = SEEDS.map(enrichStay)
 
-const MAX_STAYS_PER_CITY = 15
+const MAX_STAYS_PER_CITY = 28
 
 function capStaysForCity(stays: StayProperty[]): StayProperty[] {
   if (stays.length <= MAX_STAYS_PER_CITY) return stays

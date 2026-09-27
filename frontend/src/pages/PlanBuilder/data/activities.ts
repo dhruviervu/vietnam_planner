@@ -1,4 +1,5 @@
 import type { TimePreference } from '../types'
+import { compareActivitiesByTravelerValue } from '../lib/activityRanking'
 import { cityImages } from './cityImages'
 import { ACTIVITY_IMAGES } from './activityImages'
 import { withPhotoFallbacks } from '../lib/resolveCatalogPhotos'
@@ -133,9 +134,8 @@ type ActivitySeed = {
 
 function defaultPopularityTag(seed: ActivitySeed): ActivityPopularityTag {
   if (seed.priceFromUsd === 0) return 'Free time'
-  if (seed.kind === 'community' || seed.kind === 'beach') return 'Local favourite'
-  if (seed.kind === 'class' || seed.kind === 'adventure') return 'Must do'
   if (seed.kind === 'craft' || seed.kind === 'workshop') return 'Unique'
+  if (seed.kind === 'community') return 'Local favourite'
   return 'Popular'
 }
 
@@ -5826,21 +5826,9 @@ const CITY_ORDER = [
   'da-lat',
 ]
 
-const POPULARITY_TAG_WEIGHT: Record<ActivityPopularityTag, number> = {
-  'Must do': 1,
-  Popular: 2,
-  Unique: 3,
-  'Local favourite': 4,
-  'Free time': 5,
-}
-
 export function rankCityActivities(items: CityActivity[]): RankedActivity[] {
   return [...items]
-    .sort((a, b) => {
-      const dw = POPULARITY_TAG_WEIGHT[a.popularityTag] - POPULARITY_TAG_WEIGHT[b.popularityTag]
-      if (dw) return dw
-      return (b.rating ?? 0) - (a.rating ?? 0)
-    })
+    .sort(compareActivitiesByTravelerValue)
     .map((item, index) => ({ ...item, cityRank: index + 1 }))
 }
 

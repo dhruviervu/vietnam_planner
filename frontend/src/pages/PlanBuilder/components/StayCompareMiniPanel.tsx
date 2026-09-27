@@ -6,6 +6,7 @@ import {
   captureStayCompareScroll,
   saveStayCompareViewState,
 } from '../lib/stayCompareViewState'
+import { openDetailHref } from '../lib/yourVietnam/links'
 
 type Props = {
   /** When false, panel is hidden but comparison selection remains */
@@ -40,11 +41,7 @@ export function StayCompareMiniPanel({ visible, onClose, onOpen }: Props) {
       restoreScroll: false,
     })
     onOpen?.()
-    window.open(
-      `/plan/builder/stay/compare?ids=${comparisonStayIds.join(',')}`,
-      '_blank',
-      'noopener,noreferrer',
-    )
+    openDetailHref(`/plan/builder/stay/compare?ids=${comparisonStayIds.join(',')}`)
   }
 
   if (!visible) return null

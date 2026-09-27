@@ -1,5 +1,6 @@
 /** 1–3 sentences that describe the sight itself — not tickets, crowds, or logistics. */
 
+import generatedCardSummaries from '../data/generatedCardSummaries.json'
 import wikiBriefs from '../data/sightWikiBriefs.json'
 
 const MAX_CHARS = 420
@@ -79,6 +80,8 @@ function wikiBlurb(e: { id?: string; name?: string; city?: string; region?: stri
   return firstSentences(picked.join(' '), MAX_SENTENCES)
 }
 
+const GENERATED = generatedCardSummaries as Record<string, string>
+
 export function sightCardCopy(e: {
   id?: string
   name?: string
@@ -89,8 +92,10 @@ export function sightCardCopy(e: {
   hook?: string
   about?: string
 }): string {
-  const wiki = wikiBlurb(e)
-  if (wiki.length > 40) return wiki
+  if (e.id) {
+    const generated = firstSentences(GENERATED[e.id] || '', MAX_SENTENCES)
+    if (generated.length > 40 && !META.test(generated)) return generated
+  }
 
   const pool = [e.hook, e.about, e.whyGo, e.cardSummary].filter(Boolean) as string[]
   const descriptive = pool.flatMap(sentenceList).filter(isDescriptive)
@@ -104,5 +109,7 @@ export function sightCardCopy(e: {
     if (unique.length >= MAX_SENTENCES) break
   }
   if (unique.length) return firstSentences(unique.join(' '), MAX_SENTENCES)
+  const wiki = wikiBlurb(e)
+  if (wiki.length > 40) return wiki
   return firstSentences(e.hook || e.about || e.whyGo || e.cardSummary || e.name || '', MAX_SENTENCES)
 }

@@ -7,7 +7,7 @@ export type SpeechUnit = {
 }
 
 /** Keep chunks short so faster playback still hits word boundaries. */
-export const SPEECH_CHUNK_MAX = 180
+export const SPEECH_CHUNK_MAX = 140
 
 /**
  * Prepare visitor-guide prose for English system voices.
@@ -18,17 +18,35 @@ export function foldForSpeech(text: string): string {
   let s = text.replace(/Đ/g, 'D').replace(/đ/g, 'd')
   s = s.normalize('NFD').replace(/\p{M}/gu, '')
   s = s.replace(/[“”]/g, '"').replace(/[‘’]/g, "'")
+  s = s.replace(/→/g, ' then ')
   s = s.replace(/(\d)\s*[–—−-]\s*(\d)/g, '$1 to $2')
+  s = s.replace(/[–—]/g, ', ')
+  s = s.replace(/\s*;\s*/g, '. ')
   s = s.replace(/\b0(\d):(\d{2})\b/g, '$1:$2')
+  s = s.replace(/\bJ\.\s+Bourard\b/g, 'J Bourard')
+  s = s.replace(/\bPope John XXIII\b/g, 'Pope John the twenty-third')
+  s = s.replace(/\bNotre-Dame\b/g, 'Notre Dame')
   s = s.replace(/\bVND\b/gi, 'dong')
   s = s.replace(/\bUSD\b/g, 'U.S. dollars')
-  s = s.replace(/\b(\d+(?:\.\d+)?)\s*km\b/gi, '$1 kilometres')
+  s = s.replace(/\bB-52\b/g, 'B fifty-two')
+  s = s.replace(/\b(\d+)\s*km\b/gi, '$1 kilometres')
   s = s.replace(/\b(\d+(?:\.\d+)?)\s*m²\b/gi, '$1 square metres')
   s = s.replace(/\b(\d+(?:\.\d+)?)\s*m2\b/gi, '$1 square metres')
   s = s.replace(/\b(\d+(?:\.\d+)?)\s*m\b/g, '$1 metres')
+  s = s.replace(/\b(\d+)-hectare\b/gi, '$1 hectare')
+  s = s.replace(/\ba\.m\./gi, ' A M')
+  s = s.replace(/\bp\.m\./gi, ' P M')
   s = s.replace(/&/g, ' and ')
+  s = s.replace(/:\s+/g, ': ')
   s = s.replace(/\s+/g, ' ').trim()
+  if (s && !/[.!?…]$/.test(s)) s += '.'
   return s
+}
+
+export function speakableSectionTitle(title: string): string {
+  const numbered = title.match(/^(\d+)\.\s*(.+)$/)
+  if (numbered) return `Part ${numbered[1]}. ${numbered[2]}`
+  return title
 }
 
 function splitOversized(sentence: string, maxLen: number): string[] {
@@ -73,7 +91,9 @@ export function unitsForSections(
 ): SpeechUnit[] {
   const units: SpeechUnit[] = []
   sections.forEach((section, paraIndex) => {
-    const para = foldForSpeech(`${section.title}. ${section.body}`)
+    const title = foldForSpeech(speakableSectionTitle(section.title))
+    if (title) units.push({ text: title, paraIndex })
+    const para = foldForSpeech(section.body)
     const sentences = para.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) ?? [para]
     let buf = ''
     const flush = () => {

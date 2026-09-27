@@ -49,7 +49,7 @@ async function geminiComplete(key: string, messages: ChatMsg[]) {
     { temperature: 0.4, maxOutputTokens: 768 },
   ]
   let last = 'empty'
-  for (const model of models) {
+  modelLoop: for (const model of models) {
     for (const generationConfig of configs) {
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`
       try {
@@ -67,7 +67,7 @@ async function geminiComplete(key: string, messages: ChatMsg[]) {
               generationConfig,
             }),
           },
-          10000,
+          13000,
         )
         const raw = await res.text()
         if (!res.ok) {
@@ -85,6 +85,7 @@ async function geminiComplete(key: string, messages: ChatMsg[]) {
         last = `${model}:empty`
       } catch {
         last = `${model}:timeout`
+        continue modelLoop
       }
     }
   }

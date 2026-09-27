@@ -19,10 +19,12 @@ import {
 import {
   rankCityExperiences,
   slugToCity,
+  getUnfilteredCityCatalog,
   type RankedExperience,
 } from '../services/cityCatalog'
 import { experiencesCitySectionTo } from '../lib/yourVietnam/links'
 import { sightSectionsPresent } from '../data/sightSections'
+import { preloadExperienceGuides } from '../data/loadExperienceGuides'
 
 export function ExperiencesCityPage() {
   const { citySlug = '' } = useParams()
@@ -42,15 +44,21 @@ export function ExperiencesCityPage() {
   const [likings, setLikings] = useState<LikingFilter[]>([])
   const [practical, setPractical] = useState<PracticalFilter[]>([])
   const [section, setSection] = useState<string>('all')
-  const [shown, setShown] = useState(18)
 
   useEffect(() => {
     setSection('all')
-    setShown(18)
+    window.scrollTo({ top: 0, behavior: 'auto' })
   }, [cityName])
+
+  useEffect(() => {
+    const t = window.setTimeout(() => void preloadExperienceGuides().catch(() => {}), 2500)
+    return () => window.clearTimeout(t)
+  }, [])
 
   const rankedAll = useMemo(() => {
     if (!cityName) return [] as RankedExperience[]
+    const fromCatalog = getUnfilteredCityCatalog().groups.find((g) => g.city === cityName)?.items
+    if (fromCatalog?.length) return fromCatalog
     return rankCityExperiences(SIGHT_CATALOG.filter((e) => e.city === cityName))
   }, [cityName])
 
@@ -153,8 +161,8 @@ export function ExperiencesCityPage() {
             {getCityDescription(cityName)}
           </p>
           <p className="mt-3 text-[0.78rem] font-bold text-muted">
-            {rankedAll.length} experience{rankedAll.length === 1 ? '' : 's'} · ranked by rating and
-            reviews
+            {rankedAll.length} experience{rankedAll.length === 1 ? '' : 's'} · must-visit rank by
+            history, landscape, and culture
           </p>
           {sectionTabs.length > 0 && (
             <div className="mt-4 flex flex-wrap gap-1.5">
@@ -194,29 +202,18 @@ export function ExperiencesCityPage() {
             </button>
           </div>
         ) : (
-          <>
-            <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {filtered.slice(0, shown).map((item, index) => (
-                <ExperienceCard
-                  key={item.id}
-                  experience={item}
-                  tripDate={tripDate}
-                  dense
-                  cityRank={item.cityRank}
-                  priority={index < 3}
-                />
-              ))}
-            </div>
-            {filtered.length > shown ? (
-              <button
-                type="button"
-                onClick={() => setShown((n) => n + 18)}
-                className="mt-5 w-full rounded-full border border-terracotta/25 bg-terracotta/8 py-3 text-[0.88rem] font-bold text-terracotta-deep hover:bg-terracotta/12"
-              >
-                Show more sights ({filtered.length - shown} left)
-              </button>
-            ) : null}
-          </>
+          <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((item, index) => (
+              <ExperienceCard
+                key={item.id}
+                experience={item}
+                tripDate={tripDate}
+                dense
+                cityRank={item.cityRank}
+                priority={index < 3}
+              />
+            ))}
+          </div>
         )}
 
         <div className="mt-10 border-t border-ink/8 pt-6">

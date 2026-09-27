@@ -6,7 +6,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-content gap-8 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <p className="mb-2 font-serif text-[1.15rem] font-semibold text-paper">
-            Vietnam, Curated
+            TripBuilder
           </p>
           <p className="max-w-[28ch] text-[0.9rem]">
             Let us craft your Vietnam experience, together.
@@ -44,7 +44,7 @@ export function Footer() {
         </div>
       </div>
       <p className="mx-auto mt-10 max-w-content text-[0.78rem] text-paper/50">
-        © 2026 Vietnam, Curated.
+        © 2026 TripBuilder.
       </p>
     </footer>
   )

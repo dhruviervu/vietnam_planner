@@ -23,7 +23,7 @@ function rankedSightPhotos(
   const media = getExperienceMedia(experience.id)?.photos ?? []
   const curated = EXPERIENCE_IMAGES[experience.id] ?? []
   const inline = experience.images ?? []
-  const ranked = rankPhotosForSight([...media, ...curated, ...inline], experience)
+  const ranked = rankPhotosForSight([...media, ...curated, ...inline], experience, media.slice(0, 3))
   const hint = `${experience.id} ${experience.name} ${experience.category} ${experience.city} ${experience.hook}`
   return withPhotoFallbacks(ranked, hint)
 }

@@ -5,6 +5,7 @@ import { findLeg, formatDuration } from '../data/transport'
 import { StageFooter } from '../components/StageFooter'
 import { TripMap } from '../components/TripMap'
 import { useTripStore } from '../../../store/tripStore'
+import '../../../store/tripCatalogBoot'
 import { stepPath } from '../steps'
 import type { TransportOption } from '../types'
 
@@ -66,9 +67,6 @@ export function LocalTransport() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-      <p className="mb-2 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-sage">
-        Stage 6
-      </p>
       <h1 className="mb-3 font-serif text-[clamp(2rem,4vw,2.8rem)] font-semibold text-ink">
         Local transport
       </h1>

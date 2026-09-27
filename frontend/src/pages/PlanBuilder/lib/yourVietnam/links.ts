@@ -1,4 +1,6 @@
 import type { Hotel } from '../../types'
+import type { ItemKind } from './types'
+import { activitiesCityPath, cityAnchorId, experiencesCityPath } from '../../services/citySlug'
 
 export function mapsSearchUrl(query: string) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
@@ -36,8 +38,6 @@ export function whereToStayUrl() {
   return '/plan/builder/stay'
 }
 
-import { cityAnchorId, experiencesCityPath } from '../../services/citySlug'
-
 export function experiencesUrl() {
   return '/plan/builder/experiences'
 }
@@ -59,11 +59,17 @@ export function activitiesUrl() {
   return '/plan/builder/activities'
 }
 
+export function activitiesCityUrl(city: string) {
+  return activitiesCityPath(city)
+}
+
+export function activitiesCitySectionTo(city: string) {
+  return { pathname: '/plan/builder/activities', hash: `#${cityAnchorId(city)}` }
+}
+
 export function foodUrl() {
   return '/plan/builder/eat'
 }
-
-import type { ItemKind } from './types'
 
 /** Detail page (new tab) for an itinerary row — same destinations as catalog cards. */
 export function itineraryItemHref(opts: {
@@ -80,9 +86,20 @@ export function itineraryItemHref(opts: {
   return opts.mapsUrl
 }
 
+/** Keep the itinerary pipeline alive when a builder page opens in a new tab. */
+export function keepPipelineAlive() {
+  try {
+    sessionStorage.setItem('vn-itinerary-pipeline', '1')
+    localStorage.setItem('vn-itinerary-pipeline', '1')
+  } catch {
+    /* ignore */
+  }
+}
+
 /** New tab like ExperienceCard; same tab if the preview blocks popups. */
 export function openDetailHref(href: string, e?: { preventDefault: () => void }): 'new-tab' | 'same-tab' {
   e?.preventDefault()
+  keepPipelineAlive()
   const w = window.open(href, '_blank')
   if (w) return 'new-tab'
   window.location.assign(href)

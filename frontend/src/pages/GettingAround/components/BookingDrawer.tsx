@@ -25,7 +25,7 @@ export function BookingDrawer({ option, providers, onClose }: Props) {
         </p>
         <h3 className="mt-1 font-serif text-[1.25rem] font-semibold text-ink">{option.name}</h3>
         <p className="mt-1 text-[0.8rem] font-medium text-muted">
-          Vietnam, Curated explains and compares. Providers handle the booking.
+          TripBuilder explains and compares. Providers handle the booking.
         </p>
         <div className="mt-4 space-y-3">
           {providers.map((p) => (
@@ -55,7 +55,7 @@ export function BookingDrawer({ option, providers, onClose }: Props) {
                 Continue to provider →
               </a>
               <p className="mt-1.5 text-[0.65rem] font-medium text-muted">
-                You&apos;re leaving Vietnam, Curated to arrange this service. Prices and policies are
+                You&apos;re leaving TripBuilder to arrange this service. Prices and policies are
                 controlled by the provider.
               </p>
             </article>

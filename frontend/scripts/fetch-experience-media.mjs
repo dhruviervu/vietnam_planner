@@ -832,15 +832,17 @@ function extractCuratedImages() {
 
 function videoScore(title, exp) {
   const t = (title ?? '').toLowerCase()
+  if (/\bvs\.?\b|versus|things to do|places to visit|top \d+|itinerary|\d+\s*days?\s+in|vlog|nightcore|trendingvideo/.test(t)) {
+    return -50
+  }
   const toks = tokens(exp)
-  const city = exp.city.toLowerCase()
-  const generic = /top \d+|things to do in|best of |what to do in|places to visit in/.test(t)
   const tokenHits = toks.filter((tok) => t.includes(tok)).length
-  if (generic && tokenHits < Math.min(2, toks.length)) return -20
+  const needed = toks.length <= 2 ? toks.length : Math.ceil(toks.length * 0.75)
+  if (tokenHits < needed) return -20
   let s = tokenHits * 5
-  if (t.includes(city)) s += 1
+  if (t.includes(exp.city.toLowerCase())) s += 1
   if (t.includes('vietnam') || t.includes('viet nam')) s += 1
-  if (t.includes('tour') || t.includes('visit') || t.includes('guide')) s += 1
+  if (/[|,;]/.test(title) && /\b(and|tour)\b/.test(t)) s -= 8
   return s
 }
 
@@ -906,9 +908,7 @@ async function fetchVideoForExperience(page, exp) {
   }
   pool.sort((a, b) => videoScore(b.title, exp) - videoScore(a.title, exp))
   const want = exp.videoCount ?? 2
-  const picked = pool.filter((v) => videoScore(v.title, exp) >= 0).slice(0, want)
-  if (picked.length) return picked
-  return pool.slice(0, want)
+  return pool.filter((v) => videoScore(v.title, exp) >= 8).slice(0, want)
 }
 
 function sleep(ms) {

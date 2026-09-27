@@ -549,10 +549,13 @@ export const EXPERIENCES: Experience[] = [
     sightSection: 'Museums',
     category: 'History',
     seeds: ['pb-wrm-1', 'pb-wrm-2'],
-    hook: 'A powerful, essential chapter of modern Vietnam.',
-    about: 'Exhibits that ground your trip in history. Emotional and important.',
-    whyGo: 'Context that reshapes how you see the country — schedule quiet time after.',
-    cardSummary: 'Ho Chi Minh City’s War Remnants Museum presents the conflict through photography, artefacts, and sobering exhibits. Essential context for modern Vietnam — emotional, informative, and best allotted unhurried time.',
+    hook: 'A Vietnamese state museum of war remnants, photographs and consequences — not a light visit.',
+    about:
+      'Bao tang Chung tich Chien tranh at 28 Vo Van Tan, District 3. Open 7:30 a.m.–5:30 p.m. daily. Adult admission 40,000 dong; children 6–15 listed at 20,000 dong. Disturbing imagery. Online tickets from February 2026.',
+    whyGo:
+      'Outdoor aircraft and armour, photography galleries, Agent Orange, tiger cages, Requiem, and aftermath. Read captions as evidence plus interpretation.',
+    cardSummary:
+      'The War Remnants Museum (Bao tang Chung tich Chien tranh) at 28 Vo Van Tan documents the wars in Vietnam through outdoor military equipment, photography, Agent Orange displays, prison reconstructions and the Requiem collection. It is a Vietnamese state museum focused on civilian consequences, not a neutral encyclopedia of the war. Allow 1.5–2.5 hours; 7:30 a.m.–5:30 p.m. daily.',
     popularityRank: 13,
     rating: 4.6,
     reviewCount: 8900,
@@ -565,7 +568,7 @@ export const EXPERIENCES: Experience[] = [
     crowdBase: 4,
     slotQuality: { morning: 5, afternoon: 4, evening: 1 },
     accessibilityDetail: { wheelchair: 'Good', walking: 'Easy', steps: 'Elevators available' },
-    hours: '07:30 – 17:30',
+    hours: '7:30 a.m.–5:30 p.m. daily',
     bestTime: 'Morning',
     paceAffinity: ['balanced', 'relaxed'],
     budgetBand: 'smart',
@@ -581,10 +584,13 @@ export const EXPERIENCES: Experience[] = [
     sightSection: 'Outlying & Excursion Sights',
     category: 'History',
     seeds: ['pb-cuchi-1', 'pb-cuchi-2'],
-    hook: 'Underground wartime networks outside Saigon.',
-    about: 'Guided visit with context. Tight spaces — optional crawls.',
-    whyGo: 'A tangible history experience — intense and memorable.',
-    cardSummary: 'Descend into the Cu Chi tunnel network that sheltered Viet Cong fighters during the war. A must-do half-day from HCMC: underground passages, jungle camouflage, and a vivid lesson in wartime ingenuity.',
+    hook: 'Wartime tunnel landscape northwest of Ho Chi Minh City — Ben Dinh and Ben Duoc.',
+    about:
+      'Dia dao Cu Chi is a multi-level military tunnel network from about 1948, later expanded in the Vietnam War. Visitor tunnels are prepared for tourists; claustrophobia is a real limit. Open daily 7:30 a.m.–12:00 p.m. and 1:30–5:00 p.m. as listed by Vietnam Tourism.',
+    whyGo:
+      'See concealed entrances, trenches, the Hoang Cam kitchen, medical and command spaces, then an optional visitor crawl. Confirm whether your tour is Ben Dinh (about 35 km) or Ben Duoc (about 70 km).',
+    cardSummary:
+      'The Cu Chi Tunnels (Dia dao Cu Chi) are a historical military landscape northwest of Ho Chi Minh City, with visitor areas at Ben Dinh and Ben Duoc. The network began around 1948 and later expanded into a multi-level system of movement, shelter, kitchens, medical rooms and command spaces. Plan a half-day; the tourist crawl is optional and adapted for visitors.',
     popularityRank: 8,
     rating: 4.4,
     reviewCount: 5600,
@@ -597,7 +603,7 @@ export const EXPERIENCES: Experience[] = [
     crowdBase: 4,
     slotQuality: { morning: 5, afternoon: 3, evening: 1 },
     accessibilityDetail: { wheelchair: 'Limited', walking: 'Moderate', steps: 'Tunnel entry optional' },
-    hours: '07:00 – 17:00',
+    hours: '7:30 a.m.–12:00 p.m. and 1:30–5:00 p.m. (Vietnam Tourism)',
     bestTime: 'Morning',
     paceAffinity: ['packed', 'balanced'],
     budgetBand: 'comfortable',

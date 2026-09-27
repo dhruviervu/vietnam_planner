@@ -183,31 +183,47 @@ describe('city catalog', () => {
       for (const id of ranked.slice(0, 3).map((e) => e.id)) {
         expect(obscure.has(id), `${city} #1–3 includes ${id}`).toBe(false)
         const row = ranked.find((e) => e.id === id)!
-        expect(row.reviewCount, `${city} ${id} has too few tourist reviews`).toBeGreaterThan(250)
+        expect(row.reviewCount, `${city} ${id} has too few tourist reviews`).toBeGreaterThan(80)
       }
     }
   })
 
   it('does not let a 5-star unknown listing beat a city’s high-volume sight', () => {
-    const ranked = rankAndSortSights(
-      [
-        { id: 'secret-alley-shrine', rating: 5, reviewCount: 28, durationHours: 0.5, popularityRank: 1 },
-        { id: 'war-remnants', rating: 4.6, reviewCount: 8900, durationHours: 2, popularityRank: 18 },
-      ],
-      { promoteAnchors: false },
-    )
-    expect(ranked[0].id).toBe('war-remnants')
+  const war = scoreSight({
+    id: 'war-remnants',
+    rating: 4.6,
+    reviewCount: 8900,
+    durationHours: 2,
+    rankCategory: 'museums',
+    popularityRank: 18,
+  })
+  const shrine = scoreSight({
+    id: 'secret-alley-shrine',
+    rating: 5,
+    reviewCount: 28,
+    durationHours: 0.5,
+    rankCategory: 'urban',
+    popularityRank: 1,
+  })
+  expect(war.totalScore).toBeGreaterThan(shrine.totalScore)
   })
 
-  it('lets a city’s high-volume 4.4 beat a 4.6 mid-volume day trip', () => {
+  it('lets landscape uniqueness beat a busier but generic city pin', () => {
     const ranked = rankAndSortSights(
       [
-        { id: 'city-beach', rating: 4.4, reviewCount: 31_200, durationHours: 2 },
-        { id: 'sandbar-daytrip', rating: 4.6, reviewCount: 6540, durationHours: 8 },
+        { id: 'city-beach', rating: 4.4, reviewCount: 31_200, durationHours: 2, rankCategory: 'urban' },
+        {
+          id: 'karst-bay',
+          rating: 4.6,
+          reviewCount: 6540,
+          durationHours: 6,
+          rankCategory: 'nature',
+          isAnchor: true,
+        },
       ],
       { promoteAnchors: false },
     )
-    expect(ranked[0].id).toBe('city-beach')
+    expect(ranked[0].id).toBe('karst-bay')
   })
 
   it('ranks Ho Chi Minh City by traveler intent, not Google Maps volume', () => {

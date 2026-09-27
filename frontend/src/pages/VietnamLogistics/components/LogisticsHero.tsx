@@ -25,10 +25,10 @@ export function LogisticsHero() {
           Travel intelligence
         </p>
         <h1 className="mt-1.5 font-serif text-[clamp(1.5rem,3vw,2.05rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-paper">
-          Vietnam Logistics
+          Know before you go
         </h1>
         <p className="mt-1.5 max-w-[52ch] text-[0.8rem] leading-snug text-paper/75">
-          Check Visa Requirement, Sim Card, Money and the cost of living in Vietnam
+          Check Visa Requirement, Sim Card, and Money
         </p>
       </motion.div>
     </section>

@@ -169,7 +169,7 @@ const TIPS: Record<string, { headline: string; tips: string[]; continueLabel: st
 }
 
 const GENERIC = {
-  headline: 'You are leaving Vietnam, Curated for a booking site.',
+  headline: 'You are leaving TripBuilder for a booking site.',
   continueLabel: 'Continue to the site',
   tips: [
     'We already aimed this link at the right place or operator where we could.',

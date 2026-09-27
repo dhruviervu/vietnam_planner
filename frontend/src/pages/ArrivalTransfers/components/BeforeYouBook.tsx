@@ -10,7 +10,7 @@ export function BeforeYouBook() {
         Before You Book
       </h2>
       <p className="mt-1 max-w-[50ch] text-[0.88rem] text-muted">
-        Practical policies to understand before you leave Vietnam, Curated for a provider.
+        Practical policies to understand before you leave TripBuilder for a provider.
       </p>
       <div className="mt-4 divide-y divide-ink/10 border-t border-ink/10">
         {BOOKING_POLICIES.map((p) => {

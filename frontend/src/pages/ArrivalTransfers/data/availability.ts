@@ -6,6 +6,7 @@ import type {
   TransportMode,
   TransportModeId,
 } from './types'
+import { catalogProviders } from './providerCatalog'
 
 const TIME_HOUR: Record<ArrivalContext['arrivalTime'], number | null> = {
   'not-set': null,
@@ -17,6 +18,7 @@ const TIME_HOUR: Record<ArrivalContext['arrivalTime'], number | null> = {
 
 const SCHEDULE: Record<TransportModeId, { open: number; close: number; allDay: boolean }> = {
   'car-taxi': { open: 0, close: 24, allDay: true },
+  'ride-hailing': { open: 0, close: 24, allDay: true },
   'private-transfer': { open: 0, close: 24, allDay: true },
   'public-bus': { open: 6, close: 22, allDay: false },
   'shared-transfer': { open: 6, close: 22, allDay: false },
@@ -36,11 +38,15 @@ export function evaluateAvailability(
   route: ArrivalRoute | null,
 ): AvailabilityResult {
   if (route && !route.modeIds.includes(mode.id)) {
-    return {
-      status: 'unavailable',
-      label: label('unavailable'),
-      note: `${mode.label} is not available for this airport → destination.`,
-      confidence: 'typical',
+    const rentalListed =
+      mode.id === 'rental-driver' && catalogProviders(route.airportId, 'rental-driver').length > 0
+    if (!rentalListed) {
+      return {
+        status: 'unavailable',
+        label: label('unavailable'),
+        note: `${mode.label} is not available for this airport → destination.`,
+        confidence: 'typical',
+      }
     }
   }
 
@@ -113,11 +119,20 @@ export function suitabilityScore(mode: TransportMode, ctx: ArrivalContext): numb
   if (ctx.luggageLevel === 'heavy') score += mode.luggageStars >= 4 ? 14 : -20
   if (ctx.luggageLevel === 'light' && mode.id === 'public-bus') score += 12
   if (ctx.passengers >= 4) score += mode.groupFriendly ? 14 : -12
-  if (ctx.passengers <= 2 && (mode.id === 'car-taxi' || mode.id === 'public-bus')) score += 10
+  if (ctx.passengers <= 2 && (mode.id === 'car-taxi' || mode.id === 'ride-hailing' || mode.id === 'public-bus'))
+    score += 10
   if (ctx.hasAccessibilityNeed) score += mode.accessible ? 22 : -28
   if (ctx.lateArrival || ctx.arrivalTime === 'late') score += mode.lateNightOk ? 18 : -24
-  if (ctx.budgetPriority) {
-    const mid = (mode.costUsd[0] + mode.costUsd[1]) / 2
+  const budget = ctx.budget ?? (ctx.budgetPriority ? 'saver' : 'typical')
+  const mid = (mode.costUsd[0] + mode.costUsd[1]) / 2
+  if (budget === 'saver') {
+    score += mid < 8 ? 24 : mid < 16 ? 10 : -14
+    if (mode.id === 'public-bus') score += 10
+    if (mode.id === 'rental-driver') score -= 10
+  } else if (budget === 'comfort') {
+    if (mode.id === 'car-taxi') score += 16
+    if (mode.id === 'public-bus') score -= 12
+  } else if (ctx.budgetPriority) {
     score += mid < 12 ? 20 : mid < 20 ? 6 : -12
   }
   if (ctx.direction === 'outbound') score += mode.reliability * 2
@@ -128,12 +143,7 @@ export function alternativeModes(
   unavailableId: TransportModeId,
   available: TransportMode[],
 ): TransportModeId[] {
-  const preferred: TransportModeId[] = [
-    'private-transfer',
-    'car-taxi',
-    'shared-transfer',
-    'public-bus',
-  ]
+  const preferred: TransportModeId[] = ['car-taxi', 'public-bus', 'rental-driver']
   return preferred
     .filter((id) => id !== unavailableId && available.some((m) => m.id === id))
     .slice(0, 3)

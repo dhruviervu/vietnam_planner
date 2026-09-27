@@ -1,9 +1,29 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { Experience } from '../../types'
-import { getExperienceGuide, wordCount } from '../../data/experienceGuides'
 import { titleGuideParagraphs } from '../../lib/guideParagraphs'
 import { imageForGuideSection } from '../../lib/guideSectionImage'
 import { GuideSpeechPlayer } from './GuideSpeechPlayer'
+import {
+  loadedExperienceGuides,
+  preloadExperienceGuides,
+  type GuidesModule,
+} from '../../data/loadExperienceGuides'
+
+function useGuidesModule(): GuidesModule | null {
+  const [mod, setMod] = useState(loadedExperienceGuides)
+  useEffect(() => {
+    if (mod) return
+    let alive = true
+    preloadExperienceGuides().then(
+      (m) => alive && setMod(m),
+      () => {},
+    )
+    return () => {
+      alive = false
+    }
+  }, [mod])
+  return mod
+}
 
 type Props = {
   experience: Experience
@@ -14,12 +34,34 @@ const PREVIEW_SECTIONS = 4
 
 export function ExperienceGuide({ experience, className }: Props) {
   const [expanded, setExpanded] = useState(false)
-  const guide = useMemo(() => getExperienceGuide(experience.id), [experience.id])
-  const words = useMemo(() => wordCount(guide), [guide])
+  const guides = useGuidesModule()
+  const guide = useMemo(
+    () => (guides ? guides.getExperienceGuide(experience.id) : ''),
+    [guides, experience.id],
+  )
+  const words = useMemo(() => (guides ? guides.wordCount(guide) : 0), [guides, guide])
   const sections = useMemo(
     () => titleGuideParagraphs(guide, experience.name),
     [guide, experience.name],
   )
+
+  if (!guides) {
+    return (
+      <section
+        id="visitor-guide"
+        aria-busy="true"
+        className={`scroll-mt-24 animate-pulse ${className ?? 'mt-10'}`}
+      >
+        <div className="h-3 w-24 rounded bg-ink/10" />
+        <div className="mt-2 h-6 w-40 rounded bg-ink/10" />
+        <div className="mt-6 space-y-3">
+          <div className="h-4 w-full rounded bg-ink/[0.07]" />
+          <div className="h-4 w-11/12 rounded bg-ink/[0.07]" />
+          <div className="h-4 w-4/5 rounded bg-ink/[0.07]" />
+        </div>
+      </section>
+    )
+  }
 
   if (!guide) return null
 
@@ -55,9 +97,16 @@ export function ExperienceGuide({ experience, className }: Props) {
                 {section.title}
               </h3>
               <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] lg:items-start lg:gap-6">
-                <p className="text-[0.98rem] leading-[1.75] text-ink/90 text-pretty">
-                  {section.body}
-                </p>
+                <div className="space-y-4">
+                  {section.body.split(/\n\n+/).map((para, j) => (
+                    <p
+                      key={j}
+                      className="whitespace-pre-line text-[0.98rem] leading-[1.75] text-ink/90 text-pretty"
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </div>
                 {src ? (
                   <div className="overflow-hidden rounded-[16px] ring-1 ring-ink/[0.06]">
                     <img

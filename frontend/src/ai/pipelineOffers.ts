@@ -1,5 +1,6 @@
 import { PIPELINE_START } from '../pages/PlanBuilder/steps'
 import { cityCatalogPath, factForEntity, isoForAsk } from './facts'
+import { isHowToUsePrompt } from './howToUse'
 import { useTripStore } from '../store/tripStore'
 import type { AskTicket, NavigateOffer } from './types'
 
@@ -20,6 +21,10 @@ function addOffer(out: NavigateOffer[], offer: NavigateOffer, pagePath: string) 
 }
 
 export function collectAskOffers(ticket: AskTicket, pagePath: string, raw: string): NavigateOffer[] {
+  if (isHowToUsePrompt(raw)) {
+    return [{ label: 'Build My Itinerary', path: PIPELINE_START, confirm: true }]
+  }
+
   const out: NavigateOffer[] = []
   const first = ticket.entities[0]
   const city = ticket.cityHint || first?.city || null
@@ -52,19 +57,19 @@ export function collectAskOffers(ticket: AskTicket, pagePath: string, raw: strin
     addOffer(out, { label: 'Where to stay', path: '/plan/builder/stay' }, pagePath)
   }
   if (FOOD_RE.test(raw)) {
-    addOffer(out, { label: 'Taste of Vietnam', path: '/plan/builder/eat' }, pagePath)
+    addOffer(out, { label: 'Where to Eat', path: '/plan/builder/eat' }, pagePath)
   }
   if (MOVE_RE.test(raw)) {
     addOffer(out, { label: 'Getting around', path: '/plan/builder/transport' }, pagePath)
   }
   if (SHOP_RE.test(raw)) {
-    addOffer(out, { label: 'Shopping', path: '/plan/builder/shopping' }, pagePath)
+    addOffer(out, { label: 'Shopping in Vietnam', path: '/plan/builder/shopping' }, pagePath)
   }
   if (AIR_RE.test(raw)) {
-    addOffer(out, { label: 'Airport transfers', path: '/plan/builder/airport' }, pagePath)
+    addOffer(out, { label: 'Airport Transfer', path: '/plan/builder/airport' }, pagePath)
   }
   if (LOG_RE.test(raw)) {
-    addOffer(out, { label: 'Logistics', path: '/plan/builder/logistics' }, pagePath)
+    addOffer(out, { label: 'Know before you go', path: '/plan/builder/logistics' }, pagePath)
   }
   if (WHEN_RE.test(raw)) {
     addOffer(out, { label: 'When to go', path: '/plan/builder/when-to-go' }, pagePath)
@@ -76,14 +81,19 @@ export function collectAskOffers(ticket: AskTicket, pagePath: string, raw: strin
     addOffer(out, { label: 'Your itinerary', path: '/plan/builder/itinerary' }, pagePath)
   }
 
-  if (ticket.intent === 'help' || (!city && !first && ticket.verdict !== 'refuse')) {
-    addOffer(out, { label: 'Start my itinerary', path: PIPELINE_START, confirm: true }, pagePath)
+  if (isHowToUsePrompt(raw) || ticket.intent === 'help') {
+    addOffer(out, { label: 'Build My Itinerary', path: PIPELINE_START, confirm: true }, pagePath)
+    if (!isHowToUsePrompt(raw)) {
+      addOffer(out, { label: 'Browse sights', path: '/plan/builder/experiences' }, pagePath)
+    }
+  } else if (!city && !first && ticket.verdict !== 'refuse') {
+    addOffer(out, { label: 'Build My Itinerary', path: PIPELINE_START, confirm: true }, pagePath)
     addOffer(out, { label: 'Browse sights', path: '/plan/builder/experiences' }, pagePath)
   }
 
   if (ticket.verdict === 'refuse') {
     addOffer(out, { label: 'Browse sights', path: '/plan/builder/experiences' }, pagePath)
-    addOffer(out, { label: 'Start my itinerary', path: PIPELINE_START, confirm: true }, pagePath)
+    addOffer(out, { label: 'Build My Itinerary', path: PIPELINE_START, confirm: true }, pagePath)
   }
 
   const confirmed = out.find((o) => o.confirm)

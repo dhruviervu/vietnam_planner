@@ -48,9 +48,15 @@ export type FoodCity =
 
 export type RestaurantSort = 'reviews-high' | 'best-value'
 
+export type RestaurantKind = 'tourist-favorite' | 'local-table'
+
+export type RestaurantPriceLevel = 1 | 2 | 3 | 4
+
 export type RestaurantFilter = {
   servesAlcohol?: boolean
   allowsSmoking?: boolean
+  priceLevels?: RestaurantPriceLevel[]
+  kind?: RestaurantKind
 }
 
 export type Restaurant = {
@@ -64,7 +70,8 @@ export type Restaurant = {
   specialityDishIds: string[]
   rating: number
   reviewCount: number
-  priceLevel: 1 | 2 | 3 | 4
+  priceLevel: RestaurantPriceLevel
+  kind: RestaurantKind
   openNow: boolean
   openingHours: string
   outdoorSeating: boolean
