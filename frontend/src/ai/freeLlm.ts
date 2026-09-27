@@ -7,11 +7,16 @@ type ChatMsg = { role: 'system' | 'user' | 'assistant'; content: string }
 
 export type AskLlmProvider = 'gemini' | 'groq' | 'none'
 
+let knownProvider: AskLlmProvider | null = null
+
 export async function askLlmStatus(): Promise<AskLlmProvider> {
+  if (knownProvider) return knownProvider
   try {
     const res = await fetch('/api/ask-llm')
     const json = (await res.json()) as { provider?: AskLlmProvider }
-    return json.provider === 'gemini' || json.provider === 'groq' ? json.provider : 'none'
+    const provider = json.provider === 'gemini' || json.provider === 'groq' ? json.provider : 'none'
+    if (provider !== 'none') knownProvider = provider
+    return provider
   } catch {
     return 'none'
   }

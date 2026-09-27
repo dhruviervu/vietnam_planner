@@ -24,8 +24,6 @@ import {
 } from '../services/cityCatalog'
 import { experiencesCitySectionTo } from '../lib/yourVietnam/links'
 import { sightSectionsPresent } from '../data/sightSections'
-import { preloadExperienceGuides } from '../data/loadExperienceGuides'
-
 export function ExperiencesCityPage() {
   const { citySlug = '' } = useParams()
   const tripDate = useTripStore((s) =>
@@ -49,12 +47,6 @@ export function ExperiencesCityPage() {
     setSection('all')
     window.scrollTo({ top: 0, behavior: 'auto' })
   }, [cityName])
-
-  useEffect(() => {
-    const t = window.setTimeout(() => void preloadExperienceGuides().catch(() => {}), 2500)
-    return () => window.clearTimeout(t)
-  }, [])
-
   const rankedAll = useMemo(() => {
     if (!cityName) return [] as RankedExperience[]
     const fromCatalog = getUnfilteredCityCatalog().groups.find((g) => g.city === cityName)?.items

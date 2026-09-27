@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsx scripts/build-guides.ts && tsc -b && vite build",
     "lint": "oxlint",
     "test": "vitest run",
     "preview": "vite preview",
+    "preview:cloudflare": "npm run build && wrangler pages dev dist",
     "generate:maps": "node scripts/generate-getting-around-maps.mjs",
     "generate:city-geo": "node scripts/generate-city-geography.mjs",
     "generate:hoi-an-stay-map": "node scripts/generate-hoi-an-stay-map.mjs",
@@ -51,8 +52,10 @@
     "postcss": "^8.5.26",
     "tailwindcss": "^3.4.19",
     "topojson-client": "^3.1.0",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.2",
     "vite": "^8.2.0",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.0",
+    "wrangler": "^4.142.0"
   }
 }

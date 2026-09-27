@@ -3,26 +3,39 @@ import type { Experience } from '../../types'
 import { titleGuideParagraphs } from '../../lib/guideParagraphs'
 import { imageForGuideSection } from '../../lib/guideSectionImage'
 import { GuideSpeechPlayer } from './GuideSpeechPlayer'
-import {
-  loadedExperienceGuides,
-  preloadExperienceGuides,
-  type GuidesModule,
-} from '../../data/loadExperienceGuides'
+import { cachedGuideText, loadGuideText } from '../../data/loadExperienceGuides'
 
-function useGuidesModule(): GuidesModule | null {
-  const [mod, setMod] = useState(loadedExperienceGuides)
+type GuideState = { id: string; text: string | null; failed: boolean }
+
+function useGuideText(id: string) {
+  const [attempt, setAttempt] = useState(0)
+  const [state, setState] = useState<GuideState>(() => ({
+    id,
+    text: cachedGuideText(id) ?? null,
+    failed: false,
+  }))
   useEffect(() => {
-    if (mod) return
+    const hit = cachedGuideText(id)
+    if (hit !== undefined) {
+      setState({ id, text: hit, failed: false })
+      return
+    }
     let alive = true
-    preloadExperienceGuides().then(
-      (m) => alive && setMod(m),
-      () => {},
+    setState({ id, text: null, failed: false })
+    loadGuideText(id).then(
+      (text) => alive && setState({ id, text, failed: false }),
+      () => alive && setState({ id, text: null, failed: true }),
     )
     return () => {
       alive = false
     }
-  }, [mod])
-  return mod
+  }, [id, attempt])
+  const current = state.id === id ? state : { id, text: null, failed: false }
+  return { ...current, retry: () => setAttempt((n) => n + 1) }
+}
+
+function wordCount(text: string): number {
+  return text.trim().split(/\s+/).filter(Boolean).length
 }
 
 type Props = {
@@ -34,18 +47,28 @@ const PREVIEW_SECTIONS = 4
 
 export function ExperienceGuide({ experience, className }: Props) {
   const [expanded, setExpanded] = useState(false)
-  const guides = useGuidesModule()
-  const guide = useMemo(
-    () => (guides ? guides.getExperienceGuide(experience.id) : ''),
-    [guides, experience.id],
-  )
-  const words = useMemo(() => (guides ? guides.wordCount(guide) : 0), [guides, guide])
+  const { text, failed, retry } = useGuideText(experience.id)
+  const guide = text ?? ''
+  const words = useMemo(() => wordCount(guide), [guide])
   const sections = useMemo(
     () => titleGuideParagraphs(guide, experience.name),
     [guide, experience.name],
   )
 
-  if (!guides) {
+  if (failed) {
+    return (
+      <section id="visitor-guide" className={`scroll-mt-24 ${className ?? 'mt-10'}`}>
+        <p className="text-[0.92rem] text-muted">
+          The visitor guide didn&apos;t load.{' '}
+          <button type="button" onClick={retry} className="font-bold text-terracotta underline">
+            Try again
+          </button>
+        </p>
+      </section>
+    )
+  }
+
+  if (text === null) {
     return (
       <section
         id="visitor-guide"
