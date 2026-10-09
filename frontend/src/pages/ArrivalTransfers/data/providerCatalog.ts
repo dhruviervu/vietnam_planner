@@ -27,7 +27,7 @@ export const PROVIDER_LINKS = {
     DAD: 'https://www.klook.com/en-US/activity/airport-transfers-da-nang-33/',
     PQC: 'https://www.klook.com/en-US/activity/airport-transfers-phu-quoc-36/',
     CXR: 'https://www.klook.com/en-US/activity/airport-transfers-nha-trang-34/',
-  } as Record<AirportId, string>,
+  } as Partial<Record<AirportId, string>>,
   kkday: 'https://www.kkday.com/en/product/productlist?keyword=Vietnam+airport+transfer',
   trip: 'https://www.trip.com/airport-transfers/',
   viator: 'https://www.viator.com/searchResults/all?text=Vietnam%20airport%20transfer',
@@ -132,7 +132,11 @@ function carTaxi(code: AirportId, times: string, fromUsd: number): CatalogProvid
       priceFrom: fromUsd + 4,
       image: CAR,
       summary: 'Driver waits at arrivals with a personalized sign; highly rated support.',
-      booking: web('Book on Klook', PROVIDER_LINKS.klook[code]),
+      booking: web(
+        'Book on Klook',
+        PROVIDER_LINKS.klook[code] ??
+          `https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(`${code} airport transfer`)}`,
+      ),
     }),
     gp({
       id: `${code}-kkday`,
@@ -310,7 +314,7 @@ function pack(
   }
 }
 
-export const PROVIDER_CATALOG: Record<AirportId, Record<TransportModeId, CatalogProvider[]>> = {
+export const PROVIDER_CATALOG: Partial<Record<AirportId, Record<TransportModeId, CatalogProvider[]>>> = {
   HAN: pack(
     carTaxi('HAN', HAN_T, 10),
     hail('HAN', HAN_T, 10),
@@ -356,18 +360,77 @@ export const PROVIDER_CATALOG: Record<AirportId, Record<TransportModeId, Catalog
   ),
 }
 
-export function catalogProviders(airportId: AirportId, modeId: TransportModeId): CatalogProvider[] {
-  const list = PROVIDER_CATALOG[airportId]?.[modeId] ?? []
-  return [...list].sort((a, b) => (a.priceFrom ?? 99) - (b.priceFrom ?? 99))
+function modeList(
+  cat: Record<TransportModeId, CatalogProvider[]> | undefined,
+  modeId: TransportModeId,
+): CatalogProvider[] {
+  if (!cat) return []
+  const direct = cat[modeId] ?? []
+  if (direct.length) return direct
+  if (modeId === 'private-transfer') return cat['car-taxi'] ?? []
+  if (modeId === 'shared-transfer') return cat['public-bus'] ?? []
+  return []
 }
+
+export function catalogProviders(airportId: AirportId, modeId: TransportModeId): CatalogProvider[] {
+  const own = PROVIDER_CATALOG[airportId]
+  const borrowed = !own
+  const list = modeList(own, modeId).length
+    ? modeList(own, modeId)
+    : modeList(PROVIDER_CATALOG.HAN, modeId)
+  return [...list]
+    .map((p) =>
+      borrowed
+        ? {
+            ...p,
+            id: `${airportId}-${p.id}`,
+            booking:
+              p.booking.kind === 'web' && p.name === 'Klook'
+                ? {
+                    ...p.booking,
+                    url:
+                      PROVIDER_LINKS.klook[airportId] ??
+                      `https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(`${airportId} airport transfer`)}`,
+                  }
+                : p.booking,
+          }
+        : p,
+    )
+    .slice(0, 5)
+}
+
+const ALL_AIRPORTS: AirportId[] = [
+  'HAN',
+  'DAD',
+  'SGN',
+  'PQC',
+  'CXR',
+  'HUI',
+  'VCA',
+  'DLI',
+  'VII',
+  'UIH',
+  'VDH',
+  'VDO',
+  'BMV',
+  'PXU',
+  'VKG',
+  'DIN',
+  'VCL',
+  'TBB',
+  'THD',
+  'CAH',
+]
+
+const ALL_MODES: TransportModeId[] = ['car-taxi', 'public-bus', 'rental-driver']
 
 export function findCatalogProvider(id: string): {
   airportId: AirportId
   provider: CatalogProvider
 } | null {
-  for (const airportId of Object.keys(PROVIDER_CATALOG) as AirportId[]) {
-    for (const list of Object.values(PROVIDER_CATALOG[airportId])) {
-      const hit = list.find((p) => p.id === id)
+  for (const airportId of ALL_AIRPORTS) {
+    for (const modeId of ALL_MODES) {
+      const hit = catalogProviders(airportId, modeId).find((p) => p.id === id)
       if (hit) return { airportId, provider: hit }
     }
   }

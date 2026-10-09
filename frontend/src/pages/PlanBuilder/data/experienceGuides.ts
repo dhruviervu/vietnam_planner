@@ -31,6 +31,7 @@ import { EXPERIENCE_GUIDES_HA_GIANG_LIFE } from './experienceGuidesHaGiangLife'
 import { EXPERIENCE_GUIDES_CAT_BA } from './experienceGuidesCatBa'
 import { EXPERIENCE_GUIDES_DONG_VAN } from './experienceGuidesDongVan'
 import { EXPERIENCE_GUIDES_CITY_DESCRIPTIONS } from './experienceGuidesCityDescriptions'
+import { EXPERIENCE_GUIDES_BRIEF_ABOUT } from './experienceGuidesBriefAbout'
 import { getExperienceById } from './experiences'
 import { composeExperienceGuide, curatedWordCount } from './composeExperienceGuide'
 import generatedVisitorGuides from './generatedVisitorGuides.json'
@@ -306,6 +307,7 @@ const GUIDE_LAYERS: Record<string, string>[] = [
   EXPERIENCE_GUIDES_CAT_BA,
   EXPERIENCE_GUIDES_DONG_VAN,
   EXPERIENCE_GUIDES_CITY_DESCRIPTIONS,
+  EXPERIENCE_GUIDES_BRIEF_ABOUT,
 ]
 
 type GeneratedGuide = {

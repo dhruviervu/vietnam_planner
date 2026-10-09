@@ -5,6 +5,7 @@ import { rankCityExperiences } from '../../PlanBuilder/services/cityCatalog'
 import { planCityStay } from '../../PlanBuilder/lib/yourVietnam/dayAllocation'
 import { alternativesOf, parentTourIdOf } from '../../PlanBuilder/lib/yourVietnam/sightIntelligence'
 import { groupIdForSourceId } from '../../PlanBuilder/lib/yourVietnam/sightTiming'
+import { spanDays } from '../../PlanBuilder/lib/yourVietnam/itemKind'
 import { resolvePlaceId } from '../../PlanBuilder/lib/yourVietnam/cityPins'
 import type { PlaceId } from '../../GettingAround/data/types'
 import { CITY_STAY_CORES } from '../data/cityStayCores'
@@ -40,6 +41,7 @@ export function highRoiPool(city: string, days: number): string[] {
 
   const consider = (id: string, label: string) => {
     if (out.includes(id)) return
+    if (!fitsOneDay(id)) return
     if (parentTourIdOf(id)) return
     if (alternativesOf(id).some((alt) => out.includes(alt))) return
     const group = groupIdForSourceId(id)
@@ -69,6 +71,11 @@ function catalogIdExists(id: string) {
   return Boolean(getExperienceById(id) || SHOPPING_ITEMS.some((s) => s.id === id))
 }
 
+/** A template day holds its own sights; multi-day expeditions would stretch the promised length. */
+function fitsOneDay(id: string) {
+  return spanDays(getExperienceById(id)?.durationHours) === 1
+}
+
 /**
  * Pack a city stay with the same engine as Your Itinerary.
  * Curated cores first, then high-ROI fill. Never score-slice days
@@ -96,7 +103,7 @@ export function packCityStayDays(city: string, days: number): string[][] {
   const pool: string[] = []
   const add = (id: string, { allowInner }: { allowInner: boolean }) => {
     if (!id || pool.includes(id)) return
-    if (!catalogIdExists(id)) return
+    if (!catalogIdExists(id) || !fitsOneDay(id)) return
     if (!allowInner && parentTourIdOf(id)) return
     if (alternativesOf(id).some((alt) => pool.includes(alt))) return
     pool.push(id)

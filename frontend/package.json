@@ -20,6 +20,8 @@
     "generate:sight-guides:offline": "python scripts/generate_sight_guides.py --offline",
     "qc:sight-guides": "python scripts/qc_sight_guides.py",
     "fetch:place-hours": "npx tsx scripts/fetch-place-hours.ts",
+    "build:place-index": "node scripts/build-google-place-index.mjs",
+    "load:sight-photos": "node scripts/load-best-sight-photos.mjs",
     "seed:sight-images": "npx tsx ../scripts/seed-images/seed-images.ts --dry-run"
   },
   "dependencies": {

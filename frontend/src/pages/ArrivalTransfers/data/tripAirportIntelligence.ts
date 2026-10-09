@@ -294,7 +294,7 @@ export function collectTripAirportCities(input: {
   return mergeAllAirports([])
 }
 
-const HUB_CITY_ID: Record<AirportId, string> = {
+const HUB_CITY_ID: Partial<Record<AirportId, string>> = {
   HAN: 'hanoi',
   SGN: 'hcmc',
   DAD: 'da-nang',
@@ -311,7 +311,7 @@ function mergeAllAirports(tripRanked: TripAirportCity[]): TripAirportCity[] {
       tripRanked.find((c) => c.airportId === a.id && c.label === a.city)
     if (match) return match
     return enrichCity({
-      id: preferred,
+      id: preferred ?? a.id.toLowerCase(),
       label: a.city,
       airportId: a.id,
       airportName: a.name,

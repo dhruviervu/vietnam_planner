@@ -458,6 +458,42 @@ function GapFillRow({
   )
 }
 
+function LunchCard({
+  range,
+  startHour,
+  nearName,
+  city,
+}: {
+  range: string
+  startHour: number
+  nearName: string | null
+  city: string
+}) {
+  const query = nearName ? `lunch near ${nearName}, ${city}` : `lunch ${city}`
+  return (
+    <div className="grid grid-cols-[3.4rem_minmax(0,1fr)] items-start gap-2 py-1">
+      <p className="pt-2 text-right font-serif text-[0.92rem] font-semibold tabular-nums text-sage">
+        {formatClock(startHour)}
+      </p>
+      <div className="flex flex-wrap items-center gap-2 rounded-[14px] border border-dashed border-sage/40 bg-sage/10 px-3 py-2">
+        <span className="text-[0.72rem] font-bold uppercase tracking-[0.08em] text-sage">Lunch</span>
+        <span className="text-[0.8rem] font-semibold text-ink">
+          {nearName ? `Eat near ${nearName}` : 'Time to eat'}
+        </span>
+        <span className="text-[0.72rem] text-muted">{range}</span>
+        <a
+          href={`https://www.google.com/maps/search/${encodeURIComponent(query)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-auto text-[0.72rem] font-bold text-terracotta hover:underline"
+        >
+          Find a spot ↗
+        </a>
+      </div>
+    </div>
+  )
+}
+
 function BreakCard({
   range,
   startHour,
@@ -1235,6 +1271,18 @@ export function VisitCityTimeline({
                 )
               }
               if (block.type === 'break') {
+                if (block.row.auto) {
+                  const before = blocks.slice(0, index).reverse().find((b) => b.type === 'sight')
+                  return (
+                    <LunchCard
+                      key={block.row.id}
+                      range={block.range}
+                      startHour={block.startHour}
+                      nearName={before?.type === 'sight' ? before.item.name : null}
+                      city={city}
+                    />
+                  )
+                }
                 return (
                   <BreakCard
                     key={block.row.id}

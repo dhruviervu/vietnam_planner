@@ -4,6 +4,7 @@ import { SHOPPING_ITEMS } from '../../PlanBuilder/data/shopping'
 import { rankCityExperiences } from '../../PlanBuilder/services/cityCatalog'
 import { catalogHoursForSourceId, cityDayHostsFullVisit, planCityStay } from '../../PlanBuilder/lib/yourVietnam/dayAllocation'
 import { isAtomicExclusive, parentTourIdOf, alternativesOf, complexFor, memberFor } from '../../PlanBuilder/lib/yourVietnam/sightIntelligence'
+import { spanDays } from '../../PlanBuilder/lib/yourVietnam/itemKind'
 import { catalogHoursForSource, earliestOpenAt, sightClosedAtTime } from '../../PlanBuilder/lib/yourVietnam/openingHours'
 import { DAY_CLOSE, EVENING_EARLIEST_START } from '../../PlanBuilder/lib/yourVietnam/dayWindows'
 import { groupIdForSourceId, timePreferenceForSourceId } from '../../PlanBuilder/lib/yourVietnam/sightTiming'
@@ -195,6 +196,7 @@ export function themedSightPool(city: string, theme: StayTheme, days: number): s
   const groups = new Set<string>()
   const consider = (id: string) => {
     if (!id || out.includes(id)) return
+    if (spanDays(getExperienceById(id)?.durationHours) > 1) return
     if (parentTourIdOf(id)) return
     if (alternativesOf(id).some((alt) => out.includes(alt))) return
     if (theme === 'nightlife' && (isAtomicExclusive(id) || billedHours(id) >= 4.5)) return

@@ -25,7 +25,7 @@ export function ExperienceDetailPage() {
             Back to Why Vietnam
           </Link>
           <Link
-            to="/plan/builder/when-to-go"
+            to="/plan/builder/experiences"
             state={{ itineraryPipeline: true }}
             onClick={() => enterItineraryPipeline()}
             className="btn-solid"

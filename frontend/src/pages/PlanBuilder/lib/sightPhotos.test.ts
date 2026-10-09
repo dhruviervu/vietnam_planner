@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { SIGHT_CATALOG } from '../data/experiences'
 import { getExperienceCardPhotos, getExperienceImages } from './pricing'
+import { getExperienceDetailPhotos } from './experienceMedia'
 import { highRoiCatalogSights } from './highRoiSights'
 import { isGenericCityPhoto, photoFileStem, rankPhotosForSight } from './resolveCatalogPhotos'
 
@@ -43,6 +44,14 @@ describe('sight card photos match the place', () => {
       if (isGenericCityPhoto(lead, sight)) offenders.push(`${sight.id} → ${photoFileStem(lead)}`)
     }
     expect(offenders).toEqual([])
+  })
+
+  it('does not lead the detail gallery with broken Google proxy slots', () => {
+    for (const sight of SIGHT_CATALOG) {
+      const photos = getExperienceDetailPhotos(sight)
+      expect(photos.length, sight.id).toBeGreaterThan(0)
+      expect(photos[0]?.startsWith('/api/place-photos/')).toBe(false)
+    }
   })
 
   it('gives high-ROI sights at least eight matching photos', () => {

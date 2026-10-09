@@ -35,8 +35,19 @@ type OsrmTableJson = {
   distances?: Array<Array<number | null>>
 }
 
+const COORD_KEY = new WeakMap<PinCoord, string>()
+
+function coordKey(p: PinCoord): string {
+  let key = COORD_KEY.get(p)
+  if (key === undefined) {
+    key = `${p.lat.toFixed(5)},${p.lng.toFixed(5)}`
+    COORD_KEY.set(p, key)
+  }
+  return key
+}
+
 export function routeCacheKey(origin: PinCoord, destination: PinCoord): string {
-  return `${origin.lat.toFixed(5)},${origin.lng.toFixed(5)}-${destination.lat.toFixed(5)},${destination.lng.toFixed(5)}`
+  return `${coordKey(origin)}-${coordKey(destination)}`
 }
 
 export const TRANSIT_MODES: {

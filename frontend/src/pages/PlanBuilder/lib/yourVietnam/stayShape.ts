@@ -2,8 +2,8 @@ import type { PlaceId } from '../../../GettingAround/data/types'
 import { MACRO_REGION, orderTripCities } from './cityPlanning'
 
 /**
- * Macro pacing: days follow sight volume and geography, not leftover stubs
- * and not an even split across cities.
+ * Macro pacing hint for templates. User bags pack until the clock is full;
+ * this is not a minimum stay and must not force a second night for 3–8 walks.
  *
  *   ≤2 sights → 1 day (2 if a regional connector)
  *   3–8 → 2

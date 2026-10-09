@@ -3,6 +3,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { THREE_DAY_CITIES } from '../src/pages/PackedItineraries/data/cityStayCores.ts'
 import { buildPackedCatalog } from '../src/pages/PackedItineraries/data/catalogBuild.ts'
+import { buildSlowCatalog } from '../src/pages/PackedItineraries/data/slowCatalogBuild.ts'
 import { authoredCityStayPlan } from '../src/pages/ItineraryTemplates/data/plans/cityStayPlanBuild.ts'
 
 const here = dirname(fileURLToPath(import.meta.url))
@@ -10,6 +11,11 @@ const here = dirname(fileURLToPath(import.meta.url))
 writeFileSync(
   join(here, '../src/pages/PackedItineraries/data/packedTemplates.json'),
   `${JSON.stringify(buildPackedCatalog(), null, 2)}\n`,
+)
+
+writeFileSync(
+  join(here, '../src/pages/PackedItineraries/data/slowTemplates.json'),
+  `${JSON.stringify(buildSlowCatalog(), null, 2)}\n`,
 )
 
 writeFileSync(
@@ -21,4 +27,4 @@ writeFileSync(
   )}\n`,
 )
 
-console.log('wrote packedTemplates.json and cityStayPlans.json')
+console.log('wrote packedTemplates.json, slowTemplates.json and cityStayPlans.json')

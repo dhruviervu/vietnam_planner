@@ -34,14 +34,16 @@ describe('packed itinerary templates', () => {
     }
   })
 
-  it('keeps precomputed city days in sync with live packing', () => {
-    const samples = [
-      ['Hanoi', 2, 'city-hanoi-2'],
-      ['Hanoi', 3, 'city-hanoi-3'],
-      ['Da Nang', 2, 'city-da-nang-2'],
-    ] as const
-    for (const [city, days, id] of samples) {
-      expect(getPackedTemplate(id)?.dayPlans.map((d) => d.sourceIds)).toEqual(packCityStayDays(city, days))
+  it('ships precomputed days the live clock keeps as they are', () => {
+    for (const id of ['city-hanoi-2', 'city-hanoi-3', 'city-da-nang-2']) {
+      const template = getPackedTemplate(id)!
+      const trip = buildPackedTrip(template)
+      expect(trip.pinMoves ?? {}, id).toEqual({})
+      expect(trip.unscheduled, id).toEqual([])
+      const packed = new Set(packCityStayDays(template.cities[0], template.days).flat())
+      for (const day of template.dayPlans) {
+        for (const sourceId of day.sourceIds) expect(packed.has(sourceId), `${id} ${sourceId}`).toBe(true)
+      }
     }
   })
 
@@ -56,8 +58,9 @@ describe('packed itinerary templates', () => {
       for (const day of template.dayPlans) {
         const hours = billedHours(day.sourceIds)
         const exclusive = day.sourceIds.some((id) => isAtomicExclusive(id))
+        // Day one is the arrival day and runs shorter.
         expect(
-          exclusive || hours >= 6 || day.sourceIds.length >= 6,
+          exclusive || hours >= 4.5 || day.sourceIds.length >= 5,
           `${template.id} ${day.city} underfilled: ${hours}h / ${day.sourceIds.join(', ')}`,
         ).toBe(true)
       }

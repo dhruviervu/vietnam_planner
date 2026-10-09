@@ -13,6 +13,7 @@ import {
   parentTourIdOf,
   sequenceOf,
   sightAccess,
+  walkClusterId,
 } from './sightIntelligence'
 
 /**
@@ -65,19 +66,121 @@ function effectiveParent(id: string, selectedIds: string[]): string | null {
   const head = unit[0]
   if (canonicalSightId(head) === canonicalSightId(id)) return null
   if (sequenceOf(id) <= sequenceOf(head)) return null
+  // Standing in for an unselected parent, a short stop cannot carry a longer visit (harbour vs. theme park).
+  if (catalogDurationHours(id) > catalogDurationHours(head)) return null
   return head
 }
 
-export function isIncludedCompanion(id: string, selectedIds: string[]): boolean {
-  if (!selectedIds.some((sid) => sid === id || canonicalSightId(sid) === canonicalSightId(id))) {
-    return false
+const RELATED_MEMO = new Map<string, Set<string>>()
+
+function relatedIds(id: string): Set<string> {
+  const hit = RELATED_MEMO.get(id)
+  if (hit) return hit
+  const out = new Set<string>([canonicalSightId(id)])
+  const parent = parentTourId(id)
+  if (parent) out.add(canonicalSightId(parent))
+  const complex = complexFor(id)
+  if (complex) {
+    out.add(canonicalSightId(complex.parentId))
+    for (const member of complex.members) out.add(canonicalSightId(member.id))
   }
-  return Boolean(effectiveParent(id, selectedIds))
+  RELATED_MEMO.set(id, out)
+  return out
 }
 
+/**
+ * Cache key for answers about `id` that depend on the selection: only its own
+ * outing, parent tour and complex mates can change them.
+ */
+export function selectionKeyFor(id: string, selectedIds: string[]): string {
+  return selectionEntry(id, selectedIds).key
+}
+
+type SelectionEntry = { key: string; at: number[]; ids: string[]; memo: Map<string, unknown> }
+
+/**
+ * Per-selection scratch space for answers about `id`. Cheaper than hashing the
+ * selection key again when a big walk cluster makes that key long.
+ */
+export function selectionMemo<T>(id: string, selectedIds: string[], name: string, compute: () => T): T {
+  const memo = selectionEntry(id, selectedIds).memo
+  if (memo.has(name)) return memo.get(name) as T
+  const out = compute()
+  memo.set(name, out)
+  return out
+}
+
+function selectionEntry(id: string, selectedIds: string[]): SelectionEntry {
+  let sel = selectionIndex(selectedIds)
+  const hit = sel.keys.get(id)
+  if (hit) {
+    if (hit.at.every((i, k) => selectedIds[i] === hit.ids[k])) return hit
+    // The array was edited in place since it was indexed.
+    sel = selectionIndex(selectedIds, true)
+  }
+  const found = new Set<number>()
+  for (const canon of relatedIds(id)) for (const i of sel.byCanon.get(canon) ?? []) found.add(i)
+  const cluster = walkClusterId(id)
+  if (cluster != null) for (const i of sel.byCluster.get(cluster) ?? []) found.add(i)
+  const at = [...found].sort((a, b) => a - b)
+  const ids = at.map((i) => selectedIds[i])
+  const entry: SelectionEntry = { key: `${id}\u0001${ids.join(',')}`, at, ids, memo: new Map() }
+  sel.keys.set(id, entry)
+  return entry
+}
+
+type SelectionIndex = {
+  length: number
+  byCanon: Map<string, number[]>
+  byCluster: Map<string, number[]>
+  keys: Map<string, SelectionEntry>
+}
+/** Selections are asked about thousands of times while a trip is fitted; index each one once. */
+const SELECTION_INDEX = new WeakMap<string[], SelectionIndex>()
+
+function selectionIndex(selectedIds: string[], rebuild = false): SelectionIndex {
+  const hit = SELECTION_INDEX.get(selectedIds)
+  if (hit && !rebuild && hit.length === selectedIds.length) return hit
+  const byCanon = new Map<string, number[]>()
+  const byCluster = new Map<string, number[]>()
+  selectedIds.forEach((sid, i) => {
+    const canon = canonicalSightId(sid)
+    byCanon.set(canon, [...(byCanon.get(canon) ?? []), i])
+    const cluster = walkClusterId(sid)
+    if (cluster != null) byCluster.set(cluster, [...(byCluster.get(cluster) ?? []), i])
+  })
+  const out: SelectionIndex = { length: selectedIds.length, byCanon, byCluster, keys: new Map() }
+  SELECTION_INDEX.set(selectedIds, out)
+  return out
+}
+
+const COMPANION_MEMO = new Map<string, boolean>()
+
+export function isIncludedCompanion(id: string, selectedIds: string[]): boolean {
+  return selectionMemo(id, selectedIds, 'companion', () => memoCompanion(id, selectedIds))
+}
+
+function memoCompanion(id: string, selectedIds: string[]): boolean {
+  const key = selectionKeyFor(id, selectedIds)
+  const hit = COMPANION_MEMO.get(key)
+  if (hit !== undefined) return hit
+  if (COMPANION_MEMO.size > 50_000) COMPANION_MEMO.clear()
+  const out =
+    selectedIds.some((sid) => sid === id || canonicalSightId(sid) === canonicalSightId(id)) &&
+    Boolean(effectiveParent(id, selectedIds))
+  COMPANION_MEMO.set(key, out)
+  return out
+}
+
+const DURATION_MEMO = new Map<string, number>()
+
 function catalogDurationHours(id: string): number {
+  const hit = DURATION_MEMO.get(id)
+  if (hit !== undefined) return hit
   const canon = canonicalSightId(id)
-  return EXPERIENCES.find((e) => e.id === id || e.id === canon)?.durationHours ?? 0
+  const out = EXPERIENCES.find((e) => e.id === id || e.id === canon)?.durationHours ?? 0
+  DURATION_MEMO.set(id, out)
+  return out
 }
 
 /** Landings on a trek / boat / cable / exclusive day-trip — clocks sit on the parent outing. */

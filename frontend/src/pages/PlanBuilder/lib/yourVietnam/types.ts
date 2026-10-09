@@ -141,6 +141,8 @@ export type ItineraryBreak = {
   afterSourceId: string | null
   label: string
   durationMinutes: number
+  /** Planner-added lunch the timeline reserves itself. Not stored or edited. */
+  auto?: boolean
 }
 
 export type YourVietnamDay = {
@@ -224,7 +226,7 @@ export type CostSummaryBand = {
 /** A bagged sight the city's days cannot hold under the daily caps. */
 export type UnscheduledSight = {
   sourceId: string
-  kind: 'experience' | 'activity'
+  kind: 'experience' | 'activity' | 'shopping' | 'restaurant'
   name: string
   city: string
 }
@@ -245,6 +247,11 @@ export type YourVietnamTrip = {
   days: YourVietnamDay[]
   cost: CostSummaryBand
   issues: TripIssue[]
+  /**
+   * Suggested-day stops (template days) that cannot work on their authored day
+   * for this start date, re-homed to another day: sourceId → day slot id.
+   */
+  pinMoves?: Record<string, string>
   isEmpty: boolean
   hasNoStays: boolean
   thinCities: ThinCityNote[]

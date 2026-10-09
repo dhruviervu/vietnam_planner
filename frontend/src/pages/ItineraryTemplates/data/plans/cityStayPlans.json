@@ -49,8 +49,8 @@
       },
       {
         "city": "Hanoi",
-        "theme": "Old Quarter and the lake",
-        "blurb": "Walk the 36 streets, Hoan Kiem and Ngọc Sơn, St Joseph, egg coffee. Night is for Train Street or another Old Quarter loop — not a second museum district.",
+        "theme": "West Lake and ethnology",
+        "blurb": "Trần Quốc and West Lake, Museum of Ethnology if you want context beyond the Old Quarter. Evening food stays in the centre.",
         "morning": [
           {
             "kind": "experience",
@@ -59,14 +59,14 @@
           },
           {
             "kind": "experience",
-            "id": "ngoc-son-temple",
+            "id": "hoan-kiem-lake",
             "time": "11:10"
           }
         ],
         "afternoon": [
           {
             "kind": "experience",
-            "id": "train-street",
+            "id": "quan-thanh-temple",
             "time": "13:30"
           }
         ],
@@ -80,19 +80,14 @@
             "kind": "experience",
             "id": "west-lake",
             "time": "18:40"
-          },
-          {
-            "kind": "experience",
-            "id": "hoan-kiem-lake",
-            "time": "21:50"
           }
         ],
         "night": "stay"
       },
       {
         "city": "Hanoi",
-        "theme": "West Lake and ethnology",
-        "blurb": "Trần Quốc and West Lake, Museum of Ethnology if you want context beyond the Old Quarter. Evening food stays in the centre.",
+        "theme": "Old Quarter and the lake",
+        "blurb": "Walk the 36 streets, Hoan Kiem and Ngọc Sơn, St Joseph, egg coffee. Night is for Train Street or another Old Quarter loop — not a second museum district.",
         "morning": [
           {
             "kind": "experience",
@@ -101,14 +96,19 @@
           },
           {
             "kind": "experience",
-            "id": "vietnamese-womens-museum",
+            "id": "ngoc-son-temple",
             "time": "11:40"
+          },
+          {
+            "kind": "experience",
+            "id": "thang-long-citadel",
+            "time": "12:35"
           }
         ],
         "afternoon": [
           {
-            "kind": "shopping",
-            "id": "shop-hanoi-coffee",
+            "kind": "experience",
+            "id": "train-street",
             "time": "13:30"
           }
         ],
@@ -117,11 +117,6 @@
             "kind": "experience",
             "id": "old-quarter",
             "time": "17:45"
-          },
-          {
-            "kind": "experience",
-            "id": "hanoi-opera-house",
-            "time": "20:55"
           }
         ],
         "night": "stay"
@@ -180,23 +175,18 @@
           },
           {
             "kind": "experience",
-            "id": "hcmc-peoples-committee",
+            "id": "nguyen-hue-walking",
             "time": "18:25"
           },
           {
             "kind": "experience",
-            "id": "nguyen-hue-walking",
-            "time": "19:05"
-          },
-          {
-            "kind": "experience",
-            "id": "bitexco-skydeck",
-            "time": "20:45"
+            "id": "hcmc-peoples-committee",
+            "time": "20:05"
           },
           {
             "kind": "experience",
             "id": "ben-thanh",
-            "time": "22:10"
+            "time": "20:45"
           }
         ],
         "night": "stay"
@@ -230,26 +220,27 @@
             "kind": "experience",
             "id": "cho-lon",
             "time": "10:10"
-          },
-          {
-            "kind": "experience",
-            "id": "vinh-nghiem-pagoda",
-            "time": "13:20"
           }
         ],
         "afternoon": [
           {
             "kind": "experience",
-            "id": "tao-dan-park",
+            "id": "thao-cam-vien",
             "time": "13:30"
           },
           {
             "kind": "experience",
-            "id": "hcmc-city-museum",
-            "time": "14:25"
+            "id": "tan-dinh-church",
+            "time": "16:10"
           }
         ],
-        "evening": [],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "bitexco-skydeck",
+            "time": "17:45"
+          }
+        ],
         "night": "stay"
       }
     ]
@@ -458,13 +449,13 @@
           },
           {
             "kind": "experience",
-            "id": "tu-hieu-pagoda",
+            "id": "tu-duc-tomb",
             "time": "11:10"
           },
           {
             "kind": "experience",
-            "id": "tu-duc-tomb",
-            "time": "12:05"
+            "id": "tu-hieu-pagoda",
+            "time": "13:20"
           }
         ],
         "afternoon": [
@@ -475,7 +466,7 @@
           },
           {
             "kind": "experience",
-            "id": "thanh-toan-bridge",
+            "id": "an-dinh-palace",
             "time": "14:25"
           }
         ],
@@ -512,12 +503,12 @@
         "afternoon": [
           {
             "kind": "experience",
-            "id": "an-dinh-palace",
+            "id": "thanh-toan-bridge",
             "time": "13:30"
           },
           {
             "kind": "experience",
-            "id": "ho-thuy-tien",
+            "id": "phu-cam-cathedral",
             "time": "14:40"
           }
         ],
@@ -643,18 +634,13 @@
           },
           {
             "kind": "experience",
-            "id": "domaine-de-marie",
+            "id": "da-lat-railway-station",
             "time": "11:40"
           },
           {
             "kind": "experience",
-            "id": "da-lat-railway-station",
-            "time": "12:35"
-          },
-          {
-            "kind": "experience",
-            "id": "thien-vuong-pagoda",
-            "time": "14:15"
+            "id": "domaine-de-marie",
+            "time": "13:20"
           }
         ],
         "afternoon": [
@@ -664,7 +650,13 @@
             "time": "13:30"
           }
         ],
-        "evening": [],
+        "evening": [
+          {
+            "kind": "experience",
+            "id": "da-lat-cathedral",
+            "time": "17:45"
+          }
+        ],
         "night": "stay"
       }
     ]
@@ -815,13 +807,13 @@
         "morning": [
           {
             "kind": "experience",
-            "id": "ham-ninh-village",
+            "id": "phu-quoc-prison",
             "time": "09:00"
           },
           {
             "kind": "experience",
-            "id": "khai-hoan-fish-sauce",
-            "time": "11:10"
+            "id": "cua-can-village",
+            "time": "10:25"
           }
         ],
         "afternoon": [],
@@ -833,13 +825,13 @@
           },
           {
             "kind": "experience",
-            "id": "duong-dong-night-market",
+            "id": "grand-world-pq",
             "time": "18:55"
           },
           {
             "kind": "experience",
-            "id": "grand-world-pq",
-            "time": "21:05"
+            "id": "duong-dong-night-market",
+            "time": "22:05"
           }
         ],
         "night": "stay"

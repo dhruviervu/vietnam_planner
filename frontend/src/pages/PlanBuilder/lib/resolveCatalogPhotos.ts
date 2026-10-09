@@ -629,8 +629,8 @@ export function rankPhotosForSight(
   const ordered: string[] = []
   for (const row of scored) {
     if (isGenericCityPhoto(row.url, sight) && row.score <= 0) continue
-    const key = row.stem.replace(/\d+/g, '').slice(0, 28)
-    if (ordered.length < 3 && key && usedStems.has(key) && row.score < 8) continue
+    const key = row.stem
+    if (key && usedStems.has(key)) continue
     if (key) usedStems.add(key)
     ordered.push(row.url)
   }
@@ -710,7 +710,7 @@ export function themedFallbackPhotos(hint: string): string[] {
  */
 export function withPhotoFallbacks(primary: string[], hint: string) {
   const usable = uniquePhotos(primary.filter(isDirectImageUrl))
-  if (usable.length >= 3) return usable
+  if (usable.length >= 1) return usable
   const themed = themedFallbackPhotos(hint)
   return uniquePhotos([...usable, ...themed])
 }

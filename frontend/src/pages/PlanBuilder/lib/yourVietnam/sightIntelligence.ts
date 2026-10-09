@@ -60,10 +60,9 @@ function cx(
 /** Same place listed under two city catalogs, or an activity that is the sight. */
 export const SIGHT_ALIASES: Record<string, string> = {
   'lan-ha': 'lan-ha-bay',
-  'ma-pi-leng-pass': 'ma-pi-leng',
   'dong-van-old-quarter': 'dong-van-ancient-town',
   'vuong-palace-dong-van': 'vuong-palace',
-  'ma-pi-leng-dong-van': 'ma-pi-leng',
+  'ma-pi-leng-dong-van': 'ma-pi-leng-pass',
   'tu-san-dong-van': 'tu-san-canyon',
   'nho-que-dong-van': 'nho-que-river',
   'lung-cu-dong-van': 'lung-cu-flag-tower',
@@ -77,13 +76,18 @@ export const SIGHT_ALIASES: Record<string, string> = {
   'sunday-market-dong-van': 'dong-van-sunday-market',
 }
 
+const CANONICAL_MEMO = new Map<string, string>()
+
 export function canonicalSightId(id: string): string {
+  const hit = CANONICAL_MEMO.get(id)
+  if (hit !== undefined) return hit
   let cur = id
   const seen = new Set<string>()
   while (SIGHT_ALIASES[cur] && !seen.has(cur)) {
     seen.add(cur)
     cur = SIGHT_ALIASES[cur]
   }
+  CANONICAL_MEMO.set(id, cur)
   return cur
 }
 
@@ -497,9 +501,9 @@ export const SIGHT_COMPLEXES: SightComplex[] = [
   ),
   cx(
     'ma-pi-leng-pass',
-    'ma-pi-leng',
+    'ma-pi-leng-pass',
     'contains',
-    [m('ma-pi-leng', 0), m('tu-san-canyon', 10), m('nho-que-river', 20), m('meo-vac-town', 30)],
+    [m('ma-pi-leng-pass', 0), m('tu-san-canyon', 10), m('nho-que-river', 20), m('meo-vac-town', 30)],
     { access: 'day-trip' },
   ),
   cx(

@@ -45,7 +45,7 @@ export function composeAskReply(
     return [
       'TripBuilder is built so you can design a Vietnam trip without guessing the order.',
       'Use the left rail to browse on your own: When to Go and Know before you go, then stays, getting around, and airport transfer. Sights, things to do, where to eat, and shopping live under Itinerary.',
-      'The fastest path is Build My Itinerary. It walks you stage by stage, starting with timing, then major sights. Open a sight, tap See more, and add it to your trip bag — the itinerary is crafted from what you save, and you can still rearrange days after.',
+      'The fastest path is Build My Itinerary. It opens Attractions first. Open a sight, tap See more, and add it to your trip bag — the itinerary is crafted from what you save, and you can still rearrange days after. When to go, stays, and getting around stay in the left rail.',
       'On a sight card, tap the location to open every major sight in that city. Ask me later about hours, whether something fits a day, or where to stay.',
       'When you are ready to start, use the button below.',
     ].join('\n\n')

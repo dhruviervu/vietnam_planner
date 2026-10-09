@@ -244,7 +244,7 @@ function CarTaxiGuide() {
             headers={['Provider', 'Description', 'Key advantage']}
             rows={[
               [
-                <NamedLink key="k" href={L.klook.SGN}>
+                <NamedLink key="k" href={L.klook.SGN ?? L.kkday}>
                   Klook
                 </NamedLink>,
                 'The leading Asian travel booking platform.',

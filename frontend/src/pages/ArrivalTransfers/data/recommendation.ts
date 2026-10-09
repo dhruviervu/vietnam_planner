@@ -9,6 +9,7 @@ function modeBias(id: TransportModeId, budget: TransferBudget, ctx: ArrivalConte
   const heavy = ctx.luggageLevel === 'heavy'
   const late = ctx.lateArrival || ctx.arrivalTime === 'late'
   const group = ctx.passengers >= 4
+  const crowd = ctx.passengers >= 5
 
   if (budget === 'saver') {
     const busPenalty = (late ? 48 : 0) + (heavy ? 34 : 0) + (ctx.hasAccessibilityNeed ? 40 : 0)
@@ -38,12 +39,16 @@ function modeBias(id: TransportModeId, budget: TransferBudget, ctx: ArrivalConte
   }
 
   switch (id) {
+    case 'private-transfer':
+      return crowd || heavy ? 36 : group ? 16 : -6
     case 'car-taxi':
-      return group || heavy || late || ctx.hasAccessibilityNeed ? 30 : 22
+      return crowd ? 8 : group || heavy || late || ctx.hasAccessibilityNeed ? 30 : 22
+    case 'ride-hailing':
+      return crowd || heavy ? -14 : 10
     case 'public-bus':
-      return late || heavy ? -12 : 6
+      return crowd || late || heavy ? -22 : ctx.passengers === 1 && ctx.luggageLevel === 'light' ? 14 : 6
     case 'rental-driver':
-      return group ? 8 : -10
+      return crowd ? 36 : group ? 8 : -10
     default:
       return 0
   }
@@ -60,7 +65,22 @@ export function scoreMode(mode: TransportMode, ctx: ArrivalContext): number {
       : ctx.luggageLevel === 'medium'
         ? mode.luggageStars * 2
         : mode.luggageStars
-  const paxBoost = ctx.passengers >= 4 && mode.groupFriendly ? 12 : ctx.passengers >= 3 ? 6 : 0
+  const paxBoost =
+    ctx.passengers >= 5 && mode.groupFriendly
+      ? 22
+      : ctx.passengers >= 4 && mode.groupFriendly
+        ? 12
+        : ctx.passengers >= 3
+          ? 6
+          : ctx.passengers === 1 && mode.id === 'public-bus'
+            ? 8
+            : 0
+  const bagPenalty =
+    ctx.luggageLevel === 'heavy' && (mode.id === 'public-bus' || mode.luggageStars <= 3)
+      ? -24
+      : ctx.luggageLevel === 'heavy' && mode.luggageStars >= 5
+        ? 16
+        : 0
   const lateCtx = ctx.lateArrival || ctx.arrivalTime === 'late'
   const late = mode.lateNightOk ? 14 : -12
   const outbound = ctx.direction === 'outbound' ? mode.reliability * 3 : 0
@@ -72,6 +92,7 @@ export function scoreMode(mode: TransportMode, ctx: ArrivalContext): number {
     mode.comfort * 2 +
     luggageBoost +
     paxBoost +
+    bagPenalty +
     access +
     outbound +
     modeBias(mode.id, budget, ctx) +
@@ -122,7 +143,17 @@ export function ourPickReasons(
   }
 
   if (ctx.arrivalTime !== 'not-set') list.push('Available for your selected timing')
-  if (mode.luggageStars >= 4) list.push('Strong luggage handling')
+  if (ctx.luggageLevel === 'heavy' && mode.luggageStars >= 4) {
+    list.push('Space for big bags without a fight at the kerb')
+  } else if (ctx.luggageLevel === 'light' && mode.id === 'public-bus') {
+    list.push('Light bags make the airport bus a sensible save')
+  }
+  if (ctx.passengers >= 5 && mode.groupFriendly) {
+    list.push(`Keeps a party of ${ctx.passengers} in one vehicle`)
+  } else if (ctx.passengers === 1 && mode.id === 'ride-hailing') {
+    list.push('One person, one app fare — no unused seats to pay for')
+  }
+  if (mode.luggageStars >= 4 && ctx.luggageLevel !== 'light') list.push('Strong luggage handling')
   if (!list.some((r) => r.toLowerCase().includes('direct'))) {
     list.push('Direct or low-friction journey')
   }

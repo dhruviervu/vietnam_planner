@@ -2,9 +2,12 @@ import { EXPERIENCES } from '../../data/experiences'
 import { CITY_ACTIVITIES, type CityActivity } from '../../data/activities'
 import { HOTELS } from '../../data/hotels'
 import { SHOPPING_ITEMS, shoppingDurationLabel, shoppingHours } from '../../data/shopping'
-import { findLeg, formatDuration } from '../../data/transport'
+import { formatDuration } from '../../data/transport'
 import { getExperienceImages } from '../pricing'
 import { getActivityImages } from '../../data/activities'
+import { MEAL_WINDOW, spanDays } from './itemKind'
+import { canonicalSightId } from './sightIntelligence'
+import { earliestOpenAt, parseHoursLabel, tripIsoDate, weekdayFromIso } from './openingHours'
 import type {
   Experience,
   ExperienceSelectionMeta,
@@ -51,10 +54,16 @@ import {
   resolvePlaceId,
   experienceCityForPlace,
 } from './cityPins'
-import { cityContext, hubSpokeTransferCopy, orderTripCities } from './cityPlanning'
+import { cityContext, orderTripCities } from './cityPlanning'
 import { isIncludedCompanion, planningNoteFor } from './sightPlanning'
 import { includesOnboardMeal } from './dayCapacity'
-import { packTripStay, type PackedTripCity } from './dayAllocation'
+import { packTripStay, packVisitHours, type PackedTripCity } from './dayAllocation'
+import { PIN_BY_SOURCE_ID } from './itineraryPinCatalog'
+import { haversineKm } from './sightOrder'
+import { timePreferenceForSourceId } from './sightTiming'
+import { planCityHop } from './cityHop'
+import { fitCityDays, transferSpillsToNextMorning, type DayRole } from './dayFit'
+import { DEFAULT_DAY_START_TIME } from './dayWindows'
 import { mealWindowLabel } from './planningProfile'
 import type { PlaceId } from '../../../GettingAround/data/types'
 import {
@@ -68,6 +77,7 @@ import {
   type LocalTransferHint,
   type PeriodId,
   type RouteStop,
+  type UnscheduledSight,
   type YourVietnamDay,
   type YourVietnamTrip,
 } from './types'
@@ -103,6 +113,11 @@ export type BuildYourVietnamInput = {
   itineraryDaySlotOverrides?: Record<string, string>
   itinerarySightOrder?: Record<string, string[]>
   breakfastAtHotel?: boolean
+  /** Clock the traveller's day starts ("HH:MM") — the board's `userStartTime`. */
+  dayStartTime?: string
+  itineraryStartOverrides?: Record<string, string>
+  /** Authored template pins may still move off a date that makes them impossible. */
+  pinsAreSuggestions?: boolean
 }
 
 type CityBucket = {
@@ -113,6 +128,8 @@ type CityBucket = {
   activities: CityActivity[]
   hotels: Hotel[]
   shopping: (typeof SHOPPING_ITEMS)[number][]
+  /** Places to eat the traveller chose here. */
+  restaurants: Restaurant[]
 }
 
 function preferredDaysByPlace(slots?: ItineraryDaySlot[] | null): Record<string, number> {
@@ -124,26 +141,35 @@ function preferredDaysByPlace(slots?: ItineraryDaySlot[] | null): Record<string,
   return out
 }
 
-/** Keep hand-pinned stops on the calendar day the traveller added them to. */
+/**
+ * Keep hand-pinned stops on an *existing* packed day. Leftover slot rows and
+ * previous tour dumps must not invent extra hotel nights — those are the
+ * packer's job, and only when the clock cannot hold the visit.
+ */
 function applyUserPinsToPacked(
   packed: PackedTripCity[],
   slots: ItineraryDaySlot[] | null | undefined,
   pins?: Record<string, string>,
   tours?: Record<string, string[]>,
+  opts?: { lockToPackedDays?: boolean },
 ): PackedTripCity[] {
   const reusable = (slots ?? []).filter((s) => Boolean(s.placeId) && !s.blank)
   if (reusable.length === 0) return packed
+  const lockToPackedDays = Boolean(opts?.lockToPackedDays)
   return packed.map((city) => {
     const citySlots = reusable.filter((s) => s.placeId === city.placeId)
     if (citySlots.length === 0 || city.days.length === 0) return city
     const days = city.days.map((row) => [...row])
     const authoredTours = citySlots.some((s) => (tours?.[`${s.id}:tour`]?.length ?? 0) > 0)
-    if (authoredTours) {
+    if (authoredTours && !lockToPackedDays) {
       while (days.length < citySlots.length) days.push([])
     }
     const last = Math.max(0, days.length - 1)
     const slotIndex = new Map(
-      citySlots.map((s, i) => [s.id, authoredTours ? i : Math.min(i, last)]),
+      citySlots.map((s, i) => [
+        s.id,
+        authoredTours && !lockToPackedDays ? i : Math.min(i, last),
+      ]),
     )
     const moveTo = (id: string, slotId: string) => {
       if (!id) return
@@ -158,12 +184,152 @@ function applyUserPinsToPacked(
     for (const [id, slotId] of Object.entries(pins ?? {})) {
       if (slotIndex.has(slotId)) moveTo(id, slotId)
     }
-    for (const slot of citySlots) {
-      for (const id of tours?.[`${slot.id}:tour`] ?? []) {
-        if (slotIndex.has(slot.id)) moveTo(id, slot.id)
+    if (!lockToPackedDays) {
+      for (const slot of citySlots) {
+        for (const id of tours?.[`${slot.id}:tour`] ?? []) {
+          if (slotIndex.has(slot.id)) moveTo(id, slot.id)
+        }
       }
     }
-    return { ...city, days }
+    return { ...city, days: days.filter((row) => row.length > 0) }
+  })
+}
+
+/** A city with only places to eat: about three meals a day, the rest of the day free. */
+function foodOnlyDays(b: CityBucket | undefined): number {
+  if (!b || b.experiences.length + b.activities.length + b.shopping.length > 0) return 0
+  return Math.max(1, Math.ceil(b.restaurants.length / 3))
+}
+
+/**
+ * Check every packed day against the same timed schedule the board draws, on
+ * its real date, and repair it: closed or unfittable stops move, overloaded or
+ * split-across-town days shed a stop, and a city gains a day only when no
+ * existing day can take the stop. Cities are walked in order so each one sees
+ * the real calendar after earlier cities grew or shrank.
+ */
+function fitTripToClock(
+  packed: PackedTripCity[],
+  ctx: {
+    input: BuildYourVietnamInput
+    byPlace: Map<PlaceId, CityBucket>
+    chosen: Hotel | undefined
+    tight: boolean
+    experiences: Experience[]
+    activities: CityActivity[]
+    shopping: ShopRow[]
+    reusableSlots: ItineraryDaySlot[]
+    /** Every city in visiting order, including ones with only restaurants (they take calendar days too). */
+    routeOrder: PlaceId[]
+    /** Filled with pinned stops the date forced onto another day (sourceId → slot id). */
+    pinMoves: Record<string, string>
+    /** Filled with stops a fixed-length plan has no room for. */
+    dropped: UnscheduledSight[]
+  },
+): PackedTripCity[] {
+  const { input, byPlace, chosen, tight } = ctx
+  if (!input.pinsAreSuggestions) return packed
+  const expById = new Map(ctx.experiences.map((e) => [e.id, e]))
+  const actById = new Map(ctx.activities.map((a) => [a.id, a]))
+  const shopById = new Map(ctx.shopping.map((s) => [s.id, s]))
+  const itemFor = (id: string, dayIds: string[]): ItineraryItem | null => {
+    const exp = expById.get(id)
+    if (exp) return experienceItem(exp, dayIds)
+    const act = actById.get(id)
+    if (act) return activityItem(act, dayIds)
+    const shop = shopById.get(id)
+    return shop ? shoppingItem(shop) : null
+  }
+  const tours = input.itinerarySightOrder ?? {}
+  const pinnedIds = new Set<string>([
+    ...Object.keys(input.itineraryDaySlotOverrides ?? {}),
+    ...Object.entries(tours)
+      .filter(([key]) => key.endsWith(':tour'))
+      .flatMap(([, ids]) => ids),
+  ])
+  const rows = packed.filter((row) => row.days.some((d) => d.length > 0))
+  const foodDaysBefore = new Map<string, number>()
+  let foodDays = 0
+  for (const id of ctx.routeOrder) {
+    if (rows.some((row) => row.placeId === id)) {
+      foodDaysBefore.set(id, foodDays)
+      foodDays = 0
+    } else foodDays += foodOnlyDays(byPlace.get(id))
+  }
+  const extraDaysAfter = (row: string[]) =>
+    row.reduce((sum, id) => sum + spanDays(expById.get(id)?.durationHours) - 1, 0)
+  let dayCursor = 1
+  let morningTransfer = 0
+  return rows.map((row, k) => {
+    dayCursor += foodDaysBefore.get(row.placeId) ?? 0
+    const arrivingHours = morningTransfer
+    const placeId = row.placeId as PlaceId
+    const bucket = byPlace.get(placeId)
+    const next = rows[k + 1]
+    const nextBucket = next ? byPlace.get(next.placeId as PlaceId) : undefined
+    const hopHours = next
+      ? planCityHop({
+          from: placeId,
+          to: next.placeId as PlaceId,
+          fromRegion: bucket?.region,
+          toRegion: nextBucket?.region,
+          fromCity: bucket?.city,
+          toCity: nextBucket?.city,
+          transportChoices: input.transportChoices,
+          tight,
+        }).plan.daytimeHours
+      : 0
+    const citySlots = ctx.reusableSlots.filter((s) => s.placeId === placeId)
+    const fixedDays = citySlots.some((s) => (tours[`${s.id}:tour`]?.length ?? 0) > 0)
+    const hotel =
+      (chosen && resolvePlaceId(chosen.city, chosen.region) === placeId ? chosen : undefined) ??
+      bucket?.hotels[0]
+    const first = dayCursor
+    const isLastCity = k === rows.length - 1
+    const fitted = fitCityDays({
+      rows: row.days,
+      firstDayNumber: first,
+      env: {
+        placeId,
+        city: bucket?.city ?? placeLabel(placeId),
+        startDate: input.startDate,
+        dayStart: input.dayStartTime ?? DEFAULT_DAY_START_TIME,
+        pace: input.travelStyle,
+        hotelId: hotel?.id,
+        startOverrides: input.itineraryStartOverrides ?? {},
+        pinnedIds,
+        itemFor,
+      },
+      roleFor: (i, count): DayRole => ({
+        arrival: first + i === 1,
+        departure: isLastCity && i === count - 1,
+        transferHours: (next && i === count - 1 ? hopHours : 0) + (i === 0 ? arrivingHours : 0),
+      }),
+      fixedDays,
+      softPins: Boolean(input.pinsAreSuggestions),
+      dropOverflow: fixedDays && Boolean(input.pinsAreSuggestions),
+      tourOrderFor: fixedDays ? (i) => tours[`${citySlots[i]?.id}:tour`] : undefined,
+      extraDaysAfter,
+    })
+    dayCursor += fitted.rows.length + fitted.rows.reduce((sum, ids) => sum + extraDaysAfter(ids), 0)
+    morningTransfer = transferSpillsToNextMorning(input.travelStyle, fitted.lastDayHours, hopHours) ? hopHours : 0
+    for (const id of fitted.unfit) {
+      const exp = expById.get(id)
+      const act = actById.get(id)
+      const shop = shopById.get(id)
+      if (exp) ctx.dropped.push({ sourceId: id, kind: 'experience', name: exp.name, city: exp.city })
+      else if (act) ctx.dropped.push({ sourceId: id, kind: 'activity', name: act.name, city: act.cityName })
+      else if (shop) ctx.dropped.push({ sourceId: id, kind: 'shopping', name: shop.name, city: shop.city })
+    }
+    const authored = input.itineraryDaySlotOverrides ?? {}
+    fitted.rows.forEach((ids, i) => {
+      const slotId = citySlots[i]?.id
+      if (!slotId || !fixedDays || !input.pinsAreSuggestions) return
+      for (const id of ids) {
+        if (authored[id] && authored[id] !== slotId) ctx.pinMoves[id] = slotId
+      }
+    })
+    return { placeId: row.placeId, days: fitted.rows }
   })
 }
 
@@ -188,6 +354,11 @@ function dateRangeLabel(start: string, days: number) {
   const fmt = (d: Date) =>
     d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
   return `${fmt(a)} – ${fmt(b)}`
+}
+
+/** The part of the day a stop runs in, for meal clashes (a night food tour is dinner, not lunch). */
+function timeOfDay(id: string): PeriodId {
+  return timePreferenceForSourceId(id) === 'EVENING' ? 'evening' : 'morning'
 }
 
 function noteFamily(family: OccupancyFamily | null, period: PeriodId, dayFamilies: Set<string>) {
@@ -317,7 +488,9 @@ function mealItem(
           ? mealWindowLabel('breakfast')
           : mealLabel === 'Evening meal'
             ? mealWindowLabel('evening')
-            : mealWindowLabel('dinner'),
+            : mealLabel === 'Coffee'
+              ? '14:00–17:00'
+              : mealWindowLabel('dinner'),
     durationLabel: state === 'recommended' && r.priceUsd <= 8 ? '~60–90 min' : '~45–75 min',
     locationLabel: r.city,
     city: r.city,
@@ -335,40 +508,6 @@ function mealItem(
       state === 'recommended'
         ? `Suggested to match this city’s food and your daily budget.`
         : undefined,
-  }
-}
-
-function simpleMeal(
-  city: string,
-  region: string,
-  period: PeriodId,
-  dayNumber: number,
-  meal: 'lunch' | 'dinner' | 'evening' | 'breakfast' = period === 'afternoon' ? 'lunch' : 'dinner',
-): ItineraryItem {
-  const names = {
-    breakfast: 'Breakfast',
-    lunch: 'Market lunch · keep it simple',
-    evening: 'Evening meal',
-    dinner: 'Simple local dinner',
-  }
-  return {
-    id: `simple-meal:${city}:${period}:${meal}:${dayNumber}`,
-    kind: 'meal',
-    name: names[meal],
-    selectionState: 'recommended',
-    period,
-    timeLabel: mealWindowLabel(meal === 'evening' ? 'evening' : meal),
-    durationLabel: meal === 'breakfast' ? '08:00–09:30' : '~60 min',
-    locationLabel: city,
-    city,
-    region,
-    description: 'A fixed meal window — sights are scheduled around this, not through it.',
-    costUsd: meal === 'breakfast' ? 3 : 4,
-    costBand: 'Low',
-    icon: '🥢',
-    mapsUrl: placeMapsUrl(meal === 'breakfast' ? 'breakfast' : 'street food', city),
-    tags: ['Food', 'Recommended'],
-    reason: `Fixed ${names[meal].toLowerCase()} window so the day does not skip eating.`,
   }
 }
 
@@ -392,28 +531,232 @@ function hotelBreakfast(city: string, region: string, dayNumber: number, hotelNa
   }
 }
 
-function pickRestaurant(
-  userPool: Restaurant[],
-  catalogPool: Restaurant[],
-  used: Set<string>,
-  excludeId: string | undefined,
-  dayIndex: number,
-  skipCafe = false,
-  skipSnack = false,
-): { restaurant: Restaurant; fromUser: boolean } | undefined {
-  const allow = (r: Restaurant) =>
-    r.id !== excludeId &&
-    !(skipCafe && isCafeRestaurant(r.name, r.cuisine)) &&
-    !(skipSnack && isSnackRestaurant(r.name, r.cuisine))
-  const user = userPool.filter(allow)
-  const catalog = catalogPool.filter(allow)
-  const unusedUser = user.filter((r) => !used.has(r.id))
-  const unusedCatalog = catalog.filter((r) => !used.has(r.id))
-  if (unusedUser[0]) return { restaurant: unusedUser[0], fromUser: true }
-  if (unusedCatalog[0]) return { restaurant: unusedCatalog[0], fromUser: false }
-  const cycle = user.length > 0 ? user : catalog
-  if (cycle.length === 0) return undefined
-  return { restaurant: cycle[dayIndex % cycle.length], fromUser: user.length > 0 }
+type ShopRow = (typeof SHOPPING_ITEMS)[number]
+
+function experienceItem(
+  exp: Experience,
+  daySightIds: string[],
+  optional?: { reason?: string },
+  suggestDrop = false,
+): ItineraryItem {
+  const images = getExperienceImages(exp)
+  return {
+    id: `exp:${exp.id}`,
+    kind: 'experience',
+    name: exp.name,
+    selectionState: optional ? 'optional' : 'selected',
+    period: 'morning',
+    timeLabel: exp.durationLabel,
+    durationLabel: exp.durationLabel,
+    locationLabel: exp.city,
+    city: exp.city,
+    region: exp.region,
+    description: exp.hook,
+    costUsd: exp.costUsd,
+    costBand: costBand(exp.costUsd),
+    icon: exp.signalEmoji || '✨',
+    thumb: images[0],
+    mapsUrl: placeMapsUrl(exp.name, exp.city),
+    tags: optional
+      ? [suggestDrop ? 'Consider dropping' : 'Optional', exp.popularityTag, exp.category]
+      : [exp.popularityTag, exp.category],
+    reason: optional?.reason,
+    sourceId: exp.id,
+    suggestDrop,
+    planningNote: planningNoteFor(exp.id, daySightIds),
+    includedStop: isIncludedCompanion(exp.id, daySightIds),
+  }
+}
+
+function activityItem(
+  act: CityActivity,
+  daySightIds: string[],
+  optional?: { reason?: string },
+  suggestDrop = false,
+): ItineraryItem {
+  return {
+    id: `act:${act.id}`,
+    kind: 'activity',
+    name: act.name,
+    selectionState: optional ? 'optional' : 'selected',
+    period: 'morning',
+    timeLabel: act.durationLabel,
+    durationLabel: act.durationLabel,
+    locationLabel: act.cityName,
+    city: act.cityName,
+    region: act.cityName,
+    description: act.hook,
+    costUsd: act.priceFromUsd ?? 0,
+    costBand: act.priceLabel,
+    icon: act.signalEmoji,
+    thumb: getActivityImages(act)[0],
+    mapsUrl: placeMapsUrl(act.name, act.cityName),
+    tags: optional
+      ? [suggestDrop ? 'Consider dropping' : 'Optional', act.popularityTag, act.kindLabel]
+      : [act.popularityTag, act.kindLabel],
+    reason: optional?.reason ?? 'Selected as a hands-on activity — we fit this beside your experiences.',
+    sourceId: act.id,
+    suggestDrop,
+    planningNote: planningNoteFor(act.id, daySightIds),
+  }
+}
+
+function shoppingItem(shop: ShopRow): ItineraryItem {
+  const hours = shoppingHours(shop)
+  return {
+    id: `shop:${shop.id}`,
+    kind: 'shopping',
+    name: shop.name,
+    selectionState: 'selected',
+    period: 'morning',
+    timeLabel: shoppingDurationLabel(hours),
+    durationLabel: shoppingDurationLabel(hours),
+    locationLabel: shop.city,
+    city: shop.city,
+    region: shop.region,
+    description: shop.blurb,
+    costUsd: shop.costUsd,
+    costBand: shop.costLabel,
+    icon: '🛍',
+    mapsUrl: placeMapsUrl(shop.shop || shop.name, shop.city),
+    tags: ['Shopping', shop.type],
+    reason: `Scheduled in ${shop.city}.`,
+    sourceId: shop.id,
+  }
+}
+
+/** Calendar days an overnight expedition takes (Hang Én 2, Sơn Đoòng 4); 1 for anything shorter. */
+function expeditionDays(exp: Experience): number {
+  return spanDays(exp.durationHours)
+}
+
+function expeditionDayItem(
+  exp: Experience,
+  part: number,
+  of: number,
+  city: string,
+  region: string,
+): ItineraryItem {
+  const last = part === of
+  return {
+    id: `expedition:${exp.id}:${part}`,
+    kind: 'experience',
+    name: `${exp.name} · day ${part} of ${of}`,
+    selectionState: 'system',
+    period: 'morning',
+    timeLabel: last ? 'Walk out, back by late afternoon' : 'All day with the expedition',
+    durationLabel: last ? '7 hrs' : '10 hrs',
+    locationLabel: exp.city,
+    city,
+    region,
+    description: last
+      ? 'Last expedition day: break camp, trek out and ride back to town.'
+      : 'In the field with the expedition team. Meals and camp are provided by the operator.',
+    costUsd: 0,
+    icon: exp.signalEmoji || '⛺',
+    tags: ['Expedition'],
+    sourceId: `${exp.id}:day-${part}`,
+    reason: `${exp.name} runs over ${of} days; this day stays with it.`,
+  }
+}
+
+type MealSlot = 'breakfast' | 'lunch' | 'coffee' | 'dinner'
+
+const FAR_LUNCH_KM = 20
+/** Past this much touring the afternoon has no room for a café sit-down. */
+const MAX_COFFEE_DAY_HOURS = 6
+
+type DayMealProfile = {
+  placeId?: PlaceId
+  sightIds: string[]
+  /** A cruise, food tour or full-day outing already covers midday. */
+  fedAtLunch: boolean
+  /** An evening food tour or similar already is dinner. */
+  dinnerTaken: boolean
+  touringHours: number
+  /** Out on an expedition: the operator feeds the group. */
+  away: boolean
+  isoDate: string
+}
+
+/** The kitchen is open long enough for this meal inside its usual window (no dinner at a breakfast-only stall). */
+function openForMeal(r: Restaurant, slot: MealSlot, isoDate: string): boolean {
+  const hours = parseHoursLabel(r.hours ?? '', isoDate ? weekdayFromIso(isoDate) : 1)
+  const w = MEAL_WINDOW[slot]
+  return Number.isFinite(earliestOpenAt(hours, w.from, w.hours, w.latestStart + w.hours))
+}
+
+/**
+ * Give every restaurant the traveller chose one day and one meal in its city:
+ * next to that day's sights when the restaurant lists them, never over a lunch
+ * an outing already serves, cafés in the afternoon coffee slot, and busier days
+ * skipped for coffee. Whatever cannot be seated comes back as leftover.
+ */
+function planUserMeals(
+  days: DayMealProfile[],
+  restaurants: Restaurant[],
+  chosenSlot: (id: string) => 'breakfast' | 'lunch' | 'dinner' | undefined,
+): { byDay: Partial<Record<MealSlot, Restaurant>>[]; leftover: Restaurant[] } {
+  const byDay: Partial<Record<MealSlot, Restaurant>>[] = days.map(() => ({}))
+  const leftover: Restaurant[] = []
+  const slotOk = (d: DayMealProfile, slot: MealSlot) =>
+    !d.away &&
+    (slot === 'lunch'
+      ? !d.fedAtLunch
+      : slot === 'dinner'
+        ? !d.dinnerTaken
+        : slot === 'coffee'
+          ? d.touringHours <= MAX_COFFEE_DAY_HOURS
+          : true)
+  for (const r of restaurants) {
+    const placeId = resolvePlaceId(r.city, r.region)
+    const explicit = chosenSlot(r.id)
+    const light = isCafeRestaurant(r.name, r.cuisine) || isSnackRestaurant(r.name, r.cuisine)
+    const slots: MealSlot[] =
+      explicit === 'breakfast'
+        ? ['breakfast', 'coffee', 'lunch']
+        : explicit === 'dinner'
+          ? ['dinner', 'lunch']
+          : explicit === 'lunch'
+            ? ['lunch', 'dinner', 'breakfast']
+            : light
+              ? ['coffee', 'breakfast', 'lunch']
+              : ['lunch', 'dinner', 'breakfast']
+    const near = new Set(r.nearExperienceIds ?? [])
+    const pin = PIN_BY_SOURCE_ID[r.id]
+    const kmFrom = (d: DayMealProfile) => {
+      const pins = d.sightIds.map((id) => PIN_BY_SOURCE_ID[id]).filter(Boolean)
+      if (!pin || !pins.length) return 0
+      return Math.min(...pins.map((p) => haversineKm(pin, p)))
+    }
+    let placed = false
+    for (const slot of slots) {
+      let best = -1
+      let bestScore = Infinity
+      days.forEach((d, i) => {
+        if (d.placeId !== placeId || byDay[i][slot] || !slotOk(d, slot)) return
+        if (!openForMeal(r, slot, d.isoDate)) return
+        const nextTo = d.sightIds.some((id) => near.has(id)) ? -10 : 0
+        const busy = Object.keys(byDay[i]).length
+        const load = slot === 'coffee' ? d.touringHours : 0
+        const km = kmFrom(d)
+        // Lunch sits between sights; a far-off table only works as the evening outing.
+        if (slot === 'lunch' && km > FAR_LUNCH_KM) return
+        const score = nextTo + busy + load + km * 0.3 + i * 0.01
+        if (score < bestScore) {
+          bestScore = score
+          best = i
+        }
+      })
+      if (best >= 0) {
+        byDay[best][slot] = r
+        placed = true
+        break
+      }
+    }
+    if (!placed) leftover.push(r)
+  }
+  return { byDay, leftover }
 }
 
 /**
@@ -491,9 +834,16 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
   const tight = band === 'tight'
   const shape: TripShapeInput = { holidayKind, groupSize, dailyUsd, band }
 
+  // The same place listed on two city pages is visited once.
+  const seenPlaces = new Set<string>()
   const experiences = EXPERIENCES.filter(
     (e) => input.experienceIds.includes(e.id) && !removed.has(`exp:${e.id}`),
-  )
+  ).filter((e) => {
+    const place = canonicalSightId(e.id)
+    if (seenPlaces.has(place)) return false
+    seenPlaces.add(place)
+    return true
+  })
   const activities = CITY_ACTIVITIES.filter(
     (a) => input.activityIds.includes(a.id) && !removed.has(`act:${a.id}`),
   )
@@ -501,9 +851,7 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
   const chosen = input.chosenStayId
     ? HOTELS.find((h) => h.id === input.chosenStayId)
     : undefined
-    const userRestaurants = collectUserRestaurants(input.restaurantIds, removed)
-  const mealSlotOf = (id: string): 'breakfast' | 'lunch' | 'dinner' =>
-    input.restaurantMealSlots?.[id] ?? 'lunch'
+  const userRestaurants = collectUserRestaurants(input.restaurantIds, removed)
   const shopping = SHOPPING_ITEMS.filter(
     (s) => input.shoppingIds.includes(s.id) && !removed.has(`shop:${s.id}`),
   )
@@ -560,7 +908,10 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
   const orderedBuckets = orderedIds
     .map((id) => buckets.find((b) => b.placeId === id)!)
     .filter(Boolean)
-    .filter((b) => b.experiences.length + b.activities.length + b.shopping.length > 0)
+    .filter(
+      (b) =>
+        b.experiences.length + b.activities.length + b.shopping.length + b.restaurants.length > 0,
+    )
 
   const byPlace = new Map(orderedBuckets.map((b) => [b.placeId, b]))
   const slotPlaceOrder = (input.itineraryDaySlots ?? [])
@@ -578,7 +929,12 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
 
   const packedByPlace = new Map<PlaceId, ReturnType<typeof materializePackedDays>>()
   const dayPlaceIds: PlaceId[] = []
-  const slotMeta: { id: string; blank: boolean }[] = []
+  const slotMeta: {
+    id: string
+    blank: boolean
+    /** Set on the days a multi-day expedition keeps after the day it starts. */
+    expedition?: { exp: Experience; part: number; of: number }
+  }[] = []
   const reusableSlots = (input.itineraryDaySlots ?? []).filter(
     (s) => Boolean(s.placeId) && !s.blank,
   )
@@ -592,14 +948,58 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
       ...b.shopping.map((s) => s.id),
     ],
   }))
-  const tripPacked = applyUserPinsToPacked(
-    packTripStay(tripCities, input.startDate, 1, preferredDaysByPlace(input.itineraryDaySlots)),
-    input.itineraryDaySlots,
-    input.itineraryDaySlotOverrides,
-    input.itinerarySightOrder,
+  const pinMoves: Record<string, string> = {}
+  const dropped: UnscheduledSight[] = []
+  const tripPacked = fitTripToClock(
+    applyUserPinsToPacked(
+      packTripStay(
+        tripCities.filter((c) => c.ids.length > 0),
+        input.startDate,
+        1,
+        input.pinsAreSuggestions ? preferredDaysByPlace(input.itineraryDaySlots) : undefined,
+      ),
+      input.itineraryDaySlots,
+      input.itineraryDaySlotOverrides,
+      input.itinerarySightOrder,
+      { lockToPackedDays: !input.pinsAreSuggestions },
+    ),
+    {
+      input,
+      byPlace,
+      chosen,
+      tight,
+      experiences,
+      activities,
+      shopping,
+      reusableSlots,
+      routeOrder: tripCities.map((c) => c.placeId as PlaceId),
+      pinMoves,
+      dropped,
+    },
   )
 
-  for (const row of tripPacked) {
+  const claimDay = (placeId: PlaceId, i: number) => {
+    dayPlaceIds.push(placeId)
+    const reuse = reusableSlots.find((s) => s.placeId === placeId && !claimedSlotIds.has(s.id))
+    if (reuse) {
+      claimedSlotIds.add(reuse.id)
+      slotMeta.push({ id: reuse.id, blank: false })
+    } else {
+      slotMeta.push({ id: `auto:${placeId}:${i}`, blank: false })
+    }
+  }
+  const rowsInRoute = [
+    ...tripCities.map((c) => tripPacked.find((row) => row.placeId === c.placeId) ?? c.placeId),
+    ...tripPacked.filter((row) => !tripCities.some((c) => c.placeId === row.placeId)),
+  ]
+  for (const entry of rowsInRoute) {
+    if (typeof entry === 'string') {
+      const b = byPlace.get(entry as PlaceId)
+      const foodDays = foodOnlyDays(b)
+      for (let i = 0; i < foodDays; i++) claimDay(b!.placeId, i)
+      continue
+    }
+    const row = entry
     const b = byPlace.get(row.placeId as PlaceId)
     if (!b) continue
     const packed = materializePackedDays(b.experiences, b.activities, b.shopping, row.days)
@@ -610,15 +1010,14 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
         (packed.acts[i]?.length ?? 0) +
         (packed.shops[i]?.length ?? 0)
       if (has <= 0) continue
-      dayPlaceIds.push(b.placeId)
-      const reuse = reusableSlots.find(
-        (s) => s.placeId === b.placeId && !claimedSlotIds.has(s.id),
-      )
-      if (reuse) {
-        claimedSlotIds.add(reuse.id)
-        slotMeta.push({ id: reuse.id, blank: false })
-      } else {
-        slotMeta.push({ id: `auto:${b.placeId}:${i}`, blank: false })
+      claimDay(b.placeId, i)
+      const slotId = slotMeta[slotMeta.length - 1].id
+      for (const exp of packed.exps[i] ?? []) {
+        const of = expeditionDays(exp)
+        for (let part = 2; part <= of; part++) {
+          dayPlaceIds.push(b.placeId)
+          slotMeta.push({ id: `${slotId}:expedition-${part}`, blank: true, expedition: { exp, part, of } })
+        }
       }
     }
   }
@@ -633,7 +1032,45 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
   const dayCount = dayPlaceIds.length
   const cursor = new Map<PlaceId, number>()
 
-  const usedRestaurantIds = new Set<string>()
+  const mealCursor = new Map<PlaceId, number>()
+  const mealProfiles: DayMealProfile[] = dayPlaceIds.map((placeId, i) => {
+    const isBlank = slotMeta[i]?.blank ?? false
+    const slot = mealCursor.get(placeId) ?? 0
+    if (!isBlank) mealCursor.set(placeId, slot + 1)
+    const packed = packedByPlace.get(placeId)
+    const exps = isBlank ? [] : packed?.exps[slot] ?? []
+    const acts = isBlank ? [] : packed?.acts[slot] ?? []
+    const shops = isBlank ? [] : packed?.shops[slot] ?? []
+    const sightIds = [...exps.map((e) => e.id), ...acts.map((a) => a.id), ...shops.map((s) => s.id)]
+    const items = [
+      ...exps.map((e) => experienceItem(e, sightIds)),
+      ...acts.map((a) => activityItem(a, sightIds)),
+    ]
+    const families = new Set<string>()
+    for (const e of exps) noteFamily(occupancyFamilyExperience(e), timeOfDay(e.id), families)
+    for (const a of acts) noteFamily(occupancyFamilyActivity(a), timeOfDay(a.id), families)
+    const hoursOf = (id: string) => packVisitHours(id, sightIds)
+    return {
+      placeId,
+      sightIds,
+      fedAtLunch:
+        items.some((it) => includesOnboardMeal(it) || (it.sourceId && hoursOf(it.sourceId) >= 5)) ||
+        occupancyConflicts('sit-down-lunch', families, 'afternoon'),
+      dinnerTaken:
+        exps.some((e) => expeditionDays(e) > 1) ||
+        occupancyConflicts('sit-down-dinner', families, 'evening'),
+      touringHours: sightIds.reduce((sum, id) => sum + hoursOf(id), 0),
+      away: Boolean(slotMeta[i]?.expedition),
+      isoDate: input.startDate ? tripIsoDate(input.startDate, i + 1) : '',
+    }
+  })
+  const mealPlan = planUserMeals(
+    mealProfiles,
+    userRestaurants,
+    (id) => input.restaurantMealSlots?.[id],
+  )
+
+  const usedRestaurantIds = new Set<string>(userRestaurants.map((r) => r.id))
 
   const fallbackCity = orderedBuckets[0]?.city ?? 'Hanoi'
   const fallbackRegion = orderedBuckets[0]?.region ?? 'Hanoi'
@@ -702,13 +1139,6 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
     }
 
     const dayFamilies = new Set<string>()
-    const cityUserMeals = userRestaurants.filter(
-      (r) => resolvePlaceId(r.city, r.region) === placeId,
-    )
-    const catalogMeals = placeId ? restaurantsForPlace(placeId) : []
-    const wantDinner =
-      holidayKind === 'action' || cityUserMeals.length >= 2 || band !== 'tight'
-    const wantLunch = true
 
     const daySightIds = [...exps.map((e) => e.id), ...acts.map((a) => a.id), ...shops.map((s) => s.id)]
     const orderedIds = isBlank
@@ -722,99 +1152,33 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
     for (const id of orderedIds) {
       const exp = expFor.get(id)
       if (exp) {
-        const family = occupancyFamilyExperience(exp)
-        const images = getExperienceImages(exp)
-        const optional = optionalMap.get(exp.id)
-        const suggestDrop = dropMap.has(exp.id)
-        periodItems[period].push({
-          id: `exp:${exp.id}`,
-          kind: 'experience',
-          name: exp.name,
-          selectionState: optional ? 'optional' : 'selected',
-          period,
-          timeLabel: exp.durationLabel,
-          durationLabel: exp.durationLabel,
-          locationLabel: exp.city,
-          city: exp.city,
-          region: exp.region,
-          description: exp.hook,
-          costUsd: exp.costUsd,
-          costBand: costBand(exp.costUsd),
-          icon: exp.signalEmoji || '✨',
-          thumb: images[0],
-          mapsUrl: placeMapsUrl(exp.name, exp.city),
-          tags: optional
-            ? [suggestDrop ? 'Consider dropping' : 'Optional', exp.popularityTag, exp.category]
-            : [exp.popularityTag, exp.category],
-          reason: optional?.reason,
-          sourceId: exp.id,
-          suggestDrop,
-          planningNote: planningNoteFor(exp.id, daySightIds),
-          includedStop: isIncludedCompanion(exp.id, daySightIds),
-        })
-        noteFamily(family, period, dayFamilies)
+        periodItems[period].push(
+          experienceItem(exp, daySightIds, optionalMap.get(exp.id), dropMap.has(exp.id)),
+        )
+        noteFamily(occupancyFamilyExperience(exp), timeOfDay(exp.id), dayFamilies)
         continue
       }
       const act = actFor.get(id)
       if (act) {
-        const family = occupancyFamilyActivity(act)
-        const optional = optionalMap.get(act.id)
-        const suggestDrop = dropMap.has(act.id)
-        periodItems[period].push({
-          id: `act:${act.id}`,
-          kind: 'activity',
-          name: act.name,
-          selectionState: optional ? 'optional' : 'selected',
-          period,
-          timeLabel: act.durationLabel,
-          durationLabel: act.durationLabel,
-          locationLabel: act.cityName,
-          city: act.cityName,
-          region: act.cityName,
-          description: act.hook,
-          costUsd: act.priceFromUsd ?? 0,
-          costBand: act.priceLabel,
-          icon: act.signalEmoji,
-          thumb: getActivityImages(act)[0],
-          mapsUrl: placeMapsUrl(act.name, act.cityName),
-          tags: optional
-            ? [suggestDrop ? 'Consider dropping' : 'Optional', act.popularityTag, act.kindLabel]
-            : [act.popularityTag, act.kindLabel],
-          reason:
-            optional?.reason ??
-            'Selected as a hands-on activity — we fit this beside your experiences.',
-          sourceId: act.id,
-          suggestDrop,
-          planningNote: planningNoteFor(act.id, daySightIds),
-        })
-        noteFamily(family, period, dayFamilies)
+        periodItems[period].push(
+          activityItem(act, daySightIds, optionalMap.get(act.id), dropMap.has(act.id)),
+        )
+        noteFamily(occupancyFamilyActivity(act), timeOfDay(act.id), dayFamilies)
         continue
       }
       const shop = shopFor.get(id)
-      if (shop) {
-        const hours = shoppingHours(shop)
-        periodItems[period].push({
-          id: `shop:${shop.id}`,
-          kind: 'shopping',
-          name: shop.name,
-          selectionState: 'selected',
-          period,
-          timeLabel: shoppingDurationLabel(hours),
-          durationLabel: shoppingDurationLabel(hours),
-          locationLabel: shop.city,
-          city: shop.city,
-          region: shop.region,
-          description: shop.blurb,
-          costUsd: shop.costUsd,
-          costBand: shop.costLabel,
-          icon: '🛍',
-          mapsUrl: placeMapsUrl(shop.shop || shop.name, shop.city),
-          tags: ['Shopping', shop.type],
-          reason: `Scheduled in ${shop.city}.`,
-          sourceId: shop.id,
-        })
-      }
+      if (shop) periodItems[period].push(shoppingItem(shop))
     }
+    const expedition = slotMeta[i]?.expedition
+    if (expedition) {
+      periodItems.morning.push(
+        expeditionDayItem(expedition.exp, expedition.part, expedition.of, city, region),
+      )
+    }
+    // Nights in camp: no restaurant dinner and no hotel bed until the walk-out day.
+    const campTonight =
+      exps.some((e) => expeditionDays(e) > 1) ||
+      (expedition != null && expedition.part < expedition.of)
 
     let lunch: Restaurant | undefined
     let dinner: Restaurant | undefined
@@ -823,56 +1187,27 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
     const onboardLunch = [...periodItems.morning, ...periodItems.afternoon, ...periodItems.evening]
       .filter((it) => it.kind === 'experience' || it.kind === 'activity')
       .some((it) => includesOnboardMeal(it))
-    const skipLunch = onboardLunch || occupancyConflicts('sit-down-lunch', dayFamilies, 'afternoon')
-    const skipDinner = occupancyConflicts('sit-down-dinner', dayFamilies, 'evening')
     const dayNumber = i + 1
-    const wantBreakfast = true
-    const wantEveningMeal = true
-    const breakfastUser = cityUserMeals.find(
-      (r) => mealSlotOf(r.id) === 'breakfast' && !usedRestaurantIds.has(r.id),
-    )
-    const lunchUserPool = cityUserMeals.filter((r) => mealSlotOf(r.id) === 'lunch')
-    const dinnerUserPool = cityUserMeals.filter((r) => mealSlotOf(r.id) === 'dinner')
+    const wantBreakfast = !expedition
+    const planned = mealPlan.byDay[i] ?? {}
 
-    if (wantBreakfast) {
-      if (breakfastUser) {
-        usedRestaurantIds.add(breakfastUser.id)
-        periodItems.morning.unshift(
-          mealItem(breakfastUser, 'morning', 'Breakfast', 'selected', dayNumber),
-        )
-      } else {
-        const breakfast = input.breakfastAtHotel
-          ? hotelBreakfast(city, region, dayNumber, hotel?.name)
-          : simpleMeal(city, region, 'morning', dayNumber, 'breakfast')
-        periodItems.morning.unshift(breakfast)
-      }
+    if (planned.breakfast) {
+      periodItems.morning.unshift(
+        mealItem(planned.breakfast, 'morning', 'Breakfast', 'selected', dayNumber),
+      )
+    } else if (input.breakfastAtHotel && wantBreakfast) {
+      periodItems.morning.unshift(hotelBreakfast(city, region, dayNumber, hotel?.name))
     }
 
-    if (wantLunch && !skipLunch) {
-      const picked = pickRestaurant(
-        lunchUserPool,
-        catalogMeals,
-        usedRestaurantIds,
-        undefined,
-        i,
-        true,
-        false,
-      )
-      lunch = picked?.restaurant
-      lunchState = picked?.fromUser ? 'selected' : 'recommended'
+    if (planned.lunch) {
+      lunch = planned.lunch
     }
-    if (wantDinner && !skipDinner) {
-      const picked = pickRestaurant(
-        dinnerUserPool.length ? dinnerUserPool : cityUserMeals.filter((r) => mealSlotOf(r.id) !== 'breakfast' && mealSlotOf(r.id) !== 'lunch'),
-        catalogMeals,
-        usedRestaurantIds,
-        lunch?.id,
-        i,
-        true,
-        true,
-      )
-      dinner = picked?.restaurant
-      dinnerState = picked?.fromUser ? 'selected' : 'recommended'
+    if (planned.dinner) {
+      dinner = planned.dinner
+    }
+    if (planned.coffee) {
+      periodItems.afternoon.push(mealItem(planned.coffee, 'afternoon', 'Coffee', 'selected', dayNumber))
+      noteFamily('cafe', 'afternoon', dayFamilies)
     }
 
     if (lunch) {
@@ -899,13 +1234,6 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
         tags: ['Food', 'Onboard'],
         reason: 'This outing includes lunch on board.',
       })
-    } else if (wantLunch && !skipLunch && !skipped.has(`simple-meal:${city}:${dayNumber}`)) {
-      periodItems.afternoon.push(simpleMeal(city, region, 'afternoon', dayNumber, 'lunch'))
-      noteFamily('sit-down-lunch', 'afternoon', dayFamilies)
-    }
-
-    if (wantEveningMeal) {
-      periodItems.evening.push(simpleMeal(city, region, 'evening', dayNumber, 'evening'))
     }
 
     if (dinner && dinner.id !== lunch?.id) {
@@ -914,12 +1242,9 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
         periodItems.night.push(mealItem(dinner, 'night', 'Dinner', dinnerState, dayNumber))
         noteFamily('sit-down-dinner', 'evening', dayFamilies)
       }
-    } else if (wantDinner && !skipDinner && !dinner && !skipped.has(`simple-dinner:${city}:${dayNumber}`)) {
-      periodItems.night.push(simpleMeal(city, region, 'night', dayNumber, 'dinner'))
-      noteFamily('sit-down-dinner', 'evening', dayFamilies)
     }
 
-    if (hotel) {
+    if (hotel && !campTonight) {
       periodItems.night.push({
         id: `stay:${hotel.id}:${i}`,
         kind: 'stay',
@@ -947,48 +1272,28 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
     if (nextPlace && nextPlace !== placeId) {
       const toCity = byPlace.get(nextPlace)?.city ?? placeLabel(nextPlace)
       const toRegion = byPlace.get(nextPlace)?.region ?? placeLegRegion(nextPlace)
-      const fromLeg = placeId ? placeLegRegion(placeId, region) : region
-      const toLeg = placeLegRegion(nextPlace, toRegion)
-      const leg = findLeg(fromLeg, toLeg) ?? findLeg(region, toRegion) ?? findLeg(city, toCity)
-      const chosenMode = leg ? input.transportChoices[leg.id] : undefined
-      const option = chosenMode ? leg?.options.find((o) => o.mode === chosenMode) : undefined
-      const budgetOption = tight
-        ? leg?.options.find((o) => o.mode === 'bus') ?? leg?.options.find((o) => o.mode === 'train')
-        : undefined
-
-      if (leg && option && chosenMode) {
-        cityTransferOut = {
-          toCity,
-          toRegion,
-          modeLabel: option.label,
-          icon: option.icon,
-          durationLabel: formatDuration(option.durationMinutes),
-          costUsd: option.costUsd,
-          reason: `${option.status} · your chosen mode for this hop.`,
-          externalUrl: gettingAroundUrl(),
-          unset: false,
-        }
-      } else {
-        const spine = placeId ? hubSpokeTransferCopy(placeId, nextPlace) : null
-        const suggested = spine?.preferMode
-          ? leg?.options.find((o) => o.mode === spine.preferMode)
-          : undefined
-        const pick = suggested ?? budgetOption
-        cityTransferOut = {
-          toCity,
-          toRegion,
-          modeLabel: pick ? pick.label : spine?.modeLabel ?? 'To be chosen',
-          icon: pick ? pick.icon : spine?.icon ?? '🚐',
-          durationLabel: pick ? formatDuration(pick.durationMinutes) : 'Choose a mode',
-          costUsd: pick?.costUsd ?? 0,
-          reason: spine
-            ? spine.reason
-            : tight
-              ? `You’re moving from ${city} to ${toCity}. On a tight daily budget a bus or train is the usual fit — confirm it in Getting Around.`
-              : `You’re moving from ${city} to ${toCity} — pick how you’ll travel in Getting Around.`,
-          externalUrl: gettingAroundUrl(),
-          unset: !suggested,
-        }
+      const hop = placeId
+        ? planCityHop({
+            from: placeId,
+            to: nextPlace,
+            fromRegion: region,
+            toRegion,
+            fromCity: city,
+            toCity,
+            transportChoices: input.transportChoices,
+            tight,
+          }).plan
+        : null
+      cityTransferOut = {
+        toCity,
+        toRegion,
+        modeLabel: hop?.modeLabel ?? 'To be chosen',
+        icon: hop?.icon ?? '🚐',
+        durationLabel: hop ? formatDuration(hop.durationMinutes) : 'Choose a mode',
+        costUsd: hop?.costUsd ?? 0,
+        reason: hop?.reason ?? `You’re moving from ${city} to ${toCity} — pick how you’ll travel in Getting Around.`,
+        externalUrl: gettingAroundUrl(),
+        unset: !hop,
       }
 
       if (hotel) {
@@ -1191,7 +1496,13 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
         (it) => it.kind === 'experience' || it.kind === 'activity' || it.kind === 'shopping',
       ),
     )
-  let days = builtDays.filter((d) => hasSights(d) || d.blank)
+  const foodOnly = (d: YourVietnamDay) => {
+    const b = d.placeId ? byPlace.get(d.placeId as PlaceId) : undefined
+    return Boolean(
+      b && b.restaurants.length > 0 && b.experiences.length + b.activities.length + b.shopping.length === 0,
+    )
+  }
+  let days = builtDays.filter((d) => hasSights(d) || d.blank || foodOnly(d))
   days = days.map((d, i) => ({
     ...d,
     day: i + 1,
@@ -1277,6 +1588,7 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
     days,
     cost,
     issues,
+    pinMoves,
     isEmpty: tripEmpty,
     hasNoStays,
     thinCities: thinCities.map((s) => {
@@ -1297,7 +1609,7 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
       })),
     // Bagged sights that no day in their city can hold under the daily caps.
     // Reported so the board can show them instead of dropping them quietly.
-    unscheduled: [...packedByPlace.values()].flatMap((packed) => [
+    unscheduled: [...packedByPlace.values()].flatMap<UnscheduledSight>((packed) => [
       ...packed.unscheduled.experiences.map((e) => ({
         sourceId: e.id,
         kind: 'experience' as const,
@@ -1310,7 +1622,15 @@ export function buildYourVietnam(input: BuildYourVietnamInput): YourVietnamTrip 
         name: a.name,
         city: a.cityName,
       })),
-    ]),
+    ]).concat(
+      dropped,
+      mealPlan.leftover.map((r) => ({
+        sourceId: r.id,
+        kind: 'restaurant' as const,
+        name: r.name,
+        city: r.city,
+      })),
+    ),
   }
 }
 
@@ -1319,7 +1639,7 @@ function groupIntoCities(
   activities: CityActivity[],
   hotels: Hotel[],
   shopping: (typeof SHOPPING_ITEMS)[number][],
-  _restaurants: Restaurant[],
+  restaurants: Restaurant[],
 ): CityBucket[] {
   const map = new Map<PlaceId, CityBucket>()
 
@@ -1334,6 +1654,7 @@ function groupIntoCities(
       activities: [],
       hotels: [],
       shopping: [],
+      restaurants: [],
     }
     map.set(placeId, created)
     return created
@@ -1361,6 +1682,12 @@ function groupIntoCities(
     const id = place(s.city, s.region)
     if (!id) continue
     bucket(id, s.city, s.region).shopping.push(s)
+  }
+  // A city the traveller only chose places to eat in is still a stop on the trip.
+  for (const r of restaurants) {
+    const id = place(r.city, r.region)
+    if (!id) continue
+    bucket(id, r.city, r.region).restaurants.push(r)
   }
   return [...map.values()]
 }

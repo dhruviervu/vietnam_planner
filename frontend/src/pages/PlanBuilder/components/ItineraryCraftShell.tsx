@@ -4,7 +4,6 @@ import { ItinerarySettingsControl } from './ItinerarySettingsControl'
 import { effectiveDailyUsd, effectiveHolidayKind } from '../lib/yourVietnam/holidayKind'
 import { optimizeItinerary } from '../lib/yourVietnam/itineraryOptimize'
 import { SightsPerCitySection } from './SightsPerCitySection'
-import { TripVariablesBar } from './TripVariablesBar'
 import type { RouteStop } from '../lib/yourVietnam/types'
 
 function ItineraryPlanBar() {
@@ -118,11 +117,6 @@ export function ItineraryCraftShell({
     [pinnedIds, sightOrder],
   )
 
-  const known =
-    basics.groupSizeKnown &&
-    basics.holidayKindKnown &&
-    (basics.budgetKnown || basics.budgetAllocationKnown)
-
   const holidayKind = effectiveHolidayKind({
     holidayKindKnown: basics.holidayKindKnown,
     holidayKind: basics.holidayKind,
@@ -171,12 +165,6 @@ export function ItineraryCraftShell({
   return (
     <>
       <SightsPerCitySection groups={result.groups} />
-
-      {!known ? (
-        <div className="mt-5">
-          <TripVariablesBar />
-        </div>
-      ) : null}
 
       <section className="mt-8 border-t border-ink/10 pt-6" data-yv="crafted-itinerary">
         <div className="flex flex-wrap items-center gap-3">

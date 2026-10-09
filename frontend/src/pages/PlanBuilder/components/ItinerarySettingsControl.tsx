@@ -221,6 +221,74 @@ export function ItinerarySettingsControl({
 
         <button
           type="button"
+          onClick={() => setPanel((p) => (p === 'dates' ? null : 'dates'))}
+          className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left hover:bg-cream"
+        >
+          <span className="font-serif text-[0.92rem] font-semibold text-ink">Trip dates</span>
+          <span
+            className={`rounded-md px-1.5 py-0.5 text-[0.72rem] font-bold tabular-nums ${
+              startDate ? 'bg-cream text-terracotta' : 'bg-ink/6 text-muted'
+            }`}
+          >
+            {startDate || 'Off'}
+          </span>
+        </button>
+        {panel === 'dates' ? (
+          <div className="border-t border-ink/8 pb-2 pt-1">
+            <p className="px-3 pb-2 text-[0.72rem] leading-relaxed text-muted">
+              Opening hours, closed days and renovations follow these dates. Leave empty to keep
+              every saved sight on the plan.
+            </p>
+            <label className="mx-3 mb-2 flex items-center justify-between gap-2 rounded-[12px] border border-ink/10 bg-cream px-3 py-2">
+              <span className="text-[0.72rem] font-bold text-muted">Start</span>
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => {
+                  const nextStart = e.target.value
+                  if (!nextStart) {
+                    onTripDatesChange('', '')
+                    return
+                  }
+                  const nextEnd =
+                    endDate && endDate >= nextStart ? endDate : tripIsoDate(nextStart, days)
+                  onTripDatesChange(nextStart, nextEnd)
+                }}
+                className="rounded-md border border-ink/10 bg-paper px-2 py-1 font-serif text-[0.88rem] font-semibold text-ink"
+              />
+            </label>
+            <label className="mx-3 mb-2 flex items-center justify-between gap-2 rounded-[12px] border border-ink/10 bg-cream px-3 py-2">
+              <span className="text-[0.72rem] font-bold text-muted">End</span>
+              <input
+                type="date"
+                value={endDate}
+                min={startDate || undefined}
+                onChange={(e) => {
+                  const nextEnd = e.target.value
+                  if (!nextEnd) {
+                    onTripDatesChange(startDate, '')
+                    return
+                  }
+                  const nextStart = startDate && startDate <= nextEnd ? startDate : nextEnd
+                  onTripDatesChange(nextStart, nextEnd)
+                }}
+                className="rounded-md border border-ink/10 bg-paper px-2 py-1 font-serif text-[0.88rem] font-semibold text-ink"
+              />
+            </label>
+            {startDate ? (
+              <button
+                type="button"
+                onClick={() => onTripDatesChange('', '')}
+                className="mx-3 mt-1 mb-1 w-[calc(100%-1.5rem)] rounded-full border border-ink/12 py-1.5 text-[0.72rem] font-bold text-muted hover:border-ink/25 hover:text-ink"
+              >
+                Clear trip dates
+              </button>
+            ) : null}
+          </div>
+        ) : null}
+
+        <button
+          type="button"
           onClick={() => setPanel((p) => (p === 'start' ? null : 'start'))}
           className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left hover:bg-cream"
         >
@@ -278,74 +346,6 @@ export function ItinerarySettingsControl({
                 className="mx-3 mt-1 mb-1 w-[calc(100%-1.5rem)] rounded-full border border-ink/12 py-1.5 text-[0.72rem] font-bold text-muted hover:border-ink/25 hover:text-ink"
               >
                 Turn off limit
-              </button>
-            ) : null}
-          </div>
-        ) : null}
-
-        <button
-          type="button"
-          onClick={() => setPanel((p) => (p === 'dates' ? null : 'dates'))}
-          className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left hover:bg-cream"
-        >
-          <span className="font-serif text-[0.92rem] font-semibold text-ink">Trip dates</span>
-          <span
-            className={`rounded-md px-1.5 py-0.5 text-[0.72rem] font-bold tabular-nums ${
-              startDate ? 'bg-cream text-terracotta' : 'bg-ink/6 text-muted'
-            }`}
-          >
-            {startDate || 'Off'}
-          </span>
-        </button>
-        {panel === 'dates' ? (
-          <div className="border-t border-ink/8 pb-2 pt-1">
-            <p className="px-3 pb-2 text-[0.72rem] leading-relaxed text-muted">
-              Closures follow these dates — weekends and holidays — not “today”. Leave empty to
-              keep every saved sight on the plan.
-            </p>
-            <label className="mx-3 mb-2 flex items-center justify-between gap-2 rounded-[12px] border border-ink/10 bg-cream px-3 py-2">
-              <span className="text-[0.72rem] font-bold text-muted">Start</span>
-              <input
-                type="date"
-                value={startDate}
-                onChange={(e) => {
-                  const nextStart = e.target.value
-                  if (!nextStart) {
-                    onTripDatesChange('', '')
-                    return
-                  }
-                  const nextEnd =
-                    endDate && endDate >= nextStart ? endDate : tripIsoDate(nextStart, days)
-                  onTripDatesChange(nextStart, nextEnd)
-                }}
-                className="rounded-md border border-ink/10 bg-paper px-2 py-1 font-serif text-[0.88rem] font-semibold text-ink"
-              />
-            </label>
-            <label className="mx-3 mb-2 flex items-center justify-between gap-2 rounded-[12px] border border-ink/10 bg-cream px-3 py-2">
-              <span className="text-[0.72rem] font-bold text-muted">End</span>
-              <input
-                type="date"
-                value={endDate}
-                min={startDate || undefined}
-                onChange={(e) => {
-                  const nextEnd = e.target.value
-                  if (!nextEnd) {
-                    onTripDatesChange(startDate, '')
-                    return
-                  }
-                  const nextStart = startDate && startDate <= nextEnd ? startDate : nextEnd
-                  onTripDatesChange(nextStart, nextEnd)
-                }}
-                className="rounded-md border border-ink/10 bg-paper px-2 py-1 font-serif text-[0.88rem] font-semibold text-ink"
-              />
-            </label>
-            {startDate ? (
-              <button
-                type="button"
-                onClick={() => onTripDatesChange('', '')}
-                className="mx-3 mt-1 mb-1 w-[calc(100%-1.5rem)] rounded-full border border-ink/12 py-1.5 text-[0.72rem] font-bold text-muted hover:border-ink/25 hover:text-ink"
-              >
-                Clear trip dates
               </button>
             ) : null}
           </div>

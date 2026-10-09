@@ -42,6 +42,7 @@ import { dailySpendBand, effectiveDailyUsd } from '../lib/yourVietnam/holidayKin
 import { bucketFromStart } from '../lib/yourVietnam/clockTimes'
 import { parseDayEndHour, parseDayStart } from '../lib/yourVietnam/dayWindows'
 import { tripIsoDate } from '../lib/yourVietnam/openingHours'
+import { resolvePlaceId } from '../lib/yourVietnam/cityPins'
 import { useLiveOpeningHours } from '../lib/yourVietnam/liveOpeningHours'
 import type { TransportModeId } from '../lib/yourVietnam/osrmRoute'
 import { DayRail } from './DayRail'
@@ -236,9 +237,12 @@ export function CraftedItineraryBoard({
   mapOpen = false,
   seeVietnamItineraries = false,
   readOnly = false,
+  pinMoves,
+  unscheduledSights = [],
 }: {
   tripDays: YourVietnamDay[]
   unscheduledSights?: UnscheduledSight[]
+  pinMoves?: Record<string, string>
   activeDay: number
   setActiveDay: (day: number) => void
   highlightId: string | null
@@ -262,7 +266,10 @@ export function CraftedItineraryBoard({
   const itinerarySightOrder = useTripStore((s) => s.itinerarySightOrder)
   const layoutSlotOverrides = readOnly ? {} : itinerarySlotOverrides
   const layoutDayOverrides = readOnly ? {} : itineraryDayOverrides
-  const layoutDaySlotOverrides = readOnly ? {} : itineraryDaySlotOverrides
+  const layoutDaySlotOverrides = useMemo(
+    () => (readOnly ? {} : { ...itineraryDaySlotOverrides, ...pinMoves }),
+    [readOnly, itineraryDaySlotOverrides, pinMoves],
+  )
   const layoutSightOrder = readOnly ? {} : itinerarySightOrder
   const layoutPinnedIds = readOnly ? [] : itineraryUserPinnedIds
   const cityTransferSlot = useTripStore((s) => s.cityTransferSlot)
@@ -1146,6 +1153,14 @@ export function CraftedItineraryBoard({
     )
   }
 
+  const cityLeftovers = unscheduledSights.filter(
+    (s) =>
+      s.city === day.city ||
+      (day.placeId != null && resolvePlaceId(s.city) === day.placeId),
+  )
+  const leftoverSights = cityLeftovers.filter((s) => s.kind !== 'restaurant')
+  const leftoverMeals = cityLeftovers.filter((s) => s.kind === 'restaurant')
+
   return (
     <DndContext
       sensors={sensors}
@@ -1246,6 +1261,20 @@ export function CraftedItineraryBoard({
               seeVietnamItineraries={seeVietnamItineraries}
               readOnly={readOnly}
             />
+            {leftoverSights.length > 0 ? (
+              <p className="mt-3 rounded-[14px] border border-ink/10 bg-paper px-4 py-3 text-[0.8rem] leading-relaxed text-ink/75">
+                <span className="font-bold text-ink">No room at this pace in {day.city}:</span>{' '}
+                {formatSightList(leftoverSights.map((s) => s.name))}. Every day here is already full, so
+                these are left off rather than squeezed in.
+              </p>
+            ) : null}
+            {leftoverMeals.length > 0 ? (
+              <p className="mt-3 rounded-[14px] border border-ink/10 bg-paper px-4 py-3 text-[0.8rem] leading-relaxed text-ink/75">
+                <span className="font-bold text-ink">More places to eat than meals in {day.city}:</span>{' '}
+                {formatSightList(leftoverMeals.map((s) => s.name))}. Every meal here is already taken by
+                another pick of yours; swap one in if you prefer it.
+              </p>
+            ) : null}
           </div>
         </div>
 

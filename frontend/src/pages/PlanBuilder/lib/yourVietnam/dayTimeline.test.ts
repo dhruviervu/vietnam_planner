@@ -421,6 +421,7 @@ describe('included companions', () => {
       sights: [mausoleum, stilt, pagoda, museum],
       breaks: [],
       dayStart: '09:00',
+      autoLunch: true,
       durationOverrides: {
         'ho-chi-minh-mausoleum': 1.5,
         'hcm-stilt-house': 1.5,

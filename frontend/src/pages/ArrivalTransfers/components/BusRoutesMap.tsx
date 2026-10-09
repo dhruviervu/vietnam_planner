@@ -142,49 +142,54 @@ export function BusRoutesMap({ lines, activeId, onSelect, extras = [] }: Props) 
         </MapContainer>
       </div>
 
-      <div className="border-t border-ink/8 px-4 py-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={() => onSelect(null)}
-            className={`rounded-full px-3 py-1 text-[0.68rem] font-bold ring-1 ${
-              !activeId ? 'bg-ink text-paper ring-ink' : 'bg-paper text-ink/70 ring-ink/12'
-            }`}
-          >
-            All routes
-          </button>
-          {lines.map((line) => (
+      {lines.length > 0 ? (
+        <div className="border-t border-ink/8 px-4 py-3">
+          <div className="flex flex-wrap items-center gap-2">
             <button
-              key={line.id}
               type="button"
-              onClick={() => onSelect(line.id === activeId ? null : line.id)}
-              className={`rounded-full px-2.5 py-1 text-[0.68rem] font-bold ring-1 ${
-                activeId === line.id ? 'bg-paper ring-ink/25 text-ink' : 'ring-ink/10 text-ink/70'
+              onClick={() => onSelect(null)}
+              className={`rounded-full px-3 py-1 text-[0.68rem] font-bold ring-1 ${
+                !activeId ? 'bg-ink text-paper ring-ink' : 'bg-paper text-ink/70 ring-ink/12'
               }`}
             >
-              <span
-                className="mr-1.5 inline-block h-2 w-2 rounded-full"
-                style={{ background: line.color }}
-              />
-              {line.number}
-              <span className="ml-1 font-semibold text-ink/45">
-                · {line.durationMin[0]}–{line.durationMin[1]} min
-              </span>
+              All routes
             </button>
-          ))}
+            {lines.map((line) => (
+              <button
+                key={line.id}
+                type="button"
+                onClick={() => onSelect(line.id === activeId ? null : line.id)}
+                className={`rounded-full px-2.5 py-1 text-[0.68rem] font-bold ring-1 ${
+                  activeId === line.id ? 'bg-paper ring-ink/25 text-ink' : 'ring-ink/10 text-ink/70'
+                }`}
+              >
+                <span
+                  className="mr-1.5 inline-block h-2 w-2 rounded-full"
+                  style={{ background: line.color }}
+                />
+                {line.number}
+                <span className="ml-1 font-semibold text-ink/45">
+                  · {line.durationMin[0]}–{line.durationMin[1]} min
+                </span>
+              </button>
+            ))}
+          </div>
+          {active ? (
+            <p className="mt-3 text-[0.82rem] leading-relaxed text-ink/75">
+              <span className="font-semibold text-ink">{active.name}.</span> {active.pickupAtAirport}{' '}
+              Ends at {active.terminusIn}. {active.fareUsd} · {active.hours}.
+            </p>
+          ) : (
+            <p className="mt-3 text-[0.82rem] leading-relaxed text-ink/70">
+              Every coloured line is a real way off this airport. Tap a number to isolate it.
+            </p>
+          )}
         </div>
-        {active ? (
-          <p className="mt-3 text-[0.82rem] leading-relaxed text-ink/75">
-            <span className="font-semibold text-ink">{active.name}.</span> {active.pickupAtAirport}{' '}
-            Ends at {active.terminusIn}. {active.fareUsd} · {active.hours}.
-          </p>
-        ) : (
-          <p className="mt-3 text-[0.82rem] leading-relaxed text-ink/70">
-            Every coloured line is a real way off this airport. Tap a number to isolate it. The dashed
-            line, if shown, is the road to the neighbourhood you picked — not a bus.
-          </p>
-        )}
-      </div>
+      ) : extras[0] ? (
+        <div className="border-t border-ink/8 px-4 py-3">
+          <p className="text-[0.82rem] leading-relaxed text-ink/70">{extras[0].label}</p>
+        </div>
+      ) : null}
     </div>
   )
 }

@@ -20,7 +20,6 @@ import {
   type CityActivity,
 } from '../data/activities'
 import { groupIdForSourceId } from '../lib/yourVietnam/sightTiming'
-import { PopularCitiesStrip } from '../components/PopularCitiesStrip'
 import { cityAnchorId, activitiesCityPath, activitiesTopPath } from '../services/citySlug'
 
 const CATALOG_SCROLL_ID = 'activities-by-city'
@@ -302,12 +301,6 @@ export function ThingsToDoByCity() {
                 </a>
               </ActivityRowScroller>
             </DiscoverySection>
-          )}
-          {!isFiltering && (
-            <PopularCitiesStrip
-              availableCities={[...new Set(catalog.map((a) => a.cityName))]}
-              hrefForCity={activitiesCityPath}
-            />
           )}
 
           <DiscoverySection

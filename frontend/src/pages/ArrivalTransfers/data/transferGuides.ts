@@ -222,7 +222,7 @@ const HAN: AirportGuide = {
       goodFor: 'Solo, light bags, daytime.',
     },
   ],
-  buses: BUS_NETWORK.HAN,
+  buses: BUS_NETWORK.HAN ?? [],
   rentals: [
     {
       id: 'han-hertz',
@@ -358,7 +358,7 @@ const SGN: AirportGuide = {
       goodFor: 'No data, short hop, you can see the meter.',
     },
   ],
-  buses: BUS_NETWORK.SGN,
+  buses: BUS_NETWORK.SGN ?? [],
   rentals: [
     {
       id: 'sgn-hertz',
@@ -454,7 +454,7 @@ const DAD: AirportGuide = {
       goodFor: 'No SIM, short city hop.',
     },
   ],
-  buses: BUS_NETWORK.DAD,
+  buses: BUS_NETWORK.DAD ?? [],
   rentals: [
     {
       id: 'dad-hertz',
@@ -535,7 +535,7 @@ const PQC: AirportGuide = {
       goodFor: 'No data, named resort.',
     },
   ],
-  buses: BUS_NETWORK.PQC,
+  buses: BUS_NETWORK.PQC ?? [],
   rentals: [
     {
       id: 'pqc-local',
@@ -604,7 +604,7 @@ const CXR: AirportGuide = {
       goodFor: 'No app, one hotel on the beach.',
     },
   ],
-  buses: BUS_NETWORK.CXR,
+  buses: BUS_NETWORK.CXR ?? [],
   rentals: [
     {
       id: 'cxr-driver',
@@ -622,7 +622,7 @@ const CXR: AirportGuide = {
   ],
 }
 
-export const AIRPORT_GUIDES: Record<AirportId, AirportGuide> = {
+export const AIRPORT_GUIDES: Partial<Record<AirportId, AirportGuide>> = {
   HAN,
   SGN,
   DAD,
@@ -631,7 +631,8 @@ export const AIRPORT_GUIDES: Record<AirportId, AirportGuide> = {
 }
 
 export function providersForMode(airportId: AirportId, modeId: TransportModeId): GuideProvider[] {
-  const g = AIRPORT_GUIDES[airportId]
+  const g = AIRPORT_GUIDES[airportId] ?? AIRPORT_GUIDES.HAN
+  if (!g) return []
   if (modeId === 'rental-driver') return g.rentals
   return g.providers.filter((p) => p.modeId === modeId)
 }

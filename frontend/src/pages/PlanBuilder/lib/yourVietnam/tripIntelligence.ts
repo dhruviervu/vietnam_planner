@@ -234,7 +234,7 @@ export function occupancyConflicts(
   if (family === 'sit-down-lunch') {
     return (
       occupied.has('cooking') ||
-      occupied.has('food-tour') ||
+      (occupied.has('food-tour') && !occupied.has('food-tour-evening')) ||
       occupied.has('cafe-afternoon')
     )
   }
@@ -854,13 +854,31 @@ export function suggestMissingCoreCities(
     'sapa',
     'da-nang',
   ]
-  let missing = priority.filter((id) => !visited.has(id) && CORE_PLACE_IDS.includes(id))
+  // Only classics on the part of the country the trip already covers.
+  const bands = new Set(visitedPlaceIds.map((id) => CORE_BAND[id]).filter(Boolean))
+  let missing = priority.filter(
+    (id) => !visited.has(id) && CORE_PLACE_IDS.includes(id) && bands.has(CORE_BAND[id]),
+  )
   if (visited.has('hoi-an')) missing = missing.filter((id) => id !== 'da-nang')
-  if (visited.has('da-nang') && visited.has('hoi-an')) {
-    missing = missing.filter((id) => id !== 'da-nang')
-  }
-  const cap = daysCount <= 5 ? 2 : daysCount <= 7 ? 3 : 4
+  if (daysCount <= 3) return []
+  const cap = daysCount <= 7 ? 1 : 2
   return missing.slice(0, cap)
+}
+
+const CORE_BAND: Partial<Record<PlaceId, 'north' | 'central' | 'south'>> = {
+  hanoi: 'north',
+  sapa: 'north',
+  'ha-long': 'north',
+  'ninh-binh': 'north',
+  'ha-giang': 'north',
+  hue: 'central',
+  'da-nang': 'central',
+  'hoi-an': 'central',
+  'phong-nha': 'central',
+  hcmc: 'south',
+  mekong: 'south',
+  'can-tho': 'south',
+  'phu-quoc': 'south',
 }
 
 export function applyUserNightOverrides(
@@ -969,7 +987,7 @@ export function buildTripLevelIssues(opts: {
       id,
       severity: 'info',
       scope: 'trip',
-      title: `${meta.label} is a core stop`,
+      title: `Worth a thought: ${meta.label}`,
       detail: meta.line,
     })
   }

@@ -8,13 +8,35 @@ import {
 } from './yourVietnam/sightPlanning'
 import { orderIdsBySightIntelligence } from './yourVietnam/sightOrder'
 import { planCityStay } from './yourVietnam/dayAllocation'
+import { SHOPPING_ITEMS } from '../data/shopping'
 import {
+  SIGHT_ALIASES,
+  SIGHT_COMPLEXES,
   canonicalSightId,
   complexFor,
   walkClusterId,
 } from './yourVietnam/sightIntelligence'
 
 describe('sight intelligence for itinerary sorting', () => {
+  it('points every alias and complex at a real catalog id', () => {
+    const known = new Set([
+      ...EXPERIENCES.map((e) => e.id),
+      ...CITY_ACTIVITIES.map((a) => a.id),
+      ...SHOPPING_ITEMS.map((s) => s.id),
+    ])
+    const broken = [
+      ...Object.entries(SIGHT_ALIASES)
+        .filter(([, to]) => !known.has(to))
+        .map(([from, to]) => `alias ${from} -> ${to}`),
+      ...SIGHT_COMPLEXES.flatMap((cx) =>
+        [cx.parentId, ...cx.members.map((m) => m.id)]
+          .filter((id) => !known.has(id))
+          .map((id) => `complex ${cx.id} -> ${id}`),
+      ),
+    ]
+    expect(broken).toEqual([])
+  })
+
   it('gives every catalog sight a what / when / note', () => {
     const missing: string[] = []
     for (const e of EXPERIENCES) {
@@ -104,8 +126,8 @@ describe('sight intelligence for itinerary sorting', () => {
   })
 
   it('resolves Dong Van duplicate cards onto the same Ha Giang sight', () => {
-    expect(canonicalSightId('ma-pi-leng-dong-van')).toBe('ma-pi-leng')
-    expect(complexFor('ma-pi-leng-dong-van')?.id).toBe(complexFor('ma-pi-leng')?.id)
+    expect(canonicalSightId('ma-pi-leng-dong-van')).toBe('ma-pi-leng-pass')
+    expect(complexFor('ma-pi-leng-dong-van')?.id).toBe(complexFor('ma-pi-leng-pass')?.id)
   })
 
   it('does not glue Cat Cat onto the Muong Hoa trek, and overlays Ta Van on the trek clock', () => {

@@ -20,7 +20,7 @@ export function ExplorePage() {
         </p>
         <div className="flex flex-wrap justify-center gap-3">
           <Link
-            to="/plan/builder/when-to-go"
+            to="/plan/builder/experiences"
             state={{ itineraryPipeline: true }}
             onClick={() => enterItineraryPipeline()}
             className="btn-solid"

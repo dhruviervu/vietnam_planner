@@ -16,7 +16,7 @@ export type CityPick = {
 const L = PROVIDER_LINKS
 const P = MAP_PLACES
 
-export const CITY_HUB: Record<AirportId, { city: string; hub: string; distance: string }> = {
+export const CITY_HUB: Partial<Record<AirportId, { city: string; hub: string; distance: string }>> = {
   HAN: { city: 'Hanoi', hub: 'Old Quarter', distance: '~28–30 km · 45–60 min' },
   SGN: { city: 'Ho Chi Minh City', hub: 'District 1', distance: '~7–8 km · 30–45 min' },
   DAD: { city: 'Da Nang', hub: 'city centre', distance: '~3–5 km · 10–15 min' },
@@ -28,7 +28,7 @@ const taxi = (name: string, tag: string, fare: string, time: string, why: string
   name, tag, fare, time, why, from, to, href,
 })
 
-export const CITY_PICKS: Record<AirportId, Partial<Record<TransportModeId, CityPick[]>>> = {
+export const CITY_PICKS: Partial<Record<AirportId, Partial<Record<TransportModeId, CityPick[]>>>> = {
   HAN: {
     'car-taxi': [
       taxi('Official taxi rank', 'Best without an app', '₫250,000 – ₫400,000', '45–60 min', 'Mai Linh / posted rank outside arrivals. Skip lobby touts.', P.han, P.oldQuarter, L.maiLinh),

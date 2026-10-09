@@ -249,7 +249,7 @@ export function BusModeGuide() {
             </div>
             <p className="mt-2 text-[0.88rem] leading-relaxed text-ink/70">
               Da Nang Airport → Hoi An, Cam Ranh → Nha Trang. Book on{' '}
-              <NamedLink href={L.klook.DAD}>Klook</NamedLink>, <NamedLink href={L.kkday}>KKday</NamedLink>, or{' '}
+              <NamedLink href={L.klook.DAD ?? L.kkday}>Klook</NamedLink>, <NamedLink href={L.kkday}>KKday</NamedLink>, or{' '}
               <NamedLink href={L.go12}>12Go.asia</NamedLink>.
             </p>
             <ol className="mt-5 space-y-4">

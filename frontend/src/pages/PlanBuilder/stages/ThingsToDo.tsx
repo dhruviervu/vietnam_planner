@@ -21,7 +21,6 @@ import {
   rankVietnamBestSights,
   type CityExperienceGroup,
 } from '../services/cityCatalog'
-import { PopularCitiesStrip } from '../components/PopularCitiesStrip'
 import { cityAnchorId, experiencesCityPath, experiencesTopPath } from '../services/citySlug'
 
 const CATALOG_SCROLL_ID = 'sights-by-city'
@@ -313,10 +312,6 @@ export function ThingsToDo() {
               </a>
             </SightRowScroller>
           </DiscoverySection>
-          <PopularCitiesStrip
-            availableCities={unfiltered.cities}
-            hrefForCity={experiencesCityPath}
-          />
           </>
         )}
 

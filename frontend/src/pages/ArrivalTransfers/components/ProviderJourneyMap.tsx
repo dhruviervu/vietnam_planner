@@ -66,11 +66,8 @@ export function ProviderJourneyMap({
   const active: BusLine | null = activeId
     ? (lines.find((l) => l.id === activeId) ?? null)
     : null
-  const showBuses = lines.length > 0
-  const heading =
-    modeId === 'public-bus' || modeId === 'shared-transfer'
-      ? 'Every route off this airport'
-      : 'Your road, and every bus that exists'
+  const showBuses = modeId === 'public-bus' && lines.length > 0
+  const heading = showBuses ? 'Every route off this airport' : 'Your road to the door'
 
   if (!showBuses && extras.length === 0) return null
 
@@ -85,15 +82,15 @@ export function ProviderJourneyMap({
           ? `These are the distinct corridors out of ${airport.name} — not one line drawn twice. ${
               focused
                 ? `${focused.number} is the one this page is about; the others are here so you do not board the wrong city.`
-                : 'None of these is this operator’s vehicle. They are here so you can see what a bus would actually do compared with your car.'
+                : 'Pick a line on the map to see its stops.'
             }`
-          : `${airport.city} does not run a Hanoi-style airport bus grid. The dashed line is the road to ${destination.label}.`}
+          : `The dashed line is the driving route between ${airport.code} and ${destination.label}.`}
       </p>
       <div className="mt-5">
         <BusRoutesMap
-          lines={lines}
+          lines={showBuses ? lines : []}
           activeId={showBuses ? activeId : null}
-          onSelect={setActiveId}
+          onSelect={showBuses ? setActiveId : () => undefined}
           extras={extras}
         />
       </div>

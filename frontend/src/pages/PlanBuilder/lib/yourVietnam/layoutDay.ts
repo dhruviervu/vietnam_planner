@@ -73,7 +73,7 @@ function arrangeMealsInTour(tour: ItineraryItem[]): ItineraryItem[] {
 export function sightItemFromUnscheduled(row: UnscheduledSight): ItineraryItem {
   return {
     id: `fill:${row.kind}:${row.sourceId}`,
-    kind: row.kind,
+    kind: row.kind === 'restaurant' ? 'meal' : row.kind,
     name: row.name,
     selectionState: 'selected',
     period: 'morning',

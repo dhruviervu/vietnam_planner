@@ -146,5 +146,5 @@ export function stepIndex(id: BuilderStepId) {
   return BUILDER_STEPS.findIndex((s) => s.id === normalized)
 }
 
-/** First step of the Build Itinerary pipeline */
-export const PIPELINE_START = stepPath('when-to-go')
+/** Build itinerary opens Attractions. When to go stays in the pipeline sidebar. */
+export const PIPELINE_START = stepPath('experiences')

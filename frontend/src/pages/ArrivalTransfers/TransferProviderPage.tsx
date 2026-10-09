@@ -88,7 +88,8 @@ export function TransferProviderPage() {
   const href = filledBookingUrl(provider.booking.url, route)
   const stores = provider.booking.kind === 'app' ? storesFor(provider.name) : null
   const others = siblingProviders(provider.id)
-  const line = busLineForProvider(provider.id, airport.id)
+  const line =
+    provider.modeId === 'public-bus' ? busLineForProvider(provider.id, airport.id) : null
   const mode = MODE_DEFINITIONS[provider.modeId]
   const hours = line?.hours || provider.hours
   const pickup = line?.pickupAtAirport || provider.pickup

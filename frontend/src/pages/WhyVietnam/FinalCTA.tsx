@@ -18,7 +18,7 @@ export function FinalCTA() {
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Link
-            to="/plan/builder/when-to-go"
+            to="/plan/builder/experiences"
             state={{ itineraryPipeline: true }}
             onClick={() => enterItineraryPipeline()}
             className="btn-solid"

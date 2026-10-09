@@ -43,6 +43,8 @@ function PackedItineraryBody({
   const itineraryDaySlots = useStore(store, (s) => s.itineraryDaySlots)
   const itineraryDaySlotOverrides = useStore(store, (s) => s.itineraryDaySlotOverrides)
   const itinerarySightOrder = useStore(store, (s) => s.itinerarySightOrder)
+  const userStartTime = useStore(store, (s) => s.userStartTime)
+  const itineraryStartOverrides = useStore(store, (s) => s.itineraryStartOverrides)
   const setExperienceSlot = useStore(store, (s) => s.setExperienceSlot)
 
   const [activeDay, setActiveDay] = useState(1)
@@ -83,8 +85,13 @@ function PackedItineraryBody({
         itineraryDaySlots,
         itineraryDaySlotOverrides,
         itinerarySightOrder,
+        dayStartTime: userStartTime,
+        itineraryStartOverrides,
+        pinsAreSuggestions: true,
       }),
     [
+      userStartTime,
+      itineraryStartOverrides,
       basics,
       experienceIds,
       activityIds,
@@ -171,6 +178,7 @@ function PackedItineraryBody({
                 itineraryActivityIds={itineraryActivityIds}
                 onMoveExperience={setExperienceSlot}
                 unscheduledSights={trip.unscheduled}
+                pinMoves={trip.pinMoves}
                 mapOpen={mapOpen}
               />
 

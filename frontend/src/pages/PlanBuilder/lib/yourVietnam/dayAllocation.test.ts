@@ -13,6 +13,21 @@ import { PIN_BY_SOURCE_ID } from './itineraryPinCatalog'
 import { tripIsoDate } from './openingHours'
 
 describe('planCityStay day count', () => {
+  it('packs same-town day walks and an evening leftover onto one calendar day', () => {
+    const ids = [
+      'hoi-an-ancient-town',
+      'fujian-assembly-hall',
+      'quan-cong-temple',
+      'hoi-an-lanterns',
+    ]
+    const { days } = planCityStay(ids, 'hoi-an', {
+      startDate: '2026-09-15',
+      firstDayNumber: 1,
+    })
+    expect(days.flat().sort()).toEqual([...ids].sort())
+    expect(days, JSON.stringify(days)).toHaveLength(1)
+  })
+
   it('gives a single Hanoi walk-up sight exactly one day', () => {
     const { days } = planCityStay(['temple-literature'], 'hanoi')
     expect(days).toEqual([['temple-literature']])
@@ -668,6 +683,53 @@ describe('planCityStay day count', () => {
 })
 
 describe('buildYourVietnam packed days', () => {
+  it('does not reopen a second Hoi An night from leftover tours when the four in-town sights still fit', () => {
+    const ids = [
+      'hoi-an-ancient-town',
+      'fujian-assembly-hall',
+      'quan-cong-temple',
+      'hoi-an-lanterns',
+    ]
+    const trip = buildYourVietnam({
+      days: 8,
+      startDate: '2026-09-15',
+      travelStyle: 'packed',
+      holidayKind: 'action',
+      holidayKindKnown: true,
+      paceKnown: true,
+      experienceIds: ids,
+      activityIds: [],
+      hotelIds: [],
+      chosenStayId: null,
+      restaurantIds: [],
+      shoppingIds: [],
+      transportChoices: {},
+      experienceMeta: {},
+      itineraryDaySlots: [
+        { id: 'hoa-1', placeId: 'hoi-an', blank: false },
+        { id: 'hoa-2', placeId: 'hoi-an', blank: false },
+      ],
+      itineraryDaySlotOverrides: {
+        'hoi-an-ancient-town': 'hoa-1',
+        'fujian-assembly-hall': 'hoa-1',
+        'quan-cong-temple': 'hoa-2',
+        'hoi-an-lanterns': 'hoa-2',
+      },
+      itinerarySightOrder: {
+        'hoa-1:tour': ['hoi-an-ancient-town', 'fujian-assembly-hall'],
+        'hoa-2:tour': ['quan-cong-temple', 'hoi-an-lanterns'],
+      },
+    })
+    const hoiAn = trip.days.filter((d) => d.city.toLowerCase().includes('hoi an'))
+    const sightIds = hoiAn.flatMap((d) =>
+      d.periods.flatMap((p) =>
+        p.items.filter((it) => it.kind === 'experience').map((it) => it.sourceId),
+      ),
+    )
+    expect(sightIds.filter(Boolean).sort()).toEqual([...ids].sort())
+    expect(hoiAn, JSON.stringify(hoiAn.map((d) => d.periods.flatMap((p) => p.items.map((it) => it.sourceId))))).toHaveLength(1)
+  })
+
   it('ignores leftover empty/blank Hanoi slots when the bag has one sight', () => {
     const trip = buildYourVietnam({
       days: 8,

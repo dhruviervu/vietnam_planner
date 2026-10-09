@@ -76,6 +76,7 @@ function FinalItineraryBody() {
   const itinerarySightOrder = useTripStore((s) => s.itinerarySightOrder)
   const itineraryUserPinnedIds = useTripStore((s) => s.itineraryUserPinnedIds)
   const itineraryDaySlotOverrides = useTripStore((s) => s.itineraryDaySlotOverrides)
+  const userStartTime = useTripStore((s) => s.userStartTime)
 
   const [activeDay, setActiveDay] = useState(1)
   const [highlightId, setHighlightId] = useState<string | null>(null)
@@ -118,10 +119,10 @@ function FinalItineraryBody() {
           : Math.max(1, itineraryDaySlots?.length || 1),
         startDate: basics.startDate,
         endDate: basics.endDate,
-        travelStyle: useBagSights ? basics.travelStyle : 'packed',
-        holidayKind: useBagSights ? basics.holidayKind : 'action',
-        holidayKindKnown: useBagSights ? basics.holidayKindKnown : true,
-        paceKnown: useBagSights ? basics.paceKnown : true,
+        travelStyle: 'packed',
+        holidayKind: 'action',
+        holidayKindKnown: true,
+        paceKnown: true,
         groupSize: basics.groupSize,
         budgetDailyUsd: basics.budgetDailyUsd,
         budgetAllocationKnown: basics.budgetAllocationKnown,
@@ -142,8 +143,10 @@ function FinalItineraryBody() {
         itineraryDaySlotOverrides,
         itinerarySightOrder,
         cityNightOverrides: useBagSights ? cityNightOverrides : {},
+        dayStartTime: userStartTime,
       })
   }, [
+      userStartTime,
       basics,
       experienceIds,
       activityIds,

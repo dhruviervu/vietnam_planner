@@ -131,7 +131,84 @@ export function orderTripCities(placeIds: PlaceId[]): PlaceId[] {
   if (unique.length <= 1) return unique
   const start = pickArrivalCity(unique)
   const rest = northToSouth(unique.filter((id) => id !== start))
-  return [start, ...rest]
+  if (!rest.every((id) => placeCoords(id)) || !placeCoords(start)) return [start, ...rest]
+  return [start, ...shortestRoute(start, rest)]
+}
+
+/** Doubling back north costs a little extra so ties keep the classic north → south flow. */
+const NORTHWARD_PENALTY = 0.3
+
+/** Ninh Binh sits on the north–south railway; the other northern stays reach the rest of the country through Hanoi. */
+function isNorthernSpoke(id: PlaceId): boolean {
+  return MACRO_REGION[id] === 'north' && id !== 'hanoi' && id !== 'ninh-binh'
+}
+
+function straightKm(from: PlaceId, to: PlaceId): number {
+  const a = placeCoords(from)
+  const b = placeCoords(to)
+  if (!a || !b) return 0
+  return haversineKm({ lat: a.lat, lng: a.lng }, { lat: b.lat, lng: b.lng })
+}
+
+function hopCost(from: PlaceId, to: PlaceId): number {
+  const a = placeCoords(from)!
+  const b = placeCoords(to)!
+  const leavesNorth = MACRO_REGION[from] === 'north' ? MACRO_REGION[to] !== 'north' : MACRO_REGION[to] === 'north'
+  const viaHanoi = leavesNorth && (isNorthernSpoke(from) || isNorthernSpoke(to))
+  const km = viaHanoi ? straightKm(from, 'hanoi') + straightKm('hanoi', to) : straightKm(from, to)
+  return km + Math.max(0, b.lat - a.lat) * 111 * NORTHWARD_PENALTY
+}
+
+function routeCost(start: PlaceId, path: PlaceId[]): number {
+  let cost = 0
+  let at = start
+  for (const id of path) {
+    cost += hopCost(at, id)
+    at = id
+  }
+  return cost
+}
+
+/**
+ * The least travel from the arrival city through every other stop, so the trip
+ * never zig-zags (Da Nang → Hue → Hoi An) or skips past a city it returns to.
+ */
+function shortestRoute(start: PlaceId, rest: PlaceId[]): PlaceId[] {
+  if (rest.length <= 7) {
+    let best = rest
+    let bestCost = routeCost(start, rest)
+    const permute = (prefix: PlaceId[], left: PlaceId[]) => {
+      if (!left.length) {
+        const cost = routeCost(start, prefix)
+        if (cost < bestCost - 1e-6) {
+          best = prefix
+          bestCost = cost
+        }
+        return
+      }
+      if (routeCost(start, prefix) >= bestCost) return
+      for (let i = 0; i < left.length; i++) {
+        permute([...prefix, left[i]], [...left.slice(0, i), ...left.slice(i + 1)])
+      }
+    }
+    permute([], rest)
+    return best
+  }
+  const path = [...rest]
+  let improved = true
+  while (improved) {
+    improved = false
+    for (let i = 0; i < path.length - 1; i++) {
+      for (let j = i + 1; j < path.length; j++) {
+        const trial = [...path.slice(0, i), ...path.slice(i, j + 1).reverse(), ...path.slice(j + 1)]
+        if (routeCost(start, trial) < routeCost(start, path) - 1e-6) {
+          path.splice(0, path.length, ...trial)
+          improved = true
+        }
+      }
+    }
+  }
+  return path
 }
 
 export type HubSpokeTransferHint = {

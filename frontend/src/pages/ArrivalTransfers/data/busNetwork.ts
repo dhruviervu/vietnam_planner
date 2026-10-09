@@ -840,7 +840,7 @@ const CXR: BusLine[] = [
   },
 ]
 
-export const BUS_NETWORK: Record<AirportId, BusLine[]> = {
+export const BUS_NETWORK: Partial<Record<AirportId, BusLine[]>> = {
   HAN,
   SGN,
   DAD,

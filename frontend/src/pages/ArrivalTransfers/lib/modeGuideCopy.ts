@@ -33,7 +33,10 @@ export function modeBrief({ modeId, airport, destination, ctx }: Args): {
   cons: string[]
   best: string
 } {
-  const g = AIRPORT_GUIDES[airport.id]
+  const g = AIRPORT_GUIDES[airport.id] ?? AIRPORT_GUIDES.HAN
+  if (!g) {
+    return { lead: '', pros: [], cons: [], best: '' }
+  }
   const dest = destination.label
   const late = ctx.arrivalTime === 'late' || ctx.lateArrival
   const heavy = ctx.luggageLevel === 'heavy'

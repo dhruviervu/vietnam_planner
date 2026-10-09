@@ -184,7 +184,7 @@ export const MODE_DEFINITIONS: Record<TransportModeId, ModeDef> = {
   },
 }
 
-export const ALL_MODE_IDS: TransportModeId[] = ['car-taxi', 'rental-driver', 'public-bus']
+export const ALL_MODE_IDS: TransportModeId[] = ['car-taxi', 'public-bus', 'rental-driver']
 
 /** Map legacy catalog IDs → canonical modes. Shared shuttles and ride-hailing are dropped from the board. */
 export function toCanonicalModeIds(legacyIds: string[]): TransportModeId[] {

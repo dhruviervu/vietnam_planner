@@ -32,7 +32,7 @@ export function ExperienceDetailHero({ experience, className }: Props) {
           <button type="button" onClick={() => setLightbox(index)} className="absolute inset-0">
             <ContentImage
               src={current}
-              fallbacks={[GLOBAL_IMAGE_FALLBACK]}
+              fallbacks={visible.filter((src) => src !== current).slice(0, 4)}
               alt={`${experience.name} photo ${index + 1}`}
               className="absolute inset-0 h-full w-full object-cover"
               onError={() => setBroken((prev) => ({ ...prev, [current]: true }))}
@@ -45,6 +45,9 @@ export function ExperienceDetailHero({ experience, className }: Props) {
             className="absolute inset-0 h-full w-full object-cover"
           />
         )}
+        <p className="pointer-events-none absolute bottom-8 left-3 z-[1] rounded-full bg-ink/45 px-2.5 py-1 text-[0.68rem] font-semibold tracking-wide text-paper/90 backdrop-blur-sm">
+          Photos from Google Maps
+        </p>
         {visible.length > 1 ? (
           <>
             <button

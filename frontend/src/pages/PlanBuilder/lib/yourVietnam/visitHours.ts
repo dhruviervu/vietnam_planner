@@ -1,6 +1,6 @@
 import { EXPERIENCES } from '../../data/experiences'
 import { CITY_ACTIVITIES } from '../../data/activities'
-import { isTimedLanding } from './sightPlanning'
+import { isTimedLanding, selectionKeyFor, selectionMemo } from './sightPlanning'
 import { canonicalSightId, complexFor, isAtomicExclusive } from './sightIntelligence'
 
 /** Parse a catalog visit-time label into hours. "1.5–2 hrs" → { min: 1.5, max: 2 }. */
@@ -118,7 +118,23 @@ export function isAccessShell(id: string, selectedIds: string[]): boolean {
   })
 }
 
+const VISIT_MEMO = new Map<string, number>()
+
 export function defaultVisitHours(id: string, selectedIds: string[] = [], catalogHours: number): number {
+  return selectionMemo(id, selectedIds, `visit:${catalogHours}`, () => memoVisitHours(id, selectedIds, catalogHours))
+}
+
+function memoVisitHours(id: string, selectedIds: string[], catalogHours: number): number {
+  const key = `${catalogHours}\u0001${selectionKeyFor(id, selectedIds)}`
+  const hit = VISIT_MEMO.get(key)
+  if (hit !== undefined) return hit
+  if (VISIT_MEMO.size > 50_000) VISIT_MEMO.clear()
+  const out = computeVisitHours(id, selectedIds, catalogHours)
+  VISIT_MEMO.set(key, out)
+  return out
+}
+
+function computeVisitHours(id: string, selectedIds: string[], catalogHours: number): number {
   if (isTimedLanding(id, selectedIds)) return snapVisitHours(20 / 60)
   if (isAccessShell(id, selectedIds)) return snapVisitHours(0.5)
   const label = catalogLabelForSourceId(id)

@@ -23,14 +23,16 @@
   },
   "temple-literature": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Temple_of_Literature.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/39/Hanoi_Temple_of_Literature_%28cropped%29.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Hanoi_Temple_of_Literature_%28cropped%29.jpg/1280px-Hanoi_Temple_of_Literature_%28cropped%29.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Tortoise_stelae%2C_Temple_of_Literature%2C_Hanoi%2C_15th-18th_centuries_%2838465702492%29.jpg/1280px-Tortoise_stelae%2C_Temple_of_Literature%2C_Hanoi%2C_15th-18th_centuries_%2838465702492%29.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Temple_of_Literature%2C_Hanoi_%2832381051575%29.jpg/1280px-Temple_of_Literature%2C_Hanoi_%2832381051575%29.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Entrance_to_the_Temple_of_Literature%2C_Hanoi_%282%29_%2824623112728%29.jpg/1280px-Entrance_to_the_Temple_of_Literature%2C_Hanoi_%282%29_%2824623112728%29.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Great_Drum_Temple_of_Literature%2C_Hanoi_%283%29_%2838495016651%29.jpg/1280px-Great_Drum_Temple_of_Literature%2C_Hanoi_%283%29_%2838495016651%29.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/20220605_Temple_of_Literature%2C_Hanoi_23.jpg/1280px-20220605_Temple_of_Literature%2C_Hanoi_23.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Temple_of_Literature.jpg?width=1280",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Temple_of_Literature_(cropped).jpg?width=1280",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_stelae%2C_Temple_of_Literature%2C_Hanoi%2C_15th-18th_centuries_(38465702492).jpg?width=1280",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Temple_of_Literature%2C_Hanoi_(32381051575).jpg?width=1280",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Entrance_to_the_Temple_of_Literature%2C_Hanoi_(2)_(24623112728).jpg?width=1280",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Great_Drum_Temple_of_Literature%2C_Hanoi_(3)_(38495016651).jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/20220605_Temple_of_Literature%2C_Hanoi_23.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/20220605_Temple_of_Literature%2C_Hanoi_69.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/20220605_Temple_of_Literature%2C_Hanoi_38.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/20220605_Temple_of_Literature%2C_Hanoi_17.jpg"
     ],
     "videos": [
       {
@@ -45,14 +47,16 @@
   },
   "old-quarter": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Old_Quarter_Street_Scene_-_Hanoi_-_Vietnam_%2848256301206%29.jpg/1280px-Old_Quarter_Street_Scene_-_Hanoi_-_Vietnam_%2848256301206%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Old_Quarter%2C_Hanoi_%2814%29_%2838464498712%29.jpg/1280px-Old_Quarter%2C_Hanoi_%2814%29_%2838464498712%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Old_Quarter%2C_Hanoi_%285678877743%29.jpg/1280px-Old_Quarter%2C_Hanoi_%285678877743%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Hanoi_old_quarter_shophouse.jpg/1280px-Hanoi_old_quarter_shophouse.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Old_Quarter.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Hang_Ma_Street.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Old_Quarter_Hanoi_street.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hanoi_shophouse_2.jpg/1280px-Hanoi_shophouse_2.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Old_Quarter_market%2C_Hanoi%2C_Vietnam%2C_20240204_1810_5887.jpg/1280px-Old_Quarter_market%2C_Hanoi%2C_Vietnam%2C_20240204_1810_5887.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Old_Quarter_market%2C_Hanoi%2C_20240123_1811_3411.jpg/1280px-Old_Quarter_market%2C_Hanoi%2C_20240123_1811_3411.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Old_Quarter_street_scene%2C_Hanoi_%284%29_%2837610074295%29.jpg/1280px-Old_Quarter_street_scene%2C_Hanoi_%284%29_%2837610074295%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Old_Quarter_street_scene%2C_Hanoi_%283%29_%2838464656402%29.jpg/1280px-Old_Quarter_street_scene%2C_Hanoi_%283%29_%2838464656402%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Hanoi_Old_Quarter%2C_9_March_2019-2.jpg/1280px-Hanoi_Old_Quarter%2C_9_March_2019-2.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Hanoi_Old_Quarter%2C_9_March_2019-1.jpg/1280px-Hanoi_Old_Quarter%2C_9_March_2019-1.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/2024-11-03_Hanoi%27s_Old_Quarter_7.jpg/1280px-2024-11-03_Hanoi%27s_Old_Quarter_7.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/2024-11-03_Hanoi%27s_Old_Quarter_3.jpg/1280px-2024-11-03_Hanoi%27s_Old_Quarter_3.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Old_Quarter_at_night%2C_Hanoi%2C_Vietnam_%287069202443%29.jpg/1280px-Old_Quarter_at_night%2C_Hanoi%2C_Vietnam_%287069202443%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Street_Scene_at_Night_-_Old_Quarter_-_Hanoi_-_Vietnam_%2848071309178%29.jpg/1280px-Street_Scene_at_Night_-_Old_Quarter_-_Hanoi_-_Vietnam_%2848071309178%29.jpg"
     ],
     "videos": [
       {
@@ -429,14 +433,16 @@
   },
   "train-street": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Hanoi_Train_Street_%2820231225b%29_%2853489076293%29.jpg/1280px-Hanoi_Train_Street_%2820231225b%29_%2853489076293%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Hanoi_train_street_-_NKS.jpg/1280px-Hanoi_train_street_-_NKS.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Hanoi_Train_Street_%2851955804948%29.jpg/1280px-Hanoi_Train_Street_%2851955804948%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Train_street%2C_Hanoi_4.jpg/1280px-Train_street%2C_Hanoi_4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Train_street_in_Hanoi.jpg/1280px-Train_street_in_Hanoi.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Train_Street%2C_Hanoi_%2850004299243%29.jpg/1280px-Train_Street%2C_Hanoi_%2850004299243%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Train_street%2C_Hanoi_%2850012106061%29.jpg/1280px-Train_street%2C_Hanoi_%2850012106061%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Train_Street%2C_Hanoi_%2849321859652%29.jpg/1280px-Train_Street%2C_Hanoi_%2849321859652%29.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Train_Street_(20231225b)_(53489076293).jpg?width=1280",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Train_Street_(20250208).jpg?width=1280",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Train_Street_(51955804948).jpg?width=1280",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Newone_-_Hanoi_train_street_with_coffee_01.jpg?width=1280",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Newone_-_Hanoi_train_street_with_coffee_02.jpg?width=1280",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Train_street_in_Hanoi.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Train_Street%2C_Hanoi_(50004299243).jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Train_street%2C_Hanoi_(50012106061).jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Train_Street%2C_Hanoi_(49321859652).jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Train_Street%2C_Hanoi.jpg"
     ],
     "videos": [
       {
@@ -681,14 +687,16 @@
   },
   "hoan-kiem-lake": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Hoan_Kiem_Lake.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Turtle_Tower.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Ho%C3%A0n_Ki%E1%BA%BFm_Lake.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03688.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03688.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03695.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03695.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03685.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03685.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03693.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03693.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03687.JPG/1280px-Hoan_Kiem_Lake_-_Hanoi%2C_Vietnam_-_DSC03687.JPG"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Turtle_Tower%2C_Hoan_Kiem_Lake_at_night%2C_Hanoi%2C_Vietnam_%288120851478%29.jpg/1280px-Turtle_Tower%2C_Hoan_Kiem_Lake_at_night%2C_Hanoi%2C_Vietnam_%288120851478%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Turtle_Tower%2C_Hoan_Kiem_Lake%2C_Hanoi%2C_Vietnam_%288120856071%29.jpg/1280px-Turtle_Tower%2C_Hoan_Kiem_Lake%2C_Hanoi%2C_Vietnam_%288120856071%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Hoan_Kiem_Lake1.jpg/1280px-Hoan_Kiem_Lake1.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Hoan_Kiem_Lake_at_night.jpg/1280px-Hoan_Kiem_Lake_at_night.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/DAI_BO_%28_HOANG_KIEM_LAKE%29_-_panoramio.jpg/1280px-DAI_BO_%28_HOANG_KIEM_LAKE%29_-_panoramio.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Thap_Rua_%28Tortoise_Tower%29_in_Hoan_Kiem_Lake_%289753371474%29.jpg/1280px-Thap_Rua_%28Tortoise_Tower%29_in_Hoan_Kiem_Lake_%289753371474%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Lascar_The_Huc_Bridge_-_Hoan_Kiem_Lake_%284550416275%29.jpg/1280px-Lascar_The_Huc_Bridge_-_Hoan_Kiem_Lake_%284550416275%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Thap_Rua_%28Tortoise_Tower%29_in_Hoan_Kiem_Lake_%289753259876%29.jpg/1280px-Thap_Rua_%28Tortoise_Tower%29_in_Hoan_Kiem_Lake_%289753259876%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Tortoise_Tower_in_Hoan_Kiem_Lake_%289753113362%29.jpg/1280px-Tortoise_Tower_in_Hoan_Kiem_Lake_%289753113362%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Thap_Rua_%28Tortoise_Tower%29_in_Hoan_Kiem_Lake_%289753062702%29.jpg/1280px-Thap_Rua_%28Tortoise_Tower%29_in_Hoan_Kiem_Lake_%289753062702%29.jpg"
     ],
     "videos": [
       {
@@ -699,14 +707,16 @@
   },
   "hoa-lo-prison": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Hoa_Lo_Prison_Maison_Centrale_Museum_%2839543736421%29.jpg/1280px-Hoa_Lo_Prison_Maison_Centrale_Museum_%2839543736421%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Hoa_Lo_Prison_%28Maison_Centrale%29%2C_Hanoi_%286923115824%29.jpg/1280px-Hoa_Lo_Prison_%28Maison_Centrale%29%2C_Hanoi_%286923115824%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Iron_Lock%2C_Hoa_Lo_Prison_%289754244295%29.jpg/1280px-Iron_Lock%2C_Hoa_Lo_Prison_%289754244295%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Bricks_Used_to_Build_Hoa_Lo_Prison_%289754246525%29.jpg/1280px-Bricks_Used_to_Build_Hoa_Lo_Prison_%289754246525%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Female_Prisoners_Cell%2C_Hoa_Lo_Prison_%289753956881%29.jpg/1280px-Female_Prisoners_Cell%2C_Hoa_Lo_Prison_%289753956881%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Hoa_Lo_Prison_%289754067582%29.jpg/1280px-Hoa_Lo_Prison_%289754067582%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Articles_Used_by_Communist_Prisoners_of_the_French%2C_Hoa_Lo_Prison_%289753874971%29.jpg/1280px-Articles_Used_by_Communist_Prisoners_of_the_French%2C_Hoa_Lo_Prison_%289753874971%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tiles_from_Hoa_Lo_Prison_%289754251845%29.jpg/1280px-Tiles_from_Hoa_Lo_Prison_%289754251845%29.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Hoa_Lo_Prison_Museum%2C_Hanoi_%285%29_%2826720612699%29.jpg/1280px-Hoa_Lo_Prison_Museum%2C_Hanoi_%285%29_%2826720612699%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Hoa_Lo_Prison_Museum%2C_Hanoi_%284%29_%2837781176004%29.jpg/1280px-Hoa_Lo_Prison_Museum%2C_Hanoi_%284%29_%2837781176004%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/French_era_guillotine%2C_Hoa_Lo_Prison_Museum%2C_Hanoi_%281%29_%2824623024918%29.jpg/1280px-French_era_guillotine%2C_Hoa_Lo_Prison_Museum%2C_Hanoi_%281%29_%2824623024918%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Flight_suit_of_John_McCain%2C_Hoa_Lo_Prison_Museum%2C_Hanoi_%2838439531806%29.jpg/1280px-Flight_suit_of_John_McCain%2C_Hoa_Lo_Prison_Museum%2C_Hanoi_%2838439531806%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Hoa_Lo_Prison_Museum%2C_Hanoi_%282%29_%2824624166618%29.jpg/1280px-Hoa_Lo_Prison_Museum%2C_Hanoi_%282%29_%2824624166618%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Hoa_Lo_Prison_Museum%2C_Hanoi_%283%29_%2838464330422%29.jpg/1280px-Hoa_Lo_Prison_Museum%2C_Hanoi_%283%29_%2838464330422%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/French_era_guillotine%2C_Hoa_Lo_Prison_Museum%2C_Hanoi_%283%29_%2838495166451%29.jpg/1280px-French_era_guillotine%2C_Hoa_Lo_Prison_Museum%2C_Hanoi_%283%29_%2838495166451%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/French_era_guillotine%2C_Hoa_Lo_Prison_Museum%2C_Hanoi_%282%29_%2837608437105%29.jpg/1280px-French_era_guillotine%2C_Hoa_Lo_Prison_Museum%2C_Hanoi_%282%29_%2837608437105%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Hanoi_Hilton_%28H%E1%BB%8Fa_L%C3%B2_Prison%29_%288120842531%29.jpg/1280px-Hanoi_Hilton_%28H%E1%BB%8Fa_L%C3%B2_Prison%29_%288120842531%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Iron_Lock%2C_Hoa_Lo_Prison_%289754244295%29.jpg/1280px-Iron_Lock%2C_Hoa_Lo_Prison_%289754244295%29.jpg"
     ],
     "videos": [
       {
@@ -721,14 +731,16 @@
   },
   "ho-chi-minh-mausoleum": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-02.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-03.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-03.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-01.jpg/1280px-Hanoi_Vietnam_Mausoleum-of-Ho-Chi-Minh-01.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/42/Vietnam_Hanoi_HoChiMinhMausoleum.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Ho_Chi_Minh_Mausoleum_in_Hanoi.jpg/1280px-Ho_Chi_Minh_Mausoleum_in_Hanoi.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Ho_Chi_Minh_Mausoleum_in_Hanoi3.JPG/1280px-Ho_Chi_Minh_Mausoleum_in_Hanoi3.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ho_Chi_Minh_Mausoleum%2C_Hanoi_%284016818067%29.jpg/1280px-Ho_Chi_Minh_Mausoleum%2C_Hanoi_%284016818067%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Ho_Chi_Minh_mausoleum%2C_July_2003%2C_Hanoi_7.jpg/1280px-Ho_Chi_Minh_mausoleum%2C_July_2003%2C_Hanoi_7.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Ho_Chi_Minh_Mausoleum_Hanoi_%2839513836992%29.jpg/1280px-Ho_Chi_Minh_Mausoleum_Hanoi_%2839513836992%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Ho_Chi_Minh_Mausoleum%2C_Hanoi_-_panoramio.jpg/1280px-Ho_Chi_Minh_Mausoleum%2C_Hanoi_-_panoramio.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Ho_Chi_Minh_Mausoleum%2C_10_March_2019.jpg/1280px-Ho_Chi_Minh_Mausoleum%2C_10_March_2019.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Ho_Chi_Minh_Mausoleum_Tomb_%2825672881648%29.jpg/1280px-Ho_Chi_Minh_Mausoleum_Tomb_%2825672881648%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Ho_Chi_Minh_Mausoleum_02.jpg/1280px-Ho_Chi_Minh_Mausoleum_02.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Guards_of_the_Ho_Chi_Minh_Mausoleum.jpg/1280px-Guards_of_the_Ho_Chi_Minh_Mausoleum.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Ho_Chi_Minh_Mausoleum_%289753455404%29.jpg/1280px-Ho_Chi_Minh_Mausoleum_%289753455404%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Ho_Chi_Minh_Mausoleum_%289753521633%29.jpg/1280px-Ho_Chi_Minh_Mausoleum_%289753521633%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Ho_Chi_Minh_Mausoleum_%289753240151%29.jpg/1280px-Ho_Chi_Minh_Mausoleum_%289753240151%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Ho_Chi_Minh_Mausoleum_%289753441945%29.jpg/1280px-Ho_Chi_Minh_Mausoleum_%289753441945%29.jpg"
     ],
     "videos": [
       {
@@ -765,14 +777,16 @@
   },
   "ethnology-museum": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Medicinal_plants_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC03411.JPG/1280px-Medicinal_plants_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC03411.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Walkway_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC03430.JPG/1280px-Walkway_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC03430.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Betel_nut_kit_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02556.JPG/1280px-Betel_nut_kit_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02556.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Ruler_to_measure_pigs_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02498.JPG/1280px-Ruler_to_measure_pigs_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02498.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Light_Spreads_Out_Forever_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02607.JPG/1280px-Light_Spreads_Out_Forever_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02607.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Vietnam_Museum_of_Ethnology_%2826286953736%29.jpg/1280px-Vietnam_Museum_of_Ethnology_%2826286953736%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tr%E1%BB%91ng_%C4%90%E1%BB%93ng_building%2C_Vietnam_Museum_of_Ethnology.jpg/1280px-Tr%E1%BB%91ng_%C4%90%E1%BB%93ng_building%2C_Vietnam_Museum_of_Ethnology.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Vietnam_Museum_of_Ethnology.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Tr%E1%BB%91ng_%C4%90%E1%BB%93ng_building%2C_Vietnam_Museum_of_Ethnology.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Dan_toc_hoc_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/f3/Dan_toc_hoc_1.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Medicinal_plants_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC03411.JPG/1280px-Medicinal_plants_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC03411.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Walkway_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC03430.JPG/1280px-Walkway_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC03430.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Betel_nut_kit_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02556.JPG/1280px-Betel_nut_kit_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02556.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Ruler_to_measure_pigs_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02498.JPG/1280px-Ruler_to_measure_pigs_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02498.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Light_Spreads_Out_Forever_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02607.JPG/1280px-Light_Spreads_Out_Forever_-_Vietnam_Museum_of_Ethnology_-_Hanoi%2C_Vietnam_-_DSC02607.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Vietnam_Museum_of_Ethnology_%2826286953736%29.jpg/1280px-Vietnam_Museum_of_Ethnology_%2826286953736%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Vietnam_Museum_of_Ethnology%2C_Hanoi%2C_Vietnam_%288120839881%29.jpg/1280px-Vietnam_Museum_of_Ethnology%2C_Hanoi%2C_Vietnam_%288120839881%29.jpg"
     ],
     "videos": [
       {
@@ -787,14 +801,16 @@
   },
   "thang-long-citadel": {
     "photos": [
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Imperial_Citadel_of_Thang_Long.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Th%C4%83ng_Long_Imperial_Citadel.jpg",
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_Tower_of_Hanoi.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Central_Sector_of_the_Imperial_Citadel_of_Thang_Long_-_Hanoi_%2826246667851%29.jpg/1280px-Central_Sector_of_the_Imperial_Citadel_of_Thang_Long_-_Hanoi_%2826246667851%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Central_Sector_of_the_Imperial_Citadel_of_Thang_Long_-_Hanoi.jpg/1280px-Central_Sector_of_the_Imperial_Citadel_of_Thang_Long_-_Hanoi.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Imperial_Citadel_of_Thang_Long_%2826910835332%29.jpg/1280px-Imperial_Citadel_of_Thang_Long_%2826910835332%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2844506676010%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2844506676010%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410691305%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410691305%29.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Main_Gate_-_Citadel_of_Hanoi.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/3c/Lichsuhanoimoi.png",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Central_Sector_of_the_Imperial_Citadel_of_Thang_Long_-_Hanoi_%2826246667851%29.jpg/1280px-Central_Sector_of_the_Imperial_Citadel_of_Thang_Long_-_Hanoi_%2826246667851%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Imperial_Citadel_of_Thang_Long_%2826910835332%29.jpg/1280px-Imperial_Citadel_of_Thang_Long_%2826910835332%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Central_Sector_of_the_Imperial_Citadel_of_Thang_Long_-_Hanoi.jpg/1280px-Central_Sector_of_the_Imperial_Citadel_of_Thang_Long_-_Hanoi.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2844506676010%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2844506676010%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410691305%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410691305%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410689605%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410689605%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410689965%29.jpg/1280px-Th%C4%83ng_Long_Imperial_Citadel%2C_Hanoi_%2845410689965%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Vietnamese_student_girls_in_Imperial_Citadel_of_Th%C4%83ng_Long.JPG/1280px-Vietnamese_student_girls_in_Imperial_Citadel_of_Th%C4%83ng_Long.JPG"
     ],
     "videos": [
       {
@@ -809,13 +825,15 @@
   },
   "dong-xuan-market": {
     "photos": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Dong_Xuan_market.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/3/3b/Dong_Xuan_market.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Dong_Xuan_market.jpg/1280px-Dong_Xuan_market.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Another_look_at_the_Dong_Xuan_Market_in_the_Hanoi_old_quarter_%2831454085665%29.jpg/1280px-Another_look_at_the_Dong_Xuan_Market_in_the_Hanoi_old_quarter_%2831454085665%29.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Dong_Xuan_Market_market_in_the_Hanoi_old_quarter_%2830645886763%29.jpg/1280px-Dong_Xuan_Market_market_in_the_Hanoi_old_quarter_%2830645886763%29.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Hanoi%2C_Dong_Xuan_market_%286225885496%29.jpg/1280px-Hanoi%2C_Dong_Xuan_market_%286225885496%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Dong_Xuan_Market_%2823144327176%29.jpg/1280px-Dong_Xuan_Market_%2823144327176%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Dong_Xuan_Market_%2822874703990%29.jpg/1280px-Dong_Xuan_Market_%2822874703990%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Dong_Xuan_Market_%2822776312697%29.jpg/1280px-Dong_Xuan_Market_%2822776312697%29.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Lascar_Traditional_street_market_and_Dong_Xuan_Market_by_night_%284550974092%29.jpg/1280px-Lascar_Traditional_street_market_and_Dong_Xuan_Market_by_night_%284550974092%29.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Dong_Xuan_Market_-_panoramio.jpg/1280px-Dong_Xuan_Market_-_panoramio.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Dong_Xuan_market.jpg/1280px-Dong_Xuan_market.jpg",
       "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Notice_by_the_City_of_Hanoi_regarding_land_requisition_to_widen_the_street_for_the_%C4%90%E1%BB%93ng_Xu%C3%A2n_Market_%2827_October_1923%29_01.png/1280px-Notice_by_the_City_of_Hanoi_regarding_land_requisition_to_widen_the_street_for_the_%C4%90%E1%BB%93ng_Xu%C3%A2n_Market_%2827_October_1923%29_01.png"
     ],
     "videos": [
@@ -832,13 +850,15 @@
   "hanoi-opera-house": {
     "photos": [
       "https://commons.wikimedia.org/wiki/Special:FilePath/Hanoi_Opera_House%2C_24_December_2016.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/5/52/Hanoi_Opera_House%2C_24_December_2016.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Hanoi_Opera_House%2C_24_December_2016.jpg/1280px-Hanoi_Opera_House%2C_24_December_2016.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Hanoi_Opera_House_-_detail.jpg/1280px-Hanoi_Opera_House_-_detail.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Hanoi_Opera_House_2018_b.jpg/1280px-Hanoi_Opera_House_2018_b.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hanoi_Opera_House%2C_24_December_2016.jpg/1280px-Hanoi_Opera_House%2C_24_December_2016.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Hanoi_opera_house._Made_as_a_copy_of_the_Opera_Garnier_in_Paris_%2822334215449%29.jpg/1280px-Hanoi_opera_house._Made_as_a_copy_of_the_Opera_Garnier_in_Paris_%2822334215449%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Harley_and_Broyer_-_Hanoi_Opera_House_1.jpg/1280px-Harley_and_Broyer_-_Hanoi_Opera_House_1.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Seventy_years_of_Vietnamese_independence_in_front_of_the_Hanoi_Opera_House.jpg/1280px-Seventy_years_of_Vietnamese_independence_in_front_of_the_Hanoi_Opera_House.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Hanoi_Opera_House%2C_1901-11_%281%29_%2837608233685%29.jpg/1280px-Hanoi_Opera_House%2C_1901-11_%281%29_%2837608233685%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Hanoi_-_Opera_House.jpg/1280px-Hanoi_-_Opera_House.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Hanoi_Opera_House%2C_1901-11_%283%29_%2837779750014%29.jpg/1280px-Hanoi_Opera_House%2C_1901-11_%283%29_%2837779750014%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Hanoi_Opera_House_14.JPG/1280px-Hanoi_Opera_House_14.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Hanoi_Opera_House_%289753397985%29.jpg/1280px-Hanoi_Opera_House_%289753397985%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Hanoi_Opera_House_%289753399554%29.jpg/1280px-Hanoi_Opera_House_%289753399554%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Hanoi_-_Opera_House_02.jpg/1280px-Hanoi_-_Opera_House_02.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Hanoi_-_Opera_House_01.jpg/1280px-Hanoi_-_Opera_House_01.jpg"
     ],
     "videos": [
       {
@@ -849,14 +869,16 @@
   },
   "quan-thanh-temple": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/4/40/Quan_Thanh_temple%2C_Hanoi%2C_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/8/80/The_gate_of_Quan_Thanh_temple%2C_Hanoi%2C_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2811%29_%2837610281305%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2811%29_%2837610281305%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2818%29_%2838464787162%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2818%29_%2838464787162%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2813%29_%2837610260885%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2813%29_%2837610260885%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2819%29_%2838496896871%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2819%29_%2838496896871%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2810%29_%2826721203029%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2810%29_%2826721203029%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%282%29_%2838496996631%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%282%29_%2838496996631%29.jpg"
+      "https://commons.wikimedia.org/wiki/Special:FilePath/%C4%90%E1%BB%81n_Qu%C3%A1n_Th%C3%A1nh.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%281%29_%2838441404416%29.jpg/3840px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%281%29_%2838441404416%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1159_3288.jpg/1280px-Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1159_3288.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1158_3287.jpg/1280px-Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1158_3287.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1152_3255.jpg/1280px-Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1152_3255.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1152_3259.jpg/1280px-Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1152_3259.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1158_3285.jpg/1280px-Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1158_3285.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Hanoi_-_Qu%C3%A1n_Th%C3%A1nh_temple_-_1.jpg/1280px-Hanoi_-_Qu%C3%A1n_Th%C3%A1nh_temple_-_1.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1201_3297.jpg/1280px-Qu%C3%A1n_Th%C3%A1nh_Temple%2C_Hanoi%2C_20240123_1201_3297.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2818%29_%2838464787162%29.jpg/1280px-Quan_Thanh_Taoist_Temple%2C_Hanoi%2C_11th_century_and_later_%2818%29_%2838464787162%29.jpg"
     ],
     "videos": [
       {
@@ -3186,11 +3208,16 @@
   },
   "st-joseph-cathedral": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/8/8d/St._Joseph%27s_Cathedral_-_Hanoi%2C_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/bf/Cathedral_of_St_Joseph%2C_Hanoi%2C_Vietnam_-_54569053218.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/c0/St._Joseph%27s_Cathedral_-_Old_Quarter_-_Hanoi_-_Vietnam_%2848071364032%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/9/9e/Cathedral_of_St_Joseph%2C_Hanoi%2C_Vietnam_-_54568827691.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/ec/Cathedral_of_St_Joseph%2C_Hanoi%2C_Vietnam_-_54569053103.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Baghdad_Cathedral_2016%2C_Shorja%2C_Iraq.jpg/3840px-Baghdad_Cathedral_2016%2C_Shorja%2C_Iraq.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Lavergne_%26_Cie_window_in_Cathedral_of_St_Joseph%2C_Hanoi%2C_Vietname_-_54569010804.jpg/1280px-Lavergne_%26_Cie_window_in_Cathedral_of_St_Joseph%2C_Hanoi%2C_Vietname_-_54569010804.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/St_Joseph_Cathedral.jpg/1280px-St_Joseph_Cathedral.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/St._Joseph_Cathedral_%289753936465%29.jpg/1280px-St._Joseph_Cathedral_%289753936465%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/St._Joseph_Cathedral_%289754012723%29.jpg/1280px-St._Joseph_Cathedral_%289754012723%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/St._Joseph_Cathedral_%289753928676%29.jpg/1280px-St._Joseph_Cathedral_%289753928676%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/St._Joseph_Cathedral_%289753738931%29.jpg/1280px-St._Joseph_Cathedral_%289753738931%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/St._Joseph_Cathedral_%289754010283%29.jpg/1280px-St._Joseph_Cathedral_%289754010283%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/St._Joseph_Cathedral_%289754002293%29.jpg/1280px-St._Joseph_Cathedral_%289754002293%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/Lascar_The_St._Joseph%27s_Cathedral_%284551037438%29.jpg/1280px-Lascar_The_St._Joseph%27s_Cathedral_%284551037438%29.jpg"
     ],
     "videos": [
       {
@@ -3205,11 +3232,16 @@
   },
   "hcm-stilt-house": {
     "photos": [
-      "https://live.staticflickr.com/5596/31083384310_64a91b11ef_b.jpg",
-      "https://live.staticflickr.com/305/31777718081_c1d1b637b1_b.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/f7/Humble_interior_of_Uncle_Ho%27s_wooden_house_%2831083384310%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/6e/Clinton_Presidential_Center%2C_Airport%2C_and_School_of_Public_Service%2C_aerial.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/1/10/ClintonPresidentialLibraryInterior.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/The_Prime_Minister%2C_Shri_Narendra_Modi_visiting_the_Nha_San_Bac_Ho%2C_President_Ho_Chi_Minh%27s_stilt_house%2C_at_the_Presidential_Palace%2C_in_Hanoi%2C_Vietnam_on_September_03%2C_2016.jpg/1280px-thumbnail.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Ho_Chi_Minh%27s_Stilt_House%2C_Hanoi_%282%29_%2824622695398%29.jpg/1280px-Ho_Chi_Minh%27s_Stilt_House%2C_Hanoi_%282%29_%2824622695398%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Ho_Chi_Minh%27s_Stilt_House%2C_Hanoi_%281%29_%2838439116266%29.jpg/1280px-Ho_Chi_Minh%27s_Stilt_House%2C_Hanoi_%281%29_%2838439116266%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Ho_Chi_Minh%27s_famous_%27house_on_stilts%27_%2830645978723%29.jpg/1280px-Ho_Chi_Minh%27s_famous_%27house_on_stilts%27_%2830645978723%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Wohnhaus_von_Ho_Chi_Minh_Hanoi_Vietnam.JPG/1280px-Wohnhaus_von_Ho_Chi_Minh_Hanoi_Vietnam.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Hanoi_%281345311126%29.jpg/1280px-Hanoi_%281345311126%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Hanoi_%281345310926%29.jpg/1280px-Hanoi_%281345310926%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Vn-hanoi-ho-chi-minh-haus-03-08-07.jpg/1280px-Vn-hanoi-ho-chi-minh-haus-03-08-07.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Vn-hanoi-ho-chi-minh-arbeitszimmer-03-08-07.jpg/1280px-Vn-hanoi-ho-chi-minh-arbeitszimmer-03-08-07.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Ho_Chi_Minh_Mausoleum_Vietnam_278.jpg/1280px-Ho_Chi_Minh_Mausoleum_Vietnam_278.jpg"
     ],
     "videos": [
       {
@@ -3224,11 +3256,16 @@
   },
   "ho-chi-minh-museum-hanoi": {
     "photos": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ho_Chi_Minh_museum%2C_Hanoi_2.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/d/d1/Ho_Chi_Minh_museum%2C_Hanoi_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/30/Bronze_statue_of_Ho_Chi_Minh.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/5/5c/Ho_Chi_Minh_Mausoleum.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/0/07/Ho_Chi_Minh_-_1946_Portrait.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/7/7f/Mausol%C3%A9e_de_H%C3%B4_Chi_Minh.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Ho_Chi_Minh_Museum_-_Hanoi%2C_Vietnam_-_DSC03496.JPG/1280px-Ho_Chi_Minh_Museum_-_Hanoi%2C_Vietnam_-_DSC03496.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Hanoi%2C_Vietnam%2C_Visitors_at_Ho_Chi_Minh_Museum.jpg/1280px-Hanoi%2C_Vietnam%2C_Visitors_at_Ho_Chi_Minh_Museum.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Hanoi_Vietnam_Ho-Chi-Minh-Museum-01.jpg/1280px-Hanoi_Vietnam_Ho-Chi-Minh-Museum-01.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Oct2025._Visit_to_the_Ho_Chi_Minh_Museum%2C_Hanoi%2C_Vietnam_02.jpg/1280px-Oct2025._Visit_to_the_Ho_Chi_Minh_Museum%2C_Hanoi%2C_Vietnam_02.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Women_Soldiers_at_Ho_Chi_Minh_Museum_-_Hanoi_-_Vietnam.JPG/1280px-Women_Soldiers_at_Ho_Chi_Minh_Museum_-_Hanoi_-_Vietnam.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/Oct2025._Visit_to_the_Ho_Chi_Minh_Museum%2C_Hanoi%2C_Vietnam_04.jpg/1280px-Oct2025._Visit_to_the_Ho_Chi_Minh_Museum%2C_Hanoi%2C_Vietnam_04.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hanoi_-_Ho_Chi_Minh_Museum_0002.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/A_monument_to_North-Vietnamese_soldiers_in_the_Ho_Chi_Minh_Museum_in_2016.jpg/1280px-A_monument_to_North-Vietnamese_soldiers_in_the_Ho_Chi_Minh_Museum_in_2016.jpg"
     ],
     "videos": [
       {
@@ -3243,11 +3280,16 @@
   },
   "one-pillar-pagoda": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/e/e8/One_Pillar_Pagoda%2C_Hanoi_%28April_1896%29_Firmin-Andr%C3%A9_Salles.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/5/5c/One_Pillar_Pagoda_0327.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/7/7e/One_Pillar_Pagoda_0324.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/6/67/Dingzhou_Liaodi_Pagoda_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/3b/Aerial_View%2C_Lotus_Pagoda%2C_Guangzhou_Lotus_Hill_20230225~3.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Hanoi%2C_Vietnam_%2812041825854%29.jpg/1280px-Hanoi%2C_Vietnam_%2812041825854%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/One_Pillar_Pagoda%2C_Hanoi%2C_Vietnam%2C_20240123_1122_3219.jpg/1280px-One_Pillar_Pagoda%2C_Hanoi%2C_Vietnam%2C_20240123_1122_3219.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/One_Pillar_Pagoda_in_Hanoi%2C_Vietnam_%2825708058514%29.jpg/1280px-One_Pillar_Pagoda_in_Hanoi%2C_Vietnam_%2825708058514%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Offerings_-_One_Pillar_Pagoda_-_Hanoi%2C_Vietnam_-_DSC03504.JPG/1280px-Offerings_-_One_Pillar_Pagoda_-_Hanoi%2C_Vietnam_-_DSC03504.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/One-Pillar_Pagoda%2C_Hanoi_%284434486835%29.jpg/1280px-One-Pillar_Pagoda%2C_Hanoi_%284434486835%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/One_Pillar_Pagoda%2C_Hanoi_%281344430777%29.jpg/1280px-One_Pillar_Pagoda%2C_Hanoi_%281344430777%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/One_Pillar_Pagoda_Hanoi.jpg/1280px-One_Pillar_Pagoda_Hanoi.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Hanoi_One_Pillar_Pagoda_12_%288400067774%29.jpg/1280px-Hanoi_One_Pillar_Pagoda_12_%288400067774%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/One_Pillar_Pagoda_%2840304040181%29.jpg/1280px-One_Pillar_Pagoda_%2840304040181%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/One_PIllar_Pagoda_%2835590656921%29.jpg/1280px-One_PIllar_Pagoda_%2835590656921%29.jpg"
     ],
     "videos": [
       {
@@ -3262,11 +3304,16 @@
   },
   "tran-quoc-pagoda": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/8/8b/Tran_Quoc_Pagoda%2C_Hanoi%2C_Vietnam.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/fe/Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2814%29_%2837610989165%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/67/Dingzhou_Liaodi_Pagoda_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/3b/Aerial_View%2C_Lotus_Pagoda%2C_Guangzhou_Lotus_Hill_20230225~3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/49/Fragrant_Hills-pagoda.JPG"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Ch%C3%B9a_Tr%E1%BA%A5n_Qu%E1%BB%91c%2C_H%C3%A0_N%E1%BB%99i.jpg/1280px-Ch%C3%B9a_Tr%E1%BA%A5n_Qu%E1%BB%91c%2C_H%C3%A0_N%E1%BB%99i.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Tran_Quoc_Pagoda%2C_Hanoi%2C_Vietnam%2C_20240123_1622_3390.jpg/1280px-Tran_Quoc_Pagoda%2C_Hanoi%2C_Vietnam%2C_20240123_1622_3390.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%283%29_%2837782568114%29.jpg/1280px-Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%283%29_%2837782568114%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2820%29_%2837610919995%29.jpg/1280px-Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2820%29_%2837610919995%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2813%29_%2824625350338%29.jpg/1280px-Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2813%29_%2824625350338%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2830%29_%2826721640419%29.jpg/1280px-Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2830%29_%2826721640419%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2833%29_%2824625169968%29.jpg/1280px-Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2833%29_%2824625169968%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%287%29_%2837782505284%29.jpg/1280px-Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%287%29_%2837782505284%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2827%29_%2824625224368%29.jpg/1280px-Tran_Quoc_Buddhist_Pagoda%2C_Hanoi%2C_6th_century_%2827%29_%2824625224368%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Tran_Quoc_Pagoda_%289753709204%29.jpg/1280px-Tran_Quoc_Pagoda_%289753709204%29.jpg"
     ],
     "videos": [
       {
@@ -3277,11 +3324,16 @@
   },
   "ngoc-son-temple": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/a/a5/Ngoc_Son_Temple%2C_Hanoi_%2815%29_%2837780892234%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/e9/Ngoc_Son_Temple%2C_Hanoi_%282%29_%2826720504629%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/39/Hanoi_Temple_of_Literature_%28cropped%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/9/96/NNU_R%C3%B9a_%C4%90%E1%BB%81nng%E1%BB%8DcS%C6%A1n.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/3c/NNU_%C4%90%C3%ACnhTr%E1%BA%A5nBa_%C4%90%E1%BB%81nNg%E1%BB%8DcS%C6%A1n.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/C%E1%BB%95ng_%C4%91%E1%BB%81n_Ng%E1%BB%8Dc_S%C6%A1n.jpg/1280px-C%E1%BB%95ng_%C4%91%E1%BB%81n_Ng%E1%BB%8Dc_S%C6%A1n.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Inside_Ngoc_Son_Temple_Hanoi_%2839543664161%29.jpg/1280px-Inside_Ngoc_Son_Temple_Hanoi_%2839543664161%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Ngoc_Son_Temple%2C_Hanoi_%2820%29_%2838440393116%29.jpg/1280px-Ngoc_Son_Temple%2C_Hanoi_%2820%29_%2838440393116%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Ngoc_Son_Temple%2C_Hanoi_%2818%29_%2838464064312%29.jpg/1280px-Ngoc_Son_Temple%2C_Hanoi_%2818%29_%2838464064312%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Ngoc_Son_Temple%2C_Hanoi_%2812%29_%2826720376229%29.jpg/1280px-Ngoc_Son_Temple%2C_Hanoi_%2812%29_%2826720376229%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Ngoc_Son_Temple%2C_Hanoi_%281%29_%2838440564626%29.jpg/1280px-Ngoc_Son_Temple%2C_Hanoi_%281%29_%2838440564626%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Orchids%2C_Ngoc_Son_Temple%2C_Hanoi_%2838441631016%29.jpg/1280px-Orchids%2C_Ngoc_Son_Temple%2C_Hanoi_%2838441631016%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Cat_sleeping_in_the_Ng%E1%BB%8Dc_S%C6%A1n_Temple_in_Hanoi%2C_20240204_1309_5747.jpg/1280px-Cat_sleeping_in_the_Ng%E1%BB%8Dc_S%C6%A1n_Temple_in_Hanoi%2C_20240204_1309_5747.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Ngoc_Son_Temple%2C_Hanoi_%2813%29_%2838464098682%29.jpg/1280px-Ngoc_Son_Temple%2C_Hanoi_%2813%29_%2838464098682%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Hanoi_-_Incense_burner%2C_Ng%E1%BB%8Dc_S%C6%A1n_Temple.jpg/1280px-Hanoi_-_Incense_burner%2C_Ng%E1%BB%8Dc_S%C6%A1n_Temple.jpg"
     ],
     "videos": [
       {
@@ -3296,11 +3348,16 @@
   },
   "vietnam-fine-arts-hanoi": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/d/d7/Chest_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05268.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/6/62/Embroidered_bra%2C_Dao_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05205.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/4/47/Silver_objects%2C_Kinh_ethnic_group%2C_Hanoi_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05217.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/8/8c/Servant%2C_wood_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC04886.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/5/58/Lacquered_box_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05246.JPG"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Vietnam_National_Museum_of_Fine_Arts%2C_Hanoi%2C_Vietnam_-_20131030-03.JPG/1280px-Vietnam_National_Museum_of_Fine_Arts%2C_Hanoi%2C_Vietnam_-_20131030-03.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Vietnam_National_Museum_of_Fine_Arts_01.JPG/1280px-Vietnam_National_Museum_of_Fine_Arts_01.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Vietnam_National_Museum_of_Fine_Arts%2C_Hanoi%2C_Vietnam_-_20131030-05.JPG/1280px-Vietnam_National_Museum_of_Fine_Arts%2C_Hanoi%2C_Vietnam_-_20131030-05.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Vietnam_National_Museum_of_Fine_Arts%2C_Hanoi%2C_Vietnam_-_20131030-01.JPG/1280px-Vietnam_National_Museum_of_Fine_Arts%2C_Hanoi%2C_Vietnam_-_20131030-01.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Vietnam_National_Museum_of_Fine_Arts%2C_Hanoi%2C_Vietnam_-_20131030-02.JPG/1280px-Vietnam_National_Museum_of_Fine_Arts%2C_Hanoi%2C_Vietnam_-_20131030-02.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Vietnam_National_Museum_of_Fine_Arts_panorama.jpg/1280px-Vietnam_National_Museum_of_Fine_Arts_panorama.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Servant%2C_wood_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC04882.JPG/1280px-Servant%2C_wood_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC04882.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Clothing_displays_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05151.JPG/1280px-Clothing_displays_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05151.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Unidentified_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05351.JPG/1280px-Unidentified_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05351.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Unidentified_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05353.JPG/1280px-Unidentified_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi%2C_Vietnam_-_DSC05353.JPG"
     ],
     "videos": [
       {
@@ -3315,11 +3372,16 @@
   },
   "vietnamese-womens-museum": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/6/61/Vietnamese_Women%27s_Museum.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/5/50/Vietnamese_Women%27s_Museum%2C_Gift_Box.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/8/86/Vietnamese_Women%27s_Museum%2C_Yao_Tien_Hemp.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/cb/Betel_Pot%2C_Vietnamese_Women%27s_Museum.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/45/Straw_hat%2C_Vietnamese_Women%27s_Museum.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Vietnamese_Women%27s_Museum%2C_Women%27s_Fashion_section.JPG/1280px-Vietnamese_Women%27s_Museum%2C_Women%27s_Fashion_section.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Vietnamese_Women%27s_Museum%2C_Women_in_History_section.JPG/1280px-Vietnamese_Women%27s_Museum%2C_Women_in_History_section.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Vietnamese_Women%27s_Museum_Building.JPG/1280px-Vietnamese_Women%27s_Museum_Building.JPG",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Vietnamese_Women%27s_Museum_in_2014_A_24.jpg/1280px-Vietnamese_Women%27s_Museum_in_2014_A_24.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Vietnamese_Women%27s_Museum_in_2014_C_01.jpg/1280px-Vietnamese_Women%27s_Museum_in_2014_C_01.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Vietnamese_Women%27s_Museum_in_2014_B_16.jpg/1280px-Vietnamese_Women%27s_Museum_in_2014_B_16.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Vietnamese_Women%27s_Museum_in_2014_C_03.jpg/1280px-Vietnamese_Women%27s_Museum_in_2014_C_03.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Vietnamese_Women%27s_Museum_in_2014_A_27.jpg/1280px-Vietnamese_Women%27s_Museum_in_2014_A_27.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Vietnamese_Women%27s_Museum_in_2014_C_11.jpg/1280px-Vietnamese_Women%27s_Museum_in_2014_C_11.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Vietnamese_Women%27s_Museum_in_2014_B_38.jpg/1280px-Vietnamese_Women%27s_Museum_in_2014_B_38.jpg"
     ],
     "videos": [
       {
@@ -3334,11 +3396,16 @@
   },
   "vietnam-military-history-museum": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/0/06/Vietnam_Military_History_Museum_in_2014_B_16.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/c5/Vietnam_Military_History_Museum_in_2014_C_37.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/ee/Vietnam_Military_History_Museum_in_2014_A_09.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/d/de/The_Museum_of_the_Armed_Forces_of_Vietnam_in_Hanoi.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/e6/Oct2025._Hanoi_1946_War_Statue%2C_Hanoi%2C_Vietnam_01.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%8Bch_s%E1%BB%AD_Qu%C3%A2n_s%E1%BB%B1_Vi%E1%BB%87t_Nam%2C_12-01-2025.jpg/1280px-B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%8Bch_s%E1%BB%AD_Qu%C3%A2n_s%E1%BB%B1_Vi%E1%BB%87t_Nam%2C_12-01-2025.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Vertical_Panorama_of_Destroyed_American_Planes_-_Vietnam_Military_History_Museum_-_Hanoi_-_Vietnam_%2848072142788%29.jpg/1280px-Vertical_Panorama_of_Destroyed_American_Planes_-_Vietnam_Military_History_Museum_-_Hanoi_-_Vietnam_%2848072142788%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Vietnam_Military_History_Museum_%284_-_2025%29.png/1280px-Vietnam_Military_History_Museum_%284_-_2025%29.png",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/T54_Tank_at_Vietnam_Military_History_Museum_Hanoi_%2827767261939%29.jpg/1280px-T54_Tank_at_Vietnam_Military_History_Museum_Hanoi_%2827767261939%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Vietnam_Military_History_Museum_Hanoi_%2824675782357%29.jpg/1280px-Vietnam_Military_History_Museum_Hanoi_%2824675782357%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Vietnam_Military_History_Museum%2C_Hanoi%2C_Vietnam_%285245794611%29.jpg/1280px-Vietnam_Military_History_Museum%2C_Hanoi%2C_Vietnam_%285245794611%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Vietnam_Military_History_Museum%2C_Hanoi%2C_Vietnam_%285245696791%29.jpg/1280px-Vietnam_Military_History_Museum%2C_Hanoi%2C_Vietnam_%285245696791%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Frieze_with_Ho_Chi_Minh_and_Soldiers_-_Vietnam_Military_History_Museum_-_Hanoi_-_Vietnam_%2848072172831%29.jpg/1280px-Frieze_with_Ho_Chi_Minh_and_Soldiers_-_Vietnam_Military_History_Museum_-_Hanoi_-_Vietnam_%2848072172831%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Courtyard_Collage_-_Vietnam_Military_History_Museum_-_Hanoi_-_Vietnam_%2848072184801%29.jpg/1280px-Courtyard_Collage_-_Vietnam_Military_History_Museum_-_Hanoi_-_Vietnam_%2848072184801%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Strategic_Air_Command_-_Detail_of_Downed_American_Plane_-_Vietnam_Military_History_Museum_-_Hanoi_-_Vietnam_%2848072165351%29.jpg/1280px-Strategic_Air_Command_-_Detail_of_Downed_American_Plane_-_Vietnam_Military_History_Museum_-_Hanoi_-_Vietnam_%2848072165351%29.jpg"
     ],
     "videos": [
       {
@@ -3353,11 +3420,16 @@
   },
   "perfume-pagoda": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/6/6d/Houng_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%2840%29_%2837802939494%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/7/78/Houng_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%2816%29_%2838519329091%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b7/Houng_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%2822%29_%2838519239981%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/5/5f/Houng_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%2844%29_%2826742758309%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/5/53/River_journey_to_the_Perfume_Pagoda%2C_Vietnam_%281%29_%2837804065794%29.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Thi%C3%AAn_Tr%C3%B9_Pagoda.jpg/1280px-Thi%C3%AAn_Tr%C3%B9_Pagoda.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Entrance_to_the_Huong_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%281%29_%2838462302466%29.jpg/1280px-Entrance_to_the_Huong_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%281%29_%2838462302466%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Entrance_to_the_Huong_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%282%29_%2837631477055%29.jpg/1280px-Entrance_to_the_Huong_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%282%29_%2837631477055%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Entrance_to_the_Huong_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%283%29_%2838462290716%29.jpg/1280px-Entrance_to_the_Huong_Tich_Cave%2C_site_of_the_Perfume_Pagoda%2C_northern_Vietnam_%283%29_%2838462290716%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Mountain_landscape_near_the_Perfume_Pagoda%2C_northern_Vietnam_%282%29_%2826744256899%29.jpg/1280px-Mountain_landscape_near_the_Perfume_Pagoda%2C_northern_Vietnam_%282%29_%2826744256899%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/River_journey_to_the_Perfume_Pagoda%2C_Vietnam_%2834%29_%2838463250316%29.jpg/1280px-River_journey_to_the_Perfume_Pagoda%2C_Vietnam_%2834%29_%2838463250316%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Boats_arriving_at_the_Perfume_Pagoda_site%2C_northern_Vietnam_%282%29_%2837631505695%29.jpg/1280px-Boats_arriving_at_the_Perfume_Pagoda_site%2C_northern_Vietnam_%282%29_%2837631505695%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/River_journey_to_the_Perfume_Pagoda%2C_Vietnam_%2826%29_%2838463359226%29.jpg/1280px-River_journey_to_the_Perfume_Pagoda%2C_Vietnam_%2826%29_%2838463359226%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/River_journey_to_the_Perfume_Pagoda%2C_Vietnam_%2838%29_%2826743485149%29.jpg/1280px-River_journey_to_the_Perfume_Pagoda%2C_Vietnam_%2838%29_%2826743485149%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/River_journey_to_the_Perfume_Pagoda%2C_Vietnam_%2828%29_%2826743588789%29.jpg/1280px-River_journey_to_the_Perfume_Pagoda%2C_Vietnam_%2828%29_%2826743588789%29.jpg"
     ],
     "videos": [
       {
@@ -3372,11 +3444,16 @@
   },
   "bat-trang-pottery": {
     "photos": [
-      "https://upload.wikimedia.org/wikipedia/commons/c/c9/Bat_Trang_pottery_and_ceramics_village_in_2016_24.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/6e/Bat_Trang_pottery_and_ceramics_village_in_2016_20.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/e0/Bat_Trang_pottery_and_ceramics_village_in_2016_10.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/23/Bat_Trang_pottery_and_ceramics_village_in_2016_07.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/29/Bat_Trang_pottery_and_ceramics_village_in_2016_21.jpg"
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Bat_Trang_pottery_and_ceramics_village_in_2016_15.jpg/1280px-Bat_Trang_pottery_and_ceramics_village_in_2016_15.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Bat_Trang_pottery_and_ceramics_village_in_2016_05.jpg/1280px-Bat_Trang_pottery_and_ceramics_village_in_2016_05.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Bat_Trang_pottery_and_ceramics_village_in_2016_09.jpg/1280px-Bat_Trang_pottery_and_ceramics_village_in_2016_09.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Bat_Trang_pottery_and_ceramics_village_in_2016_02.jpg/1280px-Bat_Trang_pottery_and_ceramics_village_in_2016_02.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Bat_Trang_pottery_and_ceramics_village_in_2016_16.jpg/1280px-Bat_Trang_pottery_and_ceramics_village_in_2016_16.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Bat_Trang_pottery_and_ceramics_village_in_2016_06.jpg/1280px-Bat_Trang_pottery_and_ceramics_village_in_2016_06.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Bat_Trang_pottery_and_ceramics_village_in_2016_01.jpg/1280px-Bat_Trang_pottery_and_ceramics_village_in_2016_01.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Bat_Trang_pottery_and_ceramics_village_in_2016_11.jpg/1280px-Bat_Trang_pottery_and_ceramics_village_in_2016_11.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Bat_Trang_pottery_and_ceramics_village_in_2016_08.jpg/1280px-Bat_Trang_pottery_and_ceramics_village_in_2016_08.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Bat_Trang_pottery_and_ceramics_village_in_2016_04.jpg/1280px-Bat_Trang_pottery_and_ceramics_village_in_2016_04.jpg"
     ],
     "videos": [
       {
@@ -8983,5 +9060,44 @@
         "title": "What's special about Lung Cam? 🍀 #travel #tourism #explore #lungcam #hagiang #phanuyquyen"
       }
     ]
+  },
+  "trang-tien-plaza": {
+    "photos": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Tr%C3%A0ng_Ti%E1%BB%81n_Plaza_-_2022-09-02_01.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Trang_Tien_Plaza.jpg/3840px-Trang_Tien_Plaza.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Tr%C3%A0ng_Ti%E1%BB%81n_Plaza_Vietnamese_numismatic_T%E1%BA%BFt_decorations%2C_Hanoi_%282018%29_01.jpg/1280px-Tr%C3%A0ng_Ti%E1%BB%81n_Plaza_Vietnamese_numismatic_T%E1%BA%BFt_decorations%2C_Hanoi_%282018%29_01.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Trang_Tien_Plaza_%2825397138837%29.jpg/1280px-Trang_Tien_Plaza_%2825397138837%29.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Tr%C3%A0ng_Ti%E1%BB%81n_Plaza_-_2022-09-02_02.jpg/1280px-Tr%C3%A0ng_Ti%E1%BB%81n_Plaza_-_2022-09-02_02.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Tr%C3%A0ng_Ti%E1%BB%81n_Plaza_-_2022-09-02_01.jpg/1280px-Tr%C3%A0ng_Ti%E1%BB%81n_Plaza_-_2022-09-02_01.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Anh_chup_Trang_Tien_Plaza.jpg/1280px-Anh_chup_Trang_Tien_Plaza.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Trang_Tien_Plaza.jpg/1280px-Trang_Tien_Plaza.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Festive_T%E1%BA%BFt_decorations%2C_Tr%C3%A0ng_Ti%E1%BB%81n_Plaza.jpg/1280px-Festive_T%E1%BA%BFt_decorations%2C_Tr%C3%A0ng_Ti%E1%BB%81n_Plaza.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Trang_Tien_Plaza.JPG/1280px-Trang_Tien_Plaza.JPG"
+    ],
+    "videos": []
+  },
+  "hanoi-weekend-night-market": {
+    "photos": [
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Hanoi_Night_Market_3.jpg/1280px-Hanoi_Night_Market_3.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Hanoi_Night_Market_1.jpg/1280px-Hanoi_Night_Market_1.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Hanoi_Night_Market_2.jpg/1280px-Hanoi_Night_Market_2.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Night_Market_on_Hang_Dao_%283694367833%29.jpg/1280px-Night_Market_on_Hang_Dao_%283694367833%29.jpg"
+    ],
+    "videos": []
+  },
+  "phu-tay-ho": {
+    "photos": [
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Phu_Tay_Ho_in_2015_02.jpg/1280px-Phu_Tay_Ho_in_2015_02.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Phu_Tay_Ho_in_2015_07.jpg/1280px-Phu_Tay_Ho_in_2015_07.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Phu_Tay_Ho_in_2015_01.jpg/1280px-Phu_Tay_Ho_in_2015_01.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Phu_Tay_Ho_in_2015_04.jpg/1280px-Phu_Tay_Ho_in_2015_04.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Phu_Tay_Ho_in_2015_05.jpg/1280px-Phu_Tay_Ho_in_2015_05.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Phu_Tay_Ho_in_2015_06.jpg/1280px-Phu_Tay_Ho_in_2015_06.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Phu_Tay_Ho_in_2015_03.jpg/1280px-Phu_Tay_Ho_in_2015_03.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Phu_Tay_Ho_in_2015_10.jpg/1280px-Phu_Tay_Ho_in_2015_10.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Phu_Tay_Ho_in_2015_09.jpg/1280px-Phu_Tay_Ho_in_2015_09.jpg",
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Ph%E1%BB%A7_T%C3%A2y_H%E1%BB%93.jpg/1280px-Ph%E1%BB%A7_T%C3%A2y_H%E1%BB%93.jpg"
+    ],
+    "videos": []
   }
 }

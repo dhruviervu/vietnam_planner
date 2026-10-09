@@ -46,10 +46,15 @@ const DAY_NAME: Record<string, number> = {
   saturday: 6,
 }
 
+const WEEKDAY_MEMO = new Map<string, number>()
+
 export function weekdayFromIso(isoDate: string): number {
   if (!isoDate) return new Date().getDay()
+  const hit = WEEKDAY_MEMO.get(isoDate)
+  if (hit !== undefined) return hit
   const d = new Date(`${isoDate}T12:00:00`)
   if (Number.isNaN(d.getTime())) return new Date().getDay()
+  WEEKDAY_MEMO.set(isoDate, d.getDay())
   return d.getDay()
 }
 
@@ -506,7 +511,7 @@ for (const row of DESTINATIONS) {
   DESTINATION_BY_ID.set(row.id, row)
   if (row.itineraryId) DESTINATION_BY_ID.set(row.itineraryId, row)
 }
-const HOURS_MEMO = new Map<string, PlaceHours>()
+const HOURS_MEMO = new Map<string, Map<string, PlaceHours>>()
 
 export function catalogHoursForSource(
   kind: 'experience' | 'activity' | string,
@@ -514,8 +519,10 @@ export function catalogHoursForSource(
   weekday: number,
   isoDate?: string,
 ): PlaceHours {
-  const key = `${kind}|${sourceId}|${weekday}|${isoDate ?? ''}`
-  const cached = HOURS_MEMO.get(key)
+  let bySource = HOURS_MEMO.get(sourceId)
+  if (!bySource) HOURS_MEMO.set(sourceId, (bySource = new Map()))
+  const key = `${kind}|${weekday}|${isoDate ?? ''}`
+  const cached = bySource.get(key)
   if (cached) return cached
 
   const google = hoursFromGoogleRow(sourceId, weekday, isoDate)
@@ -550,7 +557,7 @@ export function catalogHoursForSource(
     else if (taste?.openingHours) result = parseHoursLabel(taste.openingHours, weekday)
   }
 
-  HOURS_MEMO.set(key, result)
+  bySource.set(key, result)
   return result
 }
 

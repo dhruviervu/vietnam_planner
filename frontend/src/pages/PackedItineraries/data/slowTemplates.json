@@ -1,0 +1,1536 @@
+[
+  {
+    "id": "slow-north-water",
+    "kind": "country",
+    "title": "7 slow days · North Water",
+    "description": "Unhurried water: Hanoi lake-and-temple stops from 10:00, then Ha Long’s shore parks and pagodas, then Ninh Binh boats with empty hours between. Massage or a soak when the city lists one.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoan_Kiem_Lake.jpg",
+    "pace": "slow",
+    "days": 7,
+    "cities": [
+      "Hanoi",
+      "Ha Long",
+      "Ninh Binh"
+    ],
+    "previewNames": [
+      "Hoan Kiem Lake Walk",
+      "Temple of Literature",
+      "Trấn Quốc Pagoda",
+      "Bãi Cháy Beach",
+      "Lôi Âm Pagoda",
+      "Ha Long Market (Chợ Hạ Long 1)",
+      "Bãi Cháy Bridge",
+      "Tuần Châu Island & Marina"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "hoan-kiem-lake"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "temple-literature",
+          "tran-quoc-pagoda"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "bai-chay-beach",
+          "loi-am-pagoda",
+          "ha-long-market",
+          "bai-chay-bridge"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "tuan-chau-island"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "tam-coc-boats"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "trang-an-boats",
+          "bich-dong-pagoda"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "bai-dinh"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hoan-kiem-lake",
+      "temple-literature",
+      "tran-quoc-pagoda",
+      "bai-chay-beach",
+      "loi-am-pagoda",
+      "ha-long-market",
+      "bai-chay-bridge",
+      "tuan-chau-island",
+      "tam-coc-boats",
+      "trang-an-boats",
+      "bich-dong-pagoda",
+      "bai-dinh"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hoan-kiem-lake",
+      "temple-literature",
+      "tran-quoc-pagoda",
+      "bai-chay-beach",
+      "loi-am-pagoda",
+      "ha-long-market",
+      "bai-chay-bridge",
+      "tuan-chau-island",
+      "tam-coc-boats",
+      "trang-an-boats",
+      "bich-dong-pagoda",
+      "bai-dinh"
+    ]
+  },
+  {
+    "id": "slow-imperial-lanterns",
+    "kind": "country",
+    "title": "7 slow days · Citadel, then Lanterns",
+    "description": "Hue’s citadel at walking speed, Thiên Mụ and the river, one tomb, then Hoi An old town, basket boats, An Bang, and lanterns. Plenty of empty afternoon.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Vietnam%2C_Hue%2C_Imperial_City_of_Hue%2C_People_at_the_Meridian_Gate.jpg/1280px-Vietnam%2C_Hue%2C_Imperial_City_of_Hue%2C_People_at_the_Meridian_Gate.jpg",
+    "pace": "slow",
+    "days": 7,
+    "cities": [
+      "Hue",
+      "Hoi An"
+    ],
+    "previewNames": [
+      "Imperial City (Đại Nội)",
+      "Tomb of Khải Định (Ứng Lăng)",
+      "Tomb of Tự Đức (Khiêm Lăng)",
+      "Vọng Cảnh Hill",
+      "Tomb of Minh Mạng (Hiếu Lăng)",
+      "Đông Bà Market",
+      "Hoi An Ancient Town (Day)",
+      "Herbal foot bath & Vietnamese massage"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "hue-citadel"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "khai-dinh-tomb",
+          "tu-duc-tomb",
+          "vong-canh-hill"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "minh-mang-tomb",
+          "dong-ba-market"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "hoi-an-ancient-town",
+          "ha-herbal-massage"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "tra-que-village",
+          "cam-thanh-nipa-forest"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "thanh-ha-pottery",
+          "kim-bong-village",
+          "ha-lantern-make",
+          "ha-hoai-lantern-boat"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "an-bang"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hue-citadel",
+      "khai-dinh-tomb",
+      "tu-duc-tomb",
+      "vong-canh-hill",
+      "minh-mang-tomb",
+      "dong-ba-market",
+      "hoi-an-ancient-town",
+      "cam-thanh-basket-boats",
+      "tra-que-village",
+      "cam-thanh-nipa-forest",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "an-bang"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hue-citadel",
+      "khai-dinh-tomb",
+      "tu-duc-tomb",
+      "vong-canh-hill",
+      "minh-mang-tomb",
+      "dong-ba-market",
+      "hoi-an-ancient-town",
+      "ha-herbal-massage",
+      "cam-thanh-basket-boats",
+      "tra-que-village",
+      "cam-thanh-nipa-forest",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "ha-lantern-make",
+      "ha-hoai-lantern-boat",
+      "an-bang"
+    ]
+  },
+  {
+    "id": "slow-sand-and-lanterns",
+    "kind": "country",
+    "title": "7 slow days · Sand and Lanterns",
+    "description": "Hoi An and My Khe: ancient town, Cam Thanh, An Bang, lanterns, then Da Nang sand and Sơn Trà. Beach and boats first. Heritage as a side dish.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoi_An_Ancient_Town.jpg",
+    "pace": "slow",
+    "days": 7,
+    "cities": [
+      "Hoi An",
+      "Da Nang"
+    ],
+    "previewNames": [
+      "Hoi An Ancient Town (Day)",
+      "Cam Thanh Basket Boats",
+      "Tra Que Vegetable Village",
+      "Cẩm Thanh Nipa Palm Forest",
+      "Thanh Ha Pottery Village",
+      "Kim Bồng Woodworking Village",
+      "Foldable lantern making class",
+      "Cửa Đại Beach"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "hoi-an-ancient-town"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "tra-que-village",
+          "cam-thanh-nipa-forest"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "thanh-ha-pottery",
+          "kim-bong-village",
+          "ha-lantern-make"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cua-dai-beach",
+          "ha-basket-boat",
+          "ha-hoai-lantern-boat",
+          "ha-herbal-massage"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "da-nang-beach",
+          "dragon-bridge"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "marble-mountains",
+          "ban-co-peak"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "nam-son-pagoda",
+          "thousand-year-banyan",
+          "han-river-bridge"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hoi-an-ancient-town",
+      "cam-thanh-basket-boats",
+      "tra-que-village",
+      "cam-thanh-nipa-forest",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "cua-dai-beach",
+      "da-nang-beach",
+      "dragon-bridge",
+      "marble-mountains",
+      "ban-co-peak",
+      "nam-son-pagoda",
+      "thousand-year-banyan",
+      "han-river-bridge"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hoi-an-ancient-town",
+      "cam-thanh-basket-boats",
+      "tra-que-village",
+      "cam-thanh-nipa-forest",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "ha-lantern-make",
+      "cua-dai-beach",
+      "ha-basket-boat",
+      "ha-hoai-lantern-boat",
+      "ha-herbal-massage",
+      "da-nang-beach",
+      "dragon-bridge",
+      "marble-mountains",
+      "ban-co-peak",
+      "nam-son-pagoda",
+      "thousand-year-banyan",
+      "han-river-bridge"
+    ]
+  },
+  {
+    "id": "slow-two-coasts",
+    "kind": "country",
+    "title": "8 slow days · Two Coasts",
+    "description": "Nha Trang promenade, Po Nagar, one island outing, then Phu Quoc sand, Sao Beach, and Hòn Thơm. Unpack twice. Swim more than you tour.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Nha_Trang-Tran_Phu.JPG",
+    "pace": "slow",
+    "days": 8,
+    "cities": [
+      "Nha Trang",
+      "Phu Quoc"
+    ],
+    "previewNames": [
+      "Nha Trang Beach (Trần Phú Beach)",
+      "Po Nagar Cham Towers",
+      "Long Sơn Pagoda (Great White Buddha)",
+      "I-Resort Mud Bath",
+      "Tháp Bà Hot Springs & Mud Bath",
+      "Long Beach (Bãi Trường)",
+      "Kiss Bridge (Cầu Hôn)",
+      "Sao Beach (Bãi Sao)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "nha-trang-beach",
+          "po-nagar"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "long-son-pagoda",
+          "i-resort-mud-bath"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "thap-ba-hot-springs"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "long-beach-pq",
+          "kiss-bridge"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "sao-beach"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "starfish-beach",
+          "duong-dong-night-market"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "ganh-dau-beach",
+          "khem-beach"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "ong-lang-beach"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "nha-trang-beach",
+      "po-nagar",
+      "long-son-pagoda",
+      "i-resort-mud-bath",
+      "thap-ba-hot-springs",
+      "long-beach-pq",
+      "kiss-bridge",
+      "sao-beach",
+      "starfish-beach",
+      "duong-dong-night-market",
+      "ganh-dau-beach",
+      "khem-beach",
+      "ong-lang-beach"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "nha-trang-beach",
+      "po-nagar",
+      "long-son-pagoda",
+      "i-resort-mud-bath",
+      "thap-ba-hot-springs",
+      "long-beach-pq",
+      "kiss-bridge",
+      "sao-beach",
+      "starfish-beach",
+      "duong-dong-night-market",
+      "ganh-dau-beach",
+      "khem-beach",
+      "ong-lang-beach"
+    ]
+  },
+  {
+    "id": "slow-valley-and-boats",
+    "kind": "country",
+    "title": "7 slow days · Valley, then Boats",
+    "description": "Cat Cat and Muong Hoa with empty hours, Fansipan only if the cloud lifts, then Trang An, Tam Coc bikes, and Bái Đính. The valley is the point.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sa_Pa_rice_terraces.jpg",
+    "pace": "slow",
+    "days": 7,
+    "cities": [
+      "Sapa",
+      "Ninh Binh"
+    ],
+    "previewNames": [
+      "Sa Pa Stone Church",
+      "Mường Hoa Valley",
+      "Sa Pa Town Market",
+      "Tả Van Village",
+      "Red Dao herbal bath and spa",
+      "Hàm Rồng Mountain",
+      "Tam Coc Boat Ride",
+      "Trang An Boat Circuit"
+    ],
+    "dayPlans": [
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "sapa-stone-church"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "muong-hoa-valley",
+          "sapa-market"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "ta-van-village",
+          "sp-red-dao-bath"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "ham-rong-mountain"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "tam-coc-boats"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "trang-an-boats",
+          "bich-dong-pagoda"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "bai-dinh"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "sapa-stone-church",
+      "muong-hoa-valley",
+      "sapa-market",
+      "ta-van-village",
+      "ham-rong-mountain",
+      "tam-coc-boats",
+      "trang-an-boats",
+      "bich-dong-pagoda",
+      "bai-dinh"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "sapa-stone-church",
+      "muong-hoa-valley",
+      "sapa-market",
+      "ta-van-village",
+      "sp-red-dao-bath",
+      "ham-rong-mountain",
+      "tam-coc-boats",
+      "trang-an-boats",
+      "bich-dong-pagoda",
+      "bai-dinh"
+    ]
+  },
+  {
+    "id": "slow-mekong-island",
+    "kind": "country",
+    "title": "7 slow days · River Dawn, Island Week",
+    "description": "Cái Răng stays off the 10:00 clock. Ninh Kiều and a garden house, then Phu Quoc sand, Sao, Hòn Thơm, and a spa hour when it’s listed.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/C%C3%B4ng_vi%C3%AAn_B%E1%BA%BFn_Ninh_Ki%E1%BB%81u%2C_C%E1%BA%A7n_Th%C6%A1_%28hoa_h%C3%B2e%29%2C_ng%C3%A0y_23_th%C3%A1ng_5_n%C4%83m_2014_%2832%29.jpg",
+    "pace": "slow",
+    "days": 7,
+    "cities": [
+      "Can Tho",
+      "Phu Quoc"
+    ],
+    "previewNames": [
+      "Ninh Kiều Wharf (Bến Ninh Kiều)",
+      "Ông Temple (Chùa Ông – Quảng Đông Assembly Hall)",
+      "Bình Thủy Ancient House",
+      "Ba Láng Fruit Gardens",
+      "Ninh Kiều Pedestrian Bridge (Love Bridge)",
+      "Long Beach (Bãi Trường)",
+      "Kiss Bridge (Cầu Hôn)",
+      "Sao Beach (Bãi Sao)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Can Tho",
+        "placeId": "can-tho",
+        "sourceIds": [
+          "ninh-kieu-wharf",
+          "chua-ong-can-tho",
+          "binh-thuy-ancient-house"
+        ]
+      },
+      {
+        "city": "Can Tho",
+        "placeId": "can-tho",
+        "sourceIds": [
+          "ba-lang-gardens",
+          "ninh-kieu-love-bridge"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "long-beach-pq",
+          "kiss-bridge"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "sao-beach"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "starfish-beach",
+          "duong-dong-night-market"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "ganh-dau-beach",
+          "khem-beach"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "ong-lang-beach"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ninh-kieu-wharf",
+      "chua-ong-can-tho",
+      "binh-thuy-ancient-house",
+      "ba-lang-gardens",
+      "ninh-kieu-love-bridge",
+      "long-beach-pq",
+      "kiss-bridge",
+      "sao-beach",
+      "starfish-beach",
+      "duong-dong-night-market",
+      "ganh-dau-beach",
+      "khem-beach",
+      "ong-lang-beach"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "ninh-kieu-wharf",
+      "chua-ong-can-tho",
+      "binh-thuy-ancient-house",
+      "ba-lang-gardens",
+      "ninh-kieu-love-bridge",
+      "long-beach-pq",
+      "kiss-bridge",
+      "sao-beach",
+      "starfish-beach",
+      "duong-dong-night-market",
+      "ganh-dau-beach",
+      "khem-beach",
+      "ong-lang-beach"
+    ]
+  },
+  {
+    "id": "slow-city-hanoi-4",
+    "kind": "city",
+    "title": "4 slow days in Hanoi",
+    "description": "Hanoi without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoan_Kiem_Lake.jpg",
+    "pace": "slow",
+    "days": 4,
+    "cities": [
+      "Hanoi"
+    ],
+    "previewNames": [
+      "Hoan Kiem Lake Walk",
+      "Egg Coffee Café Crawl",
+      "Temple of Literature",
+      "Trấn Quốc Pagoda",
+      "St. Joseph’s Cathedral",
+      "Hanoi Train Street",
+      "West Lake & Tay Ho Circuit",
+      "One Pillar Pagoda"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "hoan-kiem-lake",
+          "egg-coffee"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "temple-literature",
+          "tran-quoc-pagoda"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "st-joseph-cathedral",
+          "train-street",
+          "west-lake"
+        ]
+      },
+      {
+        "city": "Hanoi",
+        "placeId": "hanoi",
+        "sourceIds": [
+          "one-pillar-pagoda",
+          "old-quarter"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hoan-kiem-lake",
+      "egg-coffee",
+      "temple-literature",
+      "tran-quoc-pagoda",
+      "st-joseph-cathedral",
+      "train-street",
+      "west-lake",
+      "one-pillar-pagoda",
+      "old-quarter"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hoan-kiem-lake",
+      "egg-coffee",
+      "temple-literature",
+      "tran-quoc-pagoda",
+      "st-joseph-cathedral",
+      "train-street",
+      "west-lake",
+      "one-pillar-pagoda",
+      "old-quarter"
+    ]
+  },
+  {
+    "id": "slow-city-ha-long-3",
+    "kind": "city",
+    "title": "3 slow days in Ha Long",
+    "description": "Ha Long without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/df/Bai_Chay_beach%2C_Ha_Long%2C_Vietnam%2C_20240129_0915_3958.jpg",
+    "pace": "slow",
+    "days": 3,
+    "cities": [
+      "Ha Long"
+    ],
+    "previewNames": [
+      "Bãi Cháy Beach",
+      "Ha Long Market (Chợ Hạ Long 1)",
+      "Long Tiên Pagoda",
+      "Tuần Châu Island & Marina",
+      "Bãi Cháy Bridge",
+      "Bài Thơ Mountain (Poem Mountain)",
+      "Quảng Ninh Museum & Library"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "bai-chay-beach",
+          "ha-long-market",
+          "long-tien-pagoda"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "tuan-chau-island",
+          "bai-chay-bridge"
+        ]
+      },
+      {
+        "city": "Ha Long",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "bai-tho-mountain",
+          "quang-ninh-museum"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "bai-chay-beach",
+      "ha-long-market",
+      "long-tien-pagoda",
+      "tuan-chau-island",
+      "bai-chay-bridge",
+      "bai-tho-mountain",
+      "quang-ninh-museum"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "bai-chay-beach",
+      "ha-long-market",
+      "long-tien-pagoda",
+      "tuan-chau-island",
+      "bai-chay-bridge",
+      "bai-tho-mountain",
+      "quang-ninh-museum"
+    ]
+  },
+  {
+    "id": "slow-city-ninh-binh-3",
+    "kind": "city",
+    "title": "3 slow days in Ninh Binh",
+    "description": "Ninh Binh without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Boat_in_Tam_Coc.jpg",
+    "pace": "slow",
+    "days": 3,
+    "cities": [
+      "Ninh Binh"
+    ],
+    "previewNames": [
+      "Tam Coc Boat Ride",
+      "Trang An Boat Circuit",
+      "Bích Động Pagoda",
+      "Bai Dinh Pagoda Complex"
+    ],
+    "dayPlans": [
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "tam-coc-boats"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "trang-an-boats",
+          "bich-dong-pagoda"
+        ]
+      },
+      {
+        "city": "Ninh Binh",
+        "placeId": "ninh-binh",
+        "sourceIds": [
+          "bai-dinh"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "tam-coc-boats",
+      "trang-an-boats",
+      "bich-dong-pagoda",
+      "bai-dinh"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "tam-coc-boats",
+      "trang-an-boats",
+      "bich-dong-pagoda",
+      "bai-dinh"
+    ]
+  },
+  {
+    "id": "slow-city-hue-4",
+    "kind": "city",
+    "title": "4 slow days in Hue",
+    "description": "Hue without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Vietnam%2C_Hue%2C_Imperial_City_of_Hue%2C_People_at_the_Meridian_Gate.jpg/1280px-Vietnam%2C_Hue%2C_Imperial_City_of_Hue%2C_People_at_the_Meridian_Gate.jpg",
+    "pace": "slow",
+    "days": 4,
+    "cities": [
+      "Hue"
+    ],
+    "previewNames": [
+      "Imperial City (Đại Nội)",
+      "Tomb of Khải Định (Ứng Lăng)",
+      "Tomb of Tự Đức (Khiêm Lăng)",
+      "Vọng Cảnh Hill",
+      "Tomb of Minh Mạng (Hiếu Lăng)",
+      "Đông Bà Market",
+      "An Định Palace (Cung An Định)",
+      "Royal áo dài photography tour at the Imperial City"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "hue-citadel"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "khai-dinh-tomb",
+          "tu-duc-tomb",
+          "vong-canh-hill"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "minh-mang-tomb",
+          "dong-ba-market"
+        ]
+      },
+      {
+        "city": "Hue",
+        "placeId": "hue",
+        "sourceIds": [
+          "an-dinh-palace",
+          "hue-ao-dai-photo"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hue-citadel",
+      "khai-dinh-tomb",
+      "tu-duc-tomb",
+      "vong-canh-hill",
+      "minh-mang-tomb",
+      "dong-ba-market",
+      "an-dinh-palace"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hue-citadel",
+      "khai-dinh-tomb",
+      "tu-duc-tomb",
+      "vong-canh-hill",
+      "minh-mang-tomb",
+      "dong-ba-market",
+      "an-dinh-palace",
+      "hue-ao-dai-photo"
+    ]
+  },
+  {
+    "id": "slow-city-hoi-an-4",
+    "kind": "city",
+    "title": "4 slow days in Hoi An",
+    "description": "Hoi An without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoi_An_Ancient_Town.jpg",
+    "pace": "slow",
+    "days": 4,
+    "cities": [
+      "Hoi An"
+    ],
+    "previewNames": [
+      "Hoi An Ancient Town (Day)",
+      "Hoài River night boat & lantern release",
+      "Cam Thanh Basket Boats",
+      "Tra Que Vegetable Village",
+      "Cẩm Thanh Nipa Palm Forest",
+      "Thanh Ha Pottery Village",
+      "Kim Bồng Woodworking Village",
+      "Foldable lantern making class"
+    ],
+    "dayPlans": [
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "hoi-an-ancient-town",
+          "ha-hoai-lantern-boat"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "cam-thanh-basket-boats",
+          "tra-que-village",
+          "cam-thanh-nipa-forest"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "thanh-ha-pottery",
+          "kim-bong-village",
+          "ha-lantern-make"
+        ]
+      },
+      {
+        "city": "Hoi An",
+        "placeId": "hoi-an",
+        "sourceIds": [
+          "an-bang"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "hoi-an-ancient-town",
+      "cam-thanh-basket-boats",
+      "tra-que-village",
+      "cam-thanh-nipa-forest",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "an-bang"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "hoi-an-ancient-town",
+      "ha-hoai-lantern-boat",
+      "cam-thanh-basket-boats",
+      "tra-que-village",
+      "cam-thanh-nipa-forest",
+      "thanh-ha-pottery",
+      "kim-bong-village",
+      "ha-lantern-make",
+      "an-bang"
+    ]
+  },
+  {
+    "id": "slow-city-da-nang-4",
+    "kind": "city",
+    "title": "4 slow days in Da Nang",
+    "description": "Da Nang without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dragon_Bridge_(Da_Nang).jpg",
+    "pace": "slow",
+    "days": 4,
+    "cities": [
+      "Da Nang"
+    ],
+    "previewNames": [
+      "Dragon Bridge Fire Show",
+      "Marble Mountains",
+      "Nam Sơn Pagoda",
+      "Museum of Cham Sculpture",
+      "Han River Bridge",
+      "Non Nước Beach",
+      "Quan Thế Âm Pagoda"
+    ],
+    "dayPlans": [
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "dragon-bridge"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "marble-mountains",
+          "nam-son-pagoda"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "cham-sculpture-museum",
+          "han-river-bridge"
+        ]
+      },
+      {
+        "city": "Da Nang",
+        "placeId": "da-nang",
+        "sourceIds": [
+          "non-nuoc-beach",
+          "quan-the-am-pagoda"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "dragon-bridge",
+      "marble-mountains",
+      "nam-son-pagoda",
+      "cham-sculpture-museum",
+      "han-river-bridge",
+      "non-nuoc-beach",
+      "quan-the-am-pagoda"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "dragon-bridge",
+      "marble-mountains",
+      "nam-son-pagoda",
+      "cham-sculpture-museum",
+      "han-river-bridge",
+      "non-nuoc-beach",
+      "quan-the-am-pagoda"
+    ]
+  },
+  {
+    "id": "slow-city-nha-trang-4",
+    "kind": "city",
+    "title": "4 slow days in Nha Trang",
+    "description": "Nha Trang without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Nha_Trang-Tran_Phu.JPG",
+    "pace": "slow",
+    "days": 4,
+    "cities": [
+      "Nha Trang"
+    ],
+    "previewNames": [
+      "Nha Trang Beach (Trần Phú Beach)",
+      "Po Nagar Cham Towers",
+      "Long Sơn Pagoda (Great White Buddha)",
+      "I-Resort Mud Bath",
+      "Bãi Dài (Long Beach, Cam Ranh)",
+      "Tháp Bà Hot Springs & Mud Bath"
+    ],
+    "dayPlans": [
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "nha-trang-beach",
+          "po-nagar"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "long-son-pagoda",
+          "i-resort-mud-bath"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "bai-dai-beach"
+        ]
+      },
+      {
+        "city": "Nha Trang",
+        "placeId": "nha-trang",
+        "sourceIds": [
+          "thap-ba-hot-springs"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "nha-trang-beach",
+      "po-nagar",
+      "long-son-pagoda",
+      "i-resort-mud-bath",
+      "bai-dai-beach",
+      "thap-ba-hot-springs"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "nha-trang-beach",
+      "po-nagar",
+      "long-son-pagoda",
+      "i-resort-mud-bath",
+      "bai-dai-beach",
+      "thap-ba-hot-springs"
+    ]
+  },
+  {
+    "id": "slow-city-da-lat-4",
+    "kind": "city",
+    "title": "4 slow days in Da Lat",
+    "description": "Da Lat without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/Vietnameselotustea.jpg",
+    "pace": "slow",
+    "days": 4,
+    "cities": [
+      "Da Lat"
+    ],
+    "previewNames": [
+      "Cầu Đất Tea Hill",
+      "Tuyền Lâm Lake",
+      "Valley of Love",
+      "Datanla Waterfall",
+      "Prenn Waterfall",
+      "Suối Mấy onsen and Japanese hot-spring bathing",
+      "Da Lat Flower Gardens",
+      "Lake of Sighs (Hồ Than Thở)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "cau-dat-tea"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "tuyen-lam-lake",
+          "valley-of-love"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "datanla-waterfall",
+          "prenn-waterfall",
+          "dl-suoi-may-onsen"
+        ]
+      },
+      {
+        "city": "Da Lat",
+        "placeId": "dalat",
+        "sourceIds": [
+          "da-lat-flower-gardens",
+          "lake-of-sighs"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cau-dat-tea",
+      "tuyen-lam-lake",
+      "valley-of-love",
+      "datanla-waterfall",
+      "prenn-waterfall",
+      "da-lat-flower-gardens",
+      "lake-of-sighs"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cau-dat-tea",
+      "tuyen-lam-lake",
+      "valley-of-love",
+      "datanla-waterfall",
+      "prenn-waterfall",
+      "dl-suoi-may-onsen",
+      "da-lat-flower-gardens",
+      "lake-of-sighs"
+    ]
+  },
+  {
+    "id": "slow-city-sapa-4",
+    "kind": "city",
+    "title": "4 slow days in Sapa",
+    "description": "Sapa without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Cat_Cat_Village.jpg",
+    "pace": "slow",
+    "days": 4,
+    "cities": [
+      "Sapa"
+    ],
+    "previewNames": [
+      "Cát Cát Village",
+      "Sa Pa Stone Church",
+      "Mường Hoa Valley",
+      "Hàm Rồng Mountain",
+      "Tả Van Village",
+      "Red Dao herbal bath and spa",
+      "Sa Pa Lake",
+      "Lao Chải Village"
+    ],
+    "dayPlans": [
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "cat-cat-village",
+          "sapa-stone-church"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "muong-hoa-valley",
+          "ham-rong-mountain"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "ta-van-village",
+          "sp-red-dao-bath"
+        ]
+      },
+      {
+        "city": "Sapa",
+        "placeId": "sapa",
+        "sourceIds": [
+          "sapa-lake",
+          "lao-chai-village"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cat-cat-village",
+      "sapa-stone-church",
+      "muong-hoa-valley",
+      "ham-rong-mountain",
+      "ta-van-village",
+      "sapa-lake",
+      "lao-chai-village"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cat-cat-village",
+      "sapa-stone-church",
+      "muong-hoa-valley",
+      "ham-rong-mountain",
+      "ta-van-village",
+      "sp-red-dao-bath",
+      "sapa-lake",
+      "lao-chai-village"
+    ]
+  },
+  {
+    "id": "slow-city-phu-quoc-4",
+    "kind": "city",
+    "title": "4 slow days in Phu Quoc",
+    "description": "Phu Quoc without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ph%C3%BA_Qu%E1%BB%91c_Island.jpg",
+    "pace": "slow",
+    "days": 4,
+    "cities": [
+      "Phu Quoc"
+    ],
+    "previewNames": [
+      "Kiss Bridge (Cầu Hôn)",
+      "Sao Beach (Bãi Sao)",
+      "Ông Lang Beach",
+      "Dương Đông Night Market",
+      "Starfish Beach (Rạch Vẹm)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "kiss-bridge"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "sao-beach"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "ong-lang-beach",
+          "duong-dong-night-market"
+        ]
+      },
+      {
+        "city": "Phu Quoc",
+        "placeId": "phu-quoc",
+        "sourceIds": [
+          "starfish-beach"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "kiss-bridge",
+      "sao-beach",
+      "ong-lang-beach",
+      "duong-dong-night-market",
+      "starfish-beach"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "kiss-bridge",
+      "sao-beach",
+      "ong-lang-beach",
+      "duong-dong-night-market",
+      "starfish-beach"
+    ]
+  },
+  {
+    "id": "slow-city-cat-ba-3",
+    "kind": "city",
+    "title": "3 slow days in Cat Ba",
+    "description": "Cat Ba without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Cat_Co_1_Beach-C%C3%A1t_B%C3%A0_Island-Andres_Larin.jpg",
+    "pace": "slow",
+    "days": 3,
+    "cities": [
+      "Cat Ba"
+    ],
+    "previewNames": [
+      "Cát Cò 1 Beach",
+      "Cát Bà Market",
+      "Cát Bà Central Square",
+      "Cát Cò 2 Beach",
+      "Cát Bà Night Market",
+      "Cát Cò 3 Beach",
+      "Tùng Thu Beach",
+      "Hoa Cương Cave (Diamond Cave)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Cat Ba",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "cat-co-1",
+          "cat-ba-market",
+          "cat-ba-square"
+        ]
+      },
+      {
+        "city": "Cat Ba",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "cat-co-2",
+          "cat-ba-night-market"
+        ]
+      },
+      {
+        "city": "Cat Ba",
+        "placeId": "ha-long",
+        "sourceIds": [
+          "cat-co-3",
+          "tung-thu-beach",
+          "hoa-cuong-cave"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "cat-co-1",
+      "cat-ba-market",
+      "cat-ba-square",
+      "cat-co-2",
+      "cat-ba-night-market",
+      "cat-co-3",
+      "tung-thu-beach",
+      "hoa-cuong-cave"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "cat-co-1",
+      "cat-ba-market",
+      "cat-ba-square",
+      "cat-co-2",
+      "cat-ba-night-market",
+      "cat-co-3",
+      "tung-thu-beach",
+      "hoa-cuong-cave"
+    ]
+  },
+  {
+    "id": "slow-city-can-tho-3",
+    "kind": "city",
+    "title": "3 slow days in Can Tho",
+    "description": "Can Tho without the race: two or three sights a day, first stop at 10:00, hours to spare between them — a spa or soak when the city lists one.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/C%C3%B4ng_vi%C3%AAn_B%E1%BA%BFn_Ninh_Ki%E1%BB%81u%2C_C%E1%BA%A7n_Th%C6%A1_%28hoa_h%C3%B2e%29%2C_ng%C3%A0y_23_th%C3%A1ng_5_n%C4%83m_2014_%2832%29.jpg",
+    "pace": "slow",
+    "days": 3,
+    "cities": [
+      "Can Tho"
+    ],
+    "previewNames": [
+      "Ninh Kiều Wharf (Bến Ninh Kiều)",
+      "Ông Temple (Chùa Ông – Quảng Đông Assembly Hall)",
+      "Bình Thủy Ancient House",
+      "Ninh Kiều Pedestrian Bridge (Love Bridge)",
+      "Sông Hậu Park",
+      "Ấu Islet (Cồn Ấu)",
+      "Ba Láng Fruit Gardens",
+      "Khương Islet (Cồn Khương)"
+    ],
+    "dayPlans": [
+      {
+        "city": "Can Tho",
+        "placeId": "can-tho",
+        "sourceIds": [
+          "ninh-kieu-wharf",
+          "chua-ong-can-tho",
+          "binh-thuy-ancient-house"
+        ]
+      },
+      {
+        "city": "Can Tho",
+        "placeId": "can-tho",
+        "sourceIds": [
+          "ninh-kieu-love-bridge",
+          "song-hau-park",
+          "con-au"
+        ]
+      },
+      {
+        "city": "Can Tho",
+        "placeId": "can-tho",
+        "sourceIds": [
+          "ba-lang-gardens",
+          "con-khuong"
+        ]
+      }
+    ],
+    "experienceIds": [
+      "ninh-kieu-wharf",
+      "chua-ong-can-tho",
+      "binh-thuy-ancient-house",
+      "ninh-kieu-love-bridge",
+      "song-hau-park",
+      "con-au",
+      "ba-lang-gardens",
+      "con-khuong"
+    ],
+    "shoppingIds": [],
+    "allIds": [
+      "ninh-kieu-wharf",
+      "chua-ong-can-tho",
+      "binh-thuy-ancient-house",
+      "ninh-kieu-love-bridge",
+      "song-hau-park",
+      "con-au",
+      "ba-lang-gardens",
+      "con-khuong"
+    ]
+  }
+]

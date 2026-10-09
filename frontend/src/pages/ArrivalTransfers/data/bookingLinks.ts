@@ -6,20 +6,24 @@ export type BookingRoute = {
   direction: TransferDirection
 }
 
-const GO12_AIRPORT: Record<AirportId, string> = {
+const GO12_AIRPORT: Partial<Record<AirportId, string>> = {
   HAN: 'hanoi-airport',
   SGN: 'ho-chi-minh-airport',
   DAD: 'da-nang-airport',
   PQC: 'phu-quoc-airport',
   CXR: 'cam-ranh-airport',
+  HUI: 'hue-airport',
+  VCA: 'can-tho-airport',
+  DLI: 'da-lat-airport',
 }
 
-const WELCOME_CITY: Record<AirportId, string> = {
+const WELCOME_CITY: Partial<Record<AirportId, string>> = {
   HAN: 'hanoi',
   SGN: 'ho-chi-minh-city',
   DAD: 'da-nang',
   PQC: 'phu-quoc',
   CXR: 'nha-trang',
+  HUI: 'hue',
 }
 
 function slug(value: string) {
@@ -54,7 +58,7 @@ export function filledBookingUrl(url: string | undefined, route: BookingRoute): 
   if (!url) return undefined
   const { from, to } = routePlate(route)
   const inbound = route.direction === 'inbound'
-  const airportSlug = GO12_AIRPORT[route.airport.id]
+  const airportSlug = GO12_AIRPORT[route.airport.id] ?? `${slug(route.airport.code)}-airport`
   const destSlug = go12Dest(route.destination)
   const fromSlug = inbound ? airportSlug : destSlug
   const toSlug = inbound ? destSlug : airportSlug
@@ -65,7 +69,7 @@ export function filledBookingUrl(url: string | undefined, route: BookingRoute): 
     return `https://www.klook.com/en-US/search/result/?query=${q}`
   }
   if (url.includes('welcomepickups.com')) {
-    return `https://www.welcomepickups.com/${WELCOME_CITY[route.airport.id]}/`
+    return `https://www.welcomepickups.com/${WELCOME_CITY[route.airport.id] ?? slug(route.airport.city)}/`
   }
   if (url.includes('holidaytaxis.com')) {
     return `https://www.holidaytaxis.com/en/airport/${route.airport.code.toLowerCase()}`

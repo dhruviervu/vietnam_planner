@@ -146,6 +146,31 @@ function inVietnam(lat: number, lng: number) {
   return lat >= 8.2 && lat <= 23.5 && lng >= 102.1 && lng <= 109.7
 }
 
+/** Maps-style autocomplete: several Vietnam hits, no single-result cache. */
+export async function searchVietnamPlaces(query: string, limit = 6): Promise<GeocodeHit[]> {
+  const trimmed = query.trim()
+  if (trimmed.length < 2) return []
+  const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&limit=${limit}&countrycodes=vn&addressdetails=0&q=${encodeURIComponent(trimmed)}`
+  try {
+    const hits = await nominatimSearch(url)
+    const seen = new Set<string>()
+    const out: GeocodeHit[] = []
+    for (const hit of hits) {
+      const lat = Number(hit.lat)
+      const lng = Number(hit.lon)
+      if (!Number.isFinite(lat) || !Number.isFinite(lng) || !inVietnam(lat, lng)) continue
+      const displayName = hit.display_name || `${lat.toFixed(5)}, ${lng.toFixed(5)}`
+      const key = `${lat.toFixed(4)},${lng.toFixed(4)}`
+      if (seen.has(key)) continue
+      seen.add(key)
+      out.push({ lat, lng, displayName })
+    }
+    return out
+  } catch {
+    return []
+  }
+}
+
 /** Parallel-friendly Photon lookup (no Nominatim 1 req/s queue). */
 export async function geocodePhoton(query: string): Promise<GeocodeResult> {
   const trimmed = query.trim()

@@ -6,6 +6,8 @@ import { cityKey } from '../../ItineraryTemplates/lib/cityKey'
 import { COUNTRY_ROUTES } from './countryRoutes'
 import { packCityStayDays, placeIdForCity, sightName, splitSourceIds } from '../lib/packHighRoi'
 import type { PackedDay, PackedTemplate } from './catalogTypes'
+import { buildPackedTrip } from '../lib/buildPackedTrip'
+import { slotsForTemplate } from '../lib/slotsForTemplate'
 
 export type { PackedDay, PackedTemplate } from './catalogTypes'
 
@@ -85,6 +87,42 @@ function assemble(
   }
 }
 
+/**
+ * Re-cut the days with the live planner so each one really works on the clock
+ * at a packed pace: stops a day cannot hold move to a sibling day, and stops no
+ * day can hold come off the template. The day count never changes.
+ */
+function fitOnce(dayPlans: PackedDay[], id: string, startDate: string, pace?: PackedTemplate['pace']): PackedDay[] {
+  const draft = assemble(dayPlans, { id, kind: 'city', title: '', description: '', image: 'x', pace })
+  const trip = buildPackedTrip(draft, startDate)
+  const slots = slotsForTemplate(draft)
+  const wanted = new Set(draft.allIds)
+  const fitted = dayPlans.map((_, i) => {
+    const day = trip.days.find((d) => d.slotId === slots[i].id)
+    const ids = (day?.periods ?? [])
+      .flatMap((p) => p.items.map((it) => it.sourceId))
+      .filter((sid): sid is string => Boolean(sid) && wanted.has(sid!))
+    return [...new Set(ids)]
+  })
+  const placed = new Set(fitted.flat())
+  return dayPlans.map((plan, i) => {
+    if (fitted[i].length) return { ...plan, sourceIds: fitted[i] }
+    // The fit emptied this day; keep its unplaced stops rather than repeat another day's.
+    const rest = plan.sourceIds.filter((id) => !placed.has(id))
+    return { ...plan, sourceIds: rest.length ? rest : plan.sourceIds }
+  })
+}
+
+/** Tuesday → Monday: the traveller can start any weekday, so a template must hold on every one. */
+const FIT_WEEK = ['2026-11-03', '2026-11-04', '2026-11-05', '2026-11-06', '2026-11-07', '2026-11-08', '2026-11-02']
+
+export function fitDaysToClock(dayPlans: PackedDay[], id: string, pace?: PackedTemplate['pace']): PackedDay[] {
+  if (typeof process !== 'undefined' && process.env?.PACKED_FIT === '0') return dayPlans
+  let plans = fitOnce(dayPlans, id, '', pace)
+  for (const startDate of FIT_WEEK) plans = fitOnce(plans, id, startDate, pace)
+  return plans
+}
+
 function buildCityTemplates(): PackedTemplate[] {
   const out: PackedTemplate[] = []
   for (const spec of CITY_SPECS) {
@@ -94,11 +132,12 @@ function buildCityTemplates(): PackedTemplate[] {
       if (!rows.length) continue
       if (seenDays.has(rows.length)) continue
       seenDays.add(rows.length)
-      const dayPlans = fromStayDays(spec.city, rows)
+      const id = `city-${cityToSlug(spec.city)}-${rows.length}`
+      const dayPlans = fitDaysToClock(fromStayDays(spec.city, rows), id)
       const ids = dayPlans.flatMap((d) => d.sourceIds)
       out.push(
         assemble(dayPlans, {
-          id: `city-${cityToSlug(spec.city)}-${rows.length}`,
+          id,
           kind: 'city',
           title: `${rows.length}-day ${spec.city} itinerary`,
           description: describeCity(spec.city, rows.length, ids),
@@ -112,11 +151,12 @@ function buildCityTemplates(): PackedTemplate[] {
 
 function buildCountryTemplates(): PackedTemplate[] {
   return COUNTRY_ROUTES.map((route) => {
-    const dayPlans: PackedDay[] = []
+    const drafted: PackedDay[] = []
     for (const stay of route.stays) {
       const rows = packCityStayDays(stay.city, stay.days)
-      dayPlans.push(...fromStayDays(stay.city, rows))
+      drafted.push(...fromStayDays(stay.city, rows))
     }
+    const dayPlans = drafted.length ? fitDaysToClock(drafted, route.id) : drafted
     const ids = dayPlans.flatMap((d) => d.sourceIds)
     return assemble(dayPlans, {
       id: route.id,

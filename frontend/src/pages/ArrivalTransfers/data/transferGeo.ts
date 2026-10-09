@@ -8,6 +8,21 @@ export const AIRPORT_COORDS: Record<AirportId, TransferCoord & { mapsQuery: stri
   SGN: { lat: 10.8188, lng: 106.6519, mapsQuery: 'Tan Son Nhat International Airport, Ho Chi Minh City' },
   PQC: { lat: 10.1698, lng: 103.9934, mapsQuery: 'Phu Quoc International Airport' },
   CXR: { lat: 11.9983, lng: 109.2195, mapsQuery: 'Cam Ranh International Airport' },
+  HUI: { lat: 16.4015, lng: 107.7026, mapsQuery: 'Phu Bai International Airport, Hue' },
+  VCA: { lat: 10.0851, lng: 105.7117, mapsQuery: 'Can Tho International Airport' },
+  DLI: { lat: 11.7506, lng: 108.3672, mapsQuery: 'Lien Khuong Airport, Da Lat' },
+  VII: { lat: 18.7376, lng: 105.6708, mapsQuery: 'Vinh International Airport' },
+  UIH: { lat: 13.955, lng: 109.042, mapsQuery: 'Phu Cat Airport, Quy Nhon' },
+  VDH: { lat: 17.515, lng: 106.5908, mapsQuery: 'Dong Hoi Airport' },
+  VDO: { lat: 21.1178, lng: 107.4144, mapsQuery: 'Van Don International Airport' },
+  BMV: { lat: 12.6683, lng: 108.1203, mapsQuery: 'Buon Ma Thuot Airport' },
+  PXU: { lat: 14.0045, lng: 108.0172, mapsQuery: 'Pleiku Airport' },
+  VKG: { lat: 9.958, lng: 105.132, mapsQuery: 'Rach Gia Airport' },
+  DIN: { lat: 21.3975, lng: 103.0079, mapsQuery: 'Dien Bien Phu Airport' },
+  VCL: { lat: 15.4059, lng: 108.571, mapsQuery: 'Chu Lai Airport' },
+  TBB: { lat: 13.0496, lng: 109.334, mapsQuery: 'Tuy Hoa Airport' },
+  THD: { lat: 19.9017, lng: 105.4678, mapsQuery: 'Tho Xuan Airport, Thanh Hoa' },
+  CAH: { lat: 9.177, lng: 105.178, mapsQuery: 'Ca Mau Airport' },
 }
 
 export const DESTINATION_COORDS: Record<string, TransferCoord> = {
@@ -30,10 +45,35 @@ export const DESTINATION_COORDS: Record<string, TransferCoord> = {
   'pqc-long-beach': { lat: 10.191, lng: 103.9665 },
   'cxr-nha-trang': { lat: 12.2388, lng: 109.1967 },
   'cxr-beach': { lat: 12.245, lng: 109.196 },
+  'hui-citadel': { lat: 16.4696, lng: 107.5794 },
+  'vca-ninh-kieu': { lat: 10.034, lng: 105.788 },
+  'dli-centre': { lat: 11.9404, lng: 108.4583 },
+  'vii-centre': { lat: 18.6796, lng: 105.6813 },
+  'uih-quy-nhon': { lat: 13.782, lng: 109.219 },
+  'vdh-dong-hoi': { lat: 17.469, lng: 106.622 },
+  'vdo-bai-chay': { lat: 20.962, lng: 107.045 },
+  'bmv-centre': { lat: 12.666, lng: 108.038 },
+  'pxu-centre': { lat: 13.983, lng: 108.0 },
+  'vkg-centre': { lat: 10.012, lng: 105.084 },
+  'din-centre': { lat: 21.387, lng: 103.023 },
+  'vcl-tam-ky': { lat: 15.566, lng: 108.483 },
+  'tbb-centre': { lat: 13.088, lng: 109.309 },
+  'thd-centre': { lat: 19.807, lng: 105.776 },
+  'cah-centre': { lat: 9.177, lng: 105.15 },
 }
 
 export function destinationCoord(id: string): TransferCoord | null {
   return DESTINATION_COORDS[id] ?? null
+}
+
+export function haversineKm(a: TransferCoord, b: TransferCoord) {
+  const R = 6371
+  const dLat = ((b.lat - a.lat) * Math.PI) / 180
+  const dLng = ((b.lng - a.lng) * Math.PI) / 180
+  const s =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((a.lat * Math.PI) / 180) * Math.cos((b.lat * Math.PI) / 180) * Math.sin(dLng / 2) ** 2
+  return 2 * R * Math.asin(Math.min(1, Math.sqrt(s)))
 }
 
 export function googleDirectionsUrl(

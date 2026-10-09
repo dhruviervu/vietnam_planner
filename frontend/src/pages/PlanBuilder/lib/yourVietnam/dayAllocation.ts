@@ -54,7 +54,17 @@ const FAR_KM = 1e4
 const EXPERIENCE_BY_ID = new Map(EXPERIENCES.map((e) => [e.id, e]))
 const ACTIVITY_BY_ID = new Map(CITY_ACTIVITIES.map((a) => [a.id, a]))
 
+const CATALOG_HOURS_MEMO = new Map<string, number>()
+
 export function catalogHoursForSourceId(id: string): number {
+  const hit = CATALOG_HOURS_MEMO.get(id)
+  if (hit !== undefined) return hit
+  const out = computeCatalogHours(id)
+  CATALOG_HOURS_MEMO.set(id, out)
+  return out
+}
+
+function computeCatalogHours(id: string): number {
   const exp = EXPERIENCE_BY_ID.get(id)
   if (exp) return snapVisitHours(exp.durationHours || 2.5)
   const act = ACTIVITY_BY_ID.get(id)
@@ -66,7 +76,13 @@ export function catalogHoursForSourceId(id: string): number {
 
 export function catalogPriorityForSourceId(id: string): number {
   const exp = EXPERIENCE_BY_ID.get(id)
-  if (exp) return exp.rating * Math.log10(1 + (exp.reviewCount ?? 0))
+  if (exp) {
+    const crowd = exp.rating * Math.log10(1 + (exp.reviewCount ?? 0))
+    // Review counts alone rank a busy side street over the city's must-see.
+    const picked = (exp.featured ? 3 : 0) + (exp.popularityTag === 'Must do' ? 2 : 0)
+    const rank = exp.popularityRank ? Math.max(0, 20 - exp.popularityRank) * 0.15 : 0
+    return crowd + picked + rank
+  }
   const act = ACTIVITY_BY_ID.get(id)
   if (act) return (act.rating ?? 4.5) * Math.log10(1 + 80)
   return 0
@@ -164,6 +180,8 @@ const FAR_HOP_HOURS = 55 / 60
 const FAR_HOP_KM = 28
 /** Wait through a lunch / afternoon-open gap rather than parking that stop on a new day. */
 const MAX_PACK_WAIT_HOURS = 5
+/** Same-town evening leftover (lanterns after a daytime walk) may idle longer than lunch. */
+const MAX_EVENING_WAIT_HOURS = 10
 /** Stops that can only start this late compete for the same slice of evening. */
 const LATE_ANCHOR = 16
 
@@ -210,8 +228,9 @@ function packUnits(ids: string[]): PackUnit[] {
   for (const id of unique) {
     if (used.has(id)) continue
     const bundle = bundleIdFor(id)
-    const mates = bundle
-      ? bundleMembers(bundle).filter((other) => unique.includes(other))
+    const memberCanon = bundle ? new Set(bundleMembers(bundle).map(canonicalSightId)) : null
+    const mates = memberCanon
+      ? unique.filter((other) => other === id || (!used.has(other) && memberCanon.has(canonicalSightId(other))))
       : [id]
     const exclusive =
       mates.some((member) => isExclusiveDayTrip(member)) ||
@@ -672,7 +691,13 @@ function pickNearestFeasible(
     })
   }
   if (!cands.length) return -1
-  const nowish = cands.filter((c) => c.wait <= MAX_PACK_WAIT_HOURS)
+  const waitOk = (c: FeasiblePick) => {
+    if (c.wait <= MAX_PACK_WAIT_HOURS) return true
+    if (!c.evening || c.wait > MAX_EVENING_WAIT_HOURS) return false
+    const id = remaining[c.i] ?? ''
+    return remainingWalkMate(placed, id) || remainingComplexMate(placed, remaining, id)
+  }
+  const nowish = cands.filter(waitOk)
   const pool = nowish.length ? nowish : cands
   const wholeDay = (c: FeasiblePick) => idOwnsWholeDay(remaining[c.i] ?? '', allIds)
   const sightseeing =
@@ -761,7 +786,24 @@ function pieceOpenOnDate(piece: PackUnit, iso: string): boolean {
   return piece.ids.some((id) => !isSourceClosedOnDate(id, iso) || isExclusiveDayTrip(id))
 }
 
+const CANONICAL_DAY_MEMO = new Map<string, { fitted: string[]; leftover: string[] }>()
+
 function canonicalizeDay(
+  ids: string[],
+  allIds: string[],
+  isoDate: string,
+  startCoord?: PinCoord | null,
+): { fitted: string[]; leftover: string[] } {
+  const key = `${ids.join(',')}|${allIds.join(',')}|${isoDate}|${startCoord?.lat ?? ''},${startCoord?.lng ?? ''}`
+  const hit = CANONICAL_DAY_MEMO.get(key)
+  if (hit) return { fitted: [...hit.fitted], leftover: [...hit.leftover] }
+  if (CANONICAL_DAY_MEMO.size > 20_000) CANONICAL_DAY_MEMO.clear()
+  const out = computeCanonicalDay(ids, allIds, isoDate, startCoord)
+  CANONICAL_DAY_MEMO.set(key, out)
+  return { fitted: [...out.fitted], leftover: [...out.leftover] }
+}
+
+function computeCanonicalDay(
   ids: string[],
   allIds: string[],
   isoDate: string,
@@ -941,6 +983,7 @@ function packCityDays(
   startCoord?: PinCoord | null,
   _targetDays?: number,
 ): string[][] {
+  pieces = [...pieces]
   const n = pieces.length
   if (n === 0) return []
 
@@ -976,6 +1019,16 @@ function packCityDays(
         const only = nearestFeasibleWalk(bundle, unique, iso, startCoord)
         kept = only.ordered.length ? only.ordered : bundle
       }
+      // A bundle that only partly fit keeps its other stops in the pool for a later day.
+      for (const i of leftover) {
+        const rest = pieces[i].ids.filter((id) => !kept.includes(id))
+        if (rest.length && rest.length < pieces[i].ids.length) {
+          const piece = { ids: rest, exclusive: pieces[i].exclusive }
+          pieces.push(piece)
+          exclusive.push(unitTakesWholeDay(piece, unique))
+          leftover.push(pieces.length - 1)
+        }
+      }
       leftover = leftover.filter((i) => !pieces[i].ids.some((id) => kept.includes(id)))
       days.push(kept)
       cal += 1
@@ -990,6 +1043,8 @@ function packCityDays(
     leftover = leftover.filter((i) => i !== forced)
     cal += 1
   }
+  // Nothing is lost here: whatever never found a date gets a day the clock check can still repair.
+  for (const i of leftover) days.push(pieces[i].ids)
 
   return collapseEmptyDays(days)
 }

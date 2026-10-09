@@ -2,10 +2,11 @@ import { buildYourVietnam } from '../../PlanBuilder/lib/yourVietnam/buildYourVie
 import type { PackedTemplate } from '../data/catalogTypes'
 import { slotsForTemplate } from './slotsForTemplate'
 import { splitSourceIds } from './packHighRoi'
+import { slowStartOverridesForTemplate } from './slowSightClocks'
 
 export { slotsForTemplate }
 
-export function buildPackedTrip(template: PackedTemplate) {
+export function buildPackedTrip(template: PackedTemplate, startDate = '') {
   const itineraryDaySlots = slotsForTemplate(template)
   const itineraryDaySlotOverrides: Record<string, string> = {}
   const itinerarySightOrder: Record<string, string[]> = {}
@@ -17,7 +18,7 @@ export function buildPackedTrip(template: PackedTemplate) {
   const { experienceIds, shoppingIds, activityIds } = splitSourceIds(template.allIds)
   return buildYourVietnam({
     days: template.days,
-    startDate: '',
+    startDate,
     travelStyle: template.pace === 'slow' ? 'relaxed' : 'packed',
     holidayKind: template.pace === 'slow' ? 'leisure' : 'action',
     holidayKindKnown: true,
@@ -37,5 +38,8 @@ export function buildPackedTrip(template: PackedTemplate) {
     itineraryDaySlots,
     itineraryDaySlotOverrides,
     itinerarySightOrder,
+    itineraryStartOverrides: slowStartOverridesForTemplate(template, startDate),
+    ...(template.pace === 'slow' || template.pace === 'relaxed' ? { dayStartTime: '10:00' } : {}),
+    pinsAreSuggestions: true,
   })
 }
